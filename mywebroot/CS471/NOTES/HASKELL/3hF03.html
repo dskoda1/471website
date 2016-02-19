@@ -1,0 +1,596 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta content="text/html; charset=iso-8859-1"
+ http-equiv="Content-Type">
+  <meta content="Les Lander" name="Author">
+  <meta content="Mozilla/4.77 [en] (Windows NT 5.0; U) [Netscape]"
+ name="GENERATOR">
+  <title>Generic Programming in Haskell</title>
+</head>
+<body>
+&nbsp;
+<center>
+<table bgcolor="#fffff0" cellpadding="0" cellspacing="0" border="1">
+  <tbody>
+    <tr>
+      <td><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2hSpr01.html">&nbsp;previous</a></td>
+      <td><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/4hFall02.html">&nbsp;next&nbsp;</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<center>
+<h3> Haskell 2</h3>
+</center>
+<center>
+<h4> &copy; Eileen Head, Leslie C. Lander, 2002</h4>
+</center>
+Purpose:&nbsp; To understand Haskell's error messages and how Haskell
+types works. &nbsp;<br>
+Goal: &nbsp;To understand different definitions of polymorphism.<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;To understand <b><i>Class</i></b><i>es
+</i>which are sets of types and static type checking work. <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;How to use Classes to develop
+generic code in Haskell. <br>
+<br>
+<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/Notes1.lhs">
+Notes1.lhs</a> has codes presented in these notes as well as other
+examples. <br>
+<a href="http://haskell.org/onlinereport/prelude-index.html">http://haskell.org/onlinereport/prelude-index.html</a>
+: Hyperlink reference to Prelude.hs<br>
+(Note Prelude.hs is coded in Traditional style--all code in my notes
+use literal style.)<br>
+<hr size="2" width="100%">
+<h3>Polymorphism:</h3>
+<ul>
+  <li> Ways the Language allows you to code routines with the same
+identifier but the actual parameters can be of different types.</li>
+</ul>
+<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/16poly.gif"><img
+ width="371" height="188" alt="Polymorphic Diagram" src="16poly.gif"> </a><br>
+<br>
+<ul>
+  <li> Polymorphism is a bad term to use.</li>
+  <li>Helpful definitions:</li>
+  <ul>
+    <li>&#8220;A function or operator is <span style="font-style: italic;">polymorphic</span>
+is it has at least two possible types.&#8221;<sup>1</sup></li>
+    <li>&#8220;A function or operator exhibits <span
+ style="font-style: italic;">ad hoc</span> <span
+ style="font-style: italic;">polymorphism</span> if it has at least two
+but only <span style="font-weight: bold;">finitely </span>many
+possible types.&#8221;<sup>1</sup><span style="font-style: italic;"><span
+ style="font-style: italic;"><span style="font-style: italic;"></span></span></span></li>
+    <li>&#8220;A function or operator exhibits <span
+ style="font-style: italic;">universal polymorphism</span> if it has
+infinitely many possible types&#8221; </li>
+  </ul>
+</ul>
+<h3> Coercion</h3>
+<ul>
+  <li> Implicit conversion of one type to the type expected by the
+called routine.</li>
+  <ul>
+    <li> Haskell, Ada require explicit conversion which is like casing
+in C (Java/++)</li>
+  </ul>
+  <li> 4.5 + 6 in most languages is probably 4.5 + 6.0</li>
+  <ul>
+    <li> + is usually an overloaded operator, adding integers or reals
+(floats)</li>
+    <li> Usually addition of reals</li>
+  </ul>
+  <li> The Louden describes a PL/I&#8217;s problem: (Rule: fractional value&#8217;s
+precision must be maintained.)</li>
+  <br>
+  <tt>1/3 + 15 returns 5.33333333333333</tt><br>
+&nbsp; <li> Type widening is more natural than type narrowing in
+general.</li>
+  <ul>
+    <li> type widening</li>
+    <dl>
+      <dl>
+        <li> int to real</li>
+        <li> 2-byte int to 4 byte int</li>
+      </dl>
+      <li> type narrowing</li>
+      <dl>
+        <li> real to int</li>
+      </dl>
+    </dl>
+  </ul>
+  <li> Coercion is implicit.</li>
+  <li> The programmer should be aware:</li>
+  <ul>
+    <li> The same code is executed for different types</li>
+    <li>The primitive type is changed and stored in a temporary
+location for use.<br>
+    </li>
+  </ul>
+</ul>
+<h3> Overloading</h3>
+<ul>
+  <li> When the same symbol translates to different code based on the
+actual parameter types:</li>
+  <br>
+We say that the operator/function is overloaded. <li> In most
+languages
+&#8216;+&#8217; corresponds to different code i.e.:</li>
+  <ul>
+    <tt>3 + 4</tt>
+  </ul>
+  <tt>Vs</tt>
+  <ul>
+    <tt>3.6&nbsp; +&nbsp; 4.1</tt>
+  </ul>
+  <li> Java adds another meaning to &#8216;+&#8217;</li>
+  <ul>
+    <tt>&#8220;one&#8221; + &#8220;two&#8221;</tt>
+  </ul>
+  <li> Ada and C++ allow users to overload operators.</li>
+  <li> C has no USER overloading -- operators or functions</li>
+  <li> C and Java DO Not allow users to overload operators.</li>
+  <li> &nbsp;<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5rAdaOverload.html">Overload
+Example from Ada</a></li>
+</ul>
+<h4>Dangerous Overloading of Operators</h4>
+<ul>
+  <li>
+    <h4>C</h4>
+  </li>
+</ul>
+<dl style="font-family: monospace;">
+  <dd>z = &amp;y&nbsp; /* assign the address of y to x */</dd>
+  <dd>z = x &amp; y /*assign the bit-wise AND of x and y */</dd>
+</dl>
+<ul>
+  <li> Fortran:</li>
+  <ul>
+    <tt>AVG = SUM/COUNT</tt>
+  </ul>
+( If SUM=20 and COUNT=30 are integers and AVG is a real variable. Then
+AVG will be 0.0) <li> Pascal uses a different symbols for integer
+division
+and real division.&nbsp; div vs &#8216;/&#8217;</li>
+  <li> Ada makes the above statement illegal since the types do not
+match!</li>
+</ul>
+<h4><a href="3hJF03.html">Inclusion Polymorphism&nbsp; --- Run-time
+dispatching</a></h4>
+<hr style="width: 100%; height: 2px;">
+<h4>Polymorphic Routines (Parametric Polymorphism) </h4>
+<ul>
+  <li> The same code for different data types.</li>
+  <li> Haskell Examples</li>
+  <ul>
+    <pre>&gt; length [ ] = 0 <br>&gt; length (a:x) = 1 + length x </pre>
+    <pre>&gt; rev :: [t] -&gt; [t]<br>&gt; rev [] = []<br>&gt; rev (a:x) = rev x ++ [a]</pre>
+    <pre>&gt; id :: t -&gt; t<br>&gt; id x = x</pre>
+    <pre>&gt; zip :: [t] -&gt; [u] -&gt; [(t,u)]<br>&gt; zip (a:x) (b:y)=(a,b):zip x y<br>&gt; zip _ _ = []</pre>
+  </ul>
+  <li> Sometimes there are constraints on the polymorphism: The code
+for
+&#8220;member&#8221; has to constraint in the expression &#8220;a == b&#8221; requiring
+elements have
+to be of an equality type. (See below)</li>
+</ul>
+<ul>
+  <li> However, many types are instances of the class Eq</li>
+  <li>Ada has generic subroutines.</li>
+  <li>Both Ada and Haskell have a mechanism to explicitly indicate what
+function are required. (See Haskell classes)<br>
+  </li>
+  <li> C++ has template functions and template classes.</li>
+  <ul>
+    <li>C++ &nbsp;uses implicitly constrained polymorphism<br>
+    </li>
+  </ul>
+</ul>
+<h3> Haskell classes</h3>
+<ul>
+  <li> In previous lecture we saw user defined types.&nbsp;</li>
+</ul>
+<blockquote>&nbsp;&gt; data People = Person String Int</blockquote>
+<ul>
+  <li>In previous lecture we how functions can be defined for a
+specific Type.<br>
+    <br>
+    <big><tt>&gt; memberI :: Int -&gt; [Int] -&gt; Bool<br>
+&gt; memberI x (h:t) = if (x == h) then True else memberI x t<br>
+&gt; memberI _ [] = False</tt></big><br>
+  </li>
+</ul>
+<ul>
+  <li>In previous lectures we saw that Haskell can infer the most
+general data types.</li>
+</ul>
+<blockquote><big><tt>&gt; memberG x (h:t)= if (x == h) then True else
+memberG x t<br>
+&gt; memberG _ [] = False</tt></big></blockquote>
+<blockquote><font color="#666666">memberG has the following type:</font><br>
+</blockquote>
+<blockquote><big><tt>Notes1&gt; :t memberG<br>
+memberG :: <b>Eq a</b> =&gt; a -&gt; [a] -&gt; Bool</tt></big><br>
+</blockquote>
+<ul>
+  <li>Entities such as &#8220;<b>Eq,</b>&#8221; &#8220;Ord,&#8221; &#8220;Show&#8221; provide collections
+of types.&nbsp;</li>
+  <li> For example, &#8220;<b>Eq</b>&#8221; contains several types, including &#8220;<b>Bool</b>,&#8221;
+&#8220;<b>Char</b>,&#8221; &#8220;<b>Int</b>,&#8221; &#8220;<b>Integer</b>,&#8221; &#8220;<b>Float</b>,&#8221; &#8220;<b>Double</b>&#8221;
+. Therefore <i>memberG</i> can use data types like Bool, Char Int etc
+whereas <i>memberI</i> can only use Int data.</li>
+  <li> Such collections of types in Haskell are called <b>classes.</b></li>
+  <li>In fact one can specify the most generic types:</li>
+</ul>
+<blockquote><big><tt>&gt; <b>member :: Eq a =&gt; a -&gt; [a] -&gt;
+Bool </b><br>
+&gt; member x (h:t)= if (x == h) then True else member x t<br>
+&gt; member _ [] = False</tt></big></blockquote>
+<ul>
+</ul>
+<h3> Haskell classes are different</h3>
+<ul>
+  <li> Classes are</li>
+  <ul>
+    <li> NOT the same as Java classes</li>
+    <li> More like Java&#8217;s interface</li>
+    <li> Somewhat like a C++ template</li>
+  </ul>
+  <li>Classes require function overloading</li>
+  <ul>
+    <li> Definition of a function is different for different types to
+which it is applied</li>
+    <li>Types must declare themselves to be in a class AND must have
+the functions specified in the Class implemented.</li>
+  </ul>
+</ul>
+<blockquote>
+  <blockquote><tt>&gt; instance&nbsp;&nbsp;Eq&nbsp;Char&nbsp;&nbsp;where<br>
+&gt; &nbsp;&nbsp;&nbsp;c&nbsp;==&nbsp;c'&nbsp;
+=&nbsp;&nbsp;fromEnum&nbsp;c&nbsp;==&nbsp;fromEnum&nbsp;c'</tt><br>
+  </blockquote>
+</blockquote>
+<h3>Basic class examples</h3>
+<ul>
+  <li> Defining a Haskell class:</li>
+  <ul>
+    <li> Class name which begins with a Capital letter</li>
+    <li> one or more functions that must be defined for any type in the
+class</li>
+  </ul>
+</ul>
+<blockquote>
+  <blockquote>i.e. <b>Eq</b> has the functions &#8220;<b>==</b>&#8221; and &#8220;<b>/=</b>&#8221;
+    <br>
+&nbsp; &nbsp; &nbsp; <b>Ord</b> has the functions &#8220;==&#8221; &#8220;/=&#8221; &#8220;&lt;&#8221;
+&#8220;&lt;=&#8221; &#8220;&gt;&#8221; &#8220;&gt;=&#8221; &#8220;max&#8221; &#8220;min&#8221;<br>
+  </blockquote>
+  <ul>
+    <li>The relationship between language defined classes are below:<br>
+    </li>
+  </ul>
+</blockquote>
+<blockquote>
+  <blockquote><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/classes.gif"><img
+ align="top" width="250" height="323" border="0"
+ alt="Haskell Basic Classes" src="classes.gif"> </a></blockquote>
+</blockquote>
+<ul>
+  <ul>
+  </ul>
+</ul>
+<h3> Details of defining Classes&nbsp;</h3>
+<ul>
+  <li>This is how Prelude defines the class EQ:</li>
+</ul>
+<blockquote><tt>&gt; class&nbsp;&nbsp;Eq&nbsp;a&nbsp;&nbsp;where<br>
+&gt;
+&nbsp;&nbsp;&nbsp;(==),&nbsp;(/=)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;a&nbsp;-&gt;&nbsp;a&nbsp;-&gt;&nbsp;Bool<br>
+  <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Minimal&nbsp;complete&nbsp;definition:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(==)&nbsp;or&nbsp;(/=)<br>
+  <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;/=&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;not&nbsp;(x&nbsp;==&nbsp;y)<br>
+&gt;
+&nbsp;&nbsp;&nbsp;x&nbsp;==&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;not&nbsp;(x&nbsp;/=&nbsp;y)<br>
+  </tt><br>
+</blockquote>
+<ul>
+  <li>An alternative definition:</li>
+</ul>
+<ul>
+  <pre>&gt; class Eq t where<br>&gt;&nbsp;&nbsp;&nbsp; (==), (/=)::t -&gt; t -&gt; Bool<br>&gt;&nbsp;&nbsp;&nbsp; a /= b = not (a == b)</pre>
+  <li>Notice you can define the functions in the class or not.
+&nbsp;The alternative class definition of Eq requires the user to
+define "==" whereas you have a choice using the Prelude "Eq" class .<br>
+  </li>
+</ul>
+<ul>
+  <li>Classes can allow for subtyping.&nbsp;</li>
+  <li>Types in Ord are subtypes of EQ.</li>
+</ul>
+<ul>
+  <pre>&gt; class Eq t =&gt; Ord t where<br>&gt;&nbsp;&nbsp;&nbsp; (&lt;), (&lt;=), (&gt;), (&gt;=) :: t -&gt; t -&gt; Bool<br>&gt;&nbsp;&nbsp;&nbsp; max, min :: t -&gt; t -&gt; t<br><br></pre>
+  <li> For a type to be in a class such as <b>Ord,</b> it must define
+all the functions in <b>Eq</b> and <b>Ord.</b></li>
+  <li> In fact <b>Ord</b> is derived from <b>Eq.</b></li>
+  <li> Ord inherits the operations from <b>Eq.</b></li>
+  <ul>
+    <li> Inheritance and subtyping are central ideas of object-oriented
+languages. &nbsp;</li>
+    <li>The different between object-oriented languages and Haskell is
+the binding time of the code related to the subtypes. &nbsp;</li>
+    <li>Haskell is static binding whereas object-oriented languages is
+dynamic binding.</li>
+    <li>C++ templates work the same way as classes. <br>
+    </li>
+  </ul>
+  <li>Any variable of type in Ord can be substituted for a variable of
+type in Eq.</li>
+  <ul>
+    <li>Therefore the function <i>member</i> can be applied to
+variables of type in Ord.</li>
+    <li>Similar idea in object-oriented languages.</li>
+  </ul>
+</ul>
+<ul>
+</ul>
+<h3>Defining a type to be in a class</h3>
+<ul>
+  <li> The following example is shown in the Haskell book:</li>
+  <pre>&gt; <b>instance</b> Eq Bool where<br>&gt;&nbsp;&nbsp;&nbsp; True == True&nbsp;&nbsp; = True<br>&gt;&nbsp;&nbsp;&nbsp; False == False = True<br>&gt;&nbsp;&nbsp;&nbsp; _ == _&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = False<br></pre>
+  <ul>
+    <li>The keyword <i>instance</i> indicates the type you are
+defining is in the class named.</li>
+    <li>For the class <b>Eq</b> only one function needs to be defined.
+&nbsp;You get "/=" for free.<br>
+    </li>
+  </ul>
+</ul>
+<ul>
+  <li><b><i>&nbsp;Show </i></b>is another class in Prelude. &nbsp;The
+function <i>show</i> like "toString" in Java.</li>
+</ul>
+<ul>
+  <p><tt>&gt; class&nbsp; Show a&nbsp; where<br>
+&gt;&nbsp;&nbsp;&nbsp;
+showsPrec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :: Int -&gt; a
+-&gt; ShowS<br>
+&gt;&nbsp;&nbsp;&nbsp; show&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; :: a -&gt; String<br>
+&gt;&nbsp;&nbsp;&nbsp;
+showList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :: [a] -&gt;
+ShowS <br>
+  </tt></p>
+  <ul>
+    <li>To use the function <i>show</i> to display values the Hugs
+runtime must be set. The user defined type <i>Person</i> is not an
+instance of Show so we get the following runtime error.<br>
+&nbsp;<br>
+      <span style="font-family: monospace;">Notes1&gt; :set +u</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;"> Notes1&gt; Person "Name" 3</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;"> ERROR - Cannot find "show"
+function for:</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;"> *** Expression : Person
+"Name" 3</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;"> *** Of
+type&nbsp;&nbsp;&nbsp; : People</span><br
+ style="font-family: monospace;">
+      <small style="font-family: monospace;">Notes1&gt; :set -u<br>
+Notes1&gt; Person "Name" 3<br>
+People_Person "Name" </small><span style="font-family: monospace;">3</span><br>
+      <br>
+    </li>
+  </ul>
+  <span style="font-family: monospace;"></span>
+</ul>
+<hr style="height: 1px; width: 50%;" noshade="noshade">
+<ul>
+  <span style="font-family: monospace;"></span>
+</ul>
+<h3> Numeric types</h3>
+<dl>
+  <dl>
+    <li> Num class provides several basic operations common to all
+numeric types;</li>
+  </dl>
+</dl>
+<blockquote>
+  <blockquote><b><tt>&gt; (+), (-), (*)&nbsp;&nbsp;&nbsp; :: (Num a)
+=&gt; a -&gt; a -&gt; a</tt></b><b><tt><br>
+&gt; negate, abs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :: (Num a) =&gt; a -&gt;
+a</tt></b></blockquote>
+</blockquote>
+<dl>
+  <dl>
+    <dl>
+      <li> Num does not provide a division operator</li>
+    </dl>
+  </dl>
+</dl>
+<dl>
+  <dl>
+    <li> Primitive vs constructured numbers</li>
+    <li>The standard numeric types, Int, Integer, Float, and Double are
+primitive.</li>
+  </dl>
+</dl>
+<blockquote>
+  <blockquote>
+    <dl>
+      <li>Both Int and Integer are in the Class Integral but Int is fix
+size integer but Integer is an arbitrary precision integer</li>
+    </dl>
+  </blockquote>
+</blockquote>
+<dl>
+  <dl>
+    <li>The others are made from these by type constructors RealFloat
+type:</li>
+  </dl>
+</dl>
+<blockquote></blockquote>
+<dl style="font-weight: bold;">
+  <dl>
+    <li> There is NO implicit coercion!</li>
+  </dl>
+</dl>
+<blockquote>
+  <blockquote>
+    <dl>
+      <tt>fromInteger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Num a) =&gt; Integer -&gt; a</tt><br>
+      <tt>fromRational&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Fractional a) =&gt; Rational -&gt; a</tt><br>
+      <tt>toInteger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Integral a) =&gt; a -&gt; Integer</tt><br>
+      <tt>toRational&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (RealFrac a) =&gt; a -&gt; Rational</tt><br>
+      <tt>fromIntegral&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Integral a, Num b) =&gt; a -&gt; b</tt><br>
+      <tt>fromRealFrac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (RealFrac a, Fractional b) =&gt; a -&gt; b<br>
+      </tt>
+    </dl>
+  </blockquote>
+  <ul>
+    <li>What is the type of 2?</li>
+  </ul>
+  <dl>
+    <dd><span style="font-family: monospace;">2 :: Num a =&gt; a<br>
+      </span></dd>
+  </dl>
+  <ul>
+    <li>What is the type of <span
+ style="font-weight: bold; font-family: monospace;">[]</span>?<br>
+    </li>
+  </ul>
+</blockquote>
+<ul>
+  <li>
+    <h3>Merge</h3>
+    <dl>
+      <dd><span style="font-family: monospace;">2 :: Num a =&gt; a<br>
+        </span></dd>
+    </dl>
+  </li>
+  <li>What is the type of <span
+ style="font-weight: bold; font-family: monospace;">[]</span>?<br>
+  </li>
+</ul>
+<blockquote>
+  <pre>  &gt; merge [] lst = lst<span style="font-family: sans-serif;"><br>    </span>&gt; merge lst [] = lst<span
+ style="font-family: sans-serif;"><br>    </span>&gt; merge (a:x) (b:y)<span
+ style="font-family: sans-serif;"><br>    </span>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | a &lt;= b = a:merge x (b:y)<span
+ style="font-family: sans-serif;"><br>    </span>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | a &gt; b  = b:merge (a:x) y<br>  ...&gt; :t merge<br>  merge :: Ord a =&gt; [a] -&gt; [a] -&gt; [a]  <br></pre>
+  <ul>
+    <li>Running this code</li>
+  </ul>
+  <pre>  ...&gt; merge [1,3] [2,4]<br>  [1,2,3,4]<br>  ...&gt; merge [] []<br>  ERROR - Unresolved overloading<br>  *** Type       : Ord a =&gt; [a]<br>  *** Expression : merge [] []<br>  ...&gt; merge [] ([]::[Int])<br>  []<br>  ...&gt; merge [] [] ([]::[Ord])<br>  ERROR - Undefined type constructor "Ord"  </pre>
+  <blockquote> </blockquote>
+</blockquote>
+<blockquote>
+  <blockquote> </blockquote>
+</blockquote>
+<dl>
+  <li> Default declaration available for numbers only</li>
+  <li><a href="http://haskell.org/tutorial/numbers.html">See Online
+report on Numbers</a></li>
+  <li><a href="http://haskell.org/tutorial/numbers.html">See online
+tutorial for more details</a></li>
+  <li><a href="http://haskell.org/tutorial/numbers.html#sect10.3">Numeric
+Coercions and Overloaded Literals</a></li>
+</dl>
+<br>
+<hr style="width: 100%; height: 2px;">
+<blockquote>
+  <blockquote> </blockquote>
+</blockquote>
+<h3>Higher-Order Types Used in Class Declaration</h3>
+<ul>
+  <li> &nbsp;<i><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2hSpr01.html#Tree">
+Tree</a></i>&nbsp; defined was as follows:</li>
+  <br>
+  <tt>&gt; data Tree a = Leaf a | Branch (Tree a) (Tree a)</tt><span
+ style="font-family: monospace;"><br>
+&gt; tree&nbsp; =&nbsp; Branch (Leaf 3) (Branch (Leaf 6) (Leaf 9))</span>
+</ul>
+<div style="margin-left: 80px;"><a href="branchTree.gif"><img
+ style="border: 0px solid ; width: 249px; height: 158px;"
+ alt="Graphic representation" src="branchTree.gif"></a></div>
+<ul>
+  <tt><br>
+  </tt> <li> <i>Tree</i> by itself is a type constructor:</li>
+  <ul>
+    <li> It takes a type as an argument and returns a type as a result.
+    </li>
+  </ul>
+  <li> No value can have this as a type but such "higher order" types
+can be used in Class declarations.</li>
+&nbsp; <li> The following class is defined in the Standard Prelude</li>
+  <br>
+  <tt>&gt; class Functor f where</tt> <br>
+  <tt>&gt;&nbsp;&nbsp;&nbsp; fmap :: (a-&gt;b) -&gt; f a -&gt; f b<br>
+  <br>
+  </tt>
+  <ul>
+    <li> <i><tt><big>f</big> </tt></i>is a type that is applied to
+other types<br>
+      <br>
+    </li>
+  </ul>
+  <li> Defining Tree in the class Functor</li>
+  <ul>
+&nbsp;
+  </ul>
+  <tt>&gt; instance Functor Tree where</tt> <br>
+  <tt>&gt;&nbsp;&nbsp;&nbsp;&nbsp; fmap f (Leaf x) = Leaf (f x)</tt> <br>
+  <tt>&gt;&nbsp;&nbsp;&nbsp;&nbsp; fmap f (Branch t1 t2) = Branch (fmap
+f t1) (fmap f t2)</tt>
+  <p><tt>...&gt; fmap (5 +) tree</tt> </p>
+  <p>Given an integer tree, an integer tree with 5 added to each leaf
+of the
+original tree. <br>
+&nbsp; </p>
+  <li> [ ] can easily be made an instance of Functor</li>
+  <ul>
+&nbsp;
+  </ul>
+  <tt>&gt; instance Functor [ ] where</tt> <br>
+  <tt>&gt;&nbsp;&nbsp; fmap = map</tt>
+</ul>
+<hr width="100%" size="3">
+<center>
+<table bgcolor="#fffff0" cellpadding="0" cellspacing="0" border="1">
+  <tbody>
+    <tr>
+      <td>&nbsp;<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2hSpr01.html">
+previous</a></td>
+      <td><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/4hFall01.html">&nbsp;next&nbsp;</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr width="100%" noshade="noshade" size="1" align="left"> <a
+ name="slide46"></a> <i>Modern
+Programming Languages: A Practical Introduction</i> by Adam Brooks
+Webber, Franklin, Beedle &amp;Associates, Inc , 2002<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

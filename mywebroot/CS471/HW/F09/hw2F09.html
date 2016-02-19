@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type" /><title>Assignment 2: Syntax and Parsing</title></head>
+<body>
+<span style="font-weight: bold;">Assignment Due Tue. Sept
+15 11:59pm<br />
+<br />
+</span><span style="font-weight: bold;"></span>All
+written
+files and&nbsp;code needs to be zip'd or tar'd and upload
+to blackboard.<b><br />
+<br />
+Purpose:</b><br />
+<ul>
+<li>To review how grammar (syntax) rules works in theory and
+application.</li>
+<li>To use and modify a recursive descent parser.</li>
+<li>Review primitive types and Intel architecture.</li>
+</ul>
+<ol>
+<li>What is a <span style="font-style: italic;">pragmas</span>?
+Why are they processed by the scanner? &nbsp;Briefly, if you are a
+language designer what are the trade off of allowing pragmas? <br />
+<br />
+</li>
+<li>Add a binary infix operator, ^ , to the grammar in
+example
+2.8 page 50. &nbsp;The operator , ^ , has the highest
+precedence and is <span style="font-weight: bold;">left</span>
+associative. &nbsp;The semantics of &nbsp;"b ^ e" is <span style="font-style: italic;">b</span> times itself <span style="font-style: italic;">e</span> times.<br />
+<br />
+</li>
+<li>Add
+the power operator,^, as described in problem 2, to
+the&nbsp;code given in <a href="hw2RDP/Fig4_12.c">Fig4_12.c</a>.&nbsp;&nbsp;
+You may include the following function definition to calculate <span style="font-style: italic;">power.</span></li>
+<dd><span style="font-family: monospace;">int
+powI(int base, int exp) {</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">&nbsp; if
+(0==exp) {</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+return 1;</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">&nbsp; }
+else {</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+return base * powI(base, exp -1);</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">&nbsp; } </span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">}</span><br />
+</dd>
+<dt>&nbsp;Use the<span style="text-decoration: underline;">
+</span><a href="hw2RDP/Makefile">Makefile</a>
+and <span style="font-style: italic;">make</span>
+tool to build your executable. <br />
+</dt>
+<dd><span style="font-family: monospace;">...$
+make runIt</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">gcc -o Fig4_12
+-std=c99 Fig4_12.c</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">./Fig4_12</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">2 ^ 3 ^ 2</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">The result is: 64</span><br />
+</dd>
+<br />
+<li>Redo exercise<span style="text-decoration: underline;">
+2 &amp; 3</span>. For this exercise add&nbsp; the
+operator ^, to the
+grammar in
+example
+2.8 page 50. The operator , ^ , still has the highest
+precedence and but is <span style="font-weight: bold;">RIGHT</span>
+associative. &nbsp;(DO&nbsp;not use a while loop construct to
+implement this operator.) &nbsp;i.e.<br />
+&nbsp;</li>
+<ol>
+<span style="font-family: monospace;">....$ make runIt</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">gcc -o Fig4_12
+-std=c99 Fig4_12.c</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">./Fig4_12</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">2 ^ 3 ^ 2</span><br style="font-family: monospace;" />
+<span style="font-family: monospace;">The result is:
+512</span><br />
+</ol>
+<dl>
+<dd><span style="font-family: monospace;"></span><br />
+</dd>
+</dl>
+<dl>
+<br />
+</dl>
+<li>Exercise 2.27 page 108.<br />
+<br />
+</li>
+<li>Rewrite the expressions a–d below in <span style="font-style: italic;">prefix </span>notation.
+Assume the
+following precedences&nbsp; and associativities for the operators:<br />
+</li>
+<dl>
+<dd>
+<table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td style="vertical-align: top;">
+<div style="text-align: center;">Binary <br />
+</div>
+Operator<br />
+</td>
+<td style="vertical-align: top;">Precedence<br />
+(3 highest)<br />
+</td>
+<td style="vertical-align: top;">Associativity<br />
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align: top;">^<br />
+</td>
+<td style="text-align: center; vertical-align: top;">3<br />
+</td>
+<td style="text-align: center; vertical-align: top;">right<br />
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align: top;">*<br />
+</td>
+<td style="text-align: center; vertical-align: top;">2<br />
+</td>
+<td style="text-align: center; vertical-align: top;">left<br />
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align: top;">/<br />
+</td>
+<td style="text-align: center; vertical-align: top;">2<br />
+</td>
+<td style="text-align: center; vertical-align: top;">left<br />
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align: top;">+<br />
+</td>
+<td style="text-align: center; vertical-align: top;">1<br />
+</td>
+<td style="text-align: center; vertical-align: top;">left<br />
+</td>
+</tr>
+<tr>
+<td style="text-align: center; vertical-align: top;">-<br />
+</td>
+<td style="text-align: center; vertical-align: top;">1<br />
+</td>
+<td style="text-align: center; vertical-align: top;">left<br />
+</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt><br />
+and don't assume that any of the operators are
+commutative.</dt>
+<dt>A simple way to proceed is to perform the rewriting
+process in
+three steps:<br />&nbsp; </dt>
+</dl>
+<ol style="list-style-type: lower-alpha;">
+<li>Parenthesize the expression fully, using the rules of
+precedence and associativity.</li>
+<li>Within each parenthesized subexpression, move the
+operator to
+left of its left operand.</li>
+<li>Remove the parentheses.<br /></li>
+</ol>
+<dl>
+<dt>You'll notice that in the resulting expression, the order
+of
+the operands is the same as in original- only the operators change
+positions.</dt>
+<dd>
+<table style="text-align: left;" border="0" cellpadding="5" cellspacing="5">
+<tbody>
+<tr>
+<td style="vertical-align: top; font-weight: bold;">a)&nbsp;
+w&nbsp; ^&nbsp; x&nbsp; ^&nbsp; y&nbsp; +&nbsp;
+z<br />
+</td>
+<td style="vertical-align: top;"><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+b) &nbsp;w + (x&nbsp; *&nbsp; y&nbsp; +&nbsp; z) </span><br />
+</td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><span style="font-weight: bold;">c)&nbsp; w&nbsp;
+*&nbsp; x&nbsp; *&nbsp; y&nbsp; ^ z</span><br />
+</td>
+<td style="vertical-align: top;"><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+d)&nbsp; w *
+x&nbsp; +&nbsp; y&nbsp; /&nbsp; z</span><br />
+</td>
+</tr>
+</tbody>
+</table>
+<br />
+</dd>
+</dl>
+<li>Rewrite the&nbsp;expression in<span style="color: rgb(255, 0, 0);"> <span style="color: black;">6</span></span> using the
+assumption but in <span style="font-style: italic;">postfix</span>
+notation.&nbsp;&nbsp;
+&nbsp; <br />
+<br />
+<br />
+</li>
+<dl>
+</dl>
+<li>Explain why does (a+b)*10 does not equal a*10 + b*10 in the
+non-optimized compilation? &nbsp;Why do you get a different result
+when you use the "-O" option? (Use an Intel Machine.) (You can remotely
+login to the Ubuntu machines -- ssh harvey.cc.binghamton.edu
+-l&lt;yourLogin&gt;)</li>
+<br />
+<ul>
+<li>Compile the&nbsp;code,&nbsp;<a href="hw2/p8.c">p8.c</a>,
+on a&nbsp; <span style="font-weight: bold;">Intel</span>
+platform twice as follows:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+gcc&nbsp;p8.c -o hw2a.exe -std=iso9899:1999<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+gcc&nbsp;p8.c -o hw2b.exe -O -std=iso9899:1999</li>
+<li>&nbsp;Run
+both
+executables:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+./hw2a.exe<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+./hw2b.exe</li>
+<li>To aid in your explanation you may use the -S switch:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+gcc&nbsp;p8.c&nbsp; -o hw2a.S -S -std=iso9899:1999<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+gcc&nbsp;p8.c -o hw2b.S -O -S -std=iso9899:1999<br style="text-decoration: underline line-through;" />
+to see
+the assembly code generated by the different
+opinions. You are also encouraged&nbsp;to use a debugger such as
+ddd or gdb.<br />
+&nbsp; &nbsp;&nbsp;<a href="http://www.gnu.org/manual/ddd/">DDD manual</a><br />
+&nbsp; &nbsp; <a href="http://sourceware.org/gdb/documentation/">GDB
+Documentation</a><br />
+&nbsp;<br style="text-decoration: underline line-through;" />
+You might take this opportunity to create a Makefile and use <span style="font-style: italic;">make</span> to build
+the
+different executables.&nbsp; You can use the Makefile supplied in
+problem 2 as
+an example.&nbsp; It will be easier if you locate <a href="hw2/p8.c">p8.c</a>
+and your new Makefile in the same directory. &nbsp;(Helpful
+links on make:<a href="http://www.eng.hawaii.edu/Tutor/Make/">http://www.eng.hawaii.edu/Tutor/Make/</a>
+and <a href="http://www.gnu.org/software/make/">http://www.gnu.org/software/make/</a><br style="text-decoration: underline line-through;" />
+<br />
+If you have time try this same problem on the
+Sparc(Bingsuns)
+machines. &nbsp;You can access Bingsuns via an ssh client<br />
+&nbsp; &nbsp; ssh bingsuns.binghamton.edu
+-l&lt;yourLogin&gt;<br />
+</li>
+</ul>
+</ol>
+<ol>
+</ol>
+<ol start="9">
+<li>Page 102 exercise 2.1. &nbsp;<br />
+</li>
+<ol style="list-style-type: lower-alpha;">
+<li>Write the regular expression specified in exercise 2.1 c
+for integers only (not floating point).</li>
+<li>2.f (but don't include "cent" i.e $***3921 or $325)<br />
+<br />
+</li>
+</ol>
+<li>Write a Ruby class&nbsp;that</li>
+<ul>
+<li>opens a text file where each line may contain at most one binary,
+octal or hex number embedded</li>
+<ul>
+<li>the binary numbers begin with 0b, the octal numbers
+begin with 0o and hexadecimal numbers begin with 0x</li>
+</ul>
+<li>creates two output files. num.txt and pattern.txt</li>
+<ul>
+<li>the top of each output file should contain the regular
+expression used to retrieve the number.</li>
+</ul>
+<li>reads a line at a time&nbsp;</li>
+<li>&nbsp;writes all the patterns used by your RE to
+pattern.txt</li>
+<li>&nbsp;writes the pattern of the number and it's
+decimal equivalent.</li>
+<li>test out your code</li>
+<li>follow the style of <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/GRAMMAR/CODE/RE/">code</a>
+discussed in class</li>
+<li>find test file and sample possible output files <a href="./hw2p10">here.</a> (Solution slightly modified. 9/11)</li>
+</ul>
+</ol>
+<br />
+Resources use:
+<ol start="9">
+<br />
+</ol>
+</body></html>

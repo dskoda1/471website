@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>CS471 Assignment 3:</title>
+</head>
+<body>
+<center>
+<h3> Programming Languages<br />
+Assignment<i>&nbsp;</i>3</h3>
+<div style="text-align: left;">
+<h3>Due during class, Tue. Sept 13:</h3>
+<span style="color: rgb(0, 102, 0);">Modified
+9/18</span><br />
+Make sure you can answer the following:<br />
+<ol>
+  <li>Write a <span style="font-style: italic;">swap</span>( <span
+ style="font-style: italic;">+InList,
+-OutList</span>), which exchange
+the values of the<span style="color: rgb(0, 102, 0);"> first pair of
+two elements in the InList where the
+first value
+is greater than the second value and the result is OutList. This will
+swap only the first pair meeting the requirement.</span>
+&nbsp; You
+will
+use this predicate in the bubblesort.&nbsp;<span
+ style="font-style: italic;">InList</span>
+must have at least ONE
+element. &nbsp;For example:<br />
+    <br />
+    <span style="font-family: monospace;">?-
+swap([4,7,8,1],Out).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Out
+= [4, 7, 1, 8] </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Yes</span><br
+ style="font-family: monospace;" />
+    <span style="font-family: monospace;">?-
+swap([7,4,2,1],Out).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Out
+= [4, 7, 2, 1] </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Yes<br />
+    <span style="color: rgb(0, 102, 0);">?-
+swap([3,5,2,3,5,99,1,2,77,7],X), swap(X,X1),swap(X1,L). </span><br
+ style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">X
+= [3, 2, 5, 3, 5, 99, 1, 2,
+77, 7] </span><br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">X1
+= [2, 3, 5, 3, 5, 99, 1, 2,
+77, 7] </span><br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">L
+= [2, 3, 3, 5, 5, 99, 1, 2,
+77, 7]</span><br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">Yes</span><br
+ style="color: rgb(0, 102, 0);" />
+    <br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">Note:
+to display the entire
+list, after</span><br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">&nbsp;
+&nbsp;X = [1, 2, 2, 3,
+3, 5, 5, 7, 77|...] </span><br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">type
+w. You will then see </span><br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">&nbsp;
+&nbsp;X = [1, 2, 2, 3,
+3, 5, 5, 7, 77|...] [write] </span><br style="color: rgb(0, 102, 0);" />
+    <span style="color: rgb(0, 102, 0);">&nbsp;
+&nbsp;X = [1, 2, 2, 3,
+3, 5, 5, 7, 77, 99] </span><br />
+    <br />
+    </span></li>
+  <li>Write a predictate <span style="font-style: italic;">insert</span>(<span
+ style="font-style: italic;">+Value</span>,+<span
+ style="font-style: italic;">InSortedList,</span>-<span
+ style="font-style: italic;">OutSortedList</span>),
+which insert Value
+into the correct position of InSortedList and the result is
+OutSortedList. &nbsp;This will be recursive definition.
+&nbsp;You will
+use this predicate in InsertionSort. &nbsp;For example:<br />
+    <span style="font-family: monospace;">?-
+insert(3, [2,4,6],Out).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Out
+= [2, 3, 4, 6] </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Yes</span><br
+ style="font-family: monospace;" />
+    <span style="font-family: monospace;">?-
+insert(3,[2,3,4,5],Out).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Out
+= [2, 3, 3, 4, 5] </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Yes</span><br
+ style="font-family: monospace;" />
+    <span style="font-family: monospace;">?-
+insert(3,[1,2],Out).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Out
+= [1, 2, 3] </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">Yes</span></li>
+</ol>
+<h3>Due Thur, Sept 15 in class</h3>
+<ol>
+  <li>&nbsp;Define a
+predicate&nbsp;&nbsp; <span
+ style="font-style: italic; font-weight: bold;">append</span>3<span
+ style="font-style: italic; font-weight: bold;">DL</span>&nbsp;
+that
+concatenates three difference lists:<br />
+&nbsp; &nbsp;<span style="font-family: monospace;"> &nbsp;?-
+append3DL(
+[z,y|A] - A, [x,w | B] -B, [u,v | C] - C, What).</span><br
+ style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; What = [z, y,
+x, w, u, v | _n] - _n</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; yes</span></li>
+  <li>Define a predicate <span
+ style="font-style: italic; font-weight: bold;">simp</span>(<span
+ style="font-style: italic;">Var, Value, Vars</span>)
+that given a list
+Vars of variables and their values unifies the Value with the current
+value of Var. &nbsp;Vars has the form [x/5, y/10], where x is an
+atomic
+representing a variable and '/' is the separator for the associated
+numerical value. &nbsp;{Hint try using member and pattern matching}<span
+ style="font-style: italic;"> {Include this rule in
+problem 6 below.}<br />
+    <span style="font-family: monospace;">&nbsp;
+?- Vars=[x/5, y/10],
+simp(x,VX,Vars), simp(y,VY,Vars).</span><br
+ style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+Vars = [x/5, y/10]</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+VX = 5</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+VY = 10 </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+Yes</span></span></li>
+</ol>
+</div>
+<div style="text-align: left;">
+<h3><i>Due:
+</i>5pm: Monday , Sept. 19, 2005</h3>
+</div>
+</center>
+Create a file &nbsp;named, XYZas3.pl, where XYZ is your last name.
+&nbsp;You should have a comment with each problem number in this
+assignment. &nbsp;You should include comments about any known
+problem
+with your code solution. &nbsp;Your code solution should follow
+each
+problem's (group of) comment (s).<br />
+<br />
+<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a><br />
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a><br />
+<a href="http://dingo.sbs.arizona.edu/%7Esandiway/ling388n/lecture6.ppt">Lecture
+on Regular Expressions and Prolog</a><br />
+<br />
+<ol>
+  <li>Implement in Prolog the
+bubblesort algorithm. Name the prediate <span
+ style="font-style: italic;">bubblesort</span>
+(<span style="font-style: italic;">+Unsorted, </span>-<span
+ style="font-style: italic;">Sorted</span>).
+You may use a helper
+predicate called <span style="font-style: italic;">swap</span>/2.
+&nbsp;Both <span style="font-style: italic;">bubblesort and swap</span>
+will require <span style="color: rgb(0, 102, 0);"><span
+ style="color: rgb(0, 0, 0);">two</span> </span>clauses each!. &nbsp;<a
+ href="http://en.wikipedia.org/wiki/Bubble_sort">Here
+(http://en.wikipedia.org/wiki/Bubble_sort)</a>
+is a description of the
+algorithm. &nbsp;You will find it helpful to convert the pseudocode
+from iterative form to a recursive form. &nbsp;The first argument
+will
+be an unsorted list and the second argument will be the Sorted output.</li>
+  <dl>
+    <dd><span style="font-family: monospace;">?-
+bubblesort([1,25,4,3,4,9,0,2],Sorted).</span><br
+ style="font-family: monospace;" />
+      <span style="font-family: monospace;">Sorted
+= [0, 1, 2, 3, 4, 4,
+9, 25]&nbsp;</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Yes</span><br />
+    </dd>
+  </dl>
+  <li>Implement in Prolog the
+insertation sort algorithm. Name the
+prediate <span style="font-style: italic;">insertionsort</span>
+(<span style="font-style: italic;">+Unsorted, </span>-<span
+ style="font-style: italic;">Sorted</span>).
+You should replace the
+'while' loop with an <span style="font-style: italic;">insert</span>/3
+predicate. &nbsp;Both <span style="font-style: italic;">i<span
+ style="color: rgb(0, 102, 0);">nsertionsort and insert</span></span><span
+ style="color: rgb(0, 102, 0);"> will require&nbsp; 2
+clauses each</span>!. &nbsp;<a
+ href="http://en.wikipedia.org/wiki/Insertion_sort">Here
+(http://en.wikipedia.org/wiki/Insertion_sort)</a>&nbsp;
+is a description of the algorithm. &nbsp;You will find it helpful
+to
+convert
+the pseudocode from iterative form to a recursive form. &nbsp;The
+first
+argument will be an unsorted list and the second argument will be the
+Sorted output. &nbsp;</li>
+  <dl>
+    <dd><span style="font-family: monospace;">?-
+insertsort([1,25,4,3,4,9,0,2],Sorted).</span><br
+ style="font-family: monospace;" />
+      <span style="font-family: monospace;">Sorted = [0, 1, 2, 3, 4, 4,
+9, 25]</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Yes</span></dd>
+  </dl>
+  <li>Right-linear grammar have
+productions of the form <span style="font-style: italic;">A</span>-&gt;
+    <span style="font-style: italic;">x
+B</span> or&nbsp;<span style="font-style: italic;">A</span>-&gt; <span
+ style="font-style: italic;">x</span>
+&nbsp;where upper case letters
+are non-terminal symbols and lower case are terminal symbols.&nbsp;
+&nbsp; Write a right-linear grammar&nbsp; that generates the
+regular
+language specified by the following regular expression: a*baa*bb.
+&nbsp;Convert your grammar to Prolog causes that succeed if a list
+of
+characters of a's and b's they match the regular expression and fail
+otherwise. &nbsp;Why does the order the Prolog clauses matter but
+not
+the order of the grammar productions? &nbsp;For example ('s' is the
+first production):</li>
+  <dl>
+    <dd><br />
+      <span style="font-family: monospace;">?-
+s([a,b,a,a,a,b,b]).</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Yes</span><br
+ style="font-family: monospace;" />
+      <span style="font-family: monospace;">?-
+s([b,a,a,a,b,b]).</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Yes</span><br
+ style="font-family: monospace;" />
+      <span style="font-family: monospace;">?-
+s([b,b,a,a,a,b,b]).</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">No</span><br
+ style="font-family: monospace;" />
+      <span style="font-family: monospace;">?-
+s(Str). &nbsp;%% You may
+generate acceptable strings in another
+order.</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Str
+= [b, a, b, b] ;</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Str
+= [b, a, a, b, b] ;</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Str
+= [b, a, a, a, b, b] ;</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Str
+= [b, a, a, a, a, b,
+b]&nbsp;</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">Yes</span><br />
+    </dd>
+  </dl>
+  <li>Syntax-Directed
+Differentiation:&nbsp; A motivating example
+illustrating&nbsp;the power of pattern matching in Prolog.<br />
+&nbsp; Consider the following rules for symbolic differentiation
+(U, V
+are mathematical expressions, x is a variable):<br />
+    <br />
+&nbsp; &nbsp;dx/dx = 1<br />
+&nbsp; &nbsp;d(C)/dx =0<br />
+&nbsp; &nbsp;d(Cx)/dx =
+C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(C is a constant)<br />
+&nbsp; &nbsp;d(-U)/dx = -(dU/dx)<br />
+&nbsp; &nbsp;d(U+V)/dx = dU/dx + dV/dx<br />
+&nbsp; &nbsp;d(U-V)/dx = dU/dx - dV/dx<br />
+&nbsp; &nbsp;d(U*V)/dx = U*(dV/dx) + V*(dU/dx)<br />
+&nbsp; &nbsp;d(U^n)/dx = nU^(n-1)*(dU/dx)<br />
+    <br />
+These rules can easily be translated into Prolog, for instance,the
+second rule can be defined as<br />
+    <br />
+&nbsp;&nbsp; <span style="font-family: monospace;">d(C,x,0):-integer(C)</span>.<br />
+    <br />
+and the fourth rule can be defined as<br />
+    <br />
+&nbsp;&nbsp; <span style="font-family: monospace;">d(U+ V ,x, DU+
+DV)):-d(U,x,DU),d(V,x,DV).</span><br />
+    <br />
+Write the remaining rules. Here is a test query:<br />
+    <br />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp;?- d(3*(x
++2*x*x),x,Result).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp;Result = 3* (1+
+(2*x*1+x* (2*1+x*0)))+ (x+2*x*x)*0 ;</span><br
+ style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp;NO</span><br />
+    <br />
+Keep in mind, though, that terms such as U+V are still trees with the
+functor at the root, and that evaluation of such terms
+requires&nbsp;additional processing .&nbsp; See problem 7.<br />
+    <br />
+  </li>
+  <li>What a predicate called <span style="font-style: italic;">concatAll</span>(<span
+ style="font-style: italic;">LstOfLsts, Lst</span>)
+which succeeds when
+the non-nested list, Lst, has all the element of a arbitrary nested
+list of lists, LstOfLst. &nbsp;ie. &nbsp;<br />
+    <span style="font-family: monospace;">?-
+concatAll([[1,2,[a,b]],[x,y]],C). <br />
+C = [1, 2, a, b, x, y] <br />
+Yes <br />
+?- concatAll([[1,2,[a,b,[1,x]],3,4],[10,[d,f],11]],C). <br />
+C = [1, 2, a, b, 1, x, 3, 4, 10, d, f, 11] <br />
+Yes</span> </li>
+  <li>Write a predicate called <span style="font-style: italic;">reduce</span>(<span
+ style="font-style: italic;"> Expr, Value</span>)
+which reduces a
+numerical Expr to its value. &nbsp;You should only need <span
+ style="font-style: italic;">is</span>,
+pattern matching and recursion.
+&nbsp;The following rule will be the base case. &nbsp;<span
+ style="color: rgb(0, 102, 0);">Since +,* and - have special meaning
+for the predicate 'is', I changed the representation of the problem.
+&nbsp;The operators will use prefix notation and instead of using the
+symbols +,- and *, we will use the atoms plus, minus and times
+respectively.</span><br />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp;
+&nbsp;reduce(N,N):-number(N).</span><br />
+Here are two test queries:&nbsp;<br />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; ?- <span style="color: rgb(0, 102, 0);">reduce(times(3,plus(5,times(minus(
+4,2),3))), Value)</span>.</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; Value = 33 </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; Yes</span><br />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; ?- reduce( times(3, plus(5 , times( minus( 4.5,2), 3))), Value).</span><br
+ style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; Value = 37.5 </span><br />
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; Yes</span>&nbsp;
+&nbsp;&nbsp;<br />
+  </li>
+  <li>Write a predicate <span style="font-style: italic;">simp</span>(<span
+ style="font-style: italic;">Exp, Value, Vars</span>),
+which simplifies
+an algebraic expression to its value given a list of values for each
+variable. &nbsp;The algebraic expression consists of variable with
+operators +, - and *.<br />
+Here are two test queries:<br />
+    <span style="font-family: monospace;">&nbsp;
+?-
+simp(x*y+3*(x-y),V,[x/4,y/2]).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+V = 14 </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+Yes</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+?-
+simp(3*(x-y)+x*y,V,[x/4,y/2]).</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+V = 14 </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">&nbsp;
+Yes</span></li>
+</ol>
+</body>
+</html>

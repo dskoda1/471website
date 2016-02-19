@@ -1,0 +1,166 @@
+/*
+        CS471 - Programming Languages
+        Assignment #<number> due: <DATE>
+        Author: <LastName>, <FirstName> (<EMail>)
+        Date: <DATE>
+ */
+
+/*  RENAME NAME FILE hw5.pl 
+ * Purpose:
+   * to reenforce search order.
+   * to reenforce recursive programming
+   * to reenforce the use of the list data structure in Prolog
+   
+	1) For some of the problems below you need only generate a correct
+      result from the query without requesting alternative results. 
+      You may use cuts but it is not required.
+ */
+ 
+ 
+
+/* 1: (10pts)Extend predicate "simplity/3" from lab 5 problem 1,
+    to  evaluate an algebraic expression.
+   The algebraic expression consists of variable with operators 'plus', 
+   'minus' and 'times'. Here are two test queries:
+          ?- simplify(plus(times(x,y),times(3 ,minus(x,y))),V,[x:4,y:2]).
+          V = 14
+          ?- simplify(times(2,plus(a,b)),Val,[a:1,b:5]).
+          Val = 12
+          ?- simplify(times(2,plus(a,b)),Val,[a:1,b:(-5)]).
+          Val = -8 .
+    Requires only a total 5 clauses.  You may use "number" in one of your clauses.      
+*/
+
+
+
+
+
+%2. prodL(N,P).  
+/* Is simular to prodR(+N,?P), except that the totals 
+   accumulate left to right. e.g. The first value in P will be N,
+   the second value will be N * N-1, etc.
+
+     ?- prodL(6,P).
+     P = [6, 30, 120, 360, 720, 720] ;
+     
+    There is more than one way to solve this problem.
+    One way is to overload prodL/2 and include the following
+    clause:
+       prodL(N,Lst):-prodL(N,N,Lst).
+       
+    2 additional clauses.
+
+*/
+
+
+%3: Binary Tree
+/* 3:
+   Section 14.4 of Touch of Class: An Introduction to Programming Well 
+   Using Objects and Contracts,
+   by Bertrand Meyer, Springer Verlag, 2009. © Bertrand Meyer, 2009.
+   (http://touch.ethz.ch/recursion.pdf) 
+   has the following definition of a binary tree.
+
+  " Definition: binary tree
+
+   A binary tree over G, for an arbitrary data type G, is a finite set of items 
+   called nodes, each containing a value of type G, such that the nodes, if any, 
+   are divided into three disjoint parts:
+      • A single node, called the root of the binary tree.
+      • (Recursively) two binary trees over G, called the  
+        left subtree and right subtree."
+
+
+   The "if any" implies that the 'empty' tree
+   is a binary tree.
+
+   We can represent a binary tree prolog as follows:
+
+   empty %  'empty' tree
+   node( V, LT, RT)  % V is a value and LT and RT are binary trees.
+
+
+   Define isBinaryTree(T) that succeeds if T is a binary tree.
+
+   i.e.
+
+   ?- tree1(T),isBinaryTree(T).
+   T = node(10, empty, node(100, empty, empty)).
+
+   ?- tree2(T),isBinaryTree(T).
+   T = node(-1, node(5, empty, node(100, empty, empty)), node(2, node(9, empty, empty), empty)).
+
+   ?- tree3(T),isBinaryTree(T).
+   T = node(5, node(10, empty, node(100, empty, empty)), node(-1, node(5, empty, node(100, empty, empty)), node(2, node(9, empty, empty), empty))).
+   
+   ?- tree5(T),isBinaryTree(T).
+   T = node(a, node(b, empty, node(z, node(y, empty, empty), empty)), node(rm, empty, empty)).
+
+
+   ?- badTree(T),isBinaryTree(T).
+   false.
+
+   */
+/* Below are tree samples you can use to test your program    */
+
+tree1(node(10,empty, node(100,empty, empty))).
+tree2(node(-1, node(5, empty, node(100, empty, empty)), node(2, node(9,empty, empty),empty))).
+tree3(T):- tree1(T1), tree2(T2), T= node(5,T1,T2).  
+tree4(node(~, node(+, empty, node(*, empty, empty)), node(!, node(/,empty, empty),empty))).
+badTree( node(3, node(5, empty), empty)) .
+tree5(node(a, node(b, empty, node(z, node(y, empty, empty), empty)), node(rm, empty, empty))).
+
+/* 4: [5pts] What is the time complexity of verify a given structures is a binary tree?  */
+
+/* 5: In lab 5 problem 3 you wrote the rules for symbolic differentiation.
+     Below the statement of the problem is my solution for problem 3.
+
+      Keep in mind, though, that terms such as U+V are still trees with the
+      functor at the root, and that evaluation of such terms requires
+      additional processing which you will complete.
+
+     Define the predicate, 'evaluate', that uses the result from
+     differentiation (above) and a list of values for each variable and
+     computes the resulting value. e.g.
+
+    ?- d(3*(x +2*x*x),x,Result), VarValue = x:3 , evaluate(Result,Value,VarValue).
+    Result = 3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0,
+    VarValue = x:3,
+    Value = 39 ;
+    Result = 3* (1+ (2*x*1+x* (2*1+x*0)))+ (x+2*x*x)*0,
+    VarValue = x:3,
+    Value = 39 ;
+    false.
+    ?- d(3*(x +2*x*x),x,Result), VarValue = x:3 , eval2(Result,Value,VarValue).
+    Result = 3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0,
+    VarValue = x:3,
+    Value = 39 ;
+    ERROR: arg/3: Type error: `compound' expected, found `0'
+
+
+*** NOTE: Not all possible solutions will generate 2 solutions like 'evaluate/3' does ***
+
+
+    ?- d((3*x) ^ 4,x,Result), VarValue = x:2 , evaluate(Result,Value,VarValue).
+    Result = 4* (3*x)^3*3,
+    VarValue = x:2,
+    Value = 2592 ;
+    Result = 4* (3*x)^3* (3*1+x*0),
+    VarValue = x:2,
+    Value = 2592 ;
+    false.
+
+
+ */
+ 
+d(x,x,1).
+d(C,x,0):-number(C).
+d(C*x,x,C):-number(C).
+d(-U, X, -DU) :- d(U, X, DU).
+d( U + V, x, RU + RV ):-d(U,x,RU), d(V,x,RV).
+d( U - V, x, RU - RV ):-d(U,x,RU), d(V,x,RV).
+d(U * V,x, U * DV + V * DU):- d(U,x,DU), d(V,x,DV).
+d(U ^ N, x, N*U ^ N1*DU) :- integer(N), N1 is N-1, d(U, x, DU).
+
+
+

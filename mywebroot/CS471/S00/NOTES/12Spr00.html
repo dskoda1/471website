@@ -1,0 +1,993 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head and Les Lander">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Haskell Resources and Installation</title>
+</head>
+<body>
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/11Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/14Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Haskell</h3></center>
+
+<center>
+<h4>
+&copy; Eileen Head, Leslie C. Lander, 2000</h4></center>
+
+<h4>
+Propose:&nbsp; To learn the functional style of programming.&nbsp; Records,
+lists, user types and function types will be discussed.</h4>
+<a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Notes1.lhs</a>
+has codes presented in these notes as well as other examples.
+<p>
+<hr SIZE=8 WIDTH="100%">
+<br>Old business: Activation Records
+<hr WIDTH="100%">
+<h3>
+Functional Programming and HUGS</h3>
+
+<ul>
+<li>
+Slides in HTML format: <a href="http://bingweb.binghamton.edu/~lander">http://bingweb.binghamton.edu/~head</a></li>
+
+<li>
+To a large extent the notes are based on the information in the excellent
+text: Simon Thompson, <i>Haskell: The Craft of Functional Programming</i>,
+2nd edition Addison-Wesley Longman, 1999…</li>
+
+<li>
+…and A Gentle Introduction to Haskell, Version 98, available on-line: <a href="http://haskell.org/tutorial/">http://haskell.org/tutorial/</a></li>
+
+<li>
+The slides were developed in collaboration with Prof. Les Lander.</li>
+
+<li>
+Haskell was the first name of H. Curry, a logician in the 30's and 40's.
+He will be mentioned again.</li>
+</ul>
+
+<h3>
+Why not Lisp? - It’s well-known</h3>
+
+<ul>
+<li>
+Lisp is basically functional but has many imperative-language constructs,
+for example:</li>
+
+<ul>
+<li>
+sequences of commands</li>
+
+<li>
+loops</li>
+
+<li>
+goto (!)</li>
+</ul>
+
+<li>
+Lisp is widely used in artificial intelligence because it is good for symbolic
+processing.</li>
+
+<li>
+Syntax is not user friendly.</li>
+</ul>
+
+<h3>
+Haskell</h3>
+
+<ul>
+<li>
+Haskell is a purely functional language and puts modern functional language
+theory into practice</li>
+
+<li>
+Haskell has a lot in common with Miranda but the HUGS interpreter is free</li>
+
+<li>
+Many features of Miranda and Haskell are similar to those of Robin Milner’s
+ML (meta-language)</li>
+</ul>
+
+<h3>
+Features</h3>
+
+<ul>
+<li>
+Haskell is a strongly typed functional language that became available in
+the 90s</li>
+
+<li>
+Strong typing helps ensure program correctness</li>
+
+<li>
+As in ML, most of the strong typing can be discovered by the interpreter;
+thus saving the programmer a lot of time defining types</li>
+</ul>
+
+<h3>
+Why functional programming?</h3>
+
+<blockquote>
+<li>
+Learning functional programming helps programmers formulate good specifications
+for programs.</li>
+
+<li>
+Good specification may allow automatic code generation and verification.</li>
+
+<li>
+Learn about specification before you are out of a programming job!</li>
+</blockquote>
+
+<h3>
+Correctness</h3>
+
+<ul>
+<li>
+Programming language theorists can reason more easily about the correctness
+of a functional-language program</li>
+
+<li>
+For a given input a functional-language function always gives the same
+output</li>
+
+<li>
+Global variables and values stored in memory play little role</li>
+</ul>
+
+<h3>
+The functional approach</h3>
+
+<ul>
+<li>
+The functional aspects of Haskell</li>
+
+<ul>
+<li>
+Computation = function calls (applications)</li>
+
+<li>
+Computation != a sequence of changes to the values of variables</li>
+
+<li>
+Treat functions like any other type</li>
+
+<li>
+Allocation of storage is automatic</li>
+
+<li>
+Deallocation of storage is automatic (garbage is collected)</li>
+
+<li>
+<b><i>Lazy parameter evaluation</i></b></li>
+</ul>
+</ul>
+
+<h3>
+Data types</h3>
+
+<ul>
+<li>
+The data related aspects of Haskell:</li>
+
+<ul>
+<li>
+user defined recursive data types</li>
+
+<li>
+polymorphic types which describe families of types</li>
+
+<li>
+list comprehension</li>
+
+<li>
+inference of the correct types</li>
+
+<li>
+pattern matching</li>
+</ul>
+
+<li>
+The ADT aspects of Haskell:</li>
+
+<ul>
+<li>
+modules;</li>
+
+<li>
+provides a mechanism for hiding and exporting data and functions</li>
+</ul>
+</ul>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%">Mathematical functions</h3>
+
+<ul>
+<li>
+A function <i>f</i> is a rule that takes an input value <i>x</i> and returns
+a value <i>f</i> (<i>x</i>) or <i>f</i>&nbsp; <i>x</i></li>
+
+<li>
+The inputs <i>x</i> belong to a set <i>X</i> (called the domain of <i>f</i>
+).</li>
+
+<li>
+The values <i>y</i> = <i>f</i> (<i>x</i>) belong to a set <i>Y</i> (called
+the range of <i>f</i> ).</li>
+
+<li>
+We write <i>f</i> : <i>X</i> -> <i>Y</i>.</li>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%"></h3>
+</ul>
+
+<h3>
+Examples</h3>
+
+<ul>
+<li>
+Functional programming refers to writing a program as a set of functions</li>
+
+<li>
+Functions are defined in the script</li>
+
+<li>
+"<b>=</b>" means defined as</li>
+
+<pre>>&nbsp;&nbsp; sq x = x^2
+>&nbsp;&nbsp; cube x = x *(sq x)</pre>
+
+<li>
+Haskell determines the type of the functions:</li>
+
+<li>
+"<b><tt>::</tt></b>" means <b><i>has type</i></b></li>
+
+<pre>...> :t sq
+sq :: Num a => a -> a</pre>
+
+<pre>
+<hr SIZE=1 WIDTH="100%"></pre>
+</ul>
+
+<h3>
+Specifying types</h3>
+
+<ul>
+<li>
+You can direct Haskell to attach the types the way you want them</li>
+
+<li>
+If you want "py" to be a Float rather than the Double type determined by
+HUGS, insert the type in the script</li>
+
+<pre>>&nbsp;&nbsp; py :: Float
+>&nbsp;&nbsp; py = 3.14159</pre>
+
+<li>
+Constraining the function "sq"</li>
+
+<pre>>&nbsp;&nbsp; sq :: Int -> Int
+>&nbsp;&nbsp; sq x = x^2</pre>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%"></h3>
+</ul>
+
+<h3>
+Guards</h3>
+
+<ul>
+<li>
+Functions with alternatives: (using guards)</li>
+
+<pre>>&nbsp;&nbsp; factorial :: Int -> Int&nbsp;
+>&nbsp;&nbsp; factorial x
+>&nbsp;&nbsp;&nbsp;&nbsp; | x &lt; 0&nbsp;&nbsp;&nbsp;&nbsp; = error "neg x"
+>&nbsp;&nbsp;&nbsp;&nbsp; | x == 0&nbsp;&nbsp;&nbsp; = 1
+>&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = x * factorial(x - 1)</pre>
+
+<li>
+Use the type information to avoid defining a factorial function for decimals</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></ul>
+
+<h3>
+Haskell picks the most general type</h3>
+
+<ul>
+<li>
+If we only wrote:</li>
+
+<pre>>&nbsp;&nbsp; fact1 x
+>&nbsp;&nbsp;&nbsp;&nbsp; | x &lt; 0&nbsp;&nbsp;&nbsp;&nbsp; = error "neg x"
+>&nbsp;&nbsp;&nbsp;&nbsp; | x == 0&nbsp;&nbsp;&nbsp; = 1
+>&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = x*fact1(x-1)</pre>
+
+<li>
+We would find:</li>
+
+<pre>...> :t fact1
+fact1::(Ord a,Num a) => a->a</pre>
+
+<li>
+the input must be in the intersection of classes Ord and Num</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></ul>
+
+<h3>
+Problems with Int</h3>
+
+<ul>
+<li>
+We get:</li>
+
+<pre>...> fact1 3.7</pre>
+
+<pre>Program error: neg x</pre>
+
+<pre>...> factorial 3.7
+ERROR: Illegal Haskell 98 class constraint in inferred type
+*** Expression : factorial 3.7
+*** Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Fractional Int => Int</pre>
+
+<li>
+Next note:</li>
+
+<pre>...> factorial 13
+1932053504</pre>
+
+<li>
+When it should be 6227020800 (= 1932053504 + 2 * 2<sup>32</sup>)</li>
+</ul>
+
+<h3>
+Large numbers</h3>
+
+<ul>
+<li>
+Functional languages like Lisp have traditionally been good calculators:</li>
+
+<pre>>&nbsp;&nbsp; factorial1 :: Integer -> Integer
+>&nbsp;&nbsp; factorial1 n
+>&nbsp;&nbsp;&nbsp;&nbsp; | n &lt; 0&nbsp;&nbsp;&nbsp;&nbsp; = error "neg n"
+>&nbsp;&nbsp;&nbsp;&nbsp; | n == 0&nbsp;&nbsp;&nbsp; = 1
+>&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = n * factorial1 (n - 1)</pre>
+
+<li>
+Integer expands with magnitude</li>
+</ul>
+
+<h3>
+Factorials of 50 and 500</h3>
+
+<ul>
+<li>
+Load Haskell and load a script containing the definitions of factorial.
+Then try "<tt>factorial1 50</tt>" and "<tt>factorial1 500</tt>"</li>
+</ul>
+
+<h3>
+Part of factorial of 3500</h3>
+
+<ul>
+<li>
+Continue by trying "<tt>factorial1 3500</tt>." You may have to wait quite
+a long time for the answer.</li>
+</ul>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%"></h3>
+
+<h3>
+Simple syntax</h3>
+
+<ul>
+<li>
+Notice how writing a Haskell function is like doing mathematics:</li>
+
+<li>
+Define the factorial function f as (N<sub>0</sub> denotes the natural numbers):</li>
+
+<pre>f : N<sub>0</sub> -> N<sub>0
+</sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /&nbsp; 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n = 0 or 1
+f(n) = &lt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \&nbsp; n*f(n-1)&nbsp; otherwise</pre>
+
+<li>
+The biggest difference is that programmers use long names for their functions!</li>
+</ul>
+
+<h3>
+Limitation of expressivity of types</h3>
+
+<ul>
+<li>
+We have the difficulty that we cannot exclude negative numbers so easily</li>
+
+<pre>>&nbsp;&nbsp; factorial1::Integer -> Integer
+>&nbsp;&nbsp; factorial1 n
+>&nbsp;&nbsp;&nbsp;&nbsp; | n &lt; 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = error "neg n"
+>&nbsp;&nbsp;&nbsp;&nbsp; | (n==0) || (n==1) = 1
+>&nbsp;&nbsp;&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = n * factorial1(n-1)</pre>
+</ul>
+
+<h3>
+Type system</h3>
+
+<ul>
+<li>
+Haskell’s type system has unusual features and is quite rich</li>
+
+<li>
+Haskell is statically typed</li>
+
+<li>
+Haskell is a purely functional language</li>
+
+<li>
+ALL computations are done via evaluation of expressions to yield values</li>
+</ul>
+
+<h3>
+Types and values</h3>
+
+<ul>
+<li>
+Every value has a type</li>
+
+<li>
+Functions are values</li>
+
+<li>
+Values are first class, that is, they can be passed as arguments to functions</li>
+
+<li>
+Types are not first class</li>
+</ul>
+
+<h3>
+Predefined types</h3>
+
+<ul>
+<li>
+Some basic atomic values and types:</li>
+
+<li>
+Predefined datatypes</li>
+
+<pre>Int, Bool, Char, Float, ...
+also Double, Integer</pre>
+
+<pre>read "::" as "has type"
+5 :: Int
+5.0 :: Float</pre>
+
+<li>
+Float &amp; Double need a decimal point or an exponent: 5.0</li>
+
+<pre>'a' :: Char</pre>
+
+<li>
+Char: the character type, <tt>'a'</tt>,<tt> 'P'</tt>, <tt>'&lt;'</tt>,
+etc. ASCII codes can be used: <tt>'\65'</tt>.&nbsp; Version 1.4 has started
+to use Unicode.</li>
+
+<pre>"aba" :: String</pre>
+
+<li>
+Later we use keyword type to define synonyms. A new type is not defined
+but a new name is given to an existing type. (Like typedef in C)</li>
+</ul>
+
+<h3>
+Structured types</h3>
+
+<ul>
+<li>
+Structured values</li>
+
+<ul>
+<li>
+<u>Lis</u>t <u>P</u>rocessing is what gave LISP its name and strength:
+Lisp allows structures of nested lists and each element of the list or
+nested list can have a different type</li>
+
+<li>
+Non-homogeneous lists have proved to be very flexible structures, supporting
+artificial intelligence and other sophisticated applications</li>
+</ul>
+</ul>
+
+<h3>
+Lists</h3>
+
+<ul>
+<li>
+Haskell lists are NOT like Lisp lists, they have to be homogeneous</li>
+
+<li>
+They are dynamic (can change length during execution)</li>
+
+<li>
+homogeneous list of Ints</li>
+
+<pre>[1,2,3] :: [Int]
+(actually ...>:t [1,2,3] gives [1,2,3]::Num a => [a])</pre>
+
+<li>
+homogeneous list of Bool</li>
+
+<pre>[True,False,False]::[Bool]</pre>
+</ul>
+
+<h3>
+Strings</h3>
+
+<ul>
+<li>
+The literal syntax of string&nbsp; is a list of chars.&nbsp; Prelude defines
+string</li>
+
+<pre>type String = [Char]</pre>
+
+<li>
+"aba" is shorthand for ['a','b','a']</li>
+
+<li>
+We will visit lists many times.</li>
+
+<li>
+By the way, this cursor indicates Haskell is garbage collecting&nbsp;<img SRC="garbage.jpg" BORDER=2 height=38 width=31 align=ABSCENTER></li>
+</ul>
+
+<h3>
+List operations</h3>
+
+<ul>
+<li>
+For now, the important operations:</li>
+
+<pre>1:[2,3,4] = [1,2,3,4]
+4:[] = [4]
+head [1,2,3,4] = 1
+tail [1,2,3,4] = [2,3,4]
+init [1,2,3,4] = [1,2,3]
+last [1,2,3,4] = 4</pre>
+</ul>
+
+<h3>
+Tuples</h3>
+
+<ul>
+<li>
+There are non-homogeneous linear structures like the “struct” of C or the
+“record” of Pascal and Ada:</li>
+
+<li>
+They are called “tuples”</li>
+
+<pre>('x', 99) :: (Char, Int)
+type Person = (String,Int)</pre>
+
+<li>
+Compare</li>
+
+<pre>struct person {
+&nbsp;&nbsp;&nbsp; char * name;
+&nbsp;&nbsp;&nbsp; int i;
+}</pre>
+
+<li>
+Another example:</li>
+
+<pre>type Zip_code = (String, Int)</pre>
+
+<li>
+First letter must be capital letter, you cannot use "zip_code" or "Zip-code"</li>
+
+<pre>vestal :: Zip_code
+vestal = ("NY", 13850)
+fst vestal <i>returns</i> NY
+snd vestal <i>returns</i> 13850</pre>
+
+<li>
+<b><i>type</i> </b>just creates a synonym and not another data type</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></ul>
+
+<h3>
+User-defined types</h3>
+
+<ul>
+<li>
+User Defined Types:&nbsp; type constructors</li>
+
+<li>
+union type:</li>
+
+<pre>data Color = Red | Blue | Black</pre>
+
+<li>
+Red, Blue and Black are data constructors of the type Color</li>
+
+<li>
+Example of a predefined type</li>
+
+<pre>data Bool = True | False</pre>
+</ul>
+
+<h3>
+Product types</h3>
+
+<ul>
+<li>
+Product type is an alternative to tuples</li>
+
+<pre>type Name = String
+type Age = Int
+data People = Person Name Age
+x = Person "John" 25</pre>
+
+<li>
+A function to show x</li>
+
+<pre>showPerson :: People -> String&nbsp;
+showPerson (Person n a) = n ++ " aged " ++ show a</pre>
+</ul>
+
+<h3>
+Polymorphic data types</h3>
+
+<ul>
+<pre>data Point a = Pt a a</pre>
+
+<li>
+This is a polymorphic data type: it works for any type “a”</li>
+
+<pre>Pt 2.0 3.0 :: Point Float
+Pt 'a' 'b' :: Point Char
+Pt True False :: Point Bool</pre>
+
+<li>
+A function to extract the individual values would be:</li>
+
+<pre>firstCoord :: Point a -> a
+firstCoord (Pt m n) = m</pre>
+</ul>
+
+<h3>
+Function types</h3>
+
+<ul>
+<li>
+Functions are values and have a type</li>
+
+<pre>\x -> x+1,</pre>
+
+<li>
+this is a lambda expression, type: <tt>Num a => a -> a</tt></li>
+
+<li>
+Functions are normally defined by an equation or series of equations</li>
+
+<pre>inc n = n + 1&nbsp;
+(alternatively: inc = \n -> n + 1)</pre>
+
+<li>
+The type signature declaration is used to declare the explicit type for
+a function</li>
+
+<pre>inc :: Int -> Int</pre>
+
+<li>
+<tt>...</tt></li>
+</ul>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%"></h3>
+
+<h3>
+Type inference</h3>
+
+<ul>
+<li>
+… or the type system can infer the correct type.</li>
+
+<li>
+In the tutorial, Hudak et al. use <i>e</i><sub>1</sub> => <i>e</i><sub>2</sub>
+to indicate that <i>e</i><sub>1</sub> <i>reduces to</i> <i>e</i><sub>2</sub></li>
+
+<pre>inc ( inc 3 ) => 5</pre>
+
+<li>
+We can compose functions:</li>
+
+<ul>
+<li>
+(f . g) x&nbsp; is effectively f (g x)</li>
+</ul>
+<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/12composition.gif"><img SRC="12composition.gif" ALT="f composed with g" BORDER=0 height=98 width=245></a>
+<pre>...> (inc . inc) 3</pre>
+
+<pre>5</pre>
+
+<li>
+Or in the script (like math f o g) :</li>
+
+<pre>inc2 = inc . inc</pre>
+
+<ul>
+<li>
+What is the type of inc and inc2?</li>
+</ul>
+</ul>
+
+<hr SIZE=1 WIDTH="100%">
+<h3>
+Currying</h3>
+
+<ul>
+<li>
+In the development of functional notations as a model of computation, it
+has been important to concentrate on functions of one variable</li>
+
+<li>
+Curry did considerable work in the area. The idea is often used today in
+mathematics.</li>
+</ul>
+
+<h3>
+Currying a function</h3>
+
+<ul>
+<li>
+A function</li>
+
+<pre><i>f</i> : <i>X</i> x <i>Y</i> -> <i>Z</i></pre>
+
+<li>
+can be thought of as a function</li>
+
+<pre><i>f<sub>c</sub></i>:<i>X</i> -> (<i>Y</i> -> <i>Z</i>)</pre>
+
+<li>
+where (<i>Y</i> -> <i>Z</i>) is the set of functions from <i>Y</i> to <i>Z</i></li>
+
+<li>
+The idea is: <i>f<sub>c</sub></i>(<i>x</i>) is the function given by</li>
+
+<pre><i>f<sub>c</sub></i>(<i>x</i>)(<i>y</i>) = f(<i>x</i>, <i>y</i>)</pre>
+
+<li>
+It is not a difficult idea</li>
+</ul>
+
+<h3>
+Example:</h3>
+
+<ul>
+<li>
+I want a function "extract" that is given two integers "min" and "max"
+and a list of integers "list" as input</li>
+
+<li>
+The result of the function must be a list of all those numbers in "list"
+that do not lie between "min" and "max" (inclusive), e.g.</li>
+
+<pre>...> extract&nbsp; 3&nbsp; 5&nbsp; [1,5,4,6,3,2,1]&nbsp;
+[1,6,2,1]</pre>
+
+<li>
+Consider</li>
+
+<pre>> extract::Int->Int->[Int]->[Int]
+> extract min max list
+>&nbsp;&nbsp;&nbsp;&nbsp; |list == [] = []
+>&nbsp;&nbsp;&nbsp;&nbsp; |otherwise&nbsp; = extractNonEmpty min max list
+>&nbsp;&nbsp;&nbsp;&nbsp; where
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; extractNonEmpty min max (a:x)
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | (a >= min)&amp;&amp;(a &lt;= max) = extract min max x
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = a:extract min max x</pre>
+
+<li>
+Alternatively</li>
+
+<pre>> extract1::Int->Int->[Int]->[Int]
+> extract1 min max [] = []
+> extract1 min max (a:x)
+>&nbsp;&nbsp; | (a >= min) &amp;&amp; (a &lt;= max) = extract1 min max x
+>&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = a:extract1 min max x</pre>
+
+<li>
+Functions derived from extract:</li>
+
+<li>
+In the script:</li>
+
+<pre>> extractOver8 = extract 8
+> extractBetween8and16 = extract 8 16</pre>
+
+<li>
+In the interpreter:</li>
+
+<pre>...> :t extract
+extract :: Int -> Int -> [Int] -> [Int]
+...> :t extractOver8
+extractOver8 :: Int -> [Int] -> [Int]
+...> :t extractBetween8and16
+extractBetween8and16 :: [Int] -> [Int]</pre>
+</ul>
+
+<pre>
+<hr SIZE=1 WIDTH="100%"></pre>
+
+<h3>
+Regular logs from general logs</h3>
+
+<ul>
+<li>
+Given a function</li>
+
+<pre>logBase::Float->Float->Float</pre>
+
+<li>
+The function that returns the logarithm of a number using base 10:</li>
+
+<pre>...>:t logBase 10
+
+logBase 10 :: Float -> Float</pre>
+
+<li>
+Apply the function logBase 10 to 100</li>
+
+<pre>...> logBase 10 100&nbsp;
+2</pre>
+</ul>
+
+<h3>
+Maximum of 3 numbers</h3>
+
+<ul>
+<li>
+The following function finds the maximum of three integers:</li>
+
+<pre>>&nbsp;&nbsp; maxOf3Ints :: Int -> Int -> Int -> Int
+>&nbsp;&nbsp; maxOf3Ints x y z
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | x >= y &amp;&amp; x >= z = x
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | y >= z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = y
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = z</pre>
+</ul>
+
+<h3>
+Deriving other functions</h3>
+
+<ul>
+<li>
+Fix one of the numbers to be 7</li>
+
+<pre>>&nbsp;&nbsp; maxOf7and2Ints = maxOf3Ints 7</pre>
+
+<li>
+Example execution:</li>
+
+<pre>...> :t maxOf7and2Ints
+maxOf7and2Ints :: Int -> Int -> Int
+
+...> maxOf7and2Ints 1 10
+10</pre>
+
+<li>
+Fix two of the numbers to 7 and 9</li>
+
+<pre>>&nbsp;&nbsp; maxOf7_9and1Int=maxOf7and2Ints 9</pre>
+&nbsp;
+<li>
+Example execution:</li>
+
+<pre>...> :t maxOf7_9and1Int
+maxOf7_9and1Int :: Int -> Int
+
+...> maxOf7_9and1Int 3
+9</pre>
+
+<li>
+Fix all three numbers to 7, 9 and 5</li>
+
+<pre>>&nbsp;&nbsp; numberNine = maxOf7_9and1Int 5</pre>
+
+<li>
+Example execution:</li>
+
+<pre>...> :t numberNine
+numberNine :: Int
+
+...> numberNine
+9</pre>
+</ul>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%">Using <i>where</i></h3>
+
+<ul>
+<li>
+where can be used for more readability</li>
+
+<p><br><b><tt>quadroot :: Float -> Float -> Float -> [Float]</tt></b>
+<br><b><tt>quadroot a b c</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; | delta &lt; 0&nbsp;&nbsp;&nbsp; =
+error "complex roots"</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; | delta == 0&nbsp;&nbsp; = [term1]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; | delta > 0&nbsp;&nbsp;&nbsp; = [term1+term2,
+term1-term2]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; where</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delta = b*b
+- 4*a*c</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; radix = sqrt
+delta</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term1 = -b/(2.0*a)</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term2 = radix/(2.0*a)</tt></b>
+<br>&nbsp;
+<li>
+Compare with with a code from Pascal</li>
+
+<p><br><b><tt>type root_list = ^root_type;</tt></b>
+<br><b><tt>type root_type = record</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; root: real;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next root_list</tt></b>
+<br><b><tt>end;</tt></b>
+<br><b><tt>function quadroot( a, b, c: real): root_list;</tt></b>
+<ul><b><tt>var delta, radix, term2: real;</tt></b>
+<br><b><tt>roots, temp: root_list;</tt></b></ul>
+<b><tt>begin</tt></b>
+<ul><b><tt>roots := NIL;</tt></b>
+<br><b><tt>delta := b*b - 4*a*c;</tt></b>
+<br><b><tt>if delta &lt; 0</tt></b>
+<ul><b><tt>then write(‘Error: Complex Roots’);</tt></b>
+<br><b><tt>else begin</tt></b>
+<ul><b><tt>radix := sqrt(delta);</tt></b>
+<br><b><tt>term2 := radix/(2*a);</tt></b>
+<br><b><tt>new(temp);</tt></b>
+<br><b><tt>roots^.next:=temp;</tt></b>
+<br><b><tt>temp^.root := roots^.root - term2;</tt></b>
+<br><b><tt>roots^.root := roots^.root + term2;</tt></b>
+<br><b><tt>temp^.next := NIL</tt></b></ul>
+<b><tt>end</tt></b></ul>
+<b><tt>end;</tt></b>
+<br><b><tt>quadroot := roots</tt></b></ul>
+<b><tt>end;</tt></b></ul>
+
+<hr SIZE=3 WIDTH="100%">
+<ul>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/11Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/14Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+</ul>
+
+</body>
+</html>

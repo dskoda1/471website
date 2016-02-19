@@ -1,0 +1,162 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Assignment 12 Programming Languages  --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#FDFDFD" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+underconstruction&nbsp; 4:30pm 4-13</h4>
+
+<h4>
+Assignment 12: Hard copy due Friday after break</h4>
+Read Chapters:
+<blockquote>
+<blockquote>Ghezzi: Finish Chapter 7
+<br>Thompson, <i>Haskell,<a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/">The
+Craft of Functional Programming</a></i> Chapters 10.3,12, 19 and Appendix
+A.
+<blockquote>&nbsp;</blockquote>
+</blockquote>
+</blockquote>
+
+<h3>
+<a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">Instructions
+for presentation of&nbsp; hard copy</a></h3>
+
+<h5>
+Do not turn in. Things to think about and play with.</h5>
+
+<ol>
+<li>
+Understand the terms function definition, function application, normal
+order, application order,&nbsp; referential transparency , and tail recursion.
+You do not need to turn this in.</li>
+
+<li>
+What does iter do? ( id, foldr and replicate are in Prelude)</li>
+
+<br><tt>iter n f = foldr (.) id (replicate n f)</tt>
+<li>
+(10.5) What is the type(:t)&nbsp; and effect of the function</li>
+
+<br><tt>\n -> iter n succ</tt>
+<br><tt>?</tt>
+<li>
+What happens when you try to type</li>
+
+<br><tt>iter n succ</tt>
+<br><tt>?</tt>
+<li>
+(10.6) Given a function <i>f</i> of the type a->b->c, write down a lambda
+expression that describes the function of the type b->a->c which behaves
+like f but take the arguments in revise order.&nbsp; (Hint you will need
+3 argurments in your lambda expression.)&nbsp;&nbsp;&nbsp; This will be
+need for the first programming problem.</li>
+
+<br>&nbsp;</ol>
+
+<h3>
+Written assignment:</h3>
+
+<ol>
+<li>
+(Ghezzi: page 369 exercise 2:) Reduce the (<font face="Symbol">l</font>x.(x
+x))(<font face="Symbol">l</font>x.(x x)).&nbsp; What is peculiar about
+this expression?</li>
+
+<li>
+(From Abelson and Sussman [1985]) It is also possible to express the integer
+as lambda abstractions:</li>
+
+<br>zero =<font face="Symbol"> l </font>f&nbsp; .<font face="Symbol"> l</font>
+x . x
+<br>one =&nbsp;<font face="Symbol"> l</font>f.<font face="Symbol">&nbsp;
+l</font> x ( f x)
+<br>two =&nbsp;<font face="Symbol"> l</font> f.<font face="Symbol"> l</font>
+x ( f (f x))
+<br>. . . .
+<p>These are called Church numbers after Alonzo Church.
+<p>Given the following definition of the successor function:
+<ol><b><tt>successor =&nbsp;</tt></b><font face="Symbol"> l</font>&nbsp;<b><tt>
+n.&nbsp;</tt></b><font face="Symbol"> l</font>&nbsp;<b><tt> f.&nbsp;</tt></b><font face="Symbol">
+l</font>&nbsp;<b><tt> x ( f (( n f ) x ) ).</tt></b></ol>
+show that (successor zero) = one (you do not need to turn this in)
+<br>and (successor one) = two&nbsp; (turn this in).</ol>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+<b>Do not post your assignment.&nbsp; Email your code to&nbsp;</b> <a href="mailto:cs471h@binghamton.edu">cs471h</a>
+also following <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions</a>
+for how to document your program and name your <b>attached program file.</b>
+<ol>
+<ol>
+<li>
+(10.7) Using the last exercise, or otherwise, give a definition of the
+function</li>
+
+<ol><tt>myFlip :: (a->b->c) -> (b -> a ->c)</tt></ol>
+which reverses the order in which its function argument takes its arguments.&nbsp;
+(We are defining the built in flip using lambda expressions).
+<br>&nbsp;
+<li>
+The BookCompany program creates an inventory by adding "Book"s to the inventory.&nbsp;
+The program can add "Book"s to the inventory, sort the inventory and print
+out the inventory.&nbsp; It is implemented in three paradigms using Haskell,
+Java and C. All three implementations use the generic sort method supplied
+in their respective library.&nbsp; The sorting order of the "Book"s is
+based on the ascending order of year, followed by the ascending lexical
+order of the book title..</li>
+
+<ol TYPE=A>
+<ol TYPE=a>
+<li>
+The Haskell version, <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/BookCompany.lhs">BookCompany.lhs&nbsp;</a>&nbsp;
+is implemented literal style. It uses the sort definition found in <a href="http://haskell.org/onlinelibrary/list.html">List.hs</a>
+. In order to use the sort the type Book must be in the class Ord.&nbsp;
+Therefore the user must declare Book to be in class Ord as well as implement
+the expected methods.</li>
+
+<li>
+The Java implementation, <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/BookCompany.java">BookCompany.java,</a>
+uses the static method&nbsp; <a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/Collections.html#sort(java.util.List, java.util.Comparator)">sort</a>
+found in the <a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/Collections.html">java.util.Collections</a>
+class .&nbsp; Sort uses a modified mergesort to sort a list of mutually
+comparable elements.&nbsp; The user must supply an ordering of "Book" to
+the sorting method.&nbsp; This is done by implementing the interface <a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/Comparator.html">Comparator</a>&nbsp;
+for the elements type in the list and passing the an object of the class
+that implements it.&nbsp; This version uses a nested class and an inner
+class.</li>
+
+<li>
+The "C" implementation,&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/bookCompany.c">bookCompany.c</a>&nbsp;
+use the stdlib's qsort to sort the inventory.&nbsp; The user must supply
+an ordering function to the qsort for the data being sorted.&nbsp; This
+is done by implement a function for ordering following the same rules as
+compare in <a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/Comparator.html">Comparator</a>
+in Java and then passing the function as one of the parameter.</li>
+</ol>
+
+<li>
+Using the implements in 8a, 8b and 8c as models write a Haskell script,
+a Java class and C program to keep a book inventory. Java may be coded
+in groups. Expand the book type (in above) to include fields for an authors
+first and last name as well as the language the book is written in.&nbsp;
+The sorting order should now be based on the ascending&nbsp; lexical order
+of the language, ascending order of year, followed by ascending lexical
+order of author's last name and finally the the ascending lexical order
+of book title.&nbsp; You will need to update the testing data&nbsp; to
+reflect the addition information included.&nbsp; You should make sure that
+there is a way to printout all the information about the book. (Bingsuns
+has gcc for compiling C.&nbsp; Many machines on campus have Java 1.2.)&nbsp;
+ONLY JAVA CAN BE DONE AS A GROUP.</li>
+
+<br>&nbsp;</ol>
+</ol>
+</ol>
+
+</body>
+</html>

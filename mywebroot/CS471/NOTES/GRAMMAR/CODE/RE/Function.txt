@@ -1,0 +1,61 @@
+File:: Fig4_12.c 
+  Pattern:: (?-mix:(int)\s(.*)\(.*\)\s)
+Integer function::
+ $` =  
+ $& = int expr(void)
+ 
+ $' =  
+ $~ = int expr(void)
+ 
+  $1 int , $2 expr
+
+
+Integer function::
+ $` =  
+ $& = int term(void)
+ 
+ $' =  
+ $~ = int term(void)
+ 
+  $1 int , $2 term
+
+
+Integer function::
+ $` =  
+ $& = int factor(void)
+ 
+ $' =  
+ $~ = int factor(void)
+ 
+  $1 int , $2 factor
+
+
+Integer function::
+ $` =  
+ $& = int number(void)
+ 
+ $' =  
+ $~ = int number(void)
+ 
+  $1 int , $2 number
+
+
+Integer function::
+ $` =  
+ $& = int digit(void)
+ 
+ $' =  
+ $~ = int digit(void)
+ 
+  $1 int , $2 digit
+
+
+Integer function::
+ $` =  
+ $& = int main()
+ 
+ $' =  
+ $~ = int main()
+ 
+  $1 int , $2 main
+

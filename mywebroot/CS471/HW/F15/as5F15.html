@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Assignment 5 Prolog 3</title>
+  
+
+  
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></head><body>
+<h3 style="text-align: center;">Programming Languages<br>
+Assignment&nbsp; 5: Prolog</h3>
+
+Turn in one file prolog file, as5.pl. Turn in only questions/parts with
+points.<br>
+
+The first 4 questions (no this page) on due in lab.<br>
+
+<ol>
+
+  <li>Copy the contents of<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/ghezzi">
+ghezzi</a>
+to a file name test.pl.&nbsp; Open this file in swipl and in
+emacs.&nbsp; Try to predict the steps need to execute the following
+query.
+      <br>
+<dl><dd style="font-family: monospace; margin-top: 10px; height: 32px;"><span style="font-weight: bold;">?- clos(a,g).</span><br style="font-weight: bold;">
+        <br>
+</dd>
+      <dt style="height: 29px;">At the prompt (in the swipl window) type trace, clos(a,g). eg.<br>
+        <br>
+</dt>
+      <dd style="height: 28px;"><span style="font-family: monospace; font-weight: bold;">?- trace, clos(a,g),
+notrace, nodebug.</span><br>
+<br>
+      </dd>
+      <dt>If after each response you type "enter" you will see the
+exact
+execution of clos(a,g). <br>
+<br>
+      </dt>
+      <dt>Redo using the following query: <span style="font-family: monospace; font-weight: bold;">trace, clos(a,C), notrace, nodebug</span>.</dt>
+      <dt><br>
+      </dt>
+    </dl>
+  </li>
+  <li>We will now use graphical debugger for our prolog
+environment.&nbsp;
+There are many ways to get to it -- here is one way.&nbsp;&nbsp; </li>
+  
+  <ol style="list-style-type: lower-alpha;">
+    <li>Redo question 5 -- except instead use gtrace instead of trace.<br>
+      <br>
+    </li>
+    <dl style="font-family: monospace; font-weight: bold;">
+      <dd>?- gtrace, clos(a,g), notrace, nodebug.<br>
+      </dd>
+    </dl>
+    <dl>
+      <dd><span style="font-family: monospace; font-weight: bold;">?- gtrace, clos(A,f),
+notrace, nodebug.</span><br>
+        <br>
+      </dd>
+      <dt>You should see
+another window, which is the graphical debugger.&nbsp; If you have
+questions about the different frames in the debugger window please feel
+free to ask me during lab.</dt>
+      <dt><br>
+      </dt>
+      <dt><br>
+      </dt>
+    </dl>
+  </ol>
+  <li>We can define a binary tree as '<span style="font-family: monospace; font-weight: bold;">empty</span>' or a <span style="font-family: monospace; font-weight: bold;">node(Value, LeftTree, RightTree)</span>.&nbsp;&nbsp; Define a predicate <span style="font-family: monospace; font-weight: bold;">isBinaryTree/1</span> that succeeds if the argument is a binary tree.&nbsp; <br>
+    <br>
+Given the test structures below: <br style="font-family: monospace; font-weight: bold;">
+    <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;">tree1(node(33,empty,empty)).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">tree2(node(33,node(22,empty,empty),empty)).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">tree3(node(3,node(2,empty,empty),node(10,node(5,empty,empty),empty))).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">tree4(node(10, node(5, node(1,empty,empty), node(8,empty,empty)), node(13,empty,empty))).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">tree5(node(15,L,R)):-tree4(L),tree2(R).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">notBtree(node(3,empty,empty,empty)).</span><br>
+    </div>
+    <br>
+then for example we get the following outcomes:<br>
+    <br>
+&nbsp;&nbsp;&nbsp;<span style="font-family: monospace; font-weight: bold;"> ?- tree1(T), isBinaryTree(T).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp; T = node(33, empty, empty).</span><br style="font-family: monospace; font-weight: bold;">
+    <br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp; ?- tree3(T), isBinaryTree(T).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp; T = node(3, node(2, empty, empty), node(10, node(5, empty, empty), empty)).</span><br style="font-family: monospace; font-weight: bold;">
+    <br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp; ?- notBtree(T), isBinaryTree(T).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp; false.</span><br>
+    <br>
+</li>
+  <li>Defined a predicate "simplify/3", <span style="font-family: monospace; font-weight: bold;">simplify(Var,
+Value, Lst</span>), that succeeds if the last argument, Lst, is list of
+the form Var:Value. The first argument, Var, is an atom representing a
+variable and Value represents the value of that Var. This requires only
+one clause. Hint: you can use <span style="font-style: italic; font-family: monospace; font-weight: bold;">member</span>
+&amp; <span style="font-family: monospace; font-weight: bold;"><span style="font-style: italic;">atom</span></span> built in predicates.
+Note <span style="font-family: monospace;">atom</span> is an extra
+check but not required. e.g.<br>
+    <br>
+  </li>
+
+  <ol style="font-family: monospace; font-weight: bold;">
+?- simplify(b,Value,[a:100,b:(-5)]).<br>
+Value = -5<br>
+?- simplify(b,Value,[a : 1,b : 5, c : 10]).<br>
+Value = 5 .<br>
+  </ol>
+  <ol>
+    <br>
+  </ol>
+  
+  <li>
+    
+Above we defined a predicate "<span style="font-family: monospace; font-weight: bold;">simplify/3</span>",<span style="font-family: monospace; font-weight: bold;"> simplify(Var,
+Value, Lst)</span>, that succeeds if the last argument, <span style="font-family: monospace; font-weight: bold;">Lst</span>, is list of the
+form <span style="font-weight: bold; font-family: monospace;">Var:Value</span>. The first argument, <span style="font-family: monospace; font-weight: bold;">Var</span>, is an atom
+representing a variable and <span style="font-weight: bold; font-family: monospace;">Value</span> represents the value of that <span style="font-family: monospace; font-weight: bold;">Var</span>.
+This required only one clause. <br><br>
+
+Now create a predicate "<span style="font-family: monospace; font-weight: bold;">simplifyExp/3</span>" to
+evaluates an algebraic expression.
+The algebraic expression consists of variable with operators 'plus',
+'minus' and 'times'. Here are 3 test queries: <br>
+<br>
+&nbsp;&nbsp;&nbsp; <span style="font-family: monospace;"><span style="font-weight: bold;"></span></span><span style="font-family: monospace; font-weight: bold;">?-
+simplifyExp(plus(times(x,y),times(3 ,minus(x,y))),V,[x:4,y:2]). </span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp; V = 14 </span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp; ?-
+simplifyExo(times(2,plus(a,b)),Val,[a:1,b:5]). </span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp; Val = 12 </span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp; ?-
+simplifyExp(times(2,plus(a,b)),Val,[a:1,b:(-5)]). </span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp; Val = -8 . </span><br>
+    <br>Requires
+only
+a total 5 clauses.&nbsp; Use the idea from 4 for one of the clauses to
+get the value of the "equation variables". You may use "number" in
+one of your clauses.<br>
+    <br>
+  </li><ol><br>
+ 
+  </ol>
+
+  <li>- 12. Copy the rest of the problems from <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/as5F15" target="_blank">as5F15</a> into your file as5.pl.&nbsp; Note that as5F15 has test problems built in.<br>
+  </li><br>
+  <br>
+
+
+</ol>
+</body></html>

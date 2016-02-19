@@ -1,0 +1,251 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+          
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+          
+  <meta name="Author" content="E Head">
+          
+  <meta name="GENERATOR"
+ content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+          
+  <meta name="Description" content="Introduction">
+  <title>3 - Prolog Programming</title>
+  
+</head>
+<body text="#000000" bgcolor="#fffdff" link="#ff0000" vlink="#990000"
+ alink="#cc0000">
+ <font size="-2">underconstruction&nbsp; </font><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a>
+<h4> Due Sat, Sept 21 10:30 am.<br>
+ <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a></h4>
+ You hardcopy should begin with the following identification: 
+<ul>
+       
+  <blockquote><font color="#000000">CS471 - Programming Languages</font>
+   <br>
+    <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR Section
+number&gt;</font> <br>
+    <font color="#000000">Assignment #</font><font color="#cc0000">&lt;number&gt;
+    </font><font color="#000000">due:</font><font color="#cc0000"> &lt;DATE&gt;</font>
+    <br>
+    <font color="#000000">Author:</font><font color="#cc0000"> &lt;LastName&gt;,
+&lt;FirstName&gt; </font><font color="#000000">(</font><font
+ color="#cc0000">&lt;EMail&gt;</font><font color="#000000">)</font> <br>
+    <font color="#000000">Date:</font><font color="#cc0000"> &lt;DATE&gt;</font>
+         
+    <p><font color="#3333ff">Rename&nbsp;</font> <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/XXXAs3.pl">XXXAs3.pl</a>
+, rename file to JinAs3.pl, update identification, and add code to this file
+and just turn in a hard copy of this file. Keep the file in case the ta needs
+its. This file can be used for you to program in.&nbsp; I believe this will
+make it easier for the tas to grade.</p>
+  </blockquote>
+ 
+</ul>
+  
+<h4> Manditory reading ---</h4>
+  <li> Reading for Prolog</li>
+  
+<ul>
+ <li> Read: 625-641</li>
+  <li> <font color="#990000">Read 401-403, 385</font></li>
+ 
+</ul>
+  
+<h3> Written assignment:</h3>
+ <b>Purpose:</b> <li> <b>To reenforce your understanding of the list data
+structure.</b></li>
+  
+<ol>
+ <li> Describe how the list structure is implement in prolog?&nbsp; (i.e.
+What is the runtime environment?).&nbsp;&nbsp; You can use drawings and data
+structures to help your explain.&nbsp; You should be able to do this in two
+or three sentences.</li>
+  <li> Show how the following lists are bound after unification in your in
+your implementation.</li>
+        
+  <ol type="a">
+ <li> A = [a, b]</li>
+  <li> [H|T] = [x, y, z]</li>
+  <li> [H1,H2|T]&nbsp; = [x, y, z]</li>
+  <li> [H|T] = [ [1,2,3], a, [c,d]]</li>
+       
+  </ol>
+ 
+</ol>
+  
+<h3> <b>Programming Assignment:</b></h3>
+ <b>Purpose:</b> <li> <b>The purpose is this assignment is</b></li>
+  <br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) reenforce recursive programming</b>
+<br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) reenforce the use of the list
+data structure in Prolog</b> <br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3) use of pattern recognition in
+programming</b>
+<blockquote>This assignment is not intended to be hard, however many will
+need time to absorb how easy it really is. Most of the code need only be
+two lines, some will need only one line code.&nbsp; Some will only need a
+fact and not a rule!. The MAXIMUM number of lines is at MOST 3 lines.&nbsp;
+You may use built in predicates as part of your solutions.&nbsp; You are
+encouraged to try experiences at the prolog prompt before you write code.&nbsp;
+For example:<br>
+&nbsp;<br>
+?- X is (3+5)/2.<br>
+&nbsp;?- (F,S)=(3,5), X is F+S.<br>
+&nbsp;?- help(length).<br>
+&nbsp;?- help(arg).<br>
+&nbsp;?- listing.<br>
+&nbsp;?- trace.</blockquote>
+  
+<ol>
+You may find this <a
+ href="http://cbl.leeds.ac.uk/%7Etamsin/prologtutorial/index.html#menu">tutorial</a>
+or&nbsp; <a href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">another
+tutorial</a> helpful.&nbsp; You will find the following builtin predicates
+helpful trace, help(predicate), and listing. <br>
+&nbsp;&nbsp; <li>[very easy]Write a relation,&nbsp; mkTuple( X, Y, P) that
+succeeds if P is a tuple (i.e. a pair) whose first element is X and second
+element is Y.<br>
+    <tt><b>&nbsp;?- mkTuple(a,b,P). <br>
+&nbsp;P = (a,b) <br>
+&nbsp;yes<br>
+&nbsp;?- mkTuple(X,Y,(1,2)).<br>
+&nbsp;X = 1<br>
+&nbsp;Y = 2<br>
+&nbsp;yes</b></tt><br>
+&nbsp;</li>
+  <li>[very easy] Define the relation,&nbsp; mkZip(Z,X,Y),where Z is unified
+with zip(X,Y).&nbsp; This is really easy if you use pattern matching and
+unification.<br>
+    <br>
+    <tt><b>&nbsp;?- mkZip(Z,a,b). <br>
+&nbsp;Z = zip(a,b)<br>
+&nbsp;yes<br>
+    </b></tt><tt><b>&nbsp;?- mkZip(zip(1,2),X,Y).<br>
+&nbsp;X = 1<br>
+&nbsp;Y = 2<br>
+&nbsp;yes</b></tt>    </li>
+  <li>[easy] Write a predicate, addV(V,Lst,RLst),&nbsp; such that every element
+in R is V more than the corresponding element in Lst. i.e.<br>
+    <br>
+&nbsp;&nbsp; ?-addV(2,[1,2,4],X). <br>
+&nbsp;&nbsp; X = [3,4,6] <br>
+&nbsp;&nbsp; yes <br>
+&nbsp;&nbsp; ?- addV(3,X,[3,4]). <br>
+&nbsp;&nbsp; You will get an error...Arguments are not sufficiently instantiated.
+    <br>
+  </li>
+  <br>
+&nbsp; <li> <b>&nbsp;</b>Write a predicate,<b><tt> hasDuplicate(Lst)</tt></b>,
+which succeeds only if at least one element in the list appears more than
+once.&nbsp; You may use the built-in predicate <b><tt>member/2 </tt></b>i.e.</li>
+        
+  <ol>
+    <b><tt>?- hasDuplicate([3,3,4].</tt></b> <br>
+    <b><tt>yes</tt></b> <br>
+    <b><tt>?- hasDuplicate([1,33,4]).</tt></b> <br>
+    <b><tt>no</tt></b> <br>
+    <b><tt>?- hasDuplicate([a,b,d,e,f,d]).</tt></b> <br>
+    <b><tt>yes<br>
+    <br>
+    </tt></b>     
+  </ol>
+  <li>[easy] Write a predicate, <b><tt>secondElement</tt></b>, that succeeds
+only for lists of length greater than 1 and it "picks" the second element
+of the list.</li>
+        
+  <ol>
+    <b><tt>?- secondElement([a,c,f,g],S).</tt></b> <br>
+    <b><tt>S = c</tt></b> <br>
+    <b><tt>yes</tt></b> <br>
+    <b><tt>?- secondElement([1],S).</tt></b> <br>
+    <b><tt>no<br>
+    <br>
+    </tt></b>     
+  </ol>
+  <li>&nbsp;Write a procedure isIncreasing(L) that succeeds if the numbers
+in list L are in non-decreasing order.<br>
+    <br>
+  </li>
+  <li>&nbsp;Define a predicate tupleLists(L,M,P), where it succeeds if&nbsp;
+P is a list of tuples, the first element is from the L and the second is
+from the corresponding element in list M.<br>
+    <br>
+    <b><tt>?- tupleLists([1,5,9],[a,5,z],P). <br>
+P = [(1,a),(5,5),(9,z)] <br>
+yes <br>
+?- tupleLists([1,5],[a,b,c],P). <br>
+P = [(1,a),(5,b)]. <br>
+yes <br>
+?- tupleLists([1,5,99],[a,c],P). <br>
+P = [(1,a),(5,c)]</tt></b></li>
+        
+  <ol>
+&nbsp;      
+  </ol>
+  <li>Write a predicate numOfElements, given a list of lists compute the
+total number of&nbsp; elements in all the lists. i.e.<br>
+    <br>
+    <tt><b>?-numOfElements([[1,2],[a,b,c]], L). <br>
+L = 5 <br>
+yes <br>
+?- numOfElements([[],[],[abc],[123]],L). <br>
+L = 2 <br>
+yes <br>
+?- numOfElements([[],[]],L). <br>
+L = 0 <br>
+yes</b></tt></li>
+        
+  <ol>
+         
+    <ol>
+      <tt><b>&nbsp;</b></tt>         
+    </ol>
+       
+  </ol>
+  <li>Define a predicate, funmap(Functor,ListOfArgs,ListOfTerms), where each
+term in the ListOfTerms is a term with one argument from the ListOfArgs and
+the name is the functor. See page 638 in Scott for information on the built-in
+predicates functor, ...,&nbsp; and arg. i.e. <br>
+    <tt><b><br>
+?- funmap(foo,[a,b,23,4],T). <br>
+T = [foo(a), foo(b), foo(23), foo(4)] <br>
+Yes</b></tt><br>
+  </li>
+     
+  <ol>
+    <tt><br>
+    </tt>     
+  </ol>
+  <li>[easy] Given a list of predicates, <b><tt>applylist(L)</tt></b>, succeeds
+only if each of the predicates in the list succeeds. <b>Note: the scope of
+variables names is the entire list.</b> You can apply each predicate at the
+prompt to test how they work.&nbsp; Make up your own test cases. i.e.</li>
+        
+  <ol>
+    <b><tt>?- applylist([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]).</tt></b>
+    <br>
+    <b><tt>A = 5</tt></b> <br>
+    <b><tt>B = 9</tt></b> <br>
+    <b><tt>C = 5</tt></b> <br>
+    <b><tt>yes</tt></b> <br>
+    <b><tt>?- applylist([=(A,5),is(B,+(4,5)),C is max(9,2),A=C]).</tt></b>
+    <br>
+    <b><tt>no</tt></b>     
+  </ol>
+ 
+</ol>
+  
+<p><br>
+<font color="#3333ff">Remember Programming is an individual task... :</font>
+</p>
+<p><font color="#3333ff">Resources use:</font> </p>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a> </p>
+<br>
+<br>
+</body>
+</html>

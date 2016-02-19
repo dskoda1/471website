@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>Scott's Chap 3: ,Binding - Scope - Referencing</title><meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <meta name="author" content="E Head"></head>
+<body>
+
+
+
+
+
+
+
+<div style="text-align: center;">
+<h3>Homework Assignment 6</h3>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<span style="font-weight: bold;"></span><h3>Due Wed., March 12 @ noon <span style="font-style: italic;">hard copy only &nbsp;in
+the course file cabinet.</span></h3><ol>
+
+
+
+
+
+
+
+  
+
+
+  <li>For each of the following individuals write 2 or 3 sentences
+describing
+their contribution to Programming Languages/Software development.
+&nbsp;Also include a
+non-cs&nbsp; fact you found interesting about the person and any
+links(or references) you found useful.<br>
+
+
+  </li>
+
+
+
+  
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+
+    <li>Betty Holberton</li>
+
+
+
+    <li>Hal Abelson</li>
+
+
+
+    <li>Grace Hopper</li>
+
+
+
+    <li>Lady Lovelace</li>
+
+
+
+    <li>Miguel de Icaza</li>
+
+
+
+    <li>Frances Elizabeth "Fran" Allen</li>
+
+
+
+    <li>Barbara Liskov (born Barbara Huberman)<br><br>
+
+
+    </li>
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+  <li>Page 114 CYU( check your understand) #4, page 124 CYU #12 and page 152 exercise 3.4.<br>
+    <br>
+
+
+  </li>
+
+
+
+
+  
+
+
+
+  <li>Page 152 exercise 3.5<br></li><li>Page 152 exercise 3.6 (See&nbsp;<span style="font-family: monospace;"><a href="http://ftp.cs.rochester.edu/u/scott/pragmatics/2e/errata.shtml">errata</a>.)<br></span></li><li>Page 154 exercise 3.9 (Just answer the question about how much variable storage is necessary for execution of this program. <br>Explain how the memory is managed during runtime. )<br><br></li><li>&nbsp;Consider the following pseudo code:<br>
+
+
+
+    
+    
+    <div style="margin-left: 40px;">&nbsp;<span style="font-family: monospace;">&nbsp; x : integer := 1</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+y : integer := 20</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure add()</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x := x + y</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure second(P : procedure)</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x : integer := 2</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+P()</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure first()</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+y : integer := 3</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+second(add)<br>
+    </span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+first()</span><br style="font-family: monospace;">
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+write integer(x)<br>
+
+
+
+    <br>
+
+
+
+    </span></div>
+
+
+
+  </li><ol style="list-style-type: lower-alpha;"><li>What does this program print if the language uses static
+scoping?</li><li>Explain why 4 is printed out if the language uses dynamic
+scoping with deep binding.</li><li>Explain why 1 is printed out&nbsp;if the language
+uses dynamic scoping with shallow binding.<br><br></li></ol>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  <li>The language C distinguishes between the <span style="font-style: italic;">declaration </span>and <span style="font-style: italic;">definition.</span></li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+
+
+    <li>What is the difference between declaration and definition?</li>
+
+
+
+
+
+
+    <li>Which of the following are declarations only and which are definitions:</li>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    <ol>
+
+
+
+
+
+
+      <li>float * rate ;</li>
+
+
+
+
+
+
+      <li>struct node;</li>
+
+
+
+
+
+
+      <li>double var;</li><li>typedef&nbsp; char * string; </li>
+
+
+
+
+
+
+      <li>extern double x;<br>
+        <br></li></ol></ol>
+
+
+  <li>Continuation of problem 2 from assignment 5.&nbsp; Make sure you are using gcc version 4.02 or above.
+  </li>
+
+
+
+  
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+
+    
+    <li>Recompile <a href="power2.c">power2,c</a> with -O2 optimization switch (gcc power2.c -O2 -S -std=iso9899:1999).<br>
+      <br>
+
+
+    </li>
+
+
+    <li>Compare
+the assembly file created using optimization switch with the file
+created without optimization. &nbsp;Pay attention to how power2's
+recursion is "implemented". &nbsp;How are they different?<br>
+      <a href="hw6/factRS.s"><br>
+
+
+      </a></li>
+
+
+    
+
+
+
+  
+  
+  
+  </ol>
+
+
+  
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+</body></html>

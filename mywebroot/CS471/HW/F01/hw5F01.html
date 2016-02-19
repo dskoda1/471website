@@ -1,0 +1,147 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Last Prolog Assignment</title>
+</head>
+<body>
+<font size=-2>&nbsp; </font><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 5</h4>
+
+<h4>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a></h4>
+You hardcopy should begin with the following identification:
+<ul>
+<blockquote><font color="#000000">CS471 - Programming Languages</font>
+<br><font color="#000000">Section: </font><font color="#CC0000">&lt;YOUR
+Section number></font>
+<br><font color="#000000">Assignment #</font><font color="#CC0000">&lt;number>
+</font><font color="#000000">due:</font><font color="#CC0000">
+&lt;DATE></font>
+<br><font color="#000000">Author:</font><font color="#CC0000"> &lt;LastName>,
+&lt;FirstName> </font><font color="#000000">(</font><font color="#CC0000">
+&lt;EMail></font><font color="#000000">)</font>
+<br><font color="#000000">Date:</font><font color="#CC0000"> &lt;DATE></font></blockquote>
+</ul>
+
+<h3>
+<b>Written Assignment:</b></h3>
+<b>Purpose: To understand the beauty of pattern matching.</b>
+<ol>
+<li>
+Consider the following program:</li>
+</ol>
+
+<ol type="A">
+<ol type="A"><tt>fill(X,N,L) :- length(L,N), append([X],Lx,L), append(Lx,[X],L).</tt>
+<br>&nbsp;
+<li>
+<tt>(Do not turn in).</tt>If the input <i>X</i> is a term and input <i>N</i>
+is a positive integer, then what will the output <i>L</i>? Try the following..
+also find other possible solutions with ";"</li>
+
+<ol TYPE=a>
+<li>
+<tt>?-</tt>&nbsp; <tt>fill(xyz, 5, L).</tt></li>
+
+<li>
+<tt>?- fill(xyz, 5, [H|T].</tt></li>
+</ol>
+
+<li>
+<tt>Try to briefly explain how it works.</tt></li>
+
+<li>
+Does the below code give the same results as <i>fill</i>?</li>
+
+<ol type="A"><tt>fillr(X,0,[]):-!.</tt>
+<br><tt>fillr(X,N,[X|T]) :- Nx is N-1,fillr(X,Nx,T).</tt></ol>
+
+<li>
+Compare the execution time of the two version for various values of <i>N
+.&nbsp; </i>(Use "trace" or write your own append (use myAppend) and length(use
+myLen) so you can see trace to see the execution steps. )</li>
+</ol>
+</ol>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+<b>Purpose:</b>
+<li>
+<b>The purpose is this assignment is</b></li>
+
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) reenforce recursive programming</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) reenforce the use of the
+list data structure in Prolog</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3) use of pattern recognition
+in programming</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4) use of backtracking to solve
+problems.</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5) learn how to dynamically
+change prolog code</b>
+<ol>You may find this <a href="http://cbl.leeds.ac.uk/%7Etamsin/prologtutorial/index.html#menu">tutorial</a>
+or&nbsp; <a href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">another
+tutorial</a> helpful.&nbsp; You will find the following builtin predicates
+helpful trace, help(predicate), and listing.&nbsp;&nbsp; <a href="http://www.swi.psy.uva.nl/projects/SWI-Prolog/Manual/DocIndex.html">Online
+documentation</a> .
+<p><b>Files with hints and format : For most of the problems</b> <a href="file:///A|/hw/XXXAs5.pl">XXXAs5.pl</a>
+, for the Knapsack problem <a href="file:///A|/hw/XXXAs5p1.pl">XXXAs5p1.pl</a>
+<ol>&nbsp;</ol>
+
+<li>
+0/1Knapsack problem.&nbsp; See&nbsp; <a href="file:///A|/hw/XXXAs5p1.pl">XXXAs5p1.pl</a>
+.</li>
+
+<br>&nbsp;
+<li>
+(Only 3 Lines of code)&nbsp; Define a predicate</li>
+
+<ol><tt>sumIt(List,Sum)</tt></ol>
+where List can be a list of nested lists of numbers, and Sum is the total
+value of all the numbers. [] will have the value "0". For example: (This
+is very hard.)&nbsp; DO NOT use the builtin flatten predicate.
+<ol type="A"><tt>sumIt([1,[2,[3],[],1],[[2,[3]]]],S).</tt>
+<br><tt>S=12;</tt>
+<li>
+What happens after the ";" ? (i.e. do you get an error?).</li>
+
+<li>
+Can you correct it by using&nbsp; "cut"s? (Extra credit).</li>
+</ol>
+
+<br>&nbsp;
+<li>
+<font color="#000000">(easy- ONE relation)Define a predicate append3DL&nbsp;
+that concatenates three difference lists:</font></li>
+
+<br><font color="#000000">&nbsp;&nbsp;&nbsp; <tt>?- append3DL( [z,y|A]
+- A, [x,w | B] -B, [u,v | C] - C, What).</tt></font>
+<br><tt><font color="#000000">&nbsp; What = [z, y, x, w, u, v | _n] - _n</font></tt>
+<br><tt><font color="#000000">&nbsp; yes</font></tt>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Write a prolog program that solves the math puzzle given in Homework 1
+problem 12.You may use getDigit() I supplied in <a href="file:///A|/hw/XXXAs5.pl">XXXAs5.pl</a>&nbsp;
+as well as JUST adding enough subgoals to solve the puzzle predicate. OR
+you may design your own code.&nbsp; However, prolog must discover the solutions
+to the puzzle via backtracking.</li>
+
+<ol>
+<ol>&nbsp;</ol>
+</ol>
+Write prolog program to "parse" a string in the language generated by the
+grammar in homework 2 problem 5. 20 extra points if you write your parser
+so it reads "sentences of lbs, rbs and exps" from a file and does a "pretty
+print" of a parse tree of the sentences accepted by the grammar.
+<br>&nbsp;</ol>
+<font color="#3333FF">Remember Programming is an individual task... :</font>
+<p><font color="#3333FF">Resources use:</font>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+<br>&nbsp;
+</body>
+</html>

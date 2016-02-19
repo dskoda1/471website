@@ -1,0 +1,757 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta content="text/html; charset=iso-8859-1"
+ http-equiv="Content-Type">
+  <meta content="E Head" name="Author">
+  <meta content="Mozilla/4.73 [en] (Win98; U) [Netscape]"
+ name="GENERATOR">
+  <meta content="Introduction" name="Description">
+  <title>HW 7 -Runtime Stack - Expressions</title>
+</head>
+<body alink="#cc0000" vlink="#990000" link="#ff0000"
+ style="color: rgb(0, 0, 0); background-color: rgb(250, 250, 250);">
+Due Sat. Oct 25, 2003 -- Midnight<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+<div align="left">
+<h4>Assignment 7</h4>
+</div>
+<p>Read: chapter 8, 5.3, 5.5, 5.7 <br>
+</p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+The purpose of this assignment is to understand the
+function(subroutine) call stack, scoping.&nbsp; In addition, expose you
+to important individuals in computer sciences.<br>
+</p>
+<p> Written assignment:</p>
+<ol>
+  <ol>
+    <ol type="A">
+    </ol>
+  </ol>
+  <li>In C++ what is the difference between the implementation of code
+denoted as <b><i>inline</i></b> as oppose to functions that are not
+inline?</li>
+  <li>page 181 exercise 5.8 (Draw the symbol table diagrams for
+variables only and you can do them by hand.)<br>
+  </li>
+  <li>page 352 exercise 8.24<br>
+  </li>
+  <li>Write at most 4 sentences on each of the below people.&nbsp; One
+sentence should describe a major contribution to Programming
+Languages/Computer Sciences by the person. One sentence should contain
+an interesting or
+surprising fact you found out about the person.</li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Dennis Ritchie<br>
+    </li>
+    <li>Grace Murray Hopper</li>
+    <li>Conrad Zuse</li>
+    <li><span class="m"><b> </b>Niklaus Wirth</span></li>
+    <li><span class="m">Dahl and Nygaard</span></li>
+    <li><span class="m">Guy Steele</span></li>
+    <li><span class="m">Bjorne Stroustrup</span></li>
+    <li><span class="m">J. Gosling</span></li>
+    <li><span class="m">Adele Goldberg</span></li>
+    <li><span class="m">John McCarthy</span></li>
+    <li><span class="m">Donald Knuth</span></li>
+    <dl>
+      <dd><span class="m"><br>
+        </span></dd>
+    </dl>
+  </ol>
+  <li>Compile and run in gcc&nbsp; the following C code on two
+different systems:</li>
+  <dl>
+    <dd><br>
+      <span style="font-family: monospace;"> int loop() {</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; int
+x[512]; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; int i=0;
+      </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; while
+(i++ &lt;512) { </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; x[i] = 0; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; } </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">} </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">int main () { </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+printf("\nCalling loop --&gt;&gt;\n"); </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; loop(); </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">}</span> </dd>
+    <br>
+  </dl>
+</ol>
+<div style="margin-left: 40px;">Below are the commands to compile and
+run the above code on Cygwin
+and Sun systems:
+<br>
+(PC)
+</div>
+<ol style="margin-left: 40px;">
+  <b><tt>gcc -ansi <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw7F03.c">hw7F03.c</a>
+-o hw8s01.exe</tt></b><br>
+  <b><tt>hw7F03.exe</tt></b>
+  <p><b><font color="#3333ff">if hw7F03.exe does NOT work then type:</font></b>
+  <br>
+  <b><tt><font color="#3333ff">./hw7F03.exe</font></tt></b> <br>
+&nbsp;</p>
+</ol>
+<div style="margin-left: 40px;">(Bingsuns )
+</div>
+<ol style="margin-left: 40px;">
+  <b><tt>gcc -ansi <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw7F03.c">hw7F03.c</a>
+-o hw7F03</tt></b><br>
+  <b><tt>hw7F03</tt></b>
+</ol>
+<div style="margin-left: 40px;">Using the -S option look at the
+assembly code.&nbsp; Do not use a debugger.
+</div>
+<ol style="margin-left: 40px;">
+  <ol type="A">
+    <li>What happens when you run this code?</li>
+    <li>Depending on the target machine and the compiler, this code
+will execute
+differently.&nbsp; Sometimes this code goes into an infinite loop,
+sometimes
+this code terminates, sometimes this code cause a segmentation
+error.&nbsp;
+Can you explain why this code does not behavior consistently?&nbsp;
+Think
+in terms of the AR and the runtime stack.</li>
+  </ol>
+</ol>
+<br>
+<ol start="6">
+  <li>For the following C3 program fragment: </li>
+  <ol type="A">
+    <li> What is the activation record (frame) template for <i>alpha</i>
+() and <i>beta</i>()? (Use the outline presented in the notes.)</li>
+    <li> Show the snapshot of the run-time stack at&nbsp; each critical
+stage until the code returns to main...&nbsp; In particular, show
+the static and dynamic links before each call.&nbsp; ( Follow the <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2stack.gif">
+presentation of (run-times) call stack given in my class notes</a> .)
+&nbsp;YOU may assume all parameters are passed by value.</li>
+    <br>
+    <tt>int&nbsp; b = 2, c = 2, i = 3;</tt> <br>
+    <tt>&nbsp;&nbsp; void beta(int var ); &nbsp;// declaration</tt>
+    <p><tt>&nbsp;&nbsp;&nbsp;<font color="#990000"> <font
+ color="#000000">int alpha(int x )</font></font> {</tt> <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int b = 99;</tt> <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //++ </tt>&lt;&lt;&lt;&lt;&lt;&lt;
+Show stack here <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b += c = c + x;</tt>
+    </p>
+    <p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta(12);</tt> <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // </tt>&lt;&lt;&lt;&lt;&lt;&lt;
+Show stack here </p>
+    <ol>
+      <tt>&nbsp; return b;</tt>
+    </ol>
+    <tt>&nbsp;&nbsp;&nbsp;
+}; // end of alpha code</tt>
+    <p><tt>&nbsp;<font color="#000000">&nbsp;&nbsp;&nbsp; </font><font
+ color="#000000">void</font> beta(int var ){</tt> <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int x = 9;</tt> <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp; //</tt>&lt;&lt;&nbsp; show the
+stack here after call from callee <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font
+ color="#000000"> if (b&gt;3) return;&nbsp; //&lt; Termination</font></tt>
+    <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = i + x;</tt> </p>
+    <p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alpha(5);</tt> <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt> //&lt;&lt;&lt; after
+returned from alpha <tt><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return;</tt> </p>
+    <tt>&nbsp;&nbsp;&nbsp; }; &nbsp;// end of beta code</tt>
+    <p><tt>&nbsp;&nbsp;&nbsp; int main( ){</tt> </p>
+    <ol>
+      <tt>&nbsp; int i = 32;</tt>
+    </ol>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp; // ** </tt>
+stack before beta is called <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta(3);</tt> <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// *** </tt>stack after beta is returned <br>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt>
+    <ol>
+      <ol>
+        <tt>return i;</tt>
+      </ol>
+    </ol>
+    <tt>&nbsp;&nbsp;&nbsp; }<br>
+    </tt><br>
+  </ol>
+</ol>
+<table width="85%" bgcolor="#fff8f0" border="1">
+  <tbody>
+    <tr bgcolor="#ffffc4" align="center">
+      <td>
+      <center>Description</center>
+      </td>
+      <td>D addr</td>
+      <td>
+      <center>main **</center>
+      </td>
+      <td>
+      <center>beta 3 &lt;&lt;</center>
+      </td>
+      <td>alpha5 ++</td>
+      <td>
+      <center>beta 12 &lt;</center>
+      </td>
+      <td>
+      <center>alpha5 +++</center>
+      </td>
+      <td>
+      <center>beta3 &lt;&lt;&lt;</center>
+      </td>
+      <td>
+      <center>main ***</center>
+      </td>
+    </tr>
+    <tr>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+      <td bgcolor="#d7ffd7">Just</td>
+      <td bgcolor="#d7ffd7">after</td>
+      <td bgcolor="#d7ffd7">calling</td>
+      <td bgcolor="#d7ffd7">function</td>
+      <td bgcolor="#eef0f9">Just&nbsp;</td>
+      <td bgcolor="#eef0f9">after&nbsp;</td>
+      <td bgcolor="#eef0f9">return to function</td>
+    </tr>
+    <tr>
+      <td>
+      <center>global&nbsp; <b><i>b</i></b></center>
+      </td>
+      <td align="center"> 0<br>
+      </td>
+      <td>
+      <center>2</center>
+      </td>
+      <td>
+      <center>&nbsp;&nbsp;</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>global&nbsp; <b><i>c</i></b></center>
+      </td>
+      <td align="center"> 1<br>
+      </td>
+      <td align="center"> 2<br>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>global <b><i>i</i></b></center>
+      </td>
+      <td>
+      <center>2</center>
+      </td>
+      <td>
+      <center>3</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr bgcolor="#eff0ee">
+      <td>
+      <center>return value</center>
+      </td>
+      <td align="center"> 3<br>
+      </td>
+      <td>
+      <center>&nbsp;?</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr bgcolor="#eff0ee">
+      <td>
+      <center>&nbsp;main <b><i>i</i></b></center>
+      </td>
+      <td align="center"> 4<br>
+      </td>
+      <td>
+      <center><font color="#cc0000">&nbsp;32</font></center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td align="center" valign="top">5<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td align="center" valign="top">6<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>7</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>8</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>9</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>10</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>11</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>12</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>13</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>14</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>15</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>16</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>17</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>18</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>19</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>20</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>21</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>22</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>23</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>24</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="3" bgcolor="#003300" valign="top"><font
+ color="#ffff99"><b>Register</b>s</font><br>
+      </td>
+      <td height="3" bgcolor="#003300" valign="top"><br>
+      </td>
+      <td bgcolor="#666666" height="3" valign="top"><br>
+      </td>
+      <td bgcolor="#666666" height="3" valign="top"><br>
+      </td>
+      <td bgcolor="#666666" height="3" valign="top"><br>
+      </td>
+      <td bgcolor="#666666" height="3" valign="top"><br>
+      </td>
+      <td bgcolor="#666666" height="3" valign="top"><br>
+      </td>
+      <td bgcolor="#666666" height="3" valign="top"><br>
+      </td>
+      <td bgcolor="#666666" height="3" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#ddede2" valign="top"><b>Frame Pt</b><br>
+      </td>
+      <td bgcolor="#999999" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#ddede1" valign="top"><font
+ color="#cc0000">0</font><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#ddede2" valign="top"><b>Stack Pt</b><br>
+      </td>
+      <td bgcolor="#999999" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#ddede1" valign="top"><font
+ color="#cc0000">5</font><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#ddede2" valign="top"><b>Instruction<br>
+Pt</b><br>
+      </td>
+      <td bgcolor="#999999" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><font color="#cc0000">main()<br>
+&nbsp; or <br>
+333 ***</font><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+      <td bgcolor="#ddede1" valign="top"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<font color="#cc0000">333*** is the address &nbsp;o</font>f the
+instruction currently being executed. OR you can just write the name of
+the routine the instruction being executed is in.<br>
+<br>
+<br>
+<ol start="7">
+  <li>DO NOT TURN IN:&nbsp; How would the runtime stack change to the
+above problem if the <i><tt>main</tt></i> was change to:&nbsp; (Note:
+there would be more columns.</li>
+  <ol>
+    <tt>&nbsp;int main( ){</tt><br>
+&nbsp; &nbsp; int i = 45;
+  </ol>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt> <br>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta(11 );</tt> <br>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt> <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; c = 3;<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; beta(11 );
+  <ol>
+    <tt>&nbsp; ....</tt> <tt><br>
+&nbsp; return i;</tt>
+  </ol>
+  <tt>&nbsp;&nbsp;&nbsp; }</tt>
+</ol>
+<ol start="7">
+</ol>
+<ol>
+  <font color="#3333ff"><br>
+I collaborated with : ___________________________________</font>
+  <p><font color="#3333ff">Resources use:
+_______________________________________</font></p>
+</ol>
+<br>
+&nbsp; <br>
+&nbsp;
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a> </p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

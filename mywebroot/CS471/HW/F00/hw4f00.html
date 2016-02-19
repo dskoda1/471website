@@ -1,0 +1,187 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <title>HW4 - Haskell 3 and Runtime 1</title>
+</head>
+<body text="#000000" bgcolor="#FFFFF4" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment Haskell 3 and Runtime environment:&nbsp; Friday Sept. 22.</h4>
+Purpose:&nbsp; Practice recursion, list comprehension in Haskell.&nbsp;
+Explore some runtime environment concepts.
+<p>Read Chapters:
+<blockquote>
+<blockquote>
+<blockquote>Scott: Chapter 3
+<br>Thompson, <i>Haskell,<a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/">The
+Craft of Functional Programming</a></i> Chapters 6- 7 (pages 96-128)
+<br><a href="http://haskell.org/tutorial/">A Gentle Introduction to Haskell</a>
+<br><font color="#666666">Using winhugs.exe under the<b> </b></font><b>Help
+menu: <i>contents</i></b> is an online manual.
+<br>The help file, hugs.HLP, is located in the C:/hugs98/ directory in
+the normal installation.</blockquote>
+</blockquote>
+</blockquote>
+
+<h2>
+<b>Written Assignment:</b></h2>
+
+<ol>
+<li>
+Page 159/3.6 Give three concrete examples drawn from programming languages
+with which you are familiar in which a variable is live but not in scope.</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+In general, a statement like<tt> x=fun(y)+z+fun(y);</tt> in C can't be
+optimized as <tt>x=2*fun(y)+z;</tt>&nbsp; why?</li>
+
+<br>&nbsp;
+<li>
+<b><font color="#000000">The following&nbsp; C code is in a single file.&nbsp;
+For the following four variable, <i>COUNTS, x </i>(<i>line 4</i>)<i>, x
+</i>(<i>line
+6</i>), x (<i>line 9</i>);</font></b></li>
+
+<ol TYPE=a>
+<li>
+<font color="#000000">During what phase is the type bound ?</font></li>
+
+<li>
+<font color="#000000">During what phase is the r-value bound ?</font></li>
+
+<li>
+<font color="#000000">During what phase is the l-value bound?</font></li>
+
+<li>
+<font color="#000000">What is the scope?</font></li>
+
+<li>
+<font color="#000000">What is the lifetime?</font></li>
+
+<ol TYPE=a>
+<hr WIDTH="100%"></ol>
+<b><tt><font color="#000000">#define COUNTS 100&nbsp;&nbsp; /* line 1 */</font></tt></b>
+<br><b><tt><font color="#000000">int fun1(){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 2 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; static int x=0; /*
+line 3 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; return x++;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 4 */</font></tt></b>
+<br><b><tt><font color="#000000">}</font></tt></b>
+<br><b><tt><font color="#000000">static int x;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 6 */</font></tt></b>
+<br><b><tt><font color="#000000">int x() {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 7 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; int x =5;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 8 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; return COUNTS + x ;
+/* line 9 */</font></tt></b>
+<br><b><tt><font color="#000000">}</font></tt></b>
+<table BORDER COLS=5 WIDTH="80%" >
+<tr ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFF99">
+<td>&nbsp;</td>
+
+<td><font color="#000000">COUNTS</font></td>
+
+<td><font color="#000000">x (line 4)</font></td>
+
+<td><font color="#000000">x (line 6)</font></td>
+
+<td><font color="#000000">x (line 9)</font></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">type bound</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">r-value bound</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">l-value bound</font></td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">scope</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">lifetime</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+
+<td>&nbsp;</td>
+</tr>
+</table>
+</ol>
+</ol>
+
+<h2>
+<b>Programming Assignment:</b></h2>
+<b>Email your code to&nbsp;</b> <a href="mailto:cs471h@binghamton.edu">cs471h</a>
+. Turn in hardcopy.
+<br>You should use primitive recursion in these problems or just straight
+forward function application.
+<h4>
+YOU must insert your code in the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell2.lhs">file</a>
+provided but you will need to rename the file following <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions.</a></h4>
+
+<blockquote>
+<blockquote><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/SimpleExample.lhs">Simple
+Sample of the Literal Style</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">Literal
+style must be used - more extensive</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Sample
+Code from the Notes</a></blockquote>
+</blockquote>
+Note: In the homework file put only one space between ">" and the code.&nbsp;
+The examples above use more than one space.&nbsp; Do not use a tab...&nbsp;
+JUST one SPACE.
+<h2>
+See&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell2.lhs">Haskell2.lhs</a>
+for the programming assignment.</h2>
+
+</body>
+</html>

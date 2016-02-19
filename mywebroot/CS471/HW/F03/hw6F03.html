@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Review of Primative types.</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <meta name="author" content="E Head">
+</head>
+<body>
+<font size="2" face="Arial, Helvetica, sans-serif"><br>
+Homework 6: Review of computer architecture and its effect on
+programming languages.&nbsp; <br>
+</font><br>
+Read: chapter 5 and 7.1<br>
+Purpose: Review computer architecture and how it relates to the design
+of HOL (higher order languages) and semantics of HOL. Review problems
+with operators that also have side effect.<br>
+<br>
+<ol>
+  <li>What is IEEE 754? &nbsp;</li>
+  <br>
+  <li>"There are only a few basic data types in C: <i>char ... int ...
+float ... double</i>" (Kernighan &amp; Ritchie p36)&nbsp;<br>
+    <br>
+  </li>
+  <ol type="A">
+    <li>For each type: What phase (language design, implementation,
+compile time, run time)&nbsp; is the decision made on how the type is
+encoded<big> , i.e.<small> how much space is allocated and the format
+in memory</small></big><small> ?</small> &nbsp;<br>
+      <br>
+    </li>
+    <li>At compile time your code finds the maximum and minimum values
+for char, int, float and double in the<i> /usr/include/limits.h </i>and
+      <i>/usr/include/float.h</i> files supplied by the implementor of
+the compiler (on bingsuns, gnu). Look in these files to find these
+definitions (you may have to look in files included by limits.h).
+Compare the values found on bingsuns to the values provided <a
+ href="http://www.acm.uiuc.edu/webmonkeys/book/c_guide/2.5.html"> here</a>.
+(or K&amp;R page 257 or Harrison&amp;Steele page 112 and 118)
+&nbsp; Give a reason why the values may be different. In addition there
+are
+the following qualifiers: short, long, signed and unsigned. Briefly
+explain
+effect of the qualifiers on the basic types. You should mention which
+standard
+you are using(i.e ANSI/ISO amendment I or K&amp;R&nbsp; etc.).
+&nbsp;&nbsp;</li>
+    <li>In C89 <span style="font-style: italic;">long double&nbsp; </span>was
+added as a new type to the C language.&nbsp; What is it and why have it?</li>
+    <li>In C99, <span style="font-style: italic;">long long</span>
+type was added.&nbsp; What is the minimum requirement for the
+implementation of <span style="font-style: italic;">long long</span>.</li>
+    <li>C99, added <span style="font-style: italic;">complex-type-specifiers.&nbsp;&nbsp;
+      </span>What are they?&nbsp; What is the purpose of <span
+ style="text-decoration: underline;">complex.h</span> file?</li>
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+  </ol>
+  <li>This problem pertains to floating arithmetic and its
+implementation using code in the "C" language. I have written a simple <i>C</i>
+program
+(<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw6S02.c"> </a>hw6F03.c
+). There is a&nbsp; makefile and<a
+ href="file:///H:/My%20Documents/Courses/CS471/HW/F02/HW6F02Q3/README">
+    </a>README if you want to use them. &nbsp;( <a href="hw6Q3F03.zip">hw6Q3F03.zip</a>
+)</li>
+  <ol type="A">
+    <br>
+    <li>Compile and run this code using GCC.(either using cygwin or Sun
+work stations) <br>
+      <br>
+    </li>
+    <li>One would expect that the Part 1A and Part 1B (part1()) of
+program would&nbsp; compute and print the same value for sum.&nbsp;
+(Remember <i> C</i> does not have a boolean it uses 0 to mean false
+and all other values to mean true.) Does it execute as expected?<br>
+      <br>
+    </li>
+    <li>One would also expect that adding ten times the value 0.1 would
+result in 1.0.&nbsp; Explain why (how) the computer gets the results
+for part
+2 (part2()) ?<br>
+      <br>
+    </li>
+    <li>(Page 133 Harbison &amp; Steele) "Prior to standard C, all
+implementations were required to convert all values of type <b>float</b>
+to type <b>double</b> before operations were performed. &nbsp;... In
+standard C, operations can now be performed using type <b>float</b> ."
+&nbsp;What is the consequences of this change? ( Consider speed,&nbsp;
+accuracy, and the effect of decisions made in selection of types used
+by programmer) &nbsp;<br>
+    </li>
+    <br>
+  </ol>
+  <li>Convert this code(in question 3) to Java. &nbsp;(This code can
+just be static methods.) &nbsp;<br>
+    <br>
+  </li>
+  <ol type="A">
+    <li>Execute this code and compare results you obtained in problem
+3?&nbsp; If the results are the same--Do you always expect the results
+always to be the same -- explain. If the results are different explain
+why. &nbsp;<br>
+      <br>
+    </li>
+    <li>What does the keyword <b><i>strictfp</i></b> in mean?<br>
+      <br>
+    </li>
+    <li>Compile and run the code with the keyword <b><i>strictfp</i> .
+      </b> Compare these results with the results in part 4a (Java
+only). &nbsp;Explain your results.<br>
+      <br>
+    </li>
+  </ol>
+  <li>What is the difference between macros (in C)&nbsp; and functions
+(in C).&nbsp;
+Explain in terms of the concept of binding.</li>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li> In Ansi C the keyword <b><i>static</i></b> has two different
+semantics depending on where it is used, either inside a function
+definition or outside of a function definition.&nbsp; What does <b><i>static</i></b>
+mean in both settings?</li>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw6F03Q7.c">hw6F03Q7.c</a>
+'s code is very implementation
+dependent. &nbsp; (HINT: postfix operator and the order that parameters
+are evaluated are implementation dependent.)</li>
+  <ol type="A">
+    <li>Compile and run using&nbsp; gcc on a PC. &nbsp;Compile and run
+using both&nbsp; cc and gcc on bingsuns.</li>
+    <li>Explain your results.<br>
+      <br>
+    </li>
+  </ol>
+  <li>All compilers will generate executable that will output the same
+results for&nbsp; <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/S03/shortCircuit.c"><b>
+shortCircuit.c</b>. </a>&nbsp;</li>
+  <ol type="A">
+    <li>First look at the code and try to predict the output. &nbsp;<big><br>
+      </big>
+      <pre><big>#include &lt;stdio.h&gt;<br><br>int main() {<br>	int a = 0, b = 0, c = 0, d = 0;<br>	printf("++a&amp;&amp;b++=%d\n",++a&amp;&amp;b++);<br>        printf("c++&amp;&amp;++d=%d\n",c++&amp;&amp;++d); <br>	printf("++a&amp;&amp;b++ a=%d b=%d\n",a,b);	<br>	printf("c++&amp;&amp;++d c=%d d=%d\n",c,d);<br>	return 0;<br>}</big><br></pre>
+      <br>
+    </li>
+    <li>Explain the actual results in terms of the grammar rules of C.
+&nbsp;i.e. order of operator evaluation, operator precedence and side
+effects of operators.</li>
+  </ol>
+  <li>John's problem: What will the output be given the following JAVA
+code:</li>
+</ol>
+<dl>
+  <dd><big><tt>int i = 0;</tt></big></dd>
+  <dd><big><tt>i = i++;</tt></big></dd>
+  <dd><big><tt>System.out.println(i);</tt></big><br>
+  </dd>
+</dl>
+<ol start="10">
+  <ol style="list-style-type: upper-alpha;">
+    <li>What do you expect this code to generate?</li>
+    <li>Create java code to compile and run this segment. How does your
+expected result compare to the actual answer generated by running the
+code?&nbsp; Briefly explain how the result is obtained.&nbsp;&nbsp;</li>
+    <li>Recode this segment&nbsp; into a "C" program.. &nbsp;Compile
+and run using&nbsp; gcc on a PC. &nbsp;Compile and run using both&nbsp;
+cc and gcc on bingsuns. Explain results.<br>
+      <br>
+    </li>
+  </ol>
+  <li>In Java the statement, <font face="Courier New">
+double x = </font><font face="Courier New">Math.pow(10, 20);,
+initializes x to </font>
+100000000000000000000 (1.0E20). &nbsp;&nbsp;&nbsp;&nbsp; What is the
+expected <span style="color: rgb(204, 0, 0);">value of y, after y =
+x+1; is evaluated</span>?&nbsp; Write a little test program to
+determine the actual value assigned to y.</li>
+  <li>Exercise 5.1 page 180 (louden)</li>
+  <li>Exercise 7.12 page 300 (Louden)<br>
+  </li>
+  <li>What is the purpose of the <i>make </i>utility used during
+software development in <i>gcc</i> (see man pages)?&nbsp; What is the
+Makefile?<br>
+  </li>
+  <br>
+</ol>
+<h3><br>
+</h3>
+<h3> Below are problems I have given for hw in previous semesters. THEY
+WILL<br>
+NOT BE GRADED.&nbsp; THEY ARE NOT TO BE TURNED IN.&nbsp;&nbsp; THEY ARE<br>
+SUPPLIED TO HELP YOU Prepare FOR THE PROLOG TEST</h3>
+<ol>
+  <br>
+  <li>Write a predicate isIncreasing(L) that succeeds if the numbers in
+list<br>
+L are in<i> non-decreasing order.</i><br>
+    <br>
+  </li>
+  <li>Using permutation in the notes and isIncreasing write the
+specification of sorting in Prolog.<br>
+    <br>
+  </li>
+  <li>The predicate odd(n) succeeds only for odd numbers.&nbsp; Write a
+Prolog<br>
+program to implement it<br>
+.</li>
+  <li>Consider the following representation of trees<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% node(Value,Leftsubtree,Rightsubtree).<br>
+  </li>
+  <ol>
+% empty<br>
+% Below are definition for two different trees.<br>
+    <span style="font-weight: bold;"> treeA( node(25,
+node(19,empty,empty),empty) &nbsp;).</span><br
+ style="font-weight: bold;">
+    <span style="font-weight: bold;"> treeB( node(99, &nbsp;node(5,
+node(1,empty,empty), node(88,empty,empty)), &nbsp;
+node(131,empty,empty)) ).</span><br>
+  </ol>
+</ol>
+<ol style="list-style-type: lower-alpha;">
+  <ol style="list-style-type: upper-alpha;">
+    <li>Draw a graphical representation of treeB.</li>
+    <li>Assume that you are given a binary search tree in this
+representation.&nbsp; Write a predicate <br>
+&nbsp;&nbsp; treeMember(E,T)<br>
+take succeeds if E is in the tree. ie<br>
+?- treeB(T), treeMember(5,T)<br>
+yes<br>
+    </li>
+  </ol>
+</ol>
+<ol start="5">
+  <li>Write a Prolog procedure makeEven(-L , +E).&nbsp; That goes
+through a list<br>
+of numbers and if a number is odd then its value is doubled.</li>
+  <br>
+?- makeEven([1, 2, 4, 1], X).<br>
+X = [ 2, 2, 4, 2].<br>
+  <br>
+?- makeEven( [ ], X).<br>
+X = [ ]<br>
+  <br>
+  <li>Write a Prolog procedure sumEveryOther(-List,+Sum) that finds the
+sum of<br>
+every other number in the list.</li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+?- sumEveryOther([1,2,3,4], S).<br>
+&nbsp;S = 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+?- sumEveryOther([5,6,7], S).<br>
+S = 12&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+  <br>
+?- sumEveryOther([], S).<br>
+S = 0<br>
+  <br>
+  <li>Define a relation</li>
+  <br>
+  <ol type="A">
+    <tt>shift(List1, List2)</tt>
+  </ol>
+  <br>
+so that List2 is List1 "shifted rotationally" by one element to the
+left.<br>
+  <ol type="A">
+    <tt>?- shift([1,2,3,4],L1), shift(L1,L2).</tt><br>
+    <br>
+    <tt>L1 = [2,3,4,1]</tt><br>
+    <br>
+    <tt>L2 = [3,4,1,2]</tt>
+  </ol>
+  <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (This is a one line wonder.)<br>
+  <li>How does, X is floor(10/3) differ from X is 10/3 ?<br>
+  </li>
+  <li>Write a procedure myreverse that uses a recursive algorithm to
+reverse<br>
+the elements of a list, thus:</li>
+  <ol type="A">
+    <br>
+?- myreverse( [10,9,3,12], R).<br>
+R = [12,3,9,10].
+    <ol type="A">
+      <br>
+      <br>
+      <li>What happens when the following query is executed?</li>
+?-myreverse( R,[10,9,3,12]).<br>
+      <br>
+      <li>Can you briefly explain why you code works the way it does.</li>
+    </ol>
+  </ol>
+</ol>
+<blockquote>You can use the built-in relation, append, in your
+procedure. However,<br>
+there are a number of different ways to program this. <br>
+  <br>
+</blockquote>
+<ol start="8">
+  <li>By inserting some writes and nls, get myreverse to display the
+arguments of each call to itself and each call to append or any other
+clauses you may use.&nbsp; <font color="#cc0000">Call your modified
+version, <i> myReversePrint</i> . &nbsp;</font>What is the runtime
+complexity of your code as a function of the length of the<br>
+input list <i>n</i>? Make sure your answer is consistent with the
+output of <i>myReversePrint.</i></li>
+</ol>
+<ol>
+  <br>
+Note: write( term ) displays the term and nl gives a carriage return.<br>
+See the listOf relation in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/example.pl">
+example.pl</a><br>
+for an example.
+</ol>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+   
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+   
+  <meta name="Author" content="Eileen Head">
+
+   
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+
+   
+  <title>Jensen's Device</title></head>
+
+<body>
+
+
+<center>
+<h3>
+&nbsp; Jensen's Device Spring, 2000</h3>
+</center>
+
+
+<center>
+<table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+
+  <tbody>
+    <tr>
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5rS01.html#Jensen">&nbsp;previous</a></td>
+
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5rS01.html#Jensen">&nbsp;next&nbsp;</a></td>
+
+    </tr>
+
+  </tbody>
+</table>
+</center>
+
+
+<p>The purpose is to illustrate the power of pass by name.&nbsp; We will
+use c-like syntax.
+<br>
+&nbsp;
+</p>
+<ul>
+
+  <li>
+An example of the "power" of pass by name in summing an array is also an
+example of Jensen's device (a bunch of tricks to operate on arrays)</li>
+
+
+  <li>
+Uses pass by name to apply an operation to an entire array.</li>
+
+</ul>
+
+
+<blockquote><b><tt>int sum (int a, int index,int lower, int upper) {</tt></b></blockquote>
+
+
+<blockquote>
+  <blockquote><b><tt>int temp = 0;</tt></b>
+    <br>
+    <b><tt>for(index=lower, index&lt;=upper;index ++){</tt></b>
+    <blockquote><b><tt>temp = temp+a;</tt></b></blockquote>
+
+    <b><tt>}</tt></b>
+    <br>
+    <b><tt>return temp;</tt></b></blockquote>
+
+  <b><tt>}</tt></b>
+  <br>
+&nbsp;
+  <dl>
+
+    <hr size="1" width="100%">
+    <br>
+&nbsp;
+    <dl>
+      <b><tt>int n;</tt></b>
+      <br>
+      <b><tt>int x[ ]=new int[10];</tt></b>
+      <br>
+      <b><tt>int y[ ]=new int[10];</tt></b>
+      <br>
+      <b><tt>int i, Ten_ns, xtotal, inner-prod;</tt></b>
+      <br>
+      <b><tt>Ten_ns = sum(n,i,0,9);</tt></b>
+      <br>
+      <b><tt>xtotal = sum(x[i],i,0,9);</tt></b>
+      <br>
+      <b><tt>inner-prod = sum(x[i]*y[i],i,0,9);</tt></b>
+      <p>
+      </p>
+      <hr size="1" width="100%">
+      <br>
+sum(n,i,0,9) executes
+      <dl>
+{&nbsp;&nbsp; temp=0;
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp; for(i=0,i&lt;=9,i++){
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = temp + n ;
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp; }
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return temps;
+        <br>
+}
+      </dl>
+
+&nbsp; sum(x[i],i,0,9) executes
+      <dl>
+{&nbsp;&nbsp; temp=0;
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp; for(i=0,i&lt;=9,i++){
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = temp + x[i]
+;
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp; }
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return temps;
+        <br>
+}
+      </dl>
+
+
+      <p><br>
+sum(x[i]*y[i],i,0,9) executes</p>
+    </dl>
+
+  </dl>
+
+
+  <dl>
+
+    <dl>
+
+      <dl>
+{&nbsp;&nbsp; temp=0;
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp; for(i=0,i&lt;=9,i++){
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = temp + x[i]*y[i]
+;
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp; }
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return temps;
+        <br>
+}
+      </dl>
+
+    </dl>
+
+  </dl>
+
+
+  <hr width="100%"></blockquote>
+
+
+<center>
+<table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+
+  <tbody>
+    <tr>
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5rS01.html">&nbsp;previous&nbsp;</a></td>
+
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5rS01.html">&nbsp;next&nbsp;</a></td>
+
+    </tr>
+
+  </tbody>
+</table>
+</center>
+
+
+<hr align="left" noshade="noshade" size="1" width="100%">
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+&nbsp;
+</body></html>

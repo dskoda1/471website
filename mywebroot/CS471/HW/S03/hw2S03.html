@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.77 [en] (Windows NT 5.0; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>2 - XML - Formal Grammars -- Prolog</title>
+</head>
+<body text="#000000" bgcolor="#eeeeee" link="#ff0000" vlink="#990000"
+ alink="#cc0000">
+<font size="-2">Final&nbsp; </font><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html"> Back</a>
+<h4> Due Fri Jan 31, 2003<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a></h4>
+You hard copy should begin with the following identification:
+<ul>
+  <blockquote><font color="#000000">CS471 - Programming Languages</font> <br>
+    <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR
+Section number&gt;</font> <br>
+    <font color="#000000">Assignment #</font><font color="#cc0000">&lt;number&gt;</font><font
+ color="#000000">due:</font><font color="#cc0000"> &lt;DATE&gt;</font> <br>
+    <font color="#000000">Author:</font><font color="#cc0000">&lt;LastName&gt;,
+&lt;FirstName&gt; </font><font color="#000000">(</font><font
+ color="#cc0000"> &lt;EMail&gt;</font><font color="#000000">)</font> <br>
+    <font color="#000000">Date:</font><font color="#cc0000"> &lt;DATE&gt;</font></blockquote>
+</ul>
+<h3> Manditory reading --- In Scott:</h3>
+<h3> General Reading</h3>
+<ul>
+  <li> Read: Chapter 1, pages 31-40,47-51,69-71,105-111,256,328-330</li>
+  <li> Skim over rest of 2.2</li>
+  <li> For those who have had 373 skim over 2.3</li>
+</ul>
+<h3> Reading for Prolog</h3>
+<blockquote> <li> Read: 625-641</li>
+</blockquote>
+<li> Review questions (Do not need to be turned in.)</li>
+<blockquote> <li> All pages 25-26</li>
+  <li> 2.1,2.2,2.3,2.4,.2.5,.2.6,.2.7,2.8,2.9,2.11,2.13,2.21</li>
+</blockquote>
+<h3> <b>Programming Assignment: &nbsp;</b></h3>
+<b>Purpose: &nbsp;If we get this far this will be assigned on Thur.</b> <li>
+Make sure you are set up to program in prolog  and use the Swipl
+programming environment.</li>
+<li> To build a data base using Prolog.&nbsp;&nbsp;</li>
+<br>
+This assignment is suppose to be very simple. Your facts will have at
+least two arguments. There is no one correct way to set up this data
+base.&nbsp; <br>
+<br>
+In addition to my notes you may find <a
+ href="http://cbl.leeds.ac.uk/%7Etamsin/prologtutorial/index.html#menu">Easy
+tutorial</a>,&nbsp; <a
+ href="http://cbl.leeds.ac.uk/%7Epaul/prologbook/book.html"> Online
+Prolog Book</a> or&nbsp; <a
+ href="http://www.amzi.com/AdventureInProlog/advfrtop.htm"> Adventure in
+Prolog&#8482;</a> helpful.&nbsp; This assignment is suppose to be  very
+simple.&nbsp;&nbsp; <br>
+<br>
+Notice we are using <big><big><b>'</b></big></big> and not <big><big><b>"</b></big></big>.
+Therefore the books titles are <b>NOT string</b>s but are <b>atoms</b>.
+Do not worry about the difference between ' and " at this   point. You
+can use&nbsp; <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/family.pl">family.pl</a>
+the model for this program.
+<ol>
+  <li> Database problem: Write a database in Prolog to keep a record of
+course number, course name and credits.&nbsp; We want to represent the
+following type of data in the data base:<br>
+cs471 is 'Programming Languages',&nbsp; worth 4 credits,<br>
+&nbsp;math327 is 'Statistic Mathematics', worth 3 credits,<br>
+cs248 is 'Intro to Java'&nbsp; worth 2 credits.<br>
+  </li>
+  <ol>
+  </ol>
+  <li> How do you query your data base to find all 3 credit courses?
+(This is not a program, just write exactly what you  need  to do in the
+swipl environment to display the course title in the environment)</li>
+  <li> How do you query your data base to find all cs courses? (This is
+not a program, just write exactly what you need  to do in the swipl
+environment to display the course title in the environment)</li>
+</ol>
+<hr width="99%" size="2">
+<h3> <b>Written assignment:</b></h3>
+<b>Purpose:</b> <li> <b>To reinforce ideas about binding times.</b></li>
+<li> <b>To review how syntax rules work.</b></li>
+<ol>
+  <ol type="a">
+    <br>
+&nbsp;
+  </ol>
+  <li>What is the binding time for each of the following in a <span
+ style="font-style: italic; font-weight: bold;">C</span><span
+ style="font-weight: bold;"><span style="font-style: italic;"></span></span><span
+ style="font-weight: bold;"><span style="font-style: italic;"> </span></span>program?
+&nbsp;State the binding time (language-definition time,
+language-implementation time, compile time, link time, load time or
+runtime). &nbsp;Explain how each of the following is bound and why it is
+bound when it is.</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>The location in memory of a local variable in a function.</li>
+    <li>The meaning of the keyword <span style="font-style: italic;">for</span>.</li>
+    <li>The size in memory of ta variable of type <span
+ style="font-style: italic;">int</span> .</li>
+    <li>The location in memory of a global static variable.</li>
+    <li>The code for the <span style="font-style: italic;">printf</span>function.</li>
+    <li>The type of a local variable in a function.</li>
+    <li>The value(s) assigned to a varable.</li>
+    <li>The size in memory of a pointer.<br>
+      <br>
+    </li>
+  </ol>
+  <li><span style="font-weight: bold;"><span style="font-style: italic;"></span></span>On
+page 19 the author claims that "Every function specifies a value before
+returning." is an example of rule that must be checked at run time.
+&nbsp; In <a
+ href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html">8</a>.4.5
+of the Java Language specification it states:<br>
+"If a method is declared to have a return type, then every <code>return</code>
+statement <a
+ href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#6767">(&sect;14.16)</a>
+in its body must have an <em>Expression</em>. A compile-time error
+occurs if the body of the method can complete normally <a
+ href="http://java.sun.com/docs/books/jls/second_edition/html/statements.doc.html#5894">(&sect;14.1)</a>.In
+other words, a method with a return type must return only by using a
+return statement that provides a value return; it is not allowed to
+"drop off the end of its body."<br>
+    <br>
+Is this a contraction to Scott's statement? &nbsp;Explain. &nbsp;Can
+you come up with an example that semantically works at runtime but the
+compiler will not compile the code? &nbsp;<br>
+    <br>
+  </li>
+  <li> In class we studied the <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/4Fall01.html#DanglingElse">
+"dangling else" problem</a>.</li>
+  <ol type="a">
+    <li> How does "C" solve this problem? (i.e. Does the grammar impose
+an assocation or does something else happen?)</li>
+    <li> You are a language designer and need to specify an
+"if-else-statement".&nbsp; We need to make sure the compiler know which
+"if" the "else" binds to.&nbsp;     The notes provide one
+solution.&nbsp; You are to provide a another. You   may use solutions
+provided in other programming languages or your invent  your
+solution.&nbsp; If you work in a group try to come up with more than one
+solution.</li>
+    <br>
+&nbsp;
+  </ol>
+  <li> XML problem:</li>
+  <ol type="a">
+    <li> Build a DTD to parse an XML document. The XML document will
+contain information about high school course offerings. &nbsp;The root
+tag will be <b><i>Department</i>s </b>which has zero or more <b><i>Department</i></b>
+children. &nbsp;<b><i>Department</i></b> has&nbsp; <span
+ style="font-style: italic; font-weight: bold;">Dtitle</span> and <b><i>Courses</i> </b>children.<span
+ style="font-style: italic; font-weight: bold;">Dtitle </span>tag will
+have the name of the department as text (i.e. #PCDATA). &nbsp; <span
+ style="font-style: italic;"><span style="font-weight: bold;">Courses </span></span>&nbsp;will
+have zero or more <span style="font-weight: bold;"><span
+ style="font-style: italic;">Course</span></span> children.&nbsp; <font
+ color="#cc0000"><span style="font-style: italic;"></span> <span
+ style="font-style: italic;"></span></font> The element <b><i>Course</i> </b>will
+have&nbsp;the&nbsp; children elements in <font color="#cc0000">the
+following order</font> , <b><i>Title, Instructor,  Enrollment. </i></b>The
+element<b><i> Title</i></b> has the name of the course as text and the
+element <i style="font-weight: bold;">Instructor</i> has the
+instructor's name as text. The element<i><b> Enrollment</b> </i>has two
+children in the following order, <b><i>Max,</i> <i>Current</i>.</b> The
+element <b><i>Max</i></b> has the maximum enrollment allowed as text and
+the element&nbsp; <i><b>Current</b> </i>has the current number of
+students enrolled as text. &nbsp;Use the <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2-2DTD.dtd">
+dtd file in the notes</a> as an example. You do not need to specify
+&nbsp;tag attributes for this assignment. <br>
+      <br>
+    </li>
+    <li>Make an XML that is based on your DTD file. &nbsp;<font
+ color="#000099"> This will be like my <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2Doc.xml">
+XML</a>. &nbsp;Notice in the source of my XML the line<br>
+      </font><font color="#330099"><b>&nbsp; &nbsp; &nbsp;
+&nbsp;&lt;!DOCTYPE CustomersB SYSTEM "Project2-2DTD.dtd"&gt;</b></font><br>
+      <font color="#000099"> &nbsp; </font>appears. &nbsp;This is the
+way to link the file(.xml) to it's grammar(.dtd) if you dtd file is
+local. &nbsp;If  you want to put it on bingsuns the use something like<br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<font color="#000099">&nbsp;
+&lt;!DOCTYPE Customers PUBLIC "Project2-2DTD.dtd"
+"http://bingweb.binghamton.edu/~head/CS471/NOTES/INTRO/XML/Project2-2DTD.dtd"&gt;</font> <br>
+      <br>
+    </li>
+    <li>Modify treeElementNames in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/DomEcho04.java">DomEcho04.java</a>
+(<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/runDomEcho.bat">runDomEcho.bat</a>)
+in order to process your XML file. &nbsp;<br>
+    </li>
+    <li>Convert your DTD grammar to an "ordinary" CFG.<br>
+    </li>
+    <ol>
+      <ol>
+&nbsp;
+      </ol>
+    </ol>
+  </ol>
+  <li> Consider the following grammar:</li>
+  <dl>
+    <dd>&lt;exp&gt; <span style="color: rgb(51, 51, 255);">:==</span> (
+&lt;list&gt; ) | &lt;id&gt;<br>
+&lt;list&gt; &nbsp;<span style="color: rgb(51, 51, 255);">:==</span>&lt;list&gt;
+, &lt;exp&gt; | &lt;exp&gt;<br>
+&lt;id&gt; &nbsp; <font color="#3333ff">:==</font> x | y | z<br>
+    </dd>
+  </dl>
+Draw the parse tree for <br>
+  <ol style="list-style-type: lower-alpha;">
+    <li>((x,x), x, (x) )</li>
+    <li>(x, y, z, (x,y,z) )</li>
+  </ol>
+  <dd><br>
+  </dd>
+  <br>
+  <ol type="a">
+  </ol>
+  <li>Consider the following grammar: </li>
+</ol>
+<ol>
+  <ol type="a">
+&lt;assign&gt; <font color="#3333ff">::=</font>&lt;id&gt; =
+&lt;expr&gt; <br>
+&lt;id&gt; <font color="#3333ff">::= &nbsp;</font>X<font
+ color="#3333ff"> </font><font color="#3333ff">|</font> Y <font
+ color="#3333ff">| </font>Z <br>
+&lt;expr&gt;<font color="#3333ff"> ::=</font> &lt;term&gt; * &lt;expr&gt;
+ <ol>
+      <ol>
+        <font color="#3333ff">| </font>&lt;term&gt;
+      </ol>
+    </ol>
+&lt;term&gt; <font color="#3333ff">::=</font> &lt;factor&gt; +
+&lt;term&gt;
+    <ol>
+      <ol>
+        <font color="#3333ff">|</font> &lt;factor&gt;
+      </ol>
+    </ol>
+&lt;factor&gt;<font color="#3333ff"> ::=</font>&nbsp; <b>(</b>&lt;expr&gt;<b>)</b>
+    <ol>
+      <ol>
+        <b><font color="#3333ff">| </font>&lt;</b>id&gt;<br>
+      </ol>
+    </ol>
+    <li> Show a <font color="#cc0000">leftmost derivation </font>and <font
+ color="#cc0000"> rightmost derivation</font> for each of the following
+statements:</li>
+    <ol type="a">
+      <li> X = X * Y + Z&nbsp;</li>
+    </ol>
+    <li> Draw the parse tree for:&nbsp; (You may draw tree by hand).</li>
+    <ol type="a">
+      <li> X = X * Y * Z&nbsp;</li>
+      <li> X = Z * Y + X</li>
+    </ol>
+    <li> Which operator has a higher precedence?&nbsp; Indicate why.</li>
+    <li>How many operators are right associative?&nbsp; Indicate why.</li>
+    <li>How would you change the grammar rules to make the operators
+left associative?</li>
+  </ol>
+</ol>
+<hr width="99%" size="2"> <font color="#3333ff">I collaborated with :</font>
+<p><font color="#3333ff">Resources use:</font> </p>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a> </p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

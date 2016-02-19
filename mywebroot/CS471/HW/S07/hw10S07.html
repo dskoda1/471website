@@ -1,0 +1,738 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+
+
+  
+  
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+  
+  
+  
+  <meta name="Author" content="E Head">
+
+
+
+
+  
+  
+  
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+
+
+
+
+  
+  
+  
+  <meta name="Description" content="Introduction">
+
+
+
+  
+
+
+  
+  
+  
+  
+  <title>Homework 10 - Haskell 1</title>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+</head>
+
+
+<body style="background-color: rgb(255, 253, 255); color: rgb(0, 0, 0);" alink="#cc0000" link="#ff0000" vlink="#990000">
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+
+
+
+
+<h2 style="text-align: center;">Assignment 10</h2>
+<h4>Please prepare the following before class on Wed., Apr 11.</h4>
+<ol>
+  <li>Write a Haskell script,&nbsp; <span style="font-style: italic;">pythT</span>(<span style="font-style: italic;">x,y</span>), that returns the sum of&nbsp; <span style="font-style: italic;">X * X </span>and<span style="font-style: italic;"> Y * Y</span>. &nbsp;Note your data will be a tuple (pair) of x and y. e.g.<br>
+    <br>
+&nbsp;&nbsp;&nbsp; ...&gt; pythT(3,4)<br>
+&nbsp;&nbsp;&nbsp; 25&nbsp;</li>
+  <li>Redo problem 1, without using the compound data type, tuple. &nbsp;Name the definition <span style="font-style: italic;">pyth.</span> e.g.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...&gt; pyth 3 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 25</li>
+  <li>Predict the type of the following expressions:</li>
+  <ol>
+    <li>pyth 3 4</li>
+    <li>pyth 3</li>
+    <li>pyth</li>
+  </ol>
+  <li>Define <span style="font-style: italic;">pythP</span> using a partial evaluation of<span style="font-style: italic;"> pyth</span>, defined in part 2.&nbsp;&nbsp;&nbsp; <span style="font-style: italic;">pythP</span> calculates the sum<span style="font-style: italic;">&nbsp; X</span> * <span style="font-style: italic;">X</span> and <span style="font-style: italic;">Y</span> * <span style="font-style: italic;">Y</span>&nbsp; such that <span style="font-style: italic;">x</span> always has&nbsp; the value 5. (i.e. The left hand side of the definition only needs <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the name of the function, pythP = ) e.g.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...&gt; pythP 4<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 41</li>
+</ol>
+<h2>GRADED part</h2>
+<h4>
+
+
+
+Due Friday, Apr 13 at 5pm</h4>
+<h4>Reading and references---</h4>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Thompson Chapters 1- 6</li>
+
+
+
+
+  <li>Code based on the class notes are in <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/Notes1.lhs">Notes.lhs</a></li>
+
+
+
+
+  <li>Scott pages 523-528,549-551</li>
+
+
+
+
+</ul>
+
+
+
+
+<b>
+&nbsp;Purpose: to use/understand <br>
+&nbsp; &nbsp;( by programming
+)<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+simple recursive functions
+<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;curried functions (partially evaluated functions)
+<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; using functions as first class objects<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; using 3 variations of selections provided in Haskell<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; (by experimenting with types)
+<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+experience type inferences
+<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+develop a curious about the "most General types"
+<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+an appreciation of functions as first class types
+<br>
+
+
+
+
+<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;
+and
+to experience the literal style of programming.
+</b><br>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<ol>
+
+
+
+
+</ol>
+
+
+
+
+<h2>Programming Assignment:</h2>
+
+
+
+
+<ul>
+  <li>
+    <h3>&nbsp;<a href="Haskell1S07.lhs">Haskell1S07.lhs </a>&nbsp;This is an individual effort. &nbsp;Please use the drop box in blackboard as well as providing a hard copy of your code. </h3>
+  </li>
+</ul>
+<h2> Written assignment:&nbsp;&nbsp;</h2>
+<h3>(Written part may be done in a
+3 person
+team)<br>
+
+
+
+
+</h3>
+
+
+
+
+<ol>
+
+
+
+
+</ol>
+
+
+
+
+<ol>
+
+
+
+
+</ol>
+
+
+
+
+<ol>
+
+
+
+
+  <li>Given the following functions:<br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp; f(x)
+=&nbsp;</span><span style="font-family: monospace;">x*x + 3</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp; g(x)
+=&nbsp;</span><span style="font-family: monospace;">1 / x</span></li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+    <li>Let <span style="font-style: italic;">h</span> be defined to be (<i>f </i><font size="-2">o
+      </font><i>g</i>) ( i.e. <span style="font-style: italic;">h</span> =&nbsp; <i>f </i><font size="-2">o
+      </font><i>g </i>)<i> .&nbsp;</i> What is the result of <span style="font-style: italic;">h</span>(x)<span style="font-style: italic;"></span><span style="font-style: italic;"></span> ?&nbsp; Use the definition of <span style="font-style: italic;">f and g </span>above. &nbsp;Remember&nbsp; (<i>f </i><font size="-2">o </font><i>g</i>)<i>&nbsp;</i><i>x</i> is defined to be <i>f</i> ( <i>g</i>(<i>x</i>)
+) ( i.e. (<i>f </i><font size="-2">o </font><i>g</i>)<i>&nbsp;</i><i>x = f&nbsp;</i> ( <i>g</i>(<i>x</i>))&nbsp; ).
+    </li>
+
+
+
+
+    
+    
+    
+    <ol type="a">
+
+
+
+
+&nbsp;
+    
+    
+    
+    </ol>
+
+
+
+
+    <li>Let <span style="font-style: italic;">h</span>2 be defined to be ( <i>g </i><font size="-2">o </font><i>f</i> )?&nbsp;What is the result of <span style="font-style: italic;">h</span>2(x)<span style="font-style: italic;"></span><span style="font-style: italic;"></span> ?</li>
+
+
+
+
+    
+    
+    
+    <ol type="a">
+
+
+
+
+      <br>
+
+
+
+
+&nbsp;
+    
+    
+    
+    </ol>
+
+
+
+
+    <li> What is the value of&nbsp; <span style="font-style: italic;">h</span>(2
+)?</li>
+
+
+
+
+    
+    
+    
+    <ol type="a">
+
+
+
+
+      <br>
+
+
+
+
+&nbsp;
+    
+    
+    
+    </ol>
+
+
+
+
+    <li>What is the value of &nbsp;<span style="font-style: italic;">h</span>2<i> </i>(2 ) ?<br>
+
+
+
+
+      <br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+
+  <li>" A common way to compute the square root is to use
+Newton's
+method of successive approximations. &nbsp; <a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">Newton's
+method says that whenever
+we have a guess <em>y</em> for the value of the square
+root of a
+number <em>x</em>, we can perform a simple manipulation to
+get a
+better guess (one closer to the actual square root) by averaging <em>y</em>
+with <em>x</em>/<em>y</em>. </a>&nbsp;<a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">
+For
+example, we can compute the square root of 2 as follows. Suppose our
+initial guess is 1:</a>
+    
+    
+    
+    <p>
+    
+    
+    
+    <table cellpadding="3">
+
+
+
+
+      <tbody>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">Guess</td>
+
+
+
+
+          <td align="left">Quotient</td>
+
+
+
+
+          <td align="left">Average</td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">1</td>
+
+
+
+
+          <td align="left"><!-- MATH: ${\displaystyle \frac{2}{1} = 2}$ -->
+          <img src="img7.gif" alt="${\displaystyle \frac{2}{1} = 2}$" align="middle" border="0" height="49" width="44"></td>
+
+
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(2+1)}{2} = 1.5}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(2+1)}{2} = 1.5}$ --></comment>
+          <img src="img8.gif" alt="${\displaystyle
+\frac{(2+1)}{2} = 1.5}$" align="middle" border="0" height="53" width="96"></td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">1.5</td>
+
+
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ --></comment>
+          <img src="img9.gif" alt="${\displaystyle \frac{2}{1.5} = 1.3333}$" align="middle" border="0" height="49" width="93"></td>
+
+
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$ --></comment>
+          <img src="img10.gif" alt="${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$" align="middle" border="0" height="53" width="169"></td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">1.4167</td>
+
+
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ --></comment>
+          <img src="img11.gif" alt="${\displaystyle \frac{2}{1.4167} = 1.4118}$" align="middle" border="0" height="49" width="117"></td>
+
+
+
+
+          <td align="left"><!-- MATH: ${\displaystyle
+\frac{(1.4167+1.4118)}{2} = 1.4142}$ -->
+          <img src="img12.gif" alt="${\displaystyle
+\frac{(1.4167+1.4118)}{2} = 1.4142}$" align="middle" border="0" height="53" width="193"></td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+          <td align="left">&nbsp;</td>
+
+
+
+
+        </tr>
+
+
+
+
+        <tr>
+
+
+
+
+          <td align="left">1.4142</td>
+
+
+
+
+          <td align="left">...</td>
+
+
+
+
+          <td align="left">...</td>
+
+
+
+
+        </tr>
+
+
+
+
+      
+      
+      
+      </tbody>
+    
+    
+    
+    </table>
+
+
+
+
+    </p>
+
+
+
+
+    
+    
+    
+    <p>Continuing this process, we obtain better and better
+approximations to
+the square root. " (From <span style="font-style: italic;">Structure
+and
+Interpretation of Computer Programs</span> by Abelson and
+Sussman).<br>
+
+
+
+
+Using&nbsp; a spreadsheet or calculator apply Newton's method to
+find
+the square root of 144 using an initial guess of
+1.&nbsp;&nbsp;&nbsp; How do
+you know when to stop?&nbsp; How many steps did it take you? (Using
+OpenOffice spreadsheet it took me 7 steps). &nbsp;<br>
+
+
+
+
+    
+    
+Apply Newton's method to find the square root of &nbsp;5 using an
+initial guess of 100.&nbsp; My&nbsp; implementation of Newton's method,
+calculated the square root of 5 to be 2.23606797749979 in step 10.
+&nbsp;Do you think that 2.23606797749979 is the exact square root?
+Explain. &nbsp;How many steps does it take to generate the square root
+of 5e+30 with an initial guess of 100? &nbsp;Why is it better&nbsp;to
+stop the process when the next guess
+(generated by the average) is very near "old" guess (i.e. "old guess" -
+"new guess" &lt; "near") where "near" is determined by the user,
+&nbsp;instead stopping the process when "old guess" <span style="font-weight: bold;">equals</span> the "new guess"?
+    </p>
+
+
+
+
+  </li>
+
+
+
+
+</ol>
+
+
+
+
+_____________________________________________________________________________________________<br>
+<br>
+</body>
+</html>

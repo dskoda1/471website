@@ -1,0 +1,320 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+  <meta name="KeyWords" content="Prolog assignments">
+  <title>Homework assignment 4 Prolog Spring 2003</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 244);"
+ link="#ff0000" vlink="#800080" alink="#0000ff">
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a> <br>
+Due <br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions,</a><br>
+For this assignment put all the code in one file called
+<blockquote><font color="#000099">&lt;lastName&gt;&lt;firstName&gt;4.pl</font><font
+ color="#000000">.</font> </blockquote>
+<h3> </h3>
+<h3>&nbsp;(Code outline file)<a href="XXXAs4.pl"> &nbsp;XXXAs4.pl</a><br>
+</h3>
+<b>Reading</b>
+<ul>
+  <li> Read: 625-641</li>
+  <li>Read: 401-403, 384 -386</li>
+</ul>
+<h3><b>Practice : Do not turn in.</b></h3>
+<ul>
+  <li><b>What is the difference between the use of <font
+ color="#cc0000"> "</font> and<i> </i><font color="#990000">'</font><i> .</i></b></li>
+</ul>
+<dl>
+  <dd><b>?- X = "ABD".</b></dd>
+  <dd><b>?- X = 'ABD'.</b>&nbsp;</dd>
+</dl>
+<ul>
+  <li><b>What is happening?&nbsp;</b>&nbsp;</li>
+</ul>
+<dl style="font-weight: bold;">
+  <dd>?- X = "c".</dd>
+  <dd>?- X =&nbsp; c.</dd>
+  <dd>?- X = "c", [Y] =X, Z=X.</dd>
+</dl>
+<ul>
+  <li style="font-weight: bold;">What does name do? Try&nbsp;</li>
+</ul>
+<dl>
+  <dd><b>?-name(What, "abc").</b></dd>
+  <dd><b>?- name(What, "abc 123").</b></dd>
+  <dd><b>?- name(abc, What).</b></dd>
+</dl>
+<ul>
+  <li><span style="font-weight: bold;">Compare the operators &lt; and
+@&lt;. (i.e. What type do each expect?).</span></li>
+  <li><span style="font-weight: bold;">Compare the operators =&lt; and
+@=&lt;?</span><br>
+  </li>
+  <li><b>What does write do?&nbsp; Try</b></li>
+</ul>
+<dl>
+  <dd><b>?-write("abc123") , write('abc') ,write(abc).</b></dd>
+  <dd><b>?-write("Abc123") , write('Abc') ,write(Abc).<br>
+    <br>
+    </b></dd>
+</dl>
+<dl style="font-weight: bold;">
+  <h2><b>Written</b></h2>
+  <ol>
+    <li><b>What is the definition of a binary tree?</b></li>
+    <li><b>What is the definition of a binary search tree?</b></li>
+  </ol>
+  <h2><b>Programming</b></h2>
+The purpose of this assignment is to re-enforce your understanding of
+recursive data structures, converting recursive functions to prolog
+rules, and recursion.
+  <ol>
+    <li>(easy) <span style="font-weight: normal;">Ackermann's function
+is a simple but very interesting non-trivially recursive function.&nbsp;
+It is surprising that for such a simple definition ack(4,4) can NOT be
+computed within a resonable time </span>.<br>
+&nbsp;
+      <ol>
+        <table>
+          <caption>
+          <h3>Definition of Ackermann's function</h3>
+          </caption> <tbody>
+            <tr>
+              <td>ack( <i>m,n</i> ) =</td>
+              <td>2<i>n</i></td>
+              <td>&nbsp;&nbsp;&nbsp; if <i>m</i> = 0</td>
+            </tr>
+            <tr>
+              <td>ack( <i>m,n</i> ) =&nbsp;</td>
+              <td>0</td>
+              <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i> =
+0&nbsp;</td>
+            </tr>
+            <tr>
+              <td>ack( <i>m,n</i> ) =</td>
+              <td>2</td>
+              <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i> =
+1&nbsp;</td>
+            </tr>
+            <tr>
+              <td>ack( <i>m,n</i> ) =</td>
+              <td>ack( <i>m</i>-1, ack( <i>m, n</i>-1 ) )</td>
+              <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i>
+&gt;=2&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </ol>
+      <p><br>
+      <span style="font-weight: normal;"> In the early days of
+imperative languages, recursion was  not   very fashionable and
+implementions put restrictions on what depth of recursion was
+achievable.&nbsp; The Ackermann function was used to measure the
+recursion capability of a compiler by defining the Ackermann Number N of
+the compiler    as the largest N for which</span><br>
+      </p>
+      <blockquote>
+        <ol>
+          <tt>ack(3,N)</tt>
+        </ol>
+      </blockquote>
+      <span style="font-weight: normal;"> gives an answer without a
+stack overflow.&nbsp;       Turn in the code and the answers written as
+comments in the program.</span></li>
+    <ol>
+      <li type="A" style="font-weight: normal;">What value does your
+program calculate for&nbsp; <tt>ack(4,2)?</tt> &nbsp; Does it match the
+results proved in HW1?&nbsp;</li>
+      <li type="A"><span style="font-weight: normal;">Program
+Ackermann's function in Prolog and find the Ackermann Number   N of your
+Swipl environment.</span><br>
+        <br>
+      </li>
+    </ol>
+    <li><span style="font-weight: normal; font-family: normal;">[easy]
+isPythTriples(Plst)</span> s<span style="font-weight: normal;">ucceeds
+if Plst is a list of Pythagorean triples (X,Y,Z),</span> such that<span
+ style="font-family: monospace;"> <span style="font-weight: bold;">0
+&lt; X,Y,Z and X^2 + Y^2 = Z^2</span>.</span> <a
+ href="http://www.faust.fr.bw.schule.de/mhb/pythagen.htm">Here</a> is an
+interesting site that you can generate Pythagorean triples. &nbsp;<a
+ href="http://mathworld.wolfram.com/PythagoreanTriple.html">Here</a> is
+additional information about Pythagorean Triple (Wolfram's MathWorld).</li>
+    <dl>
+      <dd>?- isPythTriples([(3, 4, 5), <span
+ style="color: rgb(0, 153, 0);">(5, 12, 13)</span>, (7, 24, 25), (20,
+21, 29), (9, 40, 41)]).<br>
+Yes.<br>
+?-isPythTriples([(3, 4, 5), (<span style="color: rgb(0, 153, 0);">5,
+12, 12</span>), (7, 24, 25), (20, 21, 29), (9, 40, 41)]).<br>
+No<br>
+      </dd>
+    </dl>
+    <ol style="font-weight: normal;">
+      <br>
+    </ol>
+    <li>accumProd(+Lst, RLst): &nbsp;Given a list, Lst <i
+ style="font-weight: normal;">accumProd</i><span
+ style="font-weight: normal;"> creates/checks that RLst is a list of the
+running product of all the numbers of Lst  from </span>LEFT TO RIGHT<span
+ style="font-weight: normal;">. &nbsp;</span><br
+ style="font-weight: normal;">
+      <span style="font-weight: normal;"> i.e.</span></li>
+    <dl style="font-family: monospace;">
+      <dd>accumProd([3,2,5,2],P).<br>
+P = [3, 6, 30, 60]<br>
+yes </dd>
+      <dd> ?- accumProd([3,4,5,6,0.5],P). <br>
+P = [3, 12, 60, 360, 180] <br>
+yes </dd>
+      <dd><span style="font-family: normal;"> ?-
+accumProd([0.5,6,5,4,3],P). <br>
+[0.5, 3, 15, 60, 180]<br>
+yes<br>
+        <br>
+        </span></dd>
+    </dl>
+    <li style="font-weight: normal;"><span style="font-weight: normal;">(easy)
+bagToSet(Bag,Set),</span> <span style="font-weight: normal;"> converts a
+Bag to a Set. &nbsp;Note the elements can be in any order in the lists.</span> <br>
+    </li>
+    <ol>
+      <dl>
+        <dd> <br>
+        </dd>
+?- bagToSet([1,2,3,6,6,1,2,3,a,3,3,6,11,1],S).&nbsp;<br>
+S = [2, a, 3, 6, 11, 1] <br>
+yes<br>
+?- bagToSet([an,net,and,an,the,any,an],S).<br>
+S = [net, and, the, any, an]&nbsp;<br>
+Yes<dd><br>
+        </dd>
+      </dl>
+    </ol>
+    <li style="font-weight: normal;"><span style="font-weight: normal;">(easy)
+myMerge(+Sorted1,+Sorter2,M), merges two sorted lists,Sorted1 and
+Sorted2, of terms into sorted list M. (Note: swipl will only print the
+first 9 elements of a list.)</span></li>
+    <ol>
+      <b><tt> ?- myMerge([a,any,date,day,end],[and,boy,day],M). <br>
+M = [a, and, any, boy, date, day, day, end] <br>
+Yes <br>
+?- myMerge([a,e,i,o,u],[and,any,boy,idea,open,stop],M). <br>
+M = [a, and, any, boy, e, i, idea, o, open|...]<br>
+yes</tt> </b><dd><br>
+      </dd>
+    </ol>
+    <li style="font-weight: normal;"><span style="font-weight: normal;"></span>(easy)
+**The purpose of the problem is to practice using append. For shiftL
+you are only allowed to use <i><b>append.</b></i> &nbsp;For shiftR you
+are only allowed to use shiftL.&nbsp;&nbsp; </li>
+    <ol style="list-style-type: lower-alpha;">
+      <li style="font-weight: normal;">shiftL(Lst,SLst) <span
+ style="font-style: italic;">SLst</span> has the elements of Lst shifted
+left and the first element is moved to the end.&nbsp;</li>
+      <li><span style="font-style: italic; font-weight: normal;"></span>shiftR(Lst,RLst)<span
+ style="font-style: italic; font-weight: normal;">RLst</span><span
+ style="font-weight: normal;"> has the elements of Lst shifted right and
+the last element is moved to the beginning of the list.&nbsp;</span></li>
+      <dl>
+        <dd><span style="font-weight: normal;"><b><tt>?-
+shiftL([1,2,3,4],L). <br>
+L = [2, 3, 4, 1] ; <br>
+No <br>
+?- shiftR([1,2,3,4],L). <br>
+L = [4, 1, 2, 3]<br>
+yes</tt></b> </span>&nbsp; <br>
+          <br>
+        </dd>
+      </dl>
+    </ol>
+    <li><span style="font-weight: normal;">** <tt><b>moveLeft(M,Lst,LLst)</b></tt>
+moves M elements of Lst left and put the first M element at the end of
+the list. &nbsp;You may ONLY use append, mod, and length predicates and
+NO RECURSION..&nbsp;</span></li>
+    <dl>
+      <dd><span style="font-weight: normal;"><tt><b>?-
+moveLeft(2,[1,2,3,4,5,6,7],L). <br>
+L = [3, 4, 5, 6, 7, 1, 2] <br>
+Yes <br>
+?- moveLeft(9,[1,2,3,4,5,6,7],L). <br>
+L = [3, 4, 5, 6, 7, 1, 2] Yes <br>
+?- moveLeft(12,[1,2,3,4,5,6,7],L). <br>
+L = [6, 7, 1, 2, 3, 4, 5] <br>
+Yes</b></tt><br>
+        </span><br>
+      </dd>
+    </dl>
+    <li><span style="font-weight: normal;">Write a procedure</span> <b><tt>isBinaryTree(Tree),</tt></b><span
+ style="font-weight: normal;">that succeeds if Tree is a binary tree
+(it is not necessary for Tree to be a binary search  tree).</span></li>
+    <dl>
+      <dd><span style="font-weight: normal;"></span><br>
+      </dd>
+    </dl>
+    <ol type="a">
+      <ol type="a">
+        <b><tt>?- isBinaryTree(empty).</tt></b><br>
+        <b><tt>yes</tt></b><br>
+        <b><tt>?-isBinaryTree(node(5,empty,empty)).</tt></b><br>
+        <b><tt>yes</tt></b><br>
+        <b><tt>?-notBST(T),isBinaryTree(T).</tt></b><br>
+        <b><tt>yes</tt></b><br>
+        <b><tt>?- isBinaryTree(node(5)).</tt></b><br>
+        <b><tt>no</tt></b>
+      </ol>
+    </ol>
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+    <ol>
+      <ol type="a">
+        <ol type="a">
+        </ol>
+      </ol>
+    </ol>
+    <li style="font-weight: normal;">Write a procedure <span
+ style="font-family: monospace; font-weight: bold;">prodTree(+intBinaryT,
+?Prod)</span> that given a binary tree of integers, <i>prodBinaryT</i> ,
+&nbsp;Prod unifies with the computed product of all the nodes.&nbsp;<br>
+      <br>
+    </li>
+    <li style="font-weight: normal;">(Hardest)Write a procedure <span
+ style="font-style: italic; font-weight: bold;"><span
+ style="font-family: monospace;">isBst</span></span><span
+ style="font-family: monospace; font-weight: bold;">(</span><span
+ style="font-style: italic; font-weight: bold;"><span
+ style="font-family: monospace;">Tree</span></span><span
+ style="font-family: monospace;"><span style="font-weight: bold;">)</span>,</span>that
+succeeds if Tree is a <span style="font-weight: bold;">binary search
+tree</span>. (notBst(T) is defined in as4XXX.pl)<br>
+    </li>
+    <dl>
+      <dd><b><tt>?- isBST(empty)<br>
+yes.<br>
+?- isBst(node(5,empty,empty)).<br>
+yes.<br>
+?- notBST(T),isBST(T).<br>
+no.<br>
+        <br>
+        </tt></b></dd>
+    </dl>
+  </ol>
+</dl>
+<dl style="font-weight: bold;">
+  <h5><a href="mailto:head@binghamton.edu">Questions?(For E. Head</a></h5>
+2/13/03 9pm<br>
+  <br>
+  <br>
+  <br>
+</dl>
+</body>
+</html>

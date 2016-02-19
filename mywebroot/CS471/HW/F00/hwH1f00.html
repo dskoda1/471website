@@ -1,0 +1,268 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <title>Haskell Assignment 2</title>
+</head>
+<body text="#000000" bgcolor="#FFFBF9" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment Haskell 1:&nbsp; Friday Sept 15.</h4>
+Purpose:&nbsp; Introduce Haskell by programming simple recursive functions
+and to experience the literal style of programming.
+<p>Read Chapters:
+<blockquote>
+<blockquote>
+<blockquote>Scott: 589-604 (for backround)
+<br>Scott: 209-214 (review)
+<br>Thompson, <i>Haskell,<a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/">The
+Craft of Functional Programming</a></i> Chapters 1- 5 (pages 1-86)
+<br><a href="http://haskell.org/tutorial/">A Gentle Introduction to Haskell</a>
+<br><font color="#666666">Using winhugs.exe under the<b> </b></font><b>Help
+menu: <i>contents</i></b> is an online manual.
+<br>The help file, hugs.HLP, is located in the C:/hugs98/ directory in
+the normal installation.</blockquote>
+</blockquote>
+</blockquote>
+
+<h3>
+<b>Written Assignment:</b></h3>
+
+<ol>
+<li>
+What is IEEE 754?</li>
+
+<br>&nbsp;
+<li>
+Java has 8 primitive data types.&nbsp; What are they? <font color="#006600">How
+are the different primitive types for numbers encoded</font>?&nbsp; What
+is the maximum and minimum value for int,float, and double? (See <a href="http://bingweb.binghamton.edu/~head/CS471/Reference471.html#Java">my
+online Java references</a> for help.)</li>
+
+<br>&nbsp;
+<li>
+There are 5 basic (scalar) data types in C. (Including pointers).&nbsp;
+What are they and how are they encoded? What is the maximum and minimum
+values for int, float and double? In addition there are the following qualifiers:
+short, long, signed and unsigned. Briefly explain effect of the qualifiers
+on the basic types.</li>
+
+<br>&nbsp;
+<li>
+How does the philosophy of C differ from Java with respect to the implementation
+primitive(basic/scalar) types? (Discuss the positive and negatives of both
+philosophies.).</li>
+</ol>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+<b>Email your code to&nbsp;</b> <a href="mailto:cs471h@binghamton.edu">cs471h</a>
+. Turn in hardcopy.
+<br>You should use primitive recursion in these problems or just straight
+forward function application.
+<h4>
+YOU must insert your code in the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell1.lhs">file</a>
+provided but you will need to rename the file following <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions.</a></h4>
+
+<blockquote>&nbsp;<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/GettingStarted.html">Installation
+Instructions</a>
+<blockquote><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/SimpleExample.lhs">Simple
+Sample of the Literal Style</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">Literal
+style must be used - more extensive</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Sample
+Code from the Notes</a></blockquote>
+</blockquote>
+Note: In the homework file put only one space between ">" and the code.&nbsp;
+The examples above use more than one space.&nbsp; Do not use a tab...&nbsp;
+JUST one SPACE.
+<ol>
+<li>
+Looking in around ...&nbsp; experiments. Not to be handed in!</li>
+
+<br>(After opening <i>hugs</i> you will get a prompt <font size=+1>Prelude></font>&lt;your
+type here if you clicked on .lhs file> )
+<ol TYPE=A>
+<li>
+What does ...> <b><font size=+1>:? </font>&lt;return> </b>do?</li>
+
+<li>
+What does <b>:t isAscii &lt;return> </b>do?</li>
+
+<ol>
+<li>
+&nbsp;:t head <b>&lt;return> </b>??</li>
+
+<li>
+:t (:) &lt;return> ??</li>
+</ol>
+
+<li>
+Continue to examine, via your text editor, the Prelude.hs file that comes
+with your hugs. What is the purpose of the file? What is the most interesting
+function you find?&nbsp; Do not turn in ... be prepared to discuss in class.&nbsp;
+(Prelude.hs is in the lib directory.&nbsp; Use a text editor to view.)</li>
+
+<li>
+<font color="#000000">Try on the command line</font></li>
+
+<ol>
+<li>
+<b><tt><font color="#000000">[1 .. 12]</font></tt></b></li>
+
+<li>
+<b><tt><font color="#000000">['a' .. 'z']</font></tt></b></li>
+
+<li>
+<b><tt><font color="#000000">[ (x,y) | x &lt;-[1..5], y &lt;- [2,4 .. 10]]</font></tt></b></li>
+
+<li>
+<font color="#000000">[ 1 ..]</font></li>
+
+<ol TYPE=a>
+<li>
+<font color="#000000">To terminate F4 in <i>winhugs </i>press "stop"&nbsp;
+or in hugs press Control-C</font></li>
+</ol>
+
+<li>
+<font color="#000000">take 5 [1 .. ]</font></li>
+</ol>
+</ol>
+
+<li>
+(very easy) Write a Haskell script,&nbsp; calcPair<b><tt>(<font color="#000000">x,y</font>)</tt><i>,</i></b>
+which returns the sum of&nbsp; <i>x</i> and 2 * <i>y</i></li>
+
+<br>...> <b><tt>calcPair(3<font color="#000000">,5</font>)</tt></b>
+<br>13
+<ol TYPE=A>
+<li>
+What is the type (signature) of <b><tt>calcPair(<font color="#000000">x,y</font>)</tt>?</b></li>
+
+<br>&nbsp;</ol>
+
+<li>
+The purpose of this problem is to illustrate currying.</li>
+
+<br>The following function finds the maximum of three integers:
+<ol TYPE=A>&nbsp; >&nbsp; <tt>maxOf3Ints :: Int -> Int -> Int -> Int</tt>
+<br><tt>&nbsp;> maxOf3Ints x y z</tt>
+<br><tt>&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp; | x >= y &amp;&amp; x >= z = x</tt>
+<br><tt>&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp; | y >= z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+= y</tt>
+<br><tt>&nbsp;>&nbsp;&nbsp;&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+= z</tt>
+<br>Derive using previously defined functions (for this problem), the following
+functions. Include as a comment the inferred type of the new function.
+You find out the type by the command&nbsp; "<b><tt><font color="#990000">:t</font></tt><font color="#000000">"</font><font color="#990000">.</font></b>
+<br>For example:
+<ol>Define <tt>maxOf7and2Ints </tt>which is the max of two numbers and
+7&nbsp; (use <tt>maxOf3Ints)</tt>.
+<br>&nbsp;
+<ol TYPE=A><tt>maxOf7and2Ints :: Int -> Int -> Int</tt>
+<p><tt>> maxOf7and2Ints </tt>= <tt>maxOf3Ints 7</tt></ol>
+</ol>
+
+<li>
+Define <tt>maxOf9and2Ints </tt>which is the max of two numbers and 9&nbsp;
+(use <tt>maxOf3Ints)</tt>.</li>
+
+<ol TYPE=a>
+<li>
+What is the type of <tt>maxOf9and2Ints?</tt></li>
+</ol>
+
+<li>
+Define <tt>maxOf9_15and1Int </tt>which is the max of one numbers and 9
+and 15&nbsp; (use <tt>maxOf9and2Ints)</tt>.</li>
+
+<ol TYPE=a>
+<li>
+What is the type of <tt>maxOf9_15and1Int ?</tt></li>
+</ol>
+
+<li>
+Define <tt>numberSixteen </tt>which is the max of one numbers and 9, 15,
+16&nbsp; (use <tt>maxOf9_15and1Int)</tt>.</li>
+
+<ol TYPE=a>
+<li>
+What is the type of <tt>numberSixteen ?</tt></li>
+</ol>
+</ol>
+
+<ol TYPE=A>&nbsp;</ol>
+
+<li>
+(very easy) Write a Haskell script <b><tt><font color="#000000">zipPair
+lst1 lst2</font></tt><font color="#FF0000">,</font> </b>which returns a
+list of pairs. Use pattern matching to handle empty lists.&nbsp; (<font color="#666600">Write
+your own recursive code.&nbsp; Do not use zip.)</font></li>
+
+<br><tt>...></tt> <b><tt>zipPair [1,2,3] <font color="#000000">['a','b','c','d']</font></tt></b>
+<br><b><tt><font color="#000000">[(1,'a'), (2,'b'), (3,'c')]</font></tt></b>
+<br><b><tt><font color="#000000">...> zipPair [1,2,3] [11,12]</font></tt></b>
+<br><b><tt>[(1,11),(2,12)]</tt></b>
+<br><b><tt>...> zipPair [1,2,3] [100,99]</tt></b>
+<br><b><tt>[(1,100), (2,99)]</tt></b>
+<br>&nbsp;
+<ol TYPE=A>
+<li>
+What is the signature ?</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Define a function <font color="#666600">calcPairLst</font> lst1 lst2 which
+applies <i>zipPair</i> in its definition to return a list of the <font color="#666600">calcPair</font>.
+<font color="#666600">You
+can use a locally defined function (using a where clause).--I will discuss
+this in class...</font><font color="#3333FF">&nbsp; The best way to program
+this is to apply calcPair in the primitive recursion and to forget the
+zipPair.&nbsp; You can do it either way.</font></li>
+</ol>
+
+<ol START=6><b><tt>...> <font color="#666600">calcPairLst</font> [1,2]
+[11,12,100]</tt></b>
+<br><b><tt>[23,26]</tt></b>
+<br><b><tt>...> <font color="#666600">calcPairLst</font> [1,2,3] [100,99]</tt></b>
+<br><b><tt>[201, 200]</tt></b>
+<br>&nbsp;
+<ol TYPE=A>
+<li>
+What is the signature?</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Using the the data type <i>PairType </i>provided&nbsp; in the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell1.lhs">Haskell1.lhs</a>,&nbsp;
+write a Haskell script <b><font color="#000000"><tt>zipPairtype lst1 lst2</tt>,
+</font></b>which
+returns a list of <i>Pair</i>s.</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..<b><tt>.> zipPairtype
+[1,2] [11,12,100]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; [Pair 1 11, Pair 2 12]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ...> zipPairtype [1,2,3] [100,99]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; [Pair 1 100, <font color="#000000">Pair 2
+99</font>]</tt></b>
+<br>&nbsp;
+<ol TYPE=A>
+<li>
+What is the signature?</li>
+</ol>
+
+<ol>&nbsp;</ol>
+
+<ol>
+<ol TYPE=A>
+<ol>&nbsp;</ol>
+</ol>
+</ol>
+</ol>
+
+</body>
+</html>

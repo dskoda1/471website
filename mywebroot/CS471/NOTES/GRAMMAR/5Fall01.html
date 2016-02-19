@@ -1,0 +1,660 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Eileen Head">
+  <title>XML</title>
+</head>
+<body text="#000000" bgcolor="#ffffff" link="#3366ff" vlink="#000099"
+ alink="#3333ff">
+<center>
+<h3> &nbsp;SGML and XML&nbsp; Fall, 2003</h3>
+<table border="1" cellspacing="0" cellpadding="0" bgcolor="#fffff0">
+  <tbody>
+    <tr>
+      <td> <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/4Fall00.html">&nbsp;previous
+      </a> </td>
+      <td> <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/471notesIndex.html">&nbsp;next&nbsp;
+      </a> </td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<h3>Purpose:</h3>
+<blockquote> Illustrate the use of BNF via a brief introduction to
+markup languages with an application to XML documents. </blockquote>
+<h3> What will be covered ?</h3>
+<ul>
+  <li> Introduction to SGML</li>
+  <li> XML and DTD</li>
+  <li> Examples</li>
+  <li>Addition files (<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/XML.zip">XML.zip</a>)</li>
+</ul>
+<ul>
+  <ul>
+    <li><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2Doc.xml">Project2Doc.xml</a>&nbsp;</li>
+    <li><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2-2DTD.dtd">Project2-2DTD.dtd</a>&nbsp;</li>
+    <li><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2XML.html">Project2XML.html</a>
+(Source XML viewable in a browser)</li>
+    <li><a href="XML/DomEcho04.java">DomEcho04.java</a> (From the <a
+ href="http://java.sun.com/xml/jaxp/dist/1.1/docs/tutorial/dom/3_tree.html">Constructing
+a User-Friendly JTree from a DOM</a>,Working with XML tutorial)</li>
+    <li><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/runDomEcho.bat">runDomEcho.bat</a>
+WinXX batch file for compilation and execution if java 1.4 is installed
+normally.<br>
+    </li>
+  </ul>
+</ul>
+<hr width="100%">
+<h4> <b><a href="http://www.sil.org/computing/noc/156ac.htm">SGML</a>
+(Standard Generalized Markup Language)</b></h4>
+<ul>
+  <li> <b><i>Standard</i></b> : ISO 8879:1986</li>
+  <li> <b><i>Generalized</i> : </b>Meta-language (i.e. framework) for
+constructing markup languages.</li>
+  <li> <b><i>Markup</i> : </b>Codes added to the stream of an encoded
+text to signal structure, formatting, or processing<b> </b>commands.</li>
+  <li> <b><i>Language </i>: </b>Uses Formal Languages to describe
+markup languages.</li>
+</ul>
+<h4> <a href="http://www.w3.org/XML/Activity#intro">XML</a> </h4>
+<ul>
+  <li> A subset of SGML which is simpler and more efficient therefore
+good for processing documents on the web.</li>
+  <li> <b>XML</b> is like <b>HTML</b> because it contains elements
+and
+attributes but XML allows the author to change/add elements and
+attributes without changing the XML standard.&nbsp; These elements and
+attributes can be defined internal to the file or external. </li>
+  <dl>
+    <dl>
+      <li> DTD files or XSL files can be used to define the grammars
+used to validate XML files. </li>
+    </dl>
+  </dl>
+  <li><b>XML Vocabularies-</b></li>
+  <ul>
+    <li> Set of elements and attributes that pertain to a specific
+application.</li>
+    <li> <a href="http://www.w3.org/Math/">MathML</a></li>
+    <li><a href="http://xml.house.gov/">United States Congress XML and
+Legislative Documents</a><br>
+    </li>
+  </ul>
+</ul>
+<h4>
+<hr size="4" width="90%"></h4>
+<h3> DTD -- How to define the structure of an XML document</h3>
+<ul>
+  <li>&nbsp;Document Type Declaration (or Definition), abbreviated <b>DTD</b>
+provides the grammar for the structure of SGML (or XML)
+document.&nbsp; </li>
+  <ul>
+    <li>The DTD is essentially a context-free grammar with it own
+notation for describing variables and productions.<br>
+    </li>
+    <ul type="circle">
+      <li>i.e. The DTD describes the form of a typical document as well
+as the tags to be used.</li>
+    </ul>
+    <li>Schema's are an alternative technique for providing XML
+grammars. </li>
+  </ul>
+</ul>
+<ul>
+  <dl>
+    <li> Example:&nbsp; <a
+ href="http://www.w3.org/TR/html401/strict.dtd"> HTML 4.01 Strict DTD
+file at W3</a> </li>
+    <dl>
+      <li><b>HTML</b> is an application of SGML. </li>
+    </dl>
+  </dl>
+</ul>
+<ul>
+  <li>The grammar of the DTD language is itself a Context Free grammar.
+&nbsp;However, we are interested the languages that are &nbsp;described
+by the DTD. &nbsp;Especially how to write a grammar for an XML file.<br>
+  </li>
+</ul>
+<blockquote> </blockquote>
+<ul>
+  <li>Binding the DTD to the XML document:<br>
+If the DTD is internal to an XML document then form of a DTD is</li>
+</ul>
+<blockquote>
+  <blockquote> <b><font color="#000099">&lt;!DOCTYPE</font>&nbsp;<i>name-of-DTD</i>
+    <font color="#000099">[</font><br>
+    </b>
+    <blockquote> <b><i>list of </i>element definitions, &nbsp;attlist
+definitions, entity definitions<br>
+      </b> </blockquote>
+    <font color="#000099"><b> ]&gt;</b></font><br>
+  </blockquote>
+If the DTD is external then the &lt;!DOCTYPE&nbsp; statement of
+the form&nbsp;
+  <blockquote> <span class="doctype">&nbsp; &nbsp;<b> <font
+ color="#000099">&lt;!DOCTYPE</font>&nbsp;</b> </span> <b><i>name-of-DTD</i></b>
+    <span class="doctype"> <b> <font color="#000099"> PUBLIC </font>"<i>filename</i>.dtd"
+"http://<i>URL/filename.dtd</i>"&gt; </b> <br>
+    <br>
+    </span>is in the XML file. &nbsp;The<span class="doctype"> </span><i>list
+of </i>element definitions, &nbsp;attlist definitions, entity
+definitions are in the <span class="doctype">"<i>filename</i>.dtd"</span>.
+This file is located at <span class="doctype"> <b>http://<i>URL/filename.dtd</i></b></span>
+on the web.<br>
+    <br>
+Below is the statement declaring the DTD file on local to your system.<br>
+    <span class="doctype">&nbsp;&nbsp;<font color="#000099"> <b>&lt;!DOCTYPE&nbsp;</b></font></span><b><i>name-of-DTD</i></b><span
+ class="doctype"><b> <font color="#000099">SYSTEM</font> "<i>filename</i>.dtd"&gt;</b></span><br>
+    <blockquote>
+      <blockquote>
+        <hr width="100%" size="2"></blockquote>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<ul>
+  <dl>
+    <li>From the<b> DTD'</b>s point of view <b>XML</b> files are made
+up
+the following simple building blocks.<br>
+    </li>
+  </dl>
+</ul>
+<blockquote>
+  <ul>
+    <li><b><font color="#b70000">ELEMENT</font></b><font color="#3333ff">
+      </font>
+-- defines the "things" your document pertains to, such as
+customers, orders, students, classes, etc. &nbsp;Element is used to
+define the elements in the XML document.</li>
+    <ul>
+      <li> Used to define the grammar for parsing (XML/SGML) documents</li>
+    </ul>
+  </ul>
+  <ul>
+    <li><b>Tags -- </b>used to <i>markup</i> elements.</li>
+    <ul>
+      <li>&lt;element_name&gt; marks the beginning of an element</li>
+      <li>&lt;/element_name&gt; marks the end of an element</li>
+      <li>Examples:</li>
+    </ul>
+  </ul>
+  <blockquote>
+    <blockquote>&lt;ItemCost&gt; &nbsp;$500 &nbsp;&lt;/ItemCost&gt;<br>
+&lt;OrderDetails OrderNumber="onid111" OrderDate="1/12/01" /&gt; </blockquote>
+  </blockquote>
+  <ul>
+    <li><b><font color="#993399">ATTLIST</font><font color="#000000">
+--&nbsp;</font></b><font color="#000000"> Defines attributes and
+constraints about values that a given element may assume.</font></li>
+    <li> <b><font color="#b70000">ENTITY </font><font color="#000000">--</font></b><font
+ color="#000000">Used to defined variables that common</font> are
+common text. It can be used to alias long strings or to include
+characters in the text that are tokens in grammar.</li>
+  </ul>
+  <blockquote>
+    <table border="1" width="50%">
+      <caption>Predefined entities in XML<br>
+      </caption> <tbody>
+        <tr>
+          <th align="left" class="ex" cellspacing="0">Entity References</th>
+          <th align="left" class="ex" cellspacing="0">Character</th>
+        </tr>
+        <tr>
+          <td>&amp;lt;</td>
+          <td>&lt;</td>
+        </tr>
+        <tr>
+          <td>&amp;gt;</td>
+          <td>&gt;</td>
+        </tr>
+        <tr>
+          <td>&amp;amp;</td>
+          <td>&amp;</td>
+        </tr>
+        <tr>
+          <td>&amp;quot;</td>
+          <td>"</td>
+        </tr>
+        <tr>
+          <td>&amp;apos;</td>
+          <td>'</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+  </blockquote>
+  <ul>
+    <li><b><font color="#b70000">PCDATA </font>-- </b>Parsed
+character data. &nbsp;The text found between the start tag and end tag
+of an XML document.</li>
+    <li><b><font color="#993399">CDATA</font>-- </b>Character data
+in the attributes of the tag.<br>
+    </li>
+    <li> <b><font color="#b70000">NOTATION </font><font
+ color="#000000">--</font></b><font color="#000000">Used to associate
+application need to
+process data i.e. a name avi with a Windows Media Player.</font></li>
+  </ul>
+  <blockquote>
+    <blockquote>
+      <blockquote>
+        <hr width="100%" size="2"> </blockquote>
+    </blockquote>
+  </blockquote>
+  <h4> Example: <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2-2DTD.dtd">
+Customer dtd file</a></h4>
+</blockquote>
+<ul>
+  <li>Note: There is NO space between the "&lt;" and the "!" and the
+element name. &nbsp;This is also true for xml files.</li>
+</ul>
+<ul>
+  <li> Here we are only concerned with writting comments in the DTD
+file and building the grammar for elements in the XML document.</li>
+</ul>
+<ul>
+  <dl>
+    <li> Comments begin with --</li>
+    <dl>
+      <br>
+      <b><tt>&lt;!-- Customer version 1.0 DTD</tt></b><br>
+      <b><tt>This DTD is an example for the book XML Beginner's Guide,
+and builds a customers and orders management system.</tt></b><br>
+      <b><tt>Copyright Dave Mercer 2001, 2002</tt></b>k<br>
+      <br>
+      <b><tt>--&gt;</tt></b>
+    </dl>
+  </dl>
+</ul>
+<ul>
+  <li><b><u><font color="#b70000">&lt;!</font><font color="#b70000">
+ELEMENT</font></u></b> <i>element-name</i> (<i>element description</i>)<i>attribute</i><b><font
+ color="#b70000"> &gt;</font></b> <br>
+&nbsp; is the form of DTD "tag"for defining elements in our XML
+file</li>
+  <ul type="disc">
+    <li><i>element-name </i>&nbsp;is the head of the production rule<br>
+    </li>
+    <li><i>Element descriptions</i> are essentially regular expressions.</li>
+    <ul>
+      <li>are the RHS of the production rules<br>
+      </li>
+      <li>Expressions are composed of</li>
+      <ul type="disc">
+        <li>other element names</li>
+        <li>special term, #PCDATA, standing for text</li>
+      </ul>
+      <li>Operators are:</li>
+      <ul>
+        <li><b>|</b>&nbsp; denotes "or" (union)</li>
+        <li>, (comma) denotes concatenation</li>
+        <li>Variants of the closure operation for Regular expression <br>
+        </li>
+        <ul type="circle">
+          <li><b><font color="#000099">*</font></b>, zero or more
+occurrences</li>
+          <li><font color="#000099"><b>+</b></font>, one or more
+occurrences</li>
+          <li><b><font color="#000099">?</font></b>, zero or one
+occurrence</li>
+        </ul>
+        <li>Parentheses are used to group operators to their arguments<br>
+        </li>
+        <li>The usual precedence of regular expressions operators are
+applied</li>
+      </ul>
+    </ul>
+    <li> There are 4&nbsp; predefined <b>attributes</b> the DTD
+ELEMENT
+can have:<b><font color="#999900"><br>
+EMPTY</font></b>-- the XML element has no children or text but
+can have attributes</li>
+    <ul>
+    </ul>
+  </ul>
+</ul>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <dl>
+        <li>&lt;!ELEMENT OrderDetails EMPTY&gt; </li>
+      </dl>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<blockquote>
+  <blockquote> <font color="#999900"><i><b>CHILDREN</b></i> -</font>-
+can have child elements, attributes but NO text <br>
+    <b><font color="#999900">ANY</font></b>-- No restriction<b><font
+ color="#999900"><br>
+    <i> MIXED</i></font></b>-- the XML element can have child
+elements, attributes AND text </blockquote>
+  <blockquote>
+    <ul>
+      <li> Regular Expression specify "possible children node"<br>
+      </li>
+    </ul>
+  </blockquote>
+  <blockquote>
+    <ul>
+      <ul>
+        <li>orderedchildren has exactly two children, <i>first and
+second</i>. &nbsp;These children must appear in order specified.<b><br>
+          <tt> &lt;!ELEMENT orderedchildren (first,second)&gt;<br>
+          <br>
+          </tt></b></li>
+        <li><i>unorderedchildren</i> has exactly one child, <i> two or
+one</i>.<b><tt><br>
+&lt;!ELEMENT unorderedchildren (two | one)&gt; </tt></b></li>
+        <br>
+        <li><i>manyunorderchildren</i> has zero or more named children <i>others</i>
+and <i>another</i> in any order.<br>
+          <b> <tt>&lt; !ELEMENT manyunorderedchildren ( others |
+another)*&gt;</tt></b><br>
+        </li>
+      </ul>
+    </ul>
+    <ul>
+      <ul>
+        <li><tt>regExp </tt> has 4 "named" children, <tt><i> first,
+maybe, zeroormore, atleastone.</i> </tt> These children
+must appear in order. &nbsp;There is <b>exactly one</b> <tt><b><i>first</i>,
+          </b></tt><b>none or one</b><tt> <b><i>maybe, </i></b></tt><b>
+zero or more<tt> <i>zeroormore</i></tt></b> <tt>, <b> and one
+or more <i>atleastone.</i></b></tt> <b><tt><br>
+&lt;!ELEMENT regExp (first,maybe?,zeroormore*,atleastone+)&gt;<br>
+          <br>
+          </tt></b></li>
+        <li>Note we can include #PCDATA in any of the above. This is an
+example of Mixed mode. </li>
+      </ul>
+    </ul>
+    <blockquote>
+      <dl>
+        <dl>
+          <li> <b><tt>&lt;!ELEMENT Customer (#PCDATA | Orders)*&gt;</tt></b></li>
+        </dl>
+      </dl>
+    </blockquote>
+    <ul>
+      <li>"It would be nice if we could specify that an <code>item</code>
+contains either text, or text followed by one or more list items. But
+that kind of specification turns out to be hard to achieve in a DTD.
+For example, you might be tempted to define an <code>item</code>
+like this: </li>
+    </ul>
+    <blockquote>
+      <blockquote>
+        <pre>&lt;!ELEMENT item (#PCDATA | (#PCDATA, item+)) &gt;</pre>
+      </blockquote>
+That would certainly be accurate, but as soon as the parser sees <code>#PCDATA</code>
+and the vertical bar, it requires the remaining definition to conform
+to the mixed-content model. This specification doesn't, so you get can
+error that says: <code>Illegal mixed content model for 'item'. Found
+&amp;#x28; ...</code>, where the hex character 28 is the angle
+bracket the ends the definition." (<a
+ href="http://java.sun.com/xml/jaxp/dist/1.1/docs/tutorial/sax/5a_dtd.html">http://java.sun.com/xml/jaxp/dist/1.1/docs/tutorial/sax/5a_dtd.html</a>)<br>
+    </blockquote>
+    <blockquote> </blockquote>
+  </blockquote>
+</blockquote>
+<blockquote>
+  <blockquote>
+    <blockquote> </blockquote>
+  </blockquote>
+  <dl>
+    <li> Attributes are information contained in the XML tags<b><tt><br>
+      <font color="#993399"> &lt;!ATTLIST</font> Customer</tt></b></li>
+    <b><tt>&nbsp;&nbsp; customerid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #REQUIRED</tt></b><br>
+    <b><tt>&nbsp;&nbsp;
+phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CDATA&nbsp;&nbsp;&nbsp;&nbsp; #IMPLIED</tt></b><br>
+    <b><tt>&nbsp;&nbsp;
+email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CDATA&nbsp;&nbsp;&nbsp;&nbsp; #REQUIRED</tt></b><br>
+    <b><tt>&nbsp;&nbsp; fulladdress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+CDATA&nbsp;&nbsp;&nbsp;&nbsp; #IMPLIED&gt;</tt></b>
+  </dl>
+  <blockquote> </blockquote>
+</blockquote>
+<blockquote>
+  <blockquote>
+    <blockquote>
+      <blockquote> </blockquote>
+    </blockquote>
+    <dl>
+      <li>XML Element name&nbsp;</li>
+      <li>Attribute(s) of this XML element</li>
+      <li>Values/types of these XML attributes&nbsp;</li>
+    </dl>
+    <blockquote>
+      <dl>
+        <li>ID -- An unique name across the document</li>
+        <li>CDATA -- Character Data</li>
+        <li> There are more allowable types.</li>
+      </dl>
+    </blockquote>
+    <blockquote> </blockquote>
+  </blockquote>
+</blockquote>
+<blockquote>
+  <hr width="50%" size="2" noshade="noshade">
+  <h4>Converting the DTD "grammar" to Ordinary CFG&nbsp;</h4>
+  <ul>
+    <li>&lt;!ELEMENT <b>OrderItem (ItemCost<font color="#3333ff">,</font>
+&nbsp;ItemPrice)</b>&gt;&nbsp;&nbsp;
+      <blockquote>
+        <pre>is analogous to the production</pre>
+      </blockquote>
+    </li>
+  </ul>
+  <blockquote>
+    <pre><b><i>OrderItem</i> --&gt; <i>&nbsp;ItemCost ItemPrice </i></b><br></pre>
+  </blockquote>
+  <ul>
+    <li>&lt;!ELEMENT <b>OrderItem (ItemCost<font color="#3333ff"> |</font>
+ItemPrice)</b>&gt;&nbsp;
+      <blockquote>
+        <pre>is analogous to the production</pre>
+      </blockquote>
+    </li>
+  </ul>
+  <blockquote>
+    <pre><b><i>OrderItem</i> --&gt; <i>&nbsp;ItemCost </i> | &nbsp;<i>ItemPrice</i></b><br></pre>
+  </blockquote>
+  <ul>
+    <li>The difficult cases involves the use of regular
+expressions&nbsp;&nbsp;&nbsp;</li>
+  </ul>
+  <blockquote>&lt;!ELEMENT <b>OrderItem (ItemCost<font color="#3333ff">,</font>
+Manufacturers<font color="#3333ff">+ ,</font>ItemPrice)</b>&gt;
+    <blockquote>
+      <pre>is analogous to the productions<i><br></i></pre>
+    </blockquote>
+    <b><i>OrderItem</i> --&gt; <i>&nbsp;ItemCost &nbsp;</i><i>Manufacturers</i>
+    <i>ItemPrice</i><i>
+&nbsp; </i></b><br>
+    <b><i>Manufacturers</i> --&gt; <i>Manufacturer&nbsp; </i>| <i>Manufacturer</i><i>
+Manufacturers</i></b>
+    <pre>&lt;!ELEMENT <b>OrderItem</b> (<b>ItemCost<font color="#3333ff">,</font> Manufacturers<font
+ color="#3333ff">*,</font> ItemPrice</b>)&gt;<br></pre>
+    <blockquote>is analogous to the productions<br>
+    </blockquote>
+    <blockquote>
+      <blockquote> </blockquote>
+    </blockquote>
+    <b><i>OrderItem</i> --&gt; <i>&nbsp;ItemCost &nbsp;</i> <i>Manufacturers</i>
+&nbsp;<i>ItemPrice</i><i> &nbsp; </i>|<i>&nbsp; ItemC</i><i>ost
+&nbsp;</i> &nbsp;<i>ItemPrice</i><i><br>
+Manufacturers</i> --&gt; <i>Manufacturer&nbsp; </i>| <i>&nbsp;Manufacturer
+Manufacturers<br>
+    </i></b></blockquote>
+</blockquote>
+<hr width="100%" size="2">
+<h3>XML</h3>
+Example,&nbsp;<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2Doc.xml">Project2Doc.xml</a>
+using <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2-2DTD.dtd">Project2-2DTD.dtd</a>
+(to view source in browser: <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2XML.html">Project2XML.html</a>)<br>
+<blockquote><b>XML Element and Attribute Name</b> <br>
+</blockquote>
+<ul>
+  <li>Must begin with a letter, underscore, or a colon followed by any
+Unicode character that are letters, numbers,hyphens or periods</li>
+  <ul>
+    <li>EXCEPT:&nbsp; can not begin with xml (any combination of
+cases)&nbsp;</li>
+  </ul>
+  <ul>
+    <li>Note: colon used separate namespace and element and attribute
+name </li>
+  </ul>
+</ul>
+<b>Well-formed vs. Valid XML document</b> <br>
+<ul>
+  <li><b>well-formed</b>&nbsp;</li>
+  <ul>
+    <li>document must contains properly written tags&nbsp;</li>
+    <li>and properly nested --non-overlapping tag&nbsp;</li>
+    <li>i.e. tags don't have any special meaning, tags just follows
+basic XML syntax rules&nbsp;</li>
+  </ul>
+  <li>A <b>valid</b>&nbsp;</li>
+  <ul>
+    <li>document must be not only well-formed but also parsed
+according to grammar rules in associated DTD (or XML Schema)</li>
+  </ul>
+</ul>
+<ul>
+</ul>
+<ul>
+  <li>View <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2Doc.xml">
+XML document </a> in Internet Explore (&gt;6) or Mozilla (&gt;1.3a) to
+see the Parse tree based on our <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/XML/Project2-2DTD.dtd">
+DTD</a>. This will show if it is well formed.</li>
+  <li><a href="XML/DomEcho04.java">DomEcho04.java</a>
+is a java program what will read an XML and graphically display it.
+&nbsp; This code does not validate the XML file.<br>
+  </li>
+  <li>Emacs editors have validation tools.</li>
+  <li><a href="XML/xml.gif">Running the programming</a><br>
+  </li>
+</ul>
+<blockquote> </blockquote>
+<hr width="100%" size="2"> <a
+ href="http://www.oasis-open.org/cover/sgmlhist0.html">History:</a>
+<dl>
+  <ul>
+    <li> In 1969 Charles Goldfarb was leading an IBM research project
+on integrated law office information systems. Together with Edward
+Mosher and Raymond Lorie he invented the Generalized Markup Language
+(GML) as a means of allowing the text editing, formatting,
+and information retrieval subsystems to share documents.</li>
+    <li> Later Goldfarb lead the team which developed SGML.</li>
+  </ul>
+  <hr width="100%" size="2">References:
+  <ol>
+    <li><a
+ href="http://java.sun.com/webservices/docs/1.0/tutorial/index.html">The
+Java<sup>TM</sup> Web Services Tutorial</a></li>
+    <li><a href="http://java.sun.com/xml/tutorial_intro.html"> Working
+with XML: The Java/XML Tutorial&nbsp;</a></li>
+    <ol type="a">
+      <li><a
+ href="http://java.sun.com/xml/jaxp/dist/1.1/docs/tutorial/sax/5a_dtd.html">Creating
+a Document Type Definition (DTD)</a><br>
+      </li>
+    </ol>
+    <li> &nbsp;<a href="http://www.w3.org/MarkUp/Guide/">Getting
+started with HTML</a></li>
+    <li><a href="http://www.w3.org/TR/2000/REC-xml-20001006">Extensible
+Markup Language (XML) 1.0 (Second Edition) - W3C Recommendation 6
+October 2000</a><br>
+    </li>
+    <li><a href="http://www.w3.org/XML/1999/XML-in-10-points">&nbsp;XML
+in 10 points</a></li>
+    <li> <a href="http://www.lysator.liu.se/projects/about_psgml.html">A
+History of XML(pdf file).</a></li>
+    <li> <a href="http://msxml.com/">General Markup</a> (Tutorial and
+good links)</li>
+    <li><a href="http://www.w3schools.com">W3School Online Web Tutorial</a><br>
+    </li>
+    <li><a href="http://www.xml.com/">http://www.xml.com/</a>
+(sponsored by Seybold Publications and O'Reilly &amp; Associates, Inc.)
+    </li>
+    <li> <a
+ href="http://edis.ifas.ufl.edu/scripts/htmlgen.exe?DOCUMENT_AE038">A
+Brief History of Document Markup</a></li>
+    <li> <a
+ href="http://www.sil.org/computing/routledge/simons/text.html">Using
+Text Encoding to Represent Linguistic Data</a></li>
+    <li> <a href="http://www.tei-c.org/Software/index.html">Text
+Encoding Initiative Software Page</a></li>
+    <li>Hopcroft, Motwani and Ullman, <i>Introduction to Automata
+Theory, Languages and Computation</i> 2ed.</li>
+  </ol>
+</dl>
+Tutorials:<br>
+<ol>
+  <li><a href="http://www.w3schools.com/dtd/default.asp">w3schools --
+DTD tutorial</a></li>
+  <ol style="list-style-type: upper-alpha;">
+    <li><a href="http://www.w3schools.com/xml/xml_examples.asp">Examples...
+including errors.</a><br>
+    </li>
+  </ol>
+  <li><a href="http://www.xmlfiles.com/dtd/">XMLfiles --- DTD</a></li>
+  <li><a href="http://www.spiderpro.com/bu/buxmlm001.html">Kick start
+XML</a><br>
+  </li>
+</ol>
+<dl>
+  <li><br>
+  </li>
+  <li><a href="mailto:%20head@binghamton.edu">&copy; 2003 Head,Lander</a></li>
+  <hr size="9" width="100%"><br>
+9/10/2002<br>
+</dl>
+<blockquote>
+  <dl>
+    <center>
+    <table border="1" cellspacing="0" cellpadding="0" bgcolor="#fffff0">
+      <tbody>
+        <tr>
+          <td><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO.4Fall01.html">&nbsp;previous&nbsp;</a></td>
+          <td><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/471notesIndex.html">&nbsp;next&nbsp;</a></td>
+        </tr>
+      </tbody>
+    </table>
+    </center>
+  </dl>
+</blockquote>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <link rel="StyleSheet" href="core.css" type="text/css" title="standard">
+  <link rel="StyleSheet" href="nav.css" type="text/css" title="standard">
+  <title>Professor Head | CS 395</title>
+</head><body>
+  <img style="margin-top: 15px; margin-left: 15px; margin-bottom: 7px; width: 348px; height: 63px;" src="title.png" alt="Title">
+  <div class="search"><!-- Google CSE Search Box Begins-->
+    <form action="http://www.google.com/cse" id="searchbox_018075468199663424746:k0tmp3bu8ha"> <input name="cx" value="018075468199663424746:k0tmp3bu8ha" type="hidden"> <input style="background: rgb(255, 255, 255) url(http://www.google.com/cse/intl/en/images/google_custom_search_watermark.gif) no-repeat scroll left center; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;" name="q" size="26" type="text"> <input name="sa" value="Search" type="submit"> <input value="bingweb.binghamton.edu/~head/cs395.shtml" name="siteurl" type="hidden"><input value="bingweb.binghamton.edu/~head/" name="ref" type="hidden"><input name="ss" type="hidden"></form>
+    <script type="text/javascript" src="cs395_files/brand"></script>
+    <!-- Google CSE Search Box Ends --> </div>
+    <div class="calendar"> <a href="http://www.google.com/calendar/embed?src=eileen.head%40gmail.com" target="_blank"> <img src="gc_button1_en.gif" alt="Eileen Head's Calendar" style="border: 0px solid ; width: 100px; height: 30px;"> </a> </div>
+
+    <div id="navcontainer">
+      <ul id="navlist">
+        <li><a href="http://bingweb.binghamton.edu/%7Ehead/index.shtml">Home</a></li>
+        <li id="active"><a href="#" id="current">CS395</a></li>
+        <li><a href="http://bingweb.binghamton.edu/%7Ehead/cs471.shtml">CS471</a></li>
+        <li><a href="http://bingweb.binghamton.edu/%7Ehead/software.shtml">Software</a></li>
+        <li><a href="http://bingweb.binghamton.edu/%7Ehead/links.shtml">Links</a></li>
+      </ul>
+    </div>
+
+
+    <div class="wrapper">
+      <div style="float: left; margin-top: 50px; margin-right: 9px;">
+        <div class="info" style="width: 200px;">CS
+          395/6&nbsp; <br>Spring 16<br>
+          <span style="font-size: 10pt;">Internship / Co-op</span><br>
+          <span style="font-size: 10pt;"></span></div>
+          <div class="info-inside" style="width: 200px;">
+            <table>
+              <tbody>
+                <tr>
+                  <td><span style="font-weight: bold;"></span><b>Internships</b></td>
+                  <td><a href="http://bingweb.binghamton.edu/%7Ecs395/InternshipPosition.html"><span style="font-size: 10pt;">Opportunities<br>
+                  </span></a><br>
+                  <small><a href="https://www.binghamton.edu/ccpd/students/undergraduate/internships-and-other-ways-to-gain-experience/cdc-internship-programs.html" target="_blank">Also check CDC's internship list --or go to Fleishman Center(UU133)&nbsp; MWF 10am-4pm</a></small><br>
+                  <br>
+                </td>
+              </tr>
+              <tr>
+                <td style="width: 100px;"><b>Grade Option</b></td>
+                <td><small>Letter Grade</small></td>
+              </tr>
+              <tr>
+                <td><b>Credits</b></td>
+                <td><small>Variable</small></td>
+              </tr>
+              <tr>
+                <td><b>Office Hours</b></td>
+                <td><small>Mon/Wed/Fri<br>
+                  1:45-2:45<br>
+                  Tues<br>
+                  10:30-11:30<br>
+                  Thur<br>
+                  2-3<br>
+                </small></td>
+              </tr>
+              <tr>
+                <td><b>Interest Meeting</b></td>
+                <td>
+                  Sept,2015<br>
+                </td>
+              </tr>
+              <tr>
+                <td><b>Forms</b></td>
+                <td><a href="http://bingweb.binghamton.edu/%7Ecs395/forms.html">All
+                  forms</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="right-content" style="border: 1px solid rgb(224, 224, 224); padding: 10px; background: rgb(249, 249, 249) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; width: 560px; margin-bottom: 10px;">
+          <img style="float: right; width: 150px;" src="resume.jpg" alt="Resume" align="right"><span style="font-weight: bold;">CDC Meeting</span><br>Fri.&nbsp; TBA<br>
+          Contact me if you can not make the meeting<span style="font-weight: bold;"></span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;"></span><br>
+          <div>
+            <span style="font-weight: bold;">Course Requirements:</span><br>
+
+
+            <ul>
+              <li>You must have Junior standing.</li>
+              <li>International
+                students if you have F-1 or J-1 Visa status, YOU MUST secure written
+                authorization from the ISSS&nbsp; before beginning any internship,
+                either paid or unpaid. <br>
+              </li>
+              <li>All of the items listed below are required.<br>
+                <b>Failure to fulfill any one of these requirements will
+                  result in an F for the course</b>
+                  <ul>
+                    <li><a href="http://bingweb.binghamton.edu/%7Ecs395/FORMS/StatementofInterest.pdf">Statement
+                      of Interest</a><br>
+                      (If you can not attend informational meeting.)</li>
+                      <li><a href="http://bingweb.binghamton.edu/%7Ecs395/FORMS/Application.pdf">Application</a><br>
+                        (If you can not attend informational meeting)</li>
+                        <li><a href="http://bingweb.binghamton.edu/%7Ecs395/FORMS/LearningContract.html">Learning
+                          Contract</a><br>
+                          (required in order to register for the course)</li>
+                          <li style="width: 195px;">Fulfillment of work
+                            requirement (see below)</li>
+                            <li><b>Attendance at two CS 395/396 classes</b>
+                              <ul>
+                                <li style="width: 166px;"><span style="text-decoration: line-through;"></span>&nbsp;Fri.&nbsp; TBA in&nbsp; Q22<br>
+                                  CDC Representative</li>
+                                  <li style="width: 178px;">Fri. TBA @<br>
+                                    3:30-4:30
+                                    in Q22<br>
+                                    DON"T be late<br>
+                                    Oral Presentations
+                                    <ul style="list-style-type: disc;">
+                                      <li style="width: 280px;">Brief (2-5 minutes)
+                                        professional oral report
+                                        describing your position and experience (during Apr. 24th meeting).</li>
+                                        <li style="width: 357px;"><span style="color: rgb(204, 0, 0); font-weight: bold;">Due
+                                          to the large number of
+                                          students enrolled: Presentations should be <span style="text-decoration: underline;">AT MOST</span> 2 to 5
+                                          minutes per person.&nbsp; Teams can
+                                          do a joint presentation.&nbsp; <br>
+                                          Keep your presentation short and sweet!!</span><br>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li><b>2 Progress Reports</b>
+                                  <ul>
+                                    <li><a href="http://bingweb.binghamton.edu/%7Ecs395/FORMS/ProgressReport1.pdf">Start
+                                      to Oct 16th -- needs updating<br>
+                                    </a></li>
+                                    <li style="width: 186px;"><a href="http://bingweb.binghamton.edu/%7Ecs395/FORMS/ProgressReport2.pdf">to Nov 13th --- needs updating<br>
+                                    </a></li>
+                                  </ul>
+                                </li>
+                                <li>Resume including intern/coop position (due last day of classes)</li>
+                                <li><a href="http://bingweb.binghamton.edu/%7Ecs395/FORMS/AssessmentofLearningContractGuidelines.html">Assessment
+                                  of Learning Contract</a> (due last day of classes)</li>
+                                  <li style="width: 203px;"><a href="http://bingweb.binghamton.edu/%7Ecs395/FORMS/EmployerEvaluation.pdf">Employer
+                                    Evaluation</a> <br>
+                                    (due by last day of finals)<br>
+                                  </li>
+                                </ul>
+                              </li>
+
+                            </ul>
+                            <h4>Work Requirement:</h4>
+                            Work at a professional level in an entry level Computer Science
+                            position for a local organization for:<br>
+                            <br>
+                            <table style="border: 1px solid rgb(224, 224, 224); padding: 7px; margin-left: auto; margin-right: auto; width: 567px; height: 103px;">
+                              <tbody>
+                                <tr>
+                                  <td style="padding-right: 30px;">CS395</td>
+                                  <td>14 weeks @ 10 hours per week (unpaid)</td>
+                                  <td><b>140 hours</b></td>
+                                </tr>
+                                <tr>
+                                  <td>CS396</td>
+                                  <td style="padding-top: 15px; padding-right: 30px;">14
+                                    weeks @ 40 hours per week (paid) <b>or</b><br>
+                                    28 weeks @ 20 hours per week (paid)</td>
+                                    <td style="padding-top: 21px;"><b>560 hours</b></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+
+
+                        <div class="bottom">
+                          <ul>
+                            <li class="first"><a href="http://blackboard.binghamton.edu/" target="_blank">Blackboard</a></li>
+                            <li><a href="http://binghamton.edu/" target="_blank">Binghamton
+                              University</a></li>
+                              <li><a href="http://cs.binghamton.edu/" target="_blank">Computer
+                                Science Dept.</a></li>
+                              </ul>
+                              <div style="float: right; margin-right: 25px;"> Professor Head,
+                                Binghamton University �2007-2008 </div>
+                              </div>
+
+
+
+
+                            </body></html>

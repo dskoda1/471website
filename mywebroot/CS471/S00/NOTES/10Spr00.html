@@ -1,0 +1,1473 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Aggregate types and Strings types</title>
+</head>
+<body>
+
+<center>
+<h3>
+&nbsp;Aggregate Types and Strings: Spring, 2000</h3></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/11Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<p>The purpose is examine the effects of different language design decision
+on how the Types work.
+<ul>
+<hr WIDTH="100%"></ul>
+<b>Basic types</b>
+<ul>
+<dl>See homework 5.</dl>
+
+<hr SIZE=1 WIDTH="100%"></ul>
+<b>Strings</b>
+<ul>
+<dl>
+<li>
+Are they primitives the language OR constructible using types of the language?</li>
+
+<li>
+Should strings have static length OR dynamic length?</li>
+
+<li>
+If strings are not built -in the language they are usually stored in arrays
+of&nbsp; single characters.</li>
+
+<dl>
+<li>
+Pascal, C, C++ and Ada</li>
+</dl>
+
+<li>
+When strings are built into a language, the language provides assignments,
+relational operators, concatenation, and substring references.</li>
+
+<dl>
+<li>
+FORTRAN 77, FORTRAN 90, and BASIC</li>
+</dl>
+
+<hr SIZE=3 WIDTH="100%">
+<br><b>C Strings</b>
+<dl>
+<li>
+Two string types are supported through its array mechanism:</li>
+
+<dl>char&nbsp; X[10];&nbsp; char * Y;</dl>
+
+<li>
+Operations such as STRCPY and STRCAT are provided in the standard library.&nbsp;
+The library's routines assume that the strings are an array of chars that
+end with a “null”.</li>
+
+<li>
+The “null” allows the length to be computed quickly.</li>
+
+<li>
+There are also constant string pointers: static char * X = "Hello";</li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Ada Strings</b>
+<dl>
+<li>
+Ada has a built-in STRING type which is simply</li>
+
+<br>TYPE STRING IS ARRAY(POSITIVE range &lt;>) OF CHARACTER;
+<li>
+Concatenation is the symbol ‘&amp;’</li>
+
+<li>
+Substrings are obtained by “array slicing”</li>
+
+<dl><b><tt>V : STRING(1..10) := “HelloWorld”;</tt></b>
+<br><b><tt>W : STRING(1..6) := V(5..10);</tt></b></dl>
+
+<li>
+Ada’s “get” function to read in a string returns the number of characters
+along with the string so the programmer can keep track of the string's
+length.</li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Java Strings</b>
+<dl>
+<li>
+Two classes are provide to handle “string” data.</li>
+
+<dl>
+<li>
+<b><tt>String</tt></b> handles immutable strings</li>
+
+<li>
+<b><tt>StringBuffer</tt></b> handles mutable strings</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+
+<li>
+In Java a “string” is an object of String and not an array of characters.</li>
+
+<dl><b><tt>String name = “Harry”;</tt></b>
+<br>&nbsp;
+<li>
+"Harry" is a String literal</li>
+
+<dl>
+<li>
+&nbsp;<a href="http://forum.java.sun.com/forum?14@@.ee9b6ca">Hello vs new
+String(Hello)</a></li>
+
+<li>
+&nbsp;<a href="http://forum.java.sun.com/forum?14@@.787b0ffb">Are String
+objects string literals?</a></li>
+
+<li>
+&nbsp;<a href="http://java.sun.com/products/jdk/1.2/docs/api/java/lang/String.html#intern()">java.lang.String</a></li>
+
+<dl>&nbsp;</dl>
+</dl>
+</dl>
+
+<li>
+Compare to</li>
+
+<dl><b><tt>String name = new String("Harry”);</tt></b>
+<li>
+Creates a new object on the heap.</li>
+
+<li>
+Strings have static length and can not be changed.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+
+<li>
+StringBuffer classes provides the ability to change string data.</li>
+
+<dl><b><tt>StringBuffer who = new StringBuffer(" Tom ");</tt></b>
+<br><b><tt>who.append(“ Dick ”);</tt></b></dl>
+
+<li>
+Objects of String are NOT objects of StringBuffer</li>
+</dl>
+</dl>
+
+<hr SIZE=0 WIDTH="100%">
+<br>Enumerated and Subrange Types
+<dl>
+<li>
+Various languages (Pascal, Ada, Modula-2, C++) allow users to define enumerated
+types:</li>
+
+<dl><b><tt>TYPE&nbsp; Traffic_signal&nbsp; IS&nbsp; (Red, Green);</tt></b>
+<br><b><tt>TYPE&nbsp; Rainbow&nbsp; IS&nbsp; (Red, Orange, Yellow, Green,
+Blue, Violet);</tt></b>
+<li>
+This is Ada, Pascal will not allow Red and Green to appear in two enumerated
+types.</li>
+
+<br><b><tt>SUBTYPE&nbsp; Brighter IS&nbsp; Rainbow&nbsp; RANGE&nbsp; Red..Yellow;</tt></b>
+<li>
+It is obvious to the compiler that Red is of type Rainbow.</li>
+
+<li>
+Enumerated types have Predecessor and Successor and, in some cases, other
+functions:</li>
+
+<dl>&nbsp;</dl>
+<b><tt>Rainbow’SUCC(Green) is Blue</tt></b>
+<br><b><tt>Rainbow’PRED(Yellow) is Orange</tt></b>
+<br><b><tt>Rainbow’LAST is Violet</tt></b>
+<br><b><tt>Rainbow’FIRST is Red</tt></b>
+<br>&nbsp;
+<li>
+<b>Maximum value for integers</b></li>
+
+<dl><b><tt>ADA:&nbsp; Integer’LAST</tt></b>
+<br><b><tt>Pascal: MAXINT</tt></b>
+<br><b><tt>Java: java.lang.Integer.MAX_VALUE</tt></b>
+<br><b><tt>C : &lt;Limits.h></tt></b></dl>
+</dl>
+
+<dl>
+<hr SIZE=1 WIDTH="100%"></dl>
+<b>Enumerated types in Haskell</b>
+<dl>
+<li>
+Haskell allows the user to define a type by enumerating the elements of
+the type.</li>
+
+<dl><b>data Temperature = Cold | Hot</b>
+<br><b>data Season = Spring | Summer | Fall | Winter</b></dl>
+</dl>
+</dl>
+</ul>
+
+<hr SIZE=0 WIDTH="100%">
+<br><b>Data Aggregates and Type Constructors</b>
+<ul>
+<dl>
+<li>
+From Merriam-Webster Dictionary:</li>
+
+<dl>&nbsp;
+<br>Main Entry:&nbsp; <b>ag&middot;gre&middot;gate</b>
+<br>Pronunciation: -<i>g&amp;t</i>
+<br>Function: noun
+<br>Date: 15th century
+<br>1 : a mass or body of units or parts somewhat loosely associated with
+one another</dl>
+
+<li>
+Grouping of elementary data elements</li>
+
+<dl>
+<li>
+Aggregate of heterogeneous types</li>
+
+<dl>
+<li>
+Records</li>
+</dl>
+
+<li>
+Aggregate of homogeneous types</li>
+
+<dl>
+<li>
+Arrays</li>
+</dl>
+
+<li>
+Aggregate of aggregates</li>
+
+<li>
+<i>linked lists</i></li>
+</dl>
+
+<li>
+Constructors are provided by the language to facilitate the use of data
+aggregates.</li>
+
+<li>
+Older languages:</li>
+
+<dl>
+<li>
+Fortran has only arrays</li>
+
+<li>
+Cobol had only records</li>
+</dl>
+
+<li>
+Common type constructors:</li>
+
+<dl>
+<li>
+records or structs for Cartesian Products</li>
+
+<li>
+arrays with one or more dimensions</li>
+
+<li>
+union types for unions</li>
+
+<dl>
+<li>
+Also implemented using variant records known as discriminated records in
+Ada</li>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%"></dl>
+<b>Cartesian Products -</b>
+<br><b>Records are Cartesian Products of types</b>
+<br>&nbsp;
+<dl>
+<li>
+Given two sets, U and V, the Cartesian product (also called the cross product)
+is formed by all the ordered pairs of elements from U&nbsp; and V.</li>
+
+<dl>
+<li>
+{ (u, v ) : u <i>in</i> U and v <i>in</i> V }</li>
+
+<li>
+Some examples: points in a graph, rational numbers, complex numbers</li>
+
+<li>
+This definition can be extended to n sets.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br><b>C&nbsp; provides <i>structs </i>:</b>
+<br><b><tt>struct record {</tt></b>
+<ul>
+<dl><b><tt>int x;</tt></b>
+<br><b><tt>int y;</tt></b>
+<br><b><tt>char a;</tt></b>
+<br><b><tt>float f;</tt></b></dl>
+<b><tt>}</tt></b></ul>
+constructs the Cartesian product type
+<dl><tt>int <b>X</b> int <b>X </b>char <b>X</b> float</tt></dl>
+
+<li>
+Java: does not have structs</li>
+
+<dl>
+<li>
+Classes without methods are records.</li>
+</dl>
+
+<li>
+C++:&nbsp; structs may have methods</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br><b>Ada record:</b>
+<br>TYPE&nbsp; Emp_name_typ&nbsp; IS&nbsp; RECORD
+<dl>First : String(1..20);
+<br>Middle : String(1..10);
+<br>Last : String(1..20);</dl>
+END RECORD;
+<p>TYPE&nbsp; Emp_rec_typ&nbsp; IS&nbsp; RECORD
+<dl>Emp_name : Emp_name_typ;
+<br>Hourly_rate : Float;</dl>
+END&nbsp; RECORD;
+<p>Employee_record : Emp_rec_typ;
+<p>
+<hr SIZE=1 WIDTH="100%">
+<br><b>Haskell example:</b>
+<dl><b><tt>data People = Person String Int</tt></b></dl>
+constructs the Cartesian product type
+<dl><tt>String <b>X</b> Int</tt>
+<li>
+People is the type name</li>
+
+<li>
+Person is the constructor</li>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Union Records</b>
+<br>&nbsp;
+<dl>
+<li>
+A union type T is such that variables of type T can store different types
+during the execution of a program.</li>
+
+<li>
+C example:</li>
+
+<dl>&nbsp;
+<br><b><tt>typedef union</tt></b>
+<br><b><tt>{ int&nbsp; n ;</tt></b>
+<br><b><tt>&nbsp; float r ; } utype;</tt></b></dl>
+
+<li>
+Unions are a separate category of types and are not part of the record
+type in C, C++.&nbsp; Notice there are no tags of any sort.</li>
+
+<li>
+What kinds of problems can you predict using union?</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<li>
+Algol 68:</li>
+
+<dl><b><tt>union&nbsp; (int,&nbsp; real)&nbsp; uvar;</tt></b>
+<br><b><tt>uvar := 33; <i>L</i></tt><i>egal</i></b>
+<br><b><tt>count := uvar;&nbsp; </tt><i>Not Legal</i></b></dl>
+
+<li>
+To solve the problem of type conflicts during execution, ALGOL 68 provides
+<i>conformity
+clauses</i>:</li>
+
+<dl><b><tt>union&nbsp; (int,&nbsp; real)&nbsp; udiscriminant;</tt></b>
+<br><b><tt>int&nbsp; count;</tt></b>
+<br><b><tt>real sum;</tt></b>
+<dl><b><tt>...</tt></b></dl>
+<b><tt>case undiscriminant in</tt></b>
+<dl><b><tt>(int&nbsp; x): count := x;</tt></b>
+<br><b><tt>(real&nbsp; y): sum := y;</tt></b></dl>
+<b><tt>esac ;</tt></b></dl>
+
+<li>
+The variable “udiscriminant” is a tag or discriminant that identifies the
+current type value stored.</li>
+
+<li>
+Our text (3.6) describes <i>descriptor</i> associated with a <i>union data
+object.</i></li>
+
+<dl>
+<li>
+<i>A descriptor</i> contains the attributes of the data object.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+
+<li>
+Ada:</li>
+
+<dl><b><tt>type IntOrReal (dtag :boolean) is</tt></b>
+<br><b><tt>&nbsp;&nbsp; record</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; case dtag of</tt></b>
+<dl><b><tt>when false => X : integer;</tt></b>
+<br><b><tt>when true => Y : float;</tt></b></dl>
+<b><tt>&nbsp;&nbsp;&nbsp;&nbsp; end case;</tt></b>
+<br><b><tt>&nbsp;&nbsp; end record;</tt></b></dl>
+
+<li>
+The type of the variant can only be changed by assigning the entire record.&nbsp;
+This prevents inconsistent records</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<li>
+Java does not have Union type</li>
+
+<li>
+If Java had a union type like C's union type then a clever programmer would
+be able to do pointer arithmetic!</li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Subsets</b>
+<dl>
+<li>
+Languages can provide subranges of scalar types</li>
+
+<li>
+Pascal and Modula-2</li>
+
+<br>&nbsp; <b><tt>TYPE&nbsp; Uppercase = ‘A’..‘Z’ ;</tt></b>
+<br>&nbsp;
+<li>
+Ada also allows subtypes or new&nbsp; types</li>
+
+<dl><b><tt>SUBTYPE Myrange is Integer RANGE 10. . 100</tt></b>
+<br><b><tt>TYPE Mytype is NEW Integer RANGE 10. .100</tt></b>
+<p><b><tt>X : Myrange;</tt></b>
+<br><b><tt>Y:Mytype;</tt></b>
+<br><b><tt>Z:Integer;</tt></b>
+<br><b><tt>legal: Z := X;&nbsp; X := Z; </tt></b>(if Z in the range of
+X)
+<br><b><tt>not legal: Z := Y;</tt></b>
+<br>&nbsp;
+<li>
+Subarrays of larger arrays.</li>
+</dl>
+</dl>
+</dl>
+</ul>
+
+<hr SIZE=1 WIDTH="100%">
+<ul><b>Arrays</b>
+<dl>
+<dl>
+<li>
+Decisions language designers have to made are:</li>
+
+<dl>
+<li>
+What symbols to use to denote arrays?</li>
+
+<li>
+What types are legal for subscripts?</li>
+
+<li>
+When are subscript ranges bound?</li>
+
+<li>
+When does array allocation take place?</li>
+
+<li>
+How&nbsp; many subscripts are there allowed?</li>
+
+<li>
+Can arrays be initialized when they have their storage allocated?</li>
+
+<li>
+What kind of slices are allowed, if any?</li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Symbols</b>
+<dl>
+<li>
+ALGOL, C, C++, Pascal, Java use [&nbsp; ]</li>
+
+<li>
+FORTRAN, Ada, PL/1 use (&nbsp; )</li>
+
+<dl>
+<li>
+Problem can be caused by confusing function calls and arrays.</li>
+
+<li>
+Problem in FORTRAN if an array is not declared then</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; array(1)
+<br>taken to be a function call.
+<li>
+FORTRAN and PL/1 chose “( )” because the character code used did not have
+any other characters.</li>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Legal subscripts types:</b>
+<dl>
+<li>
+C, C++, Java indexes are always integers starting at 0.</li>
+
+<li>
+FORTRAN 77, FORTRAN 90 uses integers.&nbsp; The lower bound default if
+1.</li>
+
+<li>
+Pascal allows any ordinal type to be an index.</li>
+
+<dl>type WkE = (Sat, Sun);
+<br>Costs = array[WkE] of real;</dl>
+
+<li>
+Ada allows any discrete type (page 153) to be an index.</li>
+
+<dl>
+<li>
+Unconstrained 2-dimensional array</li>
+
+<br><b><tt>TYPE&nbsp; Matrix_type&nbsp; IS</tt></b>
+<dl><b><tt>ARRAY(Integer range &lt;>, Integer range &lt;>) OF Integer;</tt></b>
+<br>&nbsp;
+<li>
+&nbsp;<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8Spr00.html#elaboration">Elaboration</a></li>
+
+<br>&nbsp;</dl>
+
+<li>
+Constrained 2-dimensional array</li>
+
+<br><b><tt>TYPE&nbsp; Matrix_4x4_type&nbsp; IS</tt></b>
+<dl><b><tt>ARRAY(1..4, 10..13) OF Integer;</tt></b></dl>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+When are subscript ranges bound?</h4>
+
+<h4>
+When does array allocation take place?</h4>
+
+<dl><b>Non-heap arrays</b>
+<li>
+If the arrays are allocated during compile time then the range is statically
+bound.</li>
+
+<dl>
+<li>
+Fortran 77</li>
+
+<li>
+Global or automatic array variable in C:</li>
+
+<br><b><tt>int arr [ 40 </tt></b>];
+<br>&nbsp;
+<dl>
+<li>
+Range bound static, storage ?</li>
+
+<dl>&nbsp;</dl>
+</dl>
+
+<li>
+Automatic Arrays declared in C functions:</li>
+
+<dl><b><tt>void cFunction (int size ) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; int marbles [size][size/2];</tt></b>
+<br><b><tt>}</tt></b>
+<br>&nbsp;
+<li>
+Range bound dynamic, storage dynamic</li>
+</dl>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+When are subscript ranges bound?</h4>
+
+<h4>
+When does array allocation take place?</h4>
+
+<li>
+If&nbsp; the arrays are allocated from the heap then both the storage allocation
+and the subscript ranges are dynamically bound.</li>
+
+<li>
+Java:</li>
+
+<dl>
+<li>
+Storage only on the heap</li>
+
+<li>
+Arrays are objects</li>
+
+<dl><b><tt>String [ ] sArray = new String[5];</tt></b>
+<br><b><tt>Object [ ] myArray = new Object [sArray.length];</tt></b></dl>
+
+<li>
+Java does do range checking.&nbsp; All arrays have a field length that
+never changes.</li>
+</dl>
+
+<li>
+C, C++ can also dynamically allocate storage for arrays.</li>
+
+<dl>
+<li>
+C, C++ do not have range checking.</li>
+
+<li>
+?option to have runtime range checking for c++??</li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+How&nbsp; many subscripts are there allowed?</h4>
+
+<dl>
+<h4>
+<a NAME="effectiveAddress"></a>Computing effective address:</h4>
+
+<li>
+Older languages such as FORTRAN 4 and APL supported arrays of two or more
+dimensions.</li>
+
+<li>
+Since the late 60’s&nbsp; multidimensional arrays are implemented as array
+of arrays.</li>
+
+<dl>
+<li>
+The special syntax and semantic rules were no longer needed.</li>
+
+<li>
+Languages like C, C++, Java, Pascal support only single dimensions.</li>
+</dl>
+
+<li>
+Formula for computing the effective address:</li>
+
+<dl>
+<li>
+Let <i>ba</i> be the base address of array A, and</li>
+
+<li>
+Let <i>size</i> be the number of addressable units(bytes) required to store
+a value of base type of A.</li>
+
+<li>
+&nbsp;Then the effective address of <i>A</i>[<i>s</i>1] is:</li>
+
+<br>&nbsp;
+<dl>
+<li>
+<i>ba</i> + <i>size </i>* (<i>s</i>1 - lower bound of <i>A </i>)</li>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<dl>
+<dl>&nbsp;</dl>
+</dl>
+
+<li>
+Pascal has a “syntax sugar” notation for array declarations:</li>
+
+<dl><b><tt>var S: array[0..5, 2..4, 1..9] of char;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; …</tt></b>
+<br><b><tt>ch := S[0,4,7];</tt></b></dl>
+
+<li>
+Equivalent array declared:</li>
+
+<br><b><tt>var Basic: array[0..5] of array[2..4] of array[1..9] of char;</tt></b>
+<dl><b><tt>…</tt></b></dl>
+<b><tt>ch := Basic[0][4][7];</tt></b></dl>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+Can arrays be initialized when they have their storage allocated?</h4>
+
+<dl>
+<li>
+Initialization: In FORTRAN, Java, C and Ada, arrays can be initialized
+in their declaration.</li>
+
+<li>
+Forcing a “2 dimensional” array representation with initialization in Java:</li>
+
+<dl>
+<dl><b><tt>double[ ] [ ] identity = {</tt></b>
+<dl><b><tt>{ 1.0, 0.0, 0.0 },</tt></b>
+<br><b><tt>{ 0.0, 1.0, 0.0 },</tt></b>
+<br><b><tt>{ 0.0, 0.0, 1.0 }</tt></b></dl>
+<b><tt>};</tt></b></dl>
+
+<li>
+Note: "global" variables in Java are initialized (0,nil) but NOT local
+variables.</li>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+What kind of slices are allowed, if any?</h4>
+
+<dl>
+<li>
+A slice of an array is the contents of a consecutive series of locations.</li>
+
+<li>
+If Vector is a array with index (0 .. 25) then</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><tt>Vector(5..10)</tt></b>
+<br>consists of the elements indexed from 5 to 10.
+<li>
+FORTRAN has extensive slicing capability.</li>
+
+<li>
+Ada only for 1-dimensional arrays.</li>
+</dl>
+
+<hr SIZE=0 WIDTH="100%">
+<h4>
+Java and Arrays and Collection Classes</h4>
+
+<dl>
+<li>
+Arrays are first class objects in Java.</li>
+
+<dl>
+<li>
+Arrays are part of the language and not a separate supplied library class.</li>
+
+<li>
+The size of an array can not change dynamically, but the size can be supplied
+at run time.</li>
+
+<li>
+The elements of an array have to be the same type.</li>
+
+<li>
+This is an example of a parameterized type.</li>
+
+<dl>&nbsp;</dl>
+String [ ]&nbsp; arrOfStrings;&nbsp; // only declaration
+<dl>...</dl>
+arrOfStrings = new String [ i ]; // dynamic memory allocation of&nbsp;
+array references ( i = 10)
+<br>arrOfStrings[4] = new String(“F”); // memory allocation of a string&nbsp;
+"F"
+<br>arrOfStrings[5] = arrOfStrings[1]; // // an exception is thrown</dl>
+
+<h4>
+Java’s Collection Framework</h4>
+
+<li>
+Collections are sometime called containers</li>
+
+<li>
+<i>A Collection Framework</i> is a unified architecture for representing
+and manipulating collections.</li>
+
+<li>
+Collection Frameworks contain three things</li>
+
+<dl>
+<li>
+Abstract data types representing collections</li>
+
+<dl>
+<li>
+<i>interface</i>s is the language construct used to express abstract data
+types</li>
+</dl>
+
+<li>
+Concrete implementation of the collection interfaces.</li>
+
+<li>
+Algorithms that perform useful computations, such as searching and sorting
+on objects that implement the abstract data type (interface).</li>
+</dl>
+
+<li>
+C++ ‘s STL and Smalltalk are other examples of Collection Frameworks</li>
+
+<dl>
+<dl>
+<hr SIZE=1 WIDTH="100%"></dl>
+</dl>
+
+<li>
+<i><a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/AbstractCollection.html">java.util.AbstractCollection</a></i>is
+the root of&nbsp; classes which implements <i><a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/Collection.html">java.util.Collection</a></i></li>
+
+<li>
+<i><a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/AbstractList.html">java.util.AbstractList</a></i>
+provides a skeletal implementation of the List interface to minimize the
+effort required to implement this interface backed by a "random access"
+data store (such as an array).</li>
+
+<li>
+<i><a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/ArrayList.html">java.util.ArrayList</a></i>
+is a resizable-array implementation of the List interface.</li>
+
+<br>&nbsp;
+<dl><b><tt>ArrayList mylist = new ArrayList();</tt></b>
+<br><b><tt>mylist.add(“a”);</tt></b>
+<br><b><tt>mylist.add(1,”b”);</tt></b>
+<br><b><tt>mylist.get(1);</tt></b></dl>
+
+<br>&nbsp;
+<li>
+<i>java.util.Vector</i> is similar to ArrayList but the methods are synchronized.</li>
+
+<li>
+<i><a href="http://java.sun.com/products/jdk/1.2/docs/api/java/util/Iterator.html">java.util.Iterator</a>
+</i>is an interface that gives method calls to go through all the elements
+in a collection.</li>
+
+<li>
+</li>
+
+<li>
+&nbsp;<a href="http://java.sun.com/products/jdk/1.2/docs/api/index.html">http://java.sun.com/products/jdk/1.2/docs/api/index.html</a></li>
+
+<br>&nbsp;</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Iterators in Java</b>
+<dl>
+<li>
+Java has an Iterator interface in the java.util package.</li>
+
+<dl>
+<li>
+Interfaces are methods your class implements AND declares it will implement.</li>
+
+<li>
+Collection classes have methods that return iterator instances that allow
+the sequencing through a collection</li>
+
+<li>
+Users can implement their own Iterator.</li>
+
+<br><b><tt>Class MyColors implements Iterator {</tt></b>
+<dl><b><tt>&nbsp;&nbsp;&nbsp; ...</tt></b>
+<br><b><tt>public boolean hasNext( ) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ... }</tt></b>
+<br><b><tt>public object next() {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ... }</tt></b>
+<br><b><tt>public remove() {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ... }</tt></b></dl>
+<b><tt>}</tt></b></dl>
+
+<li>
+All Classes that inherit from util.AbstractCollection implement Iterator.</li>
+</dl>
+</dl>
+</dl>
+</ul>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+Functions and Other Type Constructors</h4>
+
+<ul>
+<dl>
+<li>
+Functions may be a type in a language.</li>
+
+<dl>
+<li>
+Haskell, ML, Lisp</li>
+
+<li>
+Arrays are a special form of function, a table of values A[ j ] can be
+thought of as the value of function A at point j.</li>
+</dl>
+</dl>
+</ul>
+Pointers
+<ul>
+<dl>
+<li>
+Pointer (access) types provide a way of manipulating memory addresses.</li>
+
+<li>
+Pointers may be used to create recursive types, e.g. linked list and trees.</li>
+
+<li>
+C example:</li>
+
+<dl><b><tt>typedef struct {</tt></b>
+<dl><b><tt>int val;</tt></b>
+<br><b><tt>tree* right;</tt></b>
+<br><b><tt>tree* left;</tt></b></dl>
+<b><tt>}tree;</tt></b>
+<br><b><tt>tree* root;</tt></b></dl>
+
+<li>
+Reference type which do not allow manipulation of memory also may be used
+to create recursive types.</li>
+
+<dl>
+<li>
+Java does not have pointers but does have reference types.</li>
+</dl>
+
+<li>
+Haskell uses constructors to define recursive data types:</li>
+
+<dl><b><tt>data Tree v = Nil | Node v (Tree v) (Tree v)</tt></b></dl>
+
+<li>
+Some languages provide a non-type:</li>
+
+<dl>
+<dl>
+<li>
+void in C</li>
+</dl>
+</dl>
+</dl>
+
+<hr SIZE=0 WIDTH="100%">
+<h4>
+When are two types the same? -- Type Equivalence</h4>
+
+<dl><b>Structural Equivalence</b>
+<dl>
+<li>
+Based on the idea that data types that have identical structures should
+be compatible.</li>
+
+<li>
+Exact definition of equivalence varies from one language to another.</li>
+</dl>
+<b>Name Equivalence </b>(Sometime called strict)
+<dl>
+<li>
+Data types are equivalent only if they have the same name</li>
+</dl>
+<b>Declaration Equivalence </b>(loose name equivalence)
+<dl>
+<li>
+data types are equivalent only if the type names can be traced back to
+the same original structural declaration</li>
+</dl>
+
+<dl>
+<hr SIZE=1 WIDTH="100%">
+<br><b>Arrays</b>
+<li>
+Is array [ 1 .. 10 ] compatible with array [ 0 .. 9 ] ?</li>
+
+<li>
+C avoids the problem because all arrays start with 0.</li>
+
+<li>
+Algol 68 would make the array type compatible.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br><b>Records</b>
+<li>
+Are these two records equivalent?</li>
+
+<dl><b><tt>record</tt></b>
+<dl><b><tt>x : integer;</tt></b>
+<br><b><tt>y : character;</tt></b></dl>
+<b><tt>end</tt></b>
+<p><b><tt>record</tt></b>
+<dl><b><tt>a : integer;</tt></b>
+<br><b><tt>b : character;</tt></b></dl>
+<b><tt>end</tt></b></dl>
+
+<li>
+Algol 68 requires field names to be the same with the same type. So it
+is not considered equivalent.</li>
+
+<br>&nbsp;
+<li>
+Ada uses name equivalence.</li>
+
+<dl><b><tt>type T1 is range 1..10</tt></b>
+<br><b><tt>type T2 is range 1..10</tt></b></dl>
+<b><i>Derived</i></b> types are not the same type.
+<br>&nbsp;
+<li>
+To have compatibility we use <b><i>subtypes</i></b>, e.g.</li>
+
+<dl><b><tt>subtype S is T1 range 2..5</tt></b></dl>
+</dl>
+<b>Beware of anonymous types in Ada:</b>
+<dl>
+<li>
+Variable declarations of arrays and tasks (without giving a name to the
+corresponding type) may create anonymous type that are different each time:
+(Ada)</li>
+
+<br><b><tt>x, y: array(1..9) of integer;</tt></b>
+<dl>is equivalent to:</dl>
+<b><tt>type internal_type1 is array (1..9) of integer;</tt></b>
+<br><b><tt>type internal_type2 is array (1..9) of integer;</tt></b>
+<dl><b><tt>x: internal_type1;</tt></b>
+<br><b><tt>y: internal_type2;</tt></b></dl>
+
+<li>
+x and y have different internal names.</li>
+
+<dl>
+<li>
+Therefore have different types. So x := y is illegal.</li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>C</b>
+<li>
+In C, structural equivalence is used, <b>except for struct’s,</b> where
+name equivalence is used.</li>
+
+<dl>
+<li>
+Note: Typedef does not create a new type.</li>
+</dl>
+
+<li>
+Java uses name equivalence.</li>
+
+<li>
+C declaration:</li>
+
+<dl>int x [ 9 ];
+<br>int y [ 9 ];</dl>
+declares two variables <i>x</i> and <i>y</i> which have the same type.
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br>Declaration Equivalence
+<li>
+The follow would be considered equivalent (as in some Pascal implementations):</li>
+
+<dl><b><tt>x,y: array[1..10] of</tt></b>
+<dl><b><tt>record a : integer;</tt></b>
+<br><b><tt>b : char</tt></b></dl>
+<b><tt>end;</tt></b></dl>
+
+<li>
+The use of <b><tt>typedef</tt></b> in C introduces a new name for the same
+type.</li>
+
+<dl><b><tt>typedef char *str;</tt></b>
+<br><b><tt>str p;</tt></b>
+<br><b><tt>char *q;</tt></b></dl>
+<i>p </i>and <i>q</i> have the same type.</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br>Type Checking
+<br>&nbsp;
+<dl>
+<li>
+Compiled languages usually do as much type checking as possible before
+running the program.&nbsp; (Static type checking).</li>
+
+<li>
+Some languages must include tables in the run-time environment for dynamic
+type checking.</li>
+
+<li>
+Ada has to do run-time constraint checking.</li>
+
+<dl><b><tt>type T1 is range 1..99;</tt></b>
+<br><b><tt>subtype S is T1 range 1..9;</tt></b>
+<dl><b><tt>X : T1;</tt></b>
+<br><b><tt>Y : S;</tt></b></dl>
+<b><tt>begin</tt></b>
+<dl><b><tt>Y := 6;</tt></b>
+<br><b><tt>X := 2 * Y;</tt></b>
+<br><b><tt>Y := X;</tt></b></dl>
+</dl>
+this causes a run-time exception.</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+Pointer/Reference Types</h4>
+
+<ul>
+<dl>
+<li>
+Reference of a variable though&nbsp; the r-value of another variable.</li>
+
+<li>
+Introduced to HLL by PL/I (1966)</li>
+
+<li>
+Two sets of bindings</li>
+
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10ptref.gif"><img SRC="10ptref.gif" ALT="Pointer and reference diagram" BORDER=0 height=150 width=203></a>
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+</ul>
+Pointer/References Issues
+<ul>
+<dl>
+<li>
+Dereferencing</li>
+
+<dl>
+<li>
+Java, not needed</li>
+
+<li>
+Ada (access type)&nbsp; <b><tt><i>pt</i>.all</tt></b></li>
+
+<li>
+Pascal <b><i>pt^</i></b></li>
+
+<li>
+C, C++, <b><i>pt </i>->, *<i>pt</i></b></li>
+</dl>
+
+<li>
+Dangling pointer problem</li>
+
+<dl>
+<li>
+Deallocation leaves a pointer's value binding invalid</li>
+</dl>
+
+<li>
+Garbage -</li>
+
+<dl>
+<li>
+No current reference to allocated memory (memory leaks)</li>
+</dl>
+
+<li>
+Dereferencing a nil pointer</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br>C Example
+<br>&nbsp;
+<table WIDTH="75%" >
+<tr>
+<td><b><tt>typedef struct {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; ….</tt></b>
+<br><b><tt>&nbsp;&nbsp; int field;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; ….</tt></b>
+<br><b><tt>} RecType;</tt></b>
+<p><b><tt>typedef RecType ArrType[4];</tt></b>
+<p><b><tt>ArrType *pt;</tt></b></td>
+
+<td><img SRC="10Cpt.gif" ALT="C: Example of Array of structs and Pointers" BORDER=0 height=175 width=290></td>
+</tr>
+</table>
+
+<hr SIZE=1 WIDTH="100%">
+<br>Ada
+<dl>&nbsp;
+<br><b><tt>type RecType is</tt></b>
+<dl><b><tt>record</tt></b>
+<br><b><tt>&nbsp; Field: Integer;</tt></b>
+<br><b><tt>&nbsp; ..</tt></b>
+<br><b><tt>end record;</tt></b></dl>
+<b><tt>type ArrType is array(1..4) of RecType;</tt></b>
+<br><b><tt>type PtType is access ArrType;</tt></b>
+<br><b><tt>pt: PtType;</tt></b>
+<p>pt&nbsp;&nbsp;&nbsp; -- pointer to array of records
+<br>pt.all -- array of records
+<br>pt.all[ 3 ] --&nbsp; record
+<br>pt.all[ 3 ].Field -- integer</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<h4>
+Dangling Pointers</h4>
+Creations of two Dangling Pointers</dl>
+
+<dl>/* ppp is the address of a pointer */
+<br><b><tt>int * dangle ( int ** ppp) {</tt></b>
+<dl><b><tt>int p = 5; int m = 21;</tt></b>
+<br><b><tt>*ppp = &amp;p&nbsp;&nbsp;</tt></b> /*<font size=-1> dereference
+ppp to get the pointer whose address was passed. </font>*/
+<br><b><tt>return &amp;m;</tt></b></dl>
+&nbsp;}
+<br>main () {
+<dl><b><tt>int k = 17;</tt></b>
+<br><b><tt>int *pm,&nbsp; *pk = &amp;k;</tt></b>
+<br><b><tt>pm = dangle(&amp;pk);</tt></b>&nbsp; <font size=-1>//both pm
+and pk point to deallocated memory</font>.</dl>
+}
+<h6>
+Fischer&amp;Grodzinsky, The Anatomy of Programming Languages, page 237</h6>
+
+<hr SIZE=1 WIDTH="100%"></dl>
+</ul>
+
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="85%" >
+<caption><b>Dangling Pointers and Memory Leaks in C++</b></caption>
+
+<tr>
+<td><i>//&nbsp; header.h</i>
+<br><b><tt>class HeapObject{</tt></b>
+<br><b><tt>&nbsp;public:&nbsp;</tt></b>
+<br><b><tt>&nbsp;&nbsp; HeapObject();</tt></b>
+<dl><b><tt>&nbsp;private:</tt></b>
+<br><b><tt>&nbsp; int BigArray[1000];</tt></b>
+<br><b><tt>&nbsp; int nothing;</tt></b>
+<br><b><tt>};</tt></b>
+<p><b><tt>class StackObject{</tt></b>
+<br><b><tt>&nbsp;public:</tt></b>
+<br><b><tt>&nbsp; StackObject();</tt></b>
+<br><b><tt>&nbsp; ~StackObject();</tt></b>
+<p><b><tt>&nbsp;private:</tt></b>
+<br><b><tt>&nbsp; int RegData;</tt></b>
+<br><b><tt>&nbsp; HeapObject *MemThief;</tt></b>
+<br><b><tt>};</tt></b></dl>
+</td>
+
+<td BGCOLOR="#F3F3F3"></td>
+
+<td ALIGN=LEFT VALIGN=TOP BGCOLOR="#F3F3F3">
+<table WIDTH="99%" HEIGHT="100%" BGCOLOR="#FFFFFF" >
+<tr>
+<td><i><tt>//</tt> Source.cpp</i>
+<br><b><tt>#include "header.h"</tt></b>
+<p><b><tt>StackObject::StackObject(){</tt></b>
+<br><b><tt>&nbsp; RegData = 0;</tt></b>
+<br><b><tt>&nbsp; MemThief = new HeapObject();</tt></b>
+<br><b><tt>}</tt></b>
+<br><b><tt>StackObject::~StackObject(){</tt></b>
+<br><b><tt>&nbsp;//</tt> Do nothing -- will cause a memory leak</b>
+<br><b><tt>}</tt></b>
+<p><b><tt>HeapObject::HeapObject(){</tt></b>
+<br><b><tt>&nbsp; nothing = 0;</tt></b>
+<br><b><tt>}</tt></b></td>
+</tr>
+
+<tr>
+<td HEIGHT="1%" BGCOLOR="#F3F3F3">&nbsp;</td>
+</tr>
+
+<tr>
+<td><b><tt>//</tt></b><i>main.cpp</i>
+<br><b><tt>#include "header.h"</tt></b>
+<br><b><tt>#include &lt;iostream.h></tt></b>
+<br><b><tt>StackObject * BadFunction(){</tt></b>
+<br><b><tt>&nbsp;StackObject Temp;</tt></b>
+<br><b><tt>&nbsp;// </tt>Stack object stole the memory</b>
+<br><b><tt>&nbsp;return &amp;Temp;&nbsp; //</tt>and Dangling Pointer</b>
+<br><b><tt>}</tt></b>
+<p><b><tt>void main(){</tt></b>
+<br><b><tt>&nbsp; StackObject * dangling;</tt></b>
+<br><b><tt>&nbsp; dangling = BadFunction();</tt></b>
+<br><b><tt>&nbsp; cout &lt;&lt; "It will run\n";</tt></b>
+<br><b><tt>}</tt></b></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<li>
+This code will not compile</li>
+
+<ul>
+<dl>
+<dl>
+<li>
+<b><tt>gcc -ansi mainfile.cpp Source.cpp -o leak.exe</tt></b></li>
+</dl>
+
+<li>
+The following did compile!</li>
+
+<dl>
+<li>
+<b><tt>gcc mainfile.cpp Source.cpp -o leak.exe</tt></b></li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%"></dl>
+</ul>
+<b>Pointer vs Reference</b>
+<ul>
+<dl>
+<li>
+A reference type (usually) is like pointer type with automatic dereferencing,
+and only assignment and equality operators.</li>
+
+<dl>
+<li>
+It can be alias for an object</li>
+
+<li>
+All non-primitive types in Java are reference types</li>
+
+<li>
+C++ has reference type that is usually used for parameter passing</li>
+</dl>
+
+<li>
+r-value of the Reference can not be separated from the l-value of the object.</li>
+
+<li>
+r-value of a Pointer can be separated from the l-value of the object pointed
+to</li>
+
+<dl>
+<li>
+pt and (*pt) are different!</li>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br><b>Handling Pointer Problems</b>
+<li>
+Require Pointers to be typed</li>
+
+<li>
+Do not allow pointer arithmetic</li>
+
+<dl>&nbsp;</dl>
+
+<li>
+Make memory management the job of the language, NOT the job of the programmer</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br><b>Dangling Pointer Problem</b>
+<li>
+Remember dangling pointers point to deallocated storage.</li>
+
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10danglingPt.gif"><img SRC="10danglingPt.gif" ALT="Dangling Pointers" BORDER=0 height=150 width=200></a>
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br><b>What can you do to Avoid Dangling Pointers (From a Language point
+of view)</b>
+<br>&nbsp;
+<li>
+Never allow deallocation of memory.</li>
+
+<dl>
+<li>
+Creates lots of garbage</li>
+
+<li>
+Internally correct.</li>
+</dl>
+
+<li>
+Tombstone by Lomet (1975)</li>
+
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10tomb.gif"><img SRC="10tomb.gif" ALT="Tombstones" BORDER=0 height=200 width=157></a>
+<dl>
+<li>
+Expensive in time and space</li>
+
+<li>
+Good side effect- easy to implement <i>storage compaction</i></li>
+
+<dl>
+<li>
+Used by Macintosh OS for references to system objects such as files and
+window descriptors.</li>
+</dl>
+</dl>
+
+<li>
+Lock and Key by Fischer and LeBlanc 1977, 1980</li>
+
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10LockKey.gif"><img SRC="10LockKey.gif" BORDER=0 height=240 width=182></a>
+<br>
+<hr SIZE=1 WIDTH="100%">
+<h4>
+What can you do to reduce memory leaks?</h4>
+Garbage Collecting
+<li>
+Lisp pioneered garbage collecting.&nbsp; Haskell, Ml, Lisp, and scheme&nbsp;
+(functional programming language) rely on garbage collectors.</li>
+
+<li>
+Object oriented language like Java, SmallTalk, Simula 67 and Eiffel also
+rely on garbage collectors for the reclaimation of memory during execution.</li>
+
+<li>
+C++ is the notable exception.&nbsp; C++ retains the allocation and deallocation
+rules of C.</li>
+
+<br>&nbsp;</dl>
+
+<h4>
+Garbage Collecting Techniques</h4>
+
+<dl>
+<li>
+Fundamental techniques</li>
+
+<dl>
+<li>
+Reference counters</li>
+
+<dl>
+<li>
+eager approach</li>
+</dl>
+
+<li>
+Mark and sweep</li>
+
+<dl>
+<li>
+lazy approach</li>
+</dl>
+</dl>
+</dl>
+</ul>
+</ul>
+
+<hr SIZE=1 WIDTH="100%">
+<hr SIZE=1 WIDTH="100%">
+<br>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9Spr00.html">&nbsp;previous&nbsp;</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/11Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+</body>
+</html>

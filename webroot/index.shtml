@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <link rel="StyleSheet" href="css/core.css" type="text/css" title="standard">
+  <link rel="StyleSheet" href="css/nav.css" type="text/css" title="standard"><title>Professor Head | Home</title></head><body>
+    <div style="background: transparent url(img/top.jpg) repeat-x scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; height: 110px;"></div>
+    <img style="margin-top: -40px; margin-left: 10px; margin-bottom: 10px;" src="img/title.png" alt="Title">
+
+    <div class="search">
+      <!-- Google CSE Search Box Begins-->
+      <form action="http://www.google.com/cse" id="searchbox_018075468199663424746:k0tmp3bu8ha">
+        <input name="cx" value="018075468199663424746:k0tmp3bu8ha" type="hidden">
+        <input name="q" size="25" type="text">
+        <input name="sa" value="Search" type="submit">
+      </form>
+      <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbox_018075468199663424746%3Ak0tmp3bu8ha&amp;lang=en"></script>
+      <!-- Google CSE Search Box Ends -->
+    </div>
+
+    <div class="calendar">
+      <a href="http://www.google.com/calendar/embed?src=head%40binghamton.edu&amp;ctz=America/New_York" target="_blank">
+        <img src="Cal.gif" alt="Eileen Head's Calendar" style="border: 0px solid ; width: 100px; height: 25px;" hspace="5" vspace="5">
+      </a>
+    </div>
+    <div id="navcontainer">
+      <ul id="navlist">
+        <li id="active"><a href="#" id="current">Home</a></li>
+        <li><a href="cs395.shtml">CS395</a></li>
+        <li><a href="cs471.shtml">CS471</a></li>
+        <li><a href="software.shtml">Software</a></li>
+        <li><a href="links.shtml">Links</a></li>
+      </ul>
+    </div>
+
+    <div class="wrapper">
+      <div class="left-content">
+        <img style="float: left;" src="img/seats.jpg" alt="Seats">
+        <div style="float: left;">
+          <div class="info" style="margin-left: 10px;">Eileen Head:</div>
+          <div class="info-inside" style="margin-left: 10px;">
+            <table>
+              <tbody>
+                <tr>
+                  <td><b>Department</b></td>
+                  <td>Computer Science</td>
+                </tr>
+                <tr>
+                  <td style="width: 120px;"><b>IM</b></td>
+                  <td>cs471SUNYB</td>
+                </tr>
+                <tr><td><b>Advising IM</b></td><td>binghamtonCSadv</td></tr>
+                <tr><td><b>Email</b></td><td>head@binghamton.edu</td></tr>
+                <tr><td><b>Office</b></td><td>EB P5<br>
+                </td></tr>
+                <tr><td><b>Phone</b></td><td>(607) 777- 4730</td></tr>
+                <tr><td><span style="font-weight: bold;">Fax</span></td><td>(607) 777- 4729</td></tr><tr><td><span style="font-weight: bold;">Office Hours</span></td><td><a target="_blank" href="https://www.google.com/calendar/embed?src=head@binghamton.edu&amp;ctz=America/New_York">(Check Calendar)<br>
+                </a><small>MWF<br>2:30-3:30 pm<br>
+                  Tue 10:30-11:30am<br>
+
+                  R 2:00-3:00pm</small><br>
+
+                </td></tr></tbody></table>
+              </div>
+            </div>
+
+            <div style="clear: both;"></div>
+          </div>
+        </div>
+
+        <div class="bottom">
+
+          <ul>
+            <li class="first"><a href="http://blackboard.binghamton.edu" target="_blank">Blackboard</a></li>
+            <li><a href="http://binghamton.edu" target="_blank">Binghamton University</a></li>
+            <li><a href="http://cs.binghamton.edu" target="_blank">Computer Science Dept.</a></li>
+          </ul>
+
+          <div style="float: right; margin-right: 25px;">
+            Professor Head, Binghamton University �2007-2008
+          </div>
+
+          <div style="clear: both;"></div>
+
+        </div>
+
+      </body></html>

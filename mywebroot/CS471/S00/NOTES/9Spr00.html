@@ -1,0 +1,802 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Routines - Parameter Passing</title>
+</head>
+<body>
+
+<center>
+<h3>
+&nbsp; Routines: Fundamental Building Blocks of Programs Spring, 2000</h3></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<h3>
+Goal: Explore various different parameter passing schemes and typing of
+functions.</h3>
+
+<h3>
+What will be covered ?</h3>
+
+<ul>
+<li>
+The semantics of different parameter passing mechanisms</li>
+
+<li>
+Named parameters</li>
+</ul>
+
+<hr WIDTH="100%">
+<br>Subprograms and Parameters
+<ul>
+<li>
+Most languages distinguish between</li>
+
+<ul>
+<li>
+Procedures</li>
+
+<li>
+Functions.</li>
+
+<li>
+Object oriented languages call them methods.</li>
+</ul>
+
+<li>
+Subprograms</li>
+
+<ul>
+<li>
+Have a name,</li>
+
+<li>
+Formal parameter types (and formal parameter names in several languages)</li>
+
+<ul>
+<li>
+Arity is the number of parameters</li>
+</ul>
+
+<li>
+Return type, in the case of a function.</li>
+</ul>
+
+<li>
+&nbsp;Algol 68 and C, C++, Java do not distinguish between functions and
+procedures</li>
+
+<ul>
+<li>
+Using the return type <i>void</i> simulates a procedure</li>
+</ul>
+
+<hr WIDTH="100%">
+<br>Ada Example:
+<p><b><tt>PROCEDURE max (x,y : in INTEGER; maximum : out INTEGER) is</tt></b>
+<ul><b><tt>BEGIN</tt></b>
+<br><b><tt>&nbsp; IF x > y THEN</tt></b>
+<ul><b><tt>maximum := x;</tt></b></ul>
+<b><tt>&nbsp; ELSE</tt></b>
+<ul><b><tt>maximum := y;</tt></b></ul>
+<b><tt>&nbsp; END IF;</tt></b>
+<br><b><tt>END max;</tt></b></ul>
+<b><tt>FUNCTION max1 (x,y : in INTEGER) return INTEGER is</tt></b>
+<ul><b><tt>BEGIN</tt></b>
+<br><b><tt>&nbsp; IF x > y THEN</tt></b>
+<ul><b><tt>return x;</tt></b></ul>
+<b><tt>&nbsp; ELSE</tt></b>
+<ul><b><tt>return y;</tt></b></ul>
+<b><tt>&nbsp; END IF;</tt></b>
+<br><b><tt>END max1;</tt></b></ul>
+</ul>
+
+<hr WIDTH="100%">
+<br>Parameter Passing Mechanisms
+<dl>
+<li>
+One of the most important design decisions is which parameter passing methods
+are implemented</li>
+
+<dl>
+<li>
+Pass by Value</li>
+
+<li>
+Pass by Result</li>
+
+<li>
+Pass by Value Result</li>
+
+<li>
+Pass by Reference</li>
+
+<li>
+Pass by Name</li>
+
+<br>
+<hr WIDTH="100%">
+<h4>
+Pass by Value</h4>
+
+<li>
+Default mechanism in Pascal, Modula-2, Ada</li>
+
+<li>
+Main mechanism in C and Algol 68</li>
+
+<li>
+<b>Only</b> mechanism in Java</li>
+
+<dl>
+<li>
+For reference types (objects) only the value of the reference is passed</li>
+</dl>
+
+<li>
+Arguments are</li>
+
+<dl>
+<li>
+Evaluated at time of call</li>
+
+<li>
+Become the values of the parameters during the execution of the subprogram</li>
+
+<dl>
+<li>
+Some language may not evaluation of the arguments</li>
+
+<dl>
+<dl>&nbsp;</dl>
+</dl>
+</dl>
+<b><tt>int upOnly(int i, int j){</tt></b>
+<dl><b><tt>if (j > 0) return (i+j);</tt></b>
+<br><b><tt>else return i;</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>&nbsp;&nbsp; ...</tt></b>
+<br><b><tt>upOnly(x+y, 2+3);</tt></b>
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+Pascal, Java and Modula-2 parameters are treated like initialized local
+variables
+<dl>
+<li>
+Assignments to the parameters do not cause changes outside the subprogram</li>
+
+<li>
+Ada: The <i>in</i> parameter may not be assigned to</li>
+
+<li>
+Java: The keyword <i>final</i> prevents assigning to the parameter at all.</li>
+
+<dl>
+<li>
+However, objects may receive messages that change the objects internal
+state</li>
+
+<dl>&nbsp;</dl>
+<b><tt>void methodJ (final Obj obj) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; obj.changeStateTo(300);</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; obj = new Obj(); // will not compile</tt></b>
+<br><b><tt>}</tt></b>
+<li>
+This C++ code has the same effect as the Java code</li>
+
+<br><b><tt>void methodC (const Obj &amp;obj){</tt></b>
+<dl><b><tt>obj.changeStateTo(300);</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; obj = new Obj(); // will not compile</tt></b></dl>
+<b><tt>}??</tt></b>
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+</dl>
+Evaluation of parameters
+<dl>
+<li>
+Order of evaluation of parameters with side effects can be resolved by
+insisting on an order in evaluating (right to left or left to right).</li>
+
+<dl>
+<li>
+Java enforces the above</li>
+</dl>
+
+<li>
+Most languages the evaluation order is implementation dependent.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br>Parameter Evaluation and Side Effects
+<li>
+Try on a variety of C and C++ compilers:</li>
+
+<dl>
+<dl><b><tt>y = -1;</tt></b>
+<br><b><tt>upOnly(++y, ++y);</tt></b></dl>
+
+<li>
+Some implementations evaluate the first parameter (and modify it) before
+the second, others evaluate the last parameter first.</li>
+</dl>
+
+<li>
+Some language definitions make this dependency an error.</li>
+</dl>
+</dl>
+
+<hr SIZE=3 WIDTH="100%">
+<dl>Pass by VALUE and Java
+<dl>Values are copied.
+<br><b><tt>void methodA (int intA ) {</tt></b>
+<dl><b><tt>. . .</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>void methodB ( ) {</tt></b>
+<dl><b><tt>. . .</tt></b>
+<br><b><tt>int intB = 1;</tt></b>
+<br><b><tt>methodA (intB);</tt></b></dl>
+<b><tt>}</tt></b>
+<p><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9ValuePrim.gif"><img SRC="9ValuePrim.gif" ALT="Pass by Value: Primitive Types" BORDER=0 height=250 width=138></a></dl>
+
+<dl>
+<hr SIZE=1 NOSHADE WIDTH="100%"></dl>
+Pass by Value: Reference types
+<dl>Looks similar to pass by reference but is NOT pass by reference.
+<br>Reference handles are copied
+<p><b><tt>void methodA ( Obj objA ) {</tt></b>
+<dl><b><tt>. . .</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>void methodB ( ) {</tt></b>
+<dl><b><tt>. . .</tt></b>
+<br><b><tt>Obj objB = new Obj( );</tt></b>
+<br><b><tt>methodA (objB);</tt></b></dl>
+<b><tt>}</tt></b>
+<dl>
+<dl>&nbsp;</dl>
+<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9ValueRef.gif"><img SRC="9ValueRef.gif" ALT="Pass by Value a Reference Type" BORDER=0 height=250 width=133></a></dl>
+</dl>
+
+<hr WIDTH="100%">
+<h4>
+The Swapping Problem: 1A</h4>
+
+<dl>
+<li>
+Passing primitive types in Java</li>
+
+<br><b><tt>void swap (int x, int y){</tt></b>
+<dl><b><tt>int z;</tt></b>
+<br><b><tt>z = x;</tt></b>
+<br><b><tt>x = y;</tt></b>
+<br><b><tt>y = z;</tt></b></dl>
+<b><tt>}</tt></b>
+<br>&nbsp;
+<li>
+A call to swap does not change the actual parameters. The effect of swap
+(a,b) is</li>
+
+<dl>x := a;
+<br>y := b;
+<br>z := x;
+<br>x := y;
+<br>y := z;</dl>
+
+<li>
+The values of a and b are not changed.</li>
+
+<dl>
+<hr WIDTH="100%"></dl>
+</dl>
+
+<h4>
+The Swapping Problem: 1B</h4>
+
+<dl>
+<li>
+Passing reference types in Java</li>
+
+<dl>
+<dl>&nbsp;</dl>
+</dl>
+<b><tt>void swap (Object x, Object y){</tt></b>
+<dl><b><tt>Object z;</tt></b>
+<br><b><tt>z = x;</tt></b>
+<br><b><tt>x = y;</tt></b>
+<br><b><tt>y = z;</tt></b></dl>
+<b><tt>}</tt></b>
+<br>&nbsp;
+<li>
+A call to swap does not change the actual parameters' reference. The effect
+of swap (a,b) is</li>
+
+<dl>x := a;
+<br>y := b;
+<br>z := x;
+<br>x := y;
+<br>y := z;</dl>
+The values of a and b are not change i.e. a and b still refer to the original
+objects
+<br>BUT.....
+<dl>
+<hr WIDTH="100%"></dl>
+</dl>
+
+<h4>
+The Swapping Problem 1C</h4>
+
+<ul>
+<dl>
+<li>
+However, the state of objects referred to by the parameters can be changed!</li>
+
+<dl>
+<dl><b><tt>void swap (Obj x, Obj y){</tt></b>
+<dl><b><tt>DataTypeX z;</tt></b>
+<br><b><tt>z = x.getDataX();</tt></b>
+<br><b><tt>x.setDataX(y.getDataX());</tt></b>
+<br><b><tt>y.setDataX(z);</tt></b></dl>
+<b><tt>}</tt></b></dl>
+
+<li>
+A call to swap can change data fields in objects <b><tt>a, b</tt></b></li>
+
+<li>
+We did not change what a and b refer to!</li>
+
+<dl>&nbsp;</dl>
+</dl>
+</dl>
+</ul>
+
+<hr SIZE=3 WIDTH="100%">
+<h4>
+Pass by Reference (or by Sharing)</h4>
+
+<ul><b><tt>program Test();</tt></b>
+<br><b><tt>var innocent :integer;</tt></b>
+<p><b><tt>procedure modify(var Share: integer);</tt></b>
+<dl>
+<dl><b><tt>begin</tt></b>
+<dl><b><tt>Share := Share + 3;</tt></b></dl>
+<b><tt>end;</tt></b></dl>
+<b><tt>begin</tt></b>
+<dl><b><tt>innocent := 100;</tt></b>
+<br><b><tt>modify(innocent) {upon return innocent is 103}</tt></b></dl>
+<b><tt>end.</tt></b>
+<dl>
+<dl>&nbsp;</dl>
+</dl>
+
+<li>
+The argument's allocated location is bound to the parameter during the
+call.</li>
+
+<dl>
+<li>
+The parameter becomes an <b>alias</b> for the argument<b>.</b></li>
+</dl>
+
+<li>
+Therefore any changes to the parameter will have affects outside the called
+subprogram.</li>
+
+<li>
+Arguments must have l-values.</li>
+
+<li>
+This is the only mechanism in Fortran 77 and earlier.</li>
+
+<li>
+Pascal, Modula 2 use the keyword <i>VAR</i> to signal pass by reference</li>
+
+<dl>
+<hr SIZE=1 NOSHADE WIDTH="100%"></dl>
+
+<li>
+Pass by reference is similar to passing a reference by value BUT it is
+not the same</li>
+
+<dl>
+<li>
+An object passed by reference can point to another object</li>
+</dl>
+
+<li>
+C &amp; Algol68: A pointer to pass a location explicitly.</li>
+
+<li>
+In C:</li>
+
+<dl><b><tt>void refer (int *x) {</tt></b>
+<dl><b><tt>*x += 1;</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>int main() {</tt></b>
+<dl><b><tt>int a;</tt></b>
+<br><b><tt>…</tt></b>
+<br><b><tt>refer(&amp;a);</tt></b></dl>
+<b><tt>}</tt></b></dl>
+
+<li>
+C: Arrays are always passed by reference.</li>
+
+<li>
+C++ has introduced explicit pass-by-reference.</li>
+
+<dl><b><tt>void refer(int&amp; x){</tt></b>
+<dl><b><tt>x += 1;</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>void fun() {</tt></b>
+<dl><b><tt>int&nbsp; a;</tt></b>
+<br><b><tt>...</tt></b>
+<br><b><tt>refer(a);</tt></b></dl>
+<b><tt>}</tt></b>
+<br>
+<hr SIZE=1 NOSHADE WIDTH="100%"></dl>
+
+<li>
+C++: The ref type can be used other locations in the code:</li>
+
+<dl><b><tt>void f() {</tt></b>
+<dl><b><tt>int i;</tt></b>
+<br><b><tt>int &amp;r = i;&nbsp;</tt></b> // r refers to i
+<br><b><tt>r = 9;&nbsp;</tt></b> // the value i becomes is 9
+<br>i<b><tt>nt * p = &amp;i;&nbsp;</tt></b> // p points to i
+<br><b><tt>int &amp; rr = r ;</tt></b>&nbsp; // rr&nbsp; refers to i</dl>
+}
+<h6>
+(Ellis &amp; Stroustup,<i>Annotated C++, </i>page 153)</h6>
+
+<hr SIZE=1 NOSHADE WIDTH="100%"></dl>
+<b>Swap Problem <i>Solved</i></b>
+<br>&nbsp;
+<dl><b><tt>procedure swap (var x: integer,</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+var y: integer);</tt></b>
+<dl><b><tt>var z:integer</tt></b>
+<br><b><tt>begin</tt></b>
+<dl><b><tt>z:=x;</tt></b>
+<br><b><tt>x:=y;</tt></b>
+<br><b><tt>y:=z;</tt></b></dl>
+<b><tt>end</tt></b></dl>
+</dl>
+
+<li>
+Early versions of Fortran did not check if the actual parameter was assignable.</li>
+
+<dl>
+<li>
+Calling swap(1,2) would result in the constants being interchanged.&nbsp;
+Later the code would calculate 1+1 = 4.</li>
+</dl>
+</dl>
+</ul>
+
+<hr SIZE=3 WIDTH="100%">
+<h4>
+<b>Pass by Value-Result</b></h4>
+
+<ul>
+<dl>
+<li>
+Also called COPY-IN, COPY-OUT.</li>
+
+<li>
+In Ada, this is the mechanism of the IN OUT parameter for scalar types</li>
+
+<li>
+Aliasing distinguishes pass by value-result from pass by reference</li>
+
+<br><b><tt>a : INTEGER;</tt></b>
+<br><b><tt>PROCEDURE p(x,y: IN OUT INTEGER) is</tt></b>
+<br><b><tt>&nbsp; BEGIN</tt></b>
+<dl><b><tt>x := x + x ;</tt></b>
+<br><b><tt>y := y + y;</tt></b></dl>
+<b><tt>&nbsp; END;</tt></b>
+<p><b><tt>&nbsp; BEGIN</tt></b>
+<dl><b><tt>a := 1;</tt></b>
+<br><b><tt>p(a,a);</tt></b></dl>
+<b><tt>&nbsp; END;</tt></b>
+<br>&nbsp;
+<li>
+Assuming pass by reference what is the last value of "a"?</li>
+
+<li>
+Assuming pass by Copy-in Copy-out what is the last value of "a"?</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br>Issues left unspecified
+<li>
+Order the results are copied back</li>
+
+<li>
+Are the locations of arguments stored or recalculated on return?</li>
+
+<li>
+ADA Quirk:&nbsp; Ada's definition states that in out parameters may be
+implemented as pass by reference or pass by value-result for non-scalar
+types.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%">
+<br>Another Swap Problem 3:
+<br><b><tt>ADA:</tt></b>
+<br><b><tt>PROCEDURE Main IS</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; PROCEDURE Swap(x,y: IN OUT integer) is</tt></b>
+<dl><b><tt>&nbsp;&nbsp; BEGIN</tt></b>
+<dl><b><tt>x := x + y;</tt></b>
+<br><b><tt>y := x - y;</tt></b>
+<br><b><tt>x := x - y;</tt></b></dl>
+<b><tt>&nbsp;&nbsp; END;</tt></b></dl>
+<b><tt>&nbsp;&nbsp;&nbsp; BEGIN</tt></b>
+<dl><b><tt>a := 1;</tt></b>
+<br><b><tt>Swap(a,a);</tt></b></dl>
+<b><tt>&nbsp;&nbsp;&nbsp; END;</tt></b>
+<br>&nbsp;
+<p><b><tt>Pascal:</tt></b>
+<br><b><tt>PROCEDURE MAIN</tt></b>
+<br><b><tt>&nbsp;&nbsp; PROCEDURE Swap(VAR x,y: integer);</tt></b>
+<dl><b><tt>BEGIN</tt></b>
+<dl><b><tt>x := x + y ;</tt></b>
+<br><b><tt>y := x - y ;</tt></b>
+<br><b><tt>x := x - y ;</tt></b></dl>
+<b><tt>END;</tt></b></dl>
+<b><tt>&nbsp;&nbsp; BEGIN</tt></b>
+<dl><b><tt>a := 1;</tt></b>
+<br><b><tt>Swap(a,a)</tt></b></dl>
+<b><tt>&nbsp;&nbsp; END;</tt></b>
+<li>
+What is the last value of a after each is executed?</li>
+
+<dl>
+<hr SIZE=1 WIDTH="100%"></dl>
+
+<li>
+What is the value of "a" after p is called? (Ada 1, Pascal 0)</li>
+
+<li>
+Another difference:</li>
+
+<dl>
+<li>
+If the subprogram terminates abnormally (i.e.. via an exception handler)
+the actual parameter</li>
+
+<dl>
+<li>
+might have changed value using the call by reference.</li>
+
+<li>
+but actual parameter will not change using call by value-result</li>
+</dl>
+</dl>
+</dl>
+</ul>
+</dl>
+</dl>
+
+<dl>
+<dl>
+<ul>
+<dl>
+<li>
+<a NAME="AdaMatrix"></a><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9aSpr00.html">Swap
+Problem 4 using Matrices in ADA</a></li>
+</dl>
+</ul>
+
+<hr SIZE=3 WIDTH="100%">
+<h4>
+Pass by Name (Lazy Evaluation)</h4>
+
+<ul>
+<dl>
+<li>
+Used in Algol 60 and some functional languages including Haskell</li>
+
+<li>
+Arguments are not evaluated until their actual use in the called program.</li>
+
+<li>
+Example:</li>
+
+<dl>&nbsp;
+<br><b><tt>int i;</tt></b>
+<br><b><tt>int a[ ] = new int[2];</tt></b>
+<br><b><tt>void p(x) {&nbsp; //pass by name</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; i = i+1;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; x = x+1;</tt></b>
+<br><b><tt>}</tt></b>
+<br><b><tt>void main() {</tt></b>
+<dl><b><tt>i = 0;</tt></b>
+<br><b><tt>a[0] = 0;</tt></b>
+<br><b><tt>a[1] = 1;</tt></b>
+<br><b><tt>p( a[i] );</tt></b></dl>
+<b><tt>}</tt></b></dl>
+
+<li>
+To “hand execute” pass by name,</li>
+
+<dl>
+<li>
+just substitute the actual parameters textually in place of the formal
+parameters.</li>
+
+<li>
+Thus the above would be</li>
+
+<br><b><tt>in main: i = 0;</tt></b>
+<dl>
+<dl><b><tt>a[0] = 0;</tt></b>
+<br><b><tt>a[1] = 1;</tt></b></dl>
+</dl>
+<b><tt>in p(x): i = i + 1;</tt></b>
+<dl>
+<dl><b><tt>a[i] = a[i]+1;</tt></b></dl>
+</dl>
+</dl>
+
+<li>
+Unlike other languages, this code modifies a[1], not a[0]!</li>
+
+<li>
+<a NAME="Jensen"></a><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9bSpr00.html">Jensen's
+Device</a> is an example showing the power of pass by name.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+</ul>
+Swap Problem 5
+<br>(C syntax, Call by name)
+<dl>
+<dl>
+<dl><b><tt>void swap(int&amp; x, int&amp; y){</tt></b>
+<dl><b><tt>int t;</tt></b>
+<br><b><tt>t = x;</tt></b>
+<br><b><tt>x = y;</tt></b>
+<br><b><tt>y = t;</tt></b></dl>
+<b><tt>}</tt></b></dl>
+</dl>
+
+<li>
+Consider</li>
+
+<dl><b><tt>int i = 1;</tt></b>
+<br><b><tt>int a[4] = {2,3,3,4};</tt></b>
+<br><b><tt>swap(i, a[i]);</tt></b></dl>
+
+<li>
+You would hope to get</li>
+
+<dl>a = {2,1,3,4} and i = 3</dl>
+
+<li>
+In fact you execute:</li>
+
+<dl><b><tt>t= i;</tt></b>
+<br><b><tt>i= a[i];</tt></b>
+<br><b><tt>a[i]= t;</tt></b>
+<li>
+which gives i = 3, a = {2,3,3,1}</li>
+</dl>
+</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<dl>Functional Languages and Pass by Name
+<li>
+Since functional languages do not have state changes Pass by Name is an
+excellent mechanism for passing variables.</li>
+
+<li>
+This the main mechanism in Haskell.</li>
+
+<dl>
+<li>
+This mechanism enables new and interesting programming abstractions.</li>
+
+<br>
+<hr SIZE=1 WIDTH="100%"></dl>
+
+<li>
+In non pure functional languages call by name is hard to implement</li>
+
+<li>
+If in evaluating&nbsp; the parameter, the parameter is a functions with
+side effects, you may effect in unexpected ways the value of a variable
+in later use.</li>
+
+<li>
+The semantics of call by name is very difficult to very messy to implement.</li>
+
+<dl>&nbsp;</dl>
+</dl>
+
+<hr SIZE=1 WIDTH="100%">
+<br>Some additional variations : Default Parameter Values
+<dl>
+<li>
+Ada and C++ offer default values for variables</li>
+
+<li>
+C++</li>
+
+<dl><b><tt>int get_word(char*, int &amp;, int start = 0);</tt></b>
+<dl>
+<li>
+<i>C: Parameter names are not needed in function prototype</i></li>
+</dl>
+
+<li>
+Ada</li>
+
+<br>TYPE intptr is ACCESS integer;
+<p>FUNCTION Get_word(C : String; X : intptr; Start : integer := 0 )
+<dl>RETURN Integer;</dl>
+</dl>
+
+<li>
+Both languages parameters with default values can be omitted</li>
+
+<li>
+C++ needs the default parameters places at the end of the list of parameters</li>
+
+<dl>
+<li>
+Otherwise, function calls would be ambiguous</li>
+</dl>
+
+<li>
+Ada the order is normal.</li>
+
+<li>
+Ada allows <i>named</i> parameter passing</li>
+
+<ul><b><tt>V := Get_word( Start => 1,</tt></b>
+<dl>
+<dl>
+<dl><b><tt>C => “abc”,</tt></b>
+<br><b><tt>X => new integer’(1)</tt></b>
+<br><b><tt>);</tt></b></dl>
+</dl>
+</dl>
+</ul>
+
+<li>
+The existence of named parameter passing forces Ada to require that parameter
+names be provided in the subprogram declaration.</li>
+
+<br>&nbsp;</dl>
+
+<dl>
+<dl>
+<ul>
+<ul>&nbsp;</ul>
+</ul>
+</dl>
+</dl>
+
+<hr WIDTH="100%"></dl>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8Spr00.html">&nbsp;previous&nbsp;</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>Homework 4- Prolog Programming 2</title>
+</head>
+<body style="background-color: rgb(255, 253, 255); color: rgb(0, 0, 0);"
+ link="#ff0000" vlink="#990000" alink="#cc0000">
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a>
+<h4> </h4>
+<h4>Given: Sat. <br>
+Due Sat. Feb 8 at 5pm.<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">
+General Submission Instructions</a></h4>
+You hardcopy should begin with the following identification:
+<ul>
+  <blockquote><font color="#000000">CS471 - Programming Languages</font>
+    <br>
+    <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR
+Section number&gt;</font> <br>
+    <font color="#000000">Assignment #</font><font color="#cc0000">&lt;number&gt;
+    </font><font color="#000000">due:</font><font color="#cc0000">
+&lt;DATE&gt;</font> <br>
+    <font color="#000000">Author:</font><font color="#cc0000">
+&lt;LastName&gt;, &lt;FirstName&gt; </font><font color="#000000">(</font><font
+ color="#cc0000"> &lt;EMail&gt;</font><font color="#000000">)</font> <br>
+    <font color="#000000">Date:</font><font color="#cc0000">
+&lt;DATE&gt;</font></blockquote>
+</ul>
+<h4>Reading and references---</h4>
+<ul>
+  <li>Chap. 12.4, 12.5<br>
+  </li>
+  <li>Here are some references for you to pick and choose from<br>
+  </li>
+  <ul>
+    <li><a href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">Adventure
+in
+Prolog&#8482;</a> (a fun tutorial)<br>
+    </li>
+    <li><a href="http://cs.wwc.edu/%7Ecs_dept/KU/PR/Prolog.html">Another
+Tutorial</a></li>
+    <li><a
+ href="http://www.cs.bham.ac.uk/%7Epjh/prolog_course/sem242.html">Another
+Tutorial by Peter Hancox</a><br>
+    </li>
+    <li><a
+ href="http://www.cs.otago.ac.nz/cosc347/References/LP/LeedsTutorial/">A
+very detailed tutorial by Paul Brna</a></li>
+  </ul>
+  <li>&nbsp;Code based on the class notes are in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/example.pl">
+example.pl </a></li>
+</ul>
+<b>Purpose:</b><br>
+<ul>
+  <li>To see review important concepts from discrete math need to
+program in prolog.</li>
+  <li>To reenforce recursive programming <br>
+  </li>
+  <li>To reenforce the use of the list data structure in Prolog<span
+ style="font-style: italic;"><span style="font-weight: bold;"> <br>
+    </span></span></li>
+  <li>To appreciate the power of pattern recognition/unification <br>
+  </li>
+</ul>
+<br>
+<h4>Programming Assignment:</h4>
+<div style="margin-left: 40px;"><span style="font-weight: bold;">Turn
+in your solutions for the EIGHT problems in&nbsp; </span><a
+ href="XXXAs4.pl" style="font-weight: bold;">XXXAs4.pl.</a><br
+ style="font-weight: bold;">
+</div>
+<ol style="font-weight: bold;">
+</ol>
+<h4>Try do not turn in:</h4>
+<ol>
+  <li>in swipl type ?- help(@&lt;).<br>
+  </li>
+  <li>After you load <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/example.pl">example.pl</a>
+type</li>
+  <dl>
+    <dd>?- help(listing).<br>
+?- listing(sq).<br>
+?- listing.<br>
+    </dd>
+  </dl>
+  <li>Now type --</li>
+  <dl>
+    <dd>?- help(trace).<br>
+?- sq([3, 5],S).<br>
+      <br>
+Keeping hitting return until you get yes.<br>
+    </dd>
+  </dl>
+  <li>Make sure you open the swipl with xpce <br>
+  </li>
+  <dl>
+    <dd>In the XPCE manual you will see a Tools pull down menu, select
+Prolog graphical tracer.<br>
+repeat 3.&nbsp;&nbsp; Use the debugger to step through your program.<br>
+    </dd>
+  </dl>
+  <dd><br>
+  </dd>
+</ol>
+<hr style="width: 100%; height: 2px;">
+<h4> Written assignment:</h4>
+<h4><b>Purpose: To understand how order imposed by the implementation
+of
+Prolog causes problems.To understand the beauty of pattern matching.
+&nbsp; &nbsp;</b></h4>
+<ol>
+  <li>Below are 4 versions of subList(SubList, List) discussed in class.<br>
+    <br>
+subList1(S,L):-append(P,T,L),append(H,S,P).<br>
+subList2(S,L):-append(H,S,P),append(P,T,L). <br>
+subList3(S,L):-append(S,ST,T),append(H,T,L).<br>
+subList4(S,L):-append(H,T,L),append(S,ST,T).</li>
+  <ol>
+    <li>Run each version above with the following input, S = [2,3], L =
+[1,2,3,4]</li>
+    <li>Run each version above with the following input, S = [a,b], L =
+[1,2,3,4]</li>
+    <li>One version runs out of stack-- &nbsp;Explain why this error
+occurs.<br>
+      <br>
+    </li>
+  </ol>
+  <li>The purpose of this question is to verify you understand how
+prolog implements lists.</li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Briefly describe how lists can implemented at runtime in
+prolog.&nbsp; You can use pseudocode, pictures etc but keep it short.<br>
+    </li>
+    <li>How would your stategy about implement the following lists (you
+may draw a picture of your structure)<br>
+    </li>
+  </ol>
+  <ol>
+    <ol>
+      <li>[a, [ b, c ]]</li>
+      <li>[ a, [ b<span style="color: rgb(204, 0, 0);">,</span> [ c, d,
+e
+], f ] ]</li>
+      <li>[a, [b , [a, b, c]], c]</li>
+    </ol>
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+    <ol>
+    </ol>
+  </ol>
+  <li> [Rosen 211#36] Consider the following inductive definition of a
+version of <b>Ackermann's</b> function.&nbsp; This function was named
+after <a
+ href="http://www-history.mcs.st-and.ac.uk/history/Mathematicians/Ackermann.html">Wilhelm
+Ackermann</a>, a German mathematician who was a student of the great
+mathematician David Hilbert.&nbsp; Ackermann's function plays an
+important role in the therory of recursive functions and in the study
+of
+complexity of certain algorithms involving set unions.&nbsp; In the
+early days of&nbsp; imperative languages, the Ackermann function was
+used to measure the recursion capability of a compiler. The Ackermann
+Number N of the compiler as the largest N for which</li>
+  <ol>
+    <ol type="A">
+&nbsp;
+      <table>
+        <tbody>
+          <tr>
+            <td>ack( <i>m,n</i> ) =</td>
+            <td>2<i>n</i></td>
+            <td>&nbsp;&nbsp;&nbsp; if <i>m</i> = 0</td>
+          </tr>
+          <tr>
+            <td>ack( <i>m,n</i> ) =&nbsp;</td>
+            <td>0</td>
+            <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i> =
+0&nbsp;</td>
+          </tr>
+          <tr>
+            <td>ack( <i>m,n</i> ) =</td>
+            <td>2</td>
+            <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i> =
+1&nbsp;</td>
+          </tr>
+          <tr>
+            <td>ack( <i>m,n</i> ) =</td>
+            <td>ack( <i>m</i>-1, ack( <i>m, n</i>-1 ) )</td>
+            <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i>
+&gt;=2&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+&nbsp; <li> Find the following values(by hand) of Ackermann's
+function.&nbsp; Show all you work (i.e show each step of the
+calculation.)<br>
+      </li>
+      <ol type="a">
+        <li> [1pt] ack(1,0) = ______</li>
+        <li> [1pt] ack(0,1) = ______</li>
+        <li> [1pt] ack(1,1) = ______</li>
+        <li> [2pt] ack(2,2) = ______</li>
+      </ol>
+    </ol>
+  </ol>
+</ol>
+<br>
+<ol>
+</ol>
+________________________________________________________________________________________________<br>
+<font color="#3333ff"><br>
+Remember Programming is an individual task... :</font>
+<p><font color="#3333ff">Resources use:</font> </p>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a> </p>
+</body>
+</html>

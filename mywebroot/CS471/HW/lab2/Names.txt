@@ -1,0 +1,46 @@
+Info from Fig4_12.c matching group two of /(int)\s(.*)\(.*\);/
+    
+expr
+match int expr(void);
+match[0]::: int expr(void);
+match[1]::: int 
+    
+term
+match int term(void);
+match[0]::: int term(void);
+match[1]::: int 
+    
+factor
+match int factor(void);
+match[0]::: int factor(void);
+match[1]::: int 
+    
+number
+match int number(void);
+match[0]::: int number(void);
+match[1]::: int 
+    
+digit
+match int digit(void);
+match[0]::: int digit(void);
+match[1]::: int 
+    
+result = expr
+match int result = expr();
+match[0]::: int result = expr();
+match[1]::: int 
+    
+result = term
+match int result = term();
+match[0]::: int result = term();
+match[1]::: int 
+    
+result = factor
+match int result = factor();
+match[0]::: int result = factor();
+match[1]::: int 
+    
+result = digit
+match int result = digit();
+match[0]::: int result = digit();
+match[1]::: int 

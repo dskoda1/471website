@@ -1,0 +1,272 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Eileen Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <title>CS471 Assignment 1 - REVIEW</title>
+</head>
+<body text="#000000" bgcolor="#fffff9" link="#000099" vlink="#000099"
+ alink="#3333ff">
+<center>
+<h3> Programming Languages<br>
+Assignment<i> </i>1<br>
+<i>Due: </i>First Friday, Jan&nbsp; 24, 2003</h3>
+</center>
+<a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a> <br>
+There is a locked file cabinet near the cs department for you to leave
+your assignment.&nbsp; Assignment is due before the TA picks it up on
+Saturday. <br>
+Please submit your solutions typed up and stapled together. &nbsp;EACH
+page should have your name, section number and page number printed on
+every page.&nbsp; Include the questions with your answers.&nbsp; (You
+can edit this file)&nbsp; <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a> <br>
+&nbsp;
+<h4> Reading:</h4>
+<blockquote>Chapter 1 (pages 1-28) Chapter 2.1 (31-39) <br>
+Be able to answer all the review questions (page 25-26).</blockquote>
+<h4> Written:</h4>
+The purpose of the written assignment is to review mathematics concepts
+and techniques that will be required to successfully complete this
+course.&nbsp; These problems are expected to be a review of concepts
+covered in earlier courses.
+<ol>
+  <li> [Rosen 211#36] Consider the following inductive definition of a
+version of <b>Ackermann's</b> function.&nbsp; This function was named
+after <a
+ href="http://www-history.mcs.st-and.ac.uk/history/Mathematicians/Ackermann.html">Wilhelm
+Ackermann</a>, a German mathematician who was a student of the great
+mathematician David Hilbert.&nbsp; Ackermann's function plays an
+important role in the therory of recursive functions and in the study of
+complexity of certain algorithms involving set unions.&nbsp; In the
+early days of&nbsp; imperative languages, the Ackermann function was
+used to measure the recursion capability of a compiler. The Ackermann
+Number N of the compiler as the largest N for which</li>
+  <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ack (3,N) <br>
+gives an answer without a stack overflow. (There are several different
+variants of this function.&nbsp; All are called Ackermann's functions.) 
+  <ol type="A">
+&nbsp;
+    <table>
+      <tbody>
+        <tr>
+          <td>ack( <i>m,n</i> ) =</td>
+          <td>2<i>n</i></td>
+          <td>&nbsp;&nbsp;&nbsp; if <i>m</i> = 0</td>
+        </tr>
+        <tr>
+          <td>ack( <i>m,n</i> ) =&nbsp;</td>
+          <td>0</td>
+          <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i> =
+0&nbsp;</td>
+        </tr>
+        <tr>
+          <td>ack( <i>m,n</i> ) =</td>
+          <td>2</td>
+          <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i> =
+1&nbsp;</td>
+        </tr>
+        <tr>
+          <td>ack( <i>m,n</i> ) =</td>
+          <td>ack( <i>m</i>-1, ack( <i>m, n</i>-1 ) )</td>
+          <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i>
+&gt;=2&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+&nbsp; <li> [5pts]Find the following values of Ackermann's function.</li>
+    <ol type="a">
+      <li> [1pt] ack(1,0) = ______</li>
+      <li> [1pt] ack(0,1) = ______</li>
+      <li> [1pt] ack(1,1) = ______</li>
+      <li> [2pt] ack(2,2) = ______</li>
+      <br>
+&nbsp;
+    </ol>
+    <li> [8pts]Prove that ack(<i>m</i> , 2) =&nbsp; 4.&nbsp; (Prove by
+induction on <i>m</i>)</li>
+  </ol>
+  <br>
+&nbsp; <li> [28pts] Algebraic laws:</li>
+  <ol type="A">
+    <li> [1pt]What is the associative law of addition over the set of
+integers?&nbsp; (Definition not example.)</li>
+    <li> [1pt]What is the commutative law of addition over the set of
+integers? (Definition not example.)</li>
+    <li> [2pt]Give an example of a set with an operator defined on that
+set which does not have the associative property.</li>
+    <li> [2pt]Give an example of a set with an operator defined on that
+set which does not have the commutative property.</li>
+    <br>
+&nbsp; <li> Compute the following and show all work.&nbsp; Do not use a
+calculator.</li>
+    <ol type="a">
+      <li> [1pt] 10 - 2 *( 4 - 7)&nbsp; = _____________</li>
+      <li> [1pt] 10 - 2 * 4 -- 7&nbsp; = _____________</li>
+      <li> Let &nbsp;<i>f</i> (x,y) =&nbsp; y - x *2 + 1 <br>
+compute:</li>
+      <ol type="a">
+        <li> [2pts] <i>f </i>( -2, 1 ) = __________</li>
+        <li> [2pts] <i>f</i> ( -2, -1 ) = _________</li>
+        <li> [2pts]<i> f</i> ( 2, 1) = _________</li>
+        <li>[2pts]<i> f</i> (<font color="#990000"> 2,</font> -1) =
+_________</li>
+      </ol>
+      <li> Given<br>
+        <br>
+      </li>
+      <b><tt><font size="+1"><i>f</i>(<i>x</i>) = 2x + 3</font></tt></b> <br>
+      <b><tt><font size="+1"><i>g</i>(<i>x</i>) = 3x + 2</font></tt></b><br>
+      <br>
+      <br>
+      <ol type="a">
+        <li> [3pt] What is the function composition,&nbsp; (<i>f </i><font
+ size="-2">o </font><i>g</i>)<i> </i>(x ) = ?</li>
+        <br>
+[ Remember the effect of <i>f </i><font size="-2">o </font><i>g </i>(x
+)  is given by <i>f</i> ( <i>g</i>(<i>x</i>) ) ] <br>
+&nbsp; <li> [3pt] What is&nbsp; (<i>g </i><font size="-2">o </font><i>f</i>)<i> </i>(<i>x</i>
+) = ?</li>
+        <br>
+&nbsp; <li> [3pt] What is the value of&nbsp; (<i>f </i><font size="-2">o</font><i>g</i>)<i> </i>(2
+) = ?</li>
+        <br>
+&nbsp; <li> [3pt] What is the value of <i>(g </i><font size="-2">o </font><i>f
+) </i>(2 ) = ?</li>
+        <ol type="a">
+          <ol type="a">
+&nbsp;
+          </ol>
+        </ol>
+      </ol>
+    </ol>
+  </ol>
+  <br>
+&nbsp; <li> [6 pt] Write down the power set for each of the following:</li>
+  <ol type="a">
+    <li> { a, aa, aaa}</li>
+    <li> the empty set, <strike>0</strike>&nbsp;</li>
+    <li> { {1, 2, 3, 4},&nbsp;<strike>0</strike> }<br>
+      <br>
+      <br>
+    </li>
+  </ol>
+  <li>[10pts] Sets:</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>What data structure would you use to represent a set? Describe
+an algorithm to determine if an element is in the set. &nbsp;What is the
+computational complexity of your algorithm?</li>
+    <li>What is the difference between a <span
+ style="font-style: italic;">bag</span> and a <span
+ style="font-style: italic;">set</span>?<br>
+    </li>
+    <li>Prove by induction the size of the powerset of a set <span
+ style="font-style: italic;">S</span> is<span style="font-weight: bold;">
+2</span><sup style="font-weight: bold;">|<span
+ style="font-style: italic;">S</span>|</sup><span
+ style="font-style: italic;"></span>. Where |<span
+ style="font-style: italic;"> S </span>| is the cardinality of <span
+ style="font-style: italic;">S.</span> &nbsp;For example if |<span
+ style="font-style: italic;">S</span>| =3 then the number of elements
+of powerset of <span style="font-style: italic;">S</span> &nbsp;is 8.
+&nbsp;Later you will use the ideas in this proof to program the powerset
+of a set.<br>
+    </li>
+  </ol>
+  <ol type="a">
+&nbsp;
+  </ol>
+  <li> [3 pt] Let A = { a,b } and B = { 3,6,9 }.</li>
+  <ol type="a">
+    <li> Write the Cartesian product of A X B.</li>
+    <li> Write the Cartesian product of B X A.</li>
+    <li> Write the Cartesian product of B X B.</li>
+    <br>
+&nbsp;
+  </ol>
+  <li> [10 pt] Review from discrete mathematics.</li>
+  <ol type="a">
+    <li> [1pt] Give the mathematical definition of <i>relation.</i></li>
+    <li> [1pt] Give the mathematical definition of <i>function.</i></li>
+    <li> <i>TRUC</i> maps positive Real numbers to the Natural numbers,
+i.e. {0,1,2,3, ...}, by setting the fractional part of the real number
+to zero.&nbsp;  For example: <i>TRUC </i>42.0082 --&gt; 42</li>
+    <ol type="a">
+      <li> Is <i>TRUC</i> a relation?</li>
+      <li> Is <i>TRUC</i> a function?</li>
+    </ol>
+    <li> <i>Sqrt</i> maps Natural numbers to real numbers such that a
+Natural number <i>n</i> maps to <i>r&nbsp;</i> if&nbsp; <i>r * r</i> = <i>n.</i></li>
+    <ol type="a">
+      <li> Is <i>Sqrt </i>a relation?</li>
+      <li> Is <i>Sqrt</i> a function?</li>
+      <br>
+&nbsp;
+    </ol>
+  </ol>
+  <li> [10 pt] Predicate Logic:</li>
+  <ol type="a">
+    <li> What is a Predicate?</li>
+    <li> What is the difference between Propositional logic and
+Predicate Logic?</li>
+    <li> Let the&nbsp; predicate <i>P</i>(<i>x</i>) denote the
+statement&nbsp; <i>x</i> &gt;5.&nbsp; What is the truth value of <i>P</i>(4)?
+of <i>P</i>(6)?</li>
+    <li> Give an example illustrating the different between the <b><i>universal
+quantifier</i> (</b>for all) and the <b><i>existential quantifer</i> (</b>there
+exists).</li>
+    <li> Let <b>U</b> be the set of integers and <b>A </b>be a subset
+of <b>U.</b>&nbsp;  What are the elements in <b>A</b> to make the
+following statement true:</li>
+    <br>
+forall <i>x</i> in A thereexists y in <b>U </b>such that <i>x</i> = <i>y</i><sup>2</sup>
+  </ol>
+  <ol type="a">
+    <ol type="a">
+      <ol type="a">
+        <ol type="a">
+&nbsp;
+        </ol>
+      </ol>
+    </ol>
+  </ol>
+  <li> [2pts]<img src="DPS.jpg" alt="DFS Discovery" border="2"
+ height="300" width="400"> </li>
+  <br>
+Number the nodes as they are discovered during a <b>depth first search.</b> <br>
+(For this problem you may handwritten the numbers in the nodes.) <br>
+&nbsp; <li> [5pt] Briefly describe <i>backtracking</i> algorithm. &nbsp;<br>
+    <br>
+  </li>
+  <li>[10]There are two basic data structures used to build collections
+of items, arrays and linked lists. Each have advantages and
+disadvantages. (A question simular to this was asked during a techical
+job interview).</li>
+  <ol type="A">
+    <li>What is the worst case time for accessing an element in an
+array? &nbsp;In a link list? &nbsp;Which data structure has the
+advantage for accessing elements?</li>
+    <li>What is the worst case time for inserting/deleting &nbsp;an
+element in an array? In a link list? &nbsp;Which data structure
+&nbsp;has the advantage for inserting/deleting elements?</li>
+    <li>Describe how you would "grow" the size of an array. &nbsp;What
+is the worst case time? &nbsp;Describe how you would grow the size of
+link list. &nbsp;What is the worst case time? &nbsp;Which data structure
+has the advantage when you need to change the size?<br>
+    </li>
+  </ol>
+  <ol>
+  </ol>
+</ol>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Assignment 9 Programming Languages  --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#FFFBF9" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 9:&nbsp; Friday after break.</h4>
+mar 13 NOON Still Under construction...
+<p>Purpose:&nbsp; Introduce Haskell by programming simple recursive functions
+and to experience the literal style of programming.
+<p>Read Chapters:
+<blockquote>
+<blockquote>
+<blockquote>Ghezzi: Chapter 7
+<br>Thompson, <i>Haskell,<a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/">The
+Craft of Functional Programming</a></i> Chapters 1- 5 (pages 1-86)
+<br><a href="http://haskell.org/tutorial/">A Gentle Introduction to Haskell</a>
+<br><font color="#666666">Using winhugs.exe under the<b> </b></font><b>Help
+menu: <i>contents</i></b> is an online manual.
+<br>The help file, hugs.HLP, is located in the C:/hugs98/ directory in
+the normal installation.</blockquote>
+</blockquote>
+</blockquote>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+<b>Email your code to&nbsp;</b> <a href="mailto:cs471h@binghamton.edu">cs471h</a>
+. Turn in hardcopy.
+<br>You should use primitive recursion in these problems or just straight
+forward function application.
+<h4>
+YOU must insert your code in the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/As9.lhs">file</a>
+provided but you will need to rename the file following <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions.</a></h4>
+
+<blockquote>&nbsp;<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/GettingStarted.html">Installation
+Instructions</a>
+<blockquote><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/SimpleExample.lhs">Simple
+Sample of the Literal Style</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">Literal
+style must be used - more extensive</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Sample
+Code from the Notes</a></blockquote>
+</blockquote>
+Note: In the homework file put only one space between ">" and the code.&nbsp;
+The examples above use more than one space.&nbsp; Do not use a tab...&nbsp;
+JUST one SPACE.&nbsp;&nbsp; Use the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/As9.lhs">file</a>
+for your coding.&nbsp; Remember to rename&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/HW/As9.lhs">file</a>
+according&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions
+in this file.</a>
+<ol>
+<li>
+Looking in around ...&nbsp; experiments. Not to be handed in!</li>
+
+<br>(After opening <i>hugs</i> you will get a prompt <font size=+1>Prelude></font>&lt;your
+type here if you clicked on .lhs file> )
+<ol TYPE=A>
+<li>
+What does 3 + 4 &lt;return> do ?</li>
+
+<li>
+What does&nbsp; (+) 3 4 &lt;return> do?</li>
+
+<li>
+What does ...> <b><font size=+1>:? </font>&lt;return> </b>do?</li>
+
+<li>
+What does <b>:t isAscii &lt;return> </b>do?</li>
+
+<ol>
+<li>
+&nbsp;:t head <b>&lt;return> </b>??</li>
+</ol>
+
+<li>
+Examine, via your text editor, the Prelude.hs file that comes with your
+hugs. What is the purpose of the file? What is the most interesting function
+you find?&nbsp; Do not turn in ... be prepared to discuss in class.&nbsp;
+(Prelude.hs is in the lib directory.&nbsp; Use a text editor to view.)</li>
+
+<li>
+<font color="#CC0000">Try on the command line</font></li>
+
+<ol>
+<li>
+<b><tt><font color="#CC0000">[1 .. 12]</font></tt></b></li>
+
+<li>
+<b><tt><font color="#CC0000">['a' .. 'z']</font></tt></b></li>
+
+<li>
+<b><tt><font color="#CC0000">[ (x,y) | x &lt;-[1..5], y &lt;- [2,4 .. 10]]</font></tt></b></li>
+
+<li>
+<font color="#CC0000">[ 1 ..]</font></li>
+
+<ol TYPE=a>
+<li>
+<font color="#CC0000">To terminate F4 in <i>winhugs </i>press "stop"&nbsp;
+or in hugs press Control-C</font></li>
+</ol>
+</ol>
+
+<li>
+Try the following commands after you load&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Notes1.lh</a>s.
+Load <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Notes1.lh</a>s
+by entering&nbsp; (You must be source code directory or have path set to
+the source directory.)</li>
+
+<br>:l Notes1
+<br>Try
+<br><font color="#000000">:names sq</font>
+<br>:info sq
+<br>:info square
+<br>:t sq
+<br>:?</ol>
+
+<li>
+What is the mathematical definition of <i>function?</i></li>
+
+<br>&nbsp;
+<li>
+(very easy) Write a Haskell script,&nbsp; <b><tt>productPair(<font color="#000000">x,y</font>)</tt><i>,</i></b>
+which returns the <i>x</i> <i>times</i>&nbsp; <i>y</i></li>
+
+<br>...> <b><tt>productPair(3<font color="#000000">,5</font>)</tt></b>
+<br>15
+<ol TYPE=A>
+<li>
+What is the type (signature) of <b><tt>productPair(<font color="#000000">x,y</font>)</tt>?</b></li>
+
+<br>&nbsp;</ol>
+
+<li>
+&nbsp;(very easy) Write a Haskell script, <b><tt>productNum <i>n</i></tt>,&nbsp;</b>
+that returns the produce of integers from 1 to <i>n</i>. i.e.</li>
+
+<br>&nbsp;&nbsp;&nbsp; ...> productNum 4
+<br>&nbsp;&nbsp;&nbsp; 24
+<ol TYPE=A>
+<li>
+What is the signature of <b><tt>productNum</tt></b>?&nbsp; (You should
+check this out for yourself)</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Write a Haskell script, <b><tt>productRange<i> i j</i></tt><i> </i></b>,
+which returns the product of the numbers from <i>i </i>to <i>j</i>.</li>
+
+<br>...> productRange 4 6
+<br>120
+<br>&nbsp;
+<ol TYPE=A>
+<li>
+What is the signature?</li>
+
+<ol TYPE=A>&nbsp;</ol>
+</ol>
+
+<li>
+(very easy) Write a Haskell script <b><font color="#FF0000"><tt>zipPair
+lst1 lst2</tt>,</font> </b>which returns a list of pairs. <font color="#CC0000">You
+do not need to have your program work for&nbsp; the empty list i.e. <tt>zipPair
+[] [1,2,3]</tt></font></li>
+
+<br>&nbsp;
+<p>&nbsp;
+<p><tt>...></tt> <b><tt>zipPair [1,2,3] <font color="#990000">['a','b','c','d']</font></tt></b>
+<br><b><tt>[<font color="#660000">(1,'a'), (2,'b'), (3,'c')]</font></tt></b>
+<br><b><tt>...> zipPair [1,2,3] [11,12]</tt></b>
+<br><b><tt>[(1,11),(2,12)]</tt></b>
+<br><b><tt>...> zipPair [1,2,3] [100,99]</tt></b>
+<br><b><tt>[(1,100), (2,99)]</tt></b>
+<br>&nbsp;
+<ol TYPE=A>
+<li>
+What is the signature ?</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Define a function prodPair lst1 lst2 which applies <i>zipPair</i> in its
+definition to return a list of the product pairs.</li>
+
+<br><b><tt>...> prodPair [1,2] [11,12,100]</tt></b>
+<br><b><tt>[11,24]</tt></b>
+<br><b><tt>...> prodPair [1,2,3] [100,99]</tt></b>
+<br><b><tt>[100, 198]</tt></b>
+<br>&nbsp;
+<ol TYPE=A>
+<li>
+What is the signature?</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Using the the data type <i>PairType </i>provided&nbsp; in the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/As9.lhs">As9.lhs</a>,&nbsp;
+write a Haskell script <b><font color="#CC0000"><tt>zipPairtype lst1 lst2</tt>,</font></b>which
+returns a list of <i>Pair</i>s.</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ..<b><tt>.> zipPairtype
+[1,2] [11,12,100]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; [Pair 1 11, Pair 2 12]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ...> zipPairtype [1,2,3] [100,99]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; [Pair 1 100, <font color="#CC0000">Pair 2
+99</font>]</tt></b>
+<br>&nbsp;
+<ol TYPE=A>
+<li>
+What is the signature?</li>
+</ol>
+</ol>
+
+<ul START=2>&nbsp;</ul>
+
+</body>
+</html>

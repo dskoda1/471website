@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Continuation Passing Style</title></head><body>
+
+<center>
+<h3> Haskell 9</h3>
+
+</center>
+
+<center>
+<h3> © Eileen Head, Leslie C. Lander, 2014</h3>
+
+</center>
+
+Purpose: <br>
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/CPS.lhs">
+Related Code</a> <br>
+
+Scott: Chapter 259,289,451,468,534<br>
+
+<hr style="width: 100%; height: 2px;">
+<h3><span class="mw-headline">Continuation Passing
+Style</span></h3>
+
+There is a style of functional programming called&nbsp;<span style="font-weight: bold;">Continuation Passing Style</span>
+<i>(also simply "CPS"). The idea behind CPS is to pass</i>
+around as a function argument that represents the rest of the
+computation. &nbsp;<br>
+
+<br>
+
+Examples:<span style="font-family: monospace;"></span>
+<p><span style="font-family: monospace;"></span>Normal
+(direct style) :<br>
+
+</p>
+
+<pre>&gt; square x = x * x<br><br>... &gt; &nbsp;g (square 23)<br>... &gt; square 3 + 1<br>... &gt; square 5 * 3<br>... &gt; square ((square 2)*3) +1<br><br></pre>
+
+Continuation passing style:<br>
+
+<pre>&gt; square' x k = k (x*x)<br><br>... &gt; square' 23 g<br>... &gt; square' 3 ( \ s -&gt; s+1 )<br><br>Do we need "()" here??<br>... &gt; square' 5 (*3)<br><br><br>... &gt; square' 2 (\ x-&gt; square' (x*3) (+) 1) <br></pre>
+
+<br>
+
+<h3>Fold</h3>
+Remember:<br>
+<pre>&gt; foldl :: (a -&gt; b -&gt; a) -&gt; a -&gt; [b] -&gt; a<br>&gt; foldl f z [] = z<br>&gt; foldl f z (x:xs) = foldl f (f z x) xs</pre>
+
+
+<pre>&gt; foldr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; b<br>&gt; foldr f z [] = z<br>&gt; foldr f z (x:xs) = f x&nbsp; (foldr f z xs)</pre>
+
+<br>
+Continuation Passing Style:<br>
+<br>
+
+<span style="font-family: monospace; font-weight: bold;">&gt; cfold' f z [] = z</span><br style="font-family: monospace; font-weight: bold;">
+<span style="font-family: monospace; font-weight: bold;">&gt; cfold' f z (x:xs) = f x z (\y -&gt; cfold' f y xs)</span><br>
+
+<br>
+Evaluate: <br>
+
+<span style="font-family: monospace; font-weight: bold;">&nbsp; </span><span style="font-family: monospace; font-weight: bold;"><br>
+&nbsp; cfold' (\x t g -&gt; (x : g t)) [] [1,2,3]<br>
+<br>
+</span><span style="font-family: monospace; font-weight: bold;">&nbsp; cfold' (\x t g -&gt; (-) x (g t)) 0 [1,2,3]</span><br>
+<br>
+
+References:<br>
+
+<ol>
+
+  <li><a href="http://foldoc.org/?continuation+passing+style">http://foldoc.org/</a></li>
+
+  <li><a href="http://en.wikibooks.org/wiki/Haskell/Continuation_passing_style">http://en.wikibooks.org/wiki/Haskell/Continuation_passing_style</a></li>
+
+  <li><a href="http://en.wikibooks.org/wiki/Haskell/YAHT/Type_basics#Continuation_Passing_Style">http://en.wikibooks.org/wiki/Haskell/YAHT/</a></li>
+
+  <li><a href="http://www.ps.uni-sb.de/%7Educhier/python/continuations.html">http://www.ps.uni-sb.de/~duchier/python/continuations.html
+(Python)</a></li>
+  <li><a href="http://matt.might.net/articles/by-example-continuation-passing-style/">By example: Continuation-passing style in JavaScript</a></li>
+  <li><a href="http://www.2ality.com/2012/06/continuation-passing-style.html">Asynchronous programming and continuation-passing style in JavaScript</a><br>
+  </li>
+</ol>
+
+</body></html>

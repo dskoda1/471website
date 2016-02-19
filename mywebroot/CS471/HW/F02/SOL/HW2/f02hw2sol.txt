@@ -1,0 +1,205 @@
+1. 5 points. 
+The idea behind open-source software is to make the source code for an
+application freely available to the public for review and revision. 
+This should theoretically improve the quality of the application, since 
+more eyes are looking at the code, fixing problems. It also allows for 
+personal customization of applications, as opposed to the 'black box' model 
+favored by for-profit companies.  Good places to look online are 
+www.opensource.org, www.gnu.org, www.slashdot.org. 
+Linux, FreeBSD, Emacs, and DeCSS are examples of open source software. 
+ 
+
+2. 10 points
+Lexical: in C/C++/Java using @ in a variable name, e.g. @num.
+Syntax: in C/C++/Java, fail to properly balance parentheses/braces.
+Static Semantic: Using an undeclared identifier, type mismatch errors. 
+e.g.
+int x;
+char c = 'c';
+x = x+y; // y has not declared
+x = c;
+Dynamic Semantic: 
+  Java, accessing an array out of bounds, 
+   In standard C/C++ no runtime error will be caught when you try to access
+   array with an index that is out of bounds.  However, Java and Pascal  
+   will catch this error at runtime.  Why can't this error be caught at
+   compile time?
+
+  Java/Pascal/Fortran, division by 0.  
+   "The consequences of division by zero --integer or 
+   floating-point-- are undefined"  Harbison & steele 4 ed page 202. 
+ 
+
+3. 10 points
+C associates a dangling else with the most recent visible if. The programmer 
+can override this behavior by using braces, which can hide a previous 
+if statement in an inner scope.  
+Note that compilers do NOT change the ambiguous grammar rule but 
+instead forces the order in which the if then grammar rules are applied. 
+ 
+
+4. 20 points
+
+DTD file
+<!ELEMENT CourseOfferings (Department*)>
+<!ELEMENT Department (#PCDATA, Course)*>  (Note: <!ELEMENT Department (#PCDATA, Course)+> is not allowed in grammar according to the spec)
+<!ELEMENT Course (Name, Instructor, Enrollment)+>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT Instructor (#PCDATA)>
+<!ELEMENT Enrollment (Max, Current)>
+<!ELEMENT Max (#PCDATA)>
+<!ELEMENT Current (#PCDATA)>
+
+
+CFG Grammar
+CourseOfferings -> Department|lamda
+Department -> Department|Department Department|lamda
+Course -> Course Course | Name Instructor Enrollment
+Enrollment -> Max Current
+
+Max, Current, Name, Instructor are terminal symbols
+
+
+5 10 points
+a. Parse Tree
+
+<S> - 0
+ |
+ ----<S> - 0
+ |    |
+ |    |
+ |    |
+ |    |
+ |    ---- <S> --- 0
+ |    |	       |
+ |    |	       |
+ |    |        |
+ |    |	       --- <S> -- = 1 	
+ |    |        |       |  
+ |    |	       |       |
+ |    |	       |       -- + 1
+ |    |	       --- 1	
+ |    |	
+ |    ---- 1
+ |
+ ----- 1
+
+b. This grammar generates binary addition.
+
+6. 20 points for derivations, 5 points for parse trees, 10 points for c, d, and e. 
+A:=A+B*C
+Leftmost Derivation
+<assign>
+<id> := <expr>
+A := <expr>
+A := <term> * <expr>
+A := <factor> + <term> * <expr>
+A := <id> + <term> * <expr>
+A := A + <term> * <expr>
+A := A + <factor> * <expr>
+A := A + <id> * <expr>
+A := A + B * <expr>
+A := A + B * <term>
+A := A + B * <factor>
+A := A + B * <id>
+A := A + B * C
+
+
+Rightmost Derivation
+<assign>
+<id> := <expr>
+<id> := <term> * <expr>
+<id> := <term> * <term>
+<id> := <term> * <factor>
+<id> := <term> * <id>
+<id> := <term> * C
+<id> := <factor> + <term> * C
+<id> := <factor> + <factor> * C
+<id> := <factor> + <id> * C
+<id> := <factor> + B * C
+<id> := <id> + B * C
+<id> := A + B * C
+A := A + B * C
+
+
+A:=A*B+C
+Leftmost Derivation
+<assign>
+<id> := <expr>
+A := <expr>
+A := <term> * <expr>
+A := <factor> * <expr>
+A := <id> * <expr>
+A := A * <expr>
+A := A * <term>
+A := A * <factor> + <term>
+A := A * <id> + <term>
+A := A * B + <term>
+A := A * B + <factor>
+A := A * B + <id>
+A := A * B + C
+
+
+Rightmost Derivation
+<assign>
+<id> := <expr>
+<id> := <term>
+<id> := <term> * <expr>
+<id> := <term> * <term>
+<id> := <term> * <factor> + <term>
+<id> := <term> * <factor> + <factor>
+<id> := <term> * <factor> + <id>
+<id> := <term> * <factor> + C
+<id> := <term> * <id> + C
+<id> := <term> * B + C
+<id> := <factor> * B + C
+<id> := <id> * B + C
+<id> := A * B + C
+A := A * B + C
+
+
+
+Parse Tree for A := A*B*C
+
+<assign> - <id> --- A
+
+|
+
+-- :=
+
+|
+
+-- <expr> - <term> - <factor> - <id> - A
+
+             |
+
+             ----- *
+
+             |
+
+             --------<expr> - <term> - <factor> - <id> - B 
+
+                    |
+
+                    ----- *
+
+                    |
+
+                    ----- <expr> - <term> - <factor> - <id> - C
+
+
+ 
+c. + has a higher precedence b/c it appears lower in the grammar, 
+   which will appear in the parse tree closer to the terminal symbols. 
+   The closer an operator is bound to the terminal symbols, 
+   the sooner it is executed, and therefore the higher precedence it has.
+
+ 
+d. Both + and * are right-associative, since the rules used to generate 
+   them are right recursive.
+
+
+e.  Changing the rules to be left-recursive, that is, making them 
+    <expr> ::= <expr> * <term> and 
+    <term> ::= <term> + <factor> 
+    would make the operators left-associative.

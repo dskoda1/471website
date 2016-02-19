@@ -1,0 +1,1752 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>for hw 8</title>
+                 
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<ol>
+  <li> What is void * ? Why have it? void * does not behavior exactly the
+same in C and C++. Provide an example(i.e. code) that will illustrate this
+difference between <i>C</i> and C++.</li>
+  <li value="2">In C++, what is the difference between taking the address
+(via operation &amp;) of a pointer and of a reference? (You can just write
+a little test program in C++)<br>
+&nbsp;<br>
+  </li>
+</ol>
+<ol start="6">
+  <li> Consider the following program written in C syntax:</li>
+</ol>
+                                 
+<ol start="6">
+     
+  <ol type="A">
+    <b><tt>void main() {</tt></b>         
+    <ul>
+      <b><tt>int value = 4;</tt> <br>
+                        <tt>int list[5] = {3,2,0,7,1};</tt> <br>
+                        <tt>swap (value, list[0]);</tt> <br>
+                        <tt>swap(list[1],list[2]);</tt> <br>
+                        <tt>swap (value, list[value]);</tt></b>         
+    </ul>
+    <b><tt>}</tt> <br>
+                      <tt>void swap (int a, int b) {</tt></b>         
+    <ul>
+      <b><tt>int temp;</tt> <br>
+                        <tt>temp = a;</tt> <br>
+                        <tt>a = b;</tt> <br>
+                        <tt>b = temp;</tt></b>         
+    </ul>
+    <tt><b>}</b><br>
+                      <br>
+                      </tt>     
+  </ol>
+      For each of the following parameter-passing methods, what are all of
+ the   values of the variables value and list after each of the three calls
+ to swap?              <br>
+  <b><u><font color="#cc0000">Answer:</font></u></b>     
+  <ol type="A">
+    <li> <b><font face="Arial"><font size="-1">Passed by value:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="91%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Value</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value=4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by Reference:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Reference</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value=4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by copy in-copy out:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by CopyIn-Out</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value =4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by name:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Name</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value =4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>&nbsp;</td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+     
+  </ol>
+</ol>
+          
+<ol start="6">
+  <li> Consider the following program written in C syntax:</li>
+</ol>
+                                 
+<ol start="6">
+     
+  <ol type="A">
+    <b><tt>void main() {</tt></b>         
+    <ul>
+      <b><tt>int value = 4;</tt> <br>
+                        <tt>int list[5] = {3,2,0,7,1};</tt> <br>
+                        <tt>swap (value, list[0]);</tt> <br>
+                        <tt>swap(list[1],list[2]);</tt> <br>
+                        <tt>swap (value, list[value]);</tt></b>         
+    </ul>
+    <b><tt>}</tt> <br>
+                      <tt>void swap (int a, int b) {</tt></b>         
+    <ul>
+      <b><tt>int temp;</tt> <br>
+                        <tt>temp = a;</tt> <br>
+                        <tt>a = b;</tt> <br>
+                        <tt>b = temp;</tt></b>         
+    </ul>
+    <tt><b>}</b><br>
+                      <br>
+                      </tt>     
+  </ol>
+      For each of the following parameter-passing methods, what are all of
+ the   values of the variables value and list after each of the three calls
+ to swap?              <br>
+  <b><u><font color="#cc0000">Answer:</font></u></b>     
+  <ol type="A">
+    <li> <b><font face="Arial"><font size="-1">Passed by value:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="91%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Value</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value=4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by Reference:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Reference</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value=4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by copy in-copy out:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by CopyIn-Out</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value =4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by name:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Name</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value =4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>&nbsp;</td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+     
+  </ol>
+</ol>
+          <br>
+                <br>
+              	                                 <font color="#3333ff"><br>
+</font>
+<ol start="6">
+  <li> Consider the following program written in C syntax:</li>
+</ol>
+                                 
+<ol start="6">
+     
+  <ol type="A">
+    <b><tt>void main() {</tt></b>         
+    <ul>
+      <b><tt>int value = 4;</tt> <br>
+                        <tt>int list[5] = {3,2,0,7,1};</tt> <br>
+                        <tt>swap (value, list[0]);</tt> <br>
+                        <tt>swap(list[1],list[2]);</tt> <br>
+                        <tt>swap (value, list[value]);</tt></b>         
+    </ul>
+    <b><tt>}</tt> <br>
+                      <tt>void swap (int a, int b) {</tt></b>         
+    <ul>
+      <b><tt>int temp;</tt> <br>
+                        <tt>temp = a;</tt> <br>
+                        <tt>a = b;</tt> <br>
+                        <tt>b = temp;</tt></b>         
+    </ul>
+    <tt><b>}</b><br>
+                      <br>
+                      </tt>     
+  </ol>
+      For each of the following parameter-passing methods, what are all of
+ the   values of the variables value and list after each of the three calls
+ to swap?              <br>
+  <b><u><font color="#cc0000">Answer:</font></u></b>     
+  <ol type="A">
+    <li> <b><font face="Arial"><font size="-1">Passed by value:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="91%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Value</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value=4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by Reference:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Reference</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value=4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by copy in-copy out:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by CopyIn-Out</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value =4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+                   </center>
+    <li> <b><font face="Arial"><font size="-1">Passed by name:</font></font></b></li>
+         
+    <center>                                                             
+       
+    <table border="1" width="90%">
+      <caption>&nbsp;</caption>  <tbody>
+                       <tr>
+      <td>                                                              
+                                                           
+          <center>Passed by Name</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>value =4</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[0] =3</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[1]=2</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[2]=0</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[3]=7</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>list[4]=1</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[0]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>&nbsp;</td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap(list[1],list[2]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+       <tr>
+      <td>                                                              
+                                                           
+          <center>swap (value, list[value]);</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+       <td>                                                             
+                                                            
+          <center>&nbsp;</center>
+      </td>
+      </tr>
+                                                                         
+                  
+      </tbody>                                                          
+        
+    </table>
+    </center>
+    <br>
+    Consider this Java code.<br>
+    <br>
+This problem relates to expressions) &nbsp;Let the C function    		  be defined
+as:
+  </ol>
+</ol>
+<blockquote>     
+  <blockquote><b><tt>int fun( int *k) {</tt></b><br>
+    <b><tt>&nbsp; &nbsp;*k += 4;&nbsp; &nbsp;</tt></b><br>
+    <b><tt>      			  &nbsp; &nbsp;return 3 * (*k) -1;</tt></b><br>
+    <b><tt>}</tt></b></blockquote>
+</blockquote>
+<ol start="4">
+  <ol>
+                    Suppose fun is used in a program as follows:<br>
+  </ol>
+</ol>
+                     
+<blockquote>                                 
+  <blockquote>           </blockquote>
+                             
+  <blockquote>                                      
+    <dl>
+      <b><tt>int main ( ) {</tt></b><br>
+      <b><tt> &nbsp; &nbsp;int i = 10, j = 10, sum1, sum2;</tt></b><br>
+      <b><tt> &nbsp; &nbsp;sum1 = ( i / 2 ) + fun( &amp;i );</tt></b><br>
+      <b><tt> &nbsp; &nbsp;sum2 = fun( &amp;j ) + ( j / 2);</tt></b><br>
+      <b><tt> &nbsp; &nbsp;printf("i = %d, sum1 = %d, j = %d, sum2 = %d",i,sum1,j,sum2);</tt></b><br>
+      <b><tt> }</tt></b><br>
+    </dl>
+                </blockquote>
+                               
+  <dl>
+Determine the values of sum1 and sum2 by running the program on a computer.
+  Explain the results. &nbsp;
+  </dl>
+                                               </blockquote>
+                                 <font color="#3333ff"><br>
+</font>
+<ol start="6">
+  <ol type="A">
+    <br>
+    <br>
+    <br>
+    <br>
+  
+  </ol>
+</ol>
+</body>
+</html>

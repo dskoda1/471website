@@ -1,0 +1,502 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+
+
+
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+  
+  <meta name="Author" content="Head/ Lander">
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.77 [en] (Windows NT 5.0; U) [Netscape]">
+
+  
+  <meta name="Description" content="CS471 spr 97"><title>Foundation of Functional Programming</title></head><body style="background-color: rgb(245, 245, 245); color: rgb(0, 0, 0);" alink="#ff0000" link="#00ff00" vlink="#666666">
+<div align="center">Lab 11<br>
+</div>
+
+<h4>Traditional lambda-notation<br>
+Turn in answers to Part B, C and D<br>
+</h4>
+
+<ul>
+
+  <li> A lambda abstraction has the form</li>
+  <ul style="font-weight: bold;">
+  </ul>
+</ul>
+
+<blockquote><b><font color="#000099">\ <i>x</i>.
+E</font></b><br>
+  <br>
+  <font color="black">In syntax in Haskell</font><br>
+  <br>
+  <b><font color="#000099">\ <i>x</i> -&gt; E</font></b></blockquote>
+
+<ul>
+
+which denotes a function with formal argument <font style="font-weight: bold;" color="#3366ff">x</font>
+and with body <font style="font-weight: bold;" color="#3333ff">E</font>
+  <ul>
+    <li> <font style="font-weight: bold;" color="#3333ff">E</font><font color="#000000"> is
+called \</font>
+-term (or \ -expression)<br>
+      <br>
+    </li>
+  </ul>
+  <li> Functions do not have names</li>
+  <li> Functions have a single argument</li>
+  <li> Functions with one argument can be generalized to multiple args</li>
+  <li> The only thing a function can do is to apply it to an argument</li>
+  <li> Notation used</li>
+  <ul style="font-weight: bold;">
+    <font color="#000099">E F</font>
+  </ul>
+  <font color="#000000">to denote the application of function </font><font style="font-weight: bold;" color="#000099">E</font><font color="#000000"> to actual argument</font><font style="font-weight: bold;" color="#000099"> F </font>
+  <li> There are only three kinds of expressions</li>
+  <table>
+    <caption> <br>
+    </caption><tbody>
+    </tbody> <tbody>
+      <tr>
+        <td><font color="#990000">E</font> ::=</td>
+        <td><br>
+        </td>
+        <td><br>
+        </td>
+        <td><br>
+        </td>
+      </tr>
+      <tr>
+        <td><br>
+        </td>
+        <td style="font-weight: bold;"><font color="#990000">x</font></td>
+        <td>&nbsp;</td>
+        <td><i><font color="#000099">Variables</font></i></td>
+      </tr>
+      <tr>
+        <td><br>
+        </td>
+        <td style="font-weight: bold;">| <font color="#990000">E<sub>1&nbsp;</sub>
+E<sub>2</sub></font></td>
+        <td><br>
+        </td>
+        <td><i><font color="#000099">Application</font></i></td>
+      </tr>
+      <tr>
+        <td><br>
+        </td>
+        <td>| <font style="font-weight: bold;" color="#990000">\<i>x</i>.
+E</font></td>
+        <td><br>
+        </td>
+        <td><i><font color="#000099">Abstraction</font></i></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+</ul>
+
+<h4>Part A:</h4>You need to do this part inorder to understand the rest of the assignment.<br>
+
+
+Examples using Haskell&nbsp;&nbsp; <br>
+
+&nbsp;<br>
+
+\x -&gt; x : is an example of a lambda abstraction which <i>x&nbsp; </i>is
+a variable <i><b>bound</b></i> by lambda.<br>
+
+<br>
+
+<ol>
+
+  <li>What is the type of&nbsp; (\x -&gt; x)?</li>
+  <li>What is the value of (and verify by typing in hugs/ghci).<br>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>(\x -&gt; x) 3 ? (Verify by typing in hugs/ghci).</li>
+    <li>(\x -&gt; x) (+) 5 3 ?<br>
+    </li>
+
+    <li>(\x -&gt; x) (+)?&nbsp; <br>
+    </li>
+    <li>What would be a descriptive name for the abstractions in 2.b?</li>
+  </ol>
+  <li>What is the value of</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>(\x -&gt; x +x ) 3 (verify by typing in hugs/ghci).</li>
+    <li>What is the expression ? (E)</li>
+  </ol>
+  <li>What is the value of</li>
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+    
+    <li>(\x -&gt; 3) 6 ? (verify by typing in hugs/ghci).</li>
+    <li>What would be a descriptive name for this abstractions?</li>
+  </ol>
+
+
+</ol>
+
+<h3>Example of using lambda expressions to represent numbers</h3>
+
+<div style="margin-left: 40px;"> We shows how to express integers as
+lambda abstractions.&nbsp; We define what integer 0 looks like and a
+function <i>successor</i> that is applied recursively <i>k</i>+1
+times
+to produce the <i>k</i>'s integer.&nbsp; Therefore each integer in
+lambda calculus is in fact a function. (Underline indicates what will
+be changed.) Notice there is NO recursion!<br>
+</div>
+
+<ul>
+
+</ul>
+
+<blockquote><b>zero</b> = \ s&nbsp; . \ z . z <br>
+  <b>successor</b> = \ n. \s. \ z ( s (( n s ) z ) ). <br>
+one =&nbsp; \ s. \ z . ( s z) <br>
+two =&nbsp; \ s. \z . ( s (s z))&nbsp; <br>
+  <br>
+  <table style="text-align: left;" border="0" cellpadding="5" cellspacing="3">
+    <caption>
+    <h4>one ??=?? <font color="#990000">successor&nbsp;</font> <font color="#000099">zero</font></h4>
+    <small> Apply <span style="color: rgb(204, 0, 0);">successor</span>
+function to <span style="color: rgb(0, 0, 153);">zero</span><br>
+Replace words with lambda terms</small><br>
+    <h4> <font color="#990000">successor</font> <font color="#000099">zero</font>
+&nbsp; =&nbsp;&nbsp; \<font color="#990000"> n. \
+s. \ z. ( s ( ( n s
+) z ) )</font> <font color="#000099">(\
+s&nbsp; . \ z . z)<br>
+    </font><br>
+    </h4>
+    </caption><tbody>
+      <tr>
+        <td style="text-align: left; vertical-align: middle; white-space: nowrap;">=&gt;
+\<font color="#990000"><u>
+n</u>. \
+s. \ z. ( s ( ( <span style="text-decoration: underline;">n</span> s
+) z ) )</font> <u><font color="#000099">(\
+s'&nbsp; . \ z . z)</font></u><font color="#000099">&nbsp; </font><u><font color="#000099"><br>
+        </font></u></td>
+        <td style="vertical-align: top;">1) <span style="font-style: italic;">n</span> to be replaced by lambda term<br>
+&nbsp; &nbsp;&nbsp; <u><font color="#000099">(\
+s'&nbsp; . \ z . z)</font></u>&nbsp; <br>
+&nbsp;&nbsp; and rename <span style="color: rgb(51, 51, 255);">zero's</span>
+s to s'.<br>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle;"> =&gt; \ s. \
+z. ( s (&nbsp; <u>( <span style="color: rgb(204, 0, 0);">\ s'&nbsp; .
+\ z . z</span>) s)</u>&nbsp; z) </td>
+        <td style="vertical-align: top;">2) The result is<br>
+&nbsp;&nbsp; <u>( <span style="color: rgb(204, 0, 0);">\ s'&nbsp; . \
+z . z</span>)</u> <br>
+&nbsp; Now apply<br>
+&nbsp;&nbsp; <u><span style="color: rgb(204, 0, 0);">\ s'&nbsp; . \ z
+. z</span></u> to&nbsp; s <br>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle;"> =&gt;&nbsp; \ s. \ z. ( s <u>(
+\z' . z')
+z)</u> )</td>
+        <td style="vertical-align: top;">3) The result is <u>( \z . z)</u>.&nbsp;
+        <br>
+&nbsp; Rename z to z'<br>
+&nbsp; Now apply <u>( \z' . z')</u> to z.<br>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle;">=&gt; \ s. \ z. ( s z ) </td>
+        <td style="vertical-align: top;">one's representation<br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+</blockquote>
+
+<h3>Lambda Calculus is a simple notations that can be use to compute.</h3>
+
+<h3>---- but what about recursion ???</h3>-------------------------------------------------------------------------------------------------------------------<br>
+
+
+<h3>(Reminder) Properties of functions</h3>
+
+<ul>
+
+  <li> A <b><i>function f</i></b> is a rule that takes an input value
+x
+and returns a value f (x) or f&nbsp; x</li>
+  <ul>
+    <li> The inputs x belong to a set X (called the<b> domain </b>of f
+).</li>
+    <li> The values y = f (x) belong to a set Y (called the <b>range</b>(co-domain)
+of&nbsp; f&nbsp; ).</li>
+  </ul>
+  <li> <b><i>Referential transparency </i></b>is the property that
+appling&nbsp; <b><i>f </i></b>to an object <b><i>a</i></b> will
+always
+result in the same object <i>f </i>(<i>a</i>).</li>
+</ul>
+
+<ul>
+
+  <li> <i>one-to-one </i>(<i>injective</i>) function has the property
+if <i>f </i>( <b><i>a </i></b>) =&nbsp; <i>f </i>(<i><b>b </b>)</i>
+then<i> a </i>equals<i>
+b</i>.</li>
+  <li> <i><font color="#3333ff">fix point</font> property </i>of a<i>
+value:</i></li>
+</ul>
+
+<dl style="margin-left: 40px;">
+
+  <dd>A function<i>&nbsp; <b>f&nbsp; </b></i>whose domain and
+range overlap often have one or more common <b>domain-range </b>value<b><i>
+a</i></b>
+with the property&nbsp; <b><i>f</i> (<i> a</i> ) = <i>a. </i></b>These
+values are called&nbsp; <b><i>fixed points.</i></b></dd>
+</dl>
+
+<ul>
+
+  <li> <b>You should be aware that the domain and range can be
+themselves sets of functions.<br>
+    <br>
+</b></li>
+  <li>Helpful resource at Haskell.org: <a href="http://en.wikibooks.org/wiki/Haskell/Fix_and_recursion">Haskell/Fix and recursion</a><br>
+  </li>
+
+  <br>
+  <hr width="100%">
+</ul>
+
+<h3> Meaning of recursion</h3>
+
+<ul>
+
+  <li> WHAT DOES RECURSION MEAN?</li>
+  <li> You know what a recursive function looks like:</li>
+  <pre>length x = if x == [] then 0 else 1 + length (tail x)</pre>
+  <li> How do we write this as a lambda abstraction?</li>
+  <pre>(\x -&gt; if x == [] then 0 else 1 + ???(tail x))</pre>
+</ul>
+
+<h3>Part B: What do we do with the ??? ?</h3>
+
+<ul>
+
+&nbsp; Type (Do NOT cut and paste) the following non-recursive
+definition in a Haskell file and load
+into hugs/ghci:<br>
+  <pre>&gt; hLen :: (Num u, Eq t) =&gt; ([t] -&gt; u) -&gt; [t] -&gt; u <br>&gt; hLen = (\f x -&gt; if x == [] then 0 else 1 + (f (tail x)))<br>&gt; myLength ls = if ls == [] then 0 else 1 + myLength (tail ls)<br></pre>
+</ul>
+
+<ol>
+
+  <li>[10pts] Look at hLen --<br>
+</li>
+  <ol>
+    <li>Why is hLen recursive?&nbsp; Why or why not.<br>
+    </li>
+    <li>Why is hLen a HOF (higher order function)? Why or why not?<br>
+    </li>
+    <li>What is the value of <br>
+  </li>
+  </ol>
+
+  <ol>
+    
+    <ol style="list-style-type: lower-alpha;">
+      <li>hLen sum [4,5,6] ?</li>
+      <li>hLen head [4,5,6] ?<br>
+      <br>
+    </li>
+    </ol>
+
+    
+  </ol>
+  <dl>
+    <dt>Does hLen have anything to do with sum or head?</dt>
+    <dd><br>
+    </dd>
+  </dl>
+  <li>[2pts]What is the value of <br>
+  </li>
+  <ol>
+    </ol>
+  <dl>
+    <dd>hLen myLength [4,5,6] ?<br>
+<br>
+
+    </dd>
+  </dl>
+  <ol>
+
+  
+  </ol>
+
+  <dl>
+    <li>[2pts]What is the relationship&nbsp; between hLen and myLength?</li>
+  </dl>
+</ol>
+
+<h3>Part C: Factorial</h3>
+
+Add the following definition of factorial to your Haskell file and
+reload into hugs/ghci.<br>
+
+<ul>
+
+  <pre>&gt; factorial :: Integral a =&gt; a -&gt; a<br>&gt; factorial n = if n ==0 then 1 else n * (factorial (n - 1))</pre>
+</ul>
+
+<ol>
+
+  <li>[10pts]Define <span style="font-family: monospace;"><span style="font-weight: bold;">hFact</span></span>
+to be a lambda abstraction such that it takes a function as an
+argument, and returns another function, similar to hLen.&nbsp; Write
+this so that <span style="font-family: monospace;"><span style="font-weight: bold;">hFact factorial = factorial. </span></span>What is the type of&nbsp;<span style="font-family: monospace;"><span style="font-weight: bold;">hFact?</span></span><span style="font-family: monospace;"><span style="font-weight: bold;"> </span></span><br>
+    <br>
+</li><li>[2pts]Apply <span style="font-family: monospace;">hFact</span><span style="font-family: monospace;"> to ( ^ 2) </span>-- What is the
+value of hFact (^ 2) 4?<br>
+    <br>
+</li>
+  <li>[2pts]What is the value of hFact factorial 5? Is it the same value as
+factorial 5?<br>
+  </li>
+</ol>
+
+<ul>
+
+</ul>
+
+<h3>Part D: General definition</h3>
+
+<ul>
+
+  <li> Here<span style="font-family: monospace;"> hFact factorial is
+factorial, </span>i.e. the factorial function is the &#8220;smallest&#8221; fixed
+point of hFact<br>
+  </li>
+  <sub> <br>
+  </sub>
+  <li> In general, to give meaning to the recursive function</li>
+  <pre>f = (\ x. if (cond(x)) then val(x) else expr(f, x))</pre>
+(which cannot be expressed in lambda-notation), we define
+  <pre>H<sub>f</sub> =(\ F -&gt; \ x -&gt; if (cond(x)) then val(x) else expr(F, x))</pre>
+</ul>
+
+<h4>Fix ( Haskell's version of the fixed-point combinator)</h4>
+
+<ul>
+
+</ul>
+
+<ol>
+
+  <li>[2pts] Add the following definition of factorial' to your haskell file:</li>
+  <dl>
+    <dd>&gt; factorial' =&nbsp;hFact factorial'</dd>
+    <dt>Remember that if <i>x = f x</i> then <i>x is the fix point of
+f&nbsp; so <span style="font-weight: bold;">hFact factorial</span>' </i>equals<i>
+      <span style="font-weight: bold;">factorial'<br>
+      <br>
+      </span></i></dt>
+  </dl>
+  <ol>
+    </ol>
+  <dl>
+    <dd>What is the type of <span style="font-family: monospace; font-weight: bold;">factorial' </span>?<br>
+
+    </dd>
+  </dl>
+  <ol>
+
+  
+  </ol>
+
+  <dl>
+    <dt><i><br>
+      </i></dt>
+  </dl>
+  <li>[10pts]Now we can define our fix point operator ( Haskells equivalent Y
+combinator)<br>
+    <br>
+<span style="font-family: monospace;"></span></li>
+  <dl>
+    <dd><span style="font-family: monospace;"></span>&gt; fix f = f
+(fix f )</dd>
+    <dt><br>
+    </dt>
+  </dl>
+  <ol style="list-style-type: lower-alpha;">
+    <li> What
+is the type of fix?<br>
+      <br>
+</li>
+    <li>What is the difference between the code below?<br>
+      <br>
+    </li>
+
+  </ol><dl>
+    <dd>&gt; fix f = f
+(fix f )</dd>
+    <dd>&nbsp;&nbsp;&nbsp; and</dd>
+    <dd>&gt; fix f = f fix f ?<br>
+      <br>
+    </dd>
+  </dl>
+  <li>[10pts]Combining all we have done -- What is the value of <br>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li><span style="font-family: monospace; text-decoration: underline;">factorial
+6&nbsp;&nbsp;</span> (definition given in part C)</li>
+    <li><span style="text-decoration: underline; font-family: monospace;">hFact
+factorial 6</span> ( you defined in part C #2 )</li>
+    <li><span style="font-family: monospace; text-decoration: underline;">factorial'
+6</span> (definition given in part D #1)</li>
+    <li><span style="text-decoration: underline; font-family: monospace;">fix hFact 6</span>
+(definition given in part D)<br>
+      <br>
+    </li>
+  </ol>
+</ol>
+
+<dl>
+
+  <dt>Hope these examples pique your curiousity.<br>
+  </dt>
+</dl>
+
+<ol>
+
+</ol>
+
+<ul>
+
+</ul>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+</body></html>

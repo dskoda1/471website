@@ -1,0 +1,2110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html style="direction: ltr;">
+<head>
+
+
+
+  
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>S06 Runtime NAME_______________________________________</title>
+
+
+  
+
+
+  
+  
+  
+  <meta content="Eileen Head" name="author">
+
+
+
+  
+  
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+
+
+
+  
+  
+  <meta name="CHANGED" content="20041204;15270000">
+
+
+
+  
+  
+  <style type="text/css">
+<!--
+@page { size: 8.5in 11in; margin: 0.79in }
+P { margin-bottom: 0.08in }
+-->
+  </style>
+</head>
+
+
+<body style="direction: ltr;">
+
+
+
+Think before you write.&nbsp; Your
+answers should be brief and to the point. &nbsp; Show your work to
+recieve full credit!<br>
+
+
+
+<ol>
+
+
+
+  <li>Assuming <span style="font-weight: bold;">#</span>
+is a left-associative operator and <span style="font-weight: bold;">%</span>
+is a right-associative operator having higher precedence than #,
+translate the
+following infix expression:</li>
+
+
+
+  
+  
+  <dl>
+
+
+
+    <dd><span style="font-family: monospace; font-weight: bold;">a % b % c
+# a</span><br>
+
+
+
+    </dd>
+
+
+
+    <dt>into</dt>
+
+
+
+  
+  
+  </dl>
+
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+    <li>prefix notation</li>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+  
+  
+  </ol>
+
+
+
+  <br>
+
+
+
+  <li>Complete the following BNF
+grammar to recognize a legal infix expressions described in question
+1.&nbsp;<span style="font-family: monospace;"><br>
+
+
+
+    <br>
+
+
+
+    <span style="font-weight: bold;">&lt;exp&gt;
+-&gt;&nbsp;</span>&nbsp; </span><br style="font-family: monospace;">
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+&nbsp;<br>
+
+
+    <br>
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&lt;var&gt;
+-&gt; a | b | c&nbsp;</span><br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+  </li>
+
+
+
+  <br>
+
+
+
+  <dt>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;</dt>
+
+
+
+  <li>What is printed out by this C99 code? <br>
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">int
+a = 10 ;</span><br>
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">int
+b = 12 ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">int
+ftn2(int a) {</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;printf("%d\n", a+b) ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;return ++a ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">}</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">int
+ftn(int b) {</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;b = a;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;printf("%d\n", b) ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;return ftn2(a) ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">}</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">int
+main(void) {</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp; &nbsp;int
+x ;<br>
+
+&nbsp; &nbsp;x = ftn(b) ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;printf("%d\n", x) ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;return 0 ;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">}</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+&nbsp;<br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+  </li>
+
+
+
+  <li>Briefly describe the runtime problem caused by the
+executing the following code:<br>
+
+
+
+    <br>
+
+
+
+  </li>
+
+
+
+  
+  
+  <dl>
+
+
+
+    <dt style="font-weight: bold;"><span style="font-family: monospace;">int *
+myProblem(int value) {</span></dt>
+
+
+
+    <dd style="font-weight: bold;"><span style="font-family: monospace;">int
+add3;<br>
+
+
+
+add3 = value +3;<br>
+
+
+
+return &amp;add3;</span></dd>
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">}<br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+    <br>
+
+
+&nbsp;<br>
+
+
+
+    <br>
+
+
+    <br>
+
+
+
+    <br>
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    </span><br>
+
+
+
+    <li>Consider
+the pairs of code fragments and expressions below. For each pair,
+what are the l-value, r-value, and type of the expression after
+executing the code fragment? (Some of the expressions may not have an
+l-value. )<br>
+
+
+
+    </li>
+
+
+
+    <br>
+
+
+
+    
+    
+    <table border="1" cellpadding="6" cellspacing="0">
+
+
+
+      <tbody>
+
+
+
+        <tr valign="top">
+
+
+
+          <td width="19">
+          
+          
+          <p><br>
+
+
+
+          </p>
+
+
+
+          </td>
+
+
+
+          <td width="332">
+          
+          
+          <p style="page-break-inside: avoid;"><font color="#000000"><font style="font-size: 11pt;" size="2">Code Fragment</font></font></p>
+
+
+
+          </td>
+
+
+
+          <td width="176">
+          
+          
+          <p style="page-break-inside: avoid;"><font color="#000000"><font style="font-size: 11pt;" size="2">Expression</font></font></p>
+
+
+
+          </td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td width="19">
+          
+          
+          <p style="page-break-inside: avoid; text-align: right;"><font color="#000000"><font style="font-size: 11pt;" size="2">1</font></font></p>
+
+
+
+          </td>
+
+
+
+          <td width="332">double x =5 ; </td>
+
+
+
+          <td style="width: 176px; vertical-align: middle;">(
+3 * x ) </td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td style="width: 19px;">
+          
+          
+          <p style="page-break-inside: avoid; text-align: right;"><font color="#000000"><font style="font-size: 11pt;" size="2">2</font></font></p>
+
+
+
+          </td>
+
+
+
+          <td style="width: 332px;">char s[6]; <br>
+
+
+
+for(int i=0; i&lt;6;i++) <br>
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; *(s+i)=
+(char) i ; </td>
+
+
+
+          <td style="width: 176px; vertical-align: middle;">s[3]
+          </td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td style="width: 19px;">
+          
+          
+          <p style="page-break-inside: avoid; text-align: right;"><font color="#000000"><font style="font-size: 11pt;" size="2">3</font></font></p>
+
+
+
+          </td>
+
+
+
+          <td style="width: 332px;">
+          
+          
+          <p style="page-break-inside: avoid;">float r =
+6.7 ;<br>
+
+
+
+float *p = &amp;r ;</p>
+
+
+
+          </td>
+
+
+
+          <td style="width: 176px; vertical-align: middle;">p
+          </td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td style="width: 19px; vertical-align: middle;">
+          
+          
+          <p style="page-break-inside: avoid; text-align: right;"><font color="#000000"><font style="font-size: 11pt;" size="2">4</font></font></p>
+
+
+
+          </td>
+
+
+
+          <td style="width: 332px;">int x = 9 ;<br>
+
+
+
+int *p1 = &amp;x ;<br>
+
+
+
+int **p2 = &amp;p1 ; </td>
+
+
+
+          <td style="width: 176px; vertical-align: middle;">**p2
+          </td>
+
+
+
+        </tr>
+
+
+
+      
+      
+      </tbody>
+    
+    
+    </table>
+
+
+
+    <br>
+
+
+
+    
+    
+    <table style="width: 577px; height: 353px;" border="2" bordercolor="#000000" cellpadding="6" cellspacing="0">
+
+
+
+      <col width="26"> <col width="195"> <col width="90"> <col width="126"> <tbody>
+
+
+
+        <tr valign="top">
+
+
+
+          <td style="width: 26px;">
+          
+          
+          <p style="page-break-inside: avoid;"><br>
+
+
+
+          </p>
+
+
+
+          </td>
+
+
+
+          <td style="text-align: center; font-weight: bold;" width="195">l-value </td>
+
+
+
+          <td style="text-align: center; font-weight: bold;" width="90">r-value </td>
+
+
+
+          <td style="text-align: center; font-weight: bold;" width="126">type </td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td width="26"> <font color="#000000"><font style="font-size: 11pt;" size="2">1 <br>
+
+
+
+(3*x)</font></font> </td>
+
+
+
+          <td width="195">
+          
+          
+          <p style="page-break-inside: avoid;"><font style="font-size: 11pt;" size="2"><font color="#000000">&nbsp;&nbsp;</font></font></p>
+
+
+
+          <br>
+
+
+
+          </td>
+
+
+
+          <td width="90">
+          
+          
+          <p style="page-break-inside: avoid;"></p>
+
+
+
+&nbsp;</td>
+
+
+
+          <td style="width: 126px;">
+          
+          
+          <p style="page-break-inside: avoid;"></p>
+
+
+
+&nbsp;</td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td style="width: 26px; height: 5px;">
+          
+          
+          <p style="page-break-inside: avoid;"><font color="#000000"><font style="font-size: 11pt;" size="2">2</font></font><br>
+
+
+
+s[3]</p>
+
+
+
+          </td>
+
+
+
+          <td style="width: 195px;"> <br>
+
+
+
+          <br>
+
+
+
+          </td>
+
+
+
+          <td style="width: 90px;"> &nbsp;</td>
+
+
+
+          <td style="width: 126px;"> &nbsp;</td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td style="width: 26px;"> <font color="#000000"><font style="font-size: 11pt;" size="2">3<br>
+
+
+
+p</font></font> </td>
+
+
+
+          <td style="width: 195px;"> &nbsp;
+&nbsp;</td>
+
+
+
+          <td width="90"> &nbsp;</td>
+
+
+
+          <td width="126"> &nbsp;</td>
+
+
+
+        </tr>
+
+
+
+        <tr valign="top">
+
+
+
+          <td width="26">
+          
+          
+          <p style="page-break-inside: avoid;"><font color="#000000"><font style="font-size: 11pt;" size="2">4<br>
+
+
+
+**p2</font></font></p>
+
+
+
+          </td>
+
+
+
+          <td width="195"> &nbsp; &nbsp;<br>
+
+
+
+          <br>
+
+
+
+          </td>
+
+
+
+          <td width="90"> &nbsp; </td>
+
+
+
+          <td width="126">
+          
+          
+          <p style="page-break-inside: avoid;"></p>
+
+
+
+&nbsp;</td>
+
+
+
+        </tr>
+
+
+
+      
+      
+      </tbody>
+    
+    
+    </table>
+
+
+
+  
+  
+  </dl>
+
+
+
+  <br>
+
+
+  <br>
+
+
+
+  <li>Circle the<span style="text-decoration: underline;"> one correct answer</span> for each of the problems
+below.<br>
+
+
+    <br>
+
+
+
+  </li>
+
+
+
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+
+    <li>Which kind of variable has the longest lifetime?<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a) An implicitly
+heap-dynamic variable<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (b) A static variable<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (c) A stack-dynamic
+variable<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (d) A flexible
+variable<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (e) A fixed-length
+variable<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (f) A lexically
+scoped variable&nbsp;<br>
+
+
+&nbsp;<br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    <li>Which of the following is the strictest, as applied to
+record types?<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (a) name equivalence<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (b) structural
+equivalence<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (c) subtype agreement<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (d) assignment
+compatibility<br>
+
+
+      <br>
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    <li>Operator associativity generally applies to which
+notation ? <dd>&nbsp; &nbsp; &nbsp;(a) only prefix
+operators</dd>
+
+
+
+      <dd>&nbsp; &nbsp; &nbsp;(b) only infix operators</dd>
+
+
+
+      <dd>&nbsp; &nbsp;&nbsp; (c) only postfix
+operators</dd>
+
+
+
+      <dd>&nbsp; &nbsp; &nbsp;(d) prefix, infix and
+postfix operators.</dd>
+
+
+
+    </li>
+
+
+
+  
+  
+  </ol>
+
+
+
+  <dt>&nbsp;&nbsp;</dt>
+
+
+
+  <dd><br>
+
+
+  </dd>
+
+
+
+  <li>The typing system of C# contains 3 categories of types:
+value
+types; reference types and pointer types. &nbsp;Structs, ints,
+doubles are examples of value types, this is like C++. &nbsp;All
+arrays, classes,
+interfaces are examples of reference types, this is like Java.
+&nbsp;Pass by value is
+the default parameter passing semantics. However, pass by reference
+semantics can be specified by using the keyword&nbsp;<span style="font-style: italic;">ref.</span>
+&nbsp;Consider the following functions:<br>
+
+
+
+    <br>
+
+
+
+  </li>
+
+
+
+  
+  
+  <dl style="font-family: monospace; font-weight: bold;">
+
+
+
+    <dd>static void ChangeV(int[] array) {<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+array[1] = 999;&nbsp;&nbsp;<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+array = new int[5] {-5,-4,-3,-2,-1};&nbsp;<br>
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; array[0]= -333;<br>
+
+
+
+}<br>
+
+
+
+      <br>
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+static void ChangeR(ref int[] array)
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</dd>
+
+
+
+    <dd>&nbsp; &nbsp; &nbsp; &nbsp; array[1] =
+999;<br>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+array = new int[5] {-3, -1, -2, -3, -4};<br>
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; array[0] = -333;<br>
+
+
+
+}<br>
+
+
+
+      <br>
+
+
+      <br>
+
+
+
+    </dd>
+
+
+
+  
+  
+  </dl>
+
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+    <li>List all the values in myarr after the call to
+ChangeV()
+in the following code:<br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    
+    
+    <ol style="font-family: monospace; font-weight: bold;">
+
+
+
+int [] myarr = { 10, 11, 12 };<br>
+
+
+
+ChangeV(myar5);<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    
+    
+    </ol>
+
+
+
+    <li>List all the values in myarr after the call to
+ChangeR()
+in the following code:<br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    
+    
+    <ol style="font-family: monospace; font-weight: bold;">
+
+
+
+int [] myarr = { 10, 11, 12 };<br>
+
+
+
+ChangeR(myar5);<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+      <br>
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    
+    
+    </ol>
+
+
+
+  
+  
+  </ol>
+
+
+
+  <li>Predict the output of the following program written in
+pseudo-C syntax:<br style="font-family: monospace;">
+
+
+
+    
+    
+    <div style="margin-left: 80px;"><span style="font-family: monospace; font-weight: bold;">int
+x = 2;<br>
+
+
+
+    </span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">void
+f() {</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;print x;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">}<br>
+
+
+
+    </span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">void
+g() {</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+int x = 5; </span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+f(); </span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+print x;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">}<br>
+
+
+
+    </span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">void
+main(){</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;g();</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;
+&nbsp;print x;</span><br style="font-family: monospace; font-weight: bold;">
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">}<br>
+
+
+    <br>
+
+
+
+    </span></div>
+
+
+
+  </li>
+
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+    <li>assuming static scoping<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    <li>assuming dynamic scoping<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+  
+  
+  </ol>
+
+
+
+  <span style="font-family: monospace;"><br>
+
+
+
+  <br>
+
+
+
+  </span><li>Identifiers can be bound to attributes at various times,
+for
+example: language design time, implementation time, compile time,
+link/load time and run time.&nbsp; Pick one attribute that can be
+bound
+either at compile or runtime. Specify a language which uses that
+binding time.&nbsp;&nbsp;Give an advantage of binding that
+attribute at
+that
+time.<br>
+
+
+
+    <br>
+
+
+
+  </li>
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>compile time&nbsp;<br>
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+&nbsp;<br>
+
+
+      <br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>runtime time<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+      <br>
+
+
+&nbsp;<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+  
+  
+  </ol>
+
+
+  <li>The Python tutorial says,"Note that comparing objects of
+different
+types is legal. The outcome
+is deterministic but arbitrary:" &nbsp;For example x = [1,2]
+&lt; (1,2)
+is legal. &nbsp;Should you write&nbsp;code that depends on
+comparing
+objects
+of different types? Why? &nbsp;What would happen if&nbsp;code comparing tuples and lists is executed in the Python shell?<br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+    <br>
+
+
+  </li>
+
+
+  <li>Predict the output of the following program written in
+pseudo-C syntax,
+    
+    
+    <pre style="font-weight: bold; margin-left: 40px;">int i, <br>int a[3];<br>void h(int j, int k) { <br> i = j + 1; <br> k = 5; <br> j = 2; <br>}<br>void main(){<br> i = 0; <br> a[0] = 1; <br> a[1] = 2; <br> a[2] = 3;<br> h(i, a[i]);<br> print (a[0], a[1], a[2], i);<br>}</pre>
+
+
+
+  </li>
+
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+    <li>assuming <span style="text-decoration: underline;">pass by value</span> semantics.<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    <li>assuming <span style="text-decoration: underline;">pass by reference</span> semantics.<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    <li>assuming <span style="text-decoration: underline;">pass by copy-in copy-out</span> (value/result)
+semantics.<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+    <li>assuming <span style="text-decoration: underline;">pass by name</span> semantics.<br>
+
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  
+  </ol>
+
+
+
+  
+  
+  <dl>
+
+
+
+    <span style="font-family: monospace;"> <br>
+
+
+
+    <br>
+
+
+
+    <br>
+
+
+
+    </span>
+  
+  
+  </dl>
+
+
+
+
+
+  <br>
+
+
+
+  <br>
+
+
+
+  <br>
+
+
+
+  <br>
+
+
+
+  <br>
+
+
+
+  <br>
+
+
+
+  <br>
+
+
+
+  <br>
+
+
+
+
+  <li>What is meant by "garbage" (in programming languages)?
+&nbsp;Describe a garbage collecting algorithm. &nbsp;Given <span style="text-decoration: underline;">one</span>
+advantage and <span style="text-decoration: underline;">one</span> disadvantage of your
+algorithm as compared to other garbage collecting algorithms.</li>
+
+
+
+  
+  
+  <ol>
+
+
+
+  
+  
+  </ol>
+
+
+
+  <br>
+
+
+
+  
+  
+  <dl>
+
+
+
+    <dt> <br>
+
+
+
+    </dt>
+
+
+
+  
+  
+  </dl>
+
+
+
+</ol>
+
+
+
+<br>
+
+
+
+<p><br>
+
+
+
+</p>
+
+
+
+<p><br>
+
+
+
+</p>
+
+
+
+<br>
+
+
+
+<p><br>
+
+
+
+</p>
+
+
+
+<ol>
+
+
+
+  
+  
+  <dl>
+
+
+
+    <dd><br>
+
+
+
+    </dd>
+
+
+
+  
+  
+  </dl>
+
+
+
+  <br>
+
+
+
+  
+  
+  <ol>
+
+
+
+    
+    
+    <ol>
+
+
+
+    
+    
+    </ol>
+
+
+
+  
+  
+  </ol>
+
+
+
+</ol>
+
+
+
+</body>
+</html>

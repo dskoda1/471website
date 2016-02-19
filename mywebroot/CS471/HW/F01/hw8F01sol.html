@@ -1,0 +1,180 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.77 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Fall 2001 CS471 Homework #8 Solution</title>
+</head>
+<body>
+
+<center><b><font size=+2>Fall 2001</font></b>
+<br><b><font size=+2>CS471 Programming Language</font></b>
+<br><b><font size=+2>Homework #8 Solutions</font></b></center>
+
+<ol>
+<li>
+What is the relationship between scalar types and discrete types?</li>
+
+<br><b>Ans 1: The discrete types have the domains to which they correspond
+are countable, and have well-defined notion of predecessor and successor
+for each element other than the first and last. Integers, booleans, and
+characters are examples of discrete types. Integers, booleans, characters,
+and enumerations are part of discrete type. Discrete, rational, and complex
+types together constitute the scalar type. In another word, discrete types
+construct a subset of the scalar types. (Scott)</b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+What are "macros" in C?&nbsp; What are they good for (i.e. What is the
+"up side" of using them in your coding?) ? How are they dangerous (i.e.What
+is the "down side" of using them in your coding?) ? Give examples.</li>
+
+<br><b>Ans 2: A macro is made of a sequence of tokens as part of the body.
+When the name of the macro is recognized in the program source text or
+in the argument of certain other preprocessor commands, it is treated as
+a call to that macro, the name is effectively replaced by a copy of the
+body.</b>
+<p><b>advantages of macro:</b>
+<ul>
+<li>
+<b>one can group together code changes so they are consistent throughout
+the code.</b></li>
+
+<li>
+<b>less overhead than functions, i.e. no register saves and restores</b></li>
+
+<li>
+<b>no branch delays and space allocation</b></li>
+</ul>
+
+<p><br><b>disadvantages of macro:</b>
+<ul>
+<li>
+<b>side effect, hard to debug</b></li>
+
+<li>
+<b>since the preprocessor is run completely before the compiler, it doesn't
+know about the rules of the language and thus its effects are not checkable
+by the compiler&nbsp;&nbsp; --- no type safety</b></li>
+
+<li>
+<b>increase code size</b></li>
+
+<li>
+<b>bad readibility, hard to debug</b></li>
+</ul>
+
+<p><br><b>example macro with side effects</b>
+<br><b>#define DIVIDE (n,a) (!((n)%(a)))</b>
+<br><b>DIVIDE (x, y+z) would be replaced by (!(x%y+z)), which is not the
+same as (!((x)%(y+z)))</b>
+<p><b>#define MAX(a,b) ((a)>b) ? (a):(b))</b>
+<br><b>MAX(x++,y++) will increment its larger argument twice.</b>
+<p><b>#define SWAP(a,b) {int t=(a); (a)=(b); (b)=t;}</b>
+<br><b>SWAP(x,t) will cause multiple declarations of t.</b>
+<p><b>#define DOUBLE(x) x+x</b>
+<br><b>DOUBLE(b)*c which gives b+b*c, rather than what the programmr might
+want, (b+b)*c</b>
+<p>Sources: K&amp;R and Scott</ol>
+
+<ol START=3>
+<li>
+In C++, what is the difference between assigning a value to a pointer and
+to a reference?</li>
+
+<br><b>Ans 3: Assigning a value to a pointer means giving it somewhere
+to point, namely an address. Assigning a value to a reference means you
+are giving the variable it aliases a value and are thus setting the r-value
+of what it aliases.&nbsp;&nbsp; (Brett Bernstein)</b></ol>
+
+<ol START=4>
+<li>
+Perl uses "dynamic" arrays which can increase in size during execution.&nbsp;
+Explain how can the dynamic arrays can be&nbsp; implemented at runtime?</li>
+
+<br><b>Ans 4: When the size of an array is too small to store more data,
+a new array of larger size will be created.&nbsp; Data from the smaller
+array will be copied into the new, larger array, as is done in Java Vector.&nbsp;
+The old array is then deleted. In Perl, "dynamic" arrays are allocated
+from the heap and are implemented as linked list.</b>
+<p><b>example code in Perl shows how dynamic array shrinks and grow</b>
+<br><b>my @arr = (5,6,7);</b>
+<br><b>push @arr, 10 # this will result in the array now being (5,6,7,10)</b>
+<br><b>push @arr, (11,12) # this will result in the array now being (5,
+6, 7, 10, 11, 12)</b>
+<br><b>my $element = pop @arr&nbsp; # will pop the last element in the
+array, which is 12</b>
+<p><b>--- sample code provided by Jay Parikh</b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+An index check verifies that the index of an array is in the bounds declared
+for the array. Can an index check be performed statically? Why? Why not?</li>
+
+<br><b>Ans 5: It depends on the type of array whether or not index checking
+can be performed statically. Index checking cannot be statically performed
+for dynamic arrays for obvious reasons. For static arrays, the index value
+might be a variable not known at compile time. In this case, index checking
+cannot occur statically. Index checking can occur statically if the array
+bounds are known at compile time, and the index into the array is a scalar
+value or key depending on the language. Even in this case, if the language
+uses dynamic scoping, index checking cannot be performed statically.&nbsp;
+--- Barry Molof</b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Given the following declaration in Ada :</li>
+
+<br>TYPE Array_type IS ARRAY(2..8) OF Integer;
+<br>TYPE CODE is record
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Level: CHARACTER;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Salary : Integer;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Status : CHARACTER;
+<br>end record;
+<br>TYPE Code_Array IS ARRAY(10..15) OF CODE;
+<br>arr : Array_type;
+<br>codeArr : Code_Array;</ol>
+
+<blockquote>If INTEGER requires 4 bytes of storage and CHARACTER requires
+1 byte of storage what is the effective address (using bytes as the addressable
+units) of variables below (show your calculations) You should assume that
+the ba (base address) for arr is 300 and the base address for codeArr is
+2100.
+<p><b>Effective address = ba + size*(s1-LowerBound of A)</b></blockquote>
+
+<blockquote>A. Effective address for arr(3)&nbsp; is&nbsp; <b><u>300+4*(3-2)
+= 304</u></b>
+<br>B. Effective address for codeArr(11) is&nbsp; <b><u>2100+6*(11-10)
+= 2106</u></b>
+<br>C. Effective address for codeArr(11).Status is&nbsp; <b><u>2100+6+5
+= 2111</u></b></blockquote>
+
+<ol START=7>
+<li>
+Given the following declaration in Ada :</li>
+
+<br>TYPE Array_type IS ARRAY(1..4,10..14) OF Integer;
+<br>TYPE CODE is record
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Status : CHARACTER;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Salary : Integer;
+<br>end record;
+<br>TYPE Code_Array IS ARRAY(1..5,10..14) OF CODE;
+<br>arr : Array_type;
+<br>codeArr : Code_Array;
+<p>If&nbsp;&nbsp; INTEGER requires 4 bytes of storage and CHARACTER requires
+1 byte of storage what is the effective address (using bytes as the addressable
+units) of variables below (show your calculations) You should assume that
+the ba (base address) for arr is 260 and the base address for codeArr is
+2100.
+<br>&nbsp;
+<p>Using row major the effective address for arr(3,10)&nbsp; is&nbsp; <b><u>260+(10*4)
+= 300</u></b>
+<br>Using column major the effective address for arr(3,10)&nbsp; is <b><u>260
++ (2*4) = 268</u></b>
+<br>Using row major the effective address for codeArr(3,11) is&nbsp; <b><u>2100
++ (11*5) = 2155</u></b>
+<br>Using row major the effective address for codeArr(3.11).Salary is <b><u>2100
++ (11*5) + 1 = 2156</u></b></ol>
+
+</body>
+</html>

@@ -1,0 +1,3568 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+
+
+  
+  
+  
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+
+
+
+
+  
+  
+  
+  <meta content="Eileen Head" name="Author">
+
+
+
+
+  
+  
+  
+  <meta content="Mozilla/4.73 [en] (Win98; U) [Netscape]" name="GENERATOR"><title>How to Describe The Syntax of a Programming Language</title></head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); direction: ltr;" alink="#3333ff" link="#3366ff" vlink="#000099">
+
+
+
+
+<center>
+<h3> &nbsp;Syntax<br>
+
+
+
+
+</h3>
+
+
+
+
+</center>
+
+
+
+
+<h3> What will be covered ?</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Compilers vs Interpreters</li>
+
+
+
+
+  <li>Sequence of building an
+executable program</li>
+
+
+
+
+  <li>Phases of Compilation</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Lexical Analysis -
+Regular Expressions</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Syntactic Analysis -
+Extended Backus-Naur Form (EBNF)</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Recursive Descent Parser vs
+Shift Reduce Parser</li>
+
+
+
+
+  <li> What does it mean? Semantics<br>
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+<hr width="100%">
+<h4>Compilers vs Interpreters</h4>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Translators:</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Convert source code to source code</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>Original C++ &nbsp;--&gt; C<br>
+
+
+
+
+Java --&gt; C#<br>
+
+
+
+
+    </dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Compilers:</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Translates&nbsp; source text code written in an
+higher level language to object code or machine language (executable
+&nbsp;program)</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>C++, C, Java (both)</dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Virtual Machines</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>Pascal, Smalltalk, Java, .Net</dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Executable program + Input data ==&gt; Output data</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>&nbsp;Interpreters:</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Translates and executes source code</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>Lisp, Basic, Prolog, Java(both),</dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Source code + Input data ==&gt; Output data</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>What are the trade offs?</li>
+
+
+
+
+</ul>
+
+
+
+
+<h4>User's view of a Classical Sequence for Running
+a Program</h4>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Edit</li>
+
+
+
+
+  <li>Compiler</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>usually creates object files<br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Linker (link editor)</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>creates executable file</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Loader<br>
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+<b>Phases of Compilation</b>
+<p><a href="PhasesCompilation.gif"><img alt="Phases Of Compilation -- Click to Enlarge Diagram" src="PhasesCompilation.gif" style="border: 0px solid ; width: 397px; height: 300px;"></a><br>
+
+
+
+
+&nbsp; </p>
+
+
+
+
+<ul>
+
+
+
+
+  <li><a href="http://en.wikipedia.org/wiki/Compilers#Compiler_front_end">
+Front end vs back end</a></li>
+
+
+
+
+  <li> Symbol Table</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Mapping of identifiers
+(name) to attributes</li>
+
+
+
+
+    <li>Hashtable, data structure,
+is the usual implementation<br>
+
+
+
+
+    </li>
+
+
+
+
+    <li>Used by the various
+phases&nbsp;</li>
+
+
+
+
+    <li>Used to check static
+semantic errors<br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<h4>Variations</h4>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Hiding steps</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>To build an executable,
+a.out, in gcc</li>
+
+
+
+
+    
+    
+    
+    <dl>
+
+
+
+
+      <dt><span style="font-family: monospace;">gcc
+mainProgram.c</span><br>
+
+
+
+
+        <br>
+
+
+
+
+      </dt>
+
+
+
+
+    
+    
+    
+    </dl>
+
+
+
+
+    <li>Use switches to delimit
+intermediate steps</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    
+    
+    
+    <dl>
+
+
+
+
+      <dt><span style="font-family: monospace;">gcc
+mainProgram.c -S</span><br style="font-family: monospace;">
+
+
+
+
+        <span style="font-family: monospace;">as
+mainProgram.s -o mainProgram.o</span><br style="font-family: monospace;">
+
+
+
+
+        <span style="font-family: monospace;">ld</span>
+is the loader command<br>
+
+
+
+
+        <br>
+
+
+
+
+      </dt>
+
+
+
+
+    
+    
+    
+    </dl>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Integrated Development
+Environments</li>
+
+
+
+
+  <li>Delayed Linking</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Link time vs runtime.<br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<hr width="100%"> <span style="font-weight: bold;"></span><b>Specification
+of a Programming Language<br>
+
+
+
+
+</b>
+<ul>
+
+
+
+
+  <li>Definition of&nbsp;</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><span style="font-style: italic;">Language
+form</span>: Formal Syntax</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><a href="http://dictionary.reference.com/search?q=Syntax">The
+rules governing the formation of statements in a programming language.</a>(Dictionary.com)</dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    
+    
+    
+    <ul>
+
+
+
+
+      <li>Tokens (words of the program)</li>
+
+
+
+
+      <li>Context Free Grammar</li>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+    <li>Language <span style="font-style: italic;">meaning
+      </span>: Formal Semantics</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>The study of the
+relationships between various signs and symbols and what they
+represent. (Dictionary.com)</dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<!-- google_ad_region_end=def --><b>Lexical Analysis
+and Tokens</b>
+<ul>
+
+
+
+
+  <li> <b><i>Tokens </i></b>are
+basic building blocks of a program</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> keywords / reserve words --examples</li>
+
+
+
+
+    <li> literals -- examples</li>
+
+
+
+
+    <li> variables</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Regular expressions are used to specify tokens</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Finite Grammars</li>
+
+
+
+
+    <li> Grammars are used to
+describe recursive patterns</li>
+
+
+
+
+    <li>flat data</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Scanners</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><span style="font-weight: bold;">Lex</span>
+is a widely used package to build compilers(<a href="http://dinosaur.compilertools.net/">http://dinosaur.compilertools.net/</a>)</li>
+
+
+
+
+    <li>Selecting tokens</li>
+
+
+
+
+    
+    
+    
+    <ul style="list-style-type: circle;">
+
+
+
+
+      <li>delimiters -- whitespace and look ahead - new
+tokens&nbsp;</li>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+    
+    
+    
+    <ul style="list-style-type: circle;">
+
+
+
+
+      <li>Principle of longest substring</li>
+
+
+
+
+      <li style="font-family: monospace;">xtemp=ytemp</li>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<b>Syntactic Analysis and BNF</b>
+<ul>
+
+
+
+
+  <li>The legal organization of&nbsp; <span style="font-style: italic;">tokens</span> into
+statements are described by a<b> context
+free grammar</b> (CFG).</li>
+
+
+
+
+  <li> BNF (Backus-Naur Form) is a
+meta syntax for expressing CFGs. Usually used
+as the notation for a programming
+language's grammar.</li>
+
+
+
+
+  <li> Set of productions (also
+called rules)</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>&lt;expr&gt; ::= &lt;expr&gt; +
+&lt;term&gt;</tt> <br>
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|
+&lt;term&gt;</tt>
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Terminal symbols</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>if</tt> <br>
+
+
+
+
+    <tt>+</tt> <br>
+
+
+
+
+    <tt>begin</tt>
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Non terminal symbols</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>&lt;statement&gt;</tt> <br>
+
+
+
+
+    <tt>&lt;compilation-unit&gt;</tt> <br>
+
+
+
+
+    
+    
+    
+    <hr width="100%">
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> <b>Example
+- Grammar for a Small Language</b></li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>This is an example of a
+grammar that generates expressions with
+infix
+operators.</li>
+
+
+
+
+    <li>Expression consist of <i>operands </i>and<i>
+operators.</i><br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>&lt;program&gt;&nbsp;&nbsp;&nbsp; <b><font color="#ff0000">::=</font></b></tt><b><tt> begin</tt></b><tt>
+&lt;stmt_list&gt; <b>end</b></tt> <br>
+
+
+
+
+    <tt>&lt;stmt_list&gt;&nbsp; <b><font color="#ff0000">::=</font></b></tt><tt>
+&lt;stmt&gt;</tt> <br>
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <font color="#ff0000">&nbsp;&nbsp;
+|</font> &lt;stmt&gt; <b>;</b>
+&lt;stmt_list&gt;</tt> <br>
+
+
+
+
+    <tt>&lt;stmt&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b><font color="#ff0000">::=</font></b></tt><tt>
+&lt;var&gt;&nbsp; <b>:=</b>
+&lt;expression&gt;</tt> <br>
+
+
+
+
+    <tt>&lt;var&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b><font color="#ff0000">::=</font></b></tt><b><tt>
+A</tt></b> <br>
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <font color="#ff0000">&nbsp;&nbsp;
+| </font><b>B</b></tt> <br>
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <font color="#ff0000">&nbsp;&nbsp;
+| </font><b>C</b></tt> <br>
+
+
+
+
+    <tt>&lt;expression&gt; <b><font color="#ff0000">::=</font></b></tt><tt>
+&lt;var&gt; <b>+</b>
+&lt;var&gt;</tt> <br>
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <font color="#ff0000">|</font>
+&lt;var&gt; <b>-</b>
+&lt;var&gt;</tt> <br>
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <font color="#ff0000">|</font>&nbsp;&lt;var&gt;</tt>
+    <br>
+
+
+
+
+    
+    
+    
+    <hr width="100%">
+  
+  
+  
+  </ul>
+
+
+
+
+  <li><b>Derivation
+of&nbsp;<br>
+
+
+
+
+begin &nbsp;A := A + B end</b></li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>&lt;program&gt;<b>
+=&gt; begin </b>&lt;stmt_list&gt;<b>
+end</b></tt>
+    
+    
+    
+    <ul>
+
+
+
+
+      
+      
+      
+      <ul>
+
+
+
+
+        <tt><b>&nbsp;=&gt;
+begin </b>&lt;stmt&gt;<b>
+end</b></tt> <br>
+
+
+
+
+        <tt><b>&nbsp;=&gt;
+begin </b>&lt;var&gt; <b>:= </b>&lt;expression&gt;<b>end</b></tt>
+        <br>
+
+
+
+
+        <tt><b>&nbsp;=&gt;
+begin&nbsp; A := </b>&lt;expression&gt;<b>end</b></tt>
+        <br>
+
+
+
+
+        <tt><b>&nbsp;=&gt;
+begin A := </b>&lt;var&gt;<b>
++ </b>&lt;var&gt;<b>
+end</b></tt> <br>
+
+
+
+
+        <tt><b>&nbsp;=&gt;
+begin A := A + </b>&lt;var&gt;<b>
+end</b></tt> <br>
+
+
+
+
+        <b><tt>&nbsp;=&gt;
+begin A := A + B end</tt></b>
+      
+      
+      
+      </ul>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> This is a leftmost
+derivation.</li>
+
+
+
+
+    <li> Example of top down
+parsing.</li>
+
+
+
+
+    <li> Each string in the
+derivation is called a sentential form.</li>
+
+
+
+
+    <li> Example from Sebesta 96</li>
+
+
+
+
+    <br>
+
+
+
+
+    
+    
+    
+    <hr width="100%">
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> <b>Parse
+Tree is a Visualization of a Derivation</b></li>
+
+
+
+
+  <li><b>show
+the analysis<br>
+
+
+
+
+    </b></li>
+
+
+
+
+  <br>
+
+
+
+
+  <a href="ParseTree.gif"><img alt="Parse Tree -- Click to Enlarge" src="ParseTree.gif" style="border: 0px solid ; width: 333px; height: 250px;"> </a>
+</ul>
+
+
+
+
+<hr width="100%"> <b>Abstract
+Syntax Tree&nbsp;</b>
+<ul>
+
+
+
+
+  <li>Can be produced directly by
+a Parser.</li>
+
+
+
+
+  <li>Shows only result<br>
+
+
+
+
+  </li>
+
+
+
+
+  <li>Eliminates redundant
+information.</li>
+
+
+
+
+  <li>Each node's degree depends
+on the <b>arity<i> </i></b>of
+the
+operator.<br>
+
+
+
+
+  </li>
+
+
+
+
+  <br>
+
+
+
+
+  <a href="ExprTree.gif"><img alt="Expression Tree for A := A+ B -- Click to Enlarge" src="ExprTree.gif" style="border: 0px solid ; width: 258px; height: 250px;"></a>
+  <br>
+
+
+
+
+Aside: <br>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+Traversing an expression tree in <i>pre</i>order
+yields a <i>pre</i>fix
+expression.<br>
+
+
+
+
+Traversing an expression tree in <i>post</i>order
+yields a <i>post</i>fix
+expression.<br>
+
+
+
+
+Traversing an expression tree <i>in</i>order
+yields an <i>infix
+expression</i>,
+but every subexpression must be parenthesized.
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <hr width="100%"> <li>&nbsp;<b>A Rule
+for
+&lt;if-statement&gt;</b></li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <b><tt>&lt;stmt&gt; <font color="#ff0000">::=</font></tt><tt>
+&#8230;<font color="#ff0000">|</font>&lt;if_stmt&gt;</tt></b>
+    <br>
+
+
+
+
+    <b><tt>&lt;if_stmt&gt; <font color="#ff0000">::=</font></tt><tt>
+if </tt>&lt;logic_expr&gt;<tt>
+then </tt>&lt;stmt&gt;</b> <br>
+
+
+
+
+    <b><tt><font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|</font> if </tt>&lt;logic_expr&gt;<tt>
+then </tt>&lt;stmt&gt;<tt>
+else </tt>&lt;stmt&gt;</b>
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> <b>What
+is the parse tree for the sentential form:</b></li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <a name="DanglingElse"></a><b>if
+&lt;logic_expr&gt; then if
+&lt;logic_expr&gt; then &lt;stmt&gt; else
+&lt;stmt&gt;&nbsp;&nbsp;&nbsp;&nbsp; ?</b>
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <p><br>
+
+
+
+
+  </p>
+
+
+
+
+  
+  
+  
+  <hr width="100%"> <br>
+
+
+
+
+  <a href="IfTree1.gif"><img alt="Click to Enlarge" src="IfTree1.gif" style="border: 0px solid ; width: 266px; height: 200px;"> </a><a href="IfTree2.gif"><img alt="Click to enlarge" src="IfTree2.gif" style="border: 0px solid ; width: 346px; height: 200px;"></a><br>
+
+
+
+
+&nbsp; <li> When there exist
+two different parse tree for the same
+sentential form the grammar is ambiguous</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Sometimes languages are
+ambiguous</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Why is this a problem?</li>
+
+
+
+
+  <li>How can this problem be
+handled?</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>C handles the ambiguity by
+adding a disambiguating rule:<br>
+
+
+
+
+each <span style="font-weight: bold; font-style: italic;">else</span>
+matches the closest unmatched <span style="font-style: italic;"><span style="font-weight: bold;">if </span></span></li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Modula-2 removes the
+ambiguity by changing the grammar:</li>
+
+
+
+
+    <tt>&lt;stmt&gt;
+&nbsp; &nbsp;::= <span style="font-weight: bold;">if</span>
+&lt;logic_expr&gt; <span style="font-weight: bold;">then</span>
+&lt;stmt&gt;<span style="font-family: mon;"> <span style="font-weight: bold;">end&nbsp;<br>
+
+
+
+
+    </span></span>&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; <span style="font-weight: bold;">if</span>
+&lt;logic_expr&gt; <span style="font-weight: bold;">then</span>
+&lt;stmt&gt;<span style="font-weight: bold;"> else</span>
+&lt;stmt&gt; <span style="font-weight: bold;">end<br>
+
+
+
+
+    </span></tt>
+    
+    
+    
+    <ul>
+
+
+
+
+      <li>There are 2 different
+derivations that derive different strings</li>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>&nbsp;
+&nbsp;&lt;stmt&gt; =&gt; <span style="font-weight: bold;">if</span>
+&lt;logic_expr1) then <span style="text-decoration: underline;">&lt;stmt&gt;</span>
+    <span style="font-weight: bold;">end<br>
+
+
+
+
+    </span></tt>
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<div style="margin-left: 40px;">
+<div style="margin-left: 120px;">&nbsp;
+&nbsp; =&gt; <tt><span style="font-weight: bold;">if</span>
+&lt;logic_expr1) then <span style="font-weight: bold; text-decoration: underline;">if
+</span><span style="text-decoration: underline;">&lt;logic-expr2&gt;
+<span style="font-weight: bold;">then</span>
+&lt;stmt1&gt;
+<span style="font-weight: bold;">else</span>
+&lt;stmt2&gt; <span style="font-weight: bold;">end</span></span>
+<span style="font-weight: bold;">end</span></tt><br>
+
+
+
+
+<br>
+
+
+
+
+</div>
+
+
+
+
+<div style="margin-left: 80px;">VS
+<br>
+
+
+
+
+<tt>&lt;stmt&gt; &nbsp;=&gt; <span style="font-weight: bold;">if</span>
+&lt;logic_expr1) then <span style="text-decoration: underline;">&lt;stmt&gt;</span>
+else &lt;stmt2&gt;
+<span style="font-weight: bold;">end</span></tt><br>
+
+
+
+
+<div style="margin-left: 80px;">&nbsp;=&gt; <tt><span style="font-weight: bold;">if</span>
+&lt;logic_expr1) then <span style="font-weight: bold; text-decoration: underline;">if
+</span><span style="text-decoration: underline;">&lt;logic-expr2&gt;
+<span style="font-weight: bold;">else</span>
+&lt;stmt1&gt; <span style="font-weight: bold;">end
+</span></span>&lt;stmt2&gt;<span style="text-decoration: underline;"><span style="font-weight: bold;"></span></span>
+<span style="font-weight: bold;">end</span></tt><br>
+
+
+
+
+</div>
+
+
+
+
+<br>
+
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>A
+more general solution:</li>
+
+
+
+
+    <tt><br>
+
+
+
+
+&lt;stmt&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><font color="#ff0000">::=</font></b></tt><b><font color="#ff0000"> </font></b>&lt;matched&gt;<br>
+
+
+
+
+    <b><font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|</font></b>
+&lt;unmatched&gt; <br>
+
+
+
+
+    <tt>&lt;matched&gt;&nbsp;&nbsp; <b><font color="#ff0000">::=</font></b></tt>
+if &lt;logic_expr&gt; then
+&lt;matched&gt; else &lt;matched&gt; <br>
+
+
+
+
+    <b><font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|</font></b>
+any non-if statement <br>
+
+
+
+
+    <tt>&lt;unmatched&gt; <b><font color="#ff0000">::=</font></b></tt><b><font color="#ff0000"> </font></b>if
+&lt;logic_expr&gt; then
+&lt;stmt&gt; <br>
+
+
+
+
+    <b><font color="#ff0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|</font></b>
+if &lt;logic_expr&gt; then &lt;matched&gt; else
+&lt;unmatched&gt;
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> There is only one
+possible parse tree.&nbsp; Draw it for
+yourself.</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+Aside: Some languages are <b><i>inherently
+ambiguous. &nbsp;</i></b>i.e.
+All grammars for the language are ambiguous.<br>
+
+
+
+
+{<i>a<sup>n</sup>b<sup>n</sup>c<sup>m</sup>d<sup>m</sup></i>
+: <i>n,m </i>&nbsp;&gt;
+0 } union {<i>a<sup>n</sup>b<sup>m</sup>c<sup>m</sup>d<sup>n</sup></i>:<i>n,m</i>&nbsp;&gt;
+0 }
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <br>
+
+
+
+
+  
+  
+  
+  <hr width="100%">
+</ul>
+
+
+
+
+<h3>Operators</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> What is an operator?</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Operator are functions
+with special symbols i.e.<br>
+
+
+
+
+    </li>
+
+
+
+
+    <b>&nbsp; + &amp; ^ </b><li>Can be</li>
+
+
+
+
+    
+    
+    
+    <ul>
+
+
+
+
+      <li>part of the grammar : C</li>
+
+
+
+
+      <li>defined in a library : Haskell</li>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+    <li>What should the order of symbols and
+variables be for an operator?</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Most languages use infix
+notation</li>
+
+
+
+
+    <b>&nbsp; 5 + 4<br>
+
+
+
+
+    </b><li>Forth uses postfix notation</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><b>&nbsp;
+5 4 +</b></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Lisp uses prefix notation</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><b>&nbsp;
++ 5 4</b></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<h3>Infix notation</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li>In <i>infix</i>
+notation needs <b>associativity,
+precedence and
+parentheses<i> </i></b>to
+resolve ambiguities.</li>
+
+
+
+
+  <li>Which operator does "b"
+belong to?</li>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote>
+  
+  
+  
+  <blockquote>a + b * c </blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<blockquote> </blockquote>
+
+
+
+
+<b>Operator Precedence</b><br>
+
+
+
+
+<ul>
+
+
+
+
+  <li><b>Another
+ambiguous grammar:&nbsp;<a name="G1"></a>G1.</b></li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+E&nbsp; <b><font color="#ff0000"><tt>::=</tt></font></b>&nbsp;
+E +
+E&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+E * E&nbsp;<b><font color="#ff0000"> |</font></b>
+C&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+V&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+(E) <br>
+
+
+
+
+C <b><font color="#ff0000"><tt>::=</tt></font></b>&nbsp;
+0<b><font color="#ff0000">&nbsp; |</font></b>
+1 <br>
+
+
+
+
+V <b><font color="#ff0000"><tt>::=</tt></font></b>&nbsp;
+a&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+b&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+c
+    
+    
+    
+    <p>a + b * c ??</p>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> <b>Unambiguous
+equivalent grammar:&nbsp;<a name="G2"></a>G2</b></li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+E <b><font color="#ff0000"><tt>::=</tt></font></b>
+E + F&nbsp;&nbsp;<b><font color="#ff0000">&nbsp;
+|</font></b>&nbsp;
+F <br>
+
+
+
+
+F <b><font color="#ff0000"><tt>::=</tt></font></b>&nbsp;
+F * G&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+G <br>
+
+
+
+
+G <b><font color="#ff0000"><tt>::=</tt></font></b>
+C&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+V&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+( E ) <br>
+
+
+
+
+C <b><font color="#ff0000"><tt>::=</tt></font></b>
+0&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+1 <br>
+
+
+
+
+V <b><font color="#ff0000"><tt>::=</tt></font></b>
+a&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+b&nbsp;<b><font color="#ff0000">&nbsp; |</font></b>&nbsp;
+c
+    
+    
+    
+    <p>a + b * c ??<br>
+
+
+
+
+    </p>
+
+
+
+
+    
+    
+    
+    <p>What would you do to the
+grammar to add the '-' and '\' operator?<br>
+
+
+
+
+    </p>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<b>Associativity of
+Operators:&nbsp;</b>
+<blockquote>
+  
+  
+  
+  <blockquote><b>A
+:= A + B + C<br>
+
+
+
+
+    </b></blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  <li> Don't confuse with
+(semantic) associative rules in mathematics</li>
+
+
+
+
+  <li> Consider the following
+grammar:</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+&lt;assign&gt;&nbsp; <b><font color="#ff0000">::=</font></b>
+&lt;id&gt; :=
+&lt;expr&gt; <br>
+
+
+
+
+&lt;id&gt;<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><b><font color="#ff0000">::=</font></b>
+A&nbsp;<b><font color="#ff0000"> |</font></b>
+B&nbsp;<b><font color="#ff0000"> |</font></b>
+C <br>
+
+
+
+
+&lt;expr&gt; &nbsp;&nbsp; <b><font color="#ff0000">::=</font></b>
+&lt;expr&gt; +
+&lt;term&gt;&nbsp;&nbsp;&nbsp;<b><font color="#ff0000"> |</font></b>&nbsp;
+&lt;term&gt;<br>
+
+
+
+
+&lt;term&gt;&nbsp;&nbsp;&nbsp; <b><font color="#ff0000">::=</font></b>
+&lt;id&gt;
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> A rule is left recursive if
+LHS appears at the beginning of RHS.</li>
+
+
+
+
+  <li> Left recursive yields left
+associativity</li>
+
+
+
+
+  <li> Right recursive rule yields right associativity.</li>
+
+
+
+
+  <br>
+
+
+
+
+  <a href="AssoTree.gif"><img alt="A := A + B + C -- Click to Enlarge" src="AssoTree.gif" style="border: 0px solid ; width: 260px; height: 250px;"> </a>
+  <br>
+
+
+
+
+  <li>Note: Prefix and postfix
+notations do not produce ambiguous
+expressions and therefore precedence and associativity are
+unnecessary.&nbsp;</li>
+
+
+
+
+</ul>
+
+
+
+
+<span style="font-weight: bold;">Evaluation
+policies<br>
+
+
+
+
+</span>
+<ul>
+
+
+
+
+  <li>Expressions are evaluated by
+repeated application of rewrite rules</li>
+
+
+
+
+  <li>Each application of a
+rewrite rule is called a <span style="font-weight: bold;">reduction</span></li>
+
+
+
+
+  <li>An expression to which a
+rewrite rule can be applied is a <span style="font-weight: bold;">red</span>ucible
+    <span style="font-weight: bold;">ex</span>pression
+(or <span style="font-weight: bold;">redex)</span></li>
+
+
+
+
+  <li>Example : redex of <br>
+
+
+
+
+  </li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>&nbsp;75/5 +
+3*2&nbsp; <br>
+
+
+
+
+    </dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<dl>
+
+
+
+
+  <dd>are <br>
+
+
+
+
+  </dd>
+
+
+
+
+</dl>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>&nbsp;75/5 and 3*2</dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>When an expression contains
+two or more redexes, the choice of
+the redex(es) to be reduced is governed by an <span style="font-style: italic;">evaluation policy</span></li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><span style="font-style: italic;"><span style="font-style: italic;">leftmost</span></span></li>
+
+
+
+
+    <li><span style="font-style: italic;"><span style="font-style: italic;">rightmost</span></span></li>
+
+
+
+
+    <li><span style="font-style: italic;"><span style="font-style: italic;">parallel</span></span></li>
+
+
+
+
+    <li><span style="font-style: italic;"><span style="font-style: italic;">innermost</span></span></li>
+
+
+
+
+    <li><span style="font-style: italic;"><span style="font-style: italic;">outermost</span></span></li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Can be specified in the
+language or left to the compiler writer<br>
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+<a href="Operators.html">Operators of Common Languages</a><br>
+
+
+
+
+<hr size="2" width="100%">
+<h3>Parsing Techniques and Tools:</h3>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <li><span style="font-weight: bold;">
+    <a href="http://en.wikipedia.org/wiki/Extended_Backus_Naur_Form"> EBNF</a></span> is
+an alternative
+grammar notation with shorter productions&nbsp;</li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Additional meta symbols:</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>repetitions (zero or more) are enclosed in &nbsp;<span style="font-weight: bold; color: rgb(51, 102, 255);">{ }</span></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><span style="font-weight: bold;"></span>options
+are in enclosed
+in <span style="font-weight: bold; color: rgb(51, 102, 255);">&nbsp;[]</span></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>BNF&nbsp;:</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><span style="font-style: italic;">expr</span>&nbsp;<span style="color: rgb(51, 102, 255); font-weight: bold;">=</span> <span style="font-style: italic;">expr</span>
++ <span style="font-style: italic;">term</span><span style="color: rgb(51, 102, 255);">
+      <span style="font-weight: bold;">|</span> </span><span style="font-style: italic;">term<br>
+
+
+
+
+      <span style="font-style: italic;"></span></span>The
+left
+recursive rule implies left-associative operator<span style="font-style: italic;"><span style="font-style: italic;"></span></span></dd>
+
+
+
+
+    <dt>Unrolling</dt>
+
+
+
+
+    <dd>((expr + term) +term) + term&nbsp;<br>
+
+((term + term) + term)+... term</dd>
+
+
+
+
+    <dt><br>
+</dt>
+
+
+
+
+    <dt>Converting to EBNF:</dt>
+
+
+
+
+    <dd><span style="font-style: italic;">expr</span> <span style="font-weight: bold; background-color: transparent; color: rgb(51, 102, 255);">:=</span> <span style="font-style: italic;">term</span>
+      <span style="color: rgb(51, 102, 255); font-weight: bold;">{</span> + <span style="font-style: italic;">term</span><span style="color: rgb(51, 102, 255); font-weight: bold;">}</span></dd>
+
+
+
+
+    <dt>is understood to mean left-associative operator<br>
+
+
+
+
+Whereas,<br>
+
+
+
+
+    </dt>
+
+
+
+
+    <dd><span style="font-style: italic;">expr</span> <span style="font-weight: bold; color: rgb(51, 102, 255);"></span><span style="font-weight: bold; background-color: transparent; color: rgb(51, 102, 255);">:=</span><span style="font-weight: bold; color: rgb(51, 102, 255);"> </span><span style="font-style: italic; font-weight: bold; color: rgb(51, 102, 255);"></span><span style="font-weight: bold; color: rgb(51, 102, 255);">{</span>
+      <span style="font-style: italic;">term</span>
+@<span style="color: rgb(51, 102, 255); font-weight: bold;">}</span>&nbsp;<span style="font-style: italic;">term</span></dd>
+
+
+
+
+    <dt>is understood to mean right-associative operator or</dt>
+
+
+
+
+    <dd><span style="font-style: italic;">expr&nbsp;
+</span><span style="font-weight: bold; color: rgb(51, 102, 255);"></span><span style="font-weight: bold; background-color: transparent; color: rgb(51, 102, 255);">:=</span><span style="font-weight: bold; color: rgb(51, 102, 255);"></span> term <span style="font-weight: bold; color: rgb(51, 102, 255);">[</span> @ <span style="font-style: italic;">term</span> <span style="font-weight: bold; color: rgb(51, 102, 255);">]</span></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <li><span style="font-weight: bold;"><a name="RDP"></a>Recursive-decent
+parser (</span>
+top down)</li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Converting the grammars to a program</li>
+
+
+
+
+    
+    
+    
+    <ul>
+
+
+
+
+      <li>non-terminals are
+function calls</li>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    
+    
+    
+    <ul>
+
+
+
+
+      <li>"match" terminals</li>
+
+
+
+
+    
+    
+    
+    </ul>
+
+
+
+
+    <li>What is the problem
+converting the following BNF production?</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><span style="font-style: italic;">expr</span>&nbsp;<span style="font-style: italic;"></span><span style="font-weight: bold; background-color: transparent; color: rgb(51, 102, 255);">:=</span> <span style="font-style: italic;">expr</span>
++ <span style="font-style: italic;">term</span>
+| <span style="font-style: italic;">term</span></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Why is replacing with the following incorrect?</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><span style="font-style: italic;">expr</span>&nbsp;<span style="font-style: italic;"></span><span style="font-weight: bold; background-color: transparent; color: rgb(51, 102, 255);">:=</span><span style="font-weight: bold; color: rgb(51, 102, 255);"></span><span style="font-weight: bold; color: rgb(51, 102, 255);"></span> <span style="font-style: italic;">term</span>
++<span style="font-style: italic;">
+expr</span>&nbsp;<span style="color: rgb(51, 102, 255);"><span style="font-weight: bold;">|</span></span> <span style="font-style: italic;">term</span></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>EBNF notation suggests a solution</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<div style="margin-left: 80px;"><span style="font-style: italic;">expr</span>&nbsp;<span style="font-style: italic;"></span><span style="font-weight: bold; background-color: transparent; color: rgb(51, 102, 255);">:=</span><span style="font-weight: bold; color: rgb(51, 102, 255);"></span><span style="font-weight: bold; color: rgb(51, 102, 255);"></span> <span style="font-style: italic;">term</span>&nbsp;<span style="font-weight: bold; color: rgb(51, 102, 255);">{</span> + <span style="font-style: italic;">term</span><span style="color: rgb(51, 102, 255); font-weight: bold;">}</span>
+<br>
+
+
+
+
+<br>
+
+
+
+
+like a <span style="font-style: italic;">while</span>
+loop<br>
+
+
+
+
+</div>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw2RDP/Fig4_12.c">recursive
+descent parser code
+from "Programming Languages" by Louden Fig4_12.c</a></li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <li><span style="font-weight: bold;">Shift-reduce
+parser </span>(bottom
+up)</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><span style="font-weight: bold;">Yacc is</span>
+a widely used
+package to build compilers(<a href="http://dinosaur.compilertools.net/">http://dinosaur.compilertools.net/</a>)</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/Parser.ppt">Exam</a><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/Parser.ppt">ple
+of a Shift Reduce Parser</a><br>
+
+
+
+
+      <small><small>Example
+based on Kozen, Automata and
+Computability&nbsp;</small></small> </li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  <h6>
+  
+  
+  
+  <hr width="100%"></h6>
+
+
+
+
+</ul>
+
+
+
+
+<b>What does the code mean?</b>
+<ul>
+
+
+
+
+  <li>Language reference manual</li>
+
+
+
+
+  <li>Translators&nbsp;&nbsp; <br>
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Formal method<br>
+
+
+
+
+<ul>
+
+
+
+
+  <li> Operational Semantics</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> description based on the
+operation of a actual or hypothetical
+machine</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Axiomatic Semantics</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Used to show correctness</li>
+
+
+
+
+    <li> Apply predicate calculus
+rules to pre conditions and
+statements
+to show post conditions holds</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Denotation Semantics</li>
+
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Uses mathematical
+functions on programs to specify semantics.</li>
+
+
+
+
+    <li>Programs are translated
+into functions about which properties
+can&nbsp; be proved using mathematical theory of functions.</li>
+
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<hr style="width: 100%; height: 2px;">
+</body></html>

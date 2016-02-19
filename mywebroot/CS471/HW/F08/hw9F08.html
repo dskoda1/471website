@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Scott 7 &amp; 8 HW 9</title></head>
+<body>
+<div style="text-align: center;">
+<h3>Homework Assignment 9</h3>
+</div>
+<h3>Assignment due Tue. 7pm Nov. 4</h3>
+Please write you answers short and to the point.
+&nbsp;<br>
+<br>
+<ol start="1">
+<li>page 462 exercise 8.9&nbsp;</li>
+<li>page 302 exercise 6.29&nbsp;</li>
+<li>Explain the tradeoff between macro, inline function and
+function in C. &nbsp;Cover a comparision of speed, space and type
+checking of
+each.</li><li>Suppose the following function declarations (in C++ syntax) are available in a program:<br></li><ol><li><span style="font-family: monospace;">int pow(int,int);</span></li><li><span style="font-family: monospace;">double pow(double, double);</span></li><li><span style="font-family: monospace;">double pow(int, double);</span></li></ol><dl><dt><br>and suppose the following code calls the&nbsp;<span style="font-family: monospace;">pow()</span> function:<br></dt><dd><span style="font-family: monospace;">int x;<br>double y;</span><br><span style="font-family: monospace;">x = pow(2,3);</span><br style="font-family: monospace;"><span style="font-family: monospace;">y = pow(2,3);</span><br style="font-family: monospace;"><span style="font-family: monospace;">x = pow(2,3.2);</span><br style="font-family: monospace;"><span style="font-family: monospace;">y = pow(2,3.2);</span><br style="font-family: monospace;"><span style="font-family: monospace;">x = pow(2.1,3);</span><br style="font-family: monospace;"><span style="font-family: monospace;">y = pow(2.1,3);</span><br style="font-family: monospace;"><span style="font-family: monospace;">x = pow(2.1,3.2);</span><br style="font-family: monospace;"><span style="font-family: monospace;">y = pow(2.1,3.2);</span><br></dd></dl><dl>Given
+the language (a) C++ and (b) Java, write down the number of pow
+function called in each of the 8 calls, or write "illegal" if a call
+cannot be resolved in the language, or if a data type conversion cannot
+be made.<br> <br></dl>
+<li>Java provides the ability to define inner classes (<a href="http://java.sun.com/docs/books/tutorial/java/javaOO/nested.html">Java
+Tutoral: Nested Classes</a>). The tutorial (<a href="http://java.sun.com/docs/books/tutorial/java/javaOO/innerclasses.html">Java
+Tutoral: Inner Class Example</a>) provides the following example:</li>
+<ol>
+
+<div style="margin-left: 40px;"><span style="font-family: monospace;">public class StackOfInts {</span>
+<br>
+</div>
+<pre>	private int[] stack;<br>	private int next = 0; // index of last item in stack + 1<br>	<br>	public StackOfInts(int size) {<br>	//create an array large enough to hold the stack<br>	  stack = new int[size];<br>	}<br>	<br>	public void push(int on) {<br>	if (next &lt; stack.length)<br>	  stack[next++] = on;<br>	}<br>	public boolean isEmpty() {<br>	  return (next == 0);<br>	}<br>	<br>	public int pop(){<br>	if (!isEmpty()) <br>	  return stack[--next]; // top item on stack<br>	else<br>	  return 0;<br>	}<br>	<br>	public int getStackSize() {<br>	  return next;<br>	}<br>	<br>	private class StepThrough { //Inner class <br>	  // start stepping through at i=0<br>	  private int i = 0; <br>	<br>	  // increment index<br>	  public void increment() {<br>	    if ( i &lt; stack.length)<br>	    i++;<br>	  }<br>	<br>	// retrieve current element<br>	  public int current() {<br>	    return stack[i]; //****<br>	  }<br>	<br>	// last element on stack?<br>	  public boolean isLast(){<br>	    if (i == getStackSize() - 1)<br>	      return true;<br>	    else<br>	      return false;<br>	    }<br>	} // End of inner class StepThrough<br>	<br>	public StepThrough stepThrough() {<br>	  return new StepThrough();<br>	}<br>	...<br></pre>
+<div style="margin-left: 40px; font-family: monospace;">}//
+end of StackOfInts</div>
+
+<br>
+<ol style="list-style-type: upper-alpha;">
+<li>Where is the variable "<span style="font-style: italic;">stack</span>"
+(//****) used in <span style="font-style: italic;">StepThrough</span>
+declared?</li>
+<li>Consider the following main function:</li>
+</ol>
+<dl>
+<dd>
+<pre>public static void main(String[] args) {<br> <br> // instantiate outer class as "stackOne"<br> StackOfInts stackOne = new StackOfInts(15);<br> <br> // populate stackOne<br> for (int j = 0 ; j &lt; 15 ; j++) {<br>    stackOne.push(2*j);<br> }<br> <br> // instantiate inner class as "iterator"<br> StepThrough iterator = stackOne.stepThrough();<br> StepThrough iterator2 = stackOne.stepThrough(); <br> // ### HERE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br> while(!iterator.isLast()) {<br>    System.out.print(iterator.current() + " ");<br>    iterator.increment();<br> }<br> System.out.println();<br> <br>}<br> <br></pre>
+At the point //##HERE
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+in the execution:</dd>
+<dd>
+<ol>
+<li>how many copies of the object <span style="font-style: italic;">stack </span>exist?</li>
+<li>how many instances of <span style="font-style: italic;">StepThrough&nbsp;</span>exist
+and where in memory (static, heap or stack?)?</li>
+<li>how many copies of the private instance
+variable&nbsp; "i" defined in <span style="font-style: italic;">StepThrough
+</span>exist and where in memory (static, heap or stack?)<span style="font-style: italic;">&nbsp;<br></span></li>
+</ol>
+</dd>
+</dl>
+
+<dl>
+</dl><ol start="3" style="list-style-type: upper-alpha;"><li>Using the analogy of nested functions -- describe what
+happens at runtime to support the ability of an inner object to access
+the outer object's instance variables. &nbsp;i.e. How does <span style="font-style: italic;">StepThrough </span>"know"&nbsp;
+the location of <span style="font-style: italic;">stack?</span></li></ol><dl><dd>
+<ol start="3" style="list-style-type: upper-alpha;">
+
+</ol>
+<span style="font-style: italic;"></span><br>
+<span style="font-style: italic;"></span> </dd>
+</dl>
+
+
+
+</ol>
+<li>Consider the
+follow code snippet in C syntax:
+</li>
+</ol>
+<dl style="font-family: monospace;">
+<dd>int A[4];<br>
+A[0] = 1;<br>
+A[1] = 0;<br>
+A[2] = 3;<br>
+A[3] = 2;<br>
+f&nbsp; ( A[0],&nbsp; A[ A[0] ] );</dd>
+</dl>
+<dt style="margin-left: 40px;">Function <span style="font-style: italic;">f</span>
+is defined
+as</dt>
+<ol>
+<dd><span style="font-family: monospace;">void
+f(int x,&nbsp; int
+y) {</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+x = 0;<br>
+&nbsp; &nbsp; &nbsp;y = 3;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">}</span></dd>
+</ol>
+<dt style="margin-left: 40px;">For each of the following
+parameter-passing mechanisms, say
+what the final values in the array <span style="font-style: italic;">A</span>
+would be after a call to <span style="font-style: italic;">f.&nbsp;
+</span>Show
+how you determined the answer.&nbsp;&nbsp; There may be more
+than one
+correct answer.</dt>
+<ol style="list-style-type: upper-alpha; margin-left: 40px;">
+<li>By value.</li>
+<li>By reference.</li>
+<li>By value-result.</li>
+<li>By macro expansion.</li>
+<li>By name.</li>
+</ol>
+<br>
+</body></html>

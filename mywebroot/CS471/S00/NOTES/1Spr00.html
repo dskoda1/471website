@@ -1,0 +1,461 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Introduction To Programming Languages- CS471</title>
+</head>
+<body>
+
+<center>
+<h3>
+Introduction Spring, 2000</h3></center>
+
+<center><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/2Spr00.html">next</a>
+<br>Instructor: <a href="mailto:head@binghamton.edu">E. Head</a>
+<br>TA: <a href="mailto:bh10297@binghamton.edu">Li Jin</a>
+<br>TA: <a href="mailto:zzhang@cs.binghamton.edu">Zhihui Zhang</a></center>
+
+<h3>
+Why Study Programming Languages?</h3>
+
+<ul>
+<li>
+Learn new ways to think and express solutions to problems.</li>
+
+<li>
+To improve your use of existing languages.</li>
+
+<li>
+Increase you ability to learn new languages.</li>
+
+<li>
+Learn methods to evaluate languages.</li>
+
+<li>
+Gives criteria for designing your own language.</li>
+</ul>
+
+<hr WIDTH="100%">
+<h3>
+What will be cover ?</h3>
+
+<ul>
+<li>
+<font color="#990000">History of programming languages</font></li>
+
+<li>
+Different Language Paradigms</li>
+
+<li>
+Implemention and Run Time Environment</li>
+</ul>
+
+<h3>
+
+<hr WIDTH="100%"></h3>
+
+<h3>
+What is a <i>programming language?</i></h3>
+
+<ul>
+<li>
+A <b><i>programming language</i></b> is a notational system for describing
+computation in a machine-readable and human-readable form. (Louden)</li>
+
+<ul>
+<li>
+<i>computation: </i>any process that can be carried out by a computer</li>
+
+<li>
+<i>machine-readable</i>: the language structure (syntax) is simple enough
+to allow for efficient translation into machine code</li>
+
+<li>
+<i>human-readable:</i> provide easy to understand abstractions of actions</li>
+</ul>
+</ul>
+
+<h3>
+
+<hr WIDTH="100%"></h3>
+
+<h3>
+History of Programming Languages</h3>
+
+<ul>
+<li>
+1944, Von Neumann described a <i>stored</i> <i>program computer</i></li>
+
+<ul>
+<li>
+Each program for the first computers had to be hard wired by hand.</li>
+
+<li>
+Later switches were put on a console</li>
+</ul>
+
+<li>
+The original view of a program was to <b>control a computer</b></li>
+
+<br>
+<hr WIDTH="100%">
+<li>
+1951, Wilkes, Wheeler and Gill published a book that described an <i>assembler.</i></li>
+
+<ul>
+<li>
+Introduced the idea of subroutines</li>
+
+<li>
+Subroutines were written in machine code</li>
+
+<ul>
+<ul>00001011
+<br>10100101
+<br>...</ul>
+</ul>
+</ul>
+
+<li>
+Mid 1950, assembly language introduced mnemonics to represent machine instructions
+with a <i>program</i> to translate it into machine code.</li>
+
+<ul>
+<ul>
+<ul><tt></tt>&nbsp;
+<br><tt>LDA&nbsp;&nbsp;&nbsp; STOR1</tt>
+<br><tt>ADD&nbsp;&nbsp;&nbsp; STOR2</tt>
+<br><tt>STA&nbsp;&nbsp;&nbsp; STOR3</tt>
+<br><tt>JNZ&nbsp;&nbsp;&nbsp; LOC17</tt>
+<br><tt></tt>&nbsp;</ul>
+</ul>
+
+<li>
+Assemblers are programs that convert assembly programs to machine code.</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%">
+<li>
+1954-57, John Backus developed FORmula TRANslation the first widely accepted
+compiled language.</li>
+
+<ul>
+<ul>
+<ul>&nbsp;
+<br>SUM = 0.0
+<br>SUM = SUM + ARR(I)
+<br>IF (SUM .GT. 20.5) STOP
+<br>&nbsp;</ul>
+</ul>
+
+<li>
+Fortran is first high-level language</li>
+
+<li>
+A <i>high-level </i>language is simply a programming language whose instruction
+format is</li>
+
+<ul>
+<li>
+more closely related to the problem domain of the problem than to the instructions
+of the computer that will run the program.</li>
+</ul>
+
+<li>
+Fortran influenced Algol 60 and its decendents, PL/I, BASIC</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%">
+<li>
+Mid 50s, interest devoloped in solving non-numerical problems.</li>
+
+<li>
+1956, Allen Newell, J.C. Shaw and Herbert Simon published a paper that
+described the first AI program and a language that could implement it.</li>
+
+<ul>
+<li>
+It was too low level to be widely accepted.<br>
+</li>
+</ul>
+
+<li>
+1956-62, J. McCarthy developed <b>LIS</b>t <b>P</b>rocessing the first
+highly successful symbol processing language for AI</li>
+
+<ul>
+<ul>
+<ul>&nbsp;
+<br>(DEFUN SUM_LIST(L)
+<br>(+(CAR L)(SUM_LIST(CDR L)))
+<br>&nbsp;
+<br>&nbsp;</ul>
+</ul>
+
+<li>
+First accepted language not based on controlling a machine but based on
+the (mathematic) computational model, <b><i>Lambda Calculus.<br>
+</i></b></li>
+
+<li>
+Recursion in functions is the key programming technique<br>
+</li>
+
+<li>
+In addition to introducing recursion, Lisp introduced:</li>
+
+<ul>
+<li>
+garbage collection</li>
+
+<li>
+conditional expressions</li>
+
+<ul>
+<li>
+Algol's conditional expression was suggested by McCarthy who was a member
+of the Algol committee.</li>
+</ul>
+
+<li>
+interactive program execution<br>
+</li>
+</ul>
+
+<li>
+ML (Milner 1978), Miranda(1986) and <b><font color="#3333FF">Haskell</font></b>
+(1988) are pure functional languages that are influenced by Lisp.</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%">
+<li>
+1958-60, Committee developed ALGOL 60 to provide a general, expressive
+language for describing algorthms.</li>
+
+<ul>
+<li>
+The most important milestone in developing modern languages.</li>
+
+<ul>
+<li>
+Algol 60 led to Algol 68 which led directly to <font color="#990000">C</font>
+and then <font color="#990000">C++</font>.</li>
+
+<li>
+Algol 60 led to Algol W which led to Pascal and Ada</li>
+
+<li>
+Algol 60 led to Simula and then Simula 67 and then Smalltalk<br>
+</li>
+</ul>
+
+<li>
+Many reason Algol 60 was not widely accepted language</li>
+
+<ul>
+<li>
+Too flexible which made it hard to difficult to understand and to implement
+efficiently.<br>
+</li>
+</ul>
+
+<li>
+Introduced:</li>
+
+<ul>
+<li>
+block structions</li>
+
+<li>
+recursive function calls to procedural languages</li>
+
+<li>
+first language whose syntax was formally described (using BNF)</li>
+
+<ul>
+<li>
+Backus was a principle member of the design team</li>
+
+<li>
+Interesting in the 60s BNF seemed too complicated and was one of the reason
+Algol 60 was not accepted.</li>
+</ul>
+
+<li>
+Affected the design a some Burroughs machine to include stack which enable
+an efficient implementation of block structures and recursive procedures.</li>
+
+<br>
+<hr WIDTH="100%"></ul>
+</ul>
+</ul>
+
+<ul>
+<li>
+1963-68, Committee developed Algol 68 was designed to be a general purpose
+language as opposed to having the scientific orientation of Algol 60.</li>
+
+<br>&nbsp;
+<ul>
+<li>
+Design goal was to make the various features of the language as <i>orthogonal
+</i>as
+possible.</li>
+
+<ul>
+<li>
+<b><i>Orthogonality</i>&nbsp; </b>means that:</li>
+
+<ul>language features can be used in any combination,
+<br>the combinations all make sense
+<br>meaning of a given feature is consistent.</ul>
+
+<li>
+Did not distinguish between <i>expressions and statements</i></li>
+</ul>
+<i></i>
+<li>
+Introduced:</li>
+
+<ul>
+<li>
+User-defined data types</li>
+
+<li>
+dynamic arrays</li>
+</ul>
+
+<li>
+The use of an unknown metalanguage to describe the language was one of
+the reason the language was not accepted and the difficulty of implementing
+the language.</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%">
+<li>
+1965-67 Nygaard &amp; Dahl created Simula 67 the first object oriented
+language</li>
+
+<ul>
+<li>
+It was invented for writing simulation programs</li>
+</ul>
+
+<ul>
+<li>
+Programs in Simula is a model of some process in the real world as opposed
+to a set of actions that we want a computer to carry out.</li>
+</ul>
+
+<ul>
+<li>
+Introduced "classes"</li>
+</ul>
+
+<ul>
+<li>
+Smalltalk80 and Eiffel follows from Simula67.</li>
+</ul>
+
+<ul>
+<li>
+<font color="#990000">Java</font>’s semantics follows from Smalltalk but
+the syntax follows from C.</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%">
+<br>&nbsp;
+<li>
+1974-1983, international committee created Ada which was to be "one" for
+use by the Dept. Of Defense (DoD).</li>
+
+<ul>
+<li>
+In 1974, the US Government studied the languages in use by the Department
+of Defense (DoD):</li>
+
+<br>there were more than 450 in use in the DoD alone!
+<ul>
+<li>
+several thousand programming languages have been developed</li>
+</ul>
+
+<li>
+The lead designer of Ada (Jean Ichbiah) claims that only Ada can be used
+safely for programs over 1,000,000 lines of code</li>
+
+<li>
+Any large piece of software (at least 100,000 lines of code) WILL have
+errors</li>
+
+<li>
+Ichbiah’s claim is that programs of that size in C or C++ are simply unfixable</li>
+
+<li>
+A sophisticated word processor could be around 300,000 lines</li>
+
+<li>
+The new air-traffic control system is supposed to be getting close 10 million
+lines of code</li>
+
+<br>&nbsp;</ul>
+
+<hr WIDTH="100%">
+<li>
+Early 70s, Alain and Colmerauer, Phillippe Roussel (France) and Robert
+Kowalski (Edinburgh) developed the fundamental design of Prolog.</li>
+
+<ul>
+<li>
+<b><font color="#000099">Prolog</font></b> is logic-programming languages
+(called fifth-generation languages in the 80’s)</li>
+
+<li>
+Programs consist of a data base and rules that are queried.</li>
+
+<li>
+ISO standard became available late in 1995.</li>
+
+<br>&nbsp;</ul>
+
+<hr WIDTH="100%">
+<li>
+There are many applications-generator languages</li>
+
+<ul>
+<li>
+they started with COBOL-generators in the 70’s and 80’s.</li>
+
+<li>
+now we have Visual Basic, Javascript, etc.</li>
+</ul>
+
+<li>
+There are scripting languages (immediately executable)</li>
+
+<ul>
+<li>
+REXX, OREXX, PERL, Tcl/Tk</li>
+</ul>
+
+<li>
+There are macro-languages, especially for spreadsheets, e.g. for Lotus,
+Excel, Quattro</li>
+
+<li>
+There are languages to display documents, HTML</li>
+</ul>
+
+<hr WIDTH="100%">
+<hr WIDTH="100%">
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/2Spr00.html">next</a>
+<p>1Spr00 - 1/21/00
+</body>
+</html>

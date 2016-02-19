@@ -1,0 +1,2212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us">
+<head>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>Scott's Chap 7:</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta name="author" content="E Head">
+</head>
+
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+<div style="text-align: center;">
+<h3>Homework Assignment 8</h3>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Due in Class on Wed :<br>
+
+
+
+
+
+
+
+</span>
+<ol>
+
+
+
+
+
+
+
+  <li>Is Python a typed language?</li>
+
+
+
+  <li>Is Ruby a typed language?</li>
+
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+
+
+Due in Class on Friday??&nbsp; :<br>
+
+
+
+
+
+
+
+
+
+
+
+</span>
+<ol>
+
+
+
+
+
+
+
+
+
+  <li>Give one advantage and one weakness for each of the following garbage collecting algorithm:</li>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+
+
+
+
+
+    <li>Reference Count</li>
+
+
+
+
+
+
+
+
+
+    <li>Pick one "tracing collection" algorithm</li>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+
+
+
+  <li>Given the following struct (c99):</li>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+
+
+
+    <dd><span style="font-family: monospace;">typedef struct {<br>
+
+
+
+
+
+
+
+
+
+&nbsp; &nbsp; char chr1; // 1 byte<br>
+
+
+
+
+
+
+
+
+
+&nbsp; &nbsp; int i; &nbsp; &nbsp; // 4 bytes<br>
+
+
+
+
+
+
+
+
+
+&nbsp; &nbsp; char chr2;<br>
+
+
+
+
+
+
+
+
+
+} Rec1;</span></dd>
+
+
+
+
+
+
+
+
+
+    <dt>What is the size of <span style="font-style: italic;">arr</span> given the following definition?</dt>
+
+
+
+
+
+
+
+
+
+    <dd><span style="font-family: monospace;">Rec1 arr[3];</span></dd>
+
+
+
+
+
+
+
+
+
+    <dt>You may assume an Intel platform.</dt>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+
+
+
+  <li>Given the following struct (c99):</li>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <ol>
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dl>
+
+
+
+
+
+
+
+
+
+      <span style="font-family: monospace;">typedef struct {</span><br style="font-family: monospace;">
+
+
+
+
+
+
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; char chr1; // 1 byte</span><br style="font-family: monospace;">
+
+
+
+
+
+
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; char chr2;</span><br style="font-family: monospace;">
+
+
+
+
+
+
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; int i; &nbsp; &nbsp; // 4 bytes</span><br style="font-family: monospace;">
+
+
+
+
+
+
+
+
+
+      <span style="font-family: monospace;">} Rec2;<br>
+
+
+
+
+
+
+
+
+
+      </span>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </dl>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<dl>
+
+
+
+
+
+
+
+
+
+  <dt>What is the size of <span style="font-style: italic;">arr</span>1 given the following definition?</dt>
+
+
+
+
+
+
+
+
+
+  <dd><span style="font-family: monospace;">Rec2 arr1[3];</span></dd>
+
+
+
+
+
+
+
+
+
+  <dt>You may assume an Intel platform.</dt>
+
+
+
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;"></span>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Purpose: to understand <span style="font-style: italic;">data type</span> language
+design and implementation issues.</span><br>
+
+
+
+This is an individual assignment.<br>
+
+
+
+
+
+
+
+
+
+
+
+<h3>Reading/References:</h3>
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+
+
+
+
+
+  <li>Scott: Chapter 7, pages 307-341,349-389,394-395</li>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+
+
+
+
+
+    <li>Check Your Understanding: &nbsp; chap 7:1-10,
+11-19,20-22,28-36,37-44,45-52,54</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+  <li><a href="http://www.unixwiz.net/techtips/reading-cdecl.html">Reading C type declarations</a></li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <ul>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+<h3>Assignment due Monday, Oct 28 6pm:</h3>
+
+
+
+
+
+
+
+
+
+
+Please write you answers short and to the point.
+<ol>
+
+
+
+
+
+
+
+
+
+
+
+  <li>In Ruby everything is an object including numbers and
+nil. &nbsp;Ruby does not use "for" loops much but instead uses
+iterators and code blocks. &nbsp;Below is a script to print out the sum
+of the first 10 numbers:</li>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    <dd><span style="font-family: monospace;">sum = 0<br>
+
+
+
+1.upto(10){|n| sum = sum +n}<br>
+
+
+
+puts sum<br>
+
+
+
+      </span></dd>
+
+
+
+    <dt>Below is a script build a list of numbers from 0 to 10 and print out the list:</dt>
+
+
+
+    <dd><span style="font-family: monospace;">lst = [ ]<br>
+
+
+
+0.upto(10){|n| lst[n]=n}<br>
+
+
+
+print lst<br>
+
+
+
+print "\n"<br>
+
+
+
+prt lst&nbsp;<br>
+
+
+
+      </span></dd>
+
+
+
+    <dt>Write a script using a number object 1 to build a list where each element is the sum of 1 to 5. &nbsp;The output should be</dt>
+
+
+
+    <dt><span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; sum</span><br style="font-family: monospace;">
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; 0</span><br style="font-family: monospace;">
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; 1</span><br style="font-family: monospace;">
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; 3</span><br style="font-family: monospace;">
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp; 6</span><br style="font-family: monospace;">
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp;10</span><br style="font-family: monospace;">
+
+
+
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp;15&nbsp;</span><br>
+
+
+&nbsp;<br>
+
+
+ Tip: If you see the following error:<br>
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TypeError: nil can't be coerced into Fixnum</dt>
+
+
+    <dt>Your variable has not been initialized.</dt>
+
+
+    <dd>&nbsp;</dd>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+  <li>Here are some type and variable declarations in C syntax:</li>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+
+
+
+
+
+    <dd><span style="font-family: monospace;">typedef
+&nbsp;struct {<br>
+
+
+
+
+
+
+
+
+
+
+
+&nbsp; &nbsp;char* pt;<br>
+
+
+
+
+
+
+
+
+
+
+
+&nbsp; &nbsp;int a;<br>
+
+
+
+
+
+
+
+
+
+
+
+} RecA;<br>
+
+
+
+
+
+
+
+
+
+
+
+      <br>
+
+
+
+
+
+
+
+
+
+
+
+typedef RecA RecB;<br>
+
+
+
+
+
+
+
+
+
+
+
+      <br>
+
+
+
+
+
+
+
+
+
+
+
+typedef struct {<br>
+
+
+
+
+
+
+
+
+
+
+
+      </span><span style="font-family: monospace;">&nbsp;
+&nbsp;char* pt;<br>
+
+
+
+
+
+
+
+
+
+
+
+&nbsp; &nbsp;int a;<br>
+
+
+
+
+
+
+
+
+
+
+
+} RecC;</span><br>
+
+
+
+
+
+
+
+
+
+
+
+      <span style="font-family: monospace;"><br>
+
+
+
+
+
+
+
+
+
+
+
+RecA w, x;<br>
+
+
+
+
+
+
+
+
+
+
+
+RecB y;<br>
+
+
+
+
+
+
+
+
+
+
+
+RecC z;<br>
+
+
+
+
+
+
+
+
+
+
+
+      </span></dd>
+
+
+
+
+
+
+
+
+
+
+
+    <dt>State which variables are type equivalent under (a)
+structural equivalence, (b) strict name equivalence, and (c) the actual
+C equivalence algorithm.<br>
+
+
+
+      <br>
+
+
+
+
+
+
+
+
+
+
+    </dt>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <li>Given the following C program, draw a memory diagram of
+the variables after the two assignments to **x (line 11 and 15).
+&nbsp;What does the program print? &nbsp;Are there any memory leaks?
+Explain. Are there any danging references? Explain.<br>
+  </li>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    <dd><span style="font-family: monospace;">1: #include &lt;stdio.h&gt;<br>
+
+
+
+2: main() {<br>
+
+
+
+3: &nbsp; int **x;<br>
+
+
+
+4: &nbsp; int *y;<br>
+
+
+
+5: &nbsp; int z;<br>
+
+
+
+6: &nbsp; x = (int**) malloc (sizeof(int*));<br>
+
+
+
+7: &nbsp; y = (int *) </span><span style="font-family: monospace;"> malloc (sizeof(int));</span><span style="font-family: monospace;"><br>
+
+
+
+8: &nbsp; z = 99;<br>
+
+
+
+9: &nbsp; *y = 2;<br>
+
+
+
+10: &nbsp;*x = y;<br>
+
+
+
+11: &nbsp;**x = z;<br>
+
+
+
+12: &nbsp;printf("%d\n", *y);<br>
+
+
+
+13: &nbsp;z = 3;<br>
+
+
+
+14: &nbsp;</span><span style="font-family: monospace;">printf("%d\n", *y);</span><span style="font-family: monospace;"><br>
+
+
+
+15: &nbsp;**x=4;<br>
+
+
+
+16: &nbsp;</span><span style="font-family: monospace;"></span><span style="font-family: monospace;">printf("%d\n", z);</span><span style="font-family: monospace;"><br>
+
+
+
+17: &nbsp;return 0;<br>
+
+
+
+18: }<br>
+
+
+      <br>
+
+
+      </span><br style="font-family: monospace;">
+
+
+
+    </dd>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <li>Given the following Python script, draw a memory diagram of the variables after each line of execution.<br>
+
+
+
+  </li>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    <dd><span style="font-family: monospace;">1: &gt;&gt;&gt; a = 3<br>
+
+
+
+2: &gt;&gt;&gt; b = a<br>
+
+
+
+3: &gt;&gt;&gt; X = [1, a, b]<br>
+
+
+
+4: &gt;&gt;&gt; L = (X, a)<br>
+
+
+
+5: X[1] = 99<br>
+
+
+
+      <br>
+
+
+
+      </span></dd>
+
+
+
+    <dt>What is the difference between a tuple type (L) and a list type (X) in Python?<br>
+
+
+      <br>
+
+
+      <br>
+
+
+
+    </dt>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+  <li>Given the following C++ declaration,</li>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+
+
+
+
+
+    <dd><span style="font-family: monospace;">double*
+dp = new double(3);<br>
+
+
+
+
+
+
+
+
+
+
+
+void* vp;<br>
+
+
+
+
+
+
+
+
+
+
+
+int* ip;</span></dd>
+
+
+
+
+
+
+
+
+
+
+
+    <dt>which of the following assignments does the compiler
+complain about?</dt>
+
+
+
+
+
+
+
+
+
+
+
+    <dd><span style="font-family: monospace;"><br>
+
+
+
+
+
+
+
+
+
+
+
+vp = dp;<br>
+
+
+
+
+
+
+
+
+
+
+
+dp = vp; <br>
+
+
+
+
+
+
+
+
+
+
+
+ip = dp; <br>
+
+
+
+
+
+
+
+
+
+
+
+dp = ip;<br>
+
+
+
+
+
+
+
+
+
+
+
+ip = vp;<br>
+
+
+
+
+
+
+
+
+
+
+
+      <br>
+
+
+
+
+
+
+
+
+
+
+
+ip = (int*) vp;<br>
+
+
+
+
+
+
+
+
+
+
+
+ip = static_cast&lt;int*&gt;(vp);<br>
+
+
+
+
+
+
+
+
+
+
+
+ip = </span><span style="font-family: monospace;">static_cast&lt;int*&gt;(dp);<br>
+
+
+
+
+
+
+
+
+
+
+
+ip = reinterpret_cast&lt;int*&gt;(dp);<br>
+
+
+
+
+
+
+      <br>
+
+
+
+
+
+
+
+
+
+
+
+      </span></dd>
+
+
+
+
+
+
+
+
+
+
+
+    <dt>Briefly explain the behavior of the compiler.
+&nbsp;Will *ip ever have the value 3 after one of the assignments
+to <span style="font-style: italic;">ip </span>?<br>
+
+
+
+      <br>
+
+
+
+
+
+
+
+
+
+
+    </dt>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+  <li>Perl uses the reference counts for collecting all dynamically
+allocated data. &nbsp;What must the programmer do manually to prevent
+memory leaks? &nbsp;<br>
+
+
+
+  </li>
+
+
+
+
+
+
+  <li>page 401 exercise 7.19<br>
+
+
+
+  </li>
+
+
+
+
+
+
+
+
+
+
+
+  <li>page 402 exercise 7.24<br>
+
+
+
+  </li>
+
+
+
+
+
+
+  <li>page 399 7.6 (You do not need to consider the mod operator of Pascal, consider only the % operator of C -iso99).<br>
+
+
+
+  </li>
+
+
+
+
+
+  <li>C and C++ distinction between a <span style="font-weight: bold;"><span style="font-style: italic;">declaratio</span>n</span> and a <span style="font-weight: bold; font-style: italic;">definition</span>. &nbsp;A <span style="font-style: italic; font-weight: bold;">definition</span> &nbsp;is a <span style="font-style: italic;">&nbsp;declaration </span>that binds &nbsp; <span style="font-style: italic;">all&nbsp;</span>potential attributes. &nbsp;Whereas, a <span style="font-style: italic;">declaration</span>s that <span style="font-style: italic;">partially</span> specify attributes are called <span style="font-weight: bold;"><span style="font-style: italic;">declarations.</span></span> Which of the following are <span style="font-style: italic;">declarations only</span> and which are <span style="font-style: italic;">definitions</span>:</li>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+
+    <li>int * intPt;</li>
+
+
+
+
+
+    <li>typedef int * intPt;</li>
+
+
+
+
+
+    <li>struct node;</li>
+
+
+
+
+
+    <li>int fact(int n);</li>
+
+
+
+
+
+    <li>double v;</li>
+
+
+
+
+
+    <li>extern double e;</li>
+
+
+
+
+
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+  <dd></dd>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <ol>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <ol>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </ol>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <ol>
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <dl>
+
+
+
+
+
+
+
+
+
+
+
+        <dd>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <ol>
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <ol>
+
+
+
+
+
+
+
+
+
+
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </ol>
+
+
+
+
+
+
+
+
+
+
+
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          </ol>
+
+
+
+
+
+
+
+
+
+
+
+        </dd>
+
+
+
+
+
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      </dl>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </ol>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

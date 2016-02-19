@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Haskell Lab 2</title>
+
+  
+</head><body>
+Haskell Lab 2:<br>
+
+You may use either HUGS or GHCi for the assignments.<br>
+
+<br>
+
+Create a Haskell script file "Lab2.lhs"using your favorite editor. The
+first 4 lines of code should be:<br>
+
+<br>
+
+<br>
+
+<span style="font-family: monospace;">&lt;Your Name&gt; <span style="font-weight: bold;">Haskell Lab 2</span></span><br>
+
+<br>
+
+<span style="font-family: monospace; font-weight: bold;">&gt; module
+Lab2</span><br style="font-family: monospace; font-weight: bold;">
+
+<span style="font-family: monospace; font-weight: bold;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+where</span><br>
+
+<h3>
+Part 1: Functions of 1 variable -- partially evaluated functions --
+curried functions and function composition.</h3>
+
+<h3>Currying <br>
+</h3>
+
+<ul>
+
+  <li> In the development of functional notations as a model of
+computation, it has been important to concentrate on functions of one
+variable</li>
+  <li> Curry did considerable work in the area. The idea is often used
+today in mathematics.</li>
+</ul>
+
+<ol>
+
+  <li>[1 pt]Add a line with the comment, "Tuple
+Data Type",&nbsp; surrounded by a blank line . Add the
+following definition :<br>
+    <br>
+  </li>
+  <dl>
+    <dd><span style="font-family: monospace;"><span style="font-weight: bold;">&gt; sumT (a,b,c) = a + b
++ c</span><br>
+      <br>
+      </span></dd>
+    <dt>Save and reload "Lab2.lhs".&nbsp; Evaluate the following
+expressions: sumT(2,3,4), sumT(2, -3, 4).&nbsp; What is the infered
+type of <span style="font-style: italic;">sum</span>T? <br>
+    </dt>
+    <dd>&nbsp;</dd>
+  </dl>
+  <li>[1pt]Edit "Lab2.lhs" again.&nbsp; Add a line with the comment,
+"Curried functions",&nbsp; surrounded by a blank line.
+Add the following
+definition :<br>
+    <br>
+  </li>
+  <dd><span style="font-family: monospace;"><span style="font-weight: bold;">&gt; sumC a b c = a + b + c</span><br>
+    <br>
+    </span></dd>
+  <dt>Save and reload "Lab2.lhs".&nbsp; Evaluate the following
+expressions: <span style="font-weight: bold; font-family: monospace;">sumC
+2 3 4</span>.&nbsp; What is the infered type of <span style="font-style: italic;">sum</span>C? (At the prompt type:&nbsp;
+Lab2&gt; :t sumC)<br>
+  </dt>
+  <dd><br>
+  </dd>
+  <li>[2pt]Edit "Lab2.lhs" again. Add the following
+definition:<br>
+    <br>
+  </li>
+  <span style="font-family: monospace;">&nbsp;<span style="font-weight: bold;">&nbsp; &gt; sumCx :: Num
+a =&gt; a -&gt; (a -&gt; (a-&gt;a))</span></span><br style="font-family: monospace; font-weight: bold;">
+  <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;
+&gt; sumCx a b c =
+a + b + c </span><br>
+  <br>
+Save and reload "Lab2". Evaluate the following expression: sumCx 2 3
+4.&nbsp; <br>
+  <dd> At the prompt type:&nbsp; <br style="font-family: monospace;">
+  </dd>
+  <dd><span style="font-family: monospace;">Lab2&gt; :t sumCx</span> <br>
+  </dd>
+to display the type infered by Haskell. &nbsp; How does this compare to
+the infered type in Part 1#2?&nbsp;&nbsp; <br>
+  <br>
+  <li>[2pt]Edit "Lab2.lhs" again. Add the following
+definition:<br>
+    <br>
+  </li>
+  <dl>
+    <dd><span style="font-family: monospace; font-weight: bold;">&gt;
+sumC1&nbsp; = sumC 1</span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">&gt;
+sumC2&nbsp; = sumC1 2</span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">&gt;
+sumC3&nbsp; = sumC2 3</span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace;"><span style="font-weight: bold;">&gt; sumC12 = sumC 1 2</span><br>
+      <br>
+      </span></dd>
+    <dt>Notice that each definition DOES NOT HAVE AN <span style="font-style: italic;">argument</span>!<span style="font-style: italic;"> </span>Do
+you think this is legal or illegal?&nbsp; If it legal predict the type
+of each definition. Now save and reload to verify your
+hypothesis.&nbsp; <br>
+      <br>
+    </dt>
+  </dl>
+  <li>[10pt]Assuming the code added in 4 is legal evaluate the
+following expression:<br>
+    <br style="font-weight: bold;">
+  </li>
+  <dl>
+    <dd style="font-weight: bold;"><span style="font-family: monospace;">Lab2&gt;
+sumC 1 2 3</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">Lab2&gt; </span><span style="font-family: monospace;">sumC1 2 3 </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">Lab2&gt; </span><span style="font-family: monospace;">sumC2 3</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">Lab2&gt; </span><span style="font-family: monospace;">sumC3<br>
+      <br>
+      </span></dd>
+    <dt>sumC1,
+sumC2, sumC3 and sumC12 all include use partially evalutated functions
+in their definitions.&nbsp; Can you write similar definitions using
+sumT? For example are any of the following definitions legal?<br>
+      <br>
+    </dt>
+    <dt><span style="font-family: monospace;">&nbsp;&nbsp;<span style="font-weight: bold;"> sumT1 = sumT 1 </span></span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;
+sumT2 = sumT(1) <br>
+&nbsp;&nbsp; sumT4 = sumT(1,2)</span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;
+sumT3 = sumT(1,x,y)</span><br style="font-weight: bold;">
+      <br>
+    </dt>
+  </dl>
+  <li>&nbsp;[4pts]As you can see -- so far -- we are doing a lot of
+function
+application.&nbsp; Numbers are just constant functions.&nbsp; After
+completing Part 1 #1-5, you should be able to figure out the
+associativity (right or left)of function application.&nbsp;&nbsp; Which
+parenthesize expression is the definition of F G H?&nbsp; Does F G H =
+F ( G H)&nbsp; or does F G H = ( F&nbsp; G ) H?&nbsp; Now you reexamine
+the first Haskell Lab Part 2 # 7.<br>
+    <br>
+  </li>
+  <li>[10pts]Do the following by "hand".&nbsp;&nbsp; Assume<br>
+    <br>
+&nbsp;&nbsp; <span style="font-family: monospace;">f(x) = 3*x + 5</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp; g(x) = 1 / (x-1)</span><br>
+&nbsp; <br>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Let h be defined to be (f o g) ( i.e. h =&nbsp; f o g,&nbsp; <span style="font-style: italic;">h</span> is <span style="font-style: italic;">f </span>composed with <span style="font-style: italic;">g</span>)
+.&nbsp; What is the result of h(x) ?&nbsp; Use the definition of f and
+g above. Remember&nbsp; (f o g) x is defined to be f(g(x))&nbsp;&nbsp;
+( i.e. (f o g) x = f&nbsp; ( g(x))&nbsp; ).</li>
+    <li>Let h2 be defined to be ( g o f )?&nbsp; What is the result of
+h2(x) ?</li>
+    <li>What is the value of&nbsp; h( 2 )?</li>
+    <li>What is the value of&nbsp; h2 (2 ) ?<br>
+      <br>
+    </li>
+  </ol>
+  <li>[10pts]Write a haskell definition of f, g, h and h2.&nbsp; Use
+the
+function composition operator (.) in your definition of h and h2.&nbsp;
+Notice that composition function returns a function.&nbsp; Therefore
+argument x&nbsp; DOES NOT NEED to be included in the definitions&nbsp;
+of h and h2.&nbsp; i.e. The left hand side of the definition for h (and
+h2) need only h=... . </li>
+</ol>
+
+<span style="font-weight: bold;"><span style="font-weight: bold;">More
+Data types<br>
+</span></span>
+<ol>
+
+  <li>[10pts]Define a data type Point that represents a point in a
+plane and the coordinate values should be Doubles.&nbsp; <br>
+  </li>
+  <li>[10pts]Write a function "<span style="font-style: italic;">isOrigin</span>"
+that returns true if the point is the origin and false otherwise.&nbsp;
+If the constructor for your Point is Pt then to execute you type:<br>
+    <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;">Lab2&gt; isOrigin
+(Pt 0.0 0.0) <br>
+    </span></div>
+  </li>
+  <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;">True&nbsp; <br>
+Lab2&gt; isOrigin (Pt 3.0 0.0) <br>
+False </span><span style="font-weight: bold;"><br>
+  </span></div>
+  <li>[10pts]Write a Haskell function "inside point r " which returns
+true if
+and only if the point lies inside a circle of radius r and false
+otherwise.&nbsp;
+    <br>
+&nbsp;"<span style="font-style: italic;">inside</span>" can be defined
+as:
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; inside r point (x, y) is
+true&nbsp; if and only if x^2 + y^2 &lt; r^2
+    <br>
+where x and y are the coordinates of the point.
+    <br>
+Your Haskell code should not be using tuples.
+If your contructor for Point is Pt then to execute you type:</li>
+  <dl>
+    <dd style="font-family: monospace; font-weight: bold;">Lab2&gt;
+inside 10.0 (Pt 3.0 2.5)
+      <br>
+True
+      <br>
+Lab2&gt; inside 10.0 (Pt (-1) (-2)) <br>
+    </dd>
+    <dd><span style="font-family: monospace; font-weight: bold;">True&nbsp;
+      </span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">Lab2&gt;
+inside 2.0 (Pt 3.0 2.5)
+      </span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">False&nbsp;
+      <br>
+      </span></dd>
+    <dd><br>
+      <span style="font-family: monospace; font-weight: bold;"></span></dd>
+  </dl>
+  <li><span style="font-family: monospace; font-weight: bold;"></span>[10pts]Write
+a Haskell definition&nbsp; "collinear p1 p2 p3", which is true if and
+only if p1, p2, and p3. i.e. on a straight line. One definition is as
+follows: <br>
+collinear((x1,y1), (x2,y2), (x3, y3)) if and only if (x1 -x2)(y2 -y3)
+equals (y1 -y2)(x2 -x3)&nbsp;
+    <br>
+&nbsp;<br>
+Assuming Pt is the contructor for your PointtTo execute type:
+    <br>
+    <br>
+    <span style="font-family: monospace;">Lab2&gt; collinear (Pt 1.0
+1.0) (Pt 2.0 2.0) (Pt 3.3 3.3)
+    </span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">True&nbsp;
+    </span><br style="font-family: monospace;">
+    <br>
+  </li>
+  <span style="font-weight: bold;"></span>
+  <div style="margin-left: 40px;"><span style="font-weight: bold;"></span></div>
+</ol>
+
+<span style="font-weight: bold;">Part 3 Recursion:</span><br>
+
+<ol>
+
+  <li>[10pts]Write a recursive definition, <span style="font-style: italic;">mul x y</span>, that returns the product <span style="font-style: italic;">x*y.</span> <br>
+(Do not use "*" operator.)<br>
+    <br>
+  </li>
+  <li>[10pts]The harmonic series is the following infinite series:<br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1&nbsp;&nbsp; 1&nbsp;&nbsp; 1&nbsp;&nbsp;
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+1 +&nbsp;&nbsp; - + - + - + - + ...&nbsp;&nbsp; + ... - ..</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp; 3&nbsp;&nbsp; 4&nbsp;&nbsp;
+5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+i</span><br style="font-family: monospace;">
+(http://en.wikipedia.org/wiki/Harmonic_series_(mathematics)). Write a
+function sumHarmonic such that sumHarmonic <span style="font-style: italic;">i</span> is the sum of the first <span style="font-style: italic;">i</span> terms of this series. <span style="font-family: monospace;"><br>
+    </span></li>
+  <span style="font-family: monospace;">For example, sumHarmonic 4
+~&gt; 1 + 1 + 1 + 1 ~&gt; 2.08333...</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2&nbsp;&nbsp; 3&nbsp;&nbsp; 4 </span><br style="font-family: monospace;">My version of sumHarmonic has type&nbsp; (Fractional a) =&gt; a -&gt; a<br>
+<br>
+  <br>
+  <br>
+  <br>
+</ol>
+
+<br>
+
+<br>
+
+</body></html>

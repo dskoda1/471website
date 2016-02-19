@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <title>CS471 Assignment 2:</title>
+</head>
+
+
+<body>
+
+
+
+
+
+
+<center>
+<h3> Programming Languages<br />
+
+
+
+
+
+
+Assignment<i>&nbsp;</i>2</h3>
+
+
+
+
+
+
+<div style="text-align: left;">
+<h3>Read: Scott, Chapter 11</h3>
+
+
+
+
+
+
+For Tues. Sept.5: <br />
+
+
+
+<div style="margin-left: 40px;">read page 559-561 ("Check your understanding" &nbsp;q: 1)</div>
+
+
+
+
+
+
+For Thur. Sept. 7:<br />
+
+
+
+<div style="margin-left: 40px;">read section 11.2,11.2.1,11.2.3 ("Check your understanding" &nbsp;q:2-5</div>
+
+
+
+
+
+
+Finish the rest of chapter by next week.<br />
+
+
+
+<br />
+
+
+
+
+
+Useful links<br />
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li><a href="http://www.cse.unsw.edu.au/%7Ebillw/prologdict.html">Prolog dictionary</a> (Definition of prolog terms)</li>
+
+
+
+
+
+  <li><a href="http://www.coli.uni-saarland.de/%7Ekris/learn-prolog-now/">Learn Prolog NOW!</a></li>
+
+
+
+
+
+  <li><a href="http://www.scre.ac.uk/personal/pb/prologbook/index.html">Prolog Programming A First Course by Paul Brna&nbsp;</a>(very detailed)</li>
+
+
+
+
+
+  <li>Check my references for other resources.</li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Due during class, Tue., Sept. 5 :</h3>
+
+
+
+
+
+
+<ol>
+
+
+
+
+
+
+  <li>Download and install <a href="http://www.swi-prolog.org/download.html">http://www.swi-prolog.org/download.html</a>
+(swipl)</li>
+
+
+
+
+
+
+  <li>Double click on
+&lt;path&gt;\pl\demo\likes.pl (&lt;path&gt; is usually
+c:\Program Files\ ), &nbsp;SWI-Prolog window should open.
+&nbsp;One of the comments printed at the top of the file should
+read " % &lt;path&gt;/pl/demo/likes.pl compiles ..." .</li>
+
+
+
+
+
+
+  <li>After typing each if the
+following queries (after the ?- ) at the prompt in your swipl window,
+what is the response? &nbsp;After you get a response hit return.</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+    <dt><br />
+
+
+
+
+
+
+?- italian(F).<br />
+
+
+
+
+
+
+?- italian(dahl).<br />
+
+
+
+
+
+
+?- likes(Name,Food).</dt>
+
+
+
+
+
+
+    <dt>?- edit(likes).</dt>
+
+
+
+
+
+
+    <dd>In the edit window
+add&nbsp; the following clause at the top of the file:<br />
+
+
+
+
+
+
+&nbsp; &nbsp;likes(martha, Food):-italian(Food). &nbsp;<br />
+
+
+
+
+
+
+(NO space between likes and "(")<br />
+
+
+
+
+
+
+save the current buffer</dd>
+
+
+
+
+
+
+    <dd>In the shell window reload
+the modified file. &nbsp;You can find this command on the Pull down
+File menu.</dd>
+
+
+
+
+
+
+    
+    <dt> ?- likes(Name,Food). </dt>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+<dl>
+
+
+
+
+
+
+  <dt><br />
+
+
+
+
+
+
+  </dt>
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+<h3>Due during class, Thur. Sept. 7,&nbsp;</h3>
+
+
+
+
+
+
+<ol>
+
+
+
+
+
+
+  <li>Write a simple data base using Prolog. &nbsp;You will create a
+database of total of 8 NY and California cities.&nbsp;&nbsp;e.g.
+ny(binghamton) and ca(losAngeles). &nbsp; Include facts to indicate
+large and small cities in the database e.g. small(binghamton) and
+large(losAngeles). Create rule "likes" &nbsp;with the following
+constraints:&nbsp; Sam likes small cities. Mary likes large cities in
+California or small cities in New York.&nbsp; Store these clauses in a
+file named <span style="font-style: italic;">cities.pl</span>. Test your procedures.</li>
+
+
+  <li>Try problem 11.17. &nbsp;Does SWIPL interpreter behave as described in the exercise?<br />
+
+
+
+
+
+
+    <br />
+
+
+
+
+
+
+    <br />
+
+
+
+
+
+  </li>
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<div style="text-align: left;">
+<h3><b><b><b><i>Due: </i>6pm Sun. Sept 10:</b></b></b></h3>
+
+
+
+
+
+
+<h3><b><b><b>Finish the programming problems in <a href="XXXas2.pl">XXXas2.pl</a>
+(rename file)</b></b></b></h3>
+
+
+
+
+
+<br />
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</center>
+
+
+
+
+
+
+<b><b><b><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a><br />
+
+
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a><br />
+
+
+
+
+
+
+<br />
+
+
+
+
+
+
+<br />
+
+
+
+
+
+
+</b></b></b>
+</body>
+</html>

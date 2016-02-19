@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns="http://purl.org/rss/1.0/">
+  <channel rdf:about="http://gnosis.cx/">
+    <title>Gnosis Software</title>
+    <link>http://gnosis.cx/publish</link>
+    <description>All the publications of David Mertz, with a sprinkling of free software, and occasional extra goodies. </description>
+    <items>
+      <rdf:Seq>
+      <rdf:li rdf:resource="http://www.gnosis.cx/publish/voting/privacy-electronic-voting.pdf"/>
+      <rdf:li rdf:resource="http://www.gnosis.cx/publish/voting/electronic-voting-machine.pdf"/>
+      <rdf:li rdf:resource="http://openvoting.org/"/>
+      <rdf:li rdf:resource="http://gnosis.cx/download/Gnosis_Utils.ANNOUNCE"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/charming_python_b14.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/charming_python_b15.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/linuxppc.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/rexx.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/xml_matters_31.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/xml_matters_32.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/xml_matters_33.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/sockets.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/sockets2.html"/>
+      <rdf:li rdf:resource="http://gnosis.cx/publish/programming/text_utils.html"/>
+      </rdf:Seq>
+    </items>
+    <image rdf:resource="http://gnosis.cx/home/hugo.gif"/>
+  </channel>
+  <image rdf:about="http://gnosis.cx/home/hugo.gif">
+    <title>Gnosis Software</title>
+    <link>http://gnosis.cx/publish</link>
+    <url>http://gnosis.cx/home/hugo.gif</url>
+  </image>
+
+<!-- insert -->
+
+  <item rdf:about="http://www.gnosis.cx/publish/voting/privacy-electronic-voting.pdf">
+    <title>Privacy Issues in an Electronic Voting Machine</title>
+    <link>http://www.gnosis.cx/publish/voting/privacy-electronic-voting.pdf</link>
+    <description>
+    I wrote this paper with Arthur Keller, Joseph Hall, and Arnie Urkin.
+    A few part of our paper are specific to the Open Voting Consortium 
+    design, but most generally describe the anonymity issues any voting system.  
+    After introducing the history and politics of a secret ballot, we analyze
+    threats, most especially in the introduction of covert channels to a voting
+    system.
+    </description>
+    <dc:date>June 20, 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://www.gnosis.cx/publish/voting/electronic-voting-machine.pdf">
+    <title>A PC-Based Open-Source Voting Machine with an Accessible Voter-Verifiable Paper Ballot</title>
+    <link>http://www.gnosis.cx/publish/voting/electronic-voting-machine.pdf</link>
+    <description>
+    I wrote this paper with Arthur Keller, Alan Dechert, and Karl Auerbach.
+    This paper details design principles of the Open Voting Consortium voting
+    system.  We contrast our design with other voting technologies, with my 
+    contribution being in the analysis of the need for a paper ballot, in contrast 
+    with a paper "receipt" or mere "paper trail".   I also critique Rebecca 
+    Mercuri's "ballot-under-glass" design as adding complications and security
+    threats while actually failing to provide as much integrity assurance as OVC's
+    physically inspectible ballot.
+    </description>
+    <dc:date>June 20, 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://openvoting.org/">
+    <title>Open Voting Consortium Demo (Milestone 1)</title>
+    <link>http://openvoting.org/</link>
+    <description>On April 1, in Santa Clara, California, the OVC demonstrated a working version of our open source software for voting with paper ballots. Systems demonstrated include the touch-screen ballot GUI, a reading-impaired interface for disabled voters, a ballot reconcilliation application to produce counts and validation at the end of a voting day, and a ballot vocalization application to let voter (especially blind ones) verify the accuracy of printed ballots.</description>
+    <dc:date>April 1, 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/download/Gnosis_Utils.ANNOUNCE">
+    <title>Gnosis Utilities 1.1.1</title>
+    <link>http://gnosis.cx/download/Gnosis_Utils.ANNOUNCE</link>
+    <description>This release adds gnosis.xml.relax to the package. Miscellaneous speedups and bugfixes to gnosis.xml.objectify. Improvements to floating point handling in gnosis.xml.pickle. Little used gnosis.trigramlib updated per needs of my personal spam filter. Minor fixes in gnosis.util.introspect.</description>
+    <dc:date>April 1, 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/charming_python_b14.html">
+    <title>CHARMING 2 PYTHON #B14: Numerical Python Working </title>
+    <link>http://gnosis.cx/publish/programming/charming_python_b14.html</link>
+    <description>    Numerical Python (often called NumPy) is a widely used extension
+    library for fast operations on fixed-type arrays, of any
+    dimensionality, in Python. Since the underlying code is
+    well-optimized C, any speed limitations of Python's interpreter
+    usually go away when major operations are performed in NumPy calls.
+    As successful as NumPy has been, its developers have decided to
+    supercede NumPy with a new module called Numarray that is mostly,
+    but not quite entirely, compatible with NumPy. This installment
+    looks both at the general features of NumPy, and at the specific
+    improvements forthcoming with Numarray.</description>
+    <dc:date>September, 2003</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/charming_python_b15.html">
+    <title>CHARMING PYTHON #B15:Review of Python IDEs</title>
+    <link>http://gnosis.cx/publish/programming/charming_python_b15.html</link>
+    <description>    In this installment, David looks at four open source development
+    environments for working with Python code on Unix-like operating
+    systems.  He evaluates two general-purpose editors/environments, and
+    two Python-specific ones, and compares the merits of each.</description>
+    <dc:date>November, 2003</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/linuxppc.html">
+    <title>LINUX ZONE FEATURE: Linux on PowerPC Processors </title>
+    <link>http://gnosis.cx/publish/programming/linuxppc.html</link>
+    <description>    Even though most Linux users have treated Linux as an operating
+    system for their x86 white boxes, Linux runs equally well on PowerPC
+    machines.  With the appealing range of PPC machines produced by
+    Apple, the option of using Linux on one of these is of great value
+    to many users.</description>
+    <dc:date>January, 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/rexx.html">
+    <title>LINUX ZONE FEATURE: Regina and NetRexx </title>
+    <link>http://gnosis.cx/publish/programming/rexx.html</link>
+    <description>    It is easy to get lost in the world of "little languages"--quite a
+    few have been written to scratch some itch of a company, individual
+    or project.  Rexx is one of these languages, with a long history of
+    use on IBM OS's, and good current implementations for Linux and
+    other Free Software operating systsems.  Moreover, David argues that
+    Rexx occupies a useful ecological niche between the relative
+    crudeness of shell scripting and the cumbersome formality of full
+    systems languages.  Many Linux programmers and systems
+    administrators would benefit from adding a Rexx implementation to
+    their collection of go-to tools.</description>
+    <dc:date>January, 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/xml_matters_31.html">
+    <title>XML MATTERS #31: SXML and SSAX Manipulating XML in t</title>
+    <link>http://gnosis.cx/publish/programming/xml_matters_31.html</link>
+    <description>    Previous installments have looked at XML libraries for various
+    programming languages, and with various strengths and weaknesses.
+    The Lisp family of languages remains popular, especially in teaching
+    and among purists. The SSAX library for Scheme is an efficient
+    pure-functional parser; SXML is a tree library (like DOM); and
+    related tools SXSLT and SXPath have been created to work with these.
+    This installment looks at the advantages of parsing in a strongly
+    functional language, and compares SSAX with libraries for other
+    languages.</description>
+    <dc:date>October 2003</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/xml_matters_32.html">
+    <title>XML MATTERS #32: The XOM Java XML API </title>
+    <link>http://gnosis.cx/publish/programming/xml_matters_32.html</link>
+    <description>    In general outline, Elliotte Rusty Harold's [XOM] is -yet another-
+    object-oriented XML API, somewhat in the style of DOM. However,
+    there are a number of features that set [XOM] apart, and that Harold
+    argues are important design elements. Chief among these is a
+    rigorous insistence on maintaining invariants in in-memory objects
+    so that an [XOM] instance can -always- be serialized to correct XML.
+    As well, [XOM] aims at a greater simplicity and regularity than
+    other Java XML APIs.</description>
+    <dc:date>November 2003</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/xml_matters_33.html">
+    <title>XML MATTERS #33: XML for Word Processors </title>
+    <link>http://gnosis.cx/publish/programming/xml_matters_33.html</link>
+    <description>    In their recent versions, the three major Free Software word
+    processing programs have all adopted XML formats as their native
+    document format. The approach to XML taken by AbiWord, KOffice's
+    KWord, and OpenOffice.org Writer differs somewhat between the
+    applications-- largely reflecting the underlying development focus
+    of each project. But all open source word processor developers have
+    realized the advantages of XML as a document format:
+    componentization of parsers and writers; openness and formality of
+    format specification; applicability of XSLT and other transformation
+    APIs.</description>
+    <dc:date>February 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/sockets.html">
+    <title>Programming IP Sockets on Linux, Part One</title>
+    <link>http://gnosis.cx/publish/programming/sockets.html</link>
+    <description>TUTORIAL</description>
+    <dc:date>Thu Apr  1 13:58:05 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/sockets2.html">
+    <title>Programming IP Sockets on Linux, Part Two</title>
+    <link>http://gnosis.cx/publish/programming/sockets2.html</link>
+    <description>TUTORIAL</description>
+    <dc:date>Sun Feb 29 17:26:30 2004</dc:date>
+  </item>
+
+  <item rdf:about="http://gnosis.cx/publish/programming/text_utils.html">
+    <title>The GNU Text Utilities</title>
+    <link>http://gnosis.cx/publish/programming/text_utils.html</link>
+    <description>TUTORIAL</description>
+    <dc:date>Sun Feb 29 17:27:16 2004</dc:date>
+  </item>
+
+</rdf:RDF>

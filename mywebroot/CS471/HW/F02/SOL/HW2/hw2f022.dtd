@@ -1,0 +1,9 @@
+<!ELEMENT CourseOfferings (Department)*>
+<!ELEMENT Department (#PCDATA) >
+<!ELEMENT Department  (Course+) >
+<!ELEMENT Course (Name, Instructor, Enrollment)>
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT Instructor (#PCDATA)>
+<!ELEMENT Enrollment (Max, Current)>
+<!ELEMENT Max (#PCDATA)>
+<!ELEMENT Current (#PCDATA)>

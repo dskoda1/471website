@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" /><title>Lab 3</title><meta http-equiv="content-type" content="text/html; charset=utf-8" /></head><body>
+<div style="text-align: center;">
+<h3>Programming Languages<br />
+
+Lab activity 3: Prolog<br />
+</h3>
+</div>
+
+
+<ol>
+
+
+  
+</ol>
+
+Turn in one file prolog file (lab3.pl). <span style="font-weight: bold;">Only solutions
+for Part 1 problem 1 and 4, and Part 2 should be turned in </span>.&nbsp;<span style="font-weight: bold;">All problems should done
+individually</span><span style="font-weight: bold;"> -- you may ask for
+hints and speak with other students</span>.&nbsp; You may discuss/work together with other students for problems 2 and 3 Part 1 and problems 6 and 7a part 2.&nbsp; <span style="font-weight: bold;">Please make sure you name each predicate as specifed in each problem.</span><br />
+
+
+<br />
+
+
+<span style="font-weight: bold;">
+Part 1. </span><span style="font-weight: bold;">Create a new file,
+lab3.pl,&nbsp; for the following exercises.&nbsp; </span><br />
+
+
+The answers for Part 1 problem 1 &amp; 4 should be typed in as comments
+at the
+top of your file.&nbsp; For part 2 this file should include your code
+and my code for <span style="font-style: italic;">family
+and last.&nbsp; You may include comments relating to questions you have
+about your code. Do not include your predictions to the questions. </span>The
+top of the file should look like:<br />
+<br />
+
+/*<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CS471 - Programming Languages<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lab #&lt;number&gt; <br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Author: &lt;LastName&gt;, &lt;FirstName&gt; (&lt;EMail&gt;)<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date: &lt;DATE&gt;<br />
+
+&nbsp;*/<br />
+
+<br />
+<span style="font-weight: bold;">
+Part 1. </span><br />
+
+<ol>
+
+  <li>(10 pts) A: What is the mathematical definition of:<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp; a) relation<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp; b) function<br />
+
+&nbsp;B: Is every function a relation?&nbsp; If false give a counter
+example.<br />
+
+&nbsp;C: Is every relation a function? If false give a counter example.<br />
+    <br />
+</li>
+  <li>(0pts)<span style="font-style: italic;"> There are 2 ways to run
+the <span style="font-style: italic;">SWI-Prolog </span>(<span style="font-style: italic;">swipl</span>) environment.&nbsp; </span>One way
+is to use a terminal window
+and type "swipl" at the prompt OR you can customize a terminal profile.<span style="font-style: italic;"><span style="text-decoration: underline;"><span style="font-style: italic;"><span style="text-decoration: underline;"><span style="text-decoration: underline;"><br />
+    </span></span></span></span></span></li>
+
+
+  <ol>
+    <li>Create a directory for your prolog source files, for example
+create a directory <span style="font-style: italic;">Prolog</span> on
+your desktop.<span style="font-style: italic;"><br style="font-style: italic;" />
+      </span></li>
+    <li>Open a terminal window. <br />
+</li>
+    <li>In the "general tab" enter a profile name --e.g. swipl<br />
+</li>
+    <li>In the "edit" menu select <span style="font-style: italic;">Profile</span>, then <span style="font-style: italic;">New</span><br />
+    </li>
+
+    <ol><li>Check box next to&nbsp; <span style="font-style: italic;">Update login records...&nbsp;</span></li>
+      <li>Check box next to <span style="font-style: italic;">Run a custom command....</span><br />
+      </li>
+
+      <li>Enter Custom command: <br />
+</li>
+      <ol>
+bash -c "cd &lt;YOUR PATH WHERE Prolog is&gt; ;&nbsp; swipl"<br />
+        <br />
+      </ol>
+
+      
+
+    </ol>
+    <li>Once everything is set up, open a terminal window, select your profile by clicking on "File" and selecting "new terminal".<br />
+      <br />
+      <br />
+    </li>
+
+
+  </ol>
+  <li>(0pts)Building a simple prolog program. <br />
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Start SWI-Prolog</li>
+    <ol>
+    </ol>
+    <dl>
+      <dt>You will see something simular to the following in the swipl window:</dt>
+    </dl>
+    <ol>
+      <dl>
+        <dt><span style="font-family: monospace; font-weight: bold;">% library(swi_hooks) compiled into pce_swi_hooks 0.00 sec, 2,224 bytes<br />
+Welcome to SWI-Prolog (Multi-threaded, 32 bits, Version 5.10.4)<br />
+Copyright (c) 1990-2011 University of Amsterdam, VU Amsterdam<br />
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software,<br />
+and you are welcome to redistribute it under certain conditions.<br />
+Please visit http://www.swi-prolog.org for details.%</span><span style="text-decoration: underline;"><span style="font-family: monospace; font-weight: bold;"><br />
+          <br />
+For help, use ?- help(Topic). or ?- apropos(Word).<br />
+?-<br />
+          </span>
+</span></dt></dl>
+      <br />
+    </ol>
+    <dl>
+      <dt>"?-" is the prompt.<br />
+        <br />
+</dt>
+    </dl>
+    <li>To open the editor at the prompt-- <span style="font-weight: bold;">type emacs('lab3E.pl').&nbsp; </span>(NOTE:
+use the apostrophe(') not the double quotes to
+enclose the
+name and don't forget the period.)&nbsp; You will see
+the following in the <span style="font-style: italic;">swipl window </span>and
+another (edit) window will open:</li>
+    <span style="font-family: monospace; font-weight: bold;"> <dd>?-
+emacs('lab3E.pl').<br />
+true<span style="font-family: monospace; font-weight: bold;">(You can run remotely by typing in your local terminal window:
+      <ol style="list-style-type: upper-alpha;">
+<span style="font-family: monospace; font-weight: bold;"> ssh remote.cs.binghamton.edu -l&lt;YOURUSERid&gt; -X -v<br />
+
+      <span style="font-style: italic;">##this will allow an X-window
+to open</span><br />
+)
+    </span>
+      </ol>
+<br />
+<br />
+    
+    </span>
+    <li>Type the following text in the emac edit window:</li>
+    <ol>
+      <code style="font-weight: bold;">wizard(ron).<br />
+      </code><code style="font-weight: bold;">wizard(X)&nbsp;:-&nbsp;hasBroom(X),hasWand(X).</code><br style="font-weight: bold;" />
+      <code style="font-weight: bold;">hasWand(harry).<br />
+quidditchPlayer(harry).<br />
+hasBroom(X)&nbsp;:-&nbsp;quidditchPlayer(X).</code><span style="font-weight: bold;"> </span><br />
+    </ol>
+    <dl>
+      <dt>In the <span style="font-style: italic;">file </span>pull
+down menu select <span style="font-style: italic;">save buffer</span>.&nbsp;
+Make sure each line terminates with a "." and there is NO spaces
+between the functor name and "(".</dt>
+    </dl>
+    <li>To load the program: At the prompt in the "swipl window" type
+[lab3E].&nbsp; You will see the following:</li>
+    
+      <span style="font-family: monospace; font-weight: bold;"> </span></dd><dd>?-
+[lab3E].<br />
+
+% lab3E compiled 0.00 sec, 72 bytes<br />
+
+true.<br />
+<br />
+
+      </dd>
+
+      </span>
+    
+    <li>Some useful predicates are pwd for current directory and cd('<span style="font-style: italic;">path'</span>) to change directory.<br />
+</li>
+    <li>Before you execute the queries below try to predict the
+outcome. Type each query and hit return..
+don't forget the PERIOD.&nbsp; After the system responds hit return
+again.&nbsp; Compare the result and your prediction.<br />
+    </li>
+
+    <ol style="list-style-type: lower-alpha;">
+      <li><code>wizard(ron).</code></li>
+      
+      <li><code><code>witch(ron).</code></code></li>
+
+      <li><code>wizard(hermione).</code>
+        <br />
+
+</li>
+      <li><code>wizard(harry).</code></li>
+      <li><code>wizard(Person).</code></li>
+
+      
+      <li><code><code>witch(Y).</code></code></li>
+    </ol>
+    <dl>
+      <dd><br />
+      </dd>
+    </dl>
+
+  </ol>
+  <li>(10pts) In&nbsp; a text file answer the following questions.&nbsp;
+You might find
+<a href="http://cs.union.edu/%7Estriegnk/learn-prolog-now/html/node1.html#lecture1">Chapter
+1: in <span style="font-style: italic;">Learn Prolog Now</span></a> a useful reference.<br />
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Which of the following sequences of characters are atoms, which
+are
+variables, which are complex terms(structures)?
+Give the functor and arity of each complex term.</li>
+
+    <ol>
+      <li><code>loves(aBoy,mia)</code></li>
+      <li><code>boxer(Butch)</code></li>
+      <li><code><code>and(big(X),kahuna(X))</code></code></li>
+      <li><code>hide(X,big(big(aBoy)))</code></li>
+    </ol>
+    <li>How many facts, rules, clauses, and predicates are there in the
+following knowledge base? What are the heads of the rules, and what are
+the goals they contain?</li>
+    <ol>
+      <code>likes(sam,Food) :- <br />
+      </code>
+      <ol>
+        <code>indian(Food), <br />
+mild(Food).
+        </code><br />
+        <code>
+      </code></ol>
+      <code>likes(sam,Food) :- <br />
+      </code>
+      <ol>
+        <code>italian(Food).
+        </code><br />
+        <code>
+      </code></ol>
+      <code>
+indian(curry).
+      <br />
+indian(tandoori).
+      <br />
+mild(tandoori).
+      <br />
+italian(pizza). <br />
+</code></ol></ol>
+</ol>
+
+
+<span style="font-weight: bold;">Part 2: Create a new file, lab3.pl,&nbsp; for the following exercises.</span><br />
+
+
+  
+<dl>
+
+  
+</dl>
+
+<ol>
+
+  <ol style="list-style-type: upper-alpha;">
+    <ol>
+      <code>
+      </code>
+    </ol>
+  </ol>
+
+  <li>(5)Write a rule with the head, <span style="text-decoration: underline; font-weight: bold;"><span style="font-style: italic;">second</span>(<span style="font-style: italic;">X,Y</span>)</span>, which succeeds if X is a relation <span style="text-decoration: underline;"><span style="font-style: italic;">triple</span>(<span style="font-style: italic;">A,B,C</span>)</span> and<span style="font-style: italic;"> </span><span style="text-decoration: underline; font-style: italic;">B</span> unifies with <span style="text-decoration: underline; font-style: italic;">Y</span>.&nbsp; e.g.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- second(triple(1,2,3),2).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- second(triple(1,2,3),1).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>(Just to think about, do not turn in your answer.) For the code you write, predict the results of the following queries:<br />
+?- second(A, a).&nbsp; <br />
+?- second(A, X).<br />
+Looking at the results in swipl, what do you think is going on.<br />
+      <br />
+      <br />
+    </li>
+  </ol>
+
+  <dl>
+    <dt><br />
+</dt>
+  </dl>
+  <li>(5)Write a fact with the functor<span style="font-style: italic;">, <span style="text-decoration: underline;">secondF</span></span>, that behaves like the code you wrote in part2 problem 1.<br />
+    <br />
+</li>
+  <li>(5)Copy the facts from <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/family">family.pl</a> into your program file. Add a predicate <span style="font-style: italic;">parent</span>(<span style="font-style: italic;">P</span>,<span style="font-style: italic;">C) </span>to your file, that succeeds if <span style="font-style: italic;">P</span> is the mother or father of <span style="font-style: italic;">C</span>.&nbsp; You should write 2 rules.<br />
+<br />
+  </li>
+  <li>(5)Add a predicate <span style="font-style: italic;">daughter</span><span style="font-style: italic;">(<span style="font-style: italic;">P</span>,<span style="font-style: italic;">C) </span><span style="font-style: italic;"> </span>to your file, that succeeds if <span style="font-style: italic;">P</span> is the mother or father of <span style="font-style: italic;">C </span>and <span style="font-style: italic;">C </span>is a female.<br />
+<br />
+  </span></li>
+  <li>(0)Below is the predicate <span style="font-style: italic;">last</span>, where last(Lst,Last). succeeds if Last is the last element in Lst.&nbsp; <br />
+  </li>
+  <dl>
+    <dd><span style="font-family: monospace;">last([X],X).</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">last([_|Xs],Y):-last(Xs,Y).</span></dd>
+    <dt>Type this program into your file and test the following queries:</dt>
+    <dd><span style="font-family: monospace;">last([3,a,dd],X).<br />
+      </span><span style="font-family: monospace;">last([3,a,X],last).<br />
+      </span><span style="font-family: monospace;">last([],L).<br />
+      <br />
+</span></dd>
+  </dl>
+  <li>(10) Try to predict the results of the following queries:</li>
+  <dl>
+    <dd><span style="font-family: monospace;">?- 3 &lt; 6 .</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">?- X = 100 , 5 &lt; X.</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">?- A = 5 , B =10 , A &lt; B.<br />
+?- L = [1,2,3,5], [H|T] = L, [A,B|Z]=L.<br />
+?- L = [3] , </span><span style="font-family: monospace;">[H|T] = L.</span><span style="font-family: monospace;">
+      <br />
+?- L = [3] , </span><span style="font-family: monospace;">[X] = L.</span><br />
+<span style="font-family: monospace;">?- L = [1,2,3,5], [H|T] = L, [A,B|Z]=L, T = [B|Z].</span><br />
+    </dd>
+    <dt>Check
+your prediction by typing the query into Swi-prolog. (Do not include
+your predictions in the file you submit to be graded.) Now define a
+predicate<span style="font-style: italic;"> <span style="font-weight: bold;">isOrdered</span></span><span style="font-weight: bold;">,</span>
+such that 'isOrdered(Lst)' succeeds if the items in the list, Lst, are
+in increasing order. You may assume Lst contains only numbers. e.g.</dt>
+    <dd>?- isOrdered([1,2,3,7,8,90,1000]).<br />
+true.<br />
+?- isOrdered([1,2,3,7,8,90,10]).<br />
+false.<br />
+      <br />
+</dd>
+  </dl>
+  <li>(10)Test the following queries:</li>
+  <dl>
+    <dd><span style="font-family: monospace;">?- X = 9 , S is X + 100.</span><span style="font-family: monospace;"><br />
+?- </span><span style="font-family: monospace;"><span style="font-family: monospace;">A = 5 , B =10 , S is A*2 + B*2.</span><br />
+      <span style="font-family: monospace;">?- </span><span style="font-family: monospace;">A = 5 , B =10 , 30 is A*2 + 2*B.</span>
+    </span></dd><dt>Complete the rule with the head,&nbsp;<u> <span style="font-style: italic; font-weight: bold;">pyth(X, Y ,Z)</span></u> such that the rule succeeds if <i>X*X</i> + <i>Y*Y</i> equals <i>Z</i>.&nbsp; You should assume <i>X</i> and <i>Y</i> are instantiated with a number.&nbsp; e.g.</dt>
+<dd><span style="font-family: monospace;">?- pyth(2,3,T).</span><br style="font-family: monospace;" />
+      <span style="font-family: monospace;">T = 13.</span><br />
+<br />
+    </dd>
+  </dl>
+  <li>(5) Write a rule with the head, <span style="text-decoration: underline; font-weight: bold;"><span style="font-style: italic;">triple</span>(<span style="font-style: italic;">X,Sum</span>)</span>, which succeeds if <span style="font-style: italic;">X</span> is a relation <span style="text-decoration: underline;"><span style="font-style: italic;">triple</span>(<span style="font-style: italic;">A,B,C</span>)</span> and <span style="font-style: italic; font-weight: bold;">Sum </span>unifies with the sum of A+B+C. </li>
+  <li>(10)Test the following queries:</li>
+
+
+  <dl>
+    <dd><span style="font-family: monospace;"><span style="font-family: monospace;"><span style="font-family: monospace;">?- S is X + 100, X = 9.</span><br />
+?-&nbsp; <span style="font-family: monospace;">L = [1,2,3,5], [H|T] = L, Lst = [T].<br />
+<br />
+      </span>
+    </span></span></dd><dt>Now define a predicate <u style="font-weight: bold; font-style: italic;">sumOfLst(Lst, S)</u>, that succeeds if S unifies with the <span style="text-decoration: line-through;">produc</span>t sum of all the numbers in the list, Lst.&nbsp; Assume there is at least one number in <span style="font-style: italic;">Lst</span> and all items are numbers. e.g.</dt>
+    <dd><span style="font-family: monospace;">?</span><span style="font-family: monospace;"><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;">- sumOfLst([1,2,5,-1,3],X).</span><br style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;" /><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;">X = 10 .</span><br style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;" /><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;">?- sumOfLst([1,2,5,-1,3],11).</span><br style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;" /><span style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;">false.</span><br style="color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; font-family: monospace;" />
+      
+    
+  </span></dd></dl>
+</ol>
+<ol>
+
+
+  <ol>
+    <dl>
+    </dl>
+  </ol>
+</ol>
+
+
+
+  
+
+
+  
+<ol style="list-style-type: upper-alpha;">
+
+    <ol>
+      <code>
+      <br />
+      </code>
+    
+    </ol>
+
+    <dl>
+      <dd><br />
+      </dd>
+    </dl>
+  
+  
+</ol>
+
+
+
+
+
+<ol>
+
+
+  <ol>
+    <dl>
+    </dl>
+  </ol>
+</ol>
+
+
+<br />
+
+
+<br />
+
+
+<br />
+
+
+<br />
+
+
+</body></html>

@@ -1,0 +1,316 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>HW 8 -- Flow of control</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(250, 250, 250);"
+ alink="#cc0000" link="#ff0000" vlink="#990000">
+<h4>Due Monday, Nov 1</h4>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+<div align="left">
+<h4 style="text-align: center;">Assignment 9<br>
+</h4>
+</div>
+<p>Read:&nbsp; Chapters 6, 7, 8 <br>
+</p>
+<p>Download and install HUGS (Haskell) &nbsp; <a
+ href="http://developer.java.sun.com/developer/technicalArticles/ALT/RefObj/"><br>
+</a></p>
+<p>Purpose:&nbsp; Re-enforce the relationship between memory and array
+notation and record notation, understand issues involving <span
+ style="font-style: italic;">controlling the flow of execution</span>
+in C
+and Java.<br>
+</p>
+<ol>
+  <li>Given the following declaration in Ada : <br>
+  </li>
+  <ol>
+TYPE Array_type IS ARRAY(2..5) OF Integer;<br>
+TYPE CODE is record <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Level: Integer; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Salary : Integer; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Status : CHARACTER; <br>
+end record; <br>
+TYPE Code_Array IS ARRAY(10..14) OF CODE; <br>
+arr : Array_type; <br>
+codeArr : Code_Array;<br>
+    <br>
+If&nbsp;&nbsp; INTEGER requires 4 bytes of storage and CHARACTER
+requires 1 byte of storage what is the effective address (using bytes
+as
+the addressable units) of variables below
+(show your calculations) You should assume that the ba (base address)
+for
+arr is 300 and the base address for codeArr is 2100.<br>
+A. Effective address for arr(3)&nbsp; is&nbsp;
+__________________ <br>
+B. Effective address for codeArr(11) is&nbsp;
+__________________ <br>
+C. Effective address for codeArr(11).Status is&nbsp;
+__________________<br>
+    <br>
+    <br>
+  </ol>
+  <li>Given the following declaration in Ada :</li>
+  <ol>
+TYPE Array_type IS ARRAY(1..4,10..14) OF Integer;<br>
+TYPE CODE is record<br>
+    <ol>
+Status : CHARACTER; <br>
+Id: Integer;<br>
+Salary : Integer;<br>
+    </ol>
+end record;<br>
+    <br>
+TYPE Code_Array IS ARRAY(2..5,10..14) OF CODE;<br>
+    <br>
+arr : Array_type;<br>
+codeArr : Code_Array;<br>
+    <br>
+If&nbsp; <span style="text-decoration: underline;">Integer</span>
+requires 4 bytes of storage and <span
+ style="text-decoration: underline;">Character</span> requires 1 byte
+of storage what is the effective address (using bytes
+as
+the addressable units) of variables below
+(<span style="font-weight: bold;">SHOW</span> your calculations) You
+should assume that the ba (base address)
+for
+arr is 620 and the base address for codeArr is 1200.<br>
+    <br>
+    <ol style="list-style-type: upper-alpha;">
+      <li>Using row major the effective address for arr(3,10)&nbsp;
+is&nbsp; __________________</li>
+      <li>Using column major the effective address for arr(3,10)&nbsp;
+is&nbsp; __________________</li>
+      <li>Using row major the effective address for codeArr(3,11)
+is&nbsp; __________________</li>
+      <li>Using row major the effective address for
+codeArr(3.11).Salary
+is&nbsp;
+__________________<br>
+        <br>
+      </li>
+    </ol>
+  </ol>
+  <li>Explain the difference between macros and functions in terms of
+binding time.</li>
+  <li>What is the semantics of&nbsp; <span style="font-style: italic;">inline</span>
+in C++? <br>
+  </li>
+  <li>page 307 exercise 7.49</li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Compare Java to C++:<br>
+What does the Java compiler do to following
+comparable code given in exercise 7.49?&nbsp; Which language rules do
+you like better as a
+programmer? why?<br>
+    </li>
+  </ol>
+  <dl>
+    <dd><span style="font-family: monospace;"><br>
+import javax.swing.JOptionPane;</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">public class Exceptions {</span><br
+ style="font-family: monospace;">
+      <br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; public
+static void main(String[] args) {</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; String
+input;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; input =
+JOptionPane.showInputDialog("Enter an integer,(or \"exit\"): ");</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; int value;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; while
+(!input.toUpperCase().equals("EXIT")){&nbsp; </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; try{</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; value = Integer.parseInt(input);</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } catch (
+Exception ex ) {</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; System.out.println("General Exception");</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (NumberFormatException en){</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; System.out.println("Number Format
+Exception");&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; } </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; input =
+JOptionPane.showInputDialog("Enter Value");</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; }</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; }<br>
+}</span></dd>
+  </dl>
+  <li>page 347 exercise 8.5&nbsp; <br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>What if anything, is wrong with with ? Explain.<br>
+    </li>
+    <li>Explain why&nbsp; the cast is needed as part of the code? <br>
+      <br>
+    </li>
+  </ol>
+  <li>page 352 exercise 8.20 (i..e. give an example in c like syntax).</li>
+  <li>page 347 exercise 8.8&nbsp; (note: <a
+ href="http://www.mathcs.sjsu.edu/faculty/louden/pltext/plerr1.shtml#Page_348">errata)</a></li>
+  <li>The calling routine and called routine have different
+responsibilities in allocating, reading and writing the different
+fields of the activation record. The times are described below:<br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>at the beginning in the calling routine&nbsp; (just before the
+call)<br>
+    </li>
+    <li>during the execution of called routine<br>
+    </li>
+    <li>at the end in&nbsp; the calling routine (just after the return
+from the called routine)<br>
+    </li>
+  </ol>
+</ol>
+<dl>
+  <dd>Use the activation record for <a
+ href="../../../%7Ehead/CS471/NOTES/RUNTIME/2ar2.gif">non-nested
+functions</a> and the 3 "times" to complete the table..&nbsp;&nbsp;<span
+ style="font-weight: bold;"> </span><br style="font-weight: bold;">
+  </dd>
+  <dd> <br>
+    <table style="text-align: left; width: 80%;" border="1"
+ cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr>
+          <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">AR
+-
+field<br>
+          </td>
+          <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">Memory
+allocated<br>
+          </td>
+          <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">value
+written<br>
+          </td>
+          <td style="vertical-align: top; text-align: center;"><span
+ style="font-weight: bold;">value
+read</span><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; text-align: center;">return
+value<br>
+          </td>
+          <td style="vertical-align: top; text-align: center;">A<br>
+          </td>
+          <td style="vertical-align: top; text-align: center;">B<br>
+          </td>
+          <td style="vertical-align: top; text-align: center;">C<br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; text-align: center;">arguments<br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; text-align: center;">return
+address<br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; text-align: center;">control
+link<br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; text-align: center;">local
+variables<br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+</dl>
+<ol start="10">
+  <br>
+  <li>page 353 exercise 8.27</li>
+  <li>page 350 exercise 8.17&nbsp; (Use notation given in class.&nbsp;
+You just need to show step (a) and (b).)</li>
+  <li>What is a serious flaw of the <span style="font-style: italic;">reference
+counting</span> algorithms used in garbage collecting?</li>
+  <br>
+</ol>
+<div style="text-align: left;">NOT TO be turned in:&nbsp; Think about
+the nested methods discussed in class to answer the following questions.<br>
+<ol>
+  <li>In Java, instanciated objects have access to Class&nbsp; fields
+(variables).&nbsp; How could this be implemented at runtime?</li>
+  <li>The scope of outer classes&nbsp; fields (variables) extends to
+inner classes. How can this be implemented at runtime?<br>
+  </li>
+</ol>
+<br>
+</div>
+<ol start="10">
+  <br>
+  <ol>
+  </ol>
+</ol>
+</body>
+</html>

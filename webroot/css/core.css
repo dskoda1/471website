@@ -1,0 +1,113 @@
+body
+{
+  margin  : 0;
+  padding : 0;
+}
+
+a
+{
+  text-decoration: none;
+}
+
+hr
+{
+  padding          : 0; 
+  margin-bottom    : 3px;
+}
+
+.search
+{
+  float         : right; 
+  margin-top    : -10px;
+  margin-right  : 20px;
+  padding-top   : 5px;
+}
+
+.calendar
+{
+  float         : right;
+  margin-top    : -10px;
+  margin-right  : 10px;
+  padding-top   : 5px;
+}
+
+.left-content, .right-content
+{
+  min-height  : 400px;
+}
+
+.right-content
+{
+  float : left;
+}
+
+.info, .info-inside
+{
+  border           : 1px solid #000; 
+  width            : 285px;
+  padding          : 4px;
+}
+
+.info
+{
+  background-color : #FFB03B;
+  font-size        : 14pt; 
+  font-weight      : bold;
+}
+
+.info-inside
+{
+  background-color : #FCFAE1;
+  border-top       : 0;
+}
+
+.info-inside table td b
+{
+  font-weight: normal;
+  color      : #000;
+}
+
+.info-inside table tr td
+{
+  margin-left   : 4px;
+  color         : #666;
+  padding-bottom:10px;
+}
+
+.class-info tr td
+{
+  padding-top: 10px;
+}
+
+.sw div
+{
+  margin-left: 10px;
+  font-size  : 9pt;
+}
+
+.wrapper
+{
+  width       : 825px;
+  margin-left : auto;
+  margin-right: auto;
+}
+
+.wrapper img
+{
+  padding:2px; 
+  border:1px solid #E0E0E0;
+}
+
+.bottom
+{
+  border-top   : 1px solid #DDD;
+  padding-top  : 7px;
+  color        : #A0A0A0;
+}
+
+a:hover
+{
+  color           : orange;
+  text-decoration : underline;
+}
+

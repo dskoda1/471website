@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Week 4 Wed</title></head>
+<body>
+
+
+
+For the Wed:<br><h3>Read: Scott</h3>
+
+
+<div style="margin-left: 40px;">Finish
+reading&nbsp;Chapter 11, 7.7.1(to p 373) and 7.8 <br>
+
+
+</div>
+
+
+<div style="margin-left: 40px;">("Check your
+understanding" &nbsp;q:11:6-14)</div>
+
+<br>Try using help and emacs/edit etc:<br><div style="margin-left: 40px;">At the prompt type:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- help(=..).<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;?- help(=:=).<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;?- help(delete).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- help(arg).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- help(functor).<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;?- manpce.<br></div><br><br><ol><li>Draw the graphic representation of the trees defined in functors t1 and t2 in the programming <a href="XXXas4.pl">assignment.</a> <br><br><span style="font-family: monospace;">t1( tree(leaf(4), tree(leaf(2), leaf(1)))).</span><br style="font-family: monospace;"><span style="font-family: monospace;">t2( tree(leaf(-1), tree(tree(leaf(2),leaf(-3)), tree(leaf(5),leaf(4))))).</span><br></li><li>What/How does the <span style="font-style: italic;">delete</span>/2
+predicate mean/behave?</li></ol>Practice:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Which of the following queries succeed?&nbsp; Why?<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (X)=((3)).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (X,Y)=(3,4).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (X,Y)=((3,4),(a,b)).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (X) =(1,2,3,4).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 1+3 = 2+2.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; 1+3 =:=&nbsp; 2+2.<br><br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; delete([3,3,3],3,S).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete([1,3,5],E,S1).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delete( 3, S2, [1,3,1,3]).<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; How do you think delete is implemented?&nbsp; Can you explain why<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; some queries about "delete" result in "ERROR: Out of global stack"?<br><br>Additional references:<br>
+
+
+
+
+<ul><li><a href="http://www.cse.unsw.edu.au/%7Ebillw/prologdict.html">Prolog
+dictionary</a> (Definition of prolog terms)</li><li><a href="http://www.scre.ac.uk/personal/pb/prologbook/index.html">Prolog
+Programming A First Course by Paul Brna&nbsp;</a>(very
+detailed)</li></ul><br></body></html>

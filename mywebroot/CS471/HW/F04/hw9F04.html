@@ -1,0 +1,154 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Eileen Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <title>CS471 Assignment 9 - Function programming</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 249);"
+ alink="#3333ff" link="#000099" vlink="#000099">
+<center>
+<h3> Programming Languages<br>
+Assignment<i> </i>9<br>
+<i>Due: </i>Nov 8, 2004<br>
+</h3>
+</center>
+<h4>Reading:</h4>
+<blockquote>Chapter <br>
+  <br>
+  <br>
+</blockquote>
+<h4>Programming:</h4>
+<ul>
+  <li><a href="http://cvs.haskell.org/Hugs/pages/downloading.htm">Install
+Hugs</a></li>
+  <li><a href="Haskell1F04.lhs">Haskell1F04.lhs</a><br>
+  </li>
+</ul>
+<br>
+<blockquote></blockquote>
+<h4> Written:</h4>
+The purpose of the written assignment is to review mathematics concepts
+and techniques used in the programming part of the homework and
+reenforce the use of the functional techniques in imperative
+programming.<br>
+<ol>
+  <li>Describe briefly what the Von Neumann Architecture
+is.&nbsp; What is meant by the "Von Neumann Bottleneck"?<br>
+  </li>
+  <ol type="A">
+    <ol type="a">
+      <br>
+    </ol>
+  </ol>
+  <ol type="A">
+    <br>
+&nbsp;
+  </ol>
+  <li>Give an example of function which is not referential
+transparency. Why is it a good policy for a function (in computer
+programming) to be referential transparency?<br>
+    <br>
+    <br>
+  </li>
+  <li> Compute the following and show all work.&nbsp; Do not use
+a
+calculator.<span style="font-family: mon;"><span
+ style="font-style: italic;"><span style="font-weight: bold;"></span></span></span><b><tt><font
+ size="+1"></font></tt></b> Given:</li>
+  <dl>
+    <dd><b><tt><font size="+1"><i>f</i>(<i>x</i>) = 3x + 2</font></tt></b><br>
+      <b><tt><font size="+1"><i>g</i>(<i>x</i>) = 2x + 3</font></tt></b></dd>
+  </dl>
+  <ol type="A">
+    <li> [3pt] What is the function determined by composition,&nbsp; (<i>f
+      </i><font size="-2">o </font><i>g</i>)<i> </i>(x ) = ?</li>
+    <ol type="a">
+[ Remember the effect of applying (<i>f </i><font size="-2">o </font><i>g</i>)<i>
+      </i>to<i>&nbsp; </i><i>x</i> is the same as the result
+computed by <i>f</i> ( <i>g</i>(<i>x</i>) ) ] <br>
+&nbsp;
+    </ol>
+    <li> [3pt] What is&nbsp; (<i>g </i><font size="-2">o </font><i>f</i>)<i>
+      </i>(<i>x</i>
+) = ?</li>
+    <ol type="a">
+      <br>
+&nbsp;
+    </ol>
+    <li> [3pt] What is the value of&nbsp; (<i>f </i><font size="-2">o</font><i>
+g</i>)<i> </i>(2
+) = ?</li>
+    <ol type="a">
+      <br>
+&nbsp;
+    </ol>
+    <li> [3pt] What is the value of <i>(g </i><font size="-2">o </font><i>f
+) </i>(2 ) = ?</li>
+    <ol type="a">
+      <ol type="a">
+        <ol type="a">
+&nbsp;
+        </ol>
+      </ol>
+    </ol>
+  </ol>
+&nbsp; <br>
+  <li>Convert the solutions you wrote for 8a and 8c to C (or C++ or
+Java).&nbsp; You should write three functions.&nbsp; One using
+conditional statement, another using conditional expression and the
+final one using a boolean expression.<br>
+    <br>
+  </li>
+  <li> A common way to compute the square root is to use Newton's
+method of successive approximations. &nbsp; <a
+ href="http://www-mitpress.mit.edu/sicp/chapter1/node9.html">Newton's
+method says that whenever
+we have a guess <em>y</em> for the value of the square root of a
+number <em>x</em>, we can perform a simple manipulation to get a
+better guess (one closer to the actual square root) by averaging <em>y</em>
+with <em>x</em>/<em>y</em>. </a><a name="tex2html20"
+ href="http://www-mitpress.mit.edu/sicp/chapter1/node9.html"
+ target="footnote_window"><sup><tt><font ="-3">21</font></tt></sup></a><a
+ href="http://www-mitpress.mit.edu/sicp/chapter1/node9.html"> For
+example, we can compute the square root of 2 as follows. Suppose our
+initial guess is 1:</a>
+    <p>
+    <table border="0" cellpadding="2">
+      <tbody>
+        <tr>
+          <td><big>Guess</big></td>
+          <td><big> Quotient</big></td>
+          <td><big>&nbsp; &nbsp; &nbsp; Average</big></td>
+        </tr>
+      </tbody>
+    </table>
+    </p>
+    <p><a href="http://www-mitpress.mit.edu/sicp/chapter1/node9.html"><img
+ src="http://www-mitpress.mit.edu/sicp/chapter1/line2.gif"></a></p>
+    <p>Continuing this process, we obtain better and better
+approximations to
+the square root. (From <span style="font-style: italic;">Structure and
+Interpreation of Computer Programs</span> by Abelson and Sussman).</p>
+  </li>
+Using&nbsp; a spreadsheet or calculator apply Newton's method to find
+the square of 100 using an inital guess of 1.&nbsp;&nbsp;&nbsp; How do
+you know when to stop?&nbsp; How many steps did it take you? (Using
+Excell it took me 8 steps)<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <ol type="a">
+    <ol type="a">
+      <ol type="a">
+      </ol>
+    </ol>
+  </ol>
+</ol>
+<br>
+</body>
+</html>

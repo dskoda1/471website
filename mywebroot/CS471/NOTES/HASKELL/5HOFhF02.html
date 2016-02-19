@@ -1,0 +1,753 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Higher Order Functions</title>
+
+
+
+
+
+
+
+  
+
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body>
+
+
+&nbsp;
+
+
+
+<center>
+<h3> Haskell 6</h3>
+
+
+</center>
+
+
+
+
+
+<h4> Purpose:&nbsp; To examine the power of encapsulating
+functions via
+higher order functions.<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/Notes1.lhs"><br>
+
+
+Notes1.lhs</a> has codes presented in these notes as well as
+other
+examples.</h4><a href="http://www.infoq.com/presentations/Functional-Programming-A-Pragmatic-Introduction">Functional Programming A Pragmatic Introduction</a><br>
+<a href="https://hackhands.com/lazy-evaluation-works-haskell/" target="_blank">foldl and lazy evaluation</a><br>
+Wikipedia::<br>
+<a href="http://en.wikipedia.org/wiki/Map_%28higher-order_function%29" target="_blank">Maps in other languages</a><br>
+
+<a target="_blank" href="http://en.wikipedia.org/wiki/Fold_%28higher-order_function%29">Folds in other languages</a><br>
+<a target="_blank" href="http://en.wikipedia.org/wiki/Filter_%28higher-order_function%29">Filters in other languages</a><br>
+<a href="http://www.boost.org/doc/libs/1_41_0/doc/html/lambda.html">Lamba Expression in C++ Library</a><br>
+<br>
+
+
+
+<h3>
+<hr width="100%">Anonymous Functions</h3>
+
+
+<ul>
+
+
+  <li> Functions do NOT&nbsp; have to have <b>names</b>!</li>
+
+
+  <li> We can write a function directly using <b><i>lambda
+notation</i></b></li>
+
+
+  <br>
+
+
+  <b><tt>\x -&gt; x + 1</tt></b><br>
+
+
+  <b><tt>\x y -&gt; 3 + x * y</tt></b><br>
+
+
+  <b><tt>\x y f -&gt; f x + f y<br></tt></b><li>
+Applying these functions
+interactively</li>
+
+
+  <br>
+
+
+  <b><tt>(\x -&gt; x + 1) 3</tt></b><br>
+
+
+  <b><tt>(\x y f -&gt; f x + f y) 2 5 (\x-&gt; 5*x)<br></tt></b><li>
+You
+will find anonymous functions handy.</li>
+
+
+</ul>
+
+
+<h3>
+<hr noshade="noshade" width="100%"> Higher order
+functions--map</h3>
+
+
+<ul>
+
+
+  <li> apply a function to each element of a list</li>
+
+
+</ul>
+
+
+<ul>
+
+
+  
+  <pre>&gt; map :: (t -&gt; u) -&gt; [t] -&gt; [u]<br>&gt; map f [] = []<br>&gt; map f (a:x) = f a : map f x</pre>
+
+
+  <li> EXAMPLE</li>
+
+
+  
+  <pre>...&gt; map even [1,2,3,4,5,6]</pre>
+
+
+  <li> returns</li>
+
+
+  
+  <pre>[False,True,False,True,False,True]</pre>
+
+
+  <li> alternative definition</li>
+
+
+  <br>
+
+
+  <tt><b>&gt;</b> map :: (t -&gt; u)
+-&gt; [t] -&gt; [u]</tt><br>
+
+
+&gt;<tt> map f x = [ f a | a &lt;- x ]</tt>
+</ul>
+
+
+<h3>
+<hr noshade="noshade" size="3" width="100%">Higher
+order
+functions--foldr1</h3>
+
+
+<ul>
+
+
+  
+  <pre>&gt; foldr1 :: (t -&gt; t -&gt; t) -&gt; [t] -&gt; t<br>&gt; foldr1 f [a] = a<br>&gt; foldr1 f (a:b:x) = f a (foldr1 f (b:x))</pre>
+
+
+  <li> EXAMPLE</li>
+
+
+  <br>
+
+
+&nbsp;
+  
+  <pre>...&gt; foldr1 min [3,2,-1,2,0,5]</pre>
+
+
+  <li> returns</li>
+
+
+  
+  <pre>-1</pre>
+
+
+
+  
+  <hr noshade="noshade" size="1" width="100%">
+  
+  <h3>
+Example of using foldr1&nbsp;<br>
+
+
+
+  
+  </h3><pre>...&gt; foldr1 (++) ["A ","good", " ","example","!"]</pre>
+
+
+  <li> returns "A good example!"</li>
+
+
+  
+  <pre>...&gt; foldr1(||)[False,True,False]</pre>
+
+
+  <li> returns&nbsp; <tt>True</tt></li>
+
+
+  
+  <pre>...&gt; foldr1 (-) [1,2,3,4,5,6]</pre>
+
+
+  <li> returns <tt>-3</tt></li>
+
+
+  <li> &nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/fold.html#foldr1">Detailed
+unrolling of foldr1</a></li>
+
+
+</ul>
+
+
+<blockquote>
+  
+  <h3>
+  
+  <hr size="2" width="100%"> foldl1 (equivalent to
+Prelude definition)</h3>
+
+
+</blockquote>
+
+
+<ul>
+
+
+  
+  <pre>&gt; foldl1 :: (t -&gt; t -&gt; t) -&gt; [t]-&gt; t<br>&gt; foldl1 f [a] = a<br>&gt; foldl1 f (a:b:x) = foldl1 f ((f a b):x)</pre>
+
+
+  <li> EXAMPLE</li>
+
+
+  
+  <ul>
+
+
+    
+    <pre>...&gt; foldl1 min [3,2,-1,2,0,5]</pre>
+
+
+  
+  </ul>
+
+
+  <li> returns <tt>-1</tt></li>
+
+
+  
+  <h3>
+  
+  <hr noshade="noshade" size="1" width="100%">Example
+of using foldl1</h3>
+
+
+</ul>
+
+
+<ul>
+
+
+  
+  <pre>...&gt; fold1 (++) ["A ","good", " ","example","!"]</pre>
+
+
+  <li> returns <tt>"A good example!"</tt></li>
+
+
+  
+  <pre>...&gt; foldl1(||)[False,True,False]</pre>
+
+
+  <li> returns <tt>True</tt></li>
+
+
+  
+  <pre>...&gt; foldl1 (-) [1,2,3,4,5,6]</pre>
+
+
+  <li> returns <tt>-19</tt></li>
+
+
+  <li> &nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/fold.html#foldl1">Detailed
+unrolling of foldl1</a></li>
+
+
+</ul>
+
+
+<blockquote>
+  
+  <h3>
+  
+  <hr align="right" size="1" width="100%">
+foldl</h3>
+
+
+</blockquote>
+
+
+<ul>
+
+
+  
+  <pre>&gt; foldl :: (a -&gt; b -&gt; a) -&gt; a -&gt; [b] -&gt; a<br>&gt; foldl f z [] = z<br>&gt; foldl f z (x:xs) = foldl f (f z x) xs</pre>
+
+
+  <li> EXAMPLE</li>
+
+
+  
+  <pre>...&gt; foldl (-) 3 [4,5,6]</pre>
+
+
+  <li> is evaluated as</li>
+
+
+  <br>
+
+
+((3-4)-5)-6 = -12
+</ul>
+
+
+<blockquote>
+  
+  <h3>
+  
+  <hr align="left" noshade="noshade" size="1" width="100%"> <a name="foldr"></a>foldr</h3>
+
+
+</blockquote>
+
+
+<ul>
+
+
+  
+  <pre>&gt; foldr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; b<br>&gt; foldr f z [] = z<br>&gt; foldr f z (x:xs) = f x&nbsp; (foldr f z xs)</pre>
+
+
+  <li> EXAMPLE</li>
+
+
+  
+  <pre>...&gt; foldr (-) 3 [4,5,6]</pre>
+
+
+  <li> is evaluated as</li>
+
+
+  <br>
+
+
+4-(5-(6-3)) = 2
+</ul>
+
+
+<blockquote>
+  
+  <h3>
+  
+  <hr noshade="noshade" size="1" width="100%">
+  <a name="TwoFolds"></a>Why
+two folds?</h3>
+
+
+</blockquote>
+
+
+<ul>
+
+
+  <li> &nbsp;<i>concat</i> generalizes the
+associativity property of (++)</li>
+
+
+  
+  <ul>
+
+
+    <li> <i>concat</i> converts a list of lists of
+elements to a
+flattened list of elements</li>
+
+
+    <br>
+
+
+    <tt>concat [[0],[],[1,2],[4,5,6]] = [0,1,2,4,5,6]<br>
+    </tt><li style="font-weight: bold;">
+Prelude
+defines <i>concat</i> as</li>
+
+
+    <br>
+
+
+    <tt>&gt; concat :: [[a]] -&gt; [a]</tt><br>
+
+
+    <tt>&gt; concat&nbsp; = foldr <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2hSpr01.html#%28++%29">(++)</a>
+[]&nbsp;</tt>
+    
+    <p><tt>...&gt; concat [[0],[],[1,2],[4,5,6]]</tt>
+    <br>
+
+
+    <tt>=&gt; foldr (++) [] [[0],[],[1,2],[4,5,6]]</tt>
+    <br>
+
+
+is evaluated as <br>
+
+
+    <tt>[0]++ ([] ++ ([1,2] ++ ([4,5,6] ++ []) ) )</tt> </p><br>
+    <br>
+
+
+
+    <li> The cost of <i>concat</i> is the sum of the
+lengths of all the
+lists.</li></ul></ul>
+<ul>
+  <ul>
+
+
+
+    <li> Notice that (++) is associative, therefore we could have
+used <i>foldl</i></li>
+
+
+    <br>
+
+
+    <tt>&gt; concatSlow :: [[a]] -&gt; [a]</tt><br>
+
+
+    <tt>&gt; concatSlow = foldl (++) []&nbsp;</tt>
+    
+    <p><tt>...&gt; concatSlow [[0],[],[1,2],[4,5,6]]</tt>
+    <br>
+
+
+is evaluated as <br>
+
+
+    <tt>(((([] <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2hSpr01.html#%28++%29">++</a>
+[0])++[])++[1,2])++[4,5,6])</tt> </p><br>
+    <br>
+
+
+
+    <li> Since<tt> (++) </tt>recursives through the
+first list adding
+one element at a time, the cost of concatSlow is<tt> O(n<sup>2</sup>)<br>
+      </tt></li>
+
+
+  
+  
+  </ul>
+  <br>
+
+
+
+  <li> Care must be taken if efficiency is a concern<tt>.</tt></li>
+
+
+</ul>
+
+
+
+<h3>
+<hr noshade="noshade" size="3" width="100%">
+Higher order
+functions--filter </h3>
+
+
+<ul>
+
+
+  
+  <pre>&gt; filter :: (t -&gt; Bool) -&gt; [t] -&gt; [t]<br>&gt; filter p [] = []<br>&gt; filter p (a:x)<br>&gt;&nbsp;&nbsp;&nbsp; | p a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = a : filter p x<br>&gt;&nbsp;&nbsp;&nbsp; | otherwise = filter p x</pre>
+
+
+  <li> alternatively</li>
+
+
+  
+  <pre>&gt; filter p x =[a | a &lt;- x, p a]</pre>
+
+
+  
+  <h3>
+  
+  <hr noshade="noshade" width="100%"> Example uses
+of filter</h3>
+
+
+  
+  <pre>...&gt; filter even [1,2,3,4,5,6,7,8]</pre>
+
+
+  <li> returns <tt>[2,4,6,8]</tt></li>
+
+
+  
+  <pre>...&gt; filter isPrime [2..100]</pre>
+
+
+  <li> returns <tt>[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]</tt></li>
+
+
+  <li> "isPrime" is defined in the notes:</li>
+
+
+  
+  <pre>&gt;&nbsp;&nbsp; isPrime n | n &lt;= 1 = False<br>&gt;&nbsp;&nbsp; isPrime 2 = True<br>&gt;&nbsp;&nbsp; isPrime 3 = True<br>&gt;&nbsp;&nbsp; isPrime n<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` 2 == 0 = False<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` 3 == 0 = False<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = isKPrime n 1<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isKPrime n k<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | (6*k-1)^2 &gt; n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = True<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` (6*k-1) == 0 = False<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` (6*k+1) == 0 = False<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = isKPrime n (k+1)<br><br></pre>
+
+
+</ul>
+
+
+<blockquote>
+  
+  <h3>Remove all duplicates from a list</h3>
+
+
+</blockquote>
+
+
+<ul>
+
+
+  
+  <pre>&gt; nub :: Eq t =&gt; [t] -&gt; [t]<br>&gt; nub [] = []<br>&gt; nub (a:x) = a : nub (filter (a/=) x)</pre>
+
+
+</ul>
+
+
+<h3>
+<hr noshade="noshade" width="100%"> Examples: <br>
+
+
+<blockquote> The list partition function</blockquote>
+
+
+</h3>
+
+
+<ul>
+
+
+  
+  <pre>&gt;&nbsp; partition :: (t-&gt;Bool) -&gt; [t] -&gt; ([t],[t])<br>&gt;&nbsp; partition p = foldr selectp ([],[])<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp; where<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; selectp a (t,f)<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | p a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = (a:t,f)<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = (t,a:f)</pre>
+
+
+  <li> EXAMPLE</li>
+
+
+  
+  <pre>...&gt; partition even [1,2,3,4,5,6]</pre>
+
+
+  <li> returns <tt>[[2,4,6],[1,3,5]]</tt></li>
+
+
+  
+  <h3>The list partition function (again using <a href="file:///home/head/Courses/471/NOTES/HASKELL/5hFall02.html#foldr">foldr</a>)</h3>
+
+
+  
+  <pre>...&gt; partition even [1,2,3,4,5,6]<br>~&gt; foldr selectp ([],[]) [1,2,3,4,5,6]<br>~&gt; selectp 1 (foldr selectp ([],[]) [2,3,4,5,6])<br>~&gt; selectp 1 (selectp 2 (foldr selectp ([],[]) [3,4,5,6]))<br>~&gt; selectp 1 (selectp 2 (selectp 3 (selectp 4&nbsp;<br>&nbsp;&nbsp;&nbsp; (selectp 5 (selectp 6 (foldr selectp ([],[]) []))))))<br>~&gt; selectp 1 (selectp 2 (selectp 3 (selectp 4&nbsp;<br>&nbsp;&nbsp;&nbsp; (selectp 5 (selectp 6 ([],[]))))))</pre>
+
+
+  
+  <pre>where</pre>
+
+
+  
+  <pre>&gt; selectp :: Int -&gt; ([Int],[Int]) -&gt; ([Int], [Int])<br>&gt; selectp even i (evenList, oddList)&nbsp;<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp; | even(i) = (i:evenList, oddList)<br>&gt;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = (evenList, i:oddList)</pre>
+
+
+Note: The documentation at haskell.org uses "<b>e1 =&gt; e2</b>"
+to
+mean e1 evaluations to e2. My notes use the symbol "<b>e1
+~&gt; e2</b>".
+  
+  <h3>
+  
+  <hr noshade="noshade" width="100%"> takeWhile </h3>
+
+
+  
+  <blockquote><tt>&gt; takeWhile :: (a -&gt; Bool)
+-&gt; [a] -&gt; [a]</tt> <br>
+
+
+    <tt>&gt; takeWhile p
+[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+=&nbsp; []</tt> <br>
+
+
+    <tt>&gt; takeWhile p (x:xs)</tt> <br>
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| p x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+=&nbsp; x : takeWhile p xs</tt> <br>
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise =&nbsp; []</tt> <br>
+
+
+&nbsp; <li> Examples</li>
+
+
+    <br>
+
+
+    <tt>...&gt; takeWhile (\= 'a') "xyzabc"</tt> <br>
+
+
+    <tt>"xyz"</tt>
+    
+    <p><tt>&gt; reverseUntil p = reverse . takeWhile
+(not . p)</tt> </p>
+
+
+    
+    <p><tt>...&gt; reverseUntil (== 'd') "abcxyzdefuvw"</tt>
+    <br>
+
+
+    <tt>"zyxcba"</tt> <br>
+
+
+    </p>
+
+
+    
+    <hr align="left" noshade="noshade" size="1" width="50%"> The series
+for generating the value of cosine using radians is: <br>
+
+
+cos x = 1 - (x^2 / 2!) + <br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ (x^4/ 4!) <br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+- (x^6 / 6!) <br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ ... <br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++ (-1)^n
+x^(2n)/(2n)! <br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
++...
+    
+    <p>&nbsp;(^ represents exponents) </p>
+
+
+    
+    <p>The Haskell definition below uses terms already computed <br>
+
+
+to reduce the cost of computing later terms, <br>
+
+
+( "." is function composition, ":" is the List constructor. ) </p>
+
+
+    
+    <p><tt>&gt; cos x = sum
+(takeWhile((&gt;0.00001).abs) (series x))</tt> <br>
+
+
+    <tt>&gt;&nbsp;&nbsp; where</tt> <br>
+
+
+    <tt>&gt;&nbsp;&nbsp;&nbsp; series :: Double
+-&gt; [Double]</tt> <br>
+
+
+    <tt>&gt;&nbsp;&nbsp;&nbsp; series x = terms</tt>
+    <br>
+
+
+    <tt>&gt;&nbsp;&nbsp;&nbsp; terms =
+1.0:[(-t*x*x)/(n*(n-1))|(t,n)&lt;- zip terms [2.0,4.0 ..]]<br>
+
+
+    </tt></p>
+
+
+  </blockquote>
+
+
+  
+  <hr size="2" width="100%">
+  
+  <center>
+  
+  <table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+
+
+    <tbody>
+
+
+      <tr>
+
+
+        <td>&nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/5hF02.html">previous</a></td>
+
+
+        <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/5hASpr01.html">&nbsp;next&nbsp;</a></td>
+
+
+      </tr>
+
+
+    
+    </tbody>
+  
+  </table>
+
+
+  </center>
+
+
+  
+  <hr size="2" width="100%"> 4/11<br>
+
+
+</ul>
+
+
+<br>
+
+
+<br>
+
+
+</body></html>

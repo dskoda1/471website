@@ -1,0 +1,1342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <meta name="Author" content="Eileen Head">
+
+
+
+
+  
+  
+  
+  
+  <title>XML</title>
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#3333ff" link="#3366ff" vlink="#000099">
+
+
+
+
+
+
+<center>
+<h3> &nbsp;SGML and XML<br>
+
+
+
+
+
+Python&nbsp; <br>
+
+
+
+
+
+Fall, 2006</h3>
+
+
+
+
+
+
+
+
+
+
+</center>
+
+
+
+
+
+
+<h3>Purpose:</h3>
+
+
+
+
+
+
+<blockquote>Brief introduction to XML and using regular expression tool in Python.&nbsp; </blockquote>
+
+
+
+
+
+
+<h3> What will be covered ?</h3>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> Relationship between SGML, XML and HTML</li>
+
+
+
+
+
+  <li>Brief introduction to Python and writing scripts using RE module.</li>
+
+
+
+
+
+
+  
+</ul>
+
+
+
+
+
+<hr width="100%">
+<h4> <b><a href="http://www.sil.org/computing/noc/156ac.htm">SGML</a>
+(Standard Generalized Markup Language)</b></h4>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> <b><i>Standard</i></b> : ISO 8879:1986</li>
+
+
+
+
+
+
+  <li> <b><i>Generalized</i> : </b>Meta-language (i.e. framework) for
+constructing markup languages.</li>
+
+
+
+
+
+
+  <li> <b><i>Markup</i> : </b>Codes added to the stream of an encoded
+
+text to signal structure, formatting, or processing<b> </b>commands.</li>
+
+
+
+
+
+
+  <li> <b><i>Language </i>: </b>Uses Formal Languages to describe
+markup languages.</li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h4> <a href="http://www.w3.org/XML/Activity#intro">XML</a> </h4>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li> A subset of SGML which is simpler and more efficient therefore
+good for processing documents on the web.</li>
+
+
+
+
+
+
+  <li> <b>XML</b> is like <b>HTML</b> because it contains elements
+and
+attributes but XML allows the author to change/add elements and
+attributes without changing the XML standard.&nbsp; These elements and
+attributes can be defined internal to the file or external. </li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    <dl>
+
+
+
+
+
+
+      <li> DTD (data type definitions) files or XSD (xml schema definition) files can be used to define the grammars
+used to validate XML files. </li>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    </dl>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+  <li><b>XML Vocabularies-</b></li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+    <li> Set of elements and attributes that pertain to a specific
+application.</li>
+
+
+
+
+
+
+    <li> <a href="http://www.w3.org/Math/">MathML</a></li>
+
+
+
+
+
+
+    <li><a href="http://xml.house.gov/">United States Congress XML and
+Legislative Documents</a></li>
+
+
+
+
+
+    <li></li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h4>
+<hr size="4" width="90%"></h4>
+
+
+
+
+
+
+<h3> DTD -- One technique to define the structure of an XML document</h3>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li>&nbsp;Document Type Declaration (or Definition), abbreviated <b>DTD</b>
+provides the grammar for the structure of SGML (or XML)
+document.&nbsp; </li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+    <li>The DTD is essentially a context-free grammar with it own
+notation for describing variables and productions.<br>
+
+
+
+
+
+
+    </li>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    <ul type="circle">
+
+
+
+
+
+
+      <li>i.e. The DTD describes the form of a typical document as well
+as the tags to be used.</li>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    </ul>
+
+
+
+
+
+
+    <li>Schema's are an alternative technique for providing XML
+grammars. </li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+    <li> Example:&nbsp; <a href="http://www.w3.org/TR/html401/strict.dtd"> HTML 4.01 Strict DTD
+file at W3</a> </li>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    <dl>
+
+
+
+
+
+
+      <li><b>HTML</b> is an application of SGML. </li>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    </dl>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li>The grammar of the DTD language is itself a Context Free grammar.
+&nbsp;However, we are interested the languages that are &nbsp;described
+by the DTD. &nbsp;Especially how to write a grammar for an XML file.<br>
+
+
+
+
+
+
+  </li>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3><a href="http://www.w3.org/XML/Schema">Schemas</a> -- Another technique to define the structure of an XML document</h3>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li>External file XSD (xml schema definition) </li>
+
+
+
+  <li>Approved as a W3C Recommendation on 2 May 2001</li>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li>W3C Recommendations are similar to the
+standards published by other organizations.</li>
+
+
+
+
+
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+  
+
+</ul>
+
+
+
+
+
+<h3>XML</h3>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li><a href="bib.xml">XML example</a></li>
+
+
+
+  <li><a href="Scott13XML/bib.xsl">XSL</a> ( <i><b>E</b>xtensible <b>S</b>tyle <b>L</b>anguage </i>) external script to convert xml to&nbsp;html</li>
+
+
+
+  <li>" XSLT (<i><b>E</b>xtensible <b>S</b>tyle <b>L</b>anguage <b>T</b>ransformation </i>),  the language used in <a href="http://isp.webopedia.com/TERM/X/XSL.html">XSL</a> <a href="http://isp.webopedia.com/TERM/X/style_sheet.html">style sheets</a> to transform <a href="http://isp.webopedia.com/TERM/X/XML.html">XML</a> documents into other XML documents. 
+    
+    
+    
+    <p>  An XSL processor reads the XML document and follows the instructions in
+the XSL style sheet, then it outputs a new XML document or XML-document
+fragment. </p>
+
+
+
+    
+    
+    
+    <p> This is extremely useful in e-commerce,
+where the same data need to be converted into different representations
+of XML. Not all companies use the exact same programs, applications and
+computer systems. "&nbsp;(from:<a href="http://isp.webopedia.com/TERM/X/XSLT.html">isp webopedia)</a></p>
+
+
+
+  </li>
+
+
+
+  <li><a href="Scott13XML/">Scott13XML example</a></li>
+
+  
+
+
+</ul>
+
+
+
+
+
+<b>Well-formed vs. Valid XML document</b> <br>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+  <li><b>well-formed</b>&nbsp;</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+    <li>document must contains properly written tags&nbsp;</li>
+
+
+
+
+
+
+    <li>and properly nested --non-overlapping tag&nbsp;</li>
+
+
+
+
+
+
+    <li>i.e. tags don't have any special meaning, tags just follows
+basic XML syntax rules&nbsp;</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+  <li>A <b>valid</b>&nbsp;</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+    <li>document must be not only well-formed but also parsed
+according to grammar rules in associated DTD (or XML Schema)</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<blockquote> </blockquote>
+
+
+
+
+
+
+<hr size="2" width="100%"> <a href="http://www.oasis-open.org/cover/sgmlhist0.html">History:</a>
+<dl>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+    <li> In 1969 Charles Goldfarb was leading an IBM research project
+on integrated law office information systems. Together with Edward
+Mosher and Raymond Lorie he invented the Generalized Markup Language
+(GML) as a means of allowing the text editing, formatting,
+and information retrieval subsystems to share documents.</li>
+
+
+
+
+
+
+    <li> Later Goldfarb lead the team which developed SGML.</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <hr size="2" width="100%">References:
+  
+  
+  
+  
+  
+  
+  <ol>
+
+
+
+
+
+    <li> &nbsp;<a href="http://www.w3.org/MarkUp/Guide/">Getting
+started with HTML</a></li>
+
+
+
+
+
+
+    <li><a href="http://www.w3.org/TR/2000/REC-xml-20001006">Extensible
+Markup Language (XML) 1.0 (Second Edition) - W3C Recommendation 6
+October 2000</a><br>
+
+
+
+
+
+
+    </li>
+
+
+
+
+
+
+    <li><a href="http://www.w3.org/XML/1999/XML-in-10-points">&nbsp;XML
+in 10 points</a></li>
+
+
+
+
+
+
+    <li> <a href="http://www.lysator.liu.se/projects/about_psgml.html">A
+History of XML(pdf file).</a></li>
+
+
+
+
+
+
+    <li> <a href="http://msxml.com/">General Markup</a> (Tutorial and
+good links)</li>
+
+
+
+
+
+
+    <li><a href="http://www.w3schools.com">W3School Online Web Tutorial</a><br>
+
+
+
+
+
+
+    </li>
+
+
+
+
+
+
+    <li><a href="http://www.xml.com/">http://www.xml.com/</a>
+(sponsored by Seybold Publications and O'Reilly &amp; Associates, Inc.)</li>
+
+
+
+
+
+    <li><a href="http://www.w3.org/DesignIssues/RDF-XML.html">RDF model vs XML model by Tim Berners-Lee</a></li>
+
+
+
+
+
+    <li><a href="http://www.daml.org/language/features.html">DAML</a></li>
+
+
+
+
+
+    <li><a href="http://www.w3.org/DesignIssues/">Design Issues: Architectural and philosophical points</a></li>
+
+
+
+
+
+
+    <li> <a href="http://edis.ifas.ufl.edu/scripts/htmlgen.exe?DOCUMENT_AE038">A
+Brief History of Document Markup</a></li>
+
+
+
+
+
+
+    <li> <a href="http://www.sil.org/computing/routledge/simons/text.html">Using
+Text Encoding to Represent Linguistic Data</a></li>
+
+
+
+
+
+
+    <li> <a href="http://www.tei-c.org/Software/index.html">Text
+Encoding Initiative Software Page</a></li>
+
+
+
+
+
+
+    <li>Hopcroft, Motwani and Ullman, <i>Introduction to Automata
+Theory, Languages and Computation</i> 2ed.</li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+Tutorials:<br>
+
+
+
+
+
+
+<ol>
+
+
+
+
+
+
+  <li><a href="http://www.w3schools.com/dtd/default.asp">w3schools --
+DTD tutorial</a></li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+
+
+
+
+    <li><a href="http://www.w3schools.com/xml/xml_examples.asp">Examples...
+including errors.</a><br>
+
+
+
+
+
+
+    </li>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+  <li><a href="http://www.xmlfiles.com/dtd/">XMLfiles --- DTD</a></li>
+
+
+
+
+
+
+  <li><a href="http://www.spiderpro.com/bu/buxmlm001.html">Kick start
+XML</a><br>
+
+
+
+
+
+
+  </li>
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+<dl>
+
+
+
+  
+  
+  
+  <hr size="9" width="100%"><br>
+
+
+
+
+
+
+9/10/2006<br>
+
+
+
+
+
+
+</dl>
+
+
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    <center>
+    
+    
+    
+    
+    
+    
+    <table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+
+
+
+
+
+
+      <tbody>
+
+
+
+
+
+
+        <tr>
+
+
+
+
+
+
+          <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO.4Fall01.html">&nbsp;previous&nbsp;</a></td>
+
+
+
+
+
+
+          <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471notesIndex.html">&nbsp;next&nbsp;</a></td>
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+
+      
+      
+      
+      
+      
+      
+      </tbody>
+    
+    
+    
+    
+    
+    
+    </table>
+
+
+
+
+
+
+    </center>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+</body>
+</html>

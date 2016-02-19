@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>HW 13 -- non graded</title></head>
+<body><span style="font-weight: bold;">Reading -- Scott</span><br>
+
+
+<ul><li>pgs 539-545 (review)</li><li>pgs 542-545</li><li>pgs 545-551</li><li>CYU chapter 10 --1,2,9,12,14,15,16,17,18,19,20,21</li><li>page 389-92</li></ul><span style="text-decoration: underline;"></span><span style="font-weight: bold;"><span style="font-weight: bold;"><a href="http://www.haskell.org/haskellwiki/99_Haskell_exercises">99 Problems in Haskell</a></span><br><br>Thompson </span>Chapter 8<br>section 10.9<br><ul><li>Prove for all finite list xs and ys that</li></ul><div style="margin-left: 40px;"><span style="font-family: monospace;">&nbsp; rev (xs ++ ys) = rev ys ++ rev xs</span><br></div><br><span style="text-decoration: underline;"></span><br><span style="font-weight: bold;">Read 10.6 on CD (Scott's supplement cd)</span><br><ul><li>(From Abelson and Sussman [1985]) It is also possible to express the
+integer as lambda abstractions: 
+
+
+
+
+
+
+</li></ul><div style="margin-left: 40px;"><b style="font-family: monospace;">zero = <span style="color: rgb(255, 255, 204);">\</span>f&nbsp;
+. \ x . x</b><span style="font-family: monospace;"> </span><br style="font-family: monospace;">
+
+
+
+
+
+
+<b style="font-family: monospace;">one =&nbsp; <span style="color: rgb(255, 255, 204);">\ </span>f.&nbsp;
+\ x ( f x)</b><span style="font-family: monospace;">
+</span><br style="font-family: monospace;">
+
+
+
+
+
+
+<b style="font-family: monospace;">two =&nbsp; <span style="color: rgb(255, 255, 204);">\</span> f. <span style="color: rgb(255, 255, 204);">\</span> x ( f ( f
+x ))</b><span style="font-family: monospace;"> </span><br>
+
+
+
+
+
+
+</div>
+
+
+
+
+&nbsp; &nbsp; &nbsp;. . . .
+<p style="margin-left: 40px;">These are called Church numbers after Alonzo Church. </p>
+
+
+
+
+
+
+<p style="margin-left: 40px;">a) Given the following definition of the sucessor function: </p>
+
+
+
+
+
+
+<blockquote style="font-family: monospace;"><b>successor
+= \ n. \ f. \ x ( f (( n f ) x
+) ).</b></blockquote>
+
+
+
+
+<div style="margin-left: 40px;">
+
+&nbsp;&nbsp;&nbsp; show that <br>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div style="margin-left: 80px; font-family: monospace; font-weight: bold;">(successor
+zero) == one&nbsp; <br>
+
+
+
+
+
+<div style="margin-left: 40px;">and<br>
+
+
+
+
+
+</div>
+
+
+
+
+
+(successor one) == two<br>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+
+
+<div style="margin-left: 40px;">
+answer:<br>
+
+
+
+
+</div>
+
+
+
+
+
+<div style="margin-left: 40px;"><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/lambdaSolution.html">../lambdaSolution.html</a></div><br></body></html>

@@ -1,0 +1,153 @@
+/*
+      CS471 - Programming Languages
+        Assignment #<number> due: <DATE>
+        Author: <LastName>, <FirstName> (<EMail>)
+        Date: <DATE>
+        DUE: Wed., Feb. 16 at end of day.
+ */
+
+/* Don't forget to add ".pl" extension to the filename.
+ * Purpose:
+ * to practice writing relations in Prolog
+ 
+   This assignment is not intended to be hard, however many will need
+   time to absorb how easy it really is. One problem requires only one line,
+   most require only two lines and none require more than 3 lines.
+ */
+
+/*1A: What is the mathematical definition of:
+     a) relation 
+     b) function
+  1B: Is every function a relation?  If no give an example.
+  1C: Is every relation a function? If no give an example.
+  */
+
+/*2: Exercise 3.1 (Learn Prolog Now)
+Do you know these wooden Russian dolls, where smaller ones are contained in bigger ones? Here is schematic picture of such dolls.
+First, write a knowledge base using the predicate directlyIn/2 which encodes
+which doll is directly contained in which other doll. Then, define a (recursive)
+predicate in/2, that tells us which doll is (directly or indirectly) contained
+in which other doll. E.g. the query in(katarina,natasha) should evaluate to
+true, while in(olga, katarina) should fail.
+*/
+
+
+
+/*3: Define a predicate sameLen(Lst1, Lst2), such that it succeeds if lists 
+     Lst1 and Lst2 have the same length.  Use a recursive definition.  DO NOT USE
+     the built in predicate  "length". e.g.
+          ?- sameLen([1,2,3],[1,2]).
+          No
+          ?- sameLen([1,2,3],[a,b,c]).
+         Yes
+  */
+  
+
+
+/*4 Exercise 4.3 (Learn Prolog Now)
+  Write a predicate twice(In,Out) whose left argument is a list, and whose right 
+  argument is a list consisting of every element in the left list written twice. 
+  For example, the query
+  
+     ?-twice([a,4,buggle],X). 
+  should return
+     X = [a,a,4,4,buggle,buggle]).
+  And the query
+
+    ?- twice([1,2,1,1],X).
+  should return
+    X = [1,1,2,2,1,1,1,1].
+  Hint: to answer this question, first ask yourself `What should happen when the 
+  first argument is the empty list?'. That's the base case. For non-empty lists, 
+  think about what you should do with the head, and use recursion to handle the 
+  tail.
+*/
+
+
+
+
+/* 5: The ternary relation "collinear(p1,p2,p3)", is true if and only if
+      p1, p2, and p3 lie on a straight line.  One definition is as follows:
+      collinear(point(x1,y1), point(x2,y2), point(x3, y3)) 
+        if and only if
+             (x1-x2)(y2-y3) equals (y1-y2)(x2-x3)
+             
+      ?- collinear(point(1,1), point(2,2),point(3,3)).
+      true.
+      
+      ?- collinear(point(1,0), point(2,0),point(3,0)).
+      true.
+      
+      ?- collinear(point(1,0), point(2,0),point(3,3)).
+      false.
+
+ */
+
+
+
+/*6: Define a procedure takeout(E, Lst1, Lst2), such that it succeeds
+     if lists Lst2 is the same as list Lst1 with the element E removed
+     once. e.g.
+     ?- takeout(3, [1,3,6,3,1,3], R).
+     R = [1, 6, 3, 1, 3] ;
+     R = [1, 3, 6, 1, 3] ;
+     R = [1, 3, 6, 3, 1] ;
+     false
+    
+     Do not use any built in predicates -- only 2 clauses.
+  */
+  
+
+
+/* 7: init(Lst, InitOfLst) succeeds if InitOfLst is the same as Lst except the 
+     last element of Lst is missing. i.e. 
+     ?- init([a,b,c,d,e],Init). 
+     Init= [a, b, c, d] 
+     Yes
+ */
+
+
+
+
+
+/*8: Define the procedure 'zip' so that zip(Lst1,Lst2,Zipped) succeeds if
+     Zipped is a list of sequences (tuples) . The first value of the sequence 
+     is from the corresponding position from Lst1 and the second value is from 
+     corresponding position from Lst2. Note: The length of Zipped will be the
+     minimum of the length of Lst1 and length of Lst2. e.g.
+           ?- zip([1,2,3,4],[a,b,c],Z).
+           Z = [ (1, a), (2, b), (3, c)] 
+           Yes
+           ?- zip([a],[1,2,3,4],Z).
+           Z = [ (a, 1)] 
+           Yes
+*/
+
+
+
+/* 9: Convert the "gcd" program given in exercise 3, lab 1 to Prolog.
+      Here is a recursive mathematical definition of gcd:
+ 
+      gcd of A B 
+           if B =0 is A
+           if A < B is gcd B and A
+           if A > B > 0 is gcd B (mod a b)
+             
+       e.g.
+       ?- gcd(120,222, GCD).
+       GCD = 6 ;
+       false.
+       
+       ?- gcd(120,0, GCD).
+       GCD = 120 .
+       
+       ?- gcd(120,60, GCD).
+       GCD = 60 .
+       
+*/ 
+
+
+
+
+
+

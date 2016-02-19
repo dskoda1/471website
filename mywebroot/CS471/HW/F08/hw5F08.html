@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" /><title>CS471 Assignment 5: Prolog &amp; Chapter 3</title>
+
+</head>
+<body>
+<center>
+<h3> Programming Languages<br />
+Assignment<i>&nbsp;</i>5</h3>
+<div style="text-align: left;">
+<span style="font-family: monospace;"></span>
+<hr style="width: 100%; height: 2px;" /></div>
+<div style="text-align: left;">
+<h3><span style="font-style: italic;">DUE:&nbsp;</span></h3>
+<ol>
+<li>
+<h3>Programming<span style="font-style: italic;">
+&nbsp;Thur Oct 2</span> @ 6pm in blackboard and hard
+copy&nbsp; <span style="font-style: italic;">in
+the course file cabinet before Friday's class. &nbsp;</span>Solutions
+will be covered in class on Friday.<span style="font-style: italic;">&nbsp;</span></h3>
+</li>
+<li>
+<h3><span style="font-style: italic;">Questions
+for chapter </span>3 (below) due Friday Oct 3 ,<span style="font-style: italic;"> hard copy only &nbsp;in
+the course file cabinet.</span></h3>
+</li>
+</ol>
+<h3>PROGRAMMING ASSIGNMENT -- this is an individual
+effort NOT a TEAM effort.</h3>
+<h3>&nbsp; &nbsp;Code the problems described in<b>
+<a href="XXXas5.pl">XXXas5.pl</a> (not posted yet)</b></h3>
+<h3>Chapter 3 ASSIGNMENT -- this is an individual
+effort NOT a TEAM effort.</h3>
+<h3><b>Read Chap 3: pages 103-123</b></h3>
+<ol>
+<li>Page 151 exercise 3.1</li>
+<li>Use <span style="font-style: italic;">gcc</span>&nbsp;
+to create an assembly file of <a href="power2.c">power2,c</a>&nbsp;
+(gcc -S power2.c -std=iso9899:1999). &nbsp;(Note: This file
+(program) can not compile and run as is because there is no <span style="font-style: italic;">main</span>.)<span style="font-style: italic;"></span> &nbsp;You can
+run this remotely in harvey (see blackboard) or on campus using either
+of the Linux rooms. &nbsp;</li>
+<ol style="list-style-type: lower-alpha;">
+<li>Draw the activation record for power2(). &nbsp;
+Field's offset should be consistent with the assembly code.&nbsp;</li>
+<li>Which way does the program stack grow? (i.e. towards
+higher addresses or lower addresses?)</li>
+<li>Annotated the power2.s file. &nbsp;Indicate all the
+instruction that read, write, "create" or "delete" the stack memory.
+&nbsp;Name the fields affected by instruction.<br />
+e.g<br />
+31::&nbsp; movl&nbsp;&nbsp;&nbsp; $13, -4(%ebp) --
+copies the value to the "<span style="font-style: italic;">n</span>"
+argument field in the AR.</li>
+</ol>
+<li>Many storage-management algorithms maintain a list of <span style="font-style: italic;">free blocks. &nbsp;</span>Here
+are two different algorithms, <span style="font-style: italic;">first
+fit</span> and <span style="font-style: italic;">best
+fit</span>, used to search this list and return a block of the
+appropriate size. &nbsp;Which strategy, if either, will result in
+lower external fragmentation? &nbsp;What does external
+fragmentation depend on?</li>
+<li>What is the complexity of using <span style="font-style: italic;">first fit</span> algorithm
+to allocate blocks? &nbsp;Briefly explain an algorithm to speed up
+the allocation. What is the complexity of this modification?</li>
+</ol>
+</div>
+</center>
+<b><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a><br />
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a><br />
+<br />
+<br />
+</b>
+</body></html>

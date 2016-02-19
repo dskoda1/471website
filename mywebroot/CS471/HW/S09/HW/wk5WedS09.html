@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Week 5 Wed</title></head>
+<body>
+Using help() or XPCE browsers&nbsp; --<br>&nbsp;&nbsp;&nbsp;&nbsp; What are the 3 representation of integers used in the SWIPL's prolog?<br>&nbsp;&nbsp;&nbsp;&nbsp; What is a rational number in SWIPL?<br>&nbsp;&nbsp;&nbsp;&nbsp; What is the meaning of the following operators:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / , // , rdiv , mod , rem , truncate , round <br><br><ol><li>Define a clause <span style="font-style: italic; font-weight: bold;">simp</span>(<span style="font-style: italic;">Var, Value, Vars</span>)
+that given a list
+Vars of variables and their values unifies the Value with the current
+value of Var. &nbsp;Vars has the form [x/5, y/10], where x is an
+atomic
+representing a variable and '/' is the separator for the associated
+numerical value. &nbsp;{Hint try using member and pattern matching}<span style="font-style: italic;"><br></span></li><li>Define <span style="font-style: italic;"><span style="font-style: italic;"><span style="font-style: italic;"></span></span>append3DL</span>/4&nbsp;&nbsp;<span style="font-style: italic; font-weight: bold;"></span><span style="font-style: italic; font-weight: bold;"></span>that
+concatenates three difference lists:<br></li></ol><ol>
+
+
+&nbsp; &nbsp;<span style="font-family: monospace;">
+&nbsp;?-
+append3DL(
+[z,y|A] - A, [x,w | B] -B, [u,v | C] - C, What).</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; What = [z, y,
+x, w, u, v | _n] - _n</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; yes<br></span><span style="font-style: italic;"><span style="font-family: monospace;"></span></span>
+</ol>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><span style="font-family: monospace;"></span>
+</body></html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Tail Recursion</title></head><body>
+<h3>Recursive Functions - Linear recursive<br>
+</h3>
+
+<h4><span style="font-family: monospace;">factR n =
+if n == 0 then 1
+else&nbsp; n * factR (n-1)<br>
+</span></h4>
+
+<ul>
+<li>The usual calculation method works:<span style="font-family: monospace;"><br>
+<br>
+factR 3<br>
+~&gt; if 3==0 then 1 else 3 * factR (n-1)<br>
+~&gt; if False then 1 else 3 * factR (n-1)<br>
+~&gt; 3 * factR (3 -1)<br>
+~&gt; 3 * let n = 3-1 in if n == 0 then 1 else n * factR (n-1)<br>
+~&gt; 3 * let n = 2 in if n == 0 then 1 else n * factR (n-1)<br>
+~&gt; 3 * if 2 == 0 then 1 else 2 * factR (2-1)<br>
+~&gt; 3 * if False then 1 else 2 * factR( 2-1)<br>
+~&gt; 3 * (2 * factR (2-1))<br>
+~&gt; 3 * (2 * let n = 2- 1 in </span><span style="font-family: monospace;">if n == 0 then 1 else n *
+factR (n-1))<br>
+</span><span style="font-family: monospace;">
+~&gt; 3 * (2 * let n
+=1 in </span><span style="font-family: monospace;">if
+n == 0 then 1
+else n * factR (n-1))<br>
+~&gt; 3 * (2 * </span><span style="font-family: monospace;">if 1 == 0
+then 1 else 1 * factR (1-1))<br>
+~&gt; 3 * (2 * if False then 1 else 1 * factR (1-1))<br>
+~&gt; 3 * (2 * (1 * factR(1-1)))<span style="font-family: sans-serif;"><span style="font-family: monospace;"></span></span></span><br>
+<span style="font-family: monospace;">~&gt; 3 * (2
+* (1 * let n=1-1
+in if n==0 then 1 else n * factR(n-1)))<br>
+~&gt; 3 * </span><span style="font-family: monospace;">(2
+* (1 * let
+n=0 in if n==0 then 1 else n * factR(n-1)))<br>
+~&gt; 3 * </span><span style="font-family: monospace;">(2
+* (1 * if
+0==0 then 1 else 0 * factR(0-1)))<br>
+</span><span style="font-family: monospace;">~&gt;
+3 * </span><span style="font-family: monospace;">(2
+* (1 * if True then 1
+else 0 * factR(0-1))) <br>
+~&gt;</span><span style="font-family: monospace;">
+3 * </span><span style="font-family: monospace;">(2
+* (1 * 1)) -- each multiplication
+requires factR to return a value first!<br>
+</span>..~&gt; 6<br>
+<span style="font-family: monospace;">&nbsp;<br>
+</span></li><li>"The simplest form of recursion is <em>linear
+recursion</em>.
+It occurs where an action has a simple repetitive structure
+consisting of some basic step followed by the action again."<sup>1</sup></li><li>factR is an example of a linear recursion.&nbsp; What
+is an
+example of a non-linear recursive function?</li>
+</ul>
+
+<h3>Tail recursive function:</h3>
+
+<span style="font-family: monospace;">&gt; factT n a<br>
+&gt;&nbsp;&nbsp; = if n == 0 <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then
+a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- returns
+immediately, nothing to be done<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else factT
+(n-1) (n * a)&nbsp; --
+returns immediately, work done in call to single application of factT</span><br>
+
+<br>
+
+<ul>
+<li>A calculation</li>
+</ul>
+
+<dl>
+<dd><span style="font-family: monospace;">factT 3 1<br>
+~&gt; if n ==2 then 1 else factT (3-1) (3*1)<br>
+~&gt; factT 2 </span><span style="font-family: monospace;">(3*1)</span><span style="font-family: monospace;">&nbsp;&nbsp;
+--winding<br>
+~&gt; ..<br>
+~&gt; factT 1 (2*(3*1)) --winding<br>
+~&gt; factT 0 (1*(2*(3*1))) --- base case<br>
+~&gt; 1*(2*(3*1))<br>
+~&gt; 1* (2 * 3)<br>
+~&gt; 1 * 6<br>
+~&gt; 6&nbsp; -- calculated during the base case</span></dd>
+</dl>
+
+<ul>
+<li>"A call is tail-recursive if nothing has to be done after
+the
+call
+returns, i.e. when the call returns, the returned value is immediately
+returned from the calling function."<sup>2</sup></li><li><a name="factS"></a>$!&nbsp;
+forces the arguments to be evaluated prematurely. <br>
+</li>
+</ul>
+
+<dl>
+<dd><span style="font-family: monospace;">&gt;
+factS n a = if n == 0
+then a else factS (n-1) $! (n*a)<br>
+<br>
+factS 3 1<br>
+~&gt; </span><span style="font-family: monospace;">if 3 == 0
+then a else factS 3 $! (3*1)<br>
+    </span></dd><dd><span style="font-family: monospace;">~&gt; factS 2 3<br>
+~&gt; ..<br>
+~&gt; factS 1 6<br>
+~&gt; factS 0 6<br>
+~&gt; 6<br>
+    </span></dd>
+
+</dl>
+
+
+<h4><span style="font-weight: bold;">Convertion of
+Tail Recursive
+function to Iterative form:</span></h4>
+
+<span style="font-weight: bold;"><span style="font-family: monospace;">&nbsp;</span></span><span style="font-family: monospace;">&gt; facta n c accm = if
+(c==n) then
+accm else facta n (c+1) (c+1)*accm</span>
+<br>
+
+<br>
+
+<h4> The general form of tail recursion</h4>
+
+<ul>
+<pre>f(x) = if p(x) then q(x) else f (h(x))</pre><li> A good compiler can replace tail recursion by a loop
+automatically</li><li> The argument x can be a sequence of arguments or a tuple</li><pre>f(x,y,z) = if p(x,y,z) then q(x,y,z) else f(x',y',z')</pre><pre>f x y z = if p x y z then q x y z else f x' y' z'</pre>
+</ul>
+
+<h4> Iterative form<a name="iterativeform"></a></h4>
+
+<ul>
+<li> The corresponding iterative code is:</li><pre>type2 f(type1 x) {&nbsp;<br>&nbsp;&nbsp;&nbsp; type1 t = x;&nbsp;<br>&nbsp;&nbsp;&nbsp; while (true) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (p(t)) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return q(t);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = h(t);&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; }<br>}</pre><li> Apply the transformation to:</li><pre>facta n c k = if (c == n) then k else facta n (c+1) (c+1)*k</pre>
+</ul>
+
+<h4> Iterative form of facta</h4>
+
+<blockquote>
+<pre>facta n c k = if (c==n) then k else facta n (c+1) (c+1)*k</pre>
+<pre>int iterfacta(int ndi,int c,int k){<br>&nbsp;&nbsp;&nbsp; int tn = n; // not really needed IN THIS CASE<br>&nbsp;&nbsp;&nbsp; int tc = c;&nbsp;<br>&nbsp;&nbsp;&nbsp; int tk = k;<br>&nbsp;&nbsp;&nbsp; while (true) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (tc == tn) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return tk;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tn = tn;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tc++;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tk *= tc;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp; }<br>}</pre>
+</blockquote>
+
+<hr style="width: 100%; height: 2px;">
+<ol>
+<li><small><a href="http://www.csse.monash.edu.au/%7Elloyd/tildeAlgDS/Recn/">Recursion</a>&nbsp; &nbsp; <a href="http://www.csse.monash.edu.au/%7Elloyd/">Lloyd
+Allison</a></small></li><li><small>Haskell Wiki</small></li><ol style="list-style-type: upper-alpha;"><li><small> <a href="http://haskell.org/haskellwiki/Performance/Accumulating_parameter"> Accumulating Parameter</a></small></li><li><small><a href="http://haskell.org/haskellwiki/Stack_overflow">Stack Overflow</a></small></li><li><small><a href="http://haskell.org/haskellwiki/Performance/Laziness">Performance/Laziness</a></small></li><li><small><a href="http://haskell.org/haskellwiki/Things_to_avoid/Discussion">Things to avoid/Discussion</a></small></li></ol>
+</ol>
+</body></html>

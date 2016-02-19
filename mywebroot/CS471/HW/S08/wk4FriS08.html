@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Week 4 Friday</title></head>
+<body>For Friday:<br><h3>Read: Scott&nbsp;read 7.8&nbsp;</h3><ol><li>What is the runtime implementation of lists in Prolog?
+&nbsp;(i.e. What goes on underneath the hood?)</li></ol>If we get this far try to do---<ol><li>&nbsp;Define a clause &nbsp; <span style="font-style: italic; font-weight: bold;">append</span>3<span style="font-style: italic; font-weight: bold;">DL</span>&nbsp;
+that
+concatenates three difference lists:<br>
+
+
+&nbsp; &nbsp;<span style="font-family: monospace;">
+&nbsp;?-
+append3DL(
+[z,y|A] - A, [x,w | B] -B, [u,v | C] - C, What).</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; What = [z, y,
+x, w, u, v | _n] - _n</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; yes</span></li><li>Define a clause <span style="font-style: italic; font-weight: bold;">simp</span>(<span style="font-style: italic;">Var, Value, Vars</span>)
+that given a list
+Vars of variables and their values unifies the Value with the current
+value of Var. &nbsp;Vars has the form [x/5, y/10], where x is an
+atomic
+representing a variable and '/' is the separator for the associated
+numerical value. &nbsp;{Hint try using member and pattern matching}<span style="font-style: italic;"> {Include this rule in
+problem 6 below.}<br>
+
+
+    <span style="font-family: monospace;">&nbsp;
+?- Vars=[x/5, y/10],
+simp(x,VX,Vars), simp(y,VY,Vars).</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+Vars = [x/5, y/10]</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+VX = 5</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+VY = 10 </span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&nbsp;
+Yes</span></span></li></ol><span style="font-weight: bold;">Good resource for practicing:</span><br style="font-weight: bold;"><a style="font-weight: bold;" href="https://prof.ti.bfh.ch/hew1/informatik3/prolog/p-99/">99
+problems with solutions</a><br style="font-weight: bold;"></body></html>

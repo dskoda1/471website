@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Scott's Chap 3: ,Binding - Scope - Referencing</title>
+
+  
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head"></head><body>
+<h3>Homework Assignment 7</h3>
+
+Due: Wed Oct. 27 -- May be done in teams of 2.<br>
+
+&nbsp; <br>
+
+Read: Ch. 3:&nbsp; p 123-163<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ch 6: &nbsp; p
+219-240<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ch 13: p 691-696<br>
+
+<span style="font-style: italic;"><span style="font-weight: bold;"></span></span>
+<ol>
+
+  <li>Page 168 exercise 3.14<br>
+  </li>
+  
+  <li>&nbsp;Consider the following pseudo code:<br style="font-family: monospace;">
+    
+    <div style="margin-left: 40px;"><span style="font-family: monospace;">&nbsp;&nbsp; x : integer := 1</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;
+&nbsp;y : integer := 20</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure add()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x := x + y</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure second(P : procedure)</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x : integer := 2</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+P()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure first()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+y : integer := 3</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+second(add)<br>
+    </span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+first()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+write integer(x)<br>
+    <br>
+    </span></div>
+
+  </li>
+
+  <ol style="list-style-type: lower-alpha;">
+    <li>What does this program print if the language uses static
+scoping?</li>
+    <li>Explain why 4 is printed out if the language uses dynamic
+scoping with deep binding.</li>
+    <li>Explain why 1 is printed out&nbsp;if the language
+uses dynamic scoping with shallow binding.<br>
+      <br>
+    </li>
+  </ol>
+  <li>Page 721 exercise 13.11 (<a href="chap1311.perl">perl
+program</a>)</li>
+  <li>Compile and run in gcc&nbsp; the following C
+code on a Linux&nbsp; or Windows platform:
+  </li>
+  <dl>
+    <dd><span style="font-family: monospace;">int
+loop() {</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int
+x[128]; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int i=0; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+while
+(i++ &lt;128) { </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; x[i] = 0; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+} </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">} </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">int main
+() { </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+printf("\nCalling loop --&gt;&gt;\n"); </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+loop(); </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">}</span></dd>
+    <dd><br>
+    </dd>
+
+    Below are the
+commands to
+compile and
+run the above code on Linux : <br>
+
+    
+    <ol style="margin-left: 40px;">
+      <b><tt>gcc -std=iso9899:1999 <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw7.c">hw7.c</a>
+-o hw7.exe</tt></b><br>
+      <b><tt>hw7.exe</tt></b>
+      <p><b><font color="#3333ff">if
+hw7.exe
+does NOT work then type:</font></b> <br>
+      <b><tt><font color="#3333ff">./hw7.exe</font></tt></b>
+&nbsp;</p>
+    </ol>&nbsp;&nbsp;&nbsp;
+    Using the -S
+option look
+at the
+assembly code.&nbsp; Do not use a debugger. 
+    
+    <ol>
+
+      
+      <ol type="A">
+
+        
+      </ol>
+    </ol>
+    <ol>
+      <ol type="A">
+
+        
+      </ol>
+    </ol>
+    <ol style="margin-left: 40px; list-style-type: upper-alpha;">
+      <li type="A">What happens when you run this code?</li>
+      <li>Depending on the target machine and the compiler,
+this
+code
+will execute
+differently.&nbsp; Sometimes this code goes into an infinite loop,
+sometimes
+this code terminates, sometimes this code cause a segmentation
+error.&nbsp;
+Can you explain why this code does not behavior consistently?&nbsp;
+Think
+in terms of the AR and the runtime stack.</li>
+      <ol type="A">
+
+      
+      </ol>
+
+    
+    </ol>
+
+    <br>
+    <li>The language C distinguishes between the <span style="font-style: italic;">declaration </span>and <span style="font-style: italic;">definition.</span></li>
+    <dd> A) What is the difference between declaration and
+definition?<br>
+B) Assume these statements are all outside of functions.
+Which of the following are declarations only and which are definitions:
+      <ol style="list-style-type: lower-alpha;">
+        <li>float * rate ;</li>
+        <li>struct node;</li>
+        <li>extern int ten = 10;</li>
+        <li>extern char a;<br>
+        </li>
+        <li>struct * node fun(int i);</li>
+        <li>static double x[10];<br>
+          <br>
+        </li>
+      </ol>
+    </dd>
+  </dl>
+  <li>Continuation of problem 2 from assignment 6.&nbsp; Make
+sure you are using gcc version 4.02 or above.<br>
+Recompile <a href="powerR.c">powerR.c</a> with -O2 optimization switch
+(gcc power2.c -O2 -S -std=iso9899:1999).<br>
+  </li>
+  <dd><br>
+    <ol style="list-style-type: upper-alpha;">
+      <li>Compare
+the assembly file created using optimization switch with the file
+created without optimization(in last weeks homework). &nbsp;Pay
+attention to how power's
+recursion is "implemented". &nbsp;How are they different?</li>
+    </ol>
+    <ol style="list-style-type: upper-alpha;">
+      <br>
+    </ol>
+  </dd>
+  
+  <dl>
+
+    <li>Exercise 3.15 page 169</li>
+    
+    <li>What is the value of&nbsp; <span style="font-style: italic;">i</span> after the following is executed?&nbsp;&nbsp; What does this tell you about the semantics of -=?<br>
+      <pre wrap=""><span style="font-weight: bold;"> double d = 10;</span><br style="font-weight: bold;"><span style="font-weight: bold;"> int i = 4;</span><br style="font-weight: bold;"><span style="font-weight: bold;"> i -= d;</span><br></pre>
+      <ol style="list-style-type: lower-alpha;">
+        <li>In Java?</li>
+        <li>In C ?</li>
+      </ol>
+      <pre wrap=""><span style="font-weight: bold;">double d = 10;</span><br style="font-weight: bold;"><span style="font-weight: bold;">int i = 4;</span><br style="font-weight: bold;"><span style="font-weight: bold;">i = i - d;</span><br></pre>
+      <ol style="list-style-type: lower-alpha;">
+        <li>In Java ?</li>
+        <li>In C ?<br>
+          <br>
+        </li>
+      </ol>
+    </li>
+    <li>Evaluate following program fragment in C:<br>
+      <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"><br>
+      </span><span style="font-family: monospace; font-weight: bold;">int
+a =
+0; &nbsp; &nbsp; &nbsp; </span><br>
+      <span style="font-family: monospace; font-weight: bold;">int
+b = (a++ &amp;&amp; ++a) &gt; (a++ &amp;&amp; a++);<br>
+printf( "%d %d", a, b );</span><br>
+      <span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;">&nbsp;</span></div>
+In the table below show each evaluation step&nbsp; and include the
+value of a and b. &nbsp;Finally, display the output. Remember in
+Java,
+C and C++, <span style="font-weight: bold;">&amp;&amp;</span>
+is a <a href="http://en.wikipedia.org/wiki/Lazy_evaluation#Minimal_evaluation">short
+circuit</a> operator which is always evaluated left to right. <span style="color: rgb(204, 0, 0);">Assume all side effects occur
+immediately.</span><br>
+      <br>
+a. Assume that, wherever there is an option, operands are evaluated
+left to right:<br>
+      <br>
+      <table style="text-align: left; width: 768px; height: 325px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;">int
+b = (a++ &amp;&amp; ++a) &gt; (a++ &amp;&amp; a++);</span><span style="font-family: monospace; font-weight: bold;"></span></td>
+            <td><span style="font-weight: bold;">a=0</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; b=?&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+b. Assume that, wherever there is an option, operands are evaluated
+right to left:<br>
+      <br>
+      <table style="text-align: left; width: 768px; height: 325px;" border="1" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;">int
+b = (a++ &amp;&amp; ++a) &gt; (a++ &amp;&amp; a++);</span><span style="font-family: monospace; font-weight: bold;"></span></td>
+            <td><span style="font-weight: bold;">a=0</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; b=?&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; </td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </li>
+
+    <li>Java provides the ability to define inner classes&nbsp;. The
+tutorial (Java
+Tutoral: Inner Class Example) provides the following example:</li>
+  
+  </dl>
+
+</ol>
+
+<div style="margin-left: 40px; font-weight: bold;"><span style="font-family: monospace;">public class StackOfInts {</span>
+<br>
+</div>
+
+<pre style="margin-left: 80px; font-weight: bold;"> private int[] stack;<br> private int next = 0; // index of last item in stack + 1<br> <br> public StackOfInts(int size) {<br> //create an array large enough to hold the stack<br>  stack = new int[size];<br> }<br> <br> public void push(int on) {<br>  if (next &lt; stack.length)<br>    stack[next++] = on;<br> }<br> public boolean isEmpty() {<br>  return (next == 0);<br> }<br> <br> public int pop(){<br>  if (!isEmpty()) <br>   return stack[--next]; // top item on stack<br>  else<br>   return 0;<br> }<br> <br> public int getStackSize() {<br>   return next;<br> }<br> <br> private class StepThrough { //Inner class <br> // start stepping through at i=0<br>   private int i = 0; <br> <br>   // increment index<br>   public void increment() {<br>      if ( i &lt; stack.length)<br>      i++;<br>   }<br> <br> // retrieve current element<br>   public int current() {<br>     return stack[i]; //****<br>   }<br> <br>   // last element on stack?<br>     public boolean isLast(){<br>        if (i == getStackSize() - 1)<br>        return true;<br>      else<br>       return false;<br>     }<br>   } // End of inner class StepThrough<br>  <br> public StepThrough stepThrough() {<br>   return new StepThrough();<br> }<br> ...<br></pre>
+
+<div style="margin-left: 40px;"><span style="font-family: monospace;">}//
+end of StackOfInts</span><br>
+<ol style="list-style-type: upper-alpha;">
+  <li>Where is the variable "<span style="font-style: italic;">stack</span>"
+(//****) used in <span style="font-style: italic;">StepThrough</span>
+declared?</li>
+  <li>Consider the following main function:</li>
+</ol>
+<dl>
+  <dd>
+    <pre>public static void main(String[] args) {<br> <br> // instantiate outer class as "stackOne"<br> StackOfInts stackOne = new StackOfInts(15);<br> <br> // populate stackOne<br> for (int j = 0 ; j &lt; 15 ; j++) {<br>    stackOne.push(2*j);<br> }<br> <br> // instantiate inner class as "iterator"<br> StepThrough iterator = stackOne.stepThrough();<br> StepThrough iterator2 = stackOne.stepThrough(); <br> // ### HERE &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>  while(!iterator.isLast()) {<br>   System.out.print(iterator.current() + " ");<br>   iterator.increment();<br>  }<br> System.out.println();<br> <br>}<br> <br></pre>
+At the point //##HERE
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+in the execution:</dd>
+  <dd>
+    <ol>
+      <li>How many copies of the object <span style="font-style: italic;">stack </span>exist?</li>
+      <li>How many instances of <span style="font-style: italic;">StepThrough&nbsp;</span>exist
+and where in memory (static, heap or stack?)?</li>
+      <li>How many copies of the private instance
+variable&nbsp; "i" defined in <span style="font-style: italic;">StepThrough
+        </span>exist and where in memory (static, heap or stack?)<span style="font-style: italic;"></span></li>
+      <li><span style="font-style: italic;"><span style="font-style: italic;"></span></span>How does the inner object by
+the creator method <span style="font-style: italic;">stepThrough</span>()
+knew where to find the instance variable values of the outer object at
+runtime? <br>
+      </li>
+    </ol>
+  </dd>
+</dl>
+</div>
+
+<br>
+
+<dd>
+  <ol style="list-style-type: upper-alpha;">
+    <br>
+    <a href="hw6/factRS.s"><br>
+    </a>
+  </ol>
+  <dl>
+  </dl>
+</dd>
+
+</body></html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>5 - Prolog 3 assignment</title>
+                                                
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+</head>
+  <body>
+       <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">
+     Back</a>        
+<h4>Given Friday Feb 22, Due Friday, March 2,2002</h4>
+             
+<h4><br>
+       <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">
+       General Submission Instructions</a></h4>
+         You hardcopy should begin with the following identification:   
+     
+<ul>
+                           
+  <blockquote><font color="#000000">CS471 - Programming Languages</font><br>
+           <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR 
+   Section number&gt;</font><br>
+           <font color="#000000">Assignment #</font><font color="#cc0000">
+ &lt;number&gt;         </font><font color="#000000">due:</font><font color="#cc0000">
+  &lt;DATE&gt;</font><br>
+           <font color="#000000">Author:</font><font color="#cc0000"> &lt;LastName&gt;, 
+    &lt;FirstName&gt; </font><font color="#000000">(</font><font color="#cc0000">
+        &lt;EMail&gt;</font><font color="#000000">)</font><br>
+           <font color="#000000">Date:</font><font color="#cc0000"> &lt;DATE&gt;</font></blockquote>
+                           
+  </ul>
+                           
+  <h4> Manditory reading ---</h4>
+         <li> Reading for Prolog</li>
+                           
+  <ul>
+           <li>625-641</li>
+                           
+  </ul>
+               
+  <h4>Written problem<br>
+      </h4>
+           Purpose:       Reenforce the connection between prolog and logic 
+                                  
+  <ol>
+           <li>11.21 page 654.&nbsp; Restate the following Prolog rule using
+  quantifier&nbsp;&nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<br>
+       &nbsp; sibling(X, Y) :- mother(M,X),&nbsp; mother(M,Y), father(F,X), 
+ father(F,Y)..</li>
+                           
+  </ol>
+         <b>Programming<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/xxxAs5.pl"><br>
+ xxxAs5.pl</a><br>
+         <br>
+         </b>                     
+  <ol>
+           <li><font color="#000000">(easy- ONE relation)Define a predicate 
+ append3DL&nbsp;   that concatenates three difference lists:</font><font color="#000000"><br>
+             <tt>?- append3DL( [z,y|A] - A, [x,w | B] -B, [u,v | C] - C,
+What).</tt></font><tt><font color="#000000"><br>
+        What = [z, y, x, w, u, v | _n] - _n</font></tt><tt><font color="#000000"><br>
+        yes<br>
+             <br>
+             </font></tt></li>
+           <li>   &nbsp;Consider the following program:</li>
+                                         
+    <ol type="A">
+        &nbsp; <br>
+             <tt>fill(X,N,L) :- length(L,N), append([X],Lx,L), append(Lx,[X],L).</tt><br>
+        &nbsp; <li><tt>(Do not turn in).</tt>If the input <i>X</i> is a term
+  and   input <i>N</i> is a positive integer, then what will the output <i>
+    L</i>  ?  Try the following.. also find other possible solutions with 
+";"</li>
+                                                       
+      <ol type="A">
+               <li><tt>?-</tt>&nbsp; <tt>fill(xyz, 5, L).</tt></li>
+               <li><tt>?- fill(xyz, 5, [H|T].</tt></li>
+                                                       
+      </ol>
+             <li> Write a procedure that does not call any other procedures 
+ (than   itself) and performs the same relation as procedure <i>fillr</i>
+  given above.&nbsp;&nbsp;   See if you get the exact answer even when more 
+solutions are requested (";").</li>
+             <li> [EXTRA CREDIT] Compare the execution  time   of the two
+version for various values of <i>N .&nbsp; </i>(Use "trace"  or   write your
+own append (use myAppend) and length(use myLen) so you can  see   trace to
+see the execution steps. )<br>
+               <br>
+             </li>
+                                         
+    </ol>
+           <li>(Hard )Define a predicate <b><tt>numberOfatoms( Nestedlst,Num)</tt></b>
+  that "counts" the number of atoms in a list of "embedded" lists.<br>
+       <b>?- numberOfatoms([a,b,[c,d,[],1],[3,4]],N).<br>
+ N = 7 <br>
+ yes<br>
+       <br>
+       </b><br>
+       <br>
+        <br>
+           </li>
+           <li><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/treeS02.pl">
+    Attached is partial binary search trees  code</a>.&nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/6xSpr02.html">
+   Class discussion of BST specification.</a></li>
+                                         
+    <ol type="a">
+             <li> Write a procedure <b><tt>isBinaryTree(Tree),</tt></b>that 
+ succeeds   if Tree is a binary tree (it is not necessary for Tree to be a
+ binary search   tree).</li>
+                                                       
+      <ol type="a">
+               <b><tt>?- isBinaryTree(empty).</tt></b><br>
+               <b><tt>yes</tt></b><br>
+               <b><tt>?-isBinaryTree(node(5,empty,empty)).</tt></b><br>
+               <b><tt>yes</tt></b><br>
+               <b><tt>?-notBST(T),isBinaryTree(T).</tt></b><br>
+               <b><tt>yes</tt></b><br>
+               <b><tt>?- isBinaryTree(5,empty).</tt></b><br>
+               <b><tt>no</tt></b>                                       
+         
+      </ol>
+             <li> Write a procedure <b><tt>isBST(Tree),</tt></b>that succeeds 
+  if  Tree is a binary search tree.</li>
+                                                       
+      <ol type="a">
+               <b><tt>?- isBST(empty).</tt></b><br>
+               <b><tt>yes.</tt></b><br>
+               <b><tt>?-isBST(node(5,empty,empty)).</tt></b><br>
+               <b><tt>yes.</tt></b><br>
+               <b><tt>?-notBST(T),isBST(T).</tt></b><br>
+               <b><tt>no.</tt></b>                                      
+          
+      </ol>
+                                                       
+      <ol type="a">
+              <br>
+                                                       
+      </ol>
+                                         
+    </ol>
+           <li>Homework 2 problem 6 we looked at the following grammar: 
+         <br>
+      &nbsp; &nbsp; &lt;assign&gt; <font color="#3333ff">::=</font>&lt;id&gt; 
+  := &lt;expr&gt;              <br>
+      &nbsp; &nbsp; &lt;id&gt; <font color="#3333ff">::= </font>A<font color="#3333ff">
+       |</font>      B <font color="#3333ff">| </font>C <br>
+           &nbsp; &nbsp; &lt;expr&gt;<font color="#3333ff"> ::=</font> &lt;term&gt;
+   * &lt;expr&gt;<font color="#3333ff"><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+ |        </font>  &lt;term&gt;                                         
+                             &nbsp; &nbsp;<br>
+      &nbsp; &nbsp; &lt;term&gt; <font color="#3333ff">::=</font> &lt;factor&gt;
+   + &lt;term&gt;<font color="#3333ff"><br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;|</font>
+       &lt;factor&gt;                                                   
+                  &nbsp; &nbsp;<br>
+      &nbsp; &nbsp; &lt;factor&gt;<font color="#3333ff"> ::=</font>&nbsp; 
+      <b>   (</b>   &lt;expr&gt;             <b>)<br>
+      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+       </b><b><font color="#3333ff">   | </font>&lt;</b>id&gt;<br>
+            <br>
+      Write a Prolog parser for this grammar. &nbsp;The start "symbol" should 
+  be parseA. &nbsp;Note that the symbols for A, B, C, ( and ) should be enclosed
+   by &nbsp;"'". <br>
+      Below are sample outputs. &nbsp;See       <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/abparse.pl">
+      abparse.pl</a> as an example. <br>
+            <br>
+            <b><tt>&nbsp; &nbsp;?- parseA(['A',:=,'A','+','B',+,'B','+','B'],[
+   ]).<br>
+      &nbsp; &nbsp;Yes<br>
+            <br>
+      &nbsp; &nbsp;?- parseA(['A',:=,'A','*','(','B',*,'B','+','B',')'],[ 
+]).<br>
+      &nbsp; &nbsp;Yes<br>
+            <br>
+      &nbsp; &nbsp;?- parseA(['A',:=,'A','*','B',*,'B','+','B',')'],[ ]).<br>
+      &nbsp; &nbsp;No</tt></b><br>
+            <br>
+       If you write your parser so it reads "sentences" from a file and does
+  a  "pretty print" of a parse tree of the sentences accepted by the grammar 
+ you can earn extra credit. &nbsp;See &nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/parse.pl">
+   parse.pl</a>&nbsp; as an example file. <br>
+   Prolog parses are top down parsers --  &nbsp;What do you think would happen 
+ if the grammar was left recursive instead  of right recursive?<br>
+      &nbsp;<br>
+            <br>
+            <br>
+          </li>
+          <li>Define a procedure <tt>powerset(+Set,-PowerSet),</tt>given
+a  Set,   represented by a list, it creates the powerset of Set. i.e. <br>
+             <tt>&nbsp; ?- powerset([],X).</tt><br>
+             <tt>&nbsp; X = [[]]</tt><br>
+             <tt>&nbsp; ?- powerset([1],X).</tt><br>
+             <tt>&nbsp; X = [[],[1]]&nbsp; % order of sets not important</tt><br>
+             <tt>&nbsp; ?- powerset([a,b],P).</tt><br>
+             <tt>&nbsp; P = [[a,b], [a], [b], []]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+   % order of sets not important</tt><tt>?- powerset(S,[[a],[b],[a,b],[]]).</tt><br>
+             <tt>&nbsp; %%%&nbsp; May run out of stack ... YOUr code does 
+not   need</tt><br>
+             <tt>&nbsp; %%%&nbsp; to work for this query.</tt><br>
+             <tt>&nbsp; ?- powerset([a,b],[[a],[b],[a,b],[]]).</tt><br>
+             <tt>&nbsp; %%%&nbsp; may run out of stack ... YOUr code does 
+not   need</tt><br>
+             <tt>&nbsp; %%%&nbsp; to work for this query.<br>
+             <br>
+             <br>
+             </tt>Use the idea in the following solution to problem 3 in
+the   first  homework.<tt><br>
+             </tt><br>
+        Prove by induction if a set, S, has <i>n</i>&nbsp; elements  then 
+the   power  set of S has 2<i><sup>n </sup></i>elements.<br>
+             <br>
+             <b>    Proof by induction on the size of the Set: </b><br>
+             <b> &nbsp; Basis:</b> If n = 0 then S is the empty set.  The 
+power   set of the empty is a set which contains one element.  NOTE: the empty
+set   is a set with no elements but the power set of the empty set has one
+element    which is the empty set and they are not the same.  Therefore we
+have 1 =  2<sup> 0</sup><br>
+             <br>
+             <b> Induction: </b><br>
+         Assume that S = { a<sub>1</sub>, a<sub>2</sub>, ... a<sub>n</sub>
+  },  then   by induction Power(S) has 2<sup>n</sup> members.  Let a<sub>
+n+1</sub>     be a  new element.  <br>
+        Let T = &nbsp;S *union* {an+1}.  Now a subset of T will either have 
+ a<sup>     n+1</sup> as a member or it will not.  Consider the two cases: 
+     <br>
+       &nbsp; &nbsp; &nbsp;<b>1</b>. If the subsets of T  do not include
+an+1   then  they are a subsets of S, and therefore in Power(S). By the induction 
+  hypothesis,  there are exactly 2<sup>n</sup> sets.    <br>
+        &nbsp; &nbsp; &nbsp;<b>2</b>. If U is subsets of T  that does  include
+   a<sup>  n+1</sup>, let V  = U - { a<sup>n+1</sup> }.  There V is a subset
+  of S and therefore   in Power(S). By the induction hypothesis, there are
+ exactly 2<sup>n</sup>     sets.  Combining 1 and 2 we have 2*2<sup>n</sup>
+    = 2<sup> n+1</sup> subsets   of T. Therefore we have shown that given 
+a set with n elements then any set  T of n+1 elements has  2<sup>n+1</sup>
+  subsets.<br>
+             <br>
+           </li>
+                           
+  </ol>
+                  
+  <ol start="7">
+       <li>Implement a sorting &nbsp;just using the specification of sorted. 
+ &nbsp;See slide 13 &nbsp;of the Power Point logic model lecture. &nbsp;What 
+ is the runtime of this "code"?<br>
+       </li>
+           
+  </ol>
+                           
+  </body>
+  </html>

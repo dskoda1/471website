@@ -1,0 +1,126 @@
+/*
+      CS471 - Programming Languages
+        Assignment #<number> due: <DATE>
+        Author: <LastName>, <FirstName> (<EMail>)
+        Date: <DATE>
+ */
+
+/* Purpose:
+ * to practice writing relations in Prolog
+
+   This assignment is not intended to be hard, however many will need
+   time to absorb how easy it really is. One problem requires only one line,
+   most require only two lines and none require more than 3 lines.
+ */
+
+/*1: Read 3.1.3 Example 3: Successor from "Learn Prolog Now!"
+
+http://cs.union.edu/~striegnk/learn-prolog-now/html/node27.html#subsec.l3.ex3
+
+    Define a predicate convertToDecimal(Succ, Decimal), which converts the
+    succ representation for numbers to decimal representation.
+i.e.
+  ?- convertToDecimal(succ(succ(succ(succ(succ(0))))),N).
+  N = 5.
+  ?- convertToDecimal(S,4).
+  S = succ(succ(succ(succ(0)))) .
+
+*/
+
+
+/*2: Define a predicate add(Succ1, Succ2, SUMSucc), which adds two
+     numbers in succ notations and the result is in succ notation.  
+     DO NOT convert succ notation to decimal.  You may assume
+     only succ notation is used by the query.
+     ie.
+     ?- add(succ(succ(succ(succ(succ(0))))), succ(succ(0)), Sum).
+     Sum = succ(succ(succ(succ(succ(succ(succ(0))))))).
+
+     ?- add(succ(succ(0)), succ(succ(succ(0))), Sum).
+     Sum = succ(succ(succ(succ(succ(0))))).
+
+     ?- add(succ(succ(0)), OP, succ(succ(succ(0)))).
+     OP = succ(0)
+     
+  */
+  
+
+
+
+/* 3: Using solution from problem 2 define minus(Succ1, Succ2, Diff).
+      You may assume the Succ1 is larger than Succ2.
+      ie. 
+      ?- minus(succ(succ(succ(succ(succ(0))))), succ(succ(0)), Diff).
+      Diff = succ(succ(succ(0))).
+      
+*/
+
+      
+
+/*4: Define a predicate sameLen(Lst1, Lst2), such that it succeeds if lists
+     Lst1 and Lst2 have the same length.  Use a recursive definition.  DO NOT USE
+     the built in predicate  "length". e.g.
+          ?- sameLen([1,2,3],[1,2]).
+          No
+          ?- sameLen([1,2,3],[a,b,c]).
+         Yes
+  */
+
+
+
+
+/* 5: The ternary relation "collinear(p1,p2,p3)", is true if and only if
+      p1, p2, and p3 lie on a straight line.  One definition is as follows:
+      collinear(point(x1,y1), point(x2,y2), point(x3, y3))
+        if and only if
+             (x1-x2)(y2-y3) equals (y1-y2)(x2-x3)
+
+      ?- collinear(point(1,1), point(2,2),point(3,3)).
+      true.
+
+      ?- collinear(point(1,0), point(2,0),point(3,0)).
+      true.
+
+      ?- collinear(point(1,0), point(2,0),point(3,3)).
+      false.
+*/
+
+
+
+/*6: Define a procedure takeout(E, Lst1, Lst2), such that it succeeds
+     if lists Lst2 is the same as list Lst1 with the element E removed
+     once. e.g.
+     ?- takeout(3, [1,3,6,3,1,3], R).
+     R = [1, 6, 3, 1, 3] ;
+     R = [1, 3, 6, 1, 3] ;
+     R = [1, 3, 6, 3, 1] ;
+     false
+
+     Do not use any built in predicates -- only 2 clauses.
+  */
+
+
+
+/* 7: init(Lst, InitOfLst) succeeds if InitOfLst is the same as Lst except the
+     last element of Lst is missing. i.e.
+     ?- init([a,b,c,d,e],Init).
+     Init= [a, b, c, d]
+     Yes
+ */
+
+
+
+/*8: Define the procedure 'zip' so that zip(Lst1,Lst2,Zipped) succeeds if
+     Zipped is a list of sequences (tuples) . The first value of the sequence
+     is from the corresponding position from Lst1 and the second value is from
+     corresponding position from Lst2. Note: The length of Zipped will be the
+     minimum of the length of Lst1 and length of Lst2. e.g.
+           ?- zip([1,2,3,4],[a,b,c],Z).
+           Z = [ (1, a), (2, b), (3, c)]
+           Yes
+           ?- zip([a],[1,2,3,4],Z).
+           Z = [ (a, 1)]
+           Yes
+*/
+
+

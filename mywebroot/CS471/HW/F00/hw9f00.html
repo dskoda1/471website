@@ -1,0 +1,96 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+   <title>Assignment 9 Programming Languages  --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#FDFDFD" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 9: Due Friday Oct. 28</h4>
+Read Chapters:
+<blockquote>Scott: Chapter 7.4-7.8
+<br>&nbsp;<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/RUNTIME/PointerRef.html">Additional
+notes from other sources on Pointers and reference types in C and C++</a></blockquote>
+
+<h4>
+Written assignment</h4>
+
+<ol>
+<li>
+Java, unlike C++ , does not provide destructors.&nbsp; What does the language
+do when an object should be destroyed? When does this happen in Java?</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+An index check verifies that the index of an array is in the bounds declared
+for the array. Can an index check be performed statically? Why? Why not?</li>
+
+<br>&nbsp;
+<li>
+What is the solution adopted by C, Java, <a href="http://www.adahome.com/LRM/83/RM/rm83html/lrm-03-02.html#3.2">Ada83</a>
+(for Ada only, just discuss objects) and C++ to the problem of uninitialized
+variables?</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+In C++, what is the difference between assigning a value to a pointer and
+to a reference?</li>
+
+<br>&nbsp;
+<li>
+In C++, what is the difference between taking the address (via operation
+&amp;) of a pointer and of a reference? (You can just write a little test
+program in C++)</li>
+
+<br>&nbsp;
+<li>
+What is the difference between a reference type variables in C++ and reference
+type variables in Java? How do you simulate the reference type semantics
+of C++ in Java?</li>
+
+<br>&nbsp;
+<li>
+Given the following declaration in Ada :</li>
+
+<br>TYPE Array_type IS ARRAY(10..14) OF Integer;
+<br>TYPE CODE is record
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Status : CHARACTER;
+<br>&nbsp;&nbsp;&nbsp;&nbsp; Salary : Integer;
+<br>end record;
+<br>TYPE Code_Array IS ARRAY(0..5) OF CODE;
+<br>arr : Array_type;
+<br>codeArr : Code_Array;
+<p>If INTEGER requires 4 bytes of storage and CHARACTER requires 1 byte
+of storage what is the effective address (using bytes as the addressable
+<br>units) of (show your calculations) You should assume that the ba (base
+address) for arr is 250 and the base address for codeArr is 2000.
+<p>&nbsp;&nbsp; A.arr(11)
+<br>&nbsp;&nbsp; B.codeArr(1)
+<br>&nbsp;&nbsp; C.codeArr(1).Salary</ol>
+
+<h5>
+Do not turn in. Things to think about and play with.</h5>
+
+<ol>
+<li>
+What does iter do? ( id, foldr and replicate are in Prelude)</li>
+
+<br><tt>iter n f = foldr (.) id (replicate n f)</tt>
+<li>
+(10.5) What is the type(:t)&nbsp; and effect of the function</li>
+
+<br><tt>\n -> iter n succ</tt>
+<br><tt>?</tt>
+<li>
+What happens when you try to type</li>
+
+<br><tt>iter n succ</tt>
+<br><tt>?</tt></ol>
+
+</body>
+</html>

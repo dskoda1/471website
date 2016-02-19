@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us"><head><title>Scott's Chap 7 &amp; 8</title>
+
+
+
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="author" content="E Head"></head><body>
+<div style="text-align: center;">
+<h3>Homework Assignment 9</h3>
+</div>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span>
+<ul>
+<ul>
+<ul>
+</ul>
+</ul>
+</ul>
+<ul>
+<ul>
+</ul>
+</ul>
+<h3>Assignment due (Monday Apr 12 @ midnight .)<br>
+</h3>
+Please write you answers short and to the point.
+&nbsp;
+<ol>
+
+<dl>
+</dl>
+<li>Discuss the tradeoff between macro, inline function and
+function in C. &nbsp;Cover a comparision of speed, space and type
+checking of
+each.<br>
+</li>
+<li>page 284 exercise 6.31<br>
+</li>
+<li>Compare a " pointer to a <span style="font-style: italic;">const</span> type and a <span style="font-style: italic;">const</span> pointer " in C++ and a "<span style="font-style: italic;"> final </span>&nbsp;reference" in Java by giving a comparable statement in Java. Indicate by *NO* if it can not be done.</li><ol><li><span style="font-family: monospace;">const CFoo *r;<br>r&nbsp;= new CFoo();<br>r-&gt; = 5; // NOTE this is illegal in C++<br></span></li><li><span style="font-family: monospace;"><span style="font-family: monospace;">CFoo *const p = new CFoo();<br>p&nbsp;= new CFoo(); // </span></span><span style="font-family: monospace;">NOTE this is illegal in C++<br></span><span style="font-family: monospace;"><span style="font-family: monospace;"></span>p-&gt;x = 5; // Note you can still modify the object<br><br></span></li></ol><li>Here are some type and variable declarations in C syntax:</li>
+<dl>
+<dd><span style="font-family: monospace;"><br>
+typedef
+&nbsp;struct {<br>
+&nbsp; &nbsp;char* pt;<br>
+&nbsp; &nbsp;int a;<br>
+} RecA;<br>
+<br>
+<br>
+typedef struct {<br>
+</span><span style="font-family: monospace;">&nbsp;
+&nbsp;char* pt;<br>
+&nbsp; &nbsp;int a;<br>
+} RecB;</span><br>
+<span style="font-family: monospace;"><br>
+</span><span style="font-family: monospace;">typedef
+RecA RecC;<br>
+</span><br>
+<span style="font-family: monospace;">RecA w;<br>
+RecB x, y;<br>
+RecC z;<br>
+</span></dd>
+<dt><br>
+State which variables are type equivalent under (a)
+structural equivalence, (b) strict name equivalence, and (c) the actual
+C equivalence algorithm.<br>
+</dt>
+</dl><dl><dt><br>
+<br>
+</dt>
+</dl>
+<li>Given the following C++ declaration,</li>
+<dl>
+<dd><span style="font-family: monospace;">double*
+dp = new double(3);<br>
+void* vp;<br>
+int* ip;</span></dd>
+<dt>which of the following assignments does the compiler
+complain about?</dt>
+<dd><span style="font-family: monospace;"><br>
+vp = dp;<br>
+dp = vp; <br>
+ip = dp; <br>
+dp = ip;<br>
+ip = vp;<br>
+<br>
+ip = (int*) vp;<br>
+ip = static_cast&lt;int*&gt;(vp);<br>
+ip = </span><span style="font-family: monospace;">static_cast&lt;int*&gt;(dp);<br>
+ip = reinterpret_cast&lt;int*&gt;(dp);<br>
+<br>
+</span></dd>
+<dt>Briefly explain the behavior of the compiler.
+&nbsp;Will *ip ever have the value 3 after one of the assignments
+to <span style="font-style: italic;">ip </span>?<br>
+<br>
+</dt>
+<li>Suppose the following function declarations (in C++
+syntax) are available in a program:</li>
+<ol>
+<li><span style="font-family: monospace;">int
+pow(int,int);</span></li>
+<li><span style="font-family: monospace;">double
+pow(double, double);</span></li>
+<li><span style="font-family: monospace;">double
+pow(int, double);</span></li>
+</ol>
+</dl>
+<dd>and suppose the following code calls the&nbsp;<span style="font-family: monospace;">pow()</span> function:</dd>
+<ol>
+<dt><span style="font-family: monospace;">int x;<br>
+double y;</span><br>
+<span style="font-family: monospace;">x = pow(2,3);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y = pow(2,3);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">x = pow(2,3.2);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y = pow(2,3.2);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">x = pow(2.1,3);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">y = pow(2.1,3);</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">x =
+pow(2.1,3.2);</span></dt>
+<dd><span style="font-family: monospace;">y =
+pow(2.1,3.2);</span></dd>
+</ol>
+<dt>Given
+the language (a) C++ and (b) Java, write down the number of pow
+function called in each of the 8 calls, or write "illegal" if a call
+cannot be resolved in the language, or if a data type conversion cannot
+be made.<br>
+<br>
+</dt>
+<dl>
+<li>page 376 exercise 7.15<br>
+</li>
+
+
+<li>page 378 exercise 7.20 (<a href="http://unixwiz.net/techtips/reading-cdecl.html">Reading
+C type declarations</a>)</li>
+    <li>page 443 exercise 8.14 Provide details on how you arrive
+at
+your answer.<br>
+    </li>
+
+<li>Suppose this C++ code</li>
+<ol>
+<br>
+<dd><span style="font-family: monospace;">const
+int k = ???; // you need to figure out the value of ???</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">int * i = 0;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">struct A {</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int x[k];</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">};</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">A*
+a = 0; </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">printf(
+"%d&nbsp;
+%d&nbsp;
+%d %d&nbsp; %d&nbsp; %d &nbsp;",</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;i+1, i+k, k, a+k,
+&amp;(a[9]),</span><span style="color: rgb(204, 0, 0); font-family: monospace;"> </span><span style="font-family: monospace;">&amp;(a[9])
+- (a+1)&nbsp;
+);</span></dd>
+</ol>
+<dt>outputs the values for the first two expressions<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">4&nbsp; 16  </span><br>
+What are its remaining outputs? &nbsp;Briefly explain how the
+output is obtained. &nbsp;(Hint: pay attention to coercion.)</dt>
+<ol>
+</ol>
+<dl>
+<dd><br>
+<br>
+</dd></dl>
+<li>Consider the following function definition using C syntax:</li>
+<dd><span style="font-family: monospace;">twice
+(x) {</span></dd>
+<dd><span style="font-family: monospace;">&nbsp;
+&nbsp;return x * 2;<br>
+}</span></dd>
+
+What is the result of the&nbsp;invocation <span style="font-style: italic; font-family: monospace; text-decoration: underline;">twice </span><span style="font-family: monospace; text-decoration: underline;">( 5 + 7 )</span><span style="font-style: italic; font-family: monospace;"> </span>
+assuming
+the following parameter passing mechanism :<br>
+</dl>
+<ol style="list-style-type: lower-alpha;">
+<li>by value.</li>
+<li>by&nbsp;macro expansion.</li>
+</ol>
+  <dl>
+
+<br>
+<span style="font-family: monospace;"><br>
+</span>
+<li>Consider the following code snippet in C syntax:</li>
+<dl style="font-family: monospace;">
+<dd>int A[4];<br>
+A[0] = 1;<br>
+A[1] = 3;<br>
+A[2] = 1;<br>
+A[3] = 2;<br>
+f&nbsp; ( A[0],&nbsp; A[ A[0] ] );<br></dd>
+</dl>
+<dt>Function <span style="font-style: italic;">f</span>
+is defined
+as<br><br>
+</dt>
+<ol>
+<dd><span style="font-family: monospace;">void
+f(int x,&nbsp; int
+y) {</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+x = 0;<br>
+&nbsp; &nbsp; &nbsp;y = 1 + x;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">}<br>
+</span></dd>
+</ol>
+<dt>For each of the following parameter-passing mechanisms,
+say
+what the final values in the array <span style="font-style: italic;">A</span>
+would be after a call to <span style="font-style: italic;">f.&nbsp;
+</span>Show
+how you determined the answer.&nbsp;&nbsp; There may be more
+than one
+correct answer.</dt>
+<ol style="list-style-type: upper-alpha;">
+<li>By value.</li>
+<li>By reference.</li>
+<li>By value-result.</li>
+<li>By macro expansion.</li>
+<li>By name.</li></ol><dd><br>
+      <br>
+    </dd>
+    <ol style="list-style-type: upper-alpha;">
+
+    </ol>
+  </dl>
+
+  <li>page 497 exercise 9.17&nbsp; Explain the representation of the Bar object for code in both Java and C++.<br>
+  </li>
+  <li>page 498 exercise 9.21.&nbsp; Explain your answer for both Java and C++.<br>
+</li>
+  <li>Make sure you understand Vtables.</li>
+</ol>
+Fun example:<span class="fnt0"><font size="3"><br>
+</font></span><span class="fnt0">1) Save file&nbsp; -- </span><span class="fnt0"><font size="3">http://mauke.ath.cx/stuff/poly.html</font></span><br>
+
+<span class="fnt0">2) Look at the source code.&nbsp; It is <font size="3">a multi-linguistic source file.&nbsp; <br>3) If you have the languages installed then you can<br></font><div style="margin-left: 40px;"><font size="3">python poly.html<br>ruby poly.html<br>perl poly.html<br>bash poly.html</font></div></span><br>
+<ol>
+  <dl>
+
+  </dl>
+
+</ol>
+
+<br>
+</body></html>

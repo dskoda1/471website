@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Assignment 9 more stack, overloading, expressions</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<h2 style="text-align: center;">Assignment 9 some solutions</h2>
+<br>
+<br>
+Suppose this C++ code<br>
+<br>
+<div style="margin-left: 40px;">const int k = ???<br>
+</div>
+<ol start="6">
+int * i = 0;<br>
+struct A { int x [k]; };<br>
+A* a = 0;<br>
+printf( "%d %d %d %d %d %d &nbsp;", i+ 1, i +k, k, a+k, &amp;(a[10]),
+&amp;(a[10] - (a+1) );<br>
+  <br>
+  <br>
+first outputs<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">&nbsp;4 &nbsp;12</span><br>
+What are its remaining outputs?<br>
+SOLUTION: <u>&nbsp;3 36 120 9</u>
+</ol>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+<br>
+Assume that arrays are indexed from 0 in the following program:
+<ol start="6">
+  <ol>
+    <li>int j = 3;<br>
+char [] A = "abcdef";<br>
+void p ( int x, char y) {<br>
+&nbsp; &nbsp;x = x+2;<br>
+&nbsp; &nbsp;y = "*";<br>
+&nbsp; &nbsp;j = 7;<br>
+}<br>
+void main() {<br>
+&nbsp; &nbsp;p ( j, A[j] );<br>
+&nbsp; &nbsp;print j; print A;<br>
+}<br>
+What is the program's output if the parameter-argument binding
+mechanism being used in function <span style="font-weight: bold;"><span
+ style="font-style: italic;">p</span></span> is<br>
+    </li>
+  </ol>
+  <ol style="list-style-type: upper-alpha;">
+    <li>by reference?<b><br>
+solution 7 "abc*ef"</b></li>
+    <li>by name?<br>
+      <b>solution 7 "abcde*"</b><br>
+    </li>
+    <li>by value result?<br>
+      <b>solution 5 "abc*ef"</b><br>
+    </li>
+    <li>by value?<b><br>
+solution 7 "abcdef"</b></li>
+  </ol>
+</ol>
+<br>
+<ol>
+  <li>The calling routine and called routine have different
+responsibilities in allocating, reading and writing the different
+fields of the activation record. The times are described below:<br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>at the beginning in the calling routine (just before the call)<br>
+    </li>
+    <li>during the execution of called routine<br>
+    </li>
+    <li>at the end in&nbsp; the calling routine (just after the return
+from the called routine)<br>
+    </li>
+  </ol>
+  <dl>
+    <dd>Use the activation record for <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2ar2.gif">non-nested
+functions</a> and the 3 "times" above to complete the following
+table.&nbsp;&nbsp;<span style="font-weight: bold;"> </span><br
+ style="font-weight: bold;">
+    </dd>
+    <dd>
+      <table style="text-align: left; width: 80%;" border="1"
+ cellspacing="2" cellpadding="2">
+        <tbody>
+          <tr>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">AR
+-
+field<br>
+            </td>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">Memory
+allocated<br>
+            </td>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">value
+written<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;"><span
+ style="font-weight: bold;">value
+read</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">return
+value<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">A<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">B<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">C<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">arguments<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">A<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">A<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">B<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">return
+address<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">A<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">A<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">B<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">control
+link<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">A<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">A
+or B<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">B
+or C<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">local
+variables<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">B<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">B<br>
+            </td>
+            <td style="text-align: center; vertical-align: middle;">B<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </dd>
+  </dl>
+</ol>
+<ol style="margin-top: 0in;" start="9" type="1">
+  <li class="MsoNormal" style="margin-top: 12pt;">For the following C3
+program
+fragment, show the snapshot of the run-time stack at&nbsp; each
+critical stage
+until the code returns to main...&nbsp; In particular, show the static
+and
+dynamic links before each call.&nbsp; ( Follow the <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/4rS01.html#nested">presentation
+of run-times environment stack in class notes</a>.)</li>
+</ol>
+<blockquote><b><tt>int&nbsp; a = 185, j = 2, k = 1, i = 3;</tt></b><br>
+  <b><tt>int beta(int x ){</tt></b> <b><tt><br>
+&nbsp;&nbsp;&nbsp;&nbsp; int f = 5;</tt></b>
+  <blockquote><b><tt>int alpha(int v ){</tt></b></blockquote>
+  <blockquote>
+    <blockquote><tt>int j = 4;</tt><br>
+      <tt><b>//++ </b></tt><b>&lt;&lt;&lt;&lt;&lt;&lt; Show stack here</b><br>
+      <b>. . . .</b><br>
+      <tt>j = k + v;</tt><br>
+      <tt>x = 100;</tt><br>
+      <tt>beta(33 );</tt><br>
+    </blockquote>
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>// +++ </b></tt><b>&lt;&lt;&lt;&lt;&lt;&lt;
+Show stack here</b><br>
+    <blockquote><tt>....</tt></blockquote>
+    <blockquote><tt>return j;</tt><tt>&nbsp; <br>
+      </tt></blockquote>
+    <tt>}; /<b>/ END of alpha code</b></tt> <b><tt>// Beginning of
+beta
+code<br>
+    </tt></b><b><tt>//</tt>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&nbsp;
+show the stack here after call to beta</b><br>
+    <tt>....</tt><br>
+    <tt>if (j&gt;3) return 22 ;&nbsp; //Termination</tt><br>
+    <tt>j = i + x;</tt><br>
+    <tt>alpha(f);</tt><br>
+    <b>//&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; after returned from alpha</b><br>
+    <tt>....</tt><br>
+    <tt>return 8;</tt><tt>&nbsp;&nbsp;&nbsp; <br>
+};&nbsp;<b> // END of beta code</b></tt> <tt>&nbsp;&nbsp;&nbsp; <br>
+    </tt></blockquote>
+  <tt>int main(<b>void</b>){</tt><tt><br>
+  </tt>
+  <blockquote><tt>int&nbsp; v = 9;</tt> <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <br>
+....&nbsp; <br>
+    <b>// ** </b></tt><b>stack before beta is called</b><br>
+  </blockquote>
+  <blockquote> </blockquote>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta(9);</tt><br>
+  <blockquote> </blockquote>
+  <tt>&nbsp;&nbsp;&nbsp; <b>// *** </b></tt><b>stack after beta
+is returned</b><br>
+  <blockquote> <tt>&nbsp;....<br>
+    </tt><tt>return v;</tt> <tt>&nbsp;&nbsp; <br>
+    </tt></blockquote>
+  <tt>}</tt><br>
+  <blockquote>
+    <table border="1" bgcolor="#fff8f0">
+      <caption><br>
+      </caption><tbody>
+      </tbody><tbody>
+        <tr align="center" bgcolor="#ffffc4">
+          <td>
+          <center>Description</center>
+          </td>
+          <td>D addr</td>
+          <td>
+          <center>main **</center>
+          </td>
+          <td>
+          <center>beta 1</center>
+          </td>
+          <td>alpha1 ++</td>
+          <td>
+          <center>beta 2</center>
+          </td>
+          <td>
+          <center>alpha1 +++</center>
+          </td>
+          <td>
+          <center>beta1</center>
+          </td>
+          <td>
+          <center>main ***</center>
+          </td>
+        </tr>
+        <tr>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+          <td bgcolor="#d7ffd7">Just</td>
+          <td bgcolor="#d7ffd7">after</td>
+          <td bgcolor="#d7ffd7">calling</td>
+          <td bgcolor="#d7ffd7">function</td>
+          <td bgcolor="#eef0f9">Just&nbsp;</td>
+          <td bgcolor="#eef0f9">after&nbsp;</td>
+          <td bgcolor="#eef0f9">return to function</td>
+        </tr>
+        <tr bgcolor="#ffe4ca">
+          <td>
+          <center>global <i>a</i></center>
+          </td>
+          <td>
+          <center>1</center>
+          </td>
+          <td>
+          <center>185</center>
+          </td>
+          <td>&nbsp;185</td>
+          <td>185</td>
+          <td>
+          <center>185&nbsp;</center>
+          </td>
+          <td>
+          <center>185&nbsp;</center>
+          </td>
+          <td>
+          <center>185&nbsp;</center>
+          </td>
+          <td>
+          <center>185<br>
+          </center>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <center>global&nbsp; <b><i>j</i></b></center>
+          </td>
+          <td>
+          <center>2</center>
+          </td>
+          <td>
+          <center>2</center>
+          </td>
+          <td>
+          <center>3+9 = 12</center>
+          </td>
+          <td>12&nbsp;</td>
+          <td>
+          <center>12&nbsp;</center>
+          </td>
+          <td>
+          <center>12&nbsp;</center>
+          </td>
+          <td>
+          <center>12&nbsp;</center>
+          </td>
+          <td>
+          <center>12&nbsp;</center>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <center>global&nbsp; <b><i>k</i></b></center>
+          </td>
+          <td>
+          <center>3</center>
+          </td>
+          <td>
+          <center>1</center>
+          </td>
+          <td>
+          <center>1&nbsp;</center>
+          </td>
+          <td>1&nbsp;</td>
+          <td>
+          <center>1&nbsp;</center>
+          </td>
+          <td>
+          <center>1&nbsp;</center>
+          </td>
+          <td>
+          <center>1&nbsp;</center>
+          </td>
+          <td>
+          <center>1&nbsp;</center>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <center>global <b><i>i</i></b></center>
+          </td>
+          <td>
+          <center>4</center>
+          </td>
+          <td>
+          <center>3</center>
+          </td>
+          <td>
+          <center>3&nbsp;</center>
+          </td>
+          <td>3&nbsp;</td>
+          <td>
+          <center>3&nbsp;</center>
+          </td>
+          <td>
+          <center>3&nbsp;</center>
+          </td>
+          <td>
+          <center>3&nbsp;</center>
+          </td>
+          <td>
+          <center>3&nbsp;</center>
+          </td>
+        </tr>
+        <tr bgcolor="#eff0ee">
+          <td>
+          <center>return value</center>
+          </td>
+          <td>
+          <center>5</center>
+          </td>
+          <td>
+          <center>&nbsp;?</center>
+          </td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+        </tr>
+        <tr bgcolor="#eff0ee">
+          <td>
+          <center>&nbsp;main <b><i>v</i></b></center>
+          </td>
+          <td>
+          <center>6</center>
+          </td>
+          <td>
+          <center>&nbsp;9</center>
+          </td>
+          <td>9&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>9<br>
+          </td>
+        </tr>
+        <tr bgcolor="#ccffff">
+          <td>&nbsp;return value</td>
+          <td>
+          <center>7</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>88&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ccffff">
+          <td>&nbsp;beta1 arg, x</td>
+          <td>
+          <center>8</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>100&nbsp;</td>
+          <td>100&nbsp;</td>
+          <td>100&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ccffff">
+          <td>static link&nbsp;</td>
+          <td>
+          <center>9</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ccffff">
+          <td>return address&nbsp;</td>
+          <td>
+          <center>10</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>main()&nbsp;</td>
+          <td>main()&nbsp;</td>
+          <td>main()&nbsp;</td>
+          <td>main()&nbsp;</td>
+          <td>main()&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ccffff">
+          <td>fp&nbsp;</td>
+          <td>
+          <center>11</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>0&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ccffff">
+          <td>beta1 loc var, f&nbsp;</td>
+          <td>
+          <center>12</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>5&nbsp;</td>
+          <td>5&nbsp;</td>
+          <td>5&nbsp;</td>
+          <td>5&nbsp;</td>
+          <td><br>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ffffcc">
+          <td>return value&nbsp;</td>
+          <td>
+          <center>13</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ffffcc">
+          <td>alpha1 arg, v</td>
+          <td>
+          <center>14</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>5&nbsp;</td>
+          <td>5&nbsp;</td>
+          <td>5&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ffffcc">
+          <td>static link&nbsp;</td>
+          <td>
+          <center>15</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>9&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ffffcc">
+          <td>return address&nbsp;</td>
+          <td>
+          <center>16</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>beta1()</td>
+          <td>beta1()</td>
+          <td>beta1 ()</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ffffcc">
+          <td>fp&nbsp;</td>
+          <td>
+          <center>17</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>7&nbsp;</td>
+          <td>7&nbsp;</td>
+          <td>7&nbsp;</td>
+          <td><br>
+          </td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#ffffcc">
+          <td>alpha 1 loc var, j</td>
+          <td>
+          <center>18</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>4&nbsp;</td>
+          <td>6&nbsp;</td>
+          <td>6&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>return value</td>
+          <td>
+          <center>19</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>?&nbsp;</td>
+          <td>22<br>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;beta 2 arg, x</td>
+          <td>
+          <center>20</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;33</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;static link</td>
+          <td>
+          <center>21</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;0</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>return address&nbsp;</td>
+          <td>
+          <center>22</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;alpha1()</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;fp</td>
+          <td>
+          <center>23</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;13</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;beta2 loc var, f</td>
+          <td>
+          <center>24</center>
+          </td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;5</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td valign="top"><br>
+          </td>
+          <td align="center" valign="top">25</td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+          <td valign="top"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#000000"><b><font color="#ffffcc">Registers</font></b></td>
+          <td valign="top" bgcolor="#000000"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeee"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeee"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeee"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeee"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeee"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeee"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeee"><br>
+          </td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#edeeef"><b>Frame Pt</b></td>
+          <td valign="top" bgcolor="#666666"><br>
+          </td>
+          <td align="center" valign="top" bgcolor="#edeeef">0</td>
+          <td valign="top" bgcolor="#edeeef">7</td>
+          <td valign="top" bgcolor="#edeeef">13</td>
+          <td valign="top" bgcolor="#edeeef">19</td>
+          <td valign="top" bgcolor="#edeeef">13</td>
+          <td valign="top" bgcolor="#edeeef">7</td>
+          <td valign="top" bgcolor="#edeeef">0</td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#edeeef"><b>Stack Pt</b></td>
+          <td valign="top" bgcolor="#666666"><br>
+          </td>
+          <td align="center" valign="top" bgcolor="#edeeef">7</td>
+          <td valign="top" bgcolor="#edeeef">13</td>
+          <td valign="top" bgcolor="#edeeef">19</td>
+          <td valign="top" bgcolor="#edeeef">25</td>
+          <td valign="top" bgcolor="#edeeef">19</td>
+          <td valign="top" bgcolor="#edeeef">13</td>
+          <td valign="top" bgcolor="#edeeef">7</td>
+        </tr>
+        <tr>
+          <td valign="top" bgcolor="#edeeef"><b>Instuction</b><br>
+          <b>Pt</b></td>
+          <td valign="top" bgcolor="#666666"><br>
+          </td>
+          <td valign="top" bgcolor="#edeeef">main()</td>
+          <td valign="top" bgcolor="#edeeef">beta1()</td>
+          <td valign="top" bgcolor="#edeeef">alpha1()</td>
+          <td valign="top" bgcolor="#edeeef">beta2()</td>
+          <td valign="top" bgcolor="#edeeef">alpha1()</td>
+          <td valign="top" bgcolor="#edeeef">beta1()</td>
+          <td valign="top" bgcolor="#edeeef">main()</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+&nbsp;
+    <br>
+  </blockquote>
+</blockquote>
+</body>
+</html>

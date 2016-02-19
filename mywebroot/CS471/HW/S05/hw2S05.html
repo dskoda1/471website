@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>Homework 2 - Prolog Programming 1</title>
+</head>
+<body style="background-color: rgb(255, 253, 255); color: rgb(0, 0, 0);"
+ alink="#cc0000" link="#ff0000" vlink="#990000">
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a>
+<h4> </h4>
+Due Sat Feb. 5 <br>
+Correction; Wed .1pm<br>
+<h4><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">
+General Submission Instructions</a></h4>
+You hard copy should begin with the following identification:
+<ul>
+  <blockquote><font color="#000000">CS471 - Programming Languages</font>
+    <br>
+    <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR
+Section number&gt;</font> <br>
+    <font color="#000000">Assignment #</font><font color="#cc0000">&lt;number&gt;
+    </font><font color="#000000">due:</font><font color="#cc0000">
+&lt;DATE&gt;</font> <br>
+    <font color="#000000">Author:</font><font color="#cc0000">
+&lt;LastName&gt;, &lt;FirstName&gt; </font><font color="#000000">(</font><font
+ color="#cc0000"> &lt;EMail&gt;</font><font color="#000000">)</font> <br>
+    <font color="#000000">Date:</font><font color="#cc0000">
+&lt;DATE&gt;</font></blockquote>
+</ul>
+<h4>Reading and references---</h4>
+<ul>
+  <li>Louden</li>
+  <ul>
+    <li>Chap. 12.4 <br>
+    </li>
+  </ul>
+  <li><a href="http://www.coli.uni-sb.de/%7Ekris/learn-prolog-now/">Learn
+Prolog Now</a><br>
+  </li>
+  <ul>
+    <li>Chapter 1, 2, 3, 4 and 5<br>
+    </li>
+  </ul>
+  <li>Here are some references for you to pick and choose from<br>
+  </li>
+  <ul>
+    <li><a href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">Adventure
+in
+Prolog&#8482;</a> (a fun tutorial)<br>
+    </li>
+    <li><a href="http://cs.wwc.edu/%7Ecs_dept/KU/PR/Prolog.html">Another
+Tutorial</a></li>
+    <li><a
+ href="http://www.cs.bham.ac.uk/%7Epjh/prolog_course/sem242.html">Another
+Tutorial by Peter Hancox</a><br>
+    </li>
+    <li><a
+ href="http://www.cs.otago.ac.nz/cosc347/References/LP/LeedsTutorial/">A
+very detailed tutorial by Paul Brna</a></li>
+    <li><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/prologTutorial.pdf">Mead
+and Lu's Prolog Tutorial</a></li>
+  </ul>
+  <li>&nbsp;Code based on the class notes are in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/example.pl">
+example.pl </a></li>
+</ul>
+<b>Purpose:</b><br>
+<ul>
+  <li>To see review important concepts from discrete math needed to
+program in prolog.</li>
+  <li>To reinforce recursive programming <br>
+  </li>
+  <li>To reinforce the use of the list data structure in Prolog<span
+ style="font-style: italic;"><span style="font-weight: bold;"> <br>
+    </span></span></li>
+  <li>To appreciate the power of pattern recognition supplied in a
+programming language</li>
+  <li>To practice writing relations in Prolog</li>
+  <li>To practice letting Prolog solve queries&nbsp;&nbsp;</li>
+  <ul>
+    <li>by writing just facts</li>
+    <li>by writing clauses (rules)<br>
+    </li>
+  </ul>
+  <li>To understand unification and the "is" predicate</li>
+  <li>To understand the difference/similarities between numbers,
+strings and atoms</li>
+  <br>
+</ul>
+<ol>
+</ol>
+<h3> Written assignment:&nbsp; (Written part may be done in a 2 person
+team)<br>
+</h3>
+<ol>
+  <li>What is the basic difference between propositional logic and
+predicate logic? (one or two sentences)</li>
+  <li>Give the mathematical definition of&nbsp; <span
+ style="font-weight: bold; font-style: italic;">function</span>.
+Provide an example of a function.<br>
+  </li>
+  <li>Give the mathematical definition of <span
+ style="font-style: italic;"><span style="font-weight: bold;">relation</span></span>.&nbsp;
+Provide an example of a relation that is not a function.</li>
+  <li>[Rosen 211#36] "Consider the following inductive definition of
+a
+version of <b>Ackermann's</b> function.&nbsp; This function was named
+after <a
+ href="http://www-history.mcs.st-and.ac.uk/history/Mathematicians/Ackermann.html">Wilhelm
+Ackermann</a>, a German mathematician who was a student of the great
+mathematician David Hilbert.&nbsp; Ackermann's function plays an
+important role in the theory of recursive functions and in the study
+of
+complexity of certain algorithms involving set unions.&nbsp; In the
+early days of&nbsp; imperative languages, the Ackermann function was
+used to measure the recursion capability of a compiler." The Ackermann
+Number N of the compiler as the largest N for which the program
+computes the value.&nbsp; Below is a simplication of the original
+function due to <a href="http://www.sdsc.edu/ScienceWomen/peter.html">Rozsa
+Peter</a> ( <a
+ href="http://home.earthlink.net/%7Emrob/pub/math/ln-2deep.html">Other
+variations</a>)<br>
+  </li>
+  <ol>
+    <ol type="A">
+&nbsp;
+      <table style="width: 595px; height: 110px;">
+        <tbody>
+          <tr>
+            <td>ack( <i>m,n</i> ) =</td>
+            <td>2n + 1<br>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp; if <i>m</i> = 0</td>
+          </tr>
+          <tr>
+            <td>ack( <i>m,n</i> ) =&nbsp;</td>
+            <td>ack( <span style="font-style: italic;">m</span>-1,1 )<br>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and <i>n</i> =
+0&nbsp;</td>
+          </tr>
+          <tr>
+            <td>ack( <i>m,n</i> ) =</td>
+            <td>ack( <i>m</i>-1, ack( <i>m, n</i>-1 ) )</td>
+            <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt;=1 and<span
+ style="color: rgb(153, 51, 0);"> </span><i
+ style="color: rgb(153, 51, 0);">n</i><span
+ style="color: rgb(153, 51, 0);">
+&gt;=1</span>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+&nbsp; <li> Find the following values(by hand) of Ackermann's
+function.&nbsp; Show all you work (i.e show each step of the
+calculation.)<br>
+      </li>
+      <ol type="a">
+        <li> [1pt] ack(1,0) = ______</li>
+        <li> [1pt] ack(0,1) = ______</li>
+        <li> [1pt] ack(1,1) = ______</li>
+        <li> [2pt] ack(2,2) = _______</li>
+      </ol>
+      <li>In programming exercise 10 you will implement this
+function.&nbsp; After you have programmed it, determine the Ackermann's
+Number of your Swipl environment.&nbsp; What is it?<br>
+      </li>
+    </ol>
+  </ol>
+</ol>
+<ol>
+</ol>
+_____________________________________________________________________________________________<br>
+<h3>Programming Assignment:</h3>
+<h4>Practice NOT Graded --Do not to hand in.<br>
+</h4>
+<li style="margin-left: 40px;">Learn
+Prolog NOW <br>
+</li>
+<li style="margin-left: 80px;"><a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node13.html#sec.l1.exercises">Exercise
+1.1, 1.2, 1.3,</a></li>
+<li style="margin-left: 80px;"><a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node21.html#sec.l2.exercises">Exercise
+2.1, 2.2</a></li>
+<li style="margin-left: 80px;"><a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node36.html#sec.l4.exercises">Exercise
+4.1</a></li>
+<li style="margin-left: 80px;"><a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node43.html#sec.l5.exercises">Exercise
+5.1</a></li>
+<li style="margin-left: 40px;">What is the difference between the use
+of <font color="#cc0000"> "</font>
+and<i> </i><font color="#990000">
+'</font>
+. (Try the following query).</li>
+<ol style="margin-left: 40px;">
+?- A = 'abc', B = "abc".
+</ol>
+<li style="margin-left: 40px;">Predict the result of the
+following
+queries:<br>
+</li>
+<ol style="margin-left: 40px;">
+?- X = Y, Y = 2 + 3.<br>
+?- X is 2 + 3, Y = 2+3, Y=X.<br>
+?- X = 2 + 3, Y is X, Y=5.<br>
+?- X = 2, 3 = Y, Z is X + Y.<br>
+?- Z is X + Y, X = 2, 3 = Y.<br>
+?- X = 3,&nbsp; Y = X + 4,&nbsp; Z is X + 4,&nbsp;&nbsp; is(ZZ, +(X,4)
+),&nbsp; Z = ZZ. <br>
+?- [A|B] = "abc".<br>
+?- X= [1,abc,4], [H|T]=X, T = [H1|T1], T1=[A|B]. <br>
+?- help(@&lt;). <br>
+  <br>
+  <br>
+Load 'example.pl' into the swipl environment then type the following <br>
+  <ol>
+?- help(listing). <br>
+?- listing(sq). <br>
+?- listing. <br>
+?- help(trace). <br>
+?- sq([3, 5],S). <br>
+&nbsp; (Keeping hitting return until you get yes.)
+  </ol>
+</ol>
+<ul>
+  <li>Make sure you open the swipl with xpce In the XPCE manual you
+will see a Tools pull down menu, select Prolog graphical tracer. repeat
+3. Use the debugger to step through your program. </li>
+</ul>
+<h3>Graded Programming exercises (NOT team work) :<br>
+</h3>
+Do the following problems.&nbsp; Use rename and use <a href="XXXAs2.pl">XXXAs2.pl</a>
+.&nbsp; Below is a copy of the instructions in <a href="XXXAs2.pl">XXXAs2.pl</a>.<br>
+<span style="font-weight: bold;">You should not use a rule when a fact
+will accomplish the same results.&nbsp; Use implicit unification in
+place of explicit unification.</span><br style="font-weight: bold;">
+<br>
+<ol style="margin-left: 40px;">
+</ol>
+<span style="text-decoration: underline;"></span>
+<ol>
+  <li><span style="text-decoration: underline;"></span>Read <a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node30.html#sec.l3.exercises">exercise
+3.1</a> in "Learn Prolog Now!".&nbsp; Add an outer doll (first)&nbsp;
+named ,
+Oksana , and an inner doll (last) named, Elina, to the nested dolls.
+Complete exercise 3.1 with 6 dolls.<br>
+  </li>
+  <li>Define a predicate, named separated, which succeeds if the first
+doll named has exactly one doll between the two named dolls..You should
+use code developed in problem 1.<br>
+i.e.:</li>
+  <dl>
+    <dd><span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+?- separated(elina,natasha).</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; Yes</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; ?-
+separated(natasha,elina).</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; Yes</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; ?-
+separated(natasha,olga).</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; No</span><br>
+    </dd>
+  </dl>
+  <dl>
+  </dl>
+  <span style="font-style: italic;"></span><span
+ style="font-style: italic;"></span><br>
+  <li><a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node30.html#sec.l3.exercises">Read
+exercise 3.2.</a>&nbsp; Define a predicate <code>less_than/2</code>
+that takes two
+numerals in the notation that we introduced in this lecture (i.e. 0,
+succ(0), succ(succ(0)) ...) as arguments and decides whether the first
+one is less than the second one. E.g:
+    <blockquote class="code"><code>?-
+less_than(succ(succ(succ(0))),succ(0)).<br>
+no<br>
+?- less_than(succ(succ(0)),succ(succ(succ(0)))).<br>
+yes</code></blockquote>
+  </li>
+  <li><a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node31.html#sec.l3.praxis">Practical
+programming problem 3.2</a><br>
+  </li>
+  <li> point(X,Y) is a structure which represents a point in the plane.
+Write a
+fact
+"origin" which succeeds if both X and Y are zero. i.e. ?- origin(P).
+succeeds if P is a point with x = 0 and y = 0 <br>
+  </li>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li> Define a relation "outside( <span style="font-style: italic;">p</span>,
+    <span style="font-style: italic;">r </span>)" which is true if and
+only if
+point <span style="font-style: italic;">p</span> lies outside a circle<span
+ style="color: rgb(153, 51, 0);">
+of</span> radius <span style="font-style: italic;">r</span>.
+This relation can be defined as:</li>
+  <dl>
+    <dd>outside(point(<span style="font-style: italic;">x,y</span>),<span
+ style="font-style: italic;">r</span>) if and only if <span
+ style="font-style: italic;">x</span>^2 + <span
+ style="font-style: italic;">y</span>^2 &gt; <span
+ style="font-style: italic;">r</span>^2&nbsp; (<span
+ style="color: rgb(153, 0, 0);">XXXAs2.pl had the wrong formula.&nbsp;
+It should be as stated here.)</span><br>
+    </dd>
+    <dt><br>
+    </dt>
+  </dl>
+  <li>The ternary relation "collinear(p1,p2,p3)", is true if and only
+if p1, p2, and p3 lie on a straight line. One definition is as follows:
+    <br>
+  </li>
+  <dl>
+    <dd>collinear(point(<span style="font-style: italic;">x</span>1,<span
+ style="font-style: italic;">y</span>1), point(<span
+ style="font-style: italic;">x</span>2,<span style="font-style: italic;">y</span>2),
+point(<span style="font-style: italic;">x</span>3, <span
+ style="font-style: italic;">y</span>3)) if and only if (<span
+ style="font-style: italic;">x</span>1 -<span
+ style="font-style: italic;">x</span>2)(<span
+ style="font-style: italic;">y</span>2 -<span
+ style="font-style: italic;">y</span>3) equals (<span
+ style="font-style: italic;">y</span>1 -<span
+ style="font-style: italic;">y</span>2)(<span
+ style="font-style: italic;">x</span>2 -<span
+ style="font-style: italic;">x</span>3) <br>
+    </dd>
+    <dt>i.e.<br>
+    </dt>
+    <dt><span style="font-family: monospace;">?-
+collinear(point(0.25,0.25),point(500.5,500.5),point(4,4)).</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">Yes</span></dt>
+    <dt><span style="font-family: monospace;"></span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">?-
+collinear(point(0.25,0.25),point(500.5,500),point(4,4)).</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">No</span><br>
+      <br>
+    </dt>
+  </dl>
+  <li><a
+ href="http://www.coli.uni-sb.de/%7Ekris/prolog-course/html/node37.html#sec.l4.praxis">Practical
+programming problem 4.1-.3.</a> Write the definitions for combine1,
+combine2 and combine3.&nbsp; You may assume the two lists you are
+combining are the same length.<br>
+    <br>
+  </li>
+  <li>Program exercise 1.1 page 30 in prolog. <br>
+i.e&nbsp; ?-
+numDigit(11234,N).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; N = 5<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes <br>
+    <br>
+  </li>
+  <li>Convert the Ackermann's function defined in the written part to a
+Prolog program.&nbsp; Finish written question 4.<br>
+    <br>
+  </li>
+  <li>Define a predicate,
+listOfFunctors(ListOfArgs,Name,ListOfResults),
+where each element in the ListOfResults is a term with one argument
+from
+(the corresponding element) ListOfArgs and the functor name is the <span
+ style="font-style: italic;">Name</span>.<br>
+  </li>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Use "help" in swipl to understand how to
+use some interesting functors/operators. i.e.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- help(functor).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- help(=..)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- help(arg).<br>
+  <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family: monospace;"> ?-
+listOfFunctors([a,b,23,4],foo, T).</span><br
+ style="font-family: monospace;">
+  <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; T =
+[foo(a), foo(b), foo(23), foo(4)]</span><br
+ style="font-family: monospace;">
+  <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; Yes</span><br>
+</ol>
+<font color="#3333ff"><br>
+<br>
+Remember Programming is an individual task!!</font><br>
+<font color="#3333ff">Resources use:</font><br>
+<br>
+</body>
+</html>

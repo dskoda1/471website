@@ -1,0 +1,108 @@
+/*
+      CS471 - Programming Languages
+        Assignment #<number> due: <DATE>
+        Author: <LastName>, <FirstName> (<EMail>)
+        Date: <DATE>
+ */
+/* Rename this file to include your username and add the extension ".pl" */
+
+
+
+/* 1: Define a predicate nth(Num,Lst,Element), such that it succeeds if the 
+      variable Element is unified with the Numth element of the list Lst . 
+      The count starts with 0.
+e.g.
+     ?- nth(3,[a,b,c,d,e,f,g],E).
+     E = d .
+     
+      (This can be done with 2 clauses.)
+*/
+
+
+
+%2. prodR(+N,?P).
+/* Given a number, N, P is a list of the prod of the numbers from N
+   down to 1 such that first number in P is the prod of all the number from N to 1, 
+   the second number in P the prod of all the numbers from N-1 down to 1
+    etc.
+   For example:
+     
+     ?- prodR(6,P).
+     P = [720, 120, 24, 6, 2, 1]
+
+
+   2 clauses
+*/ 
+
+
+%3. prodL(N,P).  
+/* Is simular to prodR(+N,?P), except that product totals 
+   accumulate left to right. e.g. The first value in P will be N,
+   the second value will be N * N-1, etc.
+
+     ?- prodL(6,P).
+     P = [6, 30, 120, 360, 720, 720] 
+
+
+    It would be helpful to overload prodL/2 and include the following
+    clause:
+    
+       prodL(N,Lst):-prodL(N,N,Lst).
+       
+    2 additional clauses.
+
+*/
+
+
+/* 4:  : (From Learn Prolog NOW! exercise 3.3)
+ * Binary trees are trees where all internal nodes have exactly two
+ * children. The smallest binary trees consist of only one leaf node. We
+ * will represent leaf nodes as leaf(Label). For instance, leaf(3) and
+ * leaf(7) are leaf nodes, and therefore small binary trees. Given two
+ * binary trees B1 and B2 we can combine them into one binary tree using
+ * the predicate tree: tree(B1,B2). So, from the leaves leaf(1) and
+ * leaf(2) we can build the binary tree tree(leaf(1), leaf(2)). And from
+ * the binary trees tree(leaf(1), leaf(2)) and leaf(4) we can build the
+ * binary tree tree(tree(leaf(1), leaf(2)), leaf(4)).
+
+ * Now, define a predicate swap/2, which produces a mirror image of the
+ * binary tree that is its first argument. For example:
+
+    ?- swap(tree(tree(leaf(1), leaf(2)), leaf(4)),T).
+    T = tree(leaf(4), tree(leaf(2), leaf(1))).
+    yes
+
+  2 clauses
+**/
+
+
+
+/* 5: Given a tree, define a predicate memberT(Tree,E), that success if
+      E is a value in T. Assume the tree structure define in problem 4. 
+      (3 clauses) i.e.
+      
+            
+      ?- T = tree(tree(leaf(1), leaf(2)), leaf(4)), memberT(T,2).
+      T = tree(tree(leaf(1), leaf(2)), leaf(4)) .
+
+      ?- T = tree(leaf(4),tree(leaf(1), leaf(2))), memberT(T,2).
+      T = tree(leaf(4), tree(leaf(1), leaf(2))).
+
+      ?- T = tree(leaf(4),tree(leaf(1), leaf(2))), memberT(T,5).
+      false.
+
+      ?- T = tree(leaf(4),tree(leaf(1), leaf(2))), memberT(T,V).
+      T = tree(leaf(4), tree(leaf(1), leaf(2))),
+      V = 4 ;
+      T = tree(leaf(4), tree(leaf(1), leaf(2))),
+      V = 1 ;
+      T = tree(leaf(4), tree(leaf(1), leaf(2))),
+      V = 2.
+
+      
+      */
+      
+
+
+
+

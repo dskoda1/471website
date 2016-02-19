@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+ int xy,x,  char f; float f;  # error
+ float arr[10];
+ int i#rate = 10.99;
+ 
+ int chg(int  flag)  {
+      int struct = 8;
+      int i = 3;
+      xy=4;
+      if (flag = 0) {
+        arr[i] = 1.79766E+308;  # error
+      } else {
+        arr[10] = 1.9;  # error
+      }
+     return flag;
+}
+int main (void){   
+      if (xy => 10) {  # error
+        printf("Begin:: ");
+      }
+      chg(flag=0); #error
+      return  0;    
+   } 
+

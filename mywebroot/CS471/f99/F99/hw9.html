@@ -1,0 +1,147 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.61 [en] (WinNT; U) [Netscape]">
+   <title>Assignment 9 Programming Languages  --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#FDFDFF" link="#000099" vlink="#000066" alink="#3333FF">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 9: Hard copy and web due Nov. 11&nbsp; (Thur.). <font color="#CC0000">NEW
+due DATE Tuesday Nov 16</font></h4>
+Read Chapters:
+<blockquote>
+<blockquote>
+<blockquote>Ghezzi: 3, 4(pages 173-192,207-211)
+<br>Thompson, <i>Haskell,<a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/">The
+Craft of Functional Programming</a></i> Chapters 1- 5 (pages 1-86)
+<br><a href="http://haskell.org/tutorial/">A Gentle Introduction to Haskell</a>
+<br><font color="#666666">Using winhugs.exe under the<b> </b></font><b>Help
+menu: <i>contents</i></b> is an online manual.
+<br>&nbsp;&nbsp;&nbsp; The help file, hugs.HLP, is located in the C:/hugs98/
+directory in the normal installation.</blockquote>
+</blockquote>
+</blockquote>
+
+<h3>
+<a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">Instructions
+for presentation of&nbsp; hard copy</a></h3>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+<b>Do not post your assignment.&nbsp; Email your code to&nbsp;</b> <a href="mailto:cs471h@binghamton.edu">cs471h</a>
+also following <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions</a>
+for how to document your program and name your <b>attached program file.</b>
+<br>You will find some string code <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExHw9.lhs">Literal
+code example</a>&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Hw9ex.hs">Standard
+code example</a>
+<ol>
+<ol>
+<li>
+Ghezzi 369, problem 7 (Haskell instead of ML) Write a Haskell function
+to merge two sorted lists.</li>
+
+<li>
+Redo problem 1 using List comprehension.<font color="#993300"> Extra credit
+if you can do it.&nbsp; You may use higher order functions in addition
+to List comprehension.</font></li>
+
+<li>
+Ghezzi 369, problem 10 (Use the algebraic type given on slide 52: Point
+Pt a a)&nbsp; Write a function in Haskell to compute the distance between
+two points, <font color="#009900">were the input is of data type Point,
+data Point =&nbsp; Pt Float Float </font>coordinates.&nbsp; Next, based
+on this function, define a new function to compute the distance of its
+single argument from the origin.</li>
+</ol>
+</ol>
+
+<li>
+For the problems below give two different implementations. One implementation
+is to use ordinary recursive functions and the other is to use list comprehension.&nbsp;
+So you will include <b><i>function</i>R</b> (for the recursive function)
+and <b><i>function</i>L</b> (for the list implementation).&nbsp; For example
+for problem 4 you will include <b><i>allUpperCaseR</i> and <i>allUpperCaseL.</i></b></li>
+
+<ol>
+<ol START=4>
+<li>
+Write a Haskell definition <b>allUpperCase str</b> returns the string in
+all upper case:</li>
+
+<br>...> <tt>allUpperCase "abcDf g"</tt>
+<br><tt>"ABCDF G"</tt>
+<li>
+Write a Haskell function <b>removeBlank str</b><i> </i>which removes blanks
+from a string.</li>
+
+<br>...> removeBlank "m y tes t"
+<br>"mytest"
+<li>
+A <b><i>palindrome</i></b> is a word or a phrase that reads the same backwards
+as forwards.&nbsp; Write a Haskell definition <b>isPalindrome<i> string</i></b>
+that returns true if the string is a palindrome.&nbsp; (This can be done
+with one line of code using a library definition)</li>
+
+<br>...> <tt>isPalindrome "Madam I'm Adam"</tt>
+<br><tt>true</tt>
+<br><tt>...>isPalindrome "ERE"</tt>
+<br><tt>true</tt>
+<br><tt>...>isPalindrome "Not this"</tt>
+<br><tt>false</tt></ol>
+</ol>
+
+<li>
+The following problems are taken from Thompson, <i>The Craft of Functional
+Programming, chapter 7</i>.&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Chapter7.lhs">Code
+from Chapter 7. </a><font color="#009900">Note you only need to compute
+these problem one way.</font></li>
+
+<ol>
+<ol START=7>
+<li>
+(page 132, 7.20) Define the function</li>
+
+<br><tt>&nbsp;&nbsp;&nbsp; joinline</tt> :: Line -> String
+<br>which turns a line into printable form.&nbsp; For example,
+<br>...> <tt>joinLine ["dog", "cat" ]</tt>
+<br><tt>"dog cat"</tt>
+<br>You should try to implement this in two different ways.&nbsp; First
+you may just write a resursive function.&nbsp; Then you should try to define
+it using list comprehension.
+<li>
+(page 133 7.24)&nbsp; Design a function</li>
+
+<br><tt>&nbsp;&nbsp;&nbsp; wc :: String -> (Int,Int,Int)</tt>
+<br>which when given a text string returns the number of characters, words
+and lines in the string.&nbsp; The end of the line in the string is signalled
+by the newline character '\n'.
+<li>
+(page 125 problem 7.11 see&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExHw9.lhs">Literal
+code example</a>&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Hw9ex.hs">Standard
+code example</a> for code) By modifying the definition if the <tt>ins </tt>function
+we can change the behaviour of the sort, <tt>iSort. </tt>Redefine <tt>ins
+</tt>in
+two different ways so that</li>
+
+<ul START=7>
+<li>
+the list is sorted in descending order;</li>
+
+<li>
+duplicates are removed from the list. For example,</li>
+
+<br><tt>iSort [2,1,4,1,2] = [1,2,4]</tt>
+<br>under this definition.</ul>
+</ol>
+</ol>
+
+<ol>&nbsp;
+<br>Nov 10,1999 10:30 pm</ol>
+
+<ul START=2>&nbsp;</ul>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us"><head><title>Scott's Chap 7 &amp; 8</title>
+
+
+
+  
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head"></head><body>
+<div style="text-align: center;">
+<h3>Homework Assignment 9</h3>
+</div>
+
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span>
+<ul>
+
+  <ul>
+    <ul>
+    </ul>
+  </ul>
+</ul>
+
+<ul>
+
+  <ul>
+  </ul>
+</ul>
+
+<h3>Assignment due End of Day Friday Apr 8<br>
+</h3>
+
+Please write you answers short and to the point.
+&nbsp;
+<ol>
+
+
+  <dl>
+  </dl><li>Python 3 has two built-in&nbsp;sequence types: <span style="font-style: italic; font-weight: bold;">tuple</span> ,
+immutable sequence and <span style="font-weight: bold;"><span style="font-style: italic;">list</span>, </span><span style="font-style: italic;">&nbsp;</span>mutable sequence. &nbsp;The
+language provides <span style="font-style: italic; font-weight: bold;">for</span>
+&nbsp;loop to iterate through items in any ordered sequence. &nbsp;The
+script
+below prints out the each item in lst with it's sequence number.</li>
+<dl>
+<dd><span style="font-family: monospace;">i = 0</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">for item in lst :</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; i = i+1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; print
+(repr(i) + " " + repr(item))</span></dd>
+</dl>
+<ol style="list-style-type: lower-alpha;">
+<li>Briefly explain the results of the following statements:</li>
+<ol style="font-family: monospace;">
+<li>seq = [1,2] + [1,2]</li>
+<li>seq = (1,2) +(1,2)</li>
+<li>seq = [1,2] + (1,2)</li>
+</ol>
+<li>Drawn a memory diagram of the following after each statement
+is executed:</li>
+<ol style="list-style-type: lower-roman;">
+<li>A = [[11,2],(1,'a'), 7]</li>
+<li>B = [1, A, 99]</li>
+<li>A[0][1] = 'ha'</li>
+      <li>Will the below work ? <br>
+A[1][1] = 'ha' <br>
+-- Explain&nbsp; your answer.<br>
+      </li>
+
+</ol>
+<li>Will the script (above 'a') work if <span style="font-style: italic;">sequence</span>
+is a list? &nbsp;Will this script work if <span style="font-style: italic;">sequence </span>is a <span style="font-style: italic;">tuple</span>? <span style="font-style: italic;"></span> If it work for both data types without modification briefly
+explain why. &nbsp;If it doesn't work modify the code so it work for
+both <span style="font-style: italic;">tuples and lists.</span></li>
+<li>Write a <span style="font-style: italic;">for</span> loop
+which
+computes the "sum" (+) of items in an order sequence data type and
+print the result. &nbsp;Will you code work if your sequence contains
+only "<span style="font-style: italic;">string</span>" items? Explain. Will you code work if you sequence contains only
+      <span style="font-style: italic;">"lists</span>" items? Explain. Will you code work if you sequence contains only
+      <span style="font-style: italic;">"tuple</span>" items? Explain. 
+</li>
+
+<br>
+
+
+  </ol>
+  <li>Discuss the tradeoff between macro, inline function and
+function in C. &nbsp;Cover a comparision of speed, space and type
+checking of
+each.<br>
+<br>
+  </li>
+  <li>Page 284 exercise 6.31<br>
+<span style="font-family: monospace;"><br>
+      <br>
+      </span></li>
+  <li>Here are some type and variable declarations in C syntax:</li>
+  <ol style="list-style-type: lower-alpha;">
+
+  
+    <dd><span style="font-family: monospace;"><br>
+typedef
+&nbsp;struct {<br>
+&nbsp; &nbsp;char* pt;<br>
+&nbsp; &nbsp;int a;<br>
+} RecA;<br>
+      <br>
+      <br>
+typedef struct {<br>
+      </span><span style="font-family: monospace;">&nbsp;
+&nbsp;char* pt;<br>
+&nbsp; &nbsp;int a;<br>
+} RecB;</span><br>
+      <span style="font-family: monospace;"><br>
+      </span><span style="font-family: monospace;">typedef
+RecB RecC;<br>
+      </span><br>
+      <span style="font-family: monospace;">RecA w;<br>
+RecB x, y;<br>
+RecC z;<br>
+      </span></dd>
+
+    <dt><br>
+State which variables are type equivalent under (a)
+structural equivalence, (b) strict name equivalence, and (c) the actual
+C equivalence algorithm.<br>
+    </dt>
+
+  
+  
+    <dt><br>
+      <br>
+    </dt>
+
+  
+  
+  </ol>
+  <li>Given the following C++ declaration,</li>
+  <ol style="list-style-type: lower-alpha;">
+
+  
+    <dd><span style="font-family: monospace;">double*
+dp = new double(3);<br>
+void* vp;<br>
+int* ip;</span></dd>
+
+    <dt>which of the following assignments does the compiler
+complain about?</dt>
+
+    <dd><span style="font-family: monospace;"><br>
+vp = dp;<br>
+dp = vp; <br>
+ip = dp; <br>
+dp = ip;<br>
+ip = vp;<br>
+      <br>
+ip = (int*) vp;<br>
+ip = static_cast&lt;int*&gt;(vp);<br>
+ip = </span><span style="font-family: monospace;">static_cast&lt;int*&gt;(dp);<br>
+ip = reinterpret_cast&lt;int*&gt;(dp);<br>
+      <br>
+      </span></dd>
+
+    <dt>Briefly explain the behavior of the compiler.
+&nbsp;Will *ip ever have the value 3 after one of the assignments
+to <span style="font-style: italic;">ip </span>?<br>
+      <br>
+    </dt>
+  </ol>
+  <dt><br>
+  </dt>
+  <li>page 376 exercise 7.15<br>
+    </li>
+  <li>page 378 exercise 7.20 (<a href="http://unixwiz.net/techtips/reading-cdecl.html">Reading
+C type declarations</a>)</li>
+  <li>page 443 exercise 8.14 Provide details on how you arrive
+at
+your answer.</li>
+  <li>Suppose this C++ code</li>
+  <ol style="list-style-type: lower-alpha;">
+
+  
+    
+    
+    
+    
+    
+    <ol>
+
+      <br>
+      <dd><span style="font-family: monospace;">const
+int k = ???; // you need to figure out the value of ???</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">int * i = 0;</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">struct A {</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int x[k];</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">};</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">A*
+a = 0; </span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">printf(
+"%d&nbsp;
+%d&nbsp;
+%d %d&nbsp; %d&nbsp; %d &nbsp;",</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;i+1, i+k, k, a+k,
+&amp;(a[9]),</span><span style="color: rgb(204, 0, 0); font-family: monospace;"> </span><span style="font-family: monospace;">&amp;(a[9])
+- (a+1)&nbsp;
+);</span></dd>
+    
+    </ol>
+
+    <dt>outputs the values for the first two expressions<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">2, 8 </span><br>
+What are its remaining outputs? &nbsp;Briefly explain how the
+output is obtained. &nbsp;(Hint: pay attention to coercion.)</dt>
+
+    
+    <ol>
+
+    
+    </ol>
+
+    
+    <dl>
+
+      <dd><br>
+        <br>
+      </dd>
+    
+    </dl>
+
+    
+  </ol>
+  <li>Consider the following function definition using C syntax:</li>
+  <ol style="list-style-type: lower-alpha;">
+
+    <dd><span style="font-family: monospace;">twice
+(x) {</span></dd>
+
+    <dd><span style="font-family: monospace;">&nbsp;
+&nbsp;return x * 2;<br>
+}</span></dd>
+
+What is the result of the&nbsp;invocation <span style="font-style: italic; font-family: monospace; text-decoration: underline;">twice
+    </span><span style="font-family: monospace; text-decoration: underline;">( 5 + 7 )</span><span style="font-style: italic; font-family: monospace;"> </span>
+assuming
+the following parameter passing mechanism :<br>
+
+  
+  
+    
+    <li>by value.</li>
+
+    
+    <li>by&nbsp;macro expansion.</li>
+
+  
+  
+    <br>
+
+    <span style="font-family: monospace;"><br>
+    </span>
+    
+  </ol>
+  <li>Consider the following code snippet in C syntax:</li>
+  <ol style="list-style-type: lower-alpha;">
+
+    
+    <dl style="font-family: monospace;">
+
+      <dd>int A[4];<br>
+A[0] = 1;<br>
+A[1] = 3;<br>
+A[2] = 1;<br>
+A[3] = 2;<br>
+f&nbsp; ( A[0],&nbsp; A[ A[0] ] );<br>
+      </dd>
+    
+    </dl>
+
+    <dt>Function <span style="font-style: italic;">f</span>
+is defined
+as<br>
+      <br>
+    </dt>
+
+    
+    <ol>
+
+      <dd><span style="font-family: monospace;">void
+f(int x,&nbsp; int
+y) {</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+x = 0;<br>
+&nbsp; &nbsp; &nbsp;y = 1 + x;</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">}<br>
+        </span></dd>
+    
+    </ol>
+
+    <dt>For each of the following parameter-passing mechanisms,
+say
+what the final values in the array <span style="font-style: italic;">A</span>
+would be after a call to <span style="font-style: italic;">f.&nbsp;
+      </span>Show
+how you determined the answer.&nbsp;&nbsp; There may be more
+than one
+correct answer.</dt>
+
+    
+    <ol style="list-style-type: upper-alpha;">
+
+      <li>By value.</li>
+      <li>By reference.</li>
+      <li>By value-result.</li>
+      <li>By macro expansion.</li>
+      <li>By Name.</li>
+
+      
+    
+    </ol></ol>========================================<br>
+Turn in the questions below End of Day on WED .&nbsp; Apr 13<br>
+========================================<br>
+  <br>
+  <ol style="list-style-type: lower-alpha;">
+
+
+    
+      
+    
+
+    
+    <ol style="list-style-type: upper-alpha;">
+
+    
+    </ol>
+
+  
+  
+  
+  </ol>
+
+  <br>
+  <li>Compare and contrast -- using nested <span style="font-style: italic;">if statements</span>, <span style="font-style: italic;">Enums</span> and the <span style="font-style: italic;">template method pattern.</span></li>
+
+  <ol style="list-style-type: lower-alpha;">
+    <li>Briefly explain the difference between Enums in Java, C and C++.</li>
+    <li><a href="HW9/HW9.zip">HW9.zip</a> (<a href="HW9/HW9.tar.gz">HW9.tar.gz</a>)
+contain 3 Java Programs that calculates a simple tax return.&nbsp; The
+"if" version is a modification of code in from HORSTMANN: Big Java,
+John Wiley &amp; Son, the Enum and Temple method are Prof. Lander's
+modifications.&nbsp; Briefly explain how the "template method" executes.<br>
+    </li>
+    <li>What are pluses and misses of the three different implementations.&nbsp; <br>
+      <br>
+      <br>
+    </li>
+  </ol>
+
+  <li>page 497 exercise 9.17&nbsp; Explain the representation of the
+Bar object for code in both Java and C++.<br>
+<br>
+  </li>
+  
+  <li>page 498 exercise 9.21.&nbsp; Explain your answer for both Java
+and C++.<br>
+</li>
+</ol>
+For the TEST make sure you understand Vtables.
+  
+<ol style="list-style-type: lower-alpha;">
+
+
+  
+  
+  
+</ol>
+<br>
+Fun example:<span class="fnt0"></span><br>
+<span class="fnt0"></span><span class="fnt0"><font size="3">
+</font></span><span class="fnt0">1) Save file&nbsp; -- </span><span class="fnt0"><font size="3">http://mauke.ath.cx/stuff/poly.html</font></span><br>
+
+<span class="fnt0">2) Look at the source code.&nbsp; It is <font size="3">a multi-linguistic source file.&nbsp; <br>
+3) If you have the languages installed then you can<br>
+</font>
+<div style="margin-left: 40px;"><font size="3">python poly.html<br>
+ruby poly.html<br>
+perl poly.html<br>
+bash poly.html</font></div>
+</span><br>
+
+<ol>
+
+  <dl>
+  </dl>
+</ol>
+
+<br>
+
+
+</body></html>

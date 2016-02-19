@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us"><head><title>Scott's Chap 7 &amp; 8 &amp; 9</title>
+
+  
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head">
+
+  
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+
+  
+  <meta name="GENERATOR" content="LibreOffice 3.5  (Linux)">
+
+  
+  <style type="text/css"><!--
+		H3.cjk { font-family: "WenQuanYi Micro Hei" }
+		H3.ctl { font-family: "Lohit Hindi</style></head><body>
+<div style="text-align: center;">
+<h3>Homework Assignment 9</h3>
+</div>
+
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span>
+<ul>
+
+  <ul>
+    <ul>
+    </ul>
+  </ul>
+</ul>
+
+<ul>
+
+  <ul>
+  </ul>
+</ul>
+
+<h3>Due WED., Apr 1 *End of Day *
+</h3>
+
+Please write you answers short and to the point.
+&nbsp;
+<ol>
+
+  <dl>
+  </dl>
+  <li>Discuss the tradeoff between macro, inline function and
+function in C. &nbsp;Cover a comparision of speed, space and type
+checking of
+each. Also answer exercise 6.31 page 284.<span style="font-family: monospace;"><br>
+    </span></li>
+  <ol style="list-style-type: lower-alpha;">
+    <dt><br>
+    </dt>
+  </ol>
+  <li>Given the following C++ declaration,</li>
+  <ol style="list-style-type: lower-alpha;">
+    <dd><span style="font-family: monospace;">double*
+dp = new double(3);<br>
+void* vp;<br>
+int* ip;</span></dd>
+    <dt>which of the following assignments does the compiler
+complain about?</dt>
+    <dd><span style="font-family: monospace;"><br>
+vp = dp;<br>
+dp = vp; <br>
+ip = dp; <br>
+dp = ip;<br>
+ip = vp;<br>
+      <br>
+ip = (int*) vp;<br>
+ip = static_cast&lt;int*&gt;(vp);<br>
+ip = </span><span style="font-family: monospace;">static_cast&lt;int*&gt;(dp);<br>
+ip = reinterpret_cast&lt;int*&gt;(dp);<br>
+      <br>
+      </span></dd>
+    <dt>Briefly explain the behavior of the compiler.
+&nbsp;Will *ip ever have the value 3 after one of the assignments
+to <span style="font-style: italic;">ip </span>?<br>
+    </dt>
+  </ol>
+  <dt><br>
+  </dt>
+  <li>page 378 exercise 7.20 (<a href="http://unixwiz.net/techtips/reading-cdecl.html">Reading
+C type declarations</a>)<br>
+    <br>
+  </li>
+  <li>Suppose this C++ code</li>
+  <ol style="list-style-type: lower-alpha;">
+    <ol>
+      <br>
+      <dd><span style="font-family: monospace;">const
+int k = ???; // you need to figure out the value of ???</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">int * i = 0;</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">struct A {</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int x[k];</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">};</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">A*
+a = 0; </span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">printf(
+"%d&nbsp;
+%d&nbsp;
+%d %d&nbsp; %d&nbsp; %d &nbsp;",</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;i+1, i+k, k, a+k,
+&amp;(a[9]),</span><span style="color: rgb(204, 0, 0); font-family: monospace;"> </span><span style="font-family: monospace;">&amp;(a[9])
+- (a+1)&nbsp;
+);</span></dd>
+    </ol>
+    <dt>outputs the values for the first two expressions<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: bold; font-family: monospace;">4, 20 </span><br>
+What are its remaining outputs? &nbsp;Briefly explain how the
+output is obtained. &nbsp;(Hint: pay attention to coercion.)</dt>
+    <ol>
+    </ol>
+    <dl>
+      <dd><br>
+        <br>
+      </dd>
+    </dl>
+  </ol>
+  <li>Consider the following function definition using C syntax:</li>
+  <ol style="list-style-type: lower-alpha;">
+    <dd style="font-weight: bold;"><span style="font-family: monospace;">twice
+(x) {</span></dd>
+    <dd style="font-weight: bold;"><span style="font-family: monospace;">&nbsp;
+&nbsp;return x * 2;<br>
+}</span></dd>
+    <br>
+    <br>
+What is the result of the&nbsp;invocation <span style="font-style: italic; font-family: monospace; text-decoration: underline;">twice
+    </span><span style="font-family: monospace; text-decoration: underline;">( 5 + 7 )</span><span style="font-style: italic; font-family: monospace;"> </span>
+assuming
+the following parameter passing mechanism :<br>
+    <li>by value.</li>
+    <li>by&nbsp;macro expansion.</li>
+    <br>
+    <span style="font-family: monospace;"></span>
+  </ol>
+  <li>(worth 20 pts) Consider the following code snippet in C syntax:<br>
+    <br style="font-weight: bold;">
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <dl style="font-family: monospace;">
+      <dd style="font-weight: bold;">int i=0; </dd>
+      <dd style="font-weight: bold;">int A[4]= { 3, 2, 1, 0 }; </dd>
+      <dd style="font-weight: bold;">&nbsp; </dd>
+      <dd style="font-weight: bold;">void f(int x, int y) { </dd>
+      <dd style="font-weight: bold;">&nbsp; &nbsp; &nbsp;x = x - 1; </dd>
+      <dd style="font-weight: bold;">&nbsp; &nbsp; &nbsp;y = y + x +
+A[0]; </dd>
+      <dd style="font-weight: bold;">} </dd>
+      <dd style="font-weight: bold;">&nbsp; </dd>
+      <dd><span style="font-weight: bold;">f(A[i++],A[i]);</span><br>
+        <br>
+      </dd>
+    </dl>
+    <dt>For each of the following parameter-passing mechanisms, say
+what the final values in the array <span style="font-style: italic;">A</span>
+would be after the call to <span style="font-style: italic;">f</span>().&nbsp;&nbsp;
+Show how you determined the answer.&nbsp;&nbsp; There may be more than
+one correct answer.</dt>
+    <li>By value.</li>
+    <li>By reference.</li>
+    <li>By value-result.</li>
+    <li>By macro expansion.</li>
+    <li>By Name.<br>
+      <br>
+    </li>
+  </ol>
+  <li>page 497 exercise 9.17 <br>
+  </li>
+  <br>
+<li>  page 498 exercise 9.21. In addition, explain why this isn't an issue for Java.<br>
+
+     </li>
+</ol>
+
+
+
+
+-----------------------------------------------------------------------------------------------------<br>
+When you study chapter 9:<br>
+<div style="margin-left: 40px;">Understand the language design issues related to constructors.<br>
+
+
+Understand V-tables --especially how it works in C++.<br>
+
+
+The need for both generics and subtyping/dynamic binding.<br>
+
+
+Understand tradeoffs in the design of generics as illustrated by Java,
+C++ and C#.<br>
+</div>
+
+
+-----------------------------------------------------------------------------------------------------<br>
+
+
+&nbsp;
+  <br>
+
+
+An interesting example<span class="fnt0"></span><br>
+
+
+  <span class="fnt0"></span><span class="fnt0">1) Save file&nbsp; -- </span><span class="fnt0"></span><font size="3"><a href="../../../%7Ehead/CS471/poly.html">http://bingweb.binghamton.edu/~head/CS471/poly.html</a></font><span class="fnt0"><font size="3"><br>
+&nbsp;&nbsp;&nbsp;&nbsp; This is a copy of </font></span><span class="fnt0"><font size="3">http://mauke.ath.cx/stuff/poly.html </font></span><span class="fnt0"><font size="3"><a href="../../../%7Ehead/CS471/poly.html"></a><br>
+  </font></span><span class="fnt0"><br>
+2) Look at the source code.&nbsp; It is <font size="3">a
+multi-linguistic source file.&nbsp; <br>
+  <br>
+3) If you have the languages installed then you can<br>
+  <br>
+  </font>
+  <div style="margin-left: 40px;"><font size="3">python poly.html<br>
+ruby poly.html<br>
+perl poly.html<br>
+bash poly.html</font></div>
+  </span><br>
+
+
+Here is some more interesting code:<br>
+
+
+  
+
+
+  <a href="http://en.wikipedia.org/wiki/Obfuscated_code">Obfuscated code</a><br>
+
+<br>
+</body></html>

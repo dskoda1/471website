@@ -1,0 +1,199 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+   <title>Variables -- Examples from C</title>
+</head>
+<body text="#000000" bgcolor="#FFFFF9" link="#660000" vlink="#660000" alink="#990000">
+<font size=-2>Final Sunday, Feb 25 noon</font><a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 6 Due March 2, 2001</h4>
+Purpose: To review by example the binding time of a variable with its attributes.
+<p>Read Chapters:
+<blockquote>Scott: Pages 105-146, 320-351, 382-392
+<br>Any reliable sources on C, C++ and Java.&nbsp; Good online resources
+<a href="http://bingweb.binghamton.edu/~head/CS471/Reference471.html">listed</a>.</blockquote>
+
+<h3>
+<b>Written Assignment:</b></h3>
+
+<ol>
+<li>
+Page 158 exercise 3.1</li>
+
+<li>
+Page 158 exercise 3.5</li>
+
+<li>
+Page 160 exercise 3.11</li>
+
+<li>
+In Ansi C the keyword <b><i>static</i></b> has two different semantics
+depending on where it is used. (See Code below).&nbsp; What does <b><i>static</i></b>
+mean in both settings?</li>
+
+<li>
+<font color="#000000">The following&nbsp; C code is in a single file.&nbsp;
+(Fill in the table below)</font></li>
+
+<br><font color="#000000">For the following four variable,<b> <i>COUNTS,
+x </i>(<i>line 4</i>)<i>, x
+</i>(<i>line 6</i>), x (<i>line 9</i>);</b></font>
+<ol TYPE=a>
+<li>
+<font color="#000000">During what phase is the type bound ? (Phase is link,
+compile, runtime, load, language implementation, language definition --etc)</font></li>
+
+<li>
+<font color="#000000">During what phase is the r-value bound ?</font></li>
+
+<li>
+<font color="#000000">During what phase is the l-value bound?</font></li>
+
+<li>
+<font color="#000000">What is the scope? (use line numbers)</font></li>
+
+<li>
+<font color="#000000">What is the lifetime? (Entire execution, </font><font color="#FF0000">xFun</font><font color="#000000">(
+), fun1( )) </font><font color="#FF0000">(Note that an object identifiers
+and&nbsp; function identifiers are in the same name space, therefore my
+original code would not compile.)</font></li>
+
+<ol TYPE=a>
+<hr WIDTH="100%"></ol>
+<b><tt><font color="#000000">#define COUNTS 100&nbsp;&nbsp; /* line 1 */</font></tt></b>
+<br><b><tt><font color="#000000">int fun1(){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 2 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; static int x=0; /*
+line 3 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; return x++;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 4 */</font></tt></b>
+<br><b><tt><font color="#000000">}</font></tt></b>
+<br><b><tt><font color="#000000">static int x;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 6 */</font></tt></b>
+<br><b><tt><font color="#000000">int </font><font color="#FF0000">xFun</font><font color="#000000">()
+{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* line 7 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; int x =5;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 8 */</font></tt></b>
+<br><b><tt><font color="#000000">&nbsp;&nbsp;&nbsp; return COUNTS + x ;
+/* line 9 */</font></tt></b>
+<br><b><tt><font color="#000000">}</font></tt></b>
+<table BORDER COLS=5 WIDTH="80%" BGCOLOR="#FFF9F2" >
+<tr ALIGN=CENTER VALIGN=CENTER BGCOLOR="#FFFF99">
+<td>&nbsp;</td>
+
+<td><font color="#000000">COUNTS</font></td>
+
+<td><font color="#000000">x (line 4)</font></td>
+
+<td><font color="#000000">x (line 6)</font></td>
+
+<td><font color="#000000">x (line 9)</font></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">type bound</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">r-value bound</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">l-value bound</font></td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">scope</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">lifetime</font></td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td><font color="#000000">&nbsp;</font></td>
+
+<td>&nbsp;</td>
+</tr>
+</table>
+</ol>
+
+<li>
+<font color="#000000">Following the </font><font color="#CC0000">definition
+of&nbsp; binding a name with its value</font><font color="#000000"> , specify
+the time and stability of the binding between C <tt>const </tt>variable
+and its value.</font></li>
+
+<ol>&nbsp;</ol>
+
+<li>
+<font color="#000000">Following the </font><font color="#FF0000">definition
+of&nbsp; binding a name with its value</font><font color="#000000">, specify
+the time and stability of the binding between C++ <tt>const </tt>variable
+and its value.&nbsp; What is the difference between the meaning of <tt>const
+in </tt>C and C++?&nbsp; Can you come up with an example were this difference
+causes code to compile in C++ and not in C?</font></li>
+
+<ol>&nbsp;</ol>
+
+<li>
+<font color="#000000">What is void * ? Why have it? void * is not exactly
+the same in C and C++. Provide an example that will illustrate the difference
+between C and C++.</font></li>
+
+<br>&nbsp;
+<li>
+<b>I</b>n C++, what is the difference between taking the address (via operation
+&amp;) of a pointer and of a reference? (You can just write a little test
+program in C++)</li>
+</ol>
+
+<ol START=6>
+<ol>&nbsp;</ol>
+
+<ol>
+<ol TYPE=A>
+<ol>&nbsp;</ol>
+</ol>
+</ol>
+</ol>
+
+</body>
+</html>

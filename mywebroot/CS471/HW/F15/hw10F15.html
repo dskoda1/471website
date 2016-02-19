@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us"><head><title>Scott's Chap 8 &amp; 9</title>
+
+  
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head"></head><body>
+<div style="text-align: center;">
+<h3>Homework Assignment 10<br>
+</h3>
+</div>
+
+
+<h3>Assignment due <br>
+</h3>
+
+Reading:<br>
+
+Chap 8 - READ 383-410, 418-427<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-12,13-25, 34,35<br>
+
+Chap 9 - all<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-11,14-17,20,23,25,26,29, 31-33,
+35-36, 38, 39-41,43<br>
+
+<br>
+
+Please write you answers short and to the point.&nbsp;
+This can be done in a team of up to 3 members.<br>
+<ol>
+
+  <dl>
+  </dl>
+  
+
+
+<li>Page 443 exercise 8.14 Provide details on how you arrive
+at
+your answer.<br>
+<br>
+</li><li>Consider the following function/macro definition in C:<br>
+<br>
+</li>
+<ol>
+<dd style="font-weight: bold;"><span style="font-family: monospace;">#define
+SQUARE(x) x*x<br>
+int squaref (int x) {</span></dd>
+<dd><span style="font-family: monospace;"><span style="font-weight: bold;">&nbsp;
+&nbsp;return x * x;</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">}</span><br style="font-weight: bold;">
+<br>
+</span></dd>
+</ol>
+<dt>Assume a = 3. <br>
+</dt>
+<br>
+<ol style="list-style-type: lower-alpha;">
+<li>What is the result of the&nbsp;invocation of squaref(a) ?
+(Assume pass by value semantics.)</li>
+<li>What is the computed result&nbsp; of SQUARE(a)?&nbsp;&nbsp;
+(Macro expansion.)<br>
+</li>
+<li>Give an example where squaref(x) and SQUARE(x) compute
+different values.<br>
+</li>
+</ol>
+<dl>
+<br>
+<span style="font-family: monospace;"><br>
+</span>
+<li>Consider the following code snippet in C-like syntax:</li>
+<dl style="font-family: monospace;">
+<dd>i<span style="font-weight: bold;">nt A[3];</span><br style="font-weight: bold;">
+<br style="font-weight: bold;">
+<span style="font-weight: bold;">int runit(){</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; i = 1;</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; A[0] = 2;</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; A[1] = 1;</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; A[2] = 0;</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; mys(i,a[i]);</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; print(i, a[0],
+a[1], a[2]);</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; mys(a[1],a[i]);</span><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp;&nbsp; print(i, a[0],
+a[1], a[2]);</span></dd>
+<dd style="font-weight: bold;">&nbsp;&nbsp; return 0;</dd>
+<dd style="font-weight: bold;">}</dd>
+<dd style="font-weight: bold;">void mys(int x, int y){</dd>
+<dd style="font-weight: bold;">&nbsp;&nbsp; x = x + y;<br>
+&nbsp;&nbsp; y = x - y;<br>
+&nbsp;&nbsp; x = x - y;</dd>
+<dd style="font-weight: bold;">}</dd>
+</dl>
+<ol>
+<dd><span style="font-family: monospace;"><br>
+</span></dd>
+</ol>
+<dt>What is the printout of <span style="font-style: italic;">runit</span>()&nbsp;
+assuming each of the following parameter-passing mechanisms.<span style="font-style: italic;">&nbsp; </span>Show
+how you determined the answer.&nbsp;&nbsp; There may be more
+than one
+correct answer.</dt>
+<ol style="list-style-type: upper-alpha;">
+<li>By value.</li>
+<li>By reference.</li>
+<li>By value-result.</li>
+<li>By macro expansion.</li>
+<li>By name.</li>
+</ol>
+<br>
+<br>
+</dl>
+
+  <li>page 497 exercise 9.17&nbsp; Explain the representation of the
+Bar object for code in both Java and C++.<br>
+    <br>
+  </li>
+  <li>page 498 exercise 9.21. In addition, explain why this isn't an
+issue for Java.<br>
+    <br>
+  </li>
+  <li>&nbsp; Compare and contrast -- using nested <span style="font-style: italic;">if statements</span>, <span style="font-style: italic;">Enums</span> and the <span style="font-style: italic;">template method pattern.</span></li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Briefly explain the difference between Enums in Java, C and C++.</li>
+    <li><a href="HW10/HW10.zip">HW10.zip</a> (<a href="HW10/HW10.tar.gz">HW10.tar.gz</a>)
+contain 3 Java Programs that calculates a simple tax return.&nbsp; The
+"if" version is a modification of code in from HORSTMANN: Big Java,
+John Wiley &amp; Son, the Enum and Temple method are Prof. Lander's
+modifications.&nbsp; Briefly explain how the "template method" executes.<br>
+    </li>
+    <li>What are pluses and misses of the three different
+implementations.&nbsp; <br>
+      <br>
+    </li>
+  </ol>
+</ol>
+
+-----------------------------------------------------------------------------------------------------<br>
+
+Understand the language design issues related to constructors.<br>
+
+Understand V-tables --especially how it works in C++.<br>
+
+The need for both generics and subtyping/dynamic binding.<br>
+
+Understand tradeoffs in the design of generics as illustrated by Java,
+C++ and C#.<br>
+
+-----------------------------------------------------------------------------------------------------<br>
+
+&nbsp; <br>
+
+<br>
+
+An interesting example<span class="fnt0"></span><br>
+
+<span class="fnt0"></span><span class="fnt0">1) Save file&nbsp; -- </span><span class="fnt0"><font size="3">http://mauke.ath.cx/stuff/poly.html<br>
+&nbsp;&nbsp;&nbsp;&nbsp; My copy of this file can be is at:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/poly.html">http://bingweb.binghamton.edu/~head/CS471/poly.html</a><br>
+</font></span><span class="fnt0"><br>
+2) Look at the source code.&nbsp; It is <font size="3">a
+multi-linguistic source file.&nbsp; <br>
+<br>
+3) If you have the languages installed then you can<br>
+<br>
+</font>
+<div style="margin-left: 40px;"><font size="3">python poly.html<br>
+ruby poly.html<br>
+perl poly.html<br>
+bash poly.html</font></div>
+</span><br>
+
+Here is some more interesting code:<br>
+
+<ol>
+
+  <dl>
+  </dl>
+</ol>
+
+<a href="http://en.wikipedia.org/wiki/Obfuscated_code">Obfuscated code</a><br>
+
+<br>
+
+</body></html>

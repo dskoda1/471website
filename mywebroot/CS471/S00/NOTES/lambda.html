@@ -1,0 +1,348 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Head/ Lander">
+   <meta name="GENERATOR" content="Mozilla/4.61 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="CS471 spr 97">
+   <title>Foundation of Functional Programming</title>
+</head>
+<body text="#000000" bgcolor="#C0C0C0" link="#00FF00" vlink="#FFFFFF" alink="#FF0000">
+
+<center><i><u><font size=+3>Why Study Functional Languages?</font></u></i></center>
+
+<p>Research began in the 1960s to prove things about programs. Areas that
+were studied were:
+<ul TYPE=SQUARE>
+<li>
+How to prove a program is correct.</li>
+
+<li>
+Given the same input prove different code computes the same results.</li>
+
+<li>
+Prove one program is faster than another.</li>
+
+<li>
+A given program will always terminate.</li>
+</ul>
+This lead researchers to analyze why it is harder to prove things about
+programs written in traditional languages than it is to prove theorems
+about mathematics.
+<p>
+<hr WIDTH="100%">
+<p>What are the two features of traditional languages that don't correspond
+to the mathematical language?
+<ul TYPE=SQUARE>
+<li>
+The truth or falsity of mathematical statements is a property of the statement.
+Variables are not mutable, whereas programming languages have variables
+whose content can be changed at any time. Programming variables are mutable.</li>
+
+<li>
+A mathematical proof is static. The order of facts in a proof is not important
+as long as the terms are defined. A program is a description of a dynamic
+process. Sometimes the order matters and other times it does not. To fully
+describe an executing program you not only need the "code" you also need
+a copy of the stack, global and static variables, and a copy of the input.</li>
+</ul>
+
+<hr WIDTH="100%">
+<p>Functional languages are a class of languages that attempt to eliminate
+these two problems and are the focus of our study for the next few weeks.
+These languages use lambda calculus as a starting point for their development.
+<p>Lambda calculus syntax is awkward to use. There is no concept of "types"
+in lambda calculus.
+<p>The earliest practical functional language was LISP. (Common LISP and
+Scheme are two important descendants.) There are features in LISP that
+do not fully conform to the semantics of lambda calculus.
+<p>In the late 1970s, a new family of languages, <i>pure functional languages</i>,
+was developed that implements the lambda calculus semantics more closely.
+Haskell, Miranda and ML are included in this family. Lambda calculus was
+extended to handle types.
+<p>
+<hr WIDTH="100%">
+<p>Common Features of all Functional Languages:
+<ul TYPE=SQUARE>
+<li>
+Functions are first class objects.</li>
+
+<li>
+Conditional expressions are used vs conditional statements.</li>
+
+<li>
+Repetition is done implicitly by recursion.</li>
+
+<ul TYPE=SQUARE>
+<li>
+There are no explicit loops.</li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<hr WIDTH="100%">
+<p>Key Differences between Pure Functional Languages and LISP-like Languages:
+<ul TYPE=SQUARE>
+<li>
+No destructive assignments.</li>
+
+<li>
+Complete absence of statement sequences.</li>
+
+<li>
+Use of lazy parameter evaluation.</li>
+</ul>
+
+<hr WIDTH="100%">
+<p>Before launching into Haskell, we will have brief overview of lambda
+calculus (without the Type theory.)
+<p><font size=+1>49 <i>Lambda calculus</i></font>
+<p>Alonzo Church (1951) introduced lambda calculus as a model of computation,
+which is equivalent to computation by Turing Machines.
+<p>A lambda abstraction has the form (<font face="Symbol">l</font> <i>x</i>.
+* <i>x</i> <i>x</i>) where <i>x</i> is a variable which is <i>bound</i>
+by lambda.
+<br>&nbsp;
+<br>&nbsp;
+<p><a NAME="50"></a><font size=+1>50 </font>The body of the function is
+also the scope of the binding for <i>x</i>.
+<p>A variable that is not bound is called <i>free</i>.
+<p>Thus <i>x</i> is bound and <i>y</i> is free in
+<br>(<font face="Symbol">l</font> <i>x</i>. + <i>x</i> <i>y</i>)
+<p><a NAME="51"></a>51 We might have lambda abstractions with more than
+one variable:
+<br>(<font face="Symbol">l</font>&nbsp;<i> y</i>. (<font face="Symbol">l</font>&nbsp;<i>
+x</i>. + <i>x y</i>))
+<p>Here <i>x</i> and <i>y</i> are both <i>bound,</i> but by different <i>lambdas</i>.
+<p><a NAME="52"></a>52 Such expressions can be evaluated when they are
+given arguments:
+<br><tt>(</tt><font face="Symbol">l</font>&nbsp;<tt><i> x</i>. * <i>x x</i>
+) 7</tt>
+<br><tt>=> (* 7 7)</tt>
+<br><tt>=> 49</tt>
+<br>(<font face="Symbol">l</font> <i>y</i>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; (<font face="Symbol">l </font><i>x</i>.+ <i>x
+y</i>))3
+<br>=> ((<font face="Symbol">l</font> <i>x</i>. + <i>x</i> 3))
+<br>whereby a function is evaluating to another function and
+<br>(<font face="Symbol">l </font><i>x</i>. + <i>x</i> 3 ) 1
+<br>=> (+ 1 3)
+<br>=> 4
+<br>Hence:
+<br><tt>(</tt><font face="Symbol">l</font> <tt><i>y</i>.</tt>
+<br><tt>&nbsp; (</tt><font face="Symbol">l</font> <tt><i>x</i>. + <i>x
+y</i>)) 3 1</tt>
+<br><tt>=> 4</tt>
+<br><a NAME="53"></a>53 This sequence of two functions, each function taking
+one variable, is equivalent to the function of two variables. The expression
+(+ 2) has a value as a function that adds 2 to any value.
+<br><tt>((+ 2) 3) = (+ 2 3) -> 5</tt>.
+<p>Turning functions of many variables into sequences of functions, each
+of one variable, is called <i>currying. </i>This term comes from American
+mathematician, <b>HASKELL</b> B. Curry, who popularized its use in the
+1950s.
+<p><a NAME="54"></a><font color="#00FF00">54</font> There are very precise
+rules for transforming lambda expressions. The historical names for the
+rules are "alpha-conversions", "beta-conversions" and "eta-conversions".
+<br>&nbsp;
+<p><b>Beta-conversions</b> are rules for <b>function application</b> (substitution).
+By substituting 2 for <i>x </i>we get
+<br>(( <font face="Symbol">l</font>&nbsp;<i> x.</i> + <i>x </i>1) 2) is
+equivalent to ( + 2 1) .
+<p><b>Alpha conversions</b> (renaming) are for handling variable names
+in different scopes. Consider
+<br>( <font face="Symbol">l</font>&nbsp;<i> x.</i> (<i> </i><font face="Symbol">l</font>&nbsp;<i>
+y.</i> + <i>x y </i>) <i>y </i>)
+<p><b>Name capture </b>problem: The first occurrence of <i>y </i>is bound
+while the second is free. If we carelessly replace <i>x </i>by <i>y</i>
+we get the incorrect reduction:
+<br>(<i> </i><font face="Symbol">l</font>&nbsp;<i> y.</i> + <i>y y</i>
+)
+<p>Using alpha reduction rules which allows us to change variable names
+we get the correct reduction:
+<br>( <font face="Symbol">l</font>&nbsp;<i> x.</i> (<i> </i><font face="Symbol">l</font>&nbsp;<i>
+y.</i> + <i>x y </i>) <i>y </i>)
+<br>=> ( <font face="Symbol">l</font>&nbsp;<i> x.</i> (<i> </i><font face="Symbol">l</font>&nbsp;<i>
+z.</i> + <i>x z </i>) <i>y </i>)
+<br>=> ( <font face="Symbol">l</font>&nbsp;<i> z.</i> + <i>y z </i>)
+<br>&nbsp;
+<p><b>Eta conversions </b>are used to eliminate "redundant" lambda abstractions.
+<p><a NAME="55"></a><font color="#00FF00">55 </font>The order that the
+beta reductions are applied to a lambda abstraction can have an effect
+on the final result.
+<p>Application-Order (pass by value):
+<br>(( <font face="Symbol">l</font>&nbsp;<i> x. </i>* <i>x x </i>) ( +
+2 3))
+<br>=> (( <font face="Symbol">l</font>&nbsp;<i> x. </i>* <i>x x </i>) 5)
+<br>=> ( * 5 5)
+<br>=> 25
+<p>Normal Order (pass by name/lazy evaluation):
+<br>(( <font face="Symbol">l</font>&nbsp;<i> x. </i>* <i>x x </i>) ( +
+2 3))
+<br>=> (* (+ 2 3 )( + 2 3))
+<br>=> (* 5 5)
+<br>=> 25
+<p>Now consider :
+<br>(( <font face="Symbol">l</font>&nbsp;<i> y. </i>2)( <font face="Symbol">l</font>&nbsp;<i>
+x. </i>* <i>x x </i>) ( <font face="Symbol">l</font>&nbsp;<i> x. </i>*
+<i>x
+x </i>) ))
+<p>Beta reduction on (( <font face="Symbol">l</font>&nbsp;<i> x. </i>*
+<i>x
+x </i>) ( <font face="Symbol">l</font>&nbsp;<i> x. </i>* <i>x x </i>) )
+goes into "an infinite loop". Thus, if you attempt an application-order
+evaluation on (( <font face="Symbol">l</font>&nbsp;<i> y. </i>2)( <font face="Symbol">l</font>&nbsp;<i>
+x. </i>* <i>x x </i>) ( <font face="Symbol">l</font>&nbsp;<i> x. </i>*
+<i>x
+x </i>))) the result is undefined.
+<p>However, using normal order evaluation on (( <font face="Symbol">l</font>&nbsp;<i>
+y. </i>2)( <font face="Symbol">l</font>&nbsp;<i> x. </i>* <i>x x </i>)
+( <font face="Symbol">l</font>&nbsp;<i> x. </i>* <i>x x </i>))) we get
+the value 2.
+<br>&nbsp;
+<p>The<b> Church-Rosser Theorem</b>&nbsp; proves that lambda expressions
+can always be reduced using normal order to a normal order form that cannot
+be reduced further. This gives us a way to compare functions. A practical
+application implication is that functional language translators can substitute
+a function by a more efficient and equivalent function.
+<p><a NAME="54"></a>56 Another interesting aspect of using <i>lambda</i>
+notation is finding a definition for a recursive function.
+<p>Consider
+<pre>fact(n) <u>=</u> if n = 0&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then 1&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else n*fact(n-1)</pre>
+<a NAME="55"></a>57 We cannot write the function as
+<br>( <font face="Symbol">l</font> <i>n</i>.
+<br>&nbsp; (<i>if</i> (<i>n</i> = 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+<br>&nbsp;&nbsp;&nbsp;&nbsp; (* <i>n</i> (<i>fact</i> (- <i>n</i> 1)))))
+<br>because <i>fact</i> is now meaningless, it does not refer back to the
+function being defined since that has no name!
+<p><a NAME="56"></a>58 The solution is to introduce a higher level function
+corresponding to fact:
+<br>Hfact =
+<br>&nbsp; (<font face="Symbol">l</font>F.
+<br>&nbsp;&nbsp;&nbsp; (<font face="Symbol">l</font> n.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (if (n = 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (* n (F (- n 1))))))
+<br><a NAME="57"></a>59 At one level <tt>Hfact</tt> is a function that
+takes functions to other functions:
+<p>if <tt>g = Hfact g1 </tt>then
+<br>g = ( <font face="Symbol">l</font>n.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (if (n = 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (* n (g1 (- n 1)))))
+<br>and if <tt>g1 = ( </tt><font face="Symbol">l</font> <tt>x. E)</tt>
+for some expression <tt>E</tt> then
+<br>g = ( <font face="Symbol">l</font>n.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (if ( n = 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (* n (( <font face="Symbol">l</font>
+x. E)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(- n 1)))))
+<br>
+<hr WIDTH="100%">
+<hr WIDTH="100%">
+<br><a NAME="58"></a><font color="#00FF00">60</font> Thus
+<br>Hfact ( <font face="Symbol">l</font>x. E) =
+<br>( <font face="Symbol">l</font>n.
+<br>&nbsp; ( if (n = 0)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (* n (( <font face="Symbol">l</font>x.
+E)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(- n 1)))))
+<br>The function <tt>Hfact</tt> can be applied to any function <i>f</i>
+and number <i>n</i>:
+<pre>Hfact ( <font face="Symbol">l</font>x. * x x ) 7
+=> ( <font face="Symbol">l</font>n.
+&nbsp;&nbsp;&nbsp; (if (n = 0) 1&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; (* n (( <font face="Symbol">l</font> x. * x x )
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (- n 1))))) 7
+=> ( <font face="Symbol">l</font>n.
+&nbsp;&nbsp;&nbsp; (if (n = 0) 1&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; (* n (* (- n 1) (- n 1))))) 7
+=> (if (7 = 0) 1&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; (* 7 (* (- 7 1) (- 7 1))))
+=> (* 7 (* 6 6))
+=> 252</pre>
+<a NAME="59"></a>61&nbsp; Now suppose G is some function such that <tt>Hfact
+G = G</tt> then we should have
+<pre>G n = Hfact G n&nbsp;
+&nbsp;&nbsp;&nbsp; = (if (n = 0)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (* n (G (- n 1))))</pre>
+Miraculously G <i>is</i> the function <tt>fact</tt>.
+<p><a NAME="60"></a><a href="http://watson2.cs.binghamton.edu/~ehead/lander's files/60.htm" target="num_window">62</a>
+Generally, in <i>lambda</i> calculus, recursive functions appear as fixed
+points of higher order functions.
+<p>The concept of a function or an operation as a fixed "point" of a higher
+order function provides the mechanism to give a mathematically sound definition
+of both recursive functions and the "loop" construct in imperative programs.
+<p>The references gives a much more thorough introduction to lambda calculus.
+<p><a NAME="61"></a>63 Kogge shows how to define constructs like "if" in
+<i>lambda</i>
+calculus:
+<p>First define <tt>true</tt> and <tt>false</tt>:
+<pre>true = T = <font face="Symbol">l</font>x.(<font face="Symbol">l</font>y. x)
+false = F = <font face="Symbol">l</font>x.(<font face="Symbol">l</font>y. y)</pre>
+Consider the expression ABC, where B and C are arbitrary expressions and
+A is either true or false.
+<p><a NAME="62"></a>64 To see how this works,
+<pre>if A=T then ABC&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; <u>=</u> (<font face="Symbol">l</font>x.(<font face="Symbol">l</font>y. x)) B C
+&nbsp;&nbsp;&nbsp;&nbsp; => (<font face="Symbol">l</font>y. B) C
+&nbsp;&nbsp;&nbsp;&nbsp; => B
+
+
+
+
+<hr WIDTH="100%">
+
+<hr WIDTH="100%"></pre>
+<a NAME="63"></a>65 We shows how to express integers as lambda abstractions.&nbsp;
+We define what integer 0 looks like and a function <i>successor</i> that
+is applied recursively <i>k</i>+1 times to produce the <i>k</i>'s integer.&nbsp;
+Therefore each integer in lambda calculus is in fact a function.
+<p>zero = <font face="Symbol">l</font> f&nbsp; . <font face="Symbol">l</font>
+x . x
+<br>successor = <font face="Symbol">l</font> n. <font face="Symbol">l</font>
+f. <font face="Symbol">l</font> x ( f (( n f ) x ) ).
+<br>one =&nbsp; <font face="Symbol">l</font> f. <font face="Symbol">l</font>
+x ( f x)
+<br>two =&nbsp; <font face="Symbol">l</font> f. <font face="Symbol">l</font>
+x ( f (f x))
+<p>one = "successor zero"
+<br>one = <font face="Symbol">l</font> n. <font face="Symbol">l</font>
+f. <font face="Symbol">l</font> x ( f (( n f ) x ) ) (<font face="Symbol">l</font>
+f&nbsp; . <font face="Symbol">l</font> x . x)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => <font face="Symbol">l</font> f. <font face="Symbol">l</font>
+x ( f ((&nbsp; (<font face="Symbol">l</font> f&nbsp; . <font face="Symbol">l</font>
+x . x) f ) x))
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =>&nbsp; <font face="Symbol">l</font>
+f. <font face="Symbol">l</font> x ( f (( <font face="Symbol">l</font> x
+. x) x))
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; => <font face="Symbol">l</font> f. <font face="Symbol">l</font>
+x ( f x)
+<br>&nbsp;
+<p>Addition can be defined as
+<br>&nbsp;&nbsp;&nbsp;&nbsp; <font face="Symbol">l</font> w. <font face="Symbol">l</font>&nbsp;
+z. <font face="Symbol">l</font> y <font face="Symbol">l</font> x. ((wy)
+((xy) z)
+<br>and Multiplication can be defined as
+<br>&nbsp;&nbsp; <font face="Symbol">l</font> w. <font face="Symbol">l</font>&nbsp;
+z. <font face="Symbol">l</font> y&nbsp; w (zy)
+<p>These interpretations of booleans and positive integers in <i>lambda</i>
+calculus allow us to write functions such as&nbsp; <tt>Hfact&nbsp;</tt>
+(above)&nbsp; entirely in <i>lambda</i> notation.
+<p><font size=-2><u>References</u>:</font>
+<br><font size=-2>Fischer, Alice E. and Grodzinsky, Frances S. <i>The Anatomy
+of Programming Languages</i>, Prentice Hall 1993</font>
+<br><font size=-2>Kogge, Peter M <i>The Architecture of Symbolic Computers</i>,
+McGraw-Hill Series, 1991</font>
+<br><font size=-2>Louden, Kenneth C. <i>Programming Languages Principles
+and Practice</i>, PWS Publishing Company, 1993</font>
+</body>
+</html>

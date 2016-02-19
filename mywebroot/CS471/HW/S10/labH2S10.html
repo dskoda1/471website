@@ -1,0 +1,148 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="Author" content="Eileen Head">
+<meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]"><title>HW 11 Haskell</title></head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 249);" alink="#3333ff" link="#000099" vlink="#000099">
+<center>
+<h3> Lab 7<br>
+<span style="font-style: italic;">Apr. </span>29</h3>
+<div style="text-align: left;"><a href="Lab7S10.lhs">Lab7S10.lhs</a><br>
+</div>
+<br>
+
+</center>
+<ul>
+</ul><ol>
+
+</ol>
+1) Our example is the exponentiation function, which raises a
+number
+to a positive integer power. Here is a very simple implementation: <br>
+<dl>
+
+</dl>
+<ol>
+<span style="font-family: monospace;">&gt; power
+:: Integer
+-&gt; Integer -&gt; Integer&nbsp;&nbsp;</span>&nbsp;&nbsp;
+<br>
+<span style="font-family: monospace;">&gt; power a
+0 = 1&nbsp;</span>&nbsp;<span style="font-family: monospace;">&nbsp;&nbsp; <br>
+</span><span style="font-family: monospace;">&gt;
+power a b = a *
+power a (b-1)<br>
+<br>
+</span>
+</ol>
+<ol style="list-style-type: lower-alpha; margin-left: 40px;">
+<li>[10]Show the steps in the evaluation of the expression<span style="font-family: monospace; font-weight: bold;"> power 2 5</span>.&nbsp;&nbsp;
+How do the time and maximum space
+required by the
+evaluation of <span style="font-family: monospace;">power
+n k</span>
+depend on <span style="font-style: italic;">n </span>and
+<span style="font-style: italic;">k</span>?
+&nbsp;What is the time complexity of <span style="font-style: italic;">power?<br></span><br></li><li>[5]Experiment with Hugs (or ghci) to determine for approximately
+(±100) how large a value of <span style="font-style: italic;">k</span>
+the expression <span style="font-family: monospace; font-weight: bold;">power 17 k</span> can be
+evaluated. The symptoms of failure vary somewhat depending on the
+platform on which you&#8217;re running Hugs/GHCI&#8212; Hugs may
+report a
+stack overflow, or it may crash.<br>
+<br>
+</li>
+<li>[10]The cause of the limitation is the accumulation of
+pending
+multiplications, which is inherent in the way power is
+defined&#8212;
+each multiplication has to wait until its right argument has been
+evaluated.<br>
+</li>
+One way to eliminate the multiplication delay is to convert
+the function&#8217;s definition to a tail-recursive implementation:<br>
+<br>
+<span style="font-family: monospace;">&gt; powerT
+:: Integer -&gt;
+Integer -&gt; Integer</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&gt; powerT
+a b = trp b 1</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+where</span><span style="font-family: monospace;"></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+trp n p = if (n==0) then p else trp (n-1) (a*p)<br>
+</span><br style="font-family: monospace;">
+Show the steps in the evaluation of the expression <span style="font-family: monospace; font-weight: bold;">powerT 2 5</span>,
+making sure not to
+reduce any subexpression prematurely.&nbsp;&nbsp; <br>
+Does the space
+problem appear to be solved?<br>
+<br>
+<li>[5]Repeat the experiment for part (b)&nbsp; for <span style="font-family: monospace;">powerT.<br>
+<br>
+</span></li>
+
+<li>[5]Define <span style="font-family: monospace;">powerS
+</span>by
+modifing <span style="font-family: monospace;">powerT</span>
+to force
+the accumulator argument to be evaluated prematurely, using the
+operator ($!) as illustrated in <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#factS">factS</a><span style="font-family: monospace;">.</span>Repeat the
+experiment of part
+(b) using your version of powerS, demonstrating that Hugs no longer
+crashes at the same place as b.<br>
+<br>
+<br>
+</li>
+</ol>2) In Exercise 1 we improved power&#8217;s space
+performance, but
+all three versions take time linear in the exponent argument.<br>
+<br>
+<ol style="list-style-type: lower-alpha;">
+<li>[5]Confirm this by running power, powerT, and powerS on the
+largest exponent for which you&#8217;ve discovered that all three
+succeed. Have Hugs count the number of reduction steps by turning on
+the statistics flag: <br>
+<br>
+</li>
+<dl>
+<dd><span style="font-family: monospace;">Lab7S10&gt;
+:s +s <br>
+</span><br>
+</dd>
+</dl>
+<li>[5pt]Here is an algorithm which improves both time and
+space
+performance:</li>
+<dd style="margin-left: 80px;"><span style="font-family: monospace;"><br>
+&nbsp; &nbsp; &gt;
+turboPower a 0 = 1 <br>
+&nbsp; &nbsp; &gt; turboPower a b <br>
+&nbsp; &nbsp; &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| even b = turboPower
+(a*a) (b `div` 2) <br>
+&nbsp; &nbsp; &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise = a *
+turboPower a (b-1)</span></dd>
+<dd><span style="font-family: monospace;"></span><br>
+</dd>
+Instead of merely decrementing its first argument, this
+algorithm
+halves it whenever it is even, thereby reaching termination much more
+quickly. What is the complexity of this algorithm? Demonstrate it on
+the same arguments you used in part (a).<span style="font-family: monospace;"> </span><br>
+<span style="font-family: monospace;"></span><span style="font-family: monospace;"> <br>
+</span><li>[5]Repeat the calculation of Exercise 1b using
+turboPower. <br>
+</li>
+  <li>[10]Convert the algorithm used in turboPower to tail recursive form. Call the  definition turboTPower.<br>
+
+    <br>
+  </li>
+</ol>
+<br>
+</body></html>

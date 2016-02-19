@@ -1,0 +1,33 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.74 [en] (WinNT; U) [Netscape]">
+   <title>Ada Overloaded Operator Example -- Matrix Addition</title>
+</head>
+<body>
+<tt>TYPE&nbsp; Matrix_type
+is array(integer range &lt;>, integer range &lt;>) of integer;</tt><tt></tt>
+<p><tt>FUNCTION “+” (M, N : Matrix_type) RETURN Matrix_type IS</tt>
+<blockquote><tt>L1 : integer := M’FIRST(1);</tt>
+<br><tt>U1 : integer := M’LAST(1);</tt>
+<br><tt>L2 : integer := M’FIRST(2);</tt>
+<br><tt>U2 : integer := M’LAST(2);</tt>
+<br><tt>Temp : Matrix_type (L1..U1, L2..U2);</tt></blockquote>
+<tt>&nbsp; BEGIN</tt>
+<blockquote><tt>IF L1 /= N’FIRST(1) OR U1 /= N’LAST(1) OR</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+L2 /= N’FIRST(2) OR U2 /= N’LAST(2)</tt>
+<br><tt>THEN&nbsp; Raise Constraint_error;</tt>
+<br><tt>END&nbsp; IF;</tt><tt></tt>
+<p><tt>FOR&nbsp; J&nbsp; IN&nbsp; L1..U1&nbsp; LOOP</tt>
+<blockquote><tt>FOR&nbsp; K&nbsp; IN&nbsp; L2..U2&nbsp; LOOP</tt>
+<blockquote><tt>Temp(J, K) := M(J, K) + N(J, K);</tt></blockquote>
+<tt>END LOOP;</tt></blockquote>
+<tt>END LOOP;</tt></blockquote>
+<tt>RETURN&nbsp; Temp;</tt>
+<blockquote><tt></tt></blockquote>
+
+</body>
+</html>

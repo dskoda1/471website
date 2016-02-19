@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  
+  <title>Lazy Evaluation</title><meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head>
+
+<body>
+
+<center>
+<h3> Haskell 4&nbsp;</h3>
+</center>
+
+<h4> Propose:</h4>
+<ul>
+  <li>Understand why lazy evaluation works in functional languages<br>
+  </li>
+  <li> To illustrate a practical application lazy evaluation.</li>
+</ul>
+<center>
+<h4>
+<hr width="100%"></h4>
+</center>
+<h3></h3>
+<br>
+Some practice---<br>
+Review of recursion and list comprehension<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/PracticeS02LC.lhs">
+PracticeS02LC.lhs</a><br>
+<br>
+<p>A list comprehension can have more than one generator: <br>
+Define a function<tt> pyth</tt> that returns a list Pythagorean triple,
+i.e. (a,b,c) such that a^2 + b^2 = c^2. Use list comprehension. </p>
+<p><br>
+</p>
+<p>Define a function <tt>select </tt>that returns a list the meets a
+selection criteria. <br>
+&nbsp;&gt;<tt> select :: (a -&gt; Bool) -&gt; [a] -&gt; [a]</tt> </p>
+<p>&nbsp; <tt>...&gt;select (&lt;5) [1,2,8,3,5]</tt> <br>
+<tt>&nbsp;[1,2,3]</tt> <br>
+<tt>&nbsp;...&gt;select even [2,3,5]</tt> <br>
+<tt>&nbsp;[2]</tt> <br>
+&nbsp; </p>
+<h3>
+<hr align="left" noshade="noshade" size="4" width="100%"></h3>
+<h3> Parameter Passing Revisited</h3>
+<blockquote>Assume the following definitions using Haskell syntax:
+  <blockquote><tt>f x = (x+3)*(x/5)</tt> <br>
+    <tt>evaluating 2 + f(7 -2)</tt></blockquote>
+</blockquote>
+<ul>
+  <li> Applicative order evaluation (sometimes called innermost)</li>
+  <ol>
+    <li> Evaluate each argument</li>
+    <li> Substitute each argument's value for each occurrence of the
+corresponding parameter in the body</li>
+    <li> Evaluate the resulting expression</li>
+  </ol>
+  <ul>
+&nbsp; <br>
+    <tt>2 + f (7-2)</tt><br>
+    <tt>~&gt; 2 + f(5)</tt><br>
+    <tt>~&gt; 2 + (5+3)*(5/5)</tt><br>
+    <tt>~&gt; 2 + 8*(5/5)</tt><br>
+    <tt>~&gt; 2 + 8*1</tt><br>
+    <tt>~&gt; 2 + 8</tt><br>
+    <tt>~&gt; 10</tt><li> This is "call by value"</li>
+    <br>
+&nbsp;
+  </ul>
+  <li> Normal order evaluation (sometimes called outermost)</li>
+  <ol>
+    <li> Substitute each argument - <i>unevaluated- </i>for each
+occurence of the corresponding parameter in the body</li>
+    <li> Evaluate the resulting expression, evaluating each
+subexpression <i> only</i> when and <i>if</i>&nbsp; its value is <i>needed.</i></li>
+    <br>
+    <tt>2 + f (7-2)</tt><br>
+    <tt>~&gt; 2 + ((7-2)+3) *((7-2)/5)</tt><br>
+    <tt>~&gt; 2 + (5+3) *((7-2)/5)</tt><br>
+    <tt>~&gt; 2 + 8*((7-2)/5)</tt><br>
+    <tt>~&gt; 2 + 8*(5/5)</tt><br>
+    <tt>~&gt; 2 + 8*1</tt><br>
+    <tt>~&gt; 2 + 8</tt><br>
+    <tt>~&gt; 10</tt>
+  </ol>
+</ul>
+<h4> The Church-Rosser Theorem</h4>
+<ul>
+  <li> For any expression for which <i>applicative order evaluation
+and normal order evaluation</i> both succeed, they get the same results.</li>
+  <li> Do functions always return a value?</li>
+  <li>Bottom (_|_) denotes the "value" of an expression which does not
+return a value, <br>
+  </li>
+  <ul>
+    <li>either because it loops endlessly or because it aborts due to
+an error
+such as division by zero. </li>
+  </ul>
+  <li>A function is strict in an argument if</li>
+  <ul>
+    <li>f bottom = bottom</li>
+  </ul>
+  <h4> Normal Order vs Applicative order</h4>
+  <li> Normal order always succeed when applicative does</li>
+  <li> AND it succeeds for some expressions that applicative order fails</li>
+  <br>
+  <tt>Example:</tt><br>
+  <tt>f x y = x</tt><br>
+  <tt>f 7 (5/0)</tt><br>
+  <tt>Normal order ~&gt; 7</tt><br>
+  <tt>but applicative order fails</tt><li> The price of Normal order
+evaluation is additional computation.</li>
+  <br>
+  <tt>Example:</tt><br>
+  <tt>cube x = x * x * x</tt><br>
+  <tt>Evaluate cube (cube 2)</tt>
+  <p><tt>Applicative order evaluation:</tt> <br>
+  <tt>cube (cube 2)</tt> <br>
+  <tt>~&gt; cube( 2 * 2 * 2)</tt> <br>
+  <tt>~&gt; cube( 4 * 2)</tt> <br>
+  <tt>~&gt; cube(8)</tt> <br>
+  <tt>~&gt; 8 * 8 * 8</tt> <br>
+  <tt>~&gt; 64 * 8</tt> <br>
+  <tt>~&gt; 512</tt> <br>
+Only 4 multiplications </p>
+  <p><tt>Normal order evaluation:</tt> <br>
+  <tt>cube (cube 2)</tt> <br>
+  <tt>~&gt; (cube 2) * (cube 2) *(cube 2)</tt> <br>
+  <tt>~&gt; (2 * 2 * 2) * (cube 2) *(cube 2)</tt> <br>
+  <tt>~&gt; (4 * 2 )* (cube 2) *(cube 2)</tt> <br>
+  <tt>~&gt; 8 * (cube 2) *(cube 2)</tt> <br>
+  <tt>~&gt; 8 * (2 * 2 * 2)&nbsp; *(cube 2)</tt> <br>
+  <tt>~&gt; 8 * (4 * 2) * (cube 2)</tt> <br>
+  <tt>~&gt; 8 * 8 * (cube 2)</tt> <br>
+  <tt>~&gt; 64 * (cube 2)</tt> <br>
+  <tt>~&gt; 64 * (2 * 2 * 2)</tt> <br>
+  <tt>~&gt; 64 * (4 * 2)</tt> <br>
+  <tt>~&gt; 64 * 8</tt> <br>
+  <tt>~&gt; 512</tt> <br>
+8 multiplications <br>
+&nbsp; </p>
+  <li> <b>Lazy evaluation </b>("call by need") is a variant of Normal
+order evaluation.</li>
+  <br>
+  <tt>cube (cube 2)</tt><br>
+  <tt>~&gt; x * x * x&nbsp; with x = cube 2</tt><br>
+  <tt>~&gt; x * x * x&nbsp; with x = 2 * 2 * 2</tt><br>
+  <tt>~&gt; x * x * x&nbsp; with x = 4 * 2</tt><br>
+  <tt>~&gt; x * x * x&nbsp; with x = 8</tt><br>
+  <tt>~&gt; 8 * 8 * 8</tt><br>
+  <tt>~&gt; 64 * 8</tt><br>
+  <tt>~&gt; 512</tt><br>
+Only 4 multiplications <br>
+&nbsp;
+  <ul>
+    <li> This way of binding parameters to arguments enable all
+occurrences of a parameter to "share" the value of the corresponding
+arguments.</li>
+    <ul>
+      <li> <b>Each argument evaluated <i>at most once.</i></b></li>
+    </ul>
+  </ul>
+  <li> <b><i>Lazy&nbsp;</i> strategy combines</b></li>
+  <ul>
+    <li> <b>Applicative&nbsp; strategy's efficiency</b></li>
+    <li> <b>Normal strategy's safety</b></li>
+    <br>
+&nbsp;
+  </ul>
+  <hr width="100%">
+  <table width="62%">
+    <caption>
+    <center><b>Summary</b></center>
+    </caption> <tbody>
+      <tr>
+        <td>
+        <center>&nbsp;<b><i><u>Strategy</u></i></b></center>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+        <center><b><i><u>Number of evaluations</u></i></b></center>
+        </td>
+        <td>
+        <center><b><i><u>Safety</u></i></b></center>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <center>Applicative order evaluation <br>
+(innermost) <br>
+(call by value)</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>&nbsp;exactly 1</td>
+        <td>&nbsp;least</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>
+        <center>Normal order evaluation <br>
+(outermost) <br>
+(call by name)</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>&nbsp;0 .. infinity</td>
+        <td>&nbsp;more</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>
+        <center>Lazy <br>
+(call by need)</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;0 or 1</td>
+        <td>&nbsp;more</td>
+      </tr>
+    </tbody>
+  </table>
+</ul>
+<h3>
+<hr width="100%">&nbsp;<i>ay </i>?</h3>
+<ul>
+  <li> <tt>ay = 'a' : ay</tt></li>
+  <li> Is it legal?</li>
+</ul>
+<h3> One Last Neat example</h3>
+<ul>
+  <li> Quicksort using list comprehension</li>
+  <br>
+  <tt>quicksort&nbsp; []&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp; []</tt><br>
+  <tt>quicksort (x:xs)&nbsp; =&nbsp; quicksort [y | y &lt;- xs, y&lt;x ]</tt><br>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++ [x]</tt><br>
+  <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++ quicksort [y | y &lt;- xs, y&gt;=x]</tt>
+</ul>
+<hr noshade="noshade" width="100%">
+<center>
+<table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td>&nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/3hSpr01.html">
+previous</a></td>
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/5hFall02.html">
+&nbsp;next&nbsp;</a></td>
+    </tr>
+  </tbody>
+</table>
+</center>
+<hr align="left" noshade="noshade" width="100%"> <br>
+<br>
+<br>
+<br>
+<br>
+</body></html>

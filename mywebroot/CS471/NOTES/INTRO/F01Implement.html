@@ -1,0 +1,138 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+    
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    
+  <meta name="Author" content="Eileen Head">
+    
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <title>Introduction To Programming Languages- CS471 -3</title></head>
+
+<body>
+  
+<center> 
+<h3> &nbsp; Introduction Fall, 2002</h3>
+</center>
+  
+<center>
+<table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+ <tbody>
+    <tr>
+ <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/F01Paradigms.html">&nbsp;previous</a></td>
+  <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/4Fall01.html">&nbsp;next&nbsp;</a></td>
+ </tr>
+ 
+  </tbody>
+</table>
+</center>
+  
+<h3> What else will be covered in this course?</h3>
+  
+<ul>
+ <li> <font color="#999999">History of programming languages</font></li>
+  <li> <font color="#999999">Different Language Paradigms</font></li>
+  <li> <font color="#000099">Implementation and Run Time Environment</font></li>
+ 
+</ul>
+  
+<hr width="100%"> <br>
+A bird's-eye view of programming language concepts 
+<ul>
+ <li> A simple program</li>
+ 
+</ul>
+  
+<ul>
+  <font color="#990000"><tt>#include &lt;iostream.h&gt;&nbsp;&nbsp; </tt>//part 
+1: organization</font> <br>
+  <tt><font color="#990000">#include "phone.h"</font></tt> 
+  <p><font color="#009900"><tt>extern phoneList pb;&nbsp;&nbsp;&nbsp; </tt>//part 
+2: environment</font> <br>
+  <tt><font color="#009900">void insert();</font></tt> <br>
+  <tt><font color="#009900">number lookup();</font></tt> </p>
+  <p><font color="#000099"><tt>main() {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+//</tt> part 3: computation</font> </p>
+  <blockquote><tt><font color="#000099">int&nbsp;<a name="req"></a>req;</font></tt> 
+    <br>
+    <tt><font color="#000099">cout &lt;&lt; ... &lt;&lt; endl;</font></tt> 
+    <br>
+    <tt><font color="#000099">cin &gt;&gt; req;</font></tt> <br>
+    <tt><font color="#000099">if (req == 1)</font></tt> <br>
+    <tt><font color="#000099">&nbsp;&nbsp;&nbsp; insert();</font></tt> <br>
+    <tt><font color="#000099">else if (req == 2)</font></tt> <br>
+    <tt><font color="#000099">&nbsp;&nbsp;&nbsp; cout &lt;&lt; lookup();</font></tt> 
+    <br>
+    <tt><font color="#000099">else {</font></tt> <br>
+    <tt><font color="#000099">&nbsp;&nbsp;&nbsp; cout &lt;&lt; "error" &lt;&lt;
+endl;</font></tt> <br>
+    <tt><font color="#000099">&nbsp;&nbsp;&nbsp; exit(1)</font></tt> <br>
+    <tt><font color="#000099">}</font></tt></blockquote>
+ <tt><font color="#000099">}</font></tt> <br>
+ 
+  <hr width="100%">
+</ul>
+<h3>Some terms and issues we will cover:<br>
+</h3>
+<ul>
+   
+  <dl>
+    <li> <i>Syntax </i>of a programming language is the form of its expression, 
+statements and program units.</li>
+    <dl>
+      <li> This is usually described by a grammar</li>
+    </dl>
+    <li> <i>Semantics </i>of a programming language is the meaning of the
+expressions, statements and program units.</li>
+    <li> <i>Variables</i></li>
+    <dl>
+      <li> corresponds to a memory region that holds <i>values </i>which
+are manipulated by the program</li>
+      <li> referred to by name</li>
+      <li> how variables are name is specified by the syntactic rules</li>
+      <li> important semantic issues relate to attributes of a variable</li>
+      <dl>
+        <li> <i><a href="#req">scope</a></i></li>
+        <li> <i>type</i></li>
+        <li> <i>lifetime</i></li>
+      </dl>
+      <li> <b><i>binding</i> </b>is the association of a name and an attribute</li>
+      <li> <b><i>binding time</i> </b>is how and when the <i>binding</i>
+takes place</li>
+    </dl>
+    <li> <i>Values and references</i></li>
+    <dl>
+      <li> <tt>x = y</tt></li>
+      <li> <tt>x = &amp;y</tt></li>
+      <li> <tt>3 = y</tt></li>
+      <li> <tt>y = 3</tt></li>
+    </dl>
+    <li> <i>Expressions</i></li>
+    <dl>
+      <li> <tt>x = y = z - w</tt></li>
+      <li> order of operations</li>
+      <li> kinds of values can the expression return</li>
+    </dl>
+    <li> Program organization</li>
+    <li> Many issues surround the idea of data</li>
+    <dl>
+      <li> grouping, exporting, initialization, lifetime, visibility,&nbsp;
+...</li>
+      <li> can functions be part of the data structure</li>
+    </dl>
+  </dl>
+ 
+</ul><hr width="100%"> <br>
+(Ghezzi&amp;Jazayeri 1.7) 
+<center>
+<table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+ <tbody>
+    <tr>
+ <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/F01Paradigms.html">&nbsp;previous&nbsp;</a></td>
+  <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/INTRO/4Fall01.html">&nbsp;next&nbsp;</a></td>
+ </tr>
+ 
+  </tbody>
+</table>
+</center>
+  <br>
+</body></html>

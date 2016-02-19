@@ -1,0 +1,64 @@
+File:: testNum.txt 
+  Pattern:: (?-mix: ......)
+All patterns::
+ $` =  
+ $& = This is 0o10 test file.   
+ $' = 
+ 
+ $~ = This is 0o10 test file.   
+ $1: This is , $2: 0o10, $3: 
+
+
+All patterns::
+ $` =  
+ $& = Can it figure this 0xA number? 
+ $' = 
+ 
+ $~ = Can it figure this 0xA number? 
+ $1: Can it figure this , $2: 0xA, $3: 
+
+
+All patterns::
+ $` =  
+ $& = Does line 3 fits the pattern 0x1A? 
+ $' = 
+ 
+ $~ = Does line 3 fits the pattern 0x1A? 
+ $1: Does line 3 fits the pattern , $2: 0x1A, $3: 
+
+
+All patterns::
+ $` =  
+ $& = Does line five fit the pattern 0b110010 ? 
+ $' = 
+ 
+ $~ = Does line five fit the pattern 0b110010 ? 
+ $1: Does line five fit the pattern , $2: 0b110010, $3: 0b110010
+
+
+All patterns::
+ $` =  
+ $& = but does 0o117 fix the pattern? 
+ $' = 
+ 
+ $~ = but does 0o117 fix the pattern? 
+ $1: but does , $2: 0o117, $3: 
+
+
+All patterns::
+ $` =  
+ $& = How about 0b0101? 
+ $' = 
+ 
+ $~ = How about 0b0101? 
+ $1: How about , $2: 0b0101, $3: 0b0101
+
+
+All patterns::
+ $` =  
+ $& = or 0o101 
+ $' = 
+ 
+ $~ = or 0o101 
+ $1: or , $2: 0o101, $3: 
+

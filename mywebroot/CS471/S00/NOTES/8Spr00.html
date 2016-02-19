@@ -1,0 +1,469 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Runtime Structures</title>
+</head>
+<body>
+
+<center>
+<h2>
+&nbsp;Variables Runtime Structures - - Spring, 2000</h2></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/7Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<h3>
+Goal</h3>
+
+<ul>
+<li>
+To understand local variables using an abstract processor to define the
+operational semantics of the run-time environment.</li>
+</ul>
+
+<h3>
+What will be covered ?</h3>
+
+<ul>
+<li>
+SimpleSim an overview</li>
+
+<li>
+Illustration of Runtime Structure via Implemention of Increasing Complex
+Languages.</li>
+</ul>
+
+<h6>
+These notes are based on <i>Programming Language Concepts</i> by Ghezzi
+and Jazayeri and <i>Concepts of Programming Languages</i> by Sebesta.</h6>
+
+<hr WIDTH="100%">
+<br>SIMPLESEM
+<dl>
+<dl>
+<li>
+The author uses SIMPLESEM, a simple abstract semantic processor to help
+define the operational semantics of the runtime environment.</li>
+
+<li>
+SIMPLESEM has</li>
+
+<dl>
+<li>
+instructor pointer</li>
+
+<li>
+memory</li>
+
+<dl>
+<li>
+code memory : C</li>
+
+<li>
+data memory: D</li>
+
+<li>
+both start at “0”</li>
+
+<dl>
+<li>
+C[X] (D[X]) denotes the value stored in location X</li>
+</dl>
+</dl>
+
+<li>
+processor</li>
+
+<li>
+Instructions :</li>
+
+<dl>
+<li>
+set target, source</li>
+
+<dl>set 99, D[15] + D[44]
+<li>
+<i>indirect addressing</i></li>
+
+<br>set D[10], D[20]
+<br><i>store the value found at D[20] into the memory found at D[10]</i></dl>
+
+<li>
+jump 45</li>
+
+<li>
+jump D[13]</li>
+
+<dl>jumps to the <i>code</i> address found in D[13]</dl>
+
+<li>
+jumpt 47 D[3] > D[8]</li>
+
+<dl>&nbsp;</dl>
+<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/SimpleSem.gif"><img SRC="SimpleSem.gif" ALT="SIMPLESIM  Figure 2.11 From  Ghezzi" BORDER=0 height=200 width=179></a></dl>
+</dl>
+</dl>
+
+<hr WIDTH="100%">
+<br><b>Run Time Structures And Variables</b>
+<dl>
+<li>
+Static languages</li>
+
+<dl>
+<li>
+l-values statically determined</li>
+
+<li>
+no recursion</li>
+
+<li>
+Fortran</li>
+</dl>
+
+<li>
+Stack-based languages</li>
+
+<dl>
+<li>
+Allows recursion</li>
+
+<li>
+<b><i>Automatic variable</i></b></li>
+
+<dl>
+<li>
+Automatically allocates memory when variable comes in scope</li>
+
+<li>
+De-allocates memory when the variable exits the scope</li>
+</dl>
+
+<li>
+Memory usage is predictable</li>
+
+<dl>
+<li>
+LIFO stack</li>
+</dl>
+</dl>
+
+<li>
+Dynamic languages</li>
+
+<dl>
+<li>
+<b><i>Heap </i></b>(not the data structure <i>heap</i>)</li>
+
+<li>
+Memory management hard</li>
+</dl>
+</dl>
+</dl>
+
+<ul>
+<dl>
+<hr WIDTH="100%">
+<br><b>Static Language: A Very Simple Language C1 (</b>page 73,74)
+<dl>
+<li>
+Simple statements, simple types, no functions</li>
+</dl>
+
+<ul><tt>main () {</tt>
+<dl>
+<dl><tt>int i,j;</tt>
+<br><tt>read(i,j);</tt>
+<br><tt>while (i != j)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; if (i > j)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i -= j;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; else</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; j -= i;</tt>
+<br><tt>print(i)</tt></dl>
+<tt>}</tt></dl>
+</ul>
+<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8static.gif"><img SRC="8static.gif" ALT="Initial state of SimpleSem for C1 program" BORDER=0 height=275 width=224></a>
+<br>
+<hr WIDTH="100%">
+<br><b>Adding Simple Routines:&nbsp; C2</b>
+<dl>
+<li>
+<b>Allows declaration and definition of routines</b></li>
+
+<dl>
+<li>
+<b>No program stack</b></li>
+
+<li>
+<b>Notice the order of the data for routine is fix at load time and is
+not important</b></li>
+
+<li>
+<b>Each routine has a activation record associated with it</b></li>
+</dl>
+
+<li>
+<b>Allows <i>globial data</i></b></li>
+
+<li>
+<b><i>main</i>( )</b></li>
+
+<dl>
+<li>
+<b>Automatically activated at start</b></li>
+
+<li>
+<b>Can not be called</b></li>
+</dl>
+</dl>
+<b><tt>int i = 1, j = 2, k = 3;</tt></b>
+<br><b><tt>alpha() {</tt></b>
+<dl><b><tt>int i = 4, x = 5;</tt></b>
+<br><b><tt>&nbsp;&nbsp; ...</tt></b>
+<br><b><tt>i += k + x;</tt></b>
+<br><b><tt>&nbsp;&nbsp; ...</tt></b></dl>
+<b><tt>};</tt></b>
+<br><b><tt>beta() {</tt></b>
+<dl><b><tt>int k = 6;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ...</tt></b>
+<br><b><tt>i = j + k;</tt></b>
+<br><b><tt>alpha();</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ...</tt></b></dl>
+<b><tt>};</tt></b>
+<br><b><tt>main() {</tt></b>
+<dl><b><tt>&nbsp; ...</tt></b>
+<br><b><tt>beta();</tt></b>
+<br><b><tt>&nbsp; ...</tt></b></dl>
+<b><tt>}</tt></b>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8c2.gif"><img SRC="8c2.gif" ALT="Snapshot of Simplesim executing C2 program" BORDER=0 height=300 width=272></a>
+<br>
+<hr WIDTH="100%">
+<br><b>Adding recursion: C3</b>
+<dl>
+<li>
+<b>Adding the ability for routine to call themselves directly or indirectly</b></li>
+
+<dl>
+<li>
+<b>Activation records remain fix size but recursive calls require additional
+AR</b></li>
+</dl>
+
+<li>
+<b>In order to support mutual recursion definition and declaration must
+be able to be separated</b></li>
+
+<li>
+<b>Program stack for local(automatic) variables</b></li>
+</dl>
+
+<dl><b><tt>int n;</tt></b>
+<br><b><tt>int fact() {</tt></b>
+<dl><b><tt>int loc;</tt></b>
+<br><b><tt>if (n>1) {</tt></b>
+<dl><b><tt>loc = n--;</tt></b>
+<br><b><tt>return loc * fact();</tt></b></dl>
+<b><tt>}&nbsp; else&nbsp; {</tt></b>
+<dl><b><tt>return 1;</tt></b></dl>
+</dl>
+<b><tt>}</tt></b>
+<br><b><tt>main() {</tt></b>
+<dl><b><tt>read(n);</tt></b>
+<br><b><tt>if (n>0)</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; print(fact());</tt></b>
+<br><b><tt>else</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; print("input error");</tt></b></dl>
+<b><tt>}</tt></b>
+<p>Running the code with <i>n</i> = 3
+<br>&nbsp;</dl>
+<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8stack.gif"><img SRC="8stack.gif" ALT="Control Stack for fact()" BORDER=0 height=300 width=376 align=ABSBOTTOM></a><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8stackA.gif"><img SRC="8stackA.gif" ALT="Recursive Program Stack" BORDER=0 height=292 width=376 align=ABSBOTTOM></a>
+<p>
+<hr WIDTH="100%">
+<br><b>Supporting Nested Blocks and Nested Routines.</b>
+<dl>
+<li>
+<b>C, C++ support nested blocks</b></li>
+
+<br><b><tt>int f( ) {</tt></b>
+<dl><b><tt>int x,y,w;</tt></b>
+<br><b><tt>while( ...) {</tt></b>
+<dl><b><tt>int x,z;</tt></b>
+<br><b><tt>...</tt></b>
+<br><b><tt>while (...) {</tt></b>
+<dl><b><tt>int y;</tt></b>
+<br><b><tt>...</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>if (...) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; int x, w;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ...</tt></b>
+<br><b><tt>}</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>if (...) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; int a,b,c,d;</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; ...</tt></b>
+<br><b><tt>}</tt></b></dl>
+<b><tt>}</tt></b>
+<dl>
+<li>
+<b>page 84 and 85</b></li>
+</dl>
+
+<li>
+<b>Nested routines</b></li>
+
+<dl>
+<li>
+<b>Pascal, Modula 2 have nested routines but not nested blocks</b></li>
+
+<li>
+<b>Ada has both</b></li>
+
+<li>
+<b>Nested routines need to be able to find variable declared in the outer
+routine.</b></li>
+
+<dl>
+<li>
+<b>Static links, also called access links, in the activation record provide
+access to non-local variables.</b></li>
+</dl>
+<b><tt>int x,y,z;</tt></b>
+<br><b><tt>f1() {</tt></b>
+<dl><b><tt>int t,u;</tt></b>
+<br><b><tt>f2() {</tt></b>
+<dl><b><tt>int x,w;</tt></b>
+<br><b><tt>f3 () {</tt></b>
+<dl><b><tt>int y,w,t</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>x = y + t + w + z;</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>...</tt></b></dl>
+<b><tt>}</tt></b>
+<br><b><tt>main() {</tt></b>
+<dl><b><tt>int z, t;</tt></b>
+<br><b><tt>...</tt></b></dl>
+<b><tt>}</tt></b>
+<p><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8nested.gif"><img SRC="8nested.gif" ALT="Program/control statck with static (access) links and dynamic links" BORDER=0 height=400 width=149></a></dl>
+</dl>
+
+<hr WIDTH="100%">
+<br><a NAME="elaboration"></a><b>Activation Records Whose Size Becomes
+Known at Unit Activation: C5</b>
+<dl>
+<li>
+Ada allows the size of local arrays to be decided during execution.</li>
+
+<dl>
+<li>
+<i>Elaboration</i> is the processing at run time a declaration.</li>
+
+<li>
+The activation record is allocated in sereral steps</li>
+
+<dl>
+<li>
+storage for statically know data and descriptors of the dynamic arrays
+is allocated</li>
+
+<li>
+when the declaration of the array is encounted, dimensions are entered
+in the descriptor and the size of the array is evaluated</li>
+
+<li>
+AR is extended in Free space to include space for the array</li>
+
+<li>
+the pointer in the descriptor is set to this area</li>
+</dl>
+</dl>
+</dl>
+
+<hr WIDTH="100%">
+<br><b>Implementing Dynamic Scoping</b>
+<br>&nbsp;
+<dl>
+<li>
+Access to a not locally declared variables in a routine is assumed to be
+access to a non-local variable.</li>
+
+<li>
+The scope of the name is dependent on runtime call chain.</li>
+</dl>
+</dl>
+</ul>
+
+<ul>
+<dl>
+<dl>
+<dl>&nbsp;
+<table BORDER=2 CELLSPACING=2 CELLPADDING=2 >
+<tr ALIGN=LEFT>
+<td><b><tt>sub2() {</tt></b>
+<dl>
+<dl><b><tt>declare x;</tt></b>
+<br><b><tt>...</tt></b>
+<br><b><tt>...x...;</tt></b>
+<br><b><tt>...y...;</tt></b>
+<br><b><tt>...</tt></b></dl>
+</dl>
+<b><tt>}</tt></b>
+<br><b><tt>sub1() {</tt></b>
+<blockquote><b><tt>declare y;</tt></b></blockquote>
+
+<blockquote>
+<dl><b><tt>...</tt></b>
+<br><b><tt>...y...;</tt></b>
+<br><b><tt>...z...;</tt></b>
+<br><b><tt>...</tt></b></dl>
+</blockquote>
+<b><tt>}</tt></b>
+<br><b><tt>main() {</tt></b>
+<blockquote><b><tt>declare x,y,z;</tt></b>
+<br><b><tt>z = 0;</tt></b>
+<br><b><tt>x =5;</tt></b>
+<br><b><tt>y =7;</tt></b>
+<br><b><tt>sub1;</tt></b>
+<br><b><tt>sub2;</tt></b>
+<br><b><tt>...</tt></b></blockquote>
+<tt>}</tt></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8dynStack.gif"><img SRC="8dynStack.gif" ALT="Stack Implementation of Dynamic Scoping" BORDER=0 height=373 width=340></a></td>
+</tr>
+</table>
+</dl>
+</dl>
+</dl>
+
+<h6>
+Ghezzi &amp; Jazayeri page 95</h6>
+</ul>
+
+<h6>
+
+<hr SIZE=0 WIDTH="100%"></h6>
+
+<center><a href="mailto: head@binghamton.edu">&copy; 2000 Head,Lander</a></center>
+
+<hr WIDTH="100%">
+<br>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/7Spr00.html">&nbsp;previous&nbsp;</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/9Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="E Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="Introduction">
+   <title>Programming Languages Assignment#5</title>
+</head>
+<body text="#000000" bgcolor="#FAFAFA" link="#FF0000" vlink="#990000" alink="#CC0000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>&nbsp;
+(final Feb. 23, 10:19am)
+<h4>
+Assignment 5: Due Fri., Feb. 25</h4>
+
+<h4>
+Read Chapters: Chapter 2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Kernighan and Ritchie: A11.1 page 227</h4>
+
+<h4>
+Written assignment:</h4>
+
+<ol>
+<li>
+Briefly summarize the IEEE 754 (1985) floating point standard.</li>
+
+<ol TYPE=A>
+<li>
+How is single precision represented?&nbsp; What is the range of numbers
+represented?</li>
+
+<li>
+How is double precision represented? What is the range of numbers represented?</li>
+
+<li>
+What is NaN?&nbsp; How is it represented?</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Exercise 6 page 107.&nbsp; Following the definition of static binding given
+in section 2.3, specify the time and stability of the binding between C
+<tt>const
+</tt>variable
+and its value.&nbsp; How about constants in Pascal?</li>
+
+<br>&nbsp;
+<li>
+Exercise 13 page 107. What is the difference between macros and routines.&nbsp;
+Explain in terms of the concept of binding.</li>
+
+<br>&nbsp;
+<li>
+Java has 8 primitive data types.&nbsp; What are they and how are they represented?</li>
+
+<br>&nbsp;
+<li>
+There are 5 basic data types in C. (Including pointers).&nbsp; What are
+they and how are they encoded? In addition there are the following qualifiers:
+short, long, signed and unsigned. Briefly explain effect of the qualifiers
+on the basic types.</li>
+
+<br>&nbsp;
+<li>
+How does the philosophy of C differ from Java with respect to the implementation
+primitive types? (Discuss the positive and negatives of both philosophies.).</li>
+
+<br>&nbsp;
+<li>
+What is the solution adopted by C, Java, <a href="http://www.adahome.com/LRM/83/RM/rm83html/lrm-03-02.html#3.2">Ada83</a>
+(for Ada only, just discuss objects) and C++ to the problem of uninitialized
+variables?</li>
+
+<br>&nbsp;
+<li>
+The following&nbsp; <b>C </b>code is in a file.&nbsp; For the following
+four variable,
+<b><i>MAGIC, i </i>(<i>line 3</i>)<i>, i </i>(<i>line 6</i>),
+<i>i</i>
+(<i>line 8</i>);</b></li>
+
+<ol TYPE=a>
+<li>
+During what phase is the type bound ?</li>
+
+<li>
+During what phase is the r-value bound ?</li>
+
+<li>
+During what phase is the l-value bound?</li>
+
+<li>
+What is the scope?</li>
+
+<li>
+What is the lifetime?</li>
+
+<ol TYPE=a>
+<hr WIDTH="100%"></ol>
+<b><tt>#define MAGIC 100&nbsp;&nbsp; /* line 1 */</tt></b>
+<br><b><tt>int fun1(){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 2 */</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; static int i=0; /* line 3 */</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; return i++;&nbsp;&nbsp;&nbsp;&nbsp; /* line
+4 */</tt></b>
+<br><b><tt>}</tt></b>
+<br><b><tt>static int i;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* line 6
+*/</tt></b>
+<br><b><tt><font color="#CC0000">int</font> fun2() {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 7 */</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; int i =5;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+/* line 8 */</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp; return MAGIC + i ;</tt></b>
+<br><b><tt>}</tt></b></ol>
+</ol>
+
+<hr WIDTH="100%">
+<ol>
+<ol TYPE=a>&nbsp;</ol>
+<font color="#3333FF">I collaborated with : ___________________________________</font>
+<p><font color="#3333FF">Resources use: _______________________________________</font></ol>
+
+<br>&nbsp;
+<br>&nbsp;
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+</body>
+</html>

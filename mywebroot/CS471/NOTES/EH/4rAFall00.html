@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+   
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+   
+  <meta name="Author" content="Eileen Head">
+
+   
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+
+   
+  <title>Swap Problem for Copy in Copy Out using Ada matrices</title>
+</head>
+
+
+<body>
+
+
+<center>
+<h3>
+&nbsp; Routines: Swap Problem Example with ADA Matrices Spring, 2000</h3>
+</center>
+
+
+
+The purpose is to provide another example of copy in copy out parameter
+passing as well as expose the student to some more Ada code.
+<br>
+&nbsp;
+<ul>
+
+  <li>
+Since Ada does not specify which parameter passing mechanism to use with
+arrays this code may or may not work correctly.</li>
+
+</ul>
+
+
+<blockquote><b><tt>With Matrix_stuff; Use Matrix_stuff;</tt></b>
+  <br>
+  <b><tt>PROCEDURE Swap(x,y: IN OUT matrix) is</tt></b>
+  <br>
+  <b><tt>&nbsp; BEGIN</tt></b>
+  <blockquote><b><tt>x := x + y;</tt></b>
+    <br>
+    <b><tt>y := x - y;</tt></b>
+    <br>
+    <b><tt>x := x - y;</tt></b></blockquote>
+
+  <b><tt>&nbsp; END</tt></b>
+  <p><b><tt>BEGIN -- Main</tt></b>
+  <br>
+  <b><tt>&nbsp;&nbsp; a:=(1..3 =&gt; ( 1..3 =&gt; 1));</tt></b>
+  <br>
+  <b><tt>&nbsp;&nbsp; Swap (a,a);</tt></b>
+  <br>
+  <b><tt>END;</tt></b>
+  </p>
+  <p>
+  </p>
+  <hr size="1" width="100%">
+  <br>
+  <b><tt>PACKAGE&nbsp; Matrix_stuff&nbsp; IS</tt></b>
+  <blockquote><b><tt>TYPE index is RANGE 1..20;</tt></b>
+    <br>
+    <b><tt>TYPE matrix is ARRAY(index RANGE &lt;&gt;,</tt></b>
+    <br>
+    <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+index RANGE &lt;&gt;) of INTEGER;</tt></b>
+    <br>
+    <b><tt>FUNCTION "+" (x,y : IN matrix) RETURN matrix;</tt></b>
+    <br>
+    <b><tt>FUNCTION "" (x,y : IN matrix) RETURN matrix;</tt></b></blockquote>
+
+  <b><tt>END&nbsp; Matrix_stuff;</tt></b>
+  <p><b><tt>PACKAGE&nbsp; BODY&nbsp; Matrix_stuff&nbsp; IS</tt></b>
+  <br>
+  <b><tt>&nbsp;&nbsp; FUNCTION "+" (x,y : IN matrix)&nbsp; RETURN matrix&nbsp;
+IS</tt></b>
+  </p>
+  <blockquote>
+    <blockquote><b><tt>L1 : x&rsquo;FIRST(1);</tt></b>
+      <br>
+      <b><tt>U1 : x&rsquo;LAST(1);</tt></b>
+      <br>
+      <b><tt>L2 : x&rsquo;FIRST(2);</tt></b>
+      <br>
+      <b><tt>U2 : x&rsquo;LAST(2);</tt></b>
+      <br>
+      <b><tt>z : matrix(L1..U1, L2..U2);</tt></b></blockquote>
+
+  </blockquote>
+
+  <b><tt>&nbsp;&nbsp; BEGIN</tt></b>
+  <blockquote><b><tt>&nbsp;IF L1 /= y&rsquo;FIRST(1) or U1 /= y&rsquo;LAST(1) or</tt></b>
+    <br>
+    <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; L2 /= y&rsquo;FIRST(2)or
+U2 /= y&rsquo;LAST(2)</tt></b>
+    <br>
+    <b><tt>&nbsp;&nbsp; THEN Raise CONSTRAINT_ERROR;</tt></b>
+    <br>
+    <b><tt>&nbsp;END IF</tt></b>
+    <br>
+    <b><tt>&nbsp;FOR&nbsp; i&nbsp; IN&nbsp; L1..U1&nbsp; LOOP</tt></b>
+    <blockquote><b><tt>FOR j IN&nbsp; L2..U2&nbsp; LOOP</tt></b>
+      <br>
+      <b><tt>&nbsp;&nbsp;&nbsp; z(i,j) := x(i, j) + y(i, j);</tt></b>
+      <br>
+      <b><tt>END LOOP;</tt></b></blockquote>
+
+    <b><tt>&nbsp;END LOOP;</tt></b>
+    <br>
+    <b><tt>&nbsp;return (z);</tt></b>
+    <br>
+    <b><tt>END;</tt></b></blockquote>
+
+  <b><tt>FUNCTION &rdquo;-" (x,y : IN matrix) RETURN matrix IS</tt></b>
+  <blockquote>
+    <blockquote><b><tt>L1 : x&rsquo;FIRST(1);</tt></b>
+      <br>
+      <b><tt>U1 : x&rsquo;LAST(1);</tt></b>
+      <br>
+      <b><tt>L2 : x&rsquo;FIRST(2);</tt></b>
+      <br>
+      <b><tt>U2 : x&rsquo;LAST(2);</tt></b>
+      <br>
+      <b><tt>z : matrix(L1..U1, L2..U2);</tt></b></blockquote>
+
+  </blockquote>
+
+  <b><tt>&nbsp;&nbsp; BEGIN</tt></b>
+  <blockquote><b><tt>&nbsp;IF L1 /= y&rsquo;FIRST(1) or U1 /= y&rsquo;LAST(1) or</tt></b>
+    <br>
+    <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; L2 /= y&rsquo;FIRST(2)or
+U2 /= y&rsquo;LAST(2)</tt></b>
+    <br>
+    <b><tt>&nbsp;&nbsp; THEN Raise CONSTRAINT_ERROR;</tt></b>
+    <br>
+    <b><tt>&nbsp;END IF</tt></b>
+    <br>
+    <b><tt>&nbsp;FOR&nbsp; i&nbsp; IN&nbsp; L1..U1&nbsp; LOOP</tt></b>
+    <blockquote><b><tt>FOR j IN&nbsp; L2..U2&nbsp; LOOP</tt></b>
+      <br>
+      <b><tt>&nbsp;&nbsp;&nbsp; z(i,j) := x(i, j) - y(i, j);</tt></b>
+      <br>
+      <b><tt>END LOOP;</tt></b></blockquote>
+
+    <b><tt>&nbsp;END LOOP;</tt></b>
+    <br>
+    <b><tt>&nbsp;return (z);</tt></b>
+    <br>
+    <b><tt>END;</tt></b></blockquote>
+
+  <b><tt>End Matrix_stuff;</tt></b></blockquote>
+
+
+<dl>
+
+  <dl>
+
+    <dl>
+
+      <ul>
+
+        <ul>
+&nbsp;
+        </ul>
+
+      </ul>
+
+    </dl>
+
+  </dl>
+
+
+  <hr width="100%">
+</dl>
+<hr align="left" noshade="noshade" size="1" width="100%">
+<br>
+&nbsp;
+<br>
+&nbsp;
+<br>
+&nbsp;
+</body>
+</html>

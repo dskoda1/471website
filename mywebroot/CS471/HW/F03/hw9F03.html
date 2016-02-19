@@ -1,0 +1,189 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>HW 9 - Memory Management -- Flow of control</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(250, 250, 250);"
+ link="#ff0000" vlink="#990000" alink="#cc0000">
+Due Sat Nov 8, 2003 -- Midnight<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html"></a><br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+<div align="left">
+<h4>Assignment 9<br>
+</h4>
+</div>
+<p>Read:&nbsp; Chapters 6 (later we will cover 6.8,6.9), 7, 8<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="http://java.sun.com/PrintPage.jsp?url=http%3A//wireless.java.sun.com/midp/articles/garbage/">Improving
+Java Application Performance and Scalability by Reducing Garbage
+Collection Times and Sizing Memory</a> <br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a
+ href="http://developer.java.sun.com/developer/technicalArticles/ALT/RefObj/">Garbage
+collecting and objects</a></p>
+<p><br>
+Purpose:&nbsp; Re-enforce the relationship between memory and array
+notation and record notation, controlling the flow of execution in C
+and Java.<br>
+</p>
+<ol>
+  <li>Given the following declaration in Ada : <br>
+  </li>
+  <ol>
+TYPE Array_type IS ARRAY(2..8) OF Integer;<br>
+TYPE CODE is record <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Level: CHARACTER; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Salary : Integer; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Status : CHARACTER; <br>
+end record; <br>
+TYPE Code_Array IS ARRAY(10..15) OF CODE; <br>
+arr : Array_type; <br>
+codeArr : Code_Array;<br>
+    <br>
+If&nbsp;&nbsp; INTEGER requires 4 bytes of storage and CHARACTER
+requires 1 byte of storage what is the effective address (using bytes
+as
+the addressable units) of variables below
+(show your calculations) You should assume that the ba (base address)
+for
+arr is 300 and the base address for codeArr is 2100.<br>
+A. Effective address for arr(3)&nbsp; is&nbsp;
+__________________ <br>
+B. Effective address for codeArr(11) is&nbsp;
+__________________ <br>
+C. Effective address for codeArr(11).Status is&nbsp;
+__________________<br>
+    <br>
+    <br>
+  </ol>
+  <li>Given the following declaration in Ada :</li>
+  <ol>
+TYPE Array_type IS ARRAY(1..4,10..14) OF Integer;<br>
+TYPE CODE is record<br>
+    <ol>
+Status : CHARACTER;<br>
+Salary : Integer;<br>
+    </ol>
+end record;<br>
+TYPE Code_Array IS ARRAY(1..5,10..14) OF CODE;<br>
+    <ol>
+arr : Array_type;<br>
+    </ol>
+codeArr : Code_Array;<br>
+    <br>
+If&nbsp;&nbsp; INTEGER requires 4 bytes of storage and CHARACTER
+requires 1 byte of storage what is the effective address (using bytes
+as
+the addressable units) of variables below
+(show your calculations) You should assume that the ba (base address)
+for
+arr is 260 and the base address for codeArr is 2100.<br>
+    <br>
+    <ol style="list-style-type: upper-alpha;">
+      <li>Using row major the effective address for arr(3,10)&nbsp;
+is&nbsp; __________________</li>
+      <li>Using column major the effective address for arr(3,10)&nbsp;
+is&nbsp; __________________</li>
+      <li>Using row major the effective address for codeArr(3,11)
+is&nbsp; __________________</li>
+      <li>Using row major the effective address for
+codeArr(3.11).Salary
+is&nbsp;
+__________________ </li>
+    </ol>
+  </ol>
+  <li>page 303 exercise 7.30</li>
+  <li>page 305 exercise 7.37</li>
+  <li>page 307 exercise 7.49</li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Compare Java to C++:<br>
+What does the Java compiler do to following
+comparable code given in exercise 7.49?&nbsp; Which language rules do
+you like better as a
+programmer? why?<br>
+    </li>
+  </ol>
+  <dl>
+    <dd><span style="font-family: monospace;"><br>
+import javax.swing.JOptionPane;</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">public class Exceptions {</span><br
+ style="font-family: monospace;">
+      <br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; public
+static void main(String[] args) {</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; String
+input;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; input =
+JOptionPane.showInputDialog("Enter an integer,(or \"exit\"): ");</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; int value;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; while
+(!input.toUpperCase().equals("EXIT")){&nbsp; </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; try{</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; value = Integer.parseInt(input);</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } catch (
+Exception ex ) {</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; System.out.println("General Exception");</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} catch (NumberFormatException en){</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; System.out.println("Number Format
+Exception");&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; } </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; input =
+JOptionPane.showInputDialog("Enter Value");</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; }</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      </span></dd>
+  </dl>
+  <li>In C++, what is the difference between taking the address
+(via operation &amp;) of a pointer type and of a reference type? <br>
+  </li>
+  <li>What is the purpose of the "Tombstone" mechanism?&nbsp;&nbsp;
+What are the pluses and minuses of using it?</li>
+  <li>Read&nbsp; <a
+ href="http://java.sun.com/PrintPage.jsp?url=http%3A//wireless.java.sun.com/midp/articles/garbage/">Improving
+Java Application Performance and Scalability by Reducing Garbage
+Collection Times and Sizing Memory</a> and <a
+ href="http://developer.java.sun.com/developer/technicalArticles/ALT/RefObj/">Garbage
+collecting and objects</a> paying attention to the
+discussion on the garbage collecting algorithms and section 8.5 of the
+text
+book.&nbsp; Describe 3 different stategies for garbage
+collecting.&nbsp; Give pluses and minuses of each one.<br>
+  </li>
+</ol>
+</body>
+</html>

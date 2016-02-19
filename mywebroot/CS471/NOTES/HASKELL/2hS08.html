@@ -1,0 +1,1736 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+
+
+
+  
+  
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+
+
+  
+  
+  <meta content="Eileen Head and Les Lander" name="Author">
+
+
+  
+  
+  <meta content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]" name="GENERATOR"><title>Haskell: 1</title></head><body>
+
+
+<center>
+<h3> Haskell 2 &nbsp; Spring 10<br>
+</h3>
+
+
+</center>
+
+
+<center>
+
+
+</center>
+
+
+<h4> Propose:&nbsp; To learn the functional style of programming.&nbsp;<br>
+
+
+Records, lists, user types, function types and local definitions will
+be discussed.</h4>
+
+
+<ol>
+
+
+  <li>Introductory examples: <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/SimpleExample.lhs">SimpleExamples.lhs</a></li>
+
+
+  <li>Examples: <a href="CODE/Notes.lhs">Notes.lhs</a>
+    <br>
+
+
+  </li>
+
+
+</ol>
+
+
+<hr style="width: 100%; height: 2px;">
+<h3> Haskell&nbsp; --&nbsp; "=" and "::"<br>
+
+
+</h3>
+
+
+<ul>
+
+
+  <li> Functional programming refers to writing a program as a set of
+functions</li>
+
+
+  <li> "<b>=</b>" means <span style="font-style: italic;">defined as</span></li>
+
+
+  
+  
+  <pre>&gt;&nbsp;&nbsp; sq x = x^2<br>&gt;&nbsp;&nbsp; cube x = x *(sq x)</pre>
+
+
+  <li> "<b><tt>::</tt></b>" means <b><i>has type</i></b></li>
+
+
+  
+  
+  <ul>
+
+
+    <li> Haskell can <span style="font-style: italic;">infer</span>
+the
+type of the function:</li>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <ul>
+
+
+    
+    
+    <pre>...&gt; :t sq<br>sq :: Num a =&gt; a -&gt; a<br></pre>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <ul>
+
+
+    <li>Users can use "::" to specify the type of a definition.&nbsp; <br>
+
+
+    </li>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <ul>
+
+
+    <li>To specify py as a Float rather than the Double type determined
+by HUGS, insert the type in the script.</li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<pre style="margin-left: 80px;">&gt;&nbsp;&nbsp; py :: Float<br>&gt;&nbsp;&nbsp; py = 3.14159<br></pre>
+
+
+<ul>
+
+
+  
+  
+  <ul>
+
+
+    <li>Constraining the function "sq"</li>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <dl style="font-family: monospace;">
+
+
+    <dd>&gt;&nbsp;&nbsp; sq :: Int -&gt; Int</dd>
+
+
+    <dd>&gt;&nbsp;&nbsp; sq x = x^2</dd>
+
+
+  
+  
+  </dl>
+
+
+</ul>
+
+
+<div style="margin-left: 120px;"> </div>
+
+
+<div style="margin-left: 120px;"> </div>
+
+
+<ul>
+
+
+  
+  
+  <h3>
+  
+  
+  <hr size="1" width="100%"></h3>
+
+
+</ul>See Haskell Lab 1.<br>
+<h3>
+<hr size="1" width="100%"></h3>
+
+
+<h3> Type system</h3>
+
+
+<ul>
+
+
+  <li> Haskell&#8217;s type system has unusual features and is quite
+rich</li>
+
+
+  <li> Haskell is statically typed</li>
+
+
+</ul>
+
+
+<h3> Types and values</h3>
+
+
+<ul>
+
+
+  <li> Every value has a type</li>
+
+
+  <li> Functions are values</li>
+
+
+  <li> Values are first class, that is,</li>
+
+
+  
+  
+  <ul>
+
+
+    <li> they can be applied as arguments to functions</li>
+
+
+    <li> returned</li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<h3> Predefined types</h3>
+
+
+<h3>Basic types<br>
+
+
+</h3>
+
+
+<ul>
+
+
+  <li> Some basic atomic values and types:</li>
+
+
+  <li> Predefined data types</li>
+
+
+  
+  
+  <pre>Int, Bool, Char, Float, ...<br>also Double, Integer</pre>
+
+
+  
+  
+  <pre>read "::" as "has type"<br>5 :: Int<br>5.0 :: Float</pre>
+
+
+  <li> Float &amp; Double need a decimal point or an exponent: 5.0</li>
+
+
+  
+  
+  <pre>'a' :: Char</pre>
+
+
+  <li> Char: the character type, <tt>'a'</tt>,<tt> 'P'</tt>, <tt>'&lt;'</tt>,
+etc. ASCII codes can be used: <tt>'\65'</tt>.&nbsp; Version 1.4 has
+started to use Unicode.</li>
+
+
+  
+  
+  <pre>"aba" :: String</pre>
+
+
+  <li> Later we use keyword <b><i><font color="#cc0000">type</font></i></b>
+to define <font color="#990000">synonyms</font>.</li>
+
+
+  
+  
+  <ul>
+
+
+    <li> A new type is not defined but a new name is given to an
+existing type. (Like typedef in C)</li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<h3> Structured types Lists and Tuples<br>
+
+
+</h3>
+
+
+<ul>
+
+
+  <li> Structured values</li>
+
+
+  
+  
+  <ul>
+
+
+    <li> <u>Lis</u>t <u>P</u>rocessing is what gave LISP its name and
+strength: Lisp allows structures of nested lists and each element of
+the
+list or nested list can have a different type</li>
+
+
+    <li> Non-homogeneous lists have proved to be very flexible
+structures, supporting artificial intelligence and other sophisticated
+applications</li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<h3> Lists</h3>
+
+
+<ul>
+
+
+  <li> Haskell lists are NOT like Lisp lists, they have to be
+homogeneous</li>
+
+
+  <li> They are dynamic (can change length during execution)</li>
+
+
+  <li>Lists are homogeneous: all elements in the list are the same type<br>
+
+
+  </li>
+
+
+  <li>List's type is expressed by enclosing its elements' type in
+brackets</li>
+
+
+  
+  
+  <pre>[True,False,False]::[Bool]<br><br>[1,2,3] :: [Int]<br>(actually ...&gt;:t [1,2,3] gives [1,2,3]::Num a =&gt; [a])<br><br>[(+),div,(*)] :: Integral a =&gt; [a -&gt; a -&gt; a]<br></pre>
+
+
+  <li><span style="font-weight: bold;">[ ] </span>has two roles</li>
+
+
+  
+  
+  <ul>
+
+
+    <li>value constructor, as in [ ].&nbsp; [4], [m+n, m-n]</li>
+
+
+    <li>type constructor, as in [Int], [Char], [Bool], [a]<br>
+
+
+    </li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<div style="margin-left: 40px;">
+<h4>Strings&nbsp;</h4>
+
+
+</div>
+
+
+<ul>
+
+
+</ul>
+
+
+<blockquote>
+  
+  
+  <ul>
+
+
+    <li>The literal syntax of string&nbsp; is a list of chars.&nbsp;
+Prelude defines string<br>
+
+
+      <tt>type String = [Char]</tt></li>
+
+
+    <li>The string literal "aba" is shorthand for ['a','b','a']</li>
+
+
+    <li> We will visit lists many times.</li>
+
+
+    <li> By the way, this cursor indicates Haskell is garbage
+collecting&nbsp;<img src="garbage.jpg" align="middle" border="2" height="38" width="31"> </li>
+
+
+  
+  
+  </ul>
+
+
+</blockquote>
+
+
+<ul>
+
+
+</ul>
+
+
+<blockquote>
+  
+  
+  <h3> List operations</h3>
+
+
+</blockquote>
+
+
+<ul>
+
+
+  
+  
+  <ul>
+
+
+    <li> For now, the important operations:</li>
+
+
+    
+    
+    <pre>1:[2,3,4] = [1,2,3,4]<br>4:[] = [4]<br>head [1,2,3,4] = 1<br>tail [1,2,3,4] = [2,3,4]<br>init [1,2,3,4] = [1,2,3]<br>last [1,2,3,4] = 4</pre>
+
+
+    <li> What is the type of</li>
+
+
+    <br>
+
+
+    <tt>:t (:)</tt>
+    
+    
+    <dl>
+
+
+      
+      
+      <dl>
+
+
+        <li> <tt>:t :</tt></li>
+
+
+will produce an error because ":" is an infix operator <br>
+
+
+To convert it to a prefix operator use "( )"
+      
+      
+      </dl>
+
+
+    
+    
+    </dl>
+
+
+    
+    
+    <p> <tt>:t head</tt><br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ? </p>
+
+
+    <tt>:t init</tt>
+    
+    
+    <ul>
+
+
+      <tt>?</tt>
+    
+    
+    </ul>
+
+
+    <li> Concatenation (appending) two lists</li>
+
+
+    <br>
+
+
+    <tt>[1,2,3] ++ [10,11,12] = [1,2,3,10,11,12]</tt>
+    
+    
+    <p>Definition: <br>
+
+
+    <a name="(++)"></a><tt>(++) :: [a]-&gt;[a]-&gt;[a]</tt> <br>
+
+
+    <tt>[] ++ ys = ys</tt> <br>
+
+
+    <tt>(x:xs) ++ ys = x:(xs ++ ys)</tt> <br>
+
+
+&nbsp; </p>
+
+
+    
+    
+    <dl>
+
+
+      <li> What if we recurs on ys instead of xs?</li>
+
+
+      <li> Notice that (++) is associative operation.</li>
+
+
+    
+    
+    </dl>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <ul>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<h3> Tuples</h3>
+
+
+<ul>
+
+
+  <li> There are non-homogeneous linear structures like the
+&#8220;struct&#8221; of
+C or the &#8220;record&#8221; of Pascal and Ada:</li>
+
+
+  <li> They are called &#8220;tuples&#8221;and is built using
+parentheses and
+commas; its type is the tuple of its components&#8217; types.<br>
+
+
+  </li>
+
+
+  
+  
+  <pre>('x', 99) :: (Char, Int)<br>type Person = (String,Int)</pre>
+
+
+  <li> Compare</li>
+
+
+  
+  
+  <pre>struct person {<br>&nbsp;&nbsp;&nbsp; char * name;<br>&nbsp;&nbsp;&nbsp; int i;<br>}</pre>
+
+
+  <li>The parenthesis/comma syntax appears in two roles:</li>
+
+
+  
+  
+  <ul>
+
+
+    <li>&nbsp;value constructor, as in ("Mary Jane",21)</li>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <ul>
+
+
+    <li>type constructor, as in (String,Int)</li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<ul>
+
+
+  <li> Another example:</li>
+
+
+  
+  
+  <pre>type Zip_code = (String, Int)</pre>
+
+
+  <li> First letter must be capital letter, you cannot use "zip_code"
+or "Zip-code"</li>
+
+
+  
+  
+  <pre>vestal :: Zip_code<br>vestal = ("NY", 13850)<br>fst vestal <i>returns</i> NY<br>snd vestal <i>returns</i> 13850</pre>
+
+
+  <li> <b><i><font color="#990000">type</font></i> </b>just creates a
+synonym and not another data type</li>
+
+
+  <br>
+
+
+  
+  
+  <hr size="1" width="100%">
+</ul>
+
+
+<h3> User-defined types</h3>
+
+
+<ul>
+
+
+  <li> User Defined Types:&nbsp; type constructors</li>
+
+
+  <li> union type:</li>
+
+
+  
+  
+  <pre><b><font color="#990000">data</font></b> Color = Red | Blue | Black</pre>
+
+
+  <li> Red, Blue and Black are <b><i>data constructors</i></b> of the
+type Color</li>
+
+
+  <li> Example of a predefined type</li>
+
+
+  
+  
+  <pre>data Bool = True | False</pre>
+
+
+</ul>
+
+
+<h3> Product types</h3>
+
+
+<ul>
+
+
+  <li> Product type is an alternative to tuples</li>
+
+
+</ul>
+
+
+<div style="margin-left: 40px;">
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;">
+      
+      
+      <pre>&gt; type Name = String<br>&gt; type Age = Int<br>&gt; data People = Person Name Age<br>&gt; x = Person "John" 25</pre>
+
+
+      </td>
+
+
+    </tr>
+
+
+  
+  
+  </tbody>
+</table>
+
+
+</div>
+
+
+<ul>
+
+
+  <li>A function to show x</li>
+
+
+</ul>
+
+
+<div style="margin-left: 40px;">
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;">
+      
+      
+      <pre>&gt; showPerson :: People -&gt; String&nbsp;<br>&gt; showPerson (Person n a) = n ++ " aged " ++ show a</pre>
+
+
+      </td>
+
+
+    </tr>
+
+
+  
+  
+  </tbody>
+</table>
+
+
+</div>
+
+
+<ul>
+
+
+  <li>Keyword <i>type</i> creates a synonym</li>
+
+
+</ul>
+
+
+<ul>
+
+
+  <li> Keyword <i>data</i> is a constructor for a NEW data type.</li>
+
+
+</ul>
+
+
+<h3> Polymorphic data types</h3>
+
+
+<span style="font-weight: bold;">Point</span> is a polymorphic data
+type: it works for any type &#8220;a&#8221;
+<dl>
+
+
+  <dd>
+    
+    
+    <table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+
+
+      <tbody>
+
+
+        <tr>
+
+
+          <td style="vertical-align: top;">
+          
+          
+          <pre>&gt; data Point a = Pt a a</pre>
+
+
+          </td>
+
+
+        </tr>
+
+
+      
+      
+      </tbody>
+    
+    
+    </table>
+
+
+  </dd>
+
+
+</dl>
+
+
+<ul>
+
+
+  <li><span style="text-decoration: underline;">Point a</span> is the <span style="font-weight: bold;">data type</span></li>
+
+
+  <li><span style="text-decoration: underline;">Pt</span> is a <span style="font-weight: bold;">constructor</span><br>
+
+
+  </li>
+
+
+  
+  
+  <pre>Pt 2.0 3.0 :: Point Float<br>Pt 'a' 'b' :: Point Char<br>Pt True False :: Point Bool</pre>
+
+
+  <li> A function to extract the individual values would be:</li>
+
+
+</ul>
+
+
+<div style="margin-left: 40px;">
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;">
+      
+      
+      <pre>&gt; firstCoord :: Point a -&gt; a<br>&gt; firstCoord (Pt m n) = m</pre>
+
+
+      </td>
+
+
+    </tr>
+
+
+  
+  
+  </tbody>
+</table>
+
+
+</div>
+
+
+<ul>
+
+
+  
+  
+  <dl>
+
+
+    <li> <b><i>Point </i></b>is a first order data type</li>
+
+
+    <li> <b><i>Point</i></b> by itself is a type</li>
+
+
+    <li> There are no values in Haskell that have this type.</li>
+
+
+  
+  
+  </dl>
+
+
+</ul>
+
+
+<a style="font-weight: bold;" name="Tree"></a><span style="font-weight: bold;">Tree</span> is a recursive polymorphic data
+type:<br>
+
+
+<br>
+
+
+<div style="margin-left: 40px;">
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;"><tt>&gt; data Tree a = Leaf a |
+Branch (Tree a) (Tree a)</tt></td>
+
+
+    </tr>
+
+
+  
+  
+  </tbody>
+</table>
+
+
+<br>
+
+
+</div>
+
+
+<ul>
+
+
+  
+  
+  <ul>
+
+
+    <li> recursive because <tt>Tree</tt> is defined in terms of itself</li>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <ul>
+
+
+    <li>polymorphic because it works for any type &#8220;a&#8221;&nbsp; <br>
+
+      <br>
+
+
+    </li>
+
+
+  
+  
+  </ul>
+
+
+  <li><span style="text-decoration: underline;">Tree</span> is the <span style="font-weight: bold;">data type</span></li>
+
+
+  <li><span style="font-weight: bold;"><span style="text-decoration: underline;"><span style="font-weight: bold;"></span></span></span><span style="text-decoration: underline;">Leaf</span> and <span style="text-decoration: underline;">Branch</span> are <span style="font-weight: bold;">constructors<span style="text-decoration: underline;"><span style="font-weight: bold;"></span></span><br>
+
+
+    </span></li>
+
+
+</ul>
+
+
+<ul>
+
+
+  
+  
+  <ul>
+
+
+&nbsp;
+  
+  
+  </ul>
+
+
+  <li> A function to compute the size&nbsp; (i.e. the number of leaves)</li>
+
+
+</ul>
+
+
+<div style="margin-left: 40px;">
+<table style="text-align: left;" border="1" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+
+
+    <tr>
+
+
+      <td style="vertical-align: top;"><span style="font-family: monospace;">&gt; </span><tt>treeSize :: Tree
+a -&gt; Integer</tt><br>
+
+
+      <tt>&gt; treeSize (Leaf x) = 1</tt><br>
+
+
+      <tt>&gt; treeSize (Branch t1 t2) = treeSize t1 + treeSize t2</tt></td>
+
+
+    </tr>
+
+
+  
+  
+  </tbody>
+</table>
+
+
+</div>
+
+
+<ul>
+
+
+  <tt></tt> <li> Example of a <i>Tree Int</i></li>
+
+
+  <br>
+
+
+  <tt>&gt; tree&nbsp; =&nbsp; Branch (Leaf 3) (Branch (Leaf 6) (Leaf 9))</tt>
+</ul>
+
+
+<h3>
+<hr noshade="noshade" size="3" width="100%">Function types</h3>
+
+
+<ul>
+
+
+  <li> Functions are values and have a type</li>
+
+
+  
+  
+  <pre>\x -&gt; x+1,</pre>
+
+
+  <li> This is a lambda expression with type:<br>
+
+
+    <tt>Num a =&gt; a -&gt; a</tt></li>
+
+
+  <li>Notice functions can be anonymous (i.e. no names)<br>
+
+
+  </li>
+
+
+  <li> Functions are normally defined by an equation or series of
+equations</li>
+
+
+  
+  
+  <pre>inc n = n + 1&nbsp;<br>(alternatively: inc = \n -&gt; n + 1)</pre>
+
+
+  <li> The type signature declaration used to declare the explicit
+type&nbsp;</li>
+
+
+  
+  
+  <pre>&gt; inc :: Int -&gt; Int</pre>
+
+
+</ul>
+
+
+<h4> Type inference&nbsp;&nbsp;</h4>
+
+
+<ul>
+
+
+  <li>If the type is not explicitly declare then the type system can
+infer the correct most general type.<tt><br>
+
+
+inc :: Num a =&gt; a -&gt; a</tt><br>
+
+
+  </li>
+
+
+</ul>
+
+
+<ul>
+
+
+  <li> In the tutorial, Hudak et al. use <i>e</i><sub>1</sub> =&gt; <i>e</i><sub>2</sub>
+to indicate that <i>e</i><sub>1</sub> <i>reduces to</i> <i>e</i><sub>2</sub>.
+My notes use the symbol "~&gt;"</li>
+
+
+  
+  
+  <ul>
+
+
+    
+    
+    <pre>inc ( inc 3 ) ~&gt; 5<br></pre>
+
+
+  
+  
+  </ul>
+
+
+  <li>Notice we need the "()" , inc inc 3 will give an error <br>
+
+
+  </li>
+
+
+</ul>
+
+
+<hr noshade="noshade" size="2" width="80%"><br>
+
+
+<h3>Function composition <br>
+
+
+</h3>
+
+
+<ul>
+
+
+  <li>What is the associativity of functions:&nbsp;&nbsp; <tt>f g x ??</tt><br>
+
+
+  </li>
+
+
+  <li>A type of "polymorphism" that has nothing to do with data
+structures is the function <i>composition</i>.&nbsp;</li>
+
+
+  <li>Haskell the infix operator (.) as follows:</li>
+
+
+  
+  
+  <ul>
+
+
+    <tt><br>
+
+
+(.) :: (b -&gt; c) -&gt; (a -&gt; b) -&gt; a -&gt; c</tt> <br>
+
+
+    <tt>(f.g)x = f(g x)<br>
+
+
+    <br>
+
+
+    </tt>
+  
+  
+  </ul>
+
+
+  <li><tt>Composition is a way to GLUE functions together!</tt></li>
+
+
+  
+  
+  <p><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/12composition.gif"><img title="" style="border: 0px solid ; height: 98px; width: 245px;" alt="f composed with g" src="12composition.gif"> </a> </p>
+
+
+  
+  
+  <pre>...&gt; (inc . inc) 3</pre>
+
+
+  
+  
+  <pre>5</pre>
+
+
+  <li> Or in the script (like math f o g) :</li>
+
+
+  
+  
+  <pre>inc2 = inc . inc</pre>
+
+
+  
+  
+  <ul>
+
+
+    <li> What is the type of inc and inc2?</li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<h3>
+<hr size="1" width="100%">Currying</h3>
+
+
+<ul>
+
+
+  <li> In the development of functional notations as a model of
+computation, it has been important to concentrate on functions of one
+variable</li>
+
+
+  <li> Curry did considerable work in the area. The idea is often used
+today in mathematics.</li>
+
+
+</ul>
+
+
+<h3> Currying a function</h3>
+
+
+<ul>
+
+
+  <li> A function</li>
+
+
+  
+  
+  <pre><i>f</i> : <i>X</i> x <i>Y</i> -&gt; <i>Z</i></pre>
+
+
+  <li> can be thought of as a function</li>
+
+
+  
+  
+  <pre><i>f<sub>c</sub></i>:<i>X</i> -&gt; (<i>Y</i> -&gt; <i>Z</i>)</pre>
+
+
+  <li> where (<i>Y</i> -&gt; <i>Z</i>) is the set of functions from <i>Y</i>
+to <i>Z<br>
+
+
+    <br>
+
+
+    </i></li>
+
+
+  <li>It is not a difficult idea</li>
+
+
+  
+  
+  <ul>
+
+
+    <li>(+) 3 5<i> </i>~&gt; (3 +) 5 ~&gt; 8</li>
+
+
+    <li>(3 +) is a function that adds 3 to any value</li>
+
+
+    <li>vs + (3,5) ~&gt; 8<br>
+</li>
+
+
+    <li>must have both values&nbsp; <br>
+
+
+    </li>
+
+
+  
+  
+  </ul>
+
+
+</ul><h3>Function application in a
+curryed language</h3>
+
+
+<ul>
+
+
+  <li>Example </li><li> Functions are left associative</li>
+
+
+  <li> The follow will cause an error!</li>
+
+
+  <br>
+
+
+  <b><tt>&nbsp;&nbsp; (+) 3 (*) 2 4</tt></b> <li> NEED "( )"</li>
+
+
+  <br>
+
+
+  <b><tt>&nbsp;&nbsp; (+) 3 ((*) 3 4)</tt></b>
+</ul>
+
+
+<hr align="left" size="1" width="99%">
+<h3> Regular logs from general logs</h3>
+
+
+<ul>
+
+
+  <li> Given a function</li>
+
+
+  
+  
+  <pre>logBase::Float-&gt;Float-&gt;Float</pre>
+
+
+  <li> The function that returns the logarithm of a number using base
+10:</li>
+
+
+  
+  
+  <pre>...&gt;:t logBase 10<br><br>logBase 10 :: Float -&gt; Float</pre>
+
+
+  <li> Apply the function logBase 10 to 100</li>
+
+
+  
+  
+  <pre>...&gt; logBase 10 100&nbsp;<br>2</pre>
+
+
+</ul>
+
+
+<ul>
+
+
+</ul>
+
+
+<h3>
+<hr size="1" width="100%"><a name="where"></a>Using <i>where clause<br>
+
+
+</i></h3>
+
+
+<ul>
+
+
+  <li>Local definitions (scope) via <i>where</i></li>
+
+
+  
+  
+  <ul>
+
+
+    <li><span style="font-style: italic;">where </span>can be used to
+introduce a definition on the command line</li>
+
+
+  
+  
+  </ul>
+
+
+  
+  
+  <dl>
+
+
+    <dd><span style="font-family: monospace;"><br>
+
+
+Notes&gt; f 3 4 where f x y = (x + y)/2.0</span><br style="font-family: monospace;">
+
+
+      <span style="font-family: monospace;">3.5<br></span><br>
+      <ul style="list-style-type: disc;">
+        <li>Command line <span style="font-style: italic;">where </span>produces a parse error in GHCi</li>
+      </ul>
+
+
+
+     </dd>
+
+
+  
+  
+  </dl>
+
+
+  
+  
+  <ul>
+
+
+    <li> <i>where</i> can be used for more readability<br><br></li></ul><p><b><tt>quadroot :: Float -&gt; Float -&gt; Float -&gt; [Float]</tt></b>
+  <br>
+
+
+  <b><tt>quadroot a b c</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp; | delta &lt; 0&nbsp;&nbsp;&nbsp; =
+error "complex roots"</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp; | delta == 0&nbsp;&nbsp; = [term1]</tt></b>
+  <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp; | delta &gt; 0&nbsp;&nbsp;&nbsp; =
+[term1+term2, term1-term2]</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp; where</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; delta = b*b -
+4*a*c</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; radix = sqrt
+delta</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term1 =
+-b/(2.0*a)</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term2 =
+radix/(2.0*a)</tt></b> <br>
+
+
+&nbsp; </p>
+
+
+  <li> Compare with with a code from Pascal</li>
+
+
+  <br>
+
+
+  <b><tt>type root_list = ^root_type;</tt></b> <br>
+
+
+  <b><tt>type root_type = record</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; root: real;</tt></b> <br>
+
+
+  <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next root_list</tt></b> <br>
+
+
+  <b><tt>end;</tt></b> <br>
+
+
+  <b><tt>function quadroot( a, b, c: real): root_list;</tt></b>
+  
+  
+  <ul>
+
+
+    <b><tt>var delta, radix, term2: real;</tt></b> <br>
+
+
+    <b><tt>roots, temp: root_list;</tt></b>
+  
+  
+  </ul>
+
+
+  <b><tt>begin</tt></b>
+  
+  
+  <ul>
+
+
+    <b><tt>roots := NIL;</tt></b> <br>
+
+
+    <b><tt>delta := b*b - 4*a*c;</tt></b> <br>
+
+
+    <b><tt>if delta &lt; 0</tt></b>
+    
+    
+    <ul>
+
+
+      <b><tt>then write(&#8216;Error: Complex Roots&#8217;);</tt></b> <br>
+
+
+      <b><tt>else begin</tt></b>
+      
+      
+      <ul>
+
+
+        <b><tt>radix := sqrt(delta);</tt></b> <br>
+
+
+        <b><tt>term2 := radix/(2*a);</tt></b> <br>
+
+
+        <b><tt>new(temp);</tt></b> <br>
+
+
+        <b><tt>roots^.next:=temp;</tt></b> <br>
+
+
+        <b><tt>temp^.root := roots^.root - term2;</tt></b> <br>
+
+
+        <b><tt>roots^.root := roots^.root + term2;</tt></b> <br>
+
+
+        <b><tt>temp^.next := NIL</tt></b>
+      
+      
+      </ul>
+
+
+      <b><tt>end</tt></b>
+    
+    
+    </ul>
+
+
+    <b><tt>end;</tt></b> <br>
+
+
+    <b><tt>quadroot := roots</tt></b>
+  
+  
+  </ul>
+
+
+  <b><tt>end;</tt></b> <br>
+
+
+  
+  
+  <hr size="3" width="100%">
+</ul>
+
+
+<h3>Using <span style="font-style: italic;">let expressions<br>
+
+
+</span></h3>
+
+
+<ul>
+
+
+  <li><span style="font-style: italic;">let expression</span>s also
+make it possible for an expression to have local definitions</li>
+
+
+  <li>Like <span style="font-style: italic;">where clause&nbsp; </span>can
+be part of a script or used on the command line (both Hugs and GCHI)&nbsp;</li>
+
+
+  <span style="font-family: monospace;"><br>
+
+
+Notes&gt; let f x y = (x + y)/2.0 in f 3 4</span><br style="font-family: monospace;">
+
+
+  <span style="font-family: monospace;">3.5<br><br></span>In addition GHCI allows <span style="font-family: monospace;"><br><br>Prelude&gt; let f x y = (x + y)/2.0<br>Prelude&gt; f 3 5<br>4.0<br>
+
+
+  <br>
+
+
+  </span><li>The standard Haskell function definition form is syntactic
+sugar for lambda expressions<br>
+
+
+  </li>
+
+
+</ul>
+
+
+<dl>
+
+
+  <dd><span style="font-family: monospace;">&gt; twice x = x + x<br>
+
+
+&gt; twice = (\x -&gt; x + x)<br>
+
+
+    <br>
+
+
+twice ( 3 * 3)<br>
+
+
+~&gt; let x = 3*3 in x + x<br>
+
+
+~&gt; let x = 9 in x + x<br>
+
+
+~&gt; 9 + 9<br>
+
+
+~&gt; 18</span></dd>
+
+
+</dl><ul><li><span style="font-family: monospace;">&gt; quadrootL :: Float -&gt; Float -&gt; Float -&gt; [Float]</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt; quadrootL a b c =</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp; let delta = (b*b - 4*a*c)</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; radix = sqrt delta</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term1 = -b/(2.0*a)</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term2 = radix/(2.0*a)</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp; in </span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp; if delta &gt; 0&nbsp; then [term1+term2, term1-term2]</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if delta &lt; 0&nbsp;&nbsp; then error "complex roots"</span><br style="font-family: monospace;"><span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else [term1]</span><br style="font-family: monospace;"></li></ul><ul>
+
+
+  
+  
+  <hr align="left" noshade="noshade" width="100%">
+</ul>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+</body></html>

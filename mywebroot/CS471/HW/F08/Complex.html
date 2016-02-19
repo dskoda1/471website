@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Complex Number Module</title></head><body><ul><li>References::<br>
+  </li><ul><li><a href="http://www.uncwil.edu/courses/mat111hb/Izs/complex/complex.html">Complex
+Numbers</a></li><li><a href="http://cnyack.homestead.com/files/MathBgnd/com_nos.htm">Complex
+Numbers</a></li></ul></ul><br>Implement a Haskell modules for complex numbers.<br><div style="margin-left: 40px;">
+The purpose of this exercise is <br></div>
+<ul style="margin-left: 40px;"><li>to use Haskell modules for separate compilation and data
+encapsulation</li><li>to create an instance (a type) of class Num<br>
+  </li></ul><div style="margin-left: 40px;">
+A module in Haskell has a name and contains a collections of
+definitions.&nbsp; The name of the modules begins with an upper case
+Letter and is the same as the filename.&nbsp; All top level definitions
+of a module are exported by default.&nbsp; Haskell's modules has
+features for hiding and importing but we will not used them in this
+assignment.<br><br>
+Haskell provides a mechanism for types in classes can be created <span style="font-style: italic;">automatically</span>. This is done in the
+type data type declaration:<br><br></div>
+
+<div style="margin-left: 80px;"><span style="font-family: monospace;">&gt;
+data (RealFloat a)=&gt; Complex a =&nbsp; Complex a a </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+deriving (Eq,Read,Show)</span><br><br>
+</div><div style="margin-left: 40px;">
+This works because the <span style="font-style: italic;">natural</span>
+definitions of each class for Complex follows from the definition of
+RealFloat. For example: <br></div>
+<div style="margin-left: 80px;">&nbsp;<span style="font-family: monospace;">(Complex a b) == (Complex a' b') = (a
+== a') &amp;&amp; (b == b')</span><br>
+</div>
+<div style="margin-left: 40px;"><br>The Complex data
+type should be in the Class Num.<br>
+Below is the definition of Num from the standard library
+specification.&nbsp;
+<br><br><tt>class&nbsp;&nbsp;(Eq&nbsp;a,&nbsp;Show&nbsp;a)&nbsp;=&gt;&nbsp;Num&nbsp;a&nbsp;&nbsp;where</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;(+),&nbsp;(-),&nbsp;(*)&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;a&nbsp;-&gt;&nbsp;a&nbsp;-&gt;&nbsp;a</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;negate&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;a&nbsp;-&gt;&nbsp;a</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;abs,&nbsp;signum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;a&nbsp;-&gt;&nbsp;a</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;fromInteger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;Integer&nbsp;-&gt;&nbsp;a</tt><br><tt>
+</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Minimal&nbsp;complete&nbsp;definition:</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All,&nbsp;except&nbsp;negate&nbsp;or&nbsp;(-)</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;-&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;x&nbsp;+&nbsp;negate&nbsp;y</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;negate&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;0&nbsp;-&nbsp;x</tt><br><tt>
+</tt><br><tt>
+</tt><a href="Complex.lhs">Complex.lhs</a> is provided to help you get
+started.&nbsp; It also has some examples of using this class.<br><br>
+Challenge:<br>
+Implement the Complex data type to be in the Fractional Class.&nbsp;
+Below is
+the definition of Fractional from the library specification.<br><br><tt>class&nbsp;&nbsp;(Num&nbsp;a)&nbsp;=&gt;&nbsp;Fractional&nbsp;a&nbsp;&nbsp;where</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;(/)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;a&nbsp;-&gt;&nbsp;a&nbsp;-&gt;&nbsp;a</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;recip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;a&nbsp;-&gt;&nbsp;a</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;fromRational&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;Rational&nbsp;-&gt;&nbsp;a</tt><br><tt>
+</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Minimal&nbsp;complete&nbsp;definition:</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fromRational&nbsp;and&nbsp;(recip&nbsp;or&nbsp;(/))</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;recip&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;1&nbsp;/&nbsp;x</tt><br><tt>
+&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;/&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;x&nbsp;*&nbsp;recip&nbsp;y</tt><br><tt>
+</tt><br></div>
+
+
+
+
+
+</body></html>

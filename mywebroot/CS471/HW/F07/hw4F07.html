@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us">
+<head>
+
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+  
+  <title>CS471 Assignment 3:</title>
+</head>
+
+
+<body>
+
+
+<h3> Programming Languages<br />
+
+
+Assignment 4</h3>
+
+
+<h3>Read: Scott</h3>
+
+
+<div style="margin-left: 40px;">Finish
+reading&nbsp;Chapter 11, 7.7.1(to p 373) and 7.8 <br />
+
+
+</div>
+
+
+<div style="margin-left: 40px;">("Check your
+understanding" &nbsp;q:11:6-14)</div>
+
+
+<br />
+
+
+<br />
+
+
+Useful links<br />
+
+
+<ul>
+
+
+  <li><a href="http://www.cse.unsw.edu.au/%7Ebillw/prologdict.html">Prolog
+dictionary</a> (Definition of prolog terms)</li>
+
+
+  <li><a href="http://www.coli.uni-saarland.de/%7Ekris/learn-prolog-now/">Learn
+Prolog NOW!</a></li>
+
+
+  <li><a href="http://www.scre.ac.uk/personal/pb/prologbook/index.html">Prolog
+Programming A First Course by Paul Brna&nbsp;</a>(very
+detailed)</li>
+
+
+  <li>Check my references for other resources.</li>
+
+
+</ul>
+
+
+<h3>Due during class,&nbsp;<span style="text-decoration: line-through;"></span>Wed
+(Fri)??</h3>
+
+
+<ol>
+
+
+  <li>What is the "<span style="font-style: italic;">Test
+and Generate</span>" programming idiom?</li>
+
+
+  <li>What/How does the <span style="font-style: italic;">delete</span>/2
+predicate mean/behave?</li>
+
+
+  
+  <dl>
+
+
+  
+  </dl>
+
+
+  <li>Each of the letters
+D,E,M,N,O,R,S and Y represents an unique digit. Moreover, when each
+letter is mapped to its corresponding digit the equation SEND + MORE =
+MONEY holds. Below is a very naive solution. What is the big "O" of
+solvSlow ?<br />
+
+
+    <span style="font-family: monospace;">solvSlow(
+[D,E,M,N,O,R,S,Y]) :-</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+Lst = [S,E,N,D,M,O,R,Y],</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+Digits = [0,1,2,3,4,5,6,7,8,9],</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+assign_digits(Lst, Digits),</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+M &gt; 0, </span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+S &gt; 0,</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+1000*S + 100*E + 10*N + D +</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+1000*M + 100*O + 10*R + E =:=</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+10000*M + 1000*O + 100*N + 10*E + Y,</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+write(Lst).</span><br />
+
+
+assign_digits([], _List).<br />
+
+
+assign_digits([D|Ds], List):-<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+select(D, List, NewList),<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+assign_digits(Ds, NewList). </li>
+
+
+  
+  <dl>
+
+
+  
+  </dl>
+
+
+</ol>
+
+
+<h3>Due during class, Fri (Mon)??<span style="text-decoration: line-through;"></span></h3>
+
+
+<ol>
+
+
+  <li>What is the runtime implementation of lists in Prolog?
+&nbsp;(i.e. What goes on underneath the hood?)</li>
+
+
+  <li>&nbsp;Define a clause &nbsp; <span style="font-style: italic; font-weight: bold;">append</span>3<span style="font-style: italic; font-weight: bold;">DL</span>&nbsp;
+that
+concatenates three difference lists:<br />
+
+
+&nbsp; &nbsp;<span style="font-family: monospace;">
+&nbsp;?-
+append3DL(
+[z,y|A] - A, [x,w | B] -B, [u,v | C] - C, What).</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; What = [z, y,
+x, w, u, v | _n] - _n</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; yes</span></li>
+
+
+  <li>Define a clause <span style="font-style: italic; font-weight: bold;">simp</span>(<span style="font-style: italic;">Var, Value, Vars</span>)
+that given a list
+Vars of variables and their values unifies the Value with the current
+value of Var. &nbsp;Vars has the form [x/5, y/10], where x is an
+atomic
+representing a variable and '/' is the separator for the associated
+numerical value. &nbsp;{Hint try using member and pattern matching}<span style="font-style: italic;"> {Include this rule in
+problem 6 below.}<br />
+
+
+    <span style="font-family: monospace;">&nbsp;
+?- Vars=[x/5, y/10],
+simp(x,VX,Vars), simp(y,VY,Vars).</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;
+Vars = [x/5, y/10]</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;
+VX = 5</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;
+VY = 10 </span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;
+Yes</span></span></li>
+
+
+</ol>
+
+
+<div style="text-align: left;">
+<h3></h3>
+
+
+<hr style="width: 100%; height: 2px;" />
+<h3><b><i>Due: <span style="text-decoration: line-through;"></span>Monday,
+Oct 1 at 5pm in the course file cabinet.</i></b></h3>
+
+
+<h3><b>Finish the programming problems in <a href="XXXas4.pl">XXXas4.pl</a>
+(rename file)</b></h3>
+
+
+<br />
+
+
+In next week's programming assignment you will see this problem:<br />
+
+
+Define a procedure <tt>powerset(+Set,-PowerSet),</tt>given
+a Set, represented by a list, it creates the powerset of Set. i.e. <br />
+
+
+<ol>
+
+
+  <tt>&nbsp; ?- powerset([],X).</tt><br />
+
+
+  <tt>&nbsp; X = [[]]</tt><br />
+
+
+  <tt>&nbsp; ?- powerset([1],X).</tt><br />
+
+
+  <tt>&nbsp; X = [[],[1]]&nbsp; % order of sets not
+important</tt><br />
+
+
+  <tt>&nbsp; ?- powerset([a,b],P).</tt><br />
+
+
+  <tt>&nbsp; P = [[a,b], [a], [b],
+[]]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % order of sets
+not important</tt><tt>?- powerset(S,[[a],[b],[a,b],[]]).</tt><br />
+
+
+  <tt>&nbsp; %%%&nbsp; May run out of stack ... YOUr code
+does not need</tt><br />
+
+
+  <tt>&nbsp; %%%&nbsp; to work for this query.</tt><br />
+
+
+  <tt>&nbsp; ?- powerset([a,b],[[a],[b],[a,b],[]]).</tt><br />
+
+
+  <tt>&nbsp; %%%&nbsp; may run out of stack ... YOUr code
+does not need</tt><br />
+
+
+  <tt>&nbsp; %%%&nbsp; to work for this query.<br />
+
+
+&nbsp; ?- powersetA([a,b,c],P). &nbsp; %A different version<br />
+
+
+&nbsp; P = [[], [a], [b], [a, b], [c], [a, c], [b, c], [a|...]] <span style="color: rgb(255, 0, 0);">(user types "w" here)</span><br />
+
+
+&nbsp; P = [[], [a], [b], [a, b], [c], [a, c], [b, c], [a, b, c]] <br />
+
+
+  <br />
+
+
+  </tt>
+</ol>
+
+
+</div>
+
+
+<br />
+
+
+Use the ideas provided by the following induction proof:<br />
+
+
+<p>
+<b>Problem</b>: If <i>S</i> is a finite set
+with <i>n</i> elements, then <i>S</i> has 2<span style="font-style: italic;"><sup>n</sup></span>
+distinct subsets. <br />
+
+
+<b>Proof:</b> <br />
+
+
+<b><br />
+
+
+&nbsp; Basis Step</b>: <br />
+
+
+</p>
+
+
+<div style="margin-left: 40px;">If <i>n</i> =
+0, then <span style="font-style: italic;">S =</span>&nbsp;<img alt="tex2html_wrap_inline33" src="img3P.gif" align="middle" height="32" width="8" /> . Hence it has exactly
+one
+subset, namely <img alt="tex2html_wrap_inline33" src="img3P.gif" align="middle" height="32" width="8" /> . Since 2<sup>0</sup>=1 , the
+statement holds for <i>n</i> = 0.<br />
+
+
+</div>
+
+
+<p> <b>&nbsp; Induction</b>:&nbsp;</p>
+
+
+<div style="margin-left: 40px;">Assume that a set with <i>n</i>
+elements has 2<span style="font-style: italic;"><sup>n</sup></span>
+distinct subsets.
+&nbsp;&nbsp;----- <font color="green"><i>Induction
+Hypothesis </i></font><br />
+
+
+</div>
+
+
+<div style="margin-left: 40px;"> To prove that this holds
+for <i>n</i>+1, <font color="#ff0000">first
+try to express the number of subsets of <i>S</i> of size <i>n</i>+1
+in terms of that of a set of size <i>n</i></font> so
+that the induction hypothesis can be used. For that we use the
+following claim without a rigorous proof.
+<br />
+
+
+<br />
+
+
+</div>
+
+
+<div style="margin-left: 40px;"><b>Claim:</b> <b>|
+<img style="width: 14px; height: 14px;" alt="tex2html_wrap_inline95" src="img10P.gif" />(<i>T</i>)
+| = 2 <i>* </i>| <img style="width: 14px; height: 14px;" alt="tex2html_wrap_inline95" src="img10P.gif" />(<i>S</i>) | ,</b>
+&nbsp;
+if <b><i>T</i></b> is obtained from <b><i>S</i></b>
+by adding one more element, where <img style="width: 14px; height: 14px;" alt="tex2html_wrap_inline95" src="img10P.gif" />(<i>A</i>) denotes the
+powerset of
+a set <i>A</i> . <br />
+
+
+<br />
+
+
+</div>
+
+
+<div style="margin-left: 40px;">Let us illustrate the
+basic idea of this claim with a simple example.
+Let <span style="font-style: italic;">S = </span>{1,2}
+. Then the subsets of <i>S</i> are <img style="width: 8px; height: 32px;" alt="tex2html_wrap_inline33" src="img3P.gif" align="middle" /> , {1},
+{2},
+and {1,2} . These subsets can be grouped into two groups: <img style="width: 8px; height: 32px;" alt="tex2html_wrap_inline33" src="img3P.gif" align="middle" /> and {1} in one
+group, and {2} and {1,2} in the other. The sets in the first group do
+not contain 2 while the ones in the second group contain 2.
+Also there is an obvious bijection between these two groups: Adding the
+element 2 to each set in the first group produces a unique set in the
+second group, and deleting 2 from
+each set of the second group produces a unique set in the first group.
+Furthermore the sets of the first group are the subsets of {1} that is <span style="font-style: italic;">S</span> -{2} . Thus the
+subsets of <i>S</i> have been expressed in terms of the
+subsets of&nbsp;<span style="font-style: italic;">S</span>
+-{2} &nbsp;and <i>S</i> can be seen to have twice as
+many subsets as&nbsp; <span style="font-style: italic;">S</span>
+-{2} .<br />
+
+
+</div>
+
+
+<div style="margin-left: 40px;"><font color="#0000ff">The
+proof of the inductive step</font> is a straightforward
+application of this
+claim.<br />
+
+
+Let <i>S</i> be a set with <i>n</i>+1
+elements and let <i>x</i> be an arbitrary element of <i>S</i>.
+&nbsp;<img style="width: 14px; height: 14px;" alt="tex2html_wrap_inline95" src="img10P.gif" />(<i>T</i>)
+denotes the set of subsets of a set <i>T</i> . <br />
+
+
+Then a set in <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<i>S</i>) not containing <i>x</i>
+is a member of <img style="width: 14px; height: 14px;" alt="tex2html_wrap_inline95" src="img10P.gif" />(<span style="font-style: italic;">S</span>-{<i>x</i>})
+, and conversely, a member of <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<span style="font-style: italic;">S</span>-{<i>x</i>})
+is a member of <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<i>S</i>) that does not contain <i>x</i>.
+<br />
+
+
+</div>
+
+
+<div style="margin-left: 40px;"> Also a set in <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<i>S</i>)
+containing <i>x</i> is&nbsp; a member of <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<span style="font-style: italic;">S</span>-{<i>x</i>})
+"plus x" and conversely, a member of <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<span style="font-style: italic;">S</span>-{<i>x</i>})
+"plus <i>x"</i>
+is a member of <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<i>S</i>) that contains <i>x</i>.<br />
+
+
+Thus altogether there are twice as many sets in <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<i>S</i>)
+as in <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<span style="font-style: italic;">S</span>-{<i>x</i>}).<br />
+
+
+But by the induction hypothesis <img alt="tex2html_wrap_inline95" src="img10P.gif" align="bottom" height="14" width="14" />(<span style="font-style: italic;">S
+</span>-{<i>x</i>}) has 2<span style="font-style: italic;"><sup>n</sup></span>
+elements. Hence <i>S</i> has&nbsp;2<span style="font-style: italic;"><sup>n</sup></span><sup>+1</sup>
+subsets. <br />
+
+
+</div>
+
+
+<p>&nbsp; End of Proof</p>
+
+
+(from:
+http://www.cs.odu.edu/~toida/nerzic/content/induction/example6/example6.html)<br />
+
+
+<br />
+
+
+<br />
+
+
+<br />
+
+
+<br />
+
+
+<b><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a><br />
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a><br />
+
+
+<br />
+
+
+<br />
+
+
+</b>
+</body>
+</html>

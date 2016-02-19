@@ -1,0 +1,123 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Implementation of Prolog</title>
+</head>
+<body>
+
+<center>
+<h2>
+&nbsp; PROgramming LOGic- Spring, 2000</h2></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/5Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/6xSpr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<h3>
+What will be covered ?</h3>
+
+<ul>
+<li>
+&nbsp;The Searching Mechanisms</li>
+</ul>
+
+<hr WIDTH="100%">
+<br><b>Implementation</b>
+<dl>
+<dl>
+<li>
+Logical processors like Prolog are implemented in a procedure way.</li>
+
+<li>
+Finding the variables which make the logic program true is an NP problem.</li>
+
+<li>
+There are a number of different techniques to search/discover the variables</li>
+
+<li>
+Prolog uses <b>Backtracking</b></li>
+
+<dl>
+<li>
+Depth first search of the solution space</li>
+
+<li>
+Searching only feasible nodes</li>
+
+<dl>
+<li>
+sound proof procedure</li>
+
+<li>
+not complete</li>
+
+<dl>
+<li>
+i.e. if there is a finite proof of the goal it will be found.</li>
+</dl>
+</dl>
+</dl>
+</dl>
+</dl>
+
+<hr WIDTH="100%">
+<br><b>Example: </b><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/PL/ghezzi.pl">From
+Ghezzi p 385</a>
+<br>The transitive closure of <i>rel.</i>
+<blockquote>
+<ol>
+<li>
+<b><tt><font color="#990000">rel(a,b).</font></tt></b></li>
+
+<li>
+<b><tt><font color="#990000">rel(a,c).</font></tt></b></li>
+
+<li>
+<b><tt><font color="#990000">rel(b,f).</font></tt></b></li>
+
+<li>
+<b><tt><font color="#990000">rel(f,g).</font></tt></b></li>
+
+<li>
+<b><tt><font color="#990000">clos(X,Y) :- rel(X,Y).</font></tt></b></li>
+
+<li>
+<b><tt><font color="#990000">clos(X,Y) :- rel(X,Z), clos(Z,Y).</font></tt></b></li>
+</ol>
+
+<p><br><i>Try "trace".&nbsp; See Brassard&amp;Bratley problem 8.18</i></blockquote>
+
+<hr WIDTH="100%">
+<br>&nbsp;<b>The Search Space for <tt>clos(a,f)</tt></b>
+<p><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/Fig87.gif"><img SRC="Fig87.gif" ALT="Figure 8.7 from Ghezzi & Jazayeri" BORDER=0 height=296 width=225 align=LEFT></a>
+<ul>
+<li>
+After the first "YES" the user types ";"</li>
+
+<li>
+This cause the search to continue.</li>
+</ul>
+
+<hr WIDTH="100%">
+<br><a href="mailto: head@binghamton.edu">&copy; 2000 Head,Lander</a>
+<br>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/5Spr00.html">&nbsp;previous&nbsp;</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/6xSpr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

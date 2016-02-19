@@ -1,0 +1,110 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Head/ Lander">
+   <meta name="GENERATOR" content="Mozilla/4.72 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="CS471 spr 00">
+   <title>Substitutability</title>
+</head>
+<body text="#000000" bgcolor="#F5F5F5" link="#00FF00" vlink="#666666" alink="#FF0000">
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/22Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/22Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Substitutability</h3></center>
+
+<center>
+<h3>
+&copy; Eileen Head, Leslie C. Lander, 2000</h3></center>
+Purpose:&nbsp; Substitutability is one of the four features of OO languages.&nbsp;
+Type-checking rules in strongly typed OO languages to allow substitutability
+are counterintuitive. The most general rules are discussed as well.
+<br>The runtime scheme for implementing the substitutability, dynamic dispatching
+(dynamic method binding), is illustrated for Java.
+<br>
+<hr ALIGN=LEFT NOSHADE WIDTH="100%">
+<br>Java code:
+<p>
+<hr NOSHADE WIDTH="50%">
+<br><tt>public class <b>Point</b> {</tt>
+<blockquote><tt>private double x = 0.0;</tt>
+<br><tt>private double y = 0.0;</tt>
+<br><tt>public Point (){ }</tt></blockquote>
+
+<blockquote><tt>public Point (double x, double y) {</tt>
+<blockquote><tt>this.x = x;</tt>
+<br><tt>this.y = y;</tt></blockquote>
+<tt>}</tt><tt></tt>
+<p><tt>double getX() {return x;}</tt>
+<br><tt>double getY(){ return y;}</tt><tt></tt>
+<p><tt>public void clear() {</tt>
+<blockquote><tt>x = 0.0;</tt>
+<br><tt>y = 0.0;</tt></blockquote>
+<tt>}</tt>
+<br><tt>public void move(double incX, double incY) {</tt>
+<blockquote><tt>x =+ incX;</tt>
+<br><tt>y =+ incY;</tt></blockquote>
+<tt>}</tt>
+<br><tt>public double distance (Point p) {</tt>
+<blockquote><tt>return Math.sqrt (</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; (p.x -x)*(p.x -x) +</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; (p.y -y)*(p.y -y)</tt>
+<br><tt>);</tt></blockquote>
+<tt>}</tt>
+<br><tt>public Point newNear (Point p) {</tt>
+<blockquote><tt>return new Point ( (p.x-x)/2.0, (p.y -y)/2.0);</tt></blockquote>
+<tt>}</tt>
+<br><tt>public String toString() {</tt>
+<blockquote><tt>return "Point (" +x +", "+y+ " )" ;</tt></blockquote>
+<tt>}</tt></blockquote>
+<tt>}</tt>
+<blockquote><tt></tt>&nbsp;
+<blockquote><tt></tt>&nbsp;
+<br><tt></tt>&nbsp;</blockquote>
+<tt></tt>
+<p><br>
+<hr NOSHADE WIDTH="50%">
+<p><tt>import java.awt.Color;</tt>
+<br><tt>public class <b>ColorPoint extends Point</b> {</tt>
+<p><tt>&nbsp;&nbsp;&nbsp; private color = Color.white;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; public ColorPoint (){</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; }</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; public ColorPoint (int x, int y , Color color)
+{</tt>
+<blockquote>
+<blockquote><tt>super(x,y);</tt>
+<br><tt>this.color = color;</tt></blockquote>
+<tt>}</tt>
+<br><tt>public <b>clear</b>() {</tt>
+<blockquote><tt>super.clear();</tt>
+<br><tt>color = Color.white;</tt></blockquote>
+<tt>}</tt></blockquote>
+<tt>}</tt>
+<br>
+<hr NOSHADE WIDTH="50%">
+<br>&nbsp;
+<br>&nbsp;
+<blockquote>&nbsp;</blockquote>
+</blockquote>
+
+<hr WIDTH="100%">
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/22Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/22Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

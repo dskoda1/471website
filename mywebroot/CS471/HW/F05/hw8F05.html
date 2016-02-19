@@ -1,0 +1,1084 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  <title>Sub Routines and parameter passing- Louden Chapter 7 &amp; 8</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+  
+  
+  
+  <meta name="author" content="E Head">
+</head>
+
+
+<body>
+
+
+
+
+<div style="text-align: center;">
+<h3>Homework
+Assignment 8<br>
+
+
+
+
+</h3>
+
+
+
+
+</div>
+
+
+
+
+Due: &nbsp;Nov 7 5pm<br>
+
+
+
+
+Purpose: Understand flow control semantics.<br>
+
+
+
+
+You can work in teams of 2 people.<br>
+
+
+
+
+<h3>Reading/References:</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Chapter 7 &amp; 8</li>
+
+
+
+
+</ul>
+
+
+
+
+<h3>Assignment:</h3>
+
+
+
+
+
+<dl>
+
+
+
+
+</dl>
+
+
+
+
+<dl>
+
+
+
+
+</dl>
+
+
+
+
+<ol start="2" style="list-style-type: decimal;">
+
+
+
+
+</ol>
+
+
+
+
+<ol>
+
+
+
+
+  <li>page 305 exercise 7.37</li>
+
+
+
+
+  <li>What are the values of <span style="font-style: italic;">x</span>
+and <span style="font-style: italic;">n</span> (as
+well as <span style="font-style: italic;">a</span>
+in part d) after execution of
+each of the following C-code fragments? Assume no delay in executing
+post-increment operations.&nbsp; Don't change any "C" language
+specification. Don&rsquo;t forget that operators (+),
+(-),
+and (*) are left-associative, &amp;&amp; is short
+circuited&nbsp; and
+==
+returns 0 for false and 1 for true.&nbsp; </li>
+
+
+
+
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+    <li style="font-weight: bold;"><span style="font-family: monospace;">int n
+= 3; int x = n++ +
+n-- * --n;</span></li>
+
+
+
+
+    
+    
+    
+    <ol>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+left-to-right
+evaluation <br>
+
+
+
+
+        </span></li>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+right-to-left
+evaluation</span></li>
+
+
+
+
+    
+    
+    
+    </ol>
+
+
+
+
+    <li style="font-weight: bold;"><span style="font-family: monospace;">int n
+= 3; int x = ++n +
+n++ - ++n;</span></li>
+
+
+
+
+    
+    
+    
+    <ol>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+left-to-right
+evaluation</span></li>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+right-to-left
+evaluation</span></li>
+
+
+
+
+    
+    
+    
+    </ol>
+
+
+
+
+    <li style="font-weight: bold;"><span style="font-family: monospace;">int n
+= 0; int x =
+(n++ &amp;&amp; ++n) == (++n &amp;&amp; n++);</span></li>
+
+
+
+
+    
+    
+    
+    <ol>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+left-to-right
+evaluation <br>
+
+
+
+
+        </span></li>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+right-to-left
+evaluation</span></li>
+
+
+
+
+    
+    
+    
+    </ol>
+
+
+
+
+    <li><span style="font-family: monospace;"><span style="font-weight: bold;">int
+a[] = {0, 1, 2, 3,
+4}; int n = 2;</span><br style="font-weight: bold;">
+
+      <span style="font-weight: bold;">
+
+
+int x = (a[n++] = a[++n] + a[n]);</span><br>
+
+
+
+
+Assume that a[n] is &ldquo;evaluated&rdquo; by determining its
+l-value.</span></li>
+
+
+
+
+    
+    
+    
+    <ol>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+left-to-right
+evaluation</span></li>
+
+
+
+
+      <li><span style="font-family: monospace;">assuming
+right-to-left
+evaluation<br>
+
+        </span></li>
+
+    
+    </ol>
+
+    
+    <dl>
+
+      <dd><span style="font-family: monospace;"><br>
+
+        </span></dd>
+
+    
+    </dl>
+
+    
+    <ol>
+
+
+
+
+    
+    
+    
+    </ol>
+
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+
+  <li>page 347 exercise 8.5&nbsp; Suppose we tried to write a
+C
+procedure what initialize an array to a certain size as follows:</li>
+
+
+
+
+  
+  
+  
+  <ol>
+
+
+
+
+    
+  
+  </ol>
+
+  
+  <dl>
+
+    <dd><span style="font-family: monospace;">void
+init(int a[], int
+size) {<br>
+
+
+
+
+      </span></dd>
+
+    <dd><span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp;a = (int*)
+malloc(size*sizeof(int));</span></dd>
+
+    <dd><span style="font-family: monospace;">}</span></dd>
+
+  
+  </dl>
+
+  
+  <ol>
+
+
+
+
+    
+
+
+    
+
+
+  
+  
+  
+  </ol>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    <dt>What if anything is wrong with this code? &nbsp;Explain.</dt>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>page 347 8.7</li>
+
+
+
+
+  <li>In Java, an instantiated objects have access to its Class
+fields
+(variables).&nbsp; How could this be implemented at runtime?</li>
+
+
+
+
+  <li>The following snippet of Java code will not compile.
+&nbsp;Explain the problem: What is and how you would fix it.<br>
+
+
+
+
+    
+    
+    
+    <div style="margin-left: 40px;"><span style="font-family: monospace;">&nbsp;Vector
+victor = new Vector() ;</span><span style="font-family: monospace;"></span><br>
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;int
+size =5;</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;PrintWriter
+out = null;</span><br style="font-family: monospace;">
+
+
+
+
+&nbsp;&nbsp;&nbsp; // some code here<br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;try
+{</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+System.out.println("Entered try statement");</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+out = new PrintWriter(new FileWriter("OutFile.txt"));</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+for (int i = 0; i &gt; size; i++) {</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+out.println("Value at: " + i + " = " + victor.elementAt(i));</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+}</span><br style="font-family: monospace;">
+
+
+
+
+&nbsp; <span style="font-family: monospace;">} catch
+(Exception x) {</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+// do something</span><br>
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;}
+catch (FileNotFoundException e) {</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("FileNotFoundException: ");</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+throw new RuntimeException(e);</span><br style="font-family: monospace;">
+
+
+
+
+&nbsp; <span style="font-family: monospace;">} catch
+(IOException e2) {</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;
+System.err.println("Caught IOException: " + e2.getMessage());</span><br style="font-family: monospace;">
+
+
+
+
+&nbsp; <span style="font-family: monospace;">}<br>
+
+    </span></div>
+
+
+
+
+  </li>
+
+
+
+
+  <li><span style="font-family: monospace;"></span>
+Given the following program fragment:<br>
+
+
+
+
+  </li>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;var r: integer;<br>
+
+&nbsp; &nbsp; &nbsp; &nbsp;procedure inc (x: integer) : integer;<br>
+
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;begin</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x := x + 1;</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return x</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+end inc;</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+
+&nbsp; &nbsp; &nbsp;&nbsp; procedure
+f( a, b : integer );</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r := inc( a ) + inc( b )</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end f;<br>
+
+  </span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r := 10; <br>
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;f( r, r )</span><br style="font-family: monospace;">
+
+  <span style="font-family: monospace;">
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end</span><br>
+
+
+
+
+  <br>
+
+
+
+
+&nbsp;&nbsp; What is the final value of r for each of the
+following parameter-binding mechanisms?<br>
+
+
+
+
+  
+  
+  
+  <div style="margin-left: 40px;">&nbsp;&nbsp; a.
+call by value<br>
+
+
+
+
+&nbsp;&nbsp; b. call by reference<br>
+
+
+
+
+&nbsp;&nbsp; c. call by value-result<br>
+
+  <br>
+
+  </div>
+
+
+
+
+  <li>Given the following program fragment:</li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><br>
+
+      <span style="font-family: monospace;">
+
+
+ var a, b: integer;</span></dd>
+
+
+
+    <dd style="font-family: monospace;">procedure double( y : integer ) : integer<br>
+
+
+
+begin<br>
+
+&nbsp; &nbsp; y := y + y;</dd>
+
+    <dd style="font-family: monospace;">&nbsp; &nbsp; return y;
+    
+    <br>
+
+end</dd>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+  <dd style="font-family: monospace;">
+
+  </dd>
+
+
+
+  <dd>
+    
+    
+    
+    <div style="margin-left: 40px;"><span style="font-family: monospace;">procedure triple( x : integer ) : integer</span><br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">begin</span><br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+return x * x * x;</span><br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">end</span><br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">begin</span><br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+a := 3;</span><br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+b := triple( double(a) );</span><br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">end<br>
+
+    </span></div>
+
+  </dd>
+
+  <dt></dt>
+
+
+
+  <dd>
+&nbsp;&nbsp; What is the final value of b for each of the
+following parameter-binding mechanisms?<br>
+
+
+
+
+
+&nbsp;&nbsp;
+a. call by value<br>
+
+
+
+
+&nbsp;&nbsp; b. call by name<br>
+
+
+
+    
+    
+    
+    <div style="margin-left: 40px;">
+    <br>
+
+
+
+
+    </div>
+
+
+
+
+    
+    
+    
+    <dl>
+
+
+
+
+      <dt></dt>
+
+
+
+
+    
+    
+    
+    </dl>
+
+
+
+
+  </dd>
+
+
+
+
+
+  <li>For each of the following individuals write a sentence or
+two
+describing
+their contribution to Programming Languages/Software development.
+&nbsp;Also include a
+non-cs&nbsp; fact you found interesting about the person and any
+links(or references) you found useful.</li>
+
+
+
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+    <li>Miguel de Icaza&nbsp;</li>
+
+
+
+    <li>Grace Hopper&nbsp;</li>
+
+
+
+    <li>Donald Knuth&nbsp;</li>
+
+
+
+    <li>Tim Berners-Lee&nbsp;</li>
+
+
+
+    <li>Bertrand Meyers&nbsp;</li>
+
+
+
+    <li>Lady Lovelace&nbsp;</li>
+
+
+
+    <li>E. Gamma&nbsp;</li>
+
+
+
+    <li>Eric&nbsp;Raymond&nbsp;</li>
+
+
+
+    <li>Alan Kay&nbsp;</li>
+
+
+
+    <li>Kathleen Dollard&nbsp;</li>
+
+
+
+    <li>Niklaus Wirth&nbsp;</li>
+
+
+
+    <li>John McCarthy&nbsp;<br>
+
+
+      <br>
+
+
+
+    </li>
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+  <li> Python has two built-in&nbsp;sequence types: <span style="font-style: italic; font-weight: bold;">tuple</span> , immutable sequence and <span style="font-weight: bold;"><span style="font-style: italic;">list</span>, </span><span style="font-style: italic;">&nbsp;</span>mutable sequence. &nbsp;The language provides <span style="font-style: italic; font-weight: bold;">for</span>
+&nbsp;loop to iterate through items in any ordered sequence. &nbsp;The script
+below prints out the each item in lst with it's sequence number.</li>
+
+
+  
+  
+  <dl>
+
+
+    <dd><span style="font-family: monospace;">i = 0</span><br style="font-family: monospace;">
+
+
+      <span style="font-family: monospace;">for item in lst :</span><br style="font-family: monospace;">
+
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; i = i+1</span><br style="font-family: monospace;">
+
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; print repr(i) + " " + repr(item)</span></dd>
+
+
+  
+  
+  </dl>
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>Briefly explain the results of the following statements:</li>
+
+
+    
+    
+    <ol style="font-family: monospace;">
+
+
+      <li>seq = [1,2] + [1,2]</li>
+
+
+      <li>seq = (1,2) +(1,2)</li>
+
+
+      <li>seq = [1,2] + (1,2)</li>
+
+
+    
+    
+    </ol>
+
+
+    <li>Will this script work if <span style="font-style: italic;">sequence</span> is a list? &nbsp;Will this script work if <span style="font-style: italic;">sequence </span>is a <span style="font-style: italic;">tuple</span>?
+&nbsp;If it work for both data types without modification briefly
+explain why. &nbsp;If it doesn't work modify the code so it work for
+both <span style="font-style: italic;">tuples and lists.</span></li>
+
+
+    <li>Write a <span style="font-style: italic;">for</span> loop which
+computes the "sum" (+) of items in an order sequence data type and
+print the result. &nbsp;Will you code work if your sequence contains
+only "string" items?</li>
+
+    
+    <dl>
+
+      <dd></dd>
+
+    
+    </dl>
+
+
+  
+  
+  </ol>
+
+
+  <li><span style="font-style: italic;">def</span> statement creates
+an
+executable object (function) and assigns a name to the object.
+&nbsp;Parameter passing&nbsp;semantics is same as the semantics of
+passing reference types in Java. &nbsp;Python also allows nested
+functions! &nbsp;Nested functions can be defined any way, but the must
+be defined before they are used. &nbsp;quadRoot functions determines
+the roots of a a quadratic &nbsp;equation. &nbsp;</li>
+
+  
+  <dl>
+
+    <dd><span style="font-family: monospace;"><br>
+
+import math</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">def quadRoot(a,b,c) :</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; delta = b*b - 4*a*c</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; def noRoots():</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print "No real roots"</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return None</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; def oneRoot():</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term1 = -b/(2.0*a)</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return term1</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; def twoRoots():</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; radix = math.sqrt(delta)</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term2 = radix/(2.0*a)</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; term1 = -b/(2.0*a)</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (term1+term2, term1-term2)</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; </span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; if delta &lt; 0 :</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return noRoots()</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; if delta == 0 :</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return oneRoot()</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; else:</span><br style="font-family: monospace;">
+
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return twoRoots()</span></dd>
+
+    <dd><span style="font-family: monospace;"></span><br>
+
+      
+      <ol style="list-style-type: lower-alpha;">
+
+        <li>Variation of Exercise 1.3 page 30. &nbsp;<span style="font-weight: bold;">Code this in Python using a functional style. &nbsp;</span></li>
+
+        <li>Recode exercise 1.3 page 30 using a while loop in Python. &nbsp;See <a href="http://www.python.org/dev/doc/newstyle/tut/node6.html">while loop specificaton</a>.<br>
+
+        </li>
+
+      
+      </ol>
+
+    </dd>
+
+  
+  </dl>
+
+  <li>Draw the memory diagram for each line of the following code is executed (See page 118 Lutz &amp; Ascher):<br>
+
+  </li>
+
+  
+  <dl>
+
+    <dd>&gt;&gt;&gt; Flat = ['abc', ('a', 'b'), 99]<br>
+
+&gt;&gt;&gt; Nested = [ 1, Flat, 3]<br>
+
+&gt;&gt;&gt; Flat[1] = 2</dd>
+
+    <dt></dt>
+
+  
+  </dl>
+
+  <li>In either Java or C++ code (define) a class that simulates
+Python's tuple. &nbsp;(In Java you will not be able to overload "+","*")</li>
+
+
+
+
+</ol>
+
+
+
+
+</body>
+</html>

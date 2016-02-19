@@ -1,0 +1,379 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head and Les Lander">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Haskell Resources and Installation</title>
+</head>
+<body>
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/12Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Introductory Remarks</h3></center>
+
+<center>
+<h3>
+E. Head and L. Lander</h3></center>
+
+<h4>
+Propose: Highlight some of the mechanic of Haskell environment.</h4>
+
+<center>
+<h4>
+
+<hr WIDTH="100%">NOTE THAT THE GRAPHICS ARE HYPERLINKED BUT THEY HAVE ALSO
+BEEN PLACED IN A SINGLE FILE FOR PRINTING: <a href="http://bingweb.binghamton.edu/~lander/cs571/Haskell/UsingHaskellFigs.html">UsingHaskellFigs.html</a></h4></center>
+
+<center>
+<h4>
+<a href="GettingStarted.html">Step by Step Installation Instructions</a></h4></center>
+
+<center>
+<h4>
+
+<hr WIDTH="100%"></h4></center>
+
+<center>
+<h3>
+&copy; Eileen Head, Leslie C. Lander, 2000</h3></center>
+
+<center>
+<hr SIZE=1 WIDTH="100%"></center>
+
+<h3>
+Style for writing code</h3>
+
+<ul>
+<li>
+You should use a "plain" text editor.&nbsp; It is helpful to have line
+numbers.</li>
+
+<ul>
+<li>
+emacs</li>
+
+<li>
+edit.com</li>
+
+<li>
+notepad is the default for winhugs (<i>but it does not have line numbers</i>)</li>
+</ul>
+
+<li>
+Traditional style</li>
+
+<ul>
+<li>
+See ExampleT.hs</li>
+
+<li>
+Function definitions begin in column 1</li>
+
+<ul>
+<li>
+Additional lines of code in the definition are indented.</li>
+
+<li>
+A definition is ended by starting a new definition, which must begin in
+column 1.</li>
+</ul>
+
+<li>
+One-line comments are prefixed with</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <tt>'--'</tt>
+<li>
+Multi-line comments can be enclosed by</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <tt>'{-'</tt> and <tt>'-}'</tt>
+<li>
+Traditional scripts are stored in files with '.hs' extensions.</li>
+</ul>
+
+<li>
+<a href="http://www.literateprogramming.com/">Literal</a> style (REQUIRED
+for this course) ExampleL.lhs</li>
+
+<ul>
+<li>
+Makes everything in the program file a commentary</li>
+
+<ul>
+<li>
+This style is promoted by <a href="http://www-cs-faculty.stanford.edu/~knuth/index.html">Donald
+Knuth</a>.</li>
+</ul>
+
+<li>
+Use <tt>'>'</tt> to signal code (scripts)</li>
+
+<ul>
+<li>
+A definition is ended by the first piece of text (code or comments) which
+lies at the same indentation or to the left of the start of the definition</li>
+
+<li>
+You can use either a <tt>'tab'</tt> or spaces for indentation after the
+<tt>'>'</tt><i>but
+you must be consistent and you may have problems with tabs if you move
+between editors</i></li>
+
+<li>
+All new definitions MUST start at the same level of indentation</li>
+
+<li>
+There must be blank lines before and after any code</li>
+</ul>
+
+<li>
+Literal scripts are stored in files with '.lhs' extensions.</li>
+
+<ul>
+<li>
+Haskell programs are groups of function definitions which are called scripts.</li>
+</ul>
+
+<li>
+&nbsp;Supplemental <a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/Code/code.html">code</a>
+from Thompson's text is in the literal style.</li>
+</ul>
+</ul>
+
+<ul>
+<li>
+To load a file, type the file name, something like</li>
+
+<pre>...> :l&nbsp; ExampleL</pre>
+</ul>
+
+<h3>
+Modules and importing</h3>
+
+<ul>
+<li>
+If you need to include libraries other than the Prelude, make sure your
+script is a module that imports those libraries, e.g. importing the module
+called List:</li>
+
+<pre>module Assignment1
+where import List
+...</pre>
+
+<li>
+Note that modules may have parameters in parentheses, which indicate which
+names are exported by the module.</li>
+
+<li>
+There may be parameters after the name of the imported modules, indicating
+specific names that are imported.</li>
+
+<li>
+When the script is loaded, the functions are compiled and can then be evaluated
+with particular inputs.</li>
+</ul>
+
+<h3>
+Things to know</h3>
+
+<ul>
+<li>
+Start a new definition in COLUMN 1 (for <i>traditional style</i>).</li>
+
+<li>
+In the <i>literal style</i>, new definitions start in A SPECIFIC COLUMN
+(your choice) and other lines in the definition must start in a column
+to the
+<i>right</i> of that column.</li>
+
+<li>
+Hence, in both cases, you must indent each guard or continued line</li>
+
+<li>
+<i>If you continue a line starting in column 1, Haskell will misinterpret
+that line as the definition of a new function, constant or type rather
+than the continuation of the definition coming from the previous line.
+(traditional style)</i></li>
+
+<li>
+<i>If you continue a line starting in the same column as other definitions,
+Haskell will misinterpret that line as the definition of a new function,
+constant or type rather than the continuation of the definition coming
+from the previous line. (literal style). Usually that will produce an error
+message and if not, it will produce unintended behavior.</i></li>
+
+<li>
+Note that different editors treat tabs and spaces in different ways and
+moving literal-style files between different editors can lead to errors
+when Haskell process the files. For example, when ExampleL.lhs was first
+edited in emacs and then additions were made using edit.com, all the indentation
+of definitions had to be retyped to get a clean compile when loading into
+Haskell.</li>
+
+<li>
+Haskell is case sensitive</li>
+
+<li>
+Function names and constants MUST start with a LOWER CASE letter</li>
+
+<li>
+Specific types MUST have capitalized identifiers.</li>
+
+<li>
+Module names MUST begin with a capital and MUST be the file name.</li>
+
+<li>
+Function application has highest precedence (Thompson calls this binding):</li>
+
+<ul>
+<li>
+See (Thompson) page 457 for other operators.</li>
+
+<li>
+Note that 'factorial n - 1' is not equal to 'factorial (n - 1)' but rather
+it is equal to '(factorial n) - 1'</li>
+</ul>
+</ul>
+
+<h3>
+Negative numbers in parentheses, please!</h3>
+
+<ul>
+<li>
+Parenthesize any negative number or infix numeric expression used as a
+function argument:</li>
+
+<pre>...> next5numbers 3&nbsp;
+[4,5,6,7,8]&nbsp;
+...> next5numbers (-3)&nbsp;
+[-2,-1,0,1,2]&nbsp;
+...> next5numbers -3&nbsp;
+ERROR: Illegal Haskell 98 class constraint in inferred type
+*** Expression : next5numbers - 3
+*** Type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : (Enum a, Num a, Num (a -> [a])) => a -> [a]</pre>
+
+<li>
+The problem here is that Haskell interprets the last expression as a subtraction:
+'next5numbers <i>minus</i> 3,' which cannot be calculated since 'next5numbers'
+is a list, not a number</li>
+</ul>
+
+<h3>
+Arithmetic</h3>
+
+<ul>
+<li>
+Simple computation can be executed interactively (the prompt will change
+as different files are loaded and we denote it as '...>')</li>
+
+<pre>...> 5 * 7&nbsp;
+35&nbsp;
+...> 5 * (3 + 12)&nbsp;
+75&nbsp;
+...> 5 `mod` 3&nbsp;
+2&nbsp;
+...> 5 `div` 3&nbsp;
+1</pre>
+</ul>
+
+<h3>
+Infix/prefix</h3>
+
+<ul>
+<li>
+Note that operators like div and mod need <i>backquotes</i> ( ` ) when
+used as <i>infix</i> operators; you cannot use normal quotes since they
+are needed to denote characters (e.g. 'a')</li>
+
+<li>
+In fact, backquotes can also convert binary, <i>user-defined</i> functions
+into infix operators</li>
+
+<li>
+Parentheses convert infix to prefix, e.g.&nbsp;<tt> (+) 7 1</tt>&nbsp;&nbsp;&nbsp;
+is the same as&nbsp;&nbsp;&nbsp;&nbsp;<tt> 7 + 1</tt></li>
+</ul>
+
+<h3>
+A script</h3>
+
+<ul>
+<li>
+To introduce new symbols to stand for particular values or for functions,
+we have to write a file, called a script in the Haskell documentation</li>
+
+<li>
+Example in the literal style (indentation is important):</li>
+
+<pre>File name: "<a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">ExampleL.lhs</a>"&nbsp;
+...
+Define a symbol for the value of "pi"&nbsp;
+
+>&nbsp;&nbsp;&nbsp; py :: Double --this line is legal but not required
+>&nbsp;&nbsp;&nbsp; py = 3.14159&nbsp;
+
+We did not use "pi" since that is predefined</pre>
+
+<li>
+The file <tt><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleT.hs">ExampleT.hs</a></tt>
+is the same code, written in traditional style</li>
+</ul>
+
+<h3>
+Commands for loading files and for getting a type</h3>
+
+<ul>
+<li>
+We can ask what type was determined for py:</li>
+
+<pre>...> :l <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">ExampleL</a>&nbsp;
+...&nbsp;
+...> :t py&nbsp;&nbsp;&nbsp;&nbsp; -- t stands for "type"&nbsp;
+py :: Double</pre>
+
+<li>
+From the Haskell prompt, we load a file with the ":load" command. Only
+the first letter is needed.</li>
+
+<li>
+<tt>...> :?</tt> (will give a list of commands)</li>
+
+<li>
+We can define functions in the script as follows:</li>
+
+<pre>File name: "<a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">ExampleL.lhs</a>"&nbsp;
+...
+Define a function to calculate the area of a circle of radius r
+
+>&nbsp;&nbsp;&nbsp; area :: Double -> Double --this line is legal but not required&nbsp;
+>&nbsp;&nbsp;&nbsp; area r = py * r * r&nbsp;
+
+Haskell can determine for itself that the type of area is 'Double -> Double'
+because of the type given to 'py'. The type of pi*r*r is 'Floating a => a -> a'
+which will be explained in the Haskel notes</pre>
+
+<li>
+More complex function definitions appear in the other Haskell notes.</li>
+</ul>
+
+<hr SIZE=1 WIDTH="100%">
+<ul>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/12Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+</ul>
+
+</body>
+</html>

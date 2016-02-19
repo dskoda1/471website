@@ -1,0 +1,178 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+    
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+    
+  <meta name="Author" content="Eileen Head">
+    
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <title>Answer to Dynamic Dispatching</title>
+</head>
+  <body>
+  
+<center> 
+<h3> Polymorphism ? ANSWERS</h3>
+</center>
+  
+<center> 
+<h3> &nbsp;Fall, 2002</h3>
+</center>
+  
+<center>
+<table border="1" cellspacing="0" cellpadding="0" bgcolor="#fffff0">
+ <tbody>
+    <tr>
+ <td><a href="6rS01.html">Questions&nbsp;</a></td>
+ </tr>
+ 
+  </tbody>
+</table>
+</center>
+  
+<h3> <b>ANSWERS</b></h3>
+  
+<h3>  
+<hr align="left" width="100%"></h3>
+  
+<table border="0" cellspacing="3" width="95%">
+ <caption><b><font color="#ff8000">Same Code used</font></b></caption>  <tbody>
+    <tr>
+ <td align="left" valign="top"><b><tt>class Animal {</tt></b> <br>
+      <b><tt>&nbsp;&nbsp;&nbsp; void <font color="#ff8000">move</font>(Animal 
+x ) {</tt></b> <br>
+      <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; . . .</tt></b> <br>
+      <b><tt>&nbsp;&nbsp;&nbsp; }</tt></b> <br>
+      <b><tt>}</tt></b></td>
+  <td><b><tt>class Bird extends Animal {</tt></b> 
+      <blockquote><b><tt>Animal ted ;</tt></b> 
+        <blockquote><b><tt>. . .</tt></b></blockquote>
+ <b><tt>void fly( ){</tt></b> 
+        <blockquote><b><tt>ted = new Animal( );</tt></b> <br>
+          <b><tt>ted.move(ted);</tt></b> <br>
+          <b><tt>ted = new Bird( );</tt></b> <br>
+          <b><tt>ted.move(ted);</tt></b></blockquote>
+ <b><tt>}</tt></b></blockquote>
+ <b><tt>}</tt></b></td>
+ </tr>
+ 
+  </tbody>
+</table>
+  
+<ul>
+ <li> The same code is used because&nbsp; Bird&nbsp; objects inherits "move".</li>
+ 
+</ul>
+  
+<hr size="4" width="90%"> <br>
+&nbsp; 
+<table border="0" cellspacing="3" width="95%">
+ <caption><b>Dynamic Dispatching:&nbsp;</b> <br>
+  <b>Which code is used? What is the Static/Dynamic Type?</b></caption>  <tbody>
+    <tr>
+ <td align="left" valign="top"><b><tt>class Animal {&nbsp;</tt></b> <br>
+      <b><tt>&nbsp;&nbsp;&nbsp; void <font color="#990000">move</font>(Animal 
+x ) {</tt></b> <br>
+      <b><i><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+ color="#990000"> code 1</font></tt></i></b> <br>
+      <b><tt>&nbsp;&nbsp;&nbsp; }</tt></b> <br>
+      <b><tt>}</tt></b></td>
+  <td><b><tt>class Bird extends Animal {</tt></b> <br>
+      <b><tt>Animal ted;&nbsp;&nbsp;&nbsp; // static type Animal</tt></b> 
+      <blockquote><b><tt>. . .</tt></b></blockquote>
+ <b><tt>&nbsp;&nbsp; void <font color="#006600">move</font>(Animal x ) { <font
+ color="#006600">code 2</font> }</tt></b> <br>
+      <b><tt>&nbsp;&nbsp; void fly( ){</tt></b> 
+      <blockquote><b><tt>ted = new Animal( ); <font color="#ff8000">//dyn
+type Animal</font></tt></b> <br>
+        <b><tt><font color="#3333ff">this.move</font>(ted);&nbsp;&nbsp; <font
+ color="#ff8000">// uses</font><font color="#006600"> code 2</font></tt></b> 
+        <br>
+        <b><tt><font color="#3333ff">ted.move</font>(ted);&nbsp;&nbsp; <font
+ color="#ff8000">// uses </font><font color="#990000">code 1</font></tt></b> 
+        <br>
+        <b><tt>ted = new Bird( );<font color="#ff8000">// dyn type Bird</font></tt></b> 
+        <br>
+        <b><tt><font color="#000099">this.move</font>(ted);&nbsp;&nbsp; <font
+ color="#ff8000">// uses </font><font color="#006600">code 2</font></tt></b> 
+        <br>
+        <b><tt><font color="#3333ff">ted.move</font>(ted);&nbsp;&nbsp;<font
+ color="#ff8000">&nbsp; // uses </font><font color="#006600">code 2</font></tt></b></blockquote>
+ <b><tt>&nbsp;&nbsp;&nbsp; }</tt></b> <br>
+      <b><tt>}</tt></b></td>
+ </tr>
+ 
+  </tbody>
+</table>
+  
+<h3>  
+<hr size="4" width="90%">WHAT happens? Doug's Dilemma</h3>
+ &nbsp; 
+<table border="0" cellspacing="6" cellpadding="4" width="98%">
+ <caption><b><font size="+1">Doug's Dilemma</font></b></caption>  <tbody>
+    <tr>
+ <td align="left" valign="top"><b><tt>class Animal {</tt></b> <br>
+      <b><tt>&nbsp;...&nbsp;</tt></b> <br>
+      <b><tt>&nbsp;void <font color="#009900">move</font>(Animal x ) {&nbsp;</tt></b> 
+      <br>
+      <b><tt>&nbsp;&nbsp;&nbsp;<font color="#009900">&nbsp; CODE 1&nbsp;</font></tt></b> 
+      <br>
+      <b><tt>&nbsp;}&nbsp;</tt></b> <br>
+      <b><tt>...&nbsp;</tt></b> <br>
+      <b><tt>}</tt></b></td>
+  <td><b><tt>class Mammal extends Animal {</tt></b> <br>
+      <b><tt>&nbsp;&nbsp; Animal ted;</tt></b> <br>
+      <b><tt>&nbsp;&nbsp; . . .</tt></b> <br>
+      <b><tt>&nbsp;&nbsp; void <font color="#3333ff">move</font>(Mammal x 
+) {<font color="#3333ff">CODE 2</font>} //<font color="#ff8000">overloaded</font> 
+function</tt></b> <br>
+      <b><tt>&nbsp;&nbsp; void <font color="#cc0000">move</font>(Animal x 
+) {<font color="#990000">Code 3</font>} //<font color="#ff8000">overriden</font> 
+function</tt></b> <br>
+      <b><tt>&nbsp;&nbsp; void fly( ){</tt></b> 
+      <blockquote><b><tt>//ted's type static = dynamic = Animal</tt></b> <br>
+        <b><tt>ted = new Animal( );&nbsp;</tt></b> <br>
+        <b><tt><font color="#cc33cc">this.move</font><font
+ color="#000000">(</font>ted);&nbsp;&nbsp; // <font color="#660000">Code
+3</font> XQTd</tt></b> <br>
+        <b><tt><font color="#cc33cc">ted.move</font>(ted);&nbsp;&nbsp;&nbsp; 
+// <font color="#006600">Code 1</font> XQTd</tt></b> <br>
+        <b><tt>ted = new Mammal( ); //static /= dynamic</tt></b> <br>
+        <b><tt><font color="#cc33cc">this.move</font>(ted);&nbsp;&nbsp; // 
+        <font color="#990000">Code 3</font><font color="#ff8000"> </font>XQTd</tt></b> 
+        <br>
+        <b><tt><font color="#cc33cc">ted.move</font>(ted);&nbsp;&nbsp; //
+        <font color="#993300">code 3</font> XQTd</tt></b> <br>
+        <b><tt>Mammal fred = new Mammal();</tt></b> <br>
+        <b><tt><font color="#cc33cc">fred.move</font>(fred);&nbsp; // <font
+ color="#3333ff">code 2 </font>XQTd</tt></b> <br>
+        <b><tt><font color="#cc33cc">this.move</font>(fred);&nbsp; // <font
+ color="#3333ff">code 2 </font>XQTd</tt></b> <br>
+        <b><tt><font color="#cc33cc">ted.move</font>(fred);&nbsp;&nbsp; // 
+        <font color="#993300">code 3 </font>XQTd</tt></b></blockquote>
+ <b><tt>&nbsp;&nbsp;&nbsp; }</tt></b> <br>
+      <b><tt>}</tt></b></td>
+ </tr>
+ 
+  </tbody>
+</table>
+  
+<p> </p>
+<hr width="100%"> 
+<center>
+<table border="1" cellspacing="0" cellpadding="0" bgcolor="#fffff0">
+ <tbody>
+    <tr>
+ <td><a href="6rS01.html">&nbsp;Questions&nbsp;</a></td>
+ </tr>
+ 
+  </tbody>
+</table>
+</center>
+  
+<hr align="left" size="1" noshade="" width="100%"> <br>
+&nbsp; <br>
+</body>
+</html>

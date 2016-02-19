@@ -1,0 +1,1699 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="E Head">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+   <meta name="Description" content="Introduction">
+   <title>#9 Runtime Stack, Arrays -</title>
+</head>
+<body text="#000000" bgcolor="#FAFAFA" link="#FF0000" vlink="#990000" alink="#CC0000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<center>
+<h4>
+Assignment 9</h4></center>
+
+<p><br>The purpose of this assignment is to understand the runtime stack,
+<br>Written assignment:
+<ol>
+<li>
+What is the difference between macros and routines?&nbsp; Explain in terms
+of the concept of binding.</li>
+
+<li>
+What is elaboration ?</li>
+
+<li>
+Compile and run in gcc&nbsp; the following C code on two different systems:</li>
+
+<ol><b><tt>int loop() {</tt></b>
+<br><b><tt>&nbsp; int x[512];</tt></b>
+<br><b><tt>&nbsp; int i=0;</tt></b>
+<br><b><tt>&nbsp; while (i++ &lt;512) {</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp; x[i] = 0;</tt></b>
+<br><b><tt>&nbsp; }</tt></b>
+<br><b><tt>}</tt></b>
+<p><b><tt>int main () {</tt></b>
+<br><b><tt>&nbsp; printf("\nCalling loop&nbsp; -->>\n");</tt></b>
+<br><b><tt>&nbsp; loop();</tt></b>
+<br><b><tt>}</tt></b></ol>
+
+<p><br>Below are the commands to compile and run the above code on Cygwin
+and Sun systems:
+<br>(PC)
+<ol><b><tt>gcc -ansi hw9F01.c -o hw9F01.exe</tt></b>
+<br><b><tt>hw9F01.exe</tt></b></ol>
+(Bingsuns )
+<ol><b><tt>gcc -ansi hw9F01.c -o hw9F01</tt></b>
+<br><b><tt>hw9F01</tt></b></ol>
+Using the -S option look at the assembly code.&nbsp; Do not use a debugger.
+<ol>
+<ol TYPE=A>
+<li>
+What happens when you run this code?</li>
+
+<li>
+Depending on the target machine and the compiler, this code will execute
+differently.&nbsp; Sometimes this code goes into an infinite loop, sometimes
+this code terminates, sometimes this code cause a segmentation error.&nbsp;
+Can you explain why this code does not behavior consistently?&nbsp; Think
+in terms of the AR and the runtime stack.</li>
+
+<br>&nbsp;</ol>
+</ol>
+
+<li>
+In the notes ( <a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/RUNTIME/2rS01.html#gccArray">RUNTIME
+NOTES, Aggregate Types, Strings and Pointers </a>) there is an example
+of gcc allowing automatic array variable to postpone the binding of the
+range of the indexes until run time.&nbsp; Explain how this can be implemented.&nbsp;
+You might want to read about how Ada does it.</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+For the following C3 program fragment:</li>
+
+<ol TYPE=A>
+<li>
+What is the activation record (frame) template for <i>alpha</i>() and <i>beta</i>()?
+(Use the outline presented in the notes.)</li>
+
+<li>
+Show the snapshot of the run-time stack at&nbsp; each critical stage until
+the code returns to main...&nbsp; In particular, show the static and dynamic
+links before each call.&nbsp; ( Follow the <a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/RUNTIME/2stack.gif">presentation
+of run-times environment stack in class notes</a>.)</li>
+
+<br><tt>int&nbsp; b = 2, c = 1, i = 3;</tt>
+<br><tt>&nbsp;&nbsp; void beta(<font color="#3333FF">void</font> );</tt>
+<p><tt>&nbsp;&nbsp;&nbsp;<font color="#990000"> int alpha(int x )</font>{</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int b = 4;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//++ </tt>&lt;&lt;&lt;&lt;&lt;&lt; Show stack here
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b += c = c + x;</tt>
+<p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta( );</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// </tt>&lt;&lt;&lt;&lt;&lt;&lt; Show stack here
+<ol>
+<ol><tt>return b;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; };</tt>
+<p><tt>&nbsp;&nbsp;&nbsp;&nbsp; <font color="#3333FF">void</font> beta(<font color="#3333FF">void</font>
+){</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int x = 9;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp;&nbsp;&nbsp;&nbsp;
+//</tt>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&nbsp; show the stack
+here after call from callee
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#000000">if
+(b>3) return;&nbsp; //Termination</font></tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = i + x;</tt>
+<p><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alpha(5);</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt>
+//&lt;&lt;&lt;&lt;&lt; after returned from alpha
+<ol>
+<ol><tt>return;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; };</tt>
+<p><tt>&nbsp;&nbsp;&nbsp; int main( ){</tt>
+<ol>
+<ol><tt>int i = 45;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp; // ** </tt>stack
+before beta is called
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta( );</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// *** </tt>stack after beta is returned
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt>
+<ol>
+<ol><tt>return i;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; }</tt></ol>
+</ol>
+
+<table BORDER BGCOLOR="#FFF8F0" >
+<tr ALIGN=CENTER BGCOLOR="#FFFFC4">
+<td>
+<center>Description</center>
+</td>
+
+<td>D addr</td>
+
+<td>
+<center>main **</center>
+</td>
+
+<td>
+<center>beta 1</center>
+</td>
+
+<td>alpha1 ++</td>
+
+<td>
+<center>beta 2</center>
+</td>
+
+<td>
+<center>alpha1 +++</center>
+</td>
+
+<td>
+<center>beta1</center>
+</td>
+
+<td>
+<center>main ***</center>
+</td>
+
+<td>Completed&nbsp;</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td></td>
+
+<td BGCOLOR="#D7FFD7">Just</td>
+
+<td BGCOLOR="#D7FFD7">after</td>
+
+<td BGCOLOR="#D7FFD7">calling</td>
+
+<td BGCOLOR="#D7FFD7">function</td>
+
+<td BGCOLOR="#EEF0F9">Just&nbsp;</td>
+
+<td BGCOLOR="#EEF0F9">after&nbsp;</td>
+
+<td BGCOLOR="#EEF0F9">return to function</td>
+
+<td>execution</td>
+</tr>
+
+<tr BGCOLOR="#FFE4CA">
+<td>
+<center>Current</center>
+</td>
+
+<td>
+<center>0</center>
+</td>
+
+<td>
+<center>0</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFE4CA">
+<td>
+<center>Free</center>
+</td>
+
+<td>
+<center>1</center>
+</td>
+
+<td>
+<center>7</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>
+<center>global&nbsp; <b><i>b</i></b></center>
+</td>
+
+<td>
+<center>2</center>
+</td>
+
+<td>
+<center>2</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>
+<center>global&nbsp; <b><i>c</i></b></center>
+</td>
+
+<td>
+<center>3</center>
+</td>
+
+<td>
+<center>1</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>
+<center>global <b><i>i</i></b></center>
+</td>
+
+<td>
+<center>4</center>
+</td>
+
+<td>
+<center>3</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#EFF0EE">
+<td>
+<center>return value</center>
+</td>
+
+<td>
+<center>5</center>
+</td>
+
+<td>
+<center>&nbsp;?</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#EFF0EE">
+<td>
+<center>&nbsp;main <b><i>i</i></b></center>
+</td>
+
+<td>
+<center>6</center>
+</td>
+
+<td>
+<center>&nbsp;45</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>7</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>8</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>9</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>10</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>11</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>12</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>13</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>14</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>15</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>16</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>17</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>18</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>19</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>20</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>21</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>22</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>23</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>24</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+</table>
+
+<ol START=6>
+<li>
+DO NOT TURN IN:&nbsp; How would the runtime stack change to the above problem
+if the <i><tt>main</tt></i> was change to:&nbsp; (Note: there would be
+more columns.)</li>
+
+<ol><tt>&nbsp;int main( ){</tt>
+<ol><tt>int i = 45;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta( );</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt>
+<ol>
+<ol><tt>c = 3;</tt>
+<br><tt>beta( );</tt>
+<br><tt>....</tt>
+<br><tt>return i;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; }</tt>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+For the following C3 program fragment, show the snapshot of the run-time
+stack at&nbsp; each critical stage until the code returns to main...&nbsp;
+In particular, show the static and dynamic links before each call.&nbsp;
+( Follow the <a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/RUNTIME/4rS01.html#nested">presentation
+of run-times environment stack in class notes</a>.)</li>
+
+<ol START=2>&nbsp;
+<br><b><tt>int&nbsp; j = 2, k = 1, i = 3;</tt></b>
+<br><b><tt><font color="#00CC00">int</font> beta(int x ){</tt></b>
+<ol><b><tt>int f = 5;</tt></b>
+<br><b><tt><font color="#990000">int alpha(int v )</font>{</tt></b></ol>
+</ol>
+
+<blockquote>
+<blockquote>
+<blockquote><tt>int j = 4;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>//++
+</b></tt><b>&lt;&lt;&lt;&lt;&lt;&lt;
+Show stack here</b>
+<br><b>. . . .</b>
+<br><tt>j = k + v;</tt>
+<br><tt>x = 100;</tt>
+<br><tt>beta(9 );</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>//
++++ </b></tt><b>&lt;&lt;&lt;&lt;&lt;&lt; Show stack here</b>
+<br><tt>....</tt>
+<br><tt>return j;</tt></blockquote>
+<tt>}; <font color="#993300">/<b>/ END of alpha code</b></font></tt>
+<br><b><tt><font color="#000000">// Beginning of beta code</font></tt></b></blockquote>
+</blockquote>
+
+<ol>
+<ol>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b><tt>//</tt>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&nbsp; show the
+stack here after call to beta</b>
+<br><tt>....</tt>
+<br><tt><font color="#000000">if (j>3) return </font><b><font color="#009900">333</font></b><font color="#000000">;&nbsp;
+//Termination</font></tt>
+<br><tt>j = i + x;</tt>
+<br><tt>alpha(f);</tt>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt>//&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;
+after returned from alpha</b>
+<br><tt>....</tt>
+<br><tt>return <font color="#009900">999</font>;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; };&nbsp;&nbsp; <b><font color="#3333FF">// END of
+beta code</font></b></tt>
+<ol>&nbsp;</ol>
+<tt>&nbsp;&nbsp;&nbsp; int main(<b>void</b> ){</tt>
+<ol>
+<ol><tt>int&nbsp; v = 5;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp; <b>// ** </b></tt><b>stack
+before beta is called</b>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta(9);</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>//
+*** </b></tt><b>stack after beta is returned</b>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt>
+<ol>
+<ol><tt>return v;</tt></ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; }</tt>
+<br>&nbsp;
+<table BORDER BGCOLOR="#FFF8F0" >
+<tr ALIGN=CENTER BGCOLOR="#FFFFC4">
+<td>
+<center>Description</center>
+</td>
+
+<td>D addr</td>
+
+<td>
+<center>main **</center>
+</td>
+
+<td>
+<center>beta 1</center>
+</td>
+
+<td>alpha1 ++</td>
+
+<td>
+<center>beta 2</center>
+</td>
+
+<td>
+<center>alpha1 +++</center>
+</td>
+
+<td>
+<center>beta1</center>
+</td>
+
+<td>
+<center>main ***</center>
+</td>
+
+<td>completed</td>
+</tr>
+
+<tr>
+<td></td>
+
+<td></td>
+
+<td BGCOLOR="#D7FFD7">Just</td>
+
+<td BGCOLOR="#D7FFD7">after</td>
+
+<td BGCOLOR="#D7FFD7">calling</td>
+
+<td BGCOLOR="#D7FFD7">function</td>
+
+<td BGCOLOR="#EEF0F9">Just&nbsp;</td>
+
+<td BGCOLOR="#EEF0F9">after&nbsp;</td>
+
+<td BGCOLOR="#EEF0F9">return to function</td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFE4CA">
+<td>
+<center>Current</center>
+</td>
+
+<td>
+<center>0</center>
+</td>
+
+<td>
+<center>0</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#FFE4CA">
+<td>
+<center>Free</center>
+</td>
+
+<td>
+<center>1</center>
+</td>
+
+<td>
+<center>7</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>
+<center>global&nbsp; <b><i>j</i></b></center>
+</td>
+
+<td>
+<center>2</center>
+</td>
+
+<td>
+<center>2</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>
+<center>global&nbsp; <b><i>k</i></b></center>
+</td>
+
+<td>
+<center>3</center>
+</td>
+
+<td>
+<center>1</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>
+<center>global <b><i>i</i></b></center>
+</td>
+
+<td>
+<center>4</center>
+</td>
+
+<td>
+<center>3</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#EFF0EE">
+<td>
+<center>return value</center>
+</td>
+
+<td>
+<center>5</center>
+</td>
+
+<td>
+<center>&nbsp;?</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr BGCOLOR="#EFF0EE">
+<td>
+<center>&nbsp;main <b><i>v</i></b></center>
+</td>
+
+<td>
+<center>6</center>
+</td>
+
+<td>
+<center>&nbsp;5</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>7</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>8</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>9</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>10</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>11</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>12</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>13</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>14</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>15</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>16</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>17</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>18</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>19</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>20</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>21</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>22</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>23</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>24</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+</tr>
+</table>
+</ol>
+
+<ol><font color="#3333FF">I collaborated with : ___________________________________</font>
+<p><font color="#3333FF">Resources use: _______________________________________</font></ol>
+
+<br>&nbsp;
+<br>&nbsp;
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+</body>
+</html>

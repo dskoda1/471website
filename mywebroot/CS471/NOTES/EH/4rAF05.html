@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+
+  
+  <title>Details of program stack</title>
+
+</head>
+
+<body>
+<ul>
+  <dl>
+    <p></p>
+  </dl>
+</ul>
+<blockquote><b>Example of Program stack for local(automatic) variables</b>&nbsp;
+          </blockquote>
+
+<ul>
+  <dl>
+    <b><tt>int n;</tt></b><br />
+    <b><tt>int fact(void) {</tt></b>
+    <dl>
+      <b><tt>&nbsp; int loc;</tt></b><br />
+      <b><tt>&nbsp; if (n&gt;1) {</tt></b>
+    </dl>
+  </dl>
+</ul>
+<dl style="margin-left: 80px;">
+  <dl>
+    <b><tt>loc = n--;</tt></b><br />
+    <b><tt>return loc * <font color="#cc33cc">fact()</font>; </tt>//
+Return from fact to <font color="#cc33cc">instruction addr #21</font></b>
+  </dl>
+</dl>
+<ul>
+  <dl>
+    <dl>
+      <b><tt>&nbsp; }&nbsp; else&nbsp; {</tt></b>
+    </dl>
+  </dl>
+</ul>
+<dl style="margin-left: 80px;">
+  <dl>
+    <b><tt>return 1; &nbsp;<br />
+
+        <font color="#009900">//</font><font color="#009900">
+instruction addr #29 &nbsp;<br />
+
+// NOTE: The Stack Snapshot for Fact1 is at this point in the code</font></tt></b>
+  </dl>
+</dl>
+<ul>
+  <dl>
+    <dl>
+      <b><tt>&nbsp; }</tt></b>
+    </dl>
+    <b><tt>}</tt></b><br />
+    <b><tt>int main(void) {</tt></b>
+    <dl>
+      <b><tt>&nbsp; read(n);</tt></b><br />
+      <b><tt>&nbsp; if (n&gt;0)</tt></b><br />
+      <b><tt>&nbsp;&nbsp;&nbsp; <font color="#3333ff">fact()</font>; </tt>
+// Return from fact to <font color="#3333ff">instruction addr # 8</font></b><br />
+      <b><tt>&nbsp; else</tt></b><br />
+      <b><tt>&nbsp;&nbsp;&nbsp; print("input error");</tt></b><br />
+      <b><tt>&nbsp; return 0;&nbsp;</tt></b>
+    </dl>
+    <b><tt>}</tt></b>
+  </dl>
+</ul>
+<ul>
+  <dl>
+    <p></p>
+    <p>Example below: Program reads the value <i>n</i> = 3.<b> </b></p>
+  </dl>
+</ul>
+
+<ul>
+  <dl>
+    <dl>
+      <p>A&nbsp; <b>dynamic link (control link)&nbsp;</b> is a
+reference (points) to the activation record of the calling routine.<br />
+
+(ex.&nbsp;The red fp (dynamic link) points to the blue activation
+record because the blue function called the red one.) </p>
+
+NOTE: Each column represents a snapshot of the program stack after each
+call/return to/from fact().&nbsp;i.e. fact3 means the time just
+after fact has been call and n has the value 3.
+      
+      <dl>
+        <a name="FactStack"></a>&nbsp;
+      
+      </dl>
+    </dl>
+  </dl>
+</ul>
+
+<center><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2stack.gif"><img src="file:///home/head/Courses/471/NOTES/RUNTIME/2stack.gif" alt="Snapshots of the run time program stack for fact(3)" align="middle" border="0" height="289" width="350" /> </a></center>
+
+<ul>
+  <dl>
+
+NOTE: <br />
+
+Registers at bottom of diagram (pink border):
+  
+  </dl>
+</ul>
+
+<blockquote>
+  
+  <blockquote>&nbsp;<span style="font-style: italic;"> </span><span style="font-weight: bold;"><span style="font-weight: bold;"><span style="font-style: italic;">Environment&nbsp; pointer</span> (<span style="font-style: italic;">ep</span>) (also called the frame
+pointer)&nbsp; </span></span>is the register
+which points to the current environment (i.e activation record (local
+data))<br />
+
+&nbsp;&nbsp;&nbsp; Implementation dependent where in the AR the current
+the <span style="font-style: italic; font-weight: bold;">ep</span>
+points to.<i><b>,</b></i> we will point to the first field.<i><b><br />
+
+Stack ptr</b></i><b> </b>is the register which
+points to the next free space on the stack (data memory).<br />
+
+  </blockquote>
+
+</blockquote>
+
+<blockquote> </blockquote>
+
+<blockquote>
+  
+  <blockquote><b><i>Instuction ptr</i> &nbsp;</b>is the register which
+the address of the instruction currently be excuted (in this snapshot)
+The instruction address is in code memory and not shown. &nbsp;</blockquote>
+
+</blockquote>
+
+<ul>
+  <dl>
+
+The dark blue border is just labeling for the data memory. The data
+memory is partitioned into static memory, stack memory and free
+memory. &nbsp;<br />
+
+The brown border is the static data memory (only one variable <i>n</i>)<br />
+
+The green border indicates the area of the program stack. &nbsp;Free
+memory is any location not know by the program (i.e. any address
+equal or above the address in the stack pointer.) &nbsp;Note the free
+memory depends on the time of the snapshot. &nbsp;The beginning address
+of the free memory is contained in the <u><i>stack ptr</i></u>of the
+snapshot.<br />
+    <br />
+
+c-addr: The code address is location of the instruction in the code
+memory partition. <br />
+
+For the above table the &nbsp;<u>ret addr</u>at data memory location 3
+(at the snapshot time fact3) contains the value of instruction in
+main() (the calling routine) that we return to upon completion of
+fact(). &nbsp;This address "8" is determined at load time. &nbsp;<br />
+    <br />
+
+Since the compiler and loader for this has not been really implemented
+the code memory addresses for the purposes of theses notes the
+addresses have been invented. <br />
+
+ie.&nbsp;<u>c-addr</u>21, at stack location 11 and 7 points to the
+same instruction in the fact() that we need to return to . This again
+was a made up number, in reality the link/loader will assign the
+location of each instruction.
+  </dl>
+</ul>
+</body>
+
+</html>

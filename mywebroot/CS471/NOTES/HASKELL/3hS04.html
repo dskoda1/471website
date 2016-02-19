@@ -1,0 +1,2380 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html lang="en-us"><head>
+
+
+
+
+  
+  
+  
+  
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+
+
+
+
+  
+  
+  
+  
+  <meta content="Les Lander" name="Author">
+
+
+
+
+  
+  
+  
+  
+  <meta content="Mozilla/4.77 [en] (Windows NT 5.0; U) [Netscape]" name="GENERATOR">
+
+
+
+
+  
+  
+  
+  
+  <title>Generic Programming in Haskell</title></head>
+
+<body>
+
+
+
+
+<h3 style="text-align: center;">Haskell 2</h3>
+
+
+
+<center>
+</center>
+
+
+
+
+
+
+
+
+
+Purpose:&nbsp; To understand Haskell's error messages and how Haskell
+types works. &nbsp;<br>
+
+
+
+
+Goal: &nbsp;To understand different definitions of polymorphism.<br>
+
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;To understand <b><i>Classes </i></b>which
+are sets of types and how static type checking work. <br>
+
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;How to use Classes to develop
+generic code in Haskell. <br>
+
+
+
+
+<br>
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/Notes1.lhs">
+Notes1.lhs</a> has codes presented in these notes as well as other
+examples. <br>
+
+
+
+
+<a href="http://haskell.org/onlinereport/prelude-index.html">http://haskell.org/onlinereport/prelude-index.html</a>
+: Hyperlink reference to Prelude.hs<br>
+
+
+
+
+(Note Prelude.hs is coded in Traditional style--all code in my notes
+use literal style.) <br>
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/JavaPoly">Java
+code</a> is an example of inclusion polymorphism.
+<hr size="2" width="100%">
+<h3>Polymorphism:</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> Ways the Language allows you to code routines with the same
+identifier but the actual parameters can be of different types.</li>
+
+
+
+
+</ul>
+
+
+
+
+<a href="16poly.gif"><img title="" style="border: 0px solid ; height: 188px; width: 371px;" alt="Polymorphic Diagram" src="16poly.gif"></a>
+<br>
+
+
+
+
+<br>
+
+
+
+
+<ul>
+
+
+
+
+  <li> Polymorphism is a bad term to use.</li>
+
+
+
+
+  <li>Helpful definitions:</li>
+
+
+
+
+</ul>
+
+
+
+
+<dl>
+
+
+
+
+  <dd>"A function or operator is <span style="font-style: italic;">polymorphic</span>
+is it has at least two possible types."<sup>1</sup><br>
+
+
+
+
+"A function or operator exhibits <span style="font-style: italic;">ad
+hoc</span> <span style="font-style: italic;">polymorphism</span> if it
+has at least two but only <span style="font-weight: bold;">finitely </span>many
+possible types."<sup>1</sup><span style="font-style: italic;"><span style="font-style: italic;"><span style="font-style: italic;"></span></span></span><br>
+
+
+
+
+"A function or operator exhibits <span style="font-style: italic;">universal
+polymorphism</span> if it has infinitely many possible types"<br>
+
+
+
+
+  </dd>
+
+
+
+
+</dl>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<hr style="width: 100%; height: 2px;">
+<h3>Parametric Polymorphism&nbsp; </h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> The same code for different data types.</li>
+
+
+
+
+  <li> Haskell Examples</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <code>&gt; length :: [t] -&gt; Int<br>
+
+
+
+
+&gt; length [] = 0 <br>
+
+
+
+
+&gt; length (a:x) = 1 + length x <br>
+
+
+
+
+    <br>
+
+
+
+
+    </code><code>&gt; rev :: [t] -&gt; [t]<br>
+
+
+
+
+&gt; rev [] = []<br>
+
+
+
+
+&gt; rev (a:x) = rev x ++ [a]</code> <br>
+
+
+
+
+    <br>
+
+
+
+
+    <code>&gt; id :: t -&gt; t<br>
+
+
+
+
+&gt; id x = x</code> <br>
+
+
+
+
+    <br>
+
+
+
+
+    <code>&gt; zip :: [t] -&gt; [u] -&gt; [(t,u)]<br>
+
+
+
+
+&gt; zip (a:x) (b:y)=(a,b):zip x y<br>
+
+
+
+
+&gt; zip _ _ = []</code>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Sometimes there are constraints on the polymorphism: <br>
+
+
+
+
+The code for &#8220;memberG&#8221; requires the data type to be explicitly of the
+equality type because of the expression &#8220;a == b&#8221; .<br>
+
+
+
+
+    <code></code></li>
+
+
+
+
+  <br>
+
+
+
+
+  <code></code><code>&gt; memberG x (h:t)= if (x == h) then True else
+memberG x t<br>
+
+
+
+
+&gt; memberG _ [] = False<br>
+
+
+
+
+  </code>
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Many types are instances of the class Eq, i.e. Ord, Int, Char
+etc<br>
+
+
+
+
+      <br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Ada has generic subroutines.</li>
+
+
+
+
+  <li> C++ has template functions and template classes.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<h3> Haskell classes</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> In previous lecture we saw user defined types.&nbsp;</li>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote>&nbsp;&gt; data People = Person String Int</blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  <li>In previous lecture we how functions can be defined for a
+specific Type.<br>
+
+
+
+
+    <br>
+
+
+
+
+    <code>&gt; memberI :: Int -&gt; [Int] -&gt; Bool<br>
+
+
+
+
+&gt; memberI x (h:t) = if (x == h) then True else memberI x t<br>
+
+
+
+
+&gt; memberI _ [] = False</code><br>
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <li>In previous lectures we saw that Haskell can infer the most
+general data types.</li>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote><code>&gt; memberG x (h:t)= if (x == h) then True else
+memberG x t<br>
+
+
+
+
+&gt; memberG _ [] = False</code></blockquote>
+
+
+
+
+<blockquote><font color="#666666">memberG has the following type:</font><br>
+
+
+
+
+</blockquote>
+
+
+
+
+<blockquote><code>Notes1&gt; :t memberG<br>
+
+
+
+
+memberG :: <b>Eq a</b> =&gt; a -&gt; [a] -&gt; Bool</code><br>
+
+
+
+
+</blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Entities such as &#8220;<b>Eq,</b>&#8221; &#8220;<span style="font-weight: bold;">Ord</span>,&#8221;
+&#8220;<span style="font-weight: bold;">Show</span>&#8221; provide collections
+of types.&nbsp;</li>
+
+
+
+
+  <li> For example, &#8220;<b>Eq</b>&#8221; contains several types, including &#8220;<b>Bool</b>,&#8221;
+&#8220;<b>Char</b>,&#8221; &#8220;<b>Int</b>,&#8221; &#8220;<b>Integer</b>,&#8221; &#8220;<b>Float</b>,&#8221; &#8220;<b>Double</b>&#8221;.
+    <br>
+
+
+
+
+  </li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Therefore <i>memberG</i> can use data types like Bool, Char
+Int etc
+whereas <i>memberI</i> can only use Int data.</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Such collections of types in Haskell are called <b>classes.</b></li>
+
+
+
+
+  <li>In fact one can specify the most generic types:</li>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <pre>&gt; <b>member :: Eq a =&gt; a -&gt; [a] -&gt; Bool </b><br>&gt; member x (h:t)= if (x == h) then True else member x t<br>&gt; member _ [] = False</pre>
+
+
+
+
+</blockquote>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<h3> Haskell classes are different</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> Classes are</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> NOT the same as Java classes</li>
+
+
+
+
+    <li> More like Java&#8217;s interface</li>
+
+
+
+
+    <li> Somewhat like a C++ template</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Classes require function overloading</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Types must declare themselves to be in a class AND must have
+the functions specified in the Class implemented.</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <blockquote><tt>&gt; instance&nbsp;&nbsp;Eq&nbsp;Char&nbsp;&nbsp;where<br>
+
+
+
+
+&gt; &nbsp;&nbsp;&nbsp;c&nbsp;==&nbsp;c'&nbsp;
+=&nbsp;&nbsp;fromEnum&nbsp;c&nbsp;==&nbsp;fromEnum&nbsp;c'</tt><br>
+
+
+
+
+  </blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<h3>Basic class examples</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> Defining a Haskell class:</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Class name which begins with a Capital letter</li>
+
+
+
+
+    <li> one or more functions that must be defined for any type in the
+class</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <blockquote>i.e. <b>Eq</b> has the functions &#8220;<b>==</b>&#8221; and &#8220;<b>/=</b>&#8221;<br>
+
+
+
+
+&nbsp; &nbsp; &nbsp; <b>Ord</b> has the functions &#8220;==&#8221; &#8220;/=&#8221; &#8220;&lt;&#8221;
+&#8220;&lt;=&#8221; &#8220;&gt;&#8221; &#8220;&gt;=&#8221; &#8220;max&#8221; &#8220;min&#8221;<br>
+
+
+
+
+  </blockquote>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>The relationship between language defined classes are below:<br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</blockquote>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <blockquote><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/classes.gif"><img alt="Haskell Basic Classes" src="classes.gif" align="top" border="0" height="323" width="250"> </a></blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<h3> Details of defining Classes&nbsp;</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li>This is how Prelude defines the class EQ:</li>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote><code>&gt; class&nbsp;&nbsp;Eq&nbsp;a&nbsp;&nbsp;where<br>
+
+
+
+
+&gt;
+&nbsp;&nbsp;&nbsp;(==),&nbsp;(/=)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::&nbsp;a&nbsp;-&gt;&nbsp;a&nbsp;-&gt;&nbsp;Bool<br>
+
+
+
+
+  <br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;Minimal&nbsp;complete&nbsp;definition:<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(==)&nbsp;or&nbsp;(/=)<br>
+
+
+
+
+  <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;/=&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;not&nbsp;(x&nbsp;==&nbsp;y)<br>
+&gt;
+&nbsp;&nbsp;&nbsp;x&nbsp;==&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;not&nbsp;(x&nbsp;/=&nbsp;y)<br>
+
+
+
+
+  </code><br>
+
+
+
+
+</blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  <li>An alternative definition:</li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <code>&gt; class Eq t where<br>
+
+
+
+
+&gt;&nbsp;&nbsp;&nbsp; (==), (/=)::t -&gt; t -&gt; Bool<br>
+
+
+
+
+&gt;&nbsp;&nbsp;&nbsp; a /= b = not (a == b)<br>
+
+
+
+
+  <br>
+
+
+
+
+  </code> <li>Notice you can define the functions in the class or not.
+&nbsp;The alternative class definition of Eq requires the user to
+define
+"==" whereas you have a choice using the Prelude "Eq" class .<br>
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Classes can allow for subtyping.&nbsp;</li>
+
+
+
+
+  <li>Types in Ord are subtypes of EQ.</li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <code>&gt; class Eq t =&gt; Ord t where<br>
+
+
+
+
+&gt;&nbsp;&nbsp;&nbsp; (&lt;), (&lt;=), (&gt;), (&gt;=) :: t -&gt; t
+-&gt; Bool<br>
+
+
+
+
+&gt;&nbsp;&nbsp;&nbsp; max, min :: t -&gt; t -&gt; t<br>
+
+
+
+
+  <br>
+
+
+
+
+  </code> <li> For a type to be in a class such as <b>Ord,</b> it
+must define
+all the functions in <b>Eq</b> and <b>Ord.</b></li>
+
+
+
+
+  <li> In fact <b>Ord</b> is derived from <b>Eq.</b></li>
+
+
+
+
+  <li> Ord inherits the operations from <b>Eq.</b></li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Inheritance and subtyping are central ideas of object-oriented
+languages. &nbsp;</li>
+
+
+
+
+    <li>The different between object-oriented languages and Haskell is
+the binding time of the code related to the subtypes. &nbsp;</li>
+
+
+
+
+    
+    
+    
+    
+    <ul>
+
+
+
+
+      <li>Haskell binds the code statically whereas object-oriented
+languages the code is bound dynamic.</li>
+
+
+
+
+      <li>C++ templates also binds the code statically. <br>
+
+
+
+
+      </li>
+
+
+
+
+    
+    
+    
+    
+    </ul>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Any variable of type in Ord can be substituted for a variable of
+type in Eq.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Therefore the function <i>member</i> can be applied to
+variables of type in Ord.</li>
+
+
+
+
+    <li>Similar idea in object-oriented languages.</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+<h3>Defining a type to be in a class</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> The following example is shown in the Haskell book:</li>
+
+
+
+
+  
+  
+  
+  
+  <pre>&gt; <b>instance</b> Eq Bool where<br>&gt;&nbsp;&nbsp;&nbsp; True == True&nbsp;&nbsp; = True<br>&gt;&nbsp;&nbsp;&nbsp; False == False = True<br>&gt;&nbsp;&nbsp;&nbsp; _ == _&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = False<br></pre>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>The keyword <i>instance</i> indicates the type you are
+defining
+is in the class named.</li>
+
+
+
+
+    <li>For the class <b>Eq</b> only one function needs to be defined.
+&nbsp;You get "/=" for free.<br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <li><b><i>&nbsp;Show </i></b>is another class in Prelude. &nbsp;The
+function <i>show</i> like "toString" in Java.</li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  
+  <p><tt>&gt; class&nbsp; Show a&nbsp; where<br>
+
+
+
+
+&gt;&nbsp;&nbsp;&nbsp;
+showsPrec&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :: Int -&gt; a
+-&gt;
+ShowS<br>
+
+
+
+
+&gt;&nbsp;&nbsp;&nbsp; show&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; :: a -&gt; String<br>
+
+
+
+
+&gt;&nbsp;&nbsp;&nbsp;
+showList&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :: [a] -&gt;
+ShowS <br>
+
+
+
+
+  </tt></p>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><tt>To use the function <i>show</i> to display values the Hugs
+runtime must be set. The user defined type <i>Person</i> is not an
+instance of Show so we get the following runtime error.<br>
+
+
+
+
+&nbsp;</tt><br>
+
+
+
+
+      <small>Notes1&gt; :set +u<br>
+
+
+
+
+Notes1&gt; Person "Name" 3<br>
+
+
+
+
+ERROR - Cannot find "show" function for:<br>
+
+
+
+
+*** Expression : Person "Name" 3<br>
+
+
+
+
+*** Of type&nbsp;&nbsp;&nbsp; : People</small><br>
+
+
+
+
+      <small>Notes1&gt; :set -u<br>
+
+
+
+
+Notes1&gt; Person "Name" 3<br>
+
+
+
+
+People_Person "Name" </small>3</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+</ul>
+
+
+
+<ul>
+
+
+
+  <li><span style="font-style: italic;">deriving </span>&nbsp;allows us to get the obvious implementation without extra coding</li>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    <dd><span style="font-family: monospace;">data People1 = Person1 String Int deriving Show<br>
+
+
+
+      <br>
+
+
+
+      <br>
+
+
+
+Notes1&gt; Person1 "Name" 3<br>
+
+
+
+Person "Name" 3</span></dd>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<hr style="height: 1px; width: 50%;" noshade="noshade">
+<h3>Numeric types</h3>
+
+
+
+
+<dl>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    <li> Num class provides several basic operations common to all
+numeric types;</li>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+</dl>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <blockquote><b><tt>&gt; (+), (-), (*)&nbsp;&nbsp;&nbsp; :: (Num a)
+=&gt; a -&gt; a -&gt; a</tt></b><b><tt><br>
+
+
+
+
+&gt; negate, abs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :: (Num a) =&gt; a -&gt;
+a</tt></b></blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<dl>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    
+    
+    
+    
+    <dl>
+
+
+
+
+      <li> Num does not provide a division operator</li>
+
+
+
+
+    
+    
+    
+    
+    </dl>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+</dl>
+
+
+
+
+<dl>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    <li>The standard numeric types, Int, Integer, Float, and Double are
+primitive.</li>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+</dl>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <blockquote>
+    
+    
+    
+    
+    <dl>
+
+
+
+
+      <li>Both Int and Integer are in the Class Integral but Int is fix
+size integer but Integer is an arbitrary precision integer</li>
+
+
+
+
+    
+    
+    
+    
+    </dl>
+
+
+
+
+  </blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<dl>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    <li> There is NO implicit coercion!</li>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+</dl>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <blockquote>
+    
+    
+    
+    
+    <dl>
+
+
+
+
+      <tt>fromInteger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Num a) =&gt; Integer -&gt; a</tt><br>
+
+
+
+
+      <tt>fromRational&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Fractional a) =&gt; Rational -&gt; a</tt><br>
+
+
+
+
+      <tt>toInteger&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Integral a) =&gt; a -&gt; Integer</tt><br>
+
+
+
+
+      <tt>toRational&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (RealFrac a) =&gt; a -&gt; Rational</tt><br>
+
+
+
+
+      <tt>fromIntegral&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (Integral a, Num b) =&gt; a -&gt; b</tt><br>
+
+
+
+
+      <tt>fromRealFrac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+:: (RealFrac a, Fractional b) =&gt; a -&gt; b</tt>
+    
+    
+    
+    
+    </dl>
+
+
+
+
+  </blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<dl>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    <li>What is the type of 2? <br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+</dl>
+
+
+
+
+<dl>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    <span style="font-family: monospace;"></span><dd><span style="font-family: monospace;">:t 2<br>
+
+
+
+
+2 :: Num a =&gt; a<br>
+
+
+
+
+      </span></dd>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+</dl>
+
+
+
+
+<blockquote> </blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  <li>What is the type of <span style="font-weight: bold; font-family: monospace;">[]</span>?</li>
+
+
+
+
+</ul>
+
+
+
+
+<dl>
+
+
+
+
+  <dd><span style="font-family: monospace;">:t []</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">[] :: [a]</span><br>
+
+  </dd>
+
+
+
+
+</dl>
+
+
+
+
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+<dl>
+
+
+
+
+  <li><a href="http://haskell.org/tutorial/numbers.html">See Online
+report on Numbers</a></li>
+
+
+
+
+  <li><a href="http://haskell.org/tutorial/numbers.html">See online
+tutorial for more details</a></li>
+
+
+
+
+  <li><a href="http://haskell.org/tutorial/numbers.html#sect10.3">Numeric
+Coercions and Overloaded Literals</a></li>
+
+
+
+
+</dl>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <blockquote> </blockquote>
+
+
+
+
+</blockquote>
+
+
+
+
+<hr style="height: 1px; width: 50%;" noshade="noshade">
+
+<h3>Higher-Order Types Used in Class Declaration</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li> &nbsp;<i><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2hSpr01.html#Tree">
+Tree</a></i>&nbsp; defined was as follows:</li>
+
+
+
+
+  <br>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+    <code>&gt; data Tree a = Leaf a | Branch (Tree a) (Tree a) deriving Show</code><br>
+
+
+
+    <code></code>
+  
+  
+  
+  </ul>
+
+
+
+  <code><br>
+
+
+
+  </code><li>We can define a binary search tree <span style="font-weight: bold;">using deriving</span><br>
+
+
+
+  </li>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    <dd><span style="font-family: monospace;">&gt; data BST a = LEAF a | BRANCH (BST a) (BST a) deriving (Eq, Ord)</span></dd>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+  <code></code><code></code><span style="font-family: monospace;">
+  </span>
+</ul>
+
+
+
+
+<span style="font-family: monospace;"></span>
+<center> </center>
+
+
+
+
+<ul>
+
+
+
+
+  <li> <i>Tree</i> by itself is a type constructor:</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> It takes a type as an argument and returns a type as a result.</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> No value can have this as a type but such "higher order" types
+can be used in Class declarations</li>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><br>
+
+
+
+
+    </dd>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Polymorphic Recursive function on the recursive data type</li>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote> <code>&gt; fringe :: Tree a -&gt; [a]&nbsp;<br>
+
+
+
+
+&gt; fringe (Leaf x) = [x]&nbsp;<br>
+
+
+
+
+&gt; fringe (Branch left right) = fringe left ++ fringe right<br>
+
+
+
+
+  <br>
+
+
+
+
+  </code></blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  <li><tt>Example:<br>
+
+
+
+
+    <img alt="Tree Picture" src="tree1.gif" align="top" height="158" width="249"><br>
+
+
+
+&nbsp;</tt></li>
+
+
+
+  <li>We can define<br>
+
+
+
+
+    <code>...&gt; fringe (Branch(Branch (Leaf 3)(Leaf 4))(Leaf 2))<br>
+
+
+
+
+[3,4,2]</code> </li>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <tt><br>
+
+
+
+
+  </tt>&nbsp; <li> The following class is defined in the Standard
+Prelude</li>
+
+
+
+
+  <br>
+
+
+
+
+  <tt>&gt; class Functor f where</tt> <br>
+
+
+
+
+  <code>&gt;&nbsp;&nbsp;&nbsp; fmap :: (a-&gt;b) -&gt; f a -&gt; f b<br>
+
+
+
+
+  <br>
+
+
+
+
+  </code>
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> <i><tt><big>f</big> </tt></i>is a type that is applied to
+other types<br>
+
+
+
+
+      <br>
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Defining Tree in the class Functor</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+&nbsp;
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <code>&gt; instance Functor Tree where</code> <br>
+
+
+
+
+  <code>&gt;&nbsp;&nbsp;&nbsp;&nbsp; fmap f (Leaf x) = Leaf (f x)</code>
+  <br>
+
+
+
+
+  <code>&gt;&nbsp;&nbsp;&nbsp;&nbsp; fmap f (Branch t1 t2) = Branch
+(fmap
+f t1) (fmap f t2)</code>
+  
+  
+  
+  
+  <p><tt>...&gt; fmap (5 +) tree</tt> </p>
+
+
+
+
+  
+  
+  
+  
+  <p>Given an integer tree, the new integer tree has 5 added to each
+leaf of the original tree.&nbsp;</p>
+
+
+
+
+</ul>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <p><tt>...&gt; fmap even tree<br>
+
+
+
+
+  </tt><br>
+
+
+
+
+What is the type of fmap even where <i>f</i> is Tree ? fmap even tree ?<br>
+
+
+
+
+Given an Integer tree, the new tree is a Bool tree where the leaf is
+true if the original value is even and false otherwise.</p>
+
+
+
+
+</blockquote>
+
+
+
+
+<ul>
+
+
+
+
+  <li>[ ] can easily be made an instance of Functor</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+&nbsp;
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <code>&gt; instance Functor [ ] where</code> <br>
+
+
+
+
+  <code>&gt;&nbsp;&nbsp; fmap = map</code>
+</ul>
+
+
+
+
+<hr size="3" width="100%"><small><small>Reference: <span style="font-style: italic;">Modern Programming Languages: A Practical
+Introduction</span> by Adam Brooks Webber, Franklin, Beedle and
+&amp;Associates, Inc , 2002<br>
+
+
+
+
+<br>
+
+
+
+
+</small></small>
+<center>
+<table bgcolor="#fffff0" border="1" cellpadding="0" cellspacing="0">
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+      <td>&nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2hSpr01.html">
+previous</a></td>
+
+
+
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/4hF02.html">&nbsp;next&nbsp;</a></td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+</center>
+
+
+
+
+<hr align="left" noshade="noshade" size="1" width="100%">
+</body></html>

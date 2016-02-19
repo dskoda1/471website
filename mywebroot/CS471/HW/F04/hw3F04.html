@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>Homework 3- Prolog Programming 2</title>
+</head>
+<body style="background-color: rgb(255, 253, 255); color: rgb(0, 0, 0);"
+ alink="#cc0000" link="#ff0000" vlink="#990000">
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a>
+<h4> </h4>
+<h3>Given: Sunday Sept. 12.&nbsp; </h3>
+<h3>Due Fri. Sept 24.</h3>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a>
+You hardcopy should begin with the following identification:
+<ul>
+  <blockquote><font color="#000000">CS471 - Programming Languages</font>
+    <br>
+    <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR
+Section number&gt;</font> <br>
+    <font color="#000000">Assignment #</font><font color="#cc0000">&lt;number&gt;
+    </font><font color="#000000">due:</font><font color="#cc0000">
+&lt;DATE&gt;</font> <br>
+    <font color="#000000">Author:</font><font color="#cc0000">
+&lt;LastName&gt;, &lt;FirstName&gt; </font><font color="#000000">(</font><font
+ color="#cc0000"> &lt;EMail&gt;</font><font color="#000000">)</font> <br>
+    <font color="#000000">Date:</font><font color="#cc0000">
+&lt;DATE&gt;</font></blockquote>
+</ul>
+<h4>Reading and references---</h4>
+<ul>
+  <li>Chap. 12.4, 12.5<br>
+  </li>
+  <li>Here are some references for you to pick and choose from<br>
+  </li>
+  <ul>
+    <li><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/prologTutorial.pdf">Mead
+and Lu's Prolog Tutorial</a> Chapter 6<br>
+    </li>
+    <li><a href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">Adventure
+in
+Prolog&#8482;</a> (a fun tutorial)<br>
+    </li>
+    <li><a href="http://cs.wwc.edu/%7Ecs_dept/KU/PR/Prolog.html">Another
+Tutorial</a></li>
+    <li><a
+ href="http://www.cs.bham.ac.uk/%7Epjh/prolog_course/sem242.html">Another
+Tutorial by Peter Hancox</a><br>
+    </li>
+    <li><a
+ href="http://www.cs.otago.ac.nz/cosc347/References/LP/LeedsTutorial/">A
+very detailed tutorial by Paul Brna</a></li>
+  </ul>
+  <li>&nbsp;Code based on the class notes are in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/example.pl">
+example.pl </a></li>
+</ul>
+<b>Purpose:</b><br>
+<ul>
+  <li>To see review important concepts from discrete math need to
+program in prolog.</li>
+  <li>To reenforce recursive programming <br>
+  </li>
+  <li>To reenforce the use of the list data structure in Prolog<span
+ style="font-style: italic;"><span style="font-weight: bold;"> <br>
+    </span></span></li>
+  <li>To appreciate the power of pattern recognition/unification <br>
+  </li>
+</ul>
+<br>
+<h4>Programming Assignment:</h4>
+<div style="margin-left: 40px;"><span style="font-weight: bold;">Turn
+in your solutions for the the problems in&nbsp; </span><a
+ href="XXXAs3.pl" style="font-weight: bold;">XXXAs3.pl.</a> You may not
+use the built in predicate "reverse",&nbsp; You may use the built in
+predicate "delete".<br style="font-weight: bold;">
+</div>
+<ol style="font-weight: bold;">
+</ol>
+<hr style="width: 100%; height: 2px;">
+<h4> Written assignment:</h4>
+<b>Purpose: To understand how order imposed by the implementation
+of
+Prolog causes problems.<br>
+To understand how pattern matching in a more complex problem.
+&nbsp;&nbsp; <br>
+To examine efficiency of prolog code.<br>
+</b>
+<ol>
+  <li>Below are 4 versions of subList(SubList, List) discussed in class.<br>
+    <br>
+subList1(S,L):-append(P,T,L),append(H,S,P).<br>
+subList2(S,L):-append(H,S,P),append(P,T,L). <br>
+subList3(S,L):-append(S,ST,T),append(H,T,L).<br>
+subList4(S,L):-append(H,T,L),append(S,ST,T).</li>
+  <ol>
+    <li>Run each version above with the following input, S = [2,3], L =
+[1,2,3,4]</li>
+    <li>Run each version above with the following input, S = [a,b], L =
+[1,2,3,4]</li>
+    <li>One version runs out of stack-- &nbsp;Explain why this error
+occurs.<br>
+      <br>
+    </li>
+  </ol>
+  <li>Consider the follow prolog cause<br>
+    <tt>fill(X,N,L) :- length(L,N), append([X],Lx,L),
+append(Lx,[X],L).</tt> </li>
+  <ol>
+    <ol style="list-style-type: upper-alpha;">
+&nbsp;<li><tt>(Do not turn in).</tt>If the input <i>X</i> is a term
+and input <i>N</i> is a positive integer, then what will the output <i>L</i>?
+Try the following.. also find other possible solutions with ";"</li>
+      <ol type="a">
+        <li><tt>?-</tt>&nbsp; <tt>fill(xyz, 5, L).</tt></li>
+        <li><tt>?- fill(xyz, 5, [H|T].</tt></li>
+      </ol>
+      <li><tt>Try to briefly explain how it works.</tt></li>
+      <li>Does the below code give the same results as <i>fill</i>?</li>
+      <ol type="A">
+        <tt>fillr(X,0,[]):-!.</tt><br>
+        <tt>fillr(X,N,[X|T]) :- Nx is N-1,fillr(X,Nx,T).</tt>
+      </ol>
+      <li>Compare the execution time of the two version for various
+values of <i>N .&nbsp; </i>(Use "trace" or write your own append (use
+myAppend) and length(use myLen) so you can see trace to see the
+execution steps. )</li>
+    </ol>
+  </ol>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li>The purpose of this question is to verify you understand how
+prolog implements lists.</li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Briefly describe how lists can implemented at runtime in
+prolog.&nbsp; You can use pseudocode, pictures etc but keep it short.<br>
+    </li>
+    <li>How would your stategy about implement the following lists (you
+may draw a picture of your structure)<br>
+    </li>
+  </ol>
+  <ol>
+    <ol>
+      <li>[a, [ b, c ]]</li>
+      <li>[ a, [ b<span style="color: rgb(204, 0, 0);">,</span> [ c, d,
+e
+], f ] ]</li>
+      <li>[a, [b , [a, b, c]], c]</li>
+    </ol>
+    <ol>
+    </ol>
+  </ol>
+</ol>
+<ol>
+</ol>
+____________________________________________________________________________________<br>
+<font color="#3333ff"><br>
+Remember Programming is an individual task... :</font>
+<p><font color="#3333ff">Resources use:</font> </p>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a> </p>
+<br>
+<br>
+</body>
+</html>

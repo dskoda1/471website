@@ -1,0 +1,29 @@
+To use the make utility with my Makefile; 
+  all the files for just project need to be located
+in the same directory. You should make this directory the current directory 
+in terminal window.
+
+lab1_1.h  : header file for lab1_1.c 
+         You should modify this file to include the prototype for
+         the rewrite of powerI() using a recursive style.  The new function
+         should be name powerR()
+         
+lab1_1.c : file containing the definition of powerI().  You should add the
+          definition for powerR()
+          
+lab1_1EH.c : file used by the Makefile to generate assembly code.
+
+lab1Driver.c : file containing the "main" function used to "test" functions in
+           lab1_1.c.  You will need to modify to test powerR().
+        
+Makefile : file used by the "make" utility.
+   Using make utility at the prompt type --
+to execute and compile if necessary
+  > make runIt
+
+to create the assembly file in problem 2
+  > make lab1p2ASM
+  
+lab1p2ASM32 will guarantee 32 bit assembly instructions 
+  > make lab1p2ASM32
+ 

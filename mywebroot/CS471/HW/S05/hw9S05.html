@@ -1,0 +1,232 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=ISO-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>HW 9 -- Haskell --</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(250, 250, 250);"
+ alink="#cc0000" link="#ff0000" vlink="#990000">
+<h4>Due Sat,Apr 9<br>
+</h4>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+<div align="left">
+<h4 style="text-align: center;">Assignment 9</h4>
+<ul>
+  <li><a href="http://haskell.org/aboutHaskell.html">About Haskell</a></li>
+  <li><a href="http://haskell.org/tutorial/indextutorial.html">On line
+tutorial</a></li>
+  <li>Recommended reading: Thompson, Chapter 1 -7, Appendix A<br>
+  </li>
+</ul>
+<h4>Programming assignment found in <a href="Haskell1S05.lhs">Haskell1S05.lhs</a></h4>
+<h4>Written assignment:</h4>
+<ol>
+  <li>Exercise 1 and 2 illustrates how changing a given
+function&#8217;s
+implementation can affect its time and space performance.</li>
+</ol>
+<dl>
+  <dd>Our example is the exponentiation function, which raises a number
+to a positive integer power. Here is a very simple implementation: <br>
+  </dd>
+</dl>
+<ol start="2">
+  <ol>
+    <span style="font-family: monospace;">&gt; power :: Integer
+-&gt; Integer -&gt; Integer&nbsp;&nbsp;</span>&nbsp;&nbsp; <br>
+    <span style="font-family: monospace;">&gt; power a 0 = 1&nbsp;</span>&nbsp;<span
+ style="font-family: monospace;">&nbsp;&nbsp; <br>
+    </span> <span style="font-family: monospace;">&gt; power a b = a *
+power a (b-1)<br>
+    <br>
+    </span>
+  </ol>
+  <ol style="list-style-type: lower-alpha;">
+    <li>[1pt]Show the steps in the evaluation of the expression<span
+ style="font-family: monospace; font-weight: bold;"> power 2
+7</span>.&nbsp;&nbsp; How do the time and maximum space required by the
+evaluation of <span style="font-family: monospace;">power n k</span>
+depend on <span style="font-style: italic;">n </span>and <span
+ style="font-style: italic;">k</span>?<br>
+      <br>
+    </li>
+    <li>[.5pt]Experiment with Hugs to determine for approximately
+(&plusmn;100) how large a value of <span style="font-style: italic;">k</span>
+the expression <span style="font-family: monospace; font-weight: bold;">power
+2 k</span> can be
+evaluated. The symptoms of failure vary somewhat depending on the
+platform on which you&#8217;re running Hugs&#8212; Hugs may report a
+stack overflow, or it may crash.<br>
+      <br>
+    </li>
+    <li>[1pt]The cause of the limitation is the accumulation of pending
+multiplications, which is inherent in the way power is defined&#8212;
+each multiplication has to wait until its right argument has been
+evaluated.<br>
+    </li>
+One way to eliminate the multiplication delay is to convert
+the function&#8217;s definition to a tail-recursive implementation:<br>
+    <br>
+    <span style="font-family: monospace;">&gt; powerT :: Integer -&gt;
+Integer -&gt; Integer</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&gt; powerT a b = trp b 1</span><br
+ style="font-family: monospace;">
+    <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+where</span><span style="font-family: monospace;"></span><br
+ style="font-family: monospace;">
+    <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+trp n p = if (n==0) then p else trp (n-1) (a*p)<br>
+    </span><br style="font-family: monospace;">
+Show the steps in the evaluation of the expression <span
+ style="font-family: monospace; font-weight: bold;">powerT 2 7</span>,
+making sure not to
+reduce any subexpression prematurely.&nbsp;&nbsp; <br>
+Does the space
+problem appear to be solved?<br>
+    <br>
+    <li>[.5pt]Repeat the experiment for part (b)&nbsp; for <span
+ style="font-family: monospace;">powerT.<br>
+      <br>
+      </span></li>
+    <li>[1pt]Define <span style="font-family: monospace;">powerS </span>by
+modifing <span style="font-family: monospace;">powerT</span> to force
+the accumulator argument to be evaluated prematurely, using the
+operator ($!) as illustrated in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#factS">factS</a><span
+ style="font-family: monospace;">.</span>Repeat the experiment of part
+(b) using your version of powerS, demonstrating that Hugs no longer
+crashes.<br>
+      <br>
+    </li>
+    <li><span style="font-family: monospace;"></span>[1pt] Convert the
+powerT to an iterative form (while loop) using the <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#iterativeform">conversion</a>
+technique discussed in class.<br>
+      <br>
+    </li>
+  </ol>
+  <li>In Exercise 1 we improved power&#8217;s space performance, but
+all three versions take time linear in the exponent argument.] <br>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Confirm this by running power, powerT, and powerS on the
+largest exponent for which you&#8217;ve discovered that all three
+succeed. Have Hugs count the number of reduction steps by turning on
+the statistics flag: <br>
+      <br>
+    </li>
+    <dl>
+      <dd><span style="font-family: monospace;">Haskell1S05&gt; :s +s <br>
+        </span><br>
+      </dd>
+    </dl>
+    <li>[.5pt]Here is an algorithm which improves both time and space
+performance:<br>
+      <br>
+    </li>
+    <dl>
+      <dd><span style="font-family: monospace;">&gt; turboPower a 0 = 1
+        <br>
+&gt; turboPower a b <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; | even b = turboPower (a*a) (b `div` 2) <br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = a * turboPower a (b-1)<br>
+        <br>
+        </span></dd>
+    </dl>
+    <dd><span style="font-family: monospace;"></span><br>
+    </dd>
+  </ol>
+  <ol>
+    <dd><br>
+    </dd>
+    <dd><br>
+    </dd>
+    <dd><br>
+    </dd>
+    <dd>Instead of merely decrementing its first argument, this
+algorithm
+halves it whenever it is even, thereby reaching termination much more
+quickly. Demonstrate it on the same arguments you used in part (a).<span
+ style="font-family: monospace;"> <br>
+      <br>
+      </span></dd>
+  </ol>
+  <ol start="3" style="list-style-type: lower-alpha;">
+    <li>[1pt] Repeat the calculation of Exercise 1c using turboPower.
+You do not need to show the evaluation of the guard expression even b.
+The recursive applications of turboPower give rise to multiple
+instances of the parameter a; handle this by adding digits or prime
+characters (') to distinguish between them.<br>
+      <br>
+    </li>
+    <li>In the <a href="Haskell1S05.lhs">programming assignment</a>
+you will convert turboPower version to a tail recursive version.<br>
+      <br>
+    </li>
+  </ol>
+  <li>Show the steps in the evaluation of the expression<br>
+    <span style="font-family: monospace;"><br>
+let f x y = if x &gt; 0 then x else x * y in f (3 + 7) (f 8 4)</span><br>
+    <br>
+For each evaluation policy, count the number of addition operations and
+the number of comparisons. In each step, underline the subexpression
+evaluated in the next step (as in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html">notes</a>).<br>
+    <br>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>[1]Use the leftmost-innermost policy.</li>
+    <li>[1]Use the outermost policy.</li>
+    <li>[1]Use the lazy policy.<br>
+      <br>
+      <br>
+    </li>
+  </ol>
+  <li>[1] Given the following functions:<br
+ style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp; f(x) = 3x&nbsp; - 2</span><br
+ style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp; g(x) = 2x -&nbsp; 3<br>
+    </span></li>
+</ol>
+<dl>
+  <dd> What is the function determined by composition,&nbsp; (<i>f </i><font
+ size="-2">o </font><i>g</i>)(x ) = ?</dd>
+</dl>
+<ol start="2">
+  <ol>
+    <li>&nbsp;
+Remember the effect of applying (<i>f </i><font size="-2">o </font><i>g</i>)<i>
+      </i>to<i>&nbsp; </i><i>x</i> is the same as the result
+computed by <i>f</i> ( <i>g</i>(<i>x</i>) ) )<br>
+    </li>
+    <ol type="a">
+&nbsp;
+    </ol>
+    <li> What is&nbsp; (<i>g </i><font size="-2">o </font><i>f</i>)<i>
+      </i>(<i>x</i>
+) = ?</li>
+    <ol type="a">
+      <br>
+&nbsp;
+    </ol>
+    <li> What is the value of&nbsp; (<i>f </i><font size="-2">o</font><i>
+g</i>)<i> </i>(2
+) = ?</li>
+    <ol type="a">
+      <br>
+&nbsp;
+    </ol>
+    <li>What is the value of <i>(g </i><font size="-2">o </font><i>f
+) </i>(2 ) = ?</li>
+  </ol>
+</ol>
+</div>
+<br>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us"><head>
+  <title>Scott's Chap 6,13 some of Chap 7</title>
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head">
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+</head><body>
+<h3><span style="font-weight: bold;"></span> Due&nbsp; March 24&nbsp;
+-- YOU
+MAY WORK IN TEAMS of 3<br>
+</h3>
+
+Read: <span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 253, 253); font-size: medium; display: inline ! important; float: none;">S:
+chap 6 (except 6.6 which will be done later in the semester)<br>
+focus on -- 219-241, 244-245, 262-270<br style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 253, 253); font-size: medium;">
+</span><span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 253, 253); font-size: medium; display: inline ! important; float: none;">cyu:</span><br style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 253, 253); font-size: medium;">
+
+<span style="color: rgb(0, 0, 0); font-family: 'Times New Roman'; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; background-color: rgb(255, 253, 253); font-size: medium; display: inline ! important; float: none;">&nbsp;&nbsp;
+chap 6: 1-11,12-18,19-26, 27-37</span><br>
+
+<br>
+
+<ol>
+
+  <li>In Ruby everything is an object including numbers and
+nil. &nbsp;Ruby does not use "for" loops much but instead uses
+iterables and code blocks. &nbsp;Below is a script to print out the
+product
+of the first 5 numbers:</li>
+  <dl>
+    <dd><span style="font-family: monospace;">sum = 1<br>
+1.upto(5){|n| sum = sum + n}<br>
+puts prod<br>
+      </span></dd>
+    <dt>Below is a script build a list of numbers from 1 to 5
+and print out the list:</dt>
+    <dd><span style="font-family: monospace;">lst =
+[ ]<br>
+1.upto(5){|n| lst[n]=n}<br>
+print lst<br>
+print "\n"<br>
+puts lst&nbsp;<br>
+      </span></dd>
+    <dt>Write a script using a number object 1 to build a list
+where each element is the sum of 1 to 5. &nbsp;The if you create a list
+lstSum the output should be</dt>
+    <dt><span style="font-family: monospace;">&nbsp;
+irb(main):021:0&gt; lstSum<br>
+&nbsp; =&gt; [0, 1, 3, 6, 10, 15]&nbsp; </span><span style="font-family: monospace;"></span><br style="font-family: monospace;">
+&nbsp; <span style="font-family: monospace;"></span><br>
+Tip: If you see the following error:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;TypeError: nil can't be coerced into Fixnum</dt>
+    <dt>Your variable has not been initialized.<br>
+&nbsp;&nbsp; <br>
+    </dt>
+    <li>Variation of &nbsp;exercises 6.15 and 6.16.
+&nbsp;Add two iterator <span style="text-decoration: underline;">methods</span>
+to the Tree class in&nbsp;<a href="hw8/TreeModule.py">TreeModule.py</a>.
+      <span style="font-weight: bold;"><span style="font-style: italic;">preorder</span>()</span>
+is an iterator that traverses the tree object in <span style="font-style: italic;">preorder</span> and <span style="font-weight: bold; font-style: italic;">postorder</span>()
+is an iterator that traverses the tree object in <span style="font-style: italic;">postorder.</span>&nbsp;<br>
+      <br>
+      <br>
+    </li>
+    <li>Repeat problem 2 using Ruby. Add two iterator <span style="text-decoration: underline;">methods</span>
+to the Tree class in <a href="hw8/treeModule.rb">treeModule.rb</a>. <span style="font-weight: bold;"><span style="font-style: italic;">preorder</span>()</span>
+is an iterator that traverses the tree object in <span style="font-style: italic;">preorder</span> and <span style="font-weight: bold; font-style: italic;">postorder</span>()
+is an iterator that traverses the tree object in <span style="font-style: italic;">postorder.</span>&nbsp;<br>
+      <br>
+    </li>
+    
+    <li>Page 282 exercise 6.18.&nbsp;
+      <br>
+In the previous assignment you were asked to create preorder and
+postorder iterators in Python and Ruby using the 'yield' construct. Now
+you need to write and iterator for a binary tree in C that performs an
+inorder traversal of a given tree.
+<br>
+      <br>
+Unlike Python and Ruby, there is no special syntax to do this. The iterator must be implemented by hand. You may use <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw8/TreeIter.c" target="_blank">TreeIter.c</a>
+as a template. You must define TreeIterCreate, TreeIterDelete,
+TreeIterVal, TreeIterNext, and TreeIterDone. The sample driver in the
+main function shows the expected behavior of the iterator object.
+<br>
+<br> Hint: An inorder traversal always "visits" the left most node in a
+binary tree first. This will make a good starting point to begin the
+traversal for the iterator. After that next node visited is visit your
+"inorder successor" (great term to google).<br>
+<br>
+      </li>
+
+  </dl>
+  <dl>
+    <li> Python 3 has two built-in&nbsp;sequence types: <span style="font-style: italic; font-weight: bold;">tuple</span> ,
+immutable sequence and <span style="font-weight: bold;"><span style="font-style: italic;">list</span>, </span><span style="font-style: italic;">&nbsp;</span>mutable sequence. &nbsp;The
+language provides <span style="font-style: italic; font-weight: bold;">for</span>
+&nbsp;loop to iterate through items in any sequence. &nbsp;The
+script
+below prints out the each item in lst with it's sequence number.</li>
+    <dl>
+      <dd><span style="font-family: monospace;">i = 0</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">for item in lst :</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; i = i+1</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; print
+(repr(i) + " " + repr(item))</span></dd>
+    </dl>
+    <ol style="list-style-type: lower-alpha;">
+      <li>Briefly explain the results of the following statements:</li>
+      <ol style="font-family: monospace;">
+        <li>seq = [1,2] + [1,2]</li>
+        <li>seq = (1,2) + (1,2)</li>
+        <li>seq = [1,2] + (1,2)</li>
+      </ol>
+      <li>Drawn a memory diagram of the following after each statement
+is executed:</li>
+      <ol style="list-style-type: lower-roman;">
+        <li>A = [1,(3,5),[7,9]]</li>
+        <li>B = [10, A, 30]</li>
+        <li>A[1] = 66<br>
+        </li>
+      </ol>
+      <li>Write a <span style="font-style: italic;">generator, </span>called
+'gen',that generates the following sequence: 'a',4,(1,2).</li>
+      <li>Will the script (above 'a') work if <span style="font-style: italic;">sequence</span>
+is a list? &nbsp;Will this script work if <span style="font-style: italic;">sequence </span>is a <span style="font-style: italic;">tuple</span>?
+&nbsp;If it work for both data types without modification briefly
+explain why. &nbsp;If it doesn't work modify the code so it work for
+both <span style="font-style: italic;">tuples and lists.&nbsp; </span>Will
+this script work with 'gen' defined in part c?<br>
+      </li>
+      <li>Write a <span style="font-style: italic;">for</span> loop
+which
+computes the "sum" (+) of items in an order sequence data type and
+print the result. &nbsp;Will your code work if your sequence contains
+only "string" items? Will your code work if you sequence contains only
+lists?<br>
+        <br>
+      </li>
+    </ol>
+  </dl>
+  <li>Here are some type and variable declarations in C syntax:</li>
+  <ol style="list-style-type: lower-alpha;">
+    <dd><span style="font-family: monospace;"><br>
+      </span>
+      <div style="margin-left: 40px; font-weight: bold;"><span style="font-family: monospace;">typedef
+&nbsp;struct {</span><br>
+      <span style="font-family: monospace;">&nbsp; &nbsp;char* pt;</span><br>
+      <span style="font-family: monospace;">&nbsp; &nbsp;int a;</span><br>
+      <span style="font-family: monospace;">} RecA;</span><br>
+      <span style="font-family: monospace;"> </span><br>
+      <span style="font-family: monospace;"> </span><span style="font-family: monospace;">typedef
+RecA RecB;<br>
+      </span><br>
+      <span style="font-family: monospace;">typedef struct {</span><br>
+      <span style="font-family: monospace;"> </span><span style="font-family: monospace;">&nbsp;
+&nbsp;char* pt;</span><br>
+      <span style="font-family: monospace;">&nbsp; &nbsp;int a;</span><br>
+      <span style="font-family: monospace;">} RecC;</span><br>
+      <span style="font-family: monospace;"></span><br>
+      <span style="font-family: monospace;"> </span><span style="font-family: monospace;">RecA w;</span><br>
+      <span style="font-family: monospace;">RecB x;</span><br>
+      <span style="font-family: monospace;">RecC y, z;</span><br>
+      <span style="font-family: monospace;"> </span></div>
+    </dd>
+    <br>
+State which variables are type equivalent under (a)
+structural equivalence, (b) strict name equivalence, and (c) the actual
+C equivalence algorithm.<br>
+    <br>
+  </ol>
+  <dl>
+    <li>page 376 exercise 7.15 (Include any assumptions)<br>
+      <br>
+      <ol style="list-style-type: lower-alpha;">
+      </ol>
+    </li>
+    <li>C++/C questions ("Thinking in C++" is a good
+reference)::</li>
+    <ol style="list-style-type: lower-alpha;">
+      <li>In C++, what is the difference between assigning a
+value
+to a
+pointer and to a reference?<br>
+      </li>
+      <li>In C++, what is the difference between&nbsp; taking
+the address
+(via operator &amp;)&nbsp; of a pointer and a reference?<br>
+      </li>
+      <li><font color="#000000">What is void * ? Why
+have it? void * is not exactly the same in C and C++. Provide an
+example that will illustrate the difference between C and C++.</font>&nbsp;<br>
+      </li>
+      <li>Suppose we tried to write a C
+procedure what initialize an array to a certain size as follows:<br>
+        <br>
+      </li>
+      <dl>
+        <dd><span style="font-family: monospace;">&nbsp;
+&nbsp;void
+init(int a[], int
+size) {<br>
+          </span></dd>
+        <dd><span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp; &nbsp;a =
+(int*)
+malloc(size*sizeof(int));<br>
+&nbsp; &nbsp;}<br>
+          </span></dd>
+        <br>
+Will this compile? What if anything, is wrong with
+with ? Explain.<br>
+        <br>
+      </dl>
+    </ol>
+  </dl>
+  <li>C++ and Java loops are often written with empty bodies
+by placing
+all side effects into the tests, such as in the following two examples:</li>
+  <dd><span style="font-family: monospace;"><br>
+    </span>
+    <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;">i
+= 0;</span><br style="font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">while
+(a[i++]
+!=0);</span><br style="font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;"></span><br style="font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">for
+(i = 0;
+a[i] != 0; i++);</span><br>
+    </div>
+    <span style="font-family: monospace;">&nbsp; </span><br>
+    <span style="font-family: monospace;"></span></dd>
+  <dt>Are these loops equivalent? Explain.<br>
+    <br>
+    <li>Suppose we wrote the following try block in C++; <span style="font-family: monospace;"><br>
+&nbsp; &nbsp; &nbsp; try { <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// do
+something <br>
+&nbsp; &nbsp; &nbsp;&nbsp;} <br>
+&nbsp; &nbsp; &nbsp; catch (...) {cout &lt;&lt;
+"general error!";} <br>
+&nbsp; &nbsp; &nbsp; catch (range_error) {cout
+&lt;&lt; "range error!";} <br>
+      </span><br>
+What is wrong with this code?</li>
+    <br>
+    <br>
+  </dt>
+  <dt><br>
+  </dt>
+  <dt><br>
+&nbsp; <br>
+  </dt>
+</ol>
+
+<br>
+
+<dl>
+
+</dl>
+
+<br>
+
+<br>
+
+</body></html>

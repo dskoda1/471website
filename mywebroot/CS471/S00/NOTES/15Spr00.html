@@ -1,0 +1,566 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Les Lander">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>471 Haskell Higher Order Functions</title>
+</head>
+<body>
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/14Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/16Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Haskell 3</h3></center>
+
+<center>
+<h4>
+&copy; Eileen Head, Leslie C. Lander, 2000</h4></center>
+Purpose:&nbsp; Explore Higher order functions.
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Notes1.lhs</a>
+has codes presented in these notes as well as other examples.
+<h3>
+
+<hr WIDTH="100%">Time and Space.</h3>
+<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/time.gif"><img SRC="time.gif" ALT="Setting time and reductions." height=284 width=400></a>
+<br>&nbsp;
+<h3>
+Use Browse or look in Prelude, List etc.</h3>
+
+<ul>
+<li>
+The “Browse” pull-down is useful in “winhugs,” e.g. Browse -> Names:</li>
+</ul>
+
+<center><img SRC="browsnam.jpg" height=328 width=510></center>
+
+<h3>
+Simple functions you can find in Prelude</h3>
+
+<ul>
+<li>
+Testing for an empty list:</li>
+
+<pre>> null :: [a] -> Bool
+> null []&nbsp;&nbsp;&nbsp; = True
+> null (_:_) = False</pre>
+
+<li>
+Testing for even and odd numbers:</li>
+
+<pre>> even, odd :: a -> Bool
+> even n = n `rem` 2 == 0
+> odd = not . even</pre>
+</ul>
+
+<h3>
+not, ord and chr</h3>
+
+<blockquote>
+<pre>> not :: Bool -> Bool
+> not True&nbsp; = False
+> not False = True
+
+> ord&nbsp; :: Char -> Int
+> ord&nbsp;&nbsp; = fromEnum
+
+> chr&nbsp; :: Int -> Char
+> chr&nbsp;&nbsp; = toEnum</pre>
+</blockquote>
+
+<h3>
+zip example from Prelude</h3>
+
+<blockquote>
+<pre>> zip :: [t] -> [u] -> [(t,u)]
+> zip [] x = []
+> zip x [] = []
+> zip (a:x) (b:y)=(a,b):zip x y</pre>
+
+<li>
+EXAMPLE</li>
+
+<pre>...> zip [1,2,3,4] ['a','b','c']
+[(1,'a'),(2,'b'),(3,'c')]</pre>
+</blockquote>
+
+<h3>
+zip3 example</h3>
+
+<ul>
+<pre>> zip3 :: [t]->[u]->[v] -> [(t,u,v)]</pre>
+
+<li>
+definition is similar but longer</li>
+
+<pre>...> zip3 [1,2,3,4] ['a','b','c'] ["here","there”]</pre>
+
+<li>
+returns</li>
+
+<pre>[(1,'a',"here"),(2,'b',"there")]</pre>
+</ul>
+
+<h3>
+k-th element of a list, starting from 0</h3>
+
+<ul>
+<pre>>&nbsp; (!!):: [b] -> Int -> b
+>&nbsp; (x:_)&nbsp; !! 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = x
+>&nbsp; (_:xs) !! n | n > 0 = xs !! (n-1)
+>&nbsp; (_:_)&nbsp; !! _&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = error "Prelude.!!: negative index"
+>&nbsp; []&nbsp;&nbsp;&nbsp;&nbsp; !! _&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = error "Prelude.!!: index too large"</pre>
+
+<li>
+EXAMPLE</li>
+
+<pre>...> [1,2,3,4,5,6]!!3</pre>
+
+<pre>returns <tt>4</tt></pre>
+</ul>
+
+<h3>
+
+<hr NOSHADE WIDTH="100%">zipWith</h3>
+
+<ul>
+<pre>zipWith :: (t -> u -> v) -> [t] -> [u] -> [v]</pre>
+
+<li>
+applies function argument to corresponding elements of the two input lists
+to get a list of results</li>
+
+<li>
+EXAMPLES</li>
+
+<pre>...> zipWith (+) [1,2,3,4] [5,3,1]</pre>
+
+<li>
+returns</li>
+
+<pre>[6,5,4]</pre>
+</ul>
+
+<h3>
+zipWith example</h3>
+
+<ul>
+<pre>...> zipWith (++) [[],[1],[1,2]] [[1,2,3],[2,3]]</pre>
+
+<li>
+returns</li>
+
+<pre>[[1,2,3],[1,2,3]]</pre>
+</ul>
+
+<h3>
+
+<hr NOSHADE WIDTH="100%">Higher order functions--map</h3>
+
+<ul>
+<li>
+apply a function to each element of a list</li>
+</ul>
+
+<ul>
+<pre>> map :: (t -> u) -> [t] -> [u]
+> map f [] = []
+> map f (a:x) = f a : map f x</pre>
+
+<li>
+EXAMPLE</li>
+
+<pre>...> map even [1,2,3,4,5,6]</pre>
+
+<li>
+returns</li>
+
+<pre>[False,True,False,True,False,True]</pre>
+
+<li>
+alternative definition</li>
+
+<br><tt><b>></b> map :: (t -> u) -> [t] -> [u]</tt>
+<br>><tt> map f x = [ f a | a &lt;- x ]</tt></ul>
+
+<h3>
+
+<hr NOSHADE WIDTH="100%">Higher order functions--foldr1</h3>
+
+<ul>
+<pre>> foldr1 :: (t -> t -> t) -> [t] -> t
+> foldr1 f [a] = a
+> foldr1 f (a:b:x) = f a (foldr1 f (b:x))</pre>
+
+<li>
+EXAMPLE</li>
+
+<br>&nbsp;
+<pre>...> foldr1 min [3,2,-1,2,0,5]</pre>
+
+<li>
+returns</li>
+
+<pre>-1</pre>
+
+<ul>
+<pre>
+<hr NOSHADE WIDTH="100%"></pre>
+</ul>
+
+<h3>
+Example of using foldr1</h3>
+
+<pre>...> foldr1 (++) ["A ","good", " ","example","!"]</pre>
+
+<li>
+returns "A good example!"</li>
+
+<pre>...> foldr1(||)[False,True,False]</pre>
+
+<li>
+returns&nbsp; <tt>True</tt></li>
+
+<pre>...> foldr1 (-) [1,2,3,4,5,6]</pre>
+
+<li>
+returns <tt>-3</tt></li>
+
+<li>
+&nbsp;<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/fold.html#foldr1">Detailed
+unrolling of foldr1</a></li>
+</ul>
+
+<h3>
+
+<hr NOSHADE WIDTH="100%">foldl1 (equivalent to Prelude definition)</h3>
+
+<ul>
+<pre>> foldl1 :: (t -> t -> t) -> [t]-> t
+> foldl1 f [a] = a
+> foldl1 f (a:b:x) = foldl1 f ((f a b):x)</pre>
+
+<li>
+EXAMPLE</li>
+
+<pre>...> foldl1 min [3,2,-1,2,0,5]</pre>
+
+<li>
+returns <tt>-1</tt></li>
+
+<h3>
+
+<hr NOSHADE WIDTH="100%">Example of using foldl1</h3>
+</ul>
+
+<ul>
+<pre>...> fold1 (++) ["A ","good", " ","example","!"]</pre>
+
+<li>
+returns <tt>"A good example!"</tt></li>
+
+<pre>...> foldl1(||)[False,True,False]</pre>
+
+<li>
+returns <tt>True</tt></li>
+
+<pre>...> foldl1 (-) [1,2,3,4,5,6]</pre>
+
+<li>
+returns <tt>-19</tt></li>
+
+<li>
+&nbsp;<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/fold.html#foldl1">Detailed
+unrolling of foldl1</a></li>
+</ul>
+
+<h3>
+
+<hr NOSHADE WIDTH="100%">Higher order functions--filter</h3>
+
+<ul>
+<pre>> filter :: (t -> Bool) -> [t] -> [t]
+> filter p [] = []
+> filter p (a:x)
+>&nbsp;&nbsp;&nbsp; | p a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = a : filter p x
+>&nbsp;&nbsp;&nbsp; | otherwise = filter p x</pre>
+
+<li>
+alternatively</li>
+
+<pre>> filter p x =[a | a &lt;- x, p a]</pre>
+
+<pre>
+<hr NOSHADE WIDTH="100%"></pre>
+
+<h3>
+Example uses of filter</h3>
+
+<pre>...> filter even [1,2,3,4,5,6,7,8]</pre>
+
+<li>
+returns <tt>[2,4,6,8]</tt></li>
+
+<pre>...> filter isPrime [2..100]</pre>
+
+<li>
+returns <tt>[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]</tt></li>
+
+<li>
+"isPrime" is defined in the notes:</li>
+
+<pre>>&nbsp;&nbsp; isPrime n | n &lt;= 1 = False
+>&nbsp;&nbsp; isPrime 2 = True
+>&nbsp;&nbsp; isPrime 3 = True
+>&nbsp;&nbsp; isPrime n
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` 2 == 0 = False
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` 3 == 0 = False
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = isKPrime n 1
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; isKPrime n k
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | (6*k-1)^2 > n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = True
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` (6*k-1) == 0 = False
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | n `rem` (6*k+1) == 0 = False
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = isKPrime n (k+1)</pre>
+
+<pre>
+<hr NOSHADE WIDTH="100%"></pre>
+</ul>
+
+<h3>
+The list partition function</h3>
+
+<ul>
+<pre>>&nbsp; partition :: (t->Bool) -> [t] -> ([t],[t])
+>&nbsp; partition p = foldr selectp ([],[])
+>&nbsp;&nbsp;&nbsp;&nbsp; where
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; selectp a (t,f)
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | p a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = (a:t,f)
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = (t,a:f)</pre>
+
+<li>
+EXAMPLE</li>
+
+<pre>...> partition even [1,2,3,4,5,6]</pre>
+
+<li>
+returns <tt>[[2,4,6],[1,3,5]]</tt></li>
+</ul>
+
+<h3>
+foldr</h3>
+
+<ul>
+<pre>> foldr :: (a -> b -> b) -> b -> [a] -> b
+> foldr f z [] = z
+> foldr f z (x:xs) = f x&nbsp;
+> (foldr f z xs)</pre>
+
+<li>
+EXAMPLE</li>
+
+<pre>...> foldr (-) 3 [4,5,6]</pre>
+
+<li>
+is evaluated as</li>
+
+<pre>4-(5-(6-3)) = 2</pre>
+</ul>
+
+<h3>
+The list partition function (again)</h3>
+
+<ul>
+<pre>...> partition even [1,2,3,4,5,6]
+=> foldr selecteven ([],[]) [1,2,3,4,5,6]
+=> selecteven 1 (foldr selecteven ([],[]) [2,3,4,5,6])
+=> selecteven 1 (selecteven 2 (foldr selecteven ([],[]) [3,4,5,6]))
+=> selecteven 1 (selecteven 2 (selecteven 3 (selecteven 4&nbsp;
+&nbsp;&nbsp;&nbsp; (selecteven 5 (selecteven 6 (foldr selecteven ([],[]) []))))))
+=> selecteven 1 (selecteven 2 (selecteven 3 (selecteven 4&nbsp;
+&nbsp;&nbsp;&nbsp; (selecteven 5 (selecteven 6 ([],[]))))))</pre>
+</ul>
+
+<h3>
+foldl</h3>
+
+<ul>
+<pre>> foldl :: (a -> b -> a) -> a -> [b] -> a
+> foldl f z [] = z
+> foldl f z (x:xs) = foldl f (f z x) xs</pre>
+
+<li>
+EXAMPLE</li>
+
+<pre>...> foldl (-) 3 [4,5,6]</pre>
+
+<li>
+is evaluated as</li>
+
+<pre>((3-4)-5)-6 = -12</pre>
+</ul>
+
+<h4>
+
+<hr NOSHADE WIDTH="100%">takeWhile</h4>
+
+<blockquote><tt>> takeWhile :: (a -> Bool) -> [a] -> [a]</tt>
+<br><tt>> takeWhile p []&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+=&nbsp; []</tt>
+<br><tt>> takeWhile p (x:xs)</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| p x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp; x : takeWhile p xs</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise =&nbsp; []</tt>
+<br>&nbsp;
+<li>
+Example</li>
+
+<br><tt>...> takeWhile (\= 'a') "xyzabc"</tt>
+<br><tt>"xyz"</tt>
+<p><tt>> reverseUntil p = reverse . takeWhile (not . p)</tt>
+<p><tt>...> reverseUntil (== 'd') "abcxyzdefuvw"</tt>
+<br><tt>"zyxcba"</tt></blockquote>
+
+<p><br>
+<hr NOSHADE WIDTH="100%">
+<h3>
+nub (simplified version of code)</h3>
+
+<ul>
+<li>
+Remove all duplicates from a list</li>
+
+<pre>> nub :: Eq t => [t] -> [t]
+> nub [] = []
+> nub (a:x) = a : nub (filter (a/=) x)</pre>
+</ul>
+
+<pre>
+<hr NOSHADE WIDTH="100%"></pre>
+
+<h3>
+Haskell classes</h3>
+
+<ul>
+<li>
+We saw a user defined type (“Person”) but the entities such as “Eq,” “Ord,”
+“Show” provide collections of types</li>
+
+<li>
+For example, “Ord” contains several types, including “Bool,” “Char,” “Int,”
+“Integer,” “Float,” “Double”</li>
+
+<li>
+Such collections of types in Haskell are called classes</li>
+</ul>
+
+<h3>
+Haskell classes are different</h3>
+
+<ul>
+<li>
+Classes are</li>
+
+<ul>
+<li>
+NOT the same as Java classes</li>
+
+<li>
+More like Java’s interface</li>
+
+<li>
+Somewhat like a C++ template</li>
+</ul>
+
+<li>
+Classes require function overloading</li>
+
+<ul>
+<li>
+definition of a function is different for different types to which it is
+applied</li>
+</ul>
+</ul>
+
+<h3>
+Basic class examples</h3>
+
+<ul>
+<li>
+A Haskell class has:</li>
+
+<ul>
+<li>
+a name</li>
+
+<li>
+one or more functions that must be defined for any type in the class</li>
+
+<li>
+Eq has the functions “==” and “/=”</li>
+
+<li>
+Ord has the functions “==” “/=” “&lt;” “&lt;=” “>” “>=” “max” “min”</li>
+
+<li>
+In fact Ord is derived from Eq</li>
+
+<li>
+The definitions are the following:</li>
+</ul>
+</ul>
+
+<h3>
+Details</h3>
+
+<ul>
+<pre>> class Eq t where
+>&nbsp;&nbsp;&nbsp; (==), (/=)::t -> t -> Bool
+>&nbsp;&nbsp;&nbsp; a /= b = not (a == b)</pre>
+
+<pre>> class Eq t => Ord t where
+>&nbsp;&nbsp;&nbsp; (&lt;), (&lt;=), (>), (>=) :: t -> t -> Bool
+>&nbsp;&nbsp;&nbsp; max, min :: t -> t -> t</pre>
+
+<li>
+For a type to be in a class such as Ord, it must define all the functions
+in Eq and Ord</li>
+</ul>
+
+<h3>
+Defining a type in a class</h3>
+
+<ul>
+<li>
+The following example is shown in the Haskell book:</li>
+
+<pre>> instance Eq Bool where
+>&nbsp;&nbsp;&nbsp; True == True&nbsp;&nbsp; = True
+>&nbsp;&nbsp;&nbsp; False == False = True
+>&nbsp;&nbsp;&nbsp; _ == _&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = False</pre>
+
+<li>
+By the way the type of a function is not an equality type [ “a -> b is
+not
+an instance of class Eq”]</li>
+</ul>
+
+<hr SIZE=3 WIDTH="100%">
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/14Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/13Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+</body>
+</html>
