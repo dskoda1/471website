@@ -1,5 +1,0 @@
-  In the previous assignment you were asked to create preorder and postorder iterators in Python and Ruby using the 'yield' construct. Now you need to write and iterator for a binary tree in C that performs an inorder traversal of a given tree.
-
-  Unlike Python and Ruby, there is no special syntax to do this. The iterator must be implemented by hand. You may use TreeIter.c (add link to file) as a template. You must define TreeIterCreate, TreeIterDelete, TreeIterVal, TreeIterNext, and TreeIterDone. The sample driver in the main function shows the expected behavior of the iterator object.
-
-  Hint: An inorder traversal always "visits" the left most node in a binary tree first. This will make a good starting point to begin the traversal for the iterator. After that next node visited is visit your "inorder successor" (great term to google).

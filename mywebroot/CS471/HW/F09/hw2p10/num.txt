@@ -1,4 +1,0 @@
-Numbers in files and decimal representation:: testNum.txt 
-  Pattern:: (?-mix: ....)
-
-0o10 = 8,  0xA = 10,  0x1A = 26,  0b110010 = 50,  0o117 = 79,  0b0101 = 5,  0o101 = 65,  

@@ -1,1 +1,0 @@
-mys(N,E,L):-length(L, N), append(T, [E], L), append([E], T, L).
