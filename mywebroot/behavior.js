@@ -44,11 +44,11 @@ app.MainRouter = Backbone.Router.extend({
   },
   one: function(first){
       console.log('Calling loadPage')
-    app.View.loadPage(first + '.html');  
+    app.View.loadPage(first);  
   }, 
   two: function(first, second){
     console.log('Calling loadPage')
-    app.View.loadPage(first + '/' + second + '.html');   
+    app.View.loadPage(first + '/' + second);   
   },
   default: function(pathName){
       

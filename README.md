@@ -11,3 +11,10 @@ and navigate to
 http://localhost:3000/#
 
 Anything after the #is a relative path within /mywebroot, and appends .html to the path!
+
+
+
+sed -i 's/old/new/g' filename
+
+
+
