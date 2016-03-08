@@ -25,6 +25,16 @@ Returns all files and subfiles that contain the search phrase
 
 ####Some situations that we need:
 grep -r href=\"../../%7Ehead/ .
+sed -i .bk 's/href="..\/..\/%7Ehead/href="\/#/g' <filename>
+
+egrep -RZ 'href=\"..\/..\/%7Ehead' . | xargs -0 -l sed -i .bk -e 's/href="..\/..\/%7Ehead/href="\/#/g'
+
 grep -r target=\"_blank .
+sed -i .bk 's/target="_blank"//g' <filename>
+
 grep -r href=\"http://bingweb.binghamton.edu/%7Ehead/ .
+sed -i .bk 's/href="http:\/\/bingweb.binghamton.edu\/%7Ehead/href="\/#/g' <filename>
+
+Now just need to figure out how to do this recursively!
+
 
