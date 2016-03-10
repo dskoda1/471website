@@ -1,8 +1,0 @@
-This is 0o10 test file.  
-Can it figure this 0xA number?
-Does line 3 fits the pattern 0x1A?
-Line 4 does not fit the pattern 100 right?
-Does line five fit the pattern 0b110010 ?
-but does 0o117 fix the pattern?
-How about 0b0101?
-or 0o101
