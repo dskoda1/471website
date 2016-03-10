@@ -1,0 +1,140 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                           
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+                           
+  <meta name="Author" content="Eileen Head">
+                           
+  <meta name="GENERATOR"
+ content="Mozilla/4.76 [en] (Windows NT 5.0; U) [Netscape]">
+  <title>Assignment 11 Programming Languages --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#fffbf9" link="#660000" vlink="#660000"
+ alink="#990000">
+      <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html"> Back</a><font
+ size="-1">)</font>      
+<h4> Assignment 11: Friday after break... but think of it as Next Friday.&nbsp;</h4>
+      Purpose:&nbsp; Continue recursive style of program, curry function.
+     
+<h3> Read:</h3>
+            
+<h3> <b>Programming Assignment:</b></h3>
+     Purpose: Programming style emphasized primative recursion, function application
+  and List comprehension notation.<br>
+            
+<ol start="3">
+                        
+  <ol>
+                                      
+    <h4> YOU must insert your code in the <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/HaskellF023.lhs">file</a>
+      provided.</h4>
+                                     
+    <blockquote>                                           
+      <blockquote><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/SimpleExample.lhs">
+     Simple Sample of the Literal Style</a> <br>
+             <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/ExampleL.lhs">
+     Literal style must be used - more extensive</a> <br>
+             <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/Scripts/Notes1.lhs">
+     Sample Code from the Notes</a> <br>
+     &nbsp;<a
+ href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/errors.html">Understanding
+   Haskell Errors</a></blockquote>
+      </blockquote>
+                        
+  </ol>
+                         
+  <p><br>
+      </p>
+                      
+  <hr size="3" width="100%">                   
+  <h4> Use the style specified by the problem.</h4>
+                         
+  <h2> <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/HaskellF023.lhs">Haskell2</a>
+      contains the problems.</h2>
+                         
+  <p><br>
+     DETAILS for problem 5: </p>
+                      
+  <p>Horner's rule is an algorithm to evaluate a polynomial requires only
+  a total of only <i>n</i>-1 multiplications of <i>x</i>.&nbsp;</p>
+                  
+  <p>If p(x) = x^3 + 5*x^2 + 6*x +7 &nbsp;then Horner's algorithm will calculate
+  p(x) in this order:<br>
+      </p>
+       
+</ol>
+       
+<blockquote>               
+  <blockquote>((x + 5)*x +6 )*x +7<br>
+      </blockquote>
+    </blockquote>
+       
+<ol start="3">
+                  
+  <p>Therefore there are only a total of 3 multiplications verse 2 +2+1+0
+ multiplication if you do it the "normal way".<br>
+      </p>
+                  
+  <p><br>
+     We can represent the coefficients of a polynomal<big> a<sub>n</sub>x<sup>
+ n   </sup>   + a<sub>n-1</sub>x<sup>n-1 </sup>+...+ a<sub>0 </sub></big>
+using a list =<font color="#000000"><b> [&nbsp; a<sub>0 </sub>,..., a<sub>
+n-1</sub>  , a<sub>   n</sub>]. </b></font><br>
+     This algorithm is related to <a
+ href="http://mathforum.org/dr.math/problems/slator8.5.97.html">synthetic
+   division</a> you learned in high school. </p>
+                      
+  <ol start="3">
+     &nbsp;                  
+  </ol>
+      Below is an implementation of Horner's algorithm using Java:       
+           
+  <ol>
+         <tt>public class Example {</tt>                               
+    <ol>
+           <tt>public static int horner (int[] a, int n, int x) {</tt>   
+                                       
+      <ol>
+             <tt>int result = a[n];</tt> <br>
+             <tt>for (int i = n - 1; i&gt;=0; --i) {</tt>                
+                                     
+        <ol>
+               <tt>result = result * x + a[i]</tt>                       
+                              
+        </ol>
+      <tt>}</tt> <br>
+             <tt>return result;</tt>                                    
+     
+      </ol>
+      <tt>}</tt>                              
+    </ol>
+      <tt>}</tt>               
+  </ol>
+      <br>
+   STATE YOUR Assumption if your solution requires the coef list to be in
+this  order [&nbsp; a<sub>n</sub> ,..., a<sub>1</sub> , a<sub>0</sub>]. &nbsp;
+    
+</ol>
+       
+<ol start="3">
+      <br>
+      <br>
+      <br>
+      <br>
+         
+</ol>
+            
+<ul start="2">
+     &nbsp;     
+</ul>
+            <br>
+</body>
+</html>

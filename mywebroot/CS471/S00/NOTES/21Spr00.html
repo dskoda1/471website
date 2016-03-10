@@ -1,0 +1,309 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Head/ Lander">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="CS471 spr 00">
+   <title>Thread Examples</title>
+</head>
+<body text="#000000" bgcolor="#F5F5F5" link="#00FF00" vlink="#666666" alink="#FF0000">
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/20Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/22Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Thread Examples</h3></center>
+
+<center>
+<h3>
+&copy; Eileen Head, Leslie C. Lander, 2000</h3></center>
+Purpose:&nbsp; Examples
+<h6>
+
+<hr WIDTH="100%"></h6>
+
+<h3>
+Animated Graphics</h3>
+
+<ul>
+<li>
+I have a fairly simple illustration of a moving graphic, which can change
+its form during execution</li>
+
+<li>
+The screen is drawn by a thread running a moving shape</li>
+
+<li>
+However two entirely different objects can appear in the same frame</li>
+
+<li>
+They can be switched dynamically</li>
+</ul>
+
+<h3>
+Graphic 1</h3>
+
+<center><img SRC="diamond.jpg" height=300 width=400></center>
+
+<h3>
+Graphic 2</h3>
+
+<center><img SRC="oval.jpg" height=300 width=400></center>
+
+<h3>
+Java 1.1</h3>
+
+<ul>
+<li>
+I can only get reasonable performance with Java 1.1</li>
+
+<li>
+The threads or the Swing classes in Java 1.2 do not run smoothly or fast
+enough on my computer</li>
+
+<li>
+The program shows the convenience of composition of classes: it was partly
+designed to show how a window might be switched at run-time between ellipse
+and rhombus</li>
+</ul>
+
+<h3>
+Output</h3>
+
+<ul>
+<li>
+MovingShape ms</li>
+
+<li>
+MovingEllipse and MovingRhombus are subclasses of MovingShape</li>
+
+<li>
+ms is switched between instance of MovingEllipse and MovingRhombus</li>
+
+<li>
+After switching, the panel containing ms is redrawn</li>
+</ul>
+
+<h3>
+Many Threads</h3>
+
+<ul>
+<li>
+This older version of code creates a new Thread, each time the graphic
+is switched</li>
+
+<li>
+The Threads are garbage collected.</li>
+
+<li>
+When they are collected, a message appears on the command window</li>
+
+<li>
+Even so, it runs smoother than a simpler Swing version</li>
+
+<li>
+<a href="http://bingweb.binghamton.edu/~lander/cs571/class23/movingshape1.zip">Link
+to Java 1.1 code</a> (as a zip file)</li>
+
+<li>
+<a href="http://bingweb.binghamton.edu/~lander/cs571/class23/movingshape2.zip">Link
+to Java 1.2 code</a> that does not run as well (as a zip file)</li>
+</ul>
+
+<h3>
+wait and notify</h3>
+
+<ul>
+<li>
+Another example is BarrierTest</li>
+
+<li>
+The BarrierTest code uses "wait" and "notify"</li>
+
+<li>
+These are "final" methods of class Object</li>
+
+<li>
+Hence all objects have the same methods "wait( )," "notify( )" and "notifyAll(
+)"</li>
+</ul>
+
+<h3>
+Outline of the code</h3>
+
+<ul>
+<li>
+You can download and execute: barrier.testing1.BarrierTest1</li>
+
+<li>
+This code has 10 Barriers:</li>
+
+<pre>class Barrier {
+&nbsp;&nbsp;&nbsp; Barrier(int i){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set up display&nbsp;
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; private boolean open = true;
+&nbsp;&nbsp;&nbsp; public boolean isOpen( ) { ... }
+&nbsp;&nbsp;&nbsp; public void setOpen(boolean b){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...// set "open" and change colors
+&nbsp;&nbsp;&nbsp; }
+}</pre>
+</ul>
+
+<h3>
+java barrier.testing1.BarrierTest1 (<a href="http://bingweb.binghamton.edu/~lander/cs571/class23/barriertest1.zip">code</a>)</h3>
+
+<center><img SRC="barrier1.jpg" height=238 width=423></center>
+
+<h3>
+There is one thread per rotating oval</h3>
+
+<ul>
+<li>
+In an infinite loop inside run( ):</li>
+
+<pre>synchronized(barrier) {&nbsp;
+&nbsp;&nbsp;&nbsp; try {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (bt1.getSuspended( ) || ! barrier.isOpen( )) {&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; barrier.wait( );
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;
+&nbsp;&nbsp;&nbsp; } catch(InterruptedException e){&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...
+&nbsp;&nbsp;&nbsp; }
+}
+try {&nbsp;
+&nbsp;&nbsp;&nbsp; Thread.sleep(10 + 10*myId);
+} catch(InterruptedException e) {&nbsp;
+&nbsp;&nbsp;&nbsp; ...
+}</pre>
+</ul>
+
+<h3>
+How does a thread get suspended?</h3>
+
+<ul>
+<li>
+This loop exists in each thread but the barrier is different for each one</li>
+
+<li>
+On each loop, the thread checks a shared flag in bt1, which is an object
+of the main class "BarrierTest1" …</li>
+
+<li>
+… and whether its own barrier is open or closed</li>
+
+<li>
+Using the flag we can stop all threads at once (try exiting using ‘X’)</li>
+</ul>
+
+<h3>
+use notify( ) to restart</h3>
+
+<blockquote>
+<pre>Button b;
+b = new Button("Run " + i);
+b.addActionListener(new ActionListener(){
+&nbsp;&nbsp;&nbsp; public void actionPerformed (ActionEvent ae) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; barriers[i].setOpen(true);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; synchronized(barriers[i]){&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; barriers[i].notify();
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; }
+});
+switchFrame.add(b);</pre>
+</blockquote>
+
+<h3>
+BarrierTest2</h3>
+
+<dl>
+<dl>
+<li>
+java barrier.testing2.BarrierTest2 uses ONE barrier (a singleton):</li>
+
+<pre>final class Barrier {
+&nbsp;&nbsp;&nbsp; private static Barrier s = new Barrier ();
+&nbsp;&nbsp;&nbsp; private Barrier() { }
+&nbsp;&nbsp;&nbsp; public static Barrier getHandle( ) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...&nbsp;
+&nbsp;&nbsp;&nbsp; }&nbsp;
+&nbsp;&nbsp;&nbsp; private boolean open = true;
+&nbsp;&nbsp;&nbsp; public boolean isOpen() {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...
+&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; public void setOpen(boolean b) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...&nbsp;
+&nbsp;&nbsp;&nbsp; }
+}</pre>
+</dl>
+</dl>
+
+<h3>
+Thread executes "run" which has loop containing:</h3>
+
+<blockquote>
+<pre>synchronized(barrier) {&nbsp;
+&nbsp;&nbsp;&nbsp; try {&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!bt2.getFlag(myId) || !barrier.isOpen( )) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; barrier.wait();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+&nbsp;&nbsp;&nbsp; } catch(InterruptedException e){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...
+&nbsp;&nbsp;&nbsp; }
+}
+try {&nbsp;
+&nbsp;&nbsp;&nbsp; Thread.sleep(10 + 10*myId);
+} catch(InterruptedException e) {
+&nbsp;&nbsp;&nbsp; ...
+}</pre>
+</blockquote>
+
+<h3>
+Use notifyAll( ) to restart</h3>
+
+<blockquote>
+<pre>final Button b1 = new Button("Run " + i);
+b1.setBackground(Color.white);
+b1.addActionListener(new ActionListener(){&nbsp;
+&nbsp;&nbsp;&nbsp; public void actionPerformed (ActionEvent ae) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...//change button color&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bt2.setFlag(i, true);&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; synchronized(barrier){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; barrier.notifyAll();&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; }&nbsp;&nbsp;
+});
+switchFrame.add(b1);</pre>
+</blockquote>
+
+<h3>
+java barrier.testing2.BarrierTest2 (<a href="http://bingweb.binghamton.edu/~lander/cs571/class23/barriertest2.zip">code</a>)</h3>
+
+<center><img SRC="barrier2.jpg" height=219 width=422></center>
+
+<p><br>
+<br>
+<br>
+<br>
+<p>
+<hr WIDTH="100%">
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/20Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/22Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

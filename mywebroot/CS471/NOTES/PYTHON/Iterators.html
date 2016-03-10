@@ -1,0 +1,480 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+
+  
+  <title>Iterators</title>
+
+</head>
+
+<body>
+Definitions:<br />
+<h1>"Coroutine:</h1>
+In <a href="http://en.wikipedia.org/wiki/Computer_science" title="Computer science">computer science</a>, <b>coroutines</b> are program components that generalize <a href="http://en.wikipedia.org/wiki/Subroutine" title="Subroutine">subroutines</a>
+to allow multiple entry points and suspending and resuming of execution
+at certain locations. Coroutines are more generic and flexible than
+subroutines, but are less widely used in practice. Coroutines
+originated as an assembly-language technique, but are supported in some
+high-level languages, <a href="http://en.wikipedia.org/wiki/Simula" title="Simula">Simula</a> and <a href="http://en.wikipedia.org/wiki/Modula-2" title="Modula-2">Modula-2</a>, being two early examples. Coroutines are well-suited for implementing more familiar program components such as <a href="http://en.wikipedia.org/wiki/Cooperative_multitasking" title="Cooperative multitasking">cooperative tasks</a>, <a href="http://en.wikipedia.org/wiki/Iterator" title="Iterator">iterators</a>, <a href="http://en.wikipedia.org/wiki/Lazy_evaluation" title="Lazy evaluation">infinite lists</a>, and <a href="http://en.wikipedia.org/wiki/Pipe_%28computing%29" title="Pipe (computing)">pipes</a>. Since coroutines are not as widely known as subroutines, a comparison with subroutines may be helpful." [<a href="http://en.wikipedia.org/wiki/Coroutine">http://en.wikipedia.org/wiki/Coroutine</a>]<br />
+<br />
+<br />
+<i>"Coroutines</i>:
+<br />
+A routine that runs concurrently with other coroutines. Coroutines
+do not necessarily run in parallel. A coroutine can temporarily relinguish
+control to another coroutine without involving the subroutine calling mechanism.
+That is, control in a coroutine can jump to another coroutine and back,
+possibly multiple times during the lifetime of a coroutine. Therefore,
+it appears as if the coroutines are operating concurrently." &nbsp;<a href="http://www.cs.fsu.edu/%7Eengelen/courses/COP4020/board.html#coroutines">http://www.cs.fsu.edu/~engelen/courses/COP4020/board.html#coroutines</a><br />
+<h1>"Iteration:</h1>
+<p><b>Iteration</b> is the repetition of a <a href="http://en.wikipedia.org/wiki/Process" title="Process">process</a>, typically within a <a href="http://en.wikipedia.org/wiki/Computer_program" title="Computer program">computer program</a>. It can be used both as a general term, synonymous with repetition, and to describe a specific form of repetition with a <a href="http://en.wikipedia.org/wiki/Mutable_object" title="Mutable object">mutable</a> state.</p>
+
+<p>When used in the first sense, <a href="http://en.wikipedia.org/wiki/Recursion" title="Recursion">recursion</a> is an example of <i>iteration</i>, but typically using a <i>recursive notation</i>, which is typically not the case for <i>iteration</i>.</p>
+
+<p>However, when used in the second (more restricted) sense, iteration
+describes the style of programming used in imperative programming
+languages. This contrasts with recursion, which has a more declarative
+approach.</p>
+
+<p>Here an example of iteration, in imperative <a href="http://en.wikipedia.org/wiki/Pseudocode" title="Pseudocode">pseudocode</a>:</p>
+
+<pre> <b>var</b> i, a := 0        <i>// initialize a before iteration</i><br /> <b>for</b> i <b>from</b> 1 <b>to</b> 3 {  <i>// loop three times</i><br />     a := a + i       <i>// increment a by the current value of i</i><br /> }<br /> print a              <i>// the number 6 is printed</i>
+</pre>
+
+<p>In this program fragment, the value of the variable <i>i</i> changes over time, taking the values 1, 2 and 3. This changing value&mdash;or <i>mutable state</i>&mdash;is characteristic of iteration.</p>
+
+<p>Iteration can be approximated using recursive techniques in <a href="http://en.wikipedia.org/wiki/Functional_programming_language" title="Functional programming language">functional programming languages</a>. The following example is in <a href="http://en.wikipedia.org/wiki/Scheme_programming_language" title="Scheme programming language">Scheme</a>.
+Note that the following is recursive (a special case of iteration)
+because the definition of "how to iterate", the iter function, calls
+itself in order to solve the problem instance:</p>
+
+<pre>(define (sum n)<br />  (define (iter n i)<br />    (if (= n 1)<br />      i<br />      (iter (- n 1)(+ n i))<br />    ))<br />  (iter n 1))<br />...<br /><br /></pre>
+
+<h3>Python</h3>
+
+<p>Iterators in <a href="http://en.wikipedia.org/wiki/Python_programming_language" title="Python programming language">Python</a> are a fundamental part of the language and in many cases go unseen as they are implicitly used with the <code>for</code>
+statement. All of Python's standard built-in sequence types support
+iteratation, as well as many classes which are part of the standard
+library. The following example shows typical implicit iteration over a
+sequence:</p>
+
+<pre>   for value in sequence:<br />       print value<br /></pre>
+
+<p>Iterators however can be used and defined explicitly. For any iteratable sequence type or class, the builtin function <code>iter()</code> is used to create an iterator object. The iterator object then provides a <code>next()</code> method which returns the next element in the container. It will raise a <code>StopIteration</code>
+error when no more elements are left. The following example shows an
+equivalent iteration over a sequence using explicit iterators:</p>
+
+<pre>   it = iter(sequence)<br />   try:<br />       while True:<br />           print it.next()<br />   except StopIteration:<br />       pass<br /></pre>
+
+<p>Any user defined class can support standard iteration (either implicit or explicit) by defining an <code>__iter__()</code> method which creates an iterator object. The iterator object then needs to define a <code>next()</code> method which returns the next element..</p>
+
+<p>Python also supports <a href="http://en.wikipedia.org/wiki/Generator_%28computer_science%29" title="Generator (computer science)">generators</a>,
+which are a special type of iterator over some unrealized collection. A
+generator is a "frozen" function. After each value is yielded, the
+state of the function is frozen until it is called again, at which
+point execution resumes from where the 'yield' statement left off, with
+all function variables as they were at the previous call. Here is an
+example of a generator that returns each number of the <a href="http://en.wikipedia.org/wiki/Fibonacci_sequence" title="Fibonacci sequence">Fibonacci sequence</a>:</p>
+
+<div style="margin-left: 40px; font-family: monospace;">   def fibo_gen():<br />
+       x = 0<br />
+       y = 1<br />
+       while True:<br />
+           yield x<br />
+           x, y = y, x+y<br />
+</div>
+" &nbsp;<br />
+[<a href="http://en.wikipedia.org/wiki/Iterate">http://en.wikipedia.org/wiki/Iterate</a>]<br />
+<br />
+<h1>Generator</h1>
+<p>"In <a href="http://en.wikipedia.org/wiki/Computer_science" title="Computer science">computer science</a>, a <b>generator</b> is a special <a href="http://en.wikipedia.org/wiki/Subroutine" title="Subroutine">routine</a> that can be used to control the <a href="http://en.wikipedia.org/wiki/Iteration" title="Iteration">iteration</a> behaviour of a <a href="http://en.wikipedia.org/wiki/Control_flow#Loops" title="Control flow">loop</a>.
+A generator is very similar to a function that returns an array, in
+that a generator has parameters, can be called, and generates a
+sequence of values. However, instead of building an array containing
+all the values and returning them all at once, a generator yields the
+values one at a time, which requires less memory and allows the caller
+to get started processing the first few values immediately. In short, a
+generator <i>looks like</i> a function but <i>behaves like</i> an <a href="http://en.wikipedia.org/wiki/Iterator" title="Iterator">iterator</a>.</p>
+
+<p>Generators first appeared in <a href="http://en.wikipedia.org/wiki/CLU" title="CLU">CLU</a> (1975) <a href="http://www.lcs.mit.edu/publications/pubs/pdf/MIT-LCS-TR-561.pdf" class="external autonumber" title="http://www.lcs.mit.edu/publications/pubs/pdf/MIT-LCS-TR-561.pdf">[1]</a> and are now available in <a href="http://en.wikipedia.org/wiki/Python_programming_language" title="Python programming language">Python</a> and <a href="http://en.wikipedia.org/wiki/C" title="C">C#</a>. (In CLU and C#, generators are called <i>iterators</i>.)</p>
+
+<p>Generators are usually <a href="http://en.wikipedia.org/wiki/Execution_%28computers%29" title="Execution (computers)">invoked</a> inside loops. The first time that a generator invocation is reached in a loop, an iterator <a href="http://en.wikipedia.org/wiki/Object_%28computer_science%29" title="Object (computer science)">object</a> is created that encapsulates the state of the generator routine at its beginning, with <a href="http://en.wikipedia.org/wiki/Parameter_%28computer_science%29" title="Parameter (computer science)">arguments</a> bound to the corresponding <a href="http://en.wikipedia.org/wiki/Parameter_%28computer_science%29" title="Parameter (computer science)">parameters</a>. The generator's body is then executed in the context of that iterator until a special <i>yield</i> action is encountered; at that time, the value provided with the <i>yield</i>
+action is used as the value of the invocation expression. The next time
+the same generator invocation is reached in a subsequent iteration, the
+execution of the generator's body is resumed after the <i>yield</i> action, until a yet another <i>yield</i> action is encountered. In addition to the <i>yield</i> action, execution of the generator body can also be terminated by a <i>finish</i> action, at which time the innermost loop enclosing the generator invocation is terminated.</p>
+
+<p>In the presence of generators, loop constructs of a language can be
+reduced into a single loop ... end loop construct; all the usual loop
+constructs can then be comfortably simulated by using suitable
+generators in the right way.</p>
+
+<p>An example Python generator:</p>
+
+<pre>def sums(n, min=1):<br />    if n == 0:<br />        yield []<br />    elif n &gt;= min:<br />        for i in range(min, n+1):<br />            for sol in sums(n-min, i):<br />                yield [i] + sol<br /></pre>
+
+<p>In Python, a generator can be thought of as an iterator that contains a frozen <a href="http://en.wikipedia.org/wiki/Subroutine" title="Subroutine">function call</a>. Whenever the iterator's <code>next()</code> method is called, the frozen function call resumes where it was left off and runs until it reaches a <code>yield</code>
+statement. Then the function call is frozen again, the iterator spits
+out the yielded value, and execution continues with the iterator's
+caller.</p>
+
+<p>Generators can be used to loop through the values of a list lazily.
+This is useful when only the first few items of the list are likely to
+be needed, and calculating the entire list would be costly or
+impractical.</p>
+<h2>References</h2>
+
+<ul>
+  <li>Stephan Murer, <a href="http://en.wikipedia.org/wiki/Steve_Omohundro" title="Steve Omohundro">Stephen Omohundro</a>, David Stoutamire and Clemens Szyperski: Iteration abstraction in Sather. <i>ACM Transactions on Programming Languages and Systems</i>, 18(1):1-15 (1996) <a href="http://portal.acm.org/citation.cfm?doid=225540.225541" class="external autonumber" title="http://portal.acm.org/citation.cfm?doid=225540.225541">[2]</a></li>
+</ul>
+
+<ul>
+  <li><a href="http://www.python.org/peps/pep-0255.html" class="external text" title="http://www.python.org/peps/pep-0255.html">PEP255 <i>Simple Generators</i></a></li>
+</ul>
+"<br />
+<a href="http://en.wikipedia.org/wiki/Generator_%28computer_science%29">http://en.wikipedia.org/wiki/Generator_%28computer_science%29</a><br />
+<br />
+<br />
+<h1>Continuation:</h1>
+<p>In <a href="http://en.wikipedia.org/wiki/Computing" title="Computing">computing</a>, a <b>continuation</b> is a representation of the execution state of a program (for example, the <a href="http://en.wikipedia.org/wiki/Processor_register" title="Processor register">register</a> contents and <a href="http://en.wikipedia.org/wiki/Function_stack" title="Function stack">call stack</a>)
+at a certain point in time. Many languages have constructs that allow a
+programmer to save the current execution state into an object, and then
+restore the state from this object at a later point in time (thereby
+resuming its execution). This technique has been used in <a href="http://en.wikipedia.org/wiki/Functional_programming" title="Functional programming">functional programming</a>, <a href="http://en.wikipedia.org/wiki/Imperative_programming" title="Imperative programming">imperative programming</a>, and <a href="http://en.wikipedia.org/wiki/Message_passing_programming" title="Message passing programming">message passing programming</a>.</p>
+
+<p>Continuations are also used in models of computation including the <a href="http://en.wikipedia.org/wiki/Actor_model" title="Actor model">Actor model</a>, <a href="http://en.wikipedia.org/wiki/Process_calculi" title="Process calculi">process calculi</a>, and the <a href="http://en.wikipedia.org/wiki/Lambda_calculus" title="Lambda calculus">lambda calculus</a>. <a href="http://en.wikipedia.org/wiki/Steve_Russell" title="Steve Russell">Steve Russell</a> invented the continuation in his second <a href="http://en.wikipedia.org/wiki/LISP" title="LISP">LISP</a> implementation for the <a href="http://en.wikipedia.org/wiki/IBM_704" title="IBM 704">IBM 704</a>, though he did not name it. <a href="http://en.wikipedia.org/wiki/Christopher_Strachey" title="Christopher Strachey">Christopher Strachey</a>, C.P. Wadsworth and <a href="http://en.wikipedia.org/wiki/John_C._Reynolds" title="John C. Reynolds">John C. Reynolds</a> brought the term continuation into prominence in their work in the field of <a href="http://en.wikipedia.org/wiki/Denotational_semantics" title="Denotational semantics">denotational semantics</a> that makes extensive use of continuations to allow sequential programs to be analysed in terms of <a href="http://en.wikipedia.org/wiki/Functional_programming" title="Functional programming">functional programming</a> semantics.</p>
+
+<table id="toc" class="toc" summary="Contents">
+
+  <tbody>
+    <tr>
+
+      <td>
+      <div id="toctitle">
+      <h2>Contents</h2>
+
+ <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+
+      <ul>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation#Programming_language_support"><span class="tocnumber">1</span> <span class="toctext">Programming language support</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation#Kinds_of_continuations"><span class="tocnumber">2</span> <span class="toctext">Kinds of continuations</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation#Disadvantages"><span class="tocnumber">3</span> <span class="toctext">Disadvantages</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation#External_links"><span class="tocnumber">5</span> <span class="toctext">External links</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation#References"><span class="tocnumber">6</span> <span class="toctext">References</span></a></li>
+      </ul>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<p>
+<script type="text/javascript">
+//<![CDATA[
+ if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } 
+//]]>
+</script></p>
+<h2>Programming language support</h2>
+
+
+
+
+<p>Many programming languages exhibit such a feature under various names; specifically:</p>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Scheme_programming_language" title="Scheme programming language">Scheme</a>: <code>call/cc</code> (short for <code>call-with-current-continuation</code>)</li>
+  <li><a href="http://en.wikipedia.org/wiki/SML_programming_language" title="SML programming language">Standard ML of New Jersey</a>: <code>SMLofNJ.Cont.callcc</code></li>
+  <li><a href="http://en.wikipedia.org/wiki/C_programming_language" title="C programming language">C</a>: <code>setcontext</code> et al. (<a href="http://en.wikipedia.org/wiki/UNIX_System_V" title="UNIX System V">UNIX System V</a> and <a href="http://en.wikipedia.org/wiki/GNU" title="GNU">GNU</a> libc)</li>
+  <li><a href="http://en.wikipedia.org/wiki/Ruby_programming_language" title="Ruby programming language">Ruby</a>: <code>callcc</code></li>
+  <li><a href="http://en.wikipedia.org/wiki/Smalltalk_programming_language" title="Smalltalk programming language">Smalltalk</a>: <code>Continuation currentDo:</code>, in most modern Smalltalk environments continuations can be implemented without additional VM support.</li>
+  <li><a href="http://en.wikipedia.org/wiki/Stackless_Python" title="Stackless Python">Stackless Python</a>: (see below) used to have a <tt>continuation</tt> module, but it has been removed.</li>
+  <li><a href="http://en.wikipedia.org/wiki/Rhino_%28JavaScript_engine%29" title="Rhino (JavaScript engine)">Rhino</a>&nbsp;: <code>Continuation</code></li>
+  <li><a href="http://en.wikipedia.org/wiki/Haskell_programming_language" title="Haskell programming language">Haskell</a>&nbsp;: <code>callCC</code> (in module <code>Control.Monad.Cont</code>)</li>
+  <li><a href="http://en.wikipedia.org/wiki/Factor_programming_language" title="Factor programming language">Factor</a>&nbsp;: <code>callcc0</code> and <code>callcc1</code></li>
+</ul>
+
+<p><br />
+</p>
+
+<h2>Kinds of continuations</h2>
+
+<p>Support for continuations varies widely. A programming language supports <i>re-invocable</i>
+continuations if a continuation may be invoked repeatedly (even after
+it has already returned). Re-invocable continuations were introduced by
+Peter Landin using his <b>J</b> (for Jump) operator that could perform a <a href="http://en.wikipedia.org/w/index.php?title=Nonlocal_goto&amp;action=edit" class="new" title="Nonlocal goto">nonlocal goto</a>
+into the middle of a procedure invocation. Re-invocable continuations
+have also been called "re-entrant" in the MzScheme programming
+language. However this use of the term "re-entrant" is too easily
+confused with its use in discussions of <a href="http://en.wikipedia.org/wiki/Computer_multitasking" title="Computer multitasking">multitasking</a>.</p>
+
+<p>At one time <a href="http://en.wikipedia.org/wiki/Gerry_Sussman" title="Gerry Sussman">Gerry Sussman</a>
+and Drew McDermott thought that using re-invocable continuations (which
+they called "Hairy Control Structure") was the solution to the AI
+control structure problems that had originated in <a href="http://en.wikipedia.org/wiki/Planner_programming_language" title="Planner programming language">Planner</a>. <a href="http://en.wikipedia.org/wiki/Carl_Hewitt" title="Carl Hewitt">Carl Hewitt</a> <i>et. al.</i> developed message passing as an alternative solution in the <a href="http://en.wikipedia.org/wiki/Actor_model" title="Actor model">Actor model</a>. <a href="http://en.wikipedia.org/wiki/Guy_Steele" title="Guy Steele">Guy Steele</a> and <a href="http://en.wikipedia.org/wiki/Gerry_Sussman" title="Gerry Sussman">Gerry Sussman</a> then developed in the continuations in <a href="http://en.wikipedia.org/wiki/Scheme" title="Scheme">Scheme</a> in their attempt to understand the Actor model.</p>
+
+<p>A more limited kind is the <i>escape continuation</i> that may be
+used to escape the current context to a surrounding one. Many languages
+which do not explicitly support continuations support <a href="http://en.wikipedia.org/wiki/Exception_handling" title="Exception handling">exception handling</a>, which is equivalent to escape continuations and can be used for the same purposes. C's <code><a href="http://en.wikipedia.org/wiki/Setjmp" title="Setjmp">setjmp</a></code> and <code><a href="http://en.wikipedia.org/wiki/Longjmp" title="Longjmp">longjmp</a></code> are also equivalent: they can only be used to unwind the stack. Escape continuations can also be used to implement <a href="http://en.wikipedia.org/wiki/Tail_recursion" title="Tail recursion">tail-call optimization</a>.</p>
+<h2>Disadvantages</h2>
+
+<p>Continuations are the functional expression of the <a href="http://en.wikipedia.org/wiki/GOTO" title="GOTO">GOTO</a>
+statement, and the same caveats apply. While they are a sensible option
+in some special cases, use of continuations can result in code that is
+difficult to follow. In fact, the <a href="http://en.wikipedia.org/wiki/Esoteric_programming_language" title="Esoteric programming language">esoteric programming language</a> <a href="http://en.wikipedia.org/wiki/Unlambda" title="Unlambda">Unlambda</a>
+includes call-to-current-continuation as one of its features solely
+because of its resistance to understanding. The external links below
+illustrate the concept in more detail.</p>
+
+
+<h2>See also</h2>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Continuation_passing_style" title="Continuation passing style">Continuation passing style</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Closure_%28computer_science%29" title="Closure (computer science)">closure</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Coroutine" title="Coroutine">coroutine</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Spaghetti_stack" title="Spaghetti stack">spaghetti stack</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/Denotational_semantics" title="Denotational semantics">denotational semantics</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/GOTO" title="GOTO">GOTO</a></li>
+  <li><a href="http://en.wikipedia.org/wiki/COMEFROM" title="COMEFROM">COMEFROM</a></li>
+</ul>
+
+<div class="editsection" style="float: right; margin-left: 5px;"></div>
+
+<p><br />
+</p>
+
+<h2>External links</h2>
+
+<ul>
+  <li><a href="http://www.ps.uni-sb.de/%7Educhier/python/continuations.html" class="external text" title="http://www.ps.uni-sb.de/~duchier/python/continuations.html">Continuations Made Simple and Illustrated</a>. An explanation, using the <a href="http://en.wikipedia.org/wiki/Python_programming_language" title="Python programming language">Python programming language</a>.</li>
+  <li><a href="http://www.intertwingly.net/blog/2005/04/13/Continuations-for-Curmudgeons" class="external text" title="http://www.intertwingly.net/blog/2005/04/13/Continuations-for-Curmudgeons">Continuations for Curmudgeons</a> by Sam Ruby</li>
+  <li><a href="http://www.ccs.neu.edu/home/dorai/t-y-scheme/t-y-scheme-Z-H-15.html#node_chap_13" class="external text" title="http://www.ccs.neu.edu/home/dorai/t-y-scheme/t-y-scheme-Z-H-15.html#node chap 13">Teach Yourself Scheme in Fixnum Days</a> by Dorai Sitaram features a nice chapter on continuations.</li>
+  <li><a href="http://www.stackless.com/spcpaper.htm" class="external text" title="http://www.stackless.com/spcpaper.htm">Continuations and Stackless Python</a> by Christian Tismer</li>
+  <li><a href="http://www.linuxgazette.com/issue90/raghu.html" class="external text" title="http://www.linuxgazette.com/issue90/raghu.html">setjmp/longjmp Illustrated</a> from Linux Gazette</li>
+  <li><a href="http://www.cs.bham.ac.uk/%7Ehxt/cw04/cw04-program.html" class="external text" title="http://www.cs.bham.ac.uk/~hxt/cw04/cw04-program.html">On-line proceedings of the Fourth Workshop on Continuations</a></li>
+  <li><a href="http://www.cs.bham.ac.uk/%7Ehxt/research/Logiccolumn8.pdf" class="external text" title="http://www.cs.bham.ac.uk/~hxt/research/Logiccolumn8.pdf">Continuation, functions and jumps</a></li>
+  <li><a href="http://www.deepwood.net/%7Emikael/continuations/" class="external text" title="http://www.deepwood.net/~mikael/continuations/">Using continuations for web programming</a></li>
+  <li><a href="http://wiki.apache.org/cocoon/RhinoWithContinuations" class="external text" title="http://wiki.apache.org/cocoon/RhinoWithContinuations">Rhino With Continuations</a></li>
+  <li><a href="http://rifers.org/wiki/display/RIFE/Web+continuations" class="external text" title="http://rifers.org/wiki/display/RIFE/Web continuations">Continuations in pure Java</a> from the <a href="http://en.wikipedia.org/wiki/RIFE" title="RIFE">RIFE</a> web application framework</li>
+  <li><a href="http://rifers.org/theater/debugging_continuations" class="external text" title="http://rifers.org/theater/debugging continuations">Debugging continuations in pure Java</a> from the <a href="http://en.wikipedia.org/wiki/RIFE" title="RIFE">RIFE</a> web application framework</li>
+</ul>
+
+<div class="editsection" style="float: right; margin-left: 5px;"></div>
+
+<p><br />
+</p>
+
+<h2>References</h2>
+
+<ul>
+  <li>Peter Landin. <i>A Generalization of Jumps and Labels</i> Report. UNIVAC Systems Programming Research. August 1965. Reprinted in Higher Order and Symbolic Computation. 1998.</li>
+  <li>Drew McDermott and Gerry Sussman. <i>The Conniver Reference Manual</i> MIT AI Memo 259. May 1972.</li>
+  <li>Daniel Bobrow: <i>A Model for Control Structures for Artificial Intelligence Programming Languages</i> IJCAI 1973.</li>
+  <li>Carl Hewitt, Peter Bishop and Richard Steiger. <i>A Universal Modular Actor Formalism for Artificial Intelligence</i> IJCAI 1973.</li>
+  <li>Christopher Strachey and C.P. Wadsworth. <i>Continuations: a Mathematical semantics for handling full jumps.</i> Technical Monograph PRG-11. Oxford University Computing Laboratory. January 1974.</li>
+  <li>John Reynolds. On the Relation between Direct and Continuation Semantics. <i>Proceedings of Second Colloquium on Automata, Languages, and Programming.</i> 1974.</li>
+  <li>Gerald Sussman and Guy Steele. <i>SCHEME: An Interpreter for Extended Lambda Calculus</i> AI Memo 349, MIT Artificial Intelligence Laboratory, Cambridge, Massachusetts, December 1975.</li>
+  <li>Robert Hieb, R. Kent Dybvig, Carl Bruggeman. Representing Control in the Presence of First-Class Continuations. <i>Proceedings of the ACM SIGPLAN '90 Conference on Programming Language Design and Implementation</i></li>
+  <li>Will Clinger, Anne Hartheimer, Eric Ost. Implementation Strategies for Continuations. <i>Proceedings of the 1988 ACM conference on LISP and functional programming</i>. 1988.</li>
+</ul>
+" <a href="http://en.wikipedia.org/wiki/Continuation">http://en.wikipedia.org/wiki/Continuation</a><br />
+<br />
+<h1 class="firstHeading">Continuation passing style</h1>
+
+		
+<div id="bodyContent">
+			
+<h3 id="siteSub">From Wikipedia, the free encyclopedia.</h3>
+
+			
+<div id="contentSub"></div>
+
+									
+<div id="jump-to-nav">Jump to: <a href="http://en.wikipedia.org/wiki/Continuation_passing_style#column-one">navigation</a>, <a href="http://en.wikipedia.org/wiki/Continuation_passing_style#searchInput">search</a></div>
+			<!-- start content -->
+			
+<p><b>Continuation passing style</b> (CPS) is a term used within <a href="http://en.wikipedia.org/wiki/Functional_programming" title="Functional programming">functional programming</a> to describe a style of programming wherein <a href="http://en.wikipedia.org/wiki/Program_flow" title="Program flow">control</a> is passed explicitly in the form of a <a href="http://en.wikipedia.org/wiki/Continuation" title="Continuation">continuation</a>.</p>
+
+<table id="toc" class="toc" summary="Contents">
+
+  <tbody>
+    <tr>
+
+      <td>
+      <div id="toctitle">
+      <h2>Contents</h2>
+
+ <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+
+      <ul>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation_passing_style#Introduction"><span class="tocnumber">1</span> <span class="toctext">Introduction</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation_passing_style#Examples"><span class="tocnumber">2</span> <span class="toctext">Examples</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation_passing_style#CPS_and_tail_calls"><span class="tocnumber">3</span> <span class="toctext">CPS and tail calls</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation_passing_style#Use_and_implementation"><span class="tocnumber">4</span> <span class="toctext">Use and implementation</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation_passing_style#Use_in_other_fields"><span class="tocnumber">5</span> <span class="toctext">Use in other fields</span></a></li>
+        <li class="toclevel-1"><a href="http://en.wikipedia.org/wiki/Continuation_passing_style#See_also"><span class="tocnumber">6</span> <span class="toctext">See also</span></a></li>
+      </ul>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+
+<h2>Introduction</h2>
+
+<p>Instead of "returning" values as in the more familiar <a href="http://en.wikipedia.org/w/index.php?title=Direct_style&amp;action=edit" class="new" title="Direct style">direct style</a>,
+a function written in CPS takes an explicit continuation argument which
+is meant to receive the result of the computation performed within the
+function. When a subroutine is invoked within a CPS function, the
+calling function is required to supply a procedure to be invoked with
+the subroutine's "return" value.</p>
+
+<p>Programs can be automatically transformed from CPS to direct style. Functional and <a href="http://en.wikipedia.org/wiki/Logic_programming" title="Logic programming">logic</a> compilers often use CPS as an <a href="http://en.wikipedia.org/wiki/Intermediate_representation" title="Intermediate representation">intermediate representation</a> where a compiler for an <a href="http://en.wikipedia.org/wiki/Imperative_programming" title="Imperative programming">imperative</a> or <a href="http://en.wikipedia.org/wiki/Procedural_programming" title="Procedural programming">procedural</a> <a href="http://en.wikipedia.org/wiki/Programming_language" title="Programming language">programming language</a> might employ <a href="http://en.wikipedia.org/wiki/Static_single_assignment_form" title="Static single assignment form">static single assignment form</a> (SSA). CPS is used more frequently by <a href="http://en.wikipedia.org/wiki/Compiler" title="Compiler">compilers</a> than by programmers as a local or global style.</p>
+
+<p>CPS is a <a href="http://en.wikipedia.org/wiki/Monads_in_functional_programming" title="Monads in functional programming">monad</a>.</p>
+
+<div class="editsection" style="float: right; margin-left: 5px;"></div>
+
+<h2><span style="font-weight: bold;"></span>Examples</h2>
+
+
+<p>In the <a href="http://en.wikipedia.org/wiki/Scheme_programming_language" title="Scheme programming language">Scheme programming language</a>, the simplest of direct-style functions is the identity function:</p>
+
+<pre>(lambda (x) x)<br /></pre>
+
+<p>which in CPS becomes:</p>
+
+<pre>(lambda (x return) (return x))<br /></pre>
+
+<p>where <i>return</i> is the continuation argument (often also called <i>k</i>). A further comparison of direct and CPS style is below.</p>
+
+<table>
+
+  <tbody>
+    <tr>
+
+      <th>
+      <div class="center">Direct style</div>
+
+      </th>
+
+      <th>
+      <center>Continuation passing style</center>
+
+      </th>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <pre>(define (mysqrt x) (sqrt x))<br />(display (mysqrt 4))<br /></pre>
+      </td>
+
+      <td>
+      <pre>(define (mysqrt x k) (k (sqrt x)))<br />(mysqrt 4 display)<br /></pre>
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <pre>(+ (mysqrt 4) 2)<br /></pre>
+      </td>
+
+      <td>
+      <pre>(mysqrt 4 (lambda (x) (+ x 2)))<br /></pre>
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td>
+      <pre>(define (factorial n)<br /> (if (&lt;= n 1) 1<br />  (* n (factorial (- n 1)))))<br />(+ (factorial 4) 2)<br /></pre>
+      </td>
+
+      <td>
+      <pre>(define (factorial n k)<br /> (if (&lt;= n 1) (k 1)<br />  (factorial (- n 1) (lambda (ret) (k (* n ret))))))<br />(factorial 4 (lambda (x) (+ x 2)))<br /></pre>
+      </td>
+
+    </tr>
+
+  </tbody>
+</table>
+
+<p>The translations shown above show that CPS is a global transformation; the direct-style <i>factorial</i> takes, as might be expected, a single argument. The CPS <i>factorial</i>
+takes two: the argument and a continuation. Any function calling a
+CPS-ed function must either provide a new continuation or pass its own;
+any calls from a CPS-ed function to a non-CPS function will use
+implicit continuations. Thus, to ensure the total absence of a function
+stack, the entire program must be in CPS!</p>
+
+<p>As an exception, <i>mysqrt</i> calls <i>sqrt</i> without a continuation &mdash; here <i>sqrt</i> is considered a primitive <a href="http://en.wikipedia.org/wiki/Operator_%28programming%29" title="Operator (programming)">operator</a>; that is, it is assumed that <i>sqrt</i>
+will compute its result in finite time and without abusing the stack.
+Operations considered primitive for CPS tend to be arithmetic,
+constructors, accessors, or mutators; any <a href="http://en.wikipedia.org/wiki/Big_O_notation" title="Big O notation">O</a>(1) operation will be considered primitive.</p>
+
+<div class="editsection" style="float: right; margin-left: 5px;"></div>
+
+
+<h2>CPS and tail calls</h2>
+
+<p>Note that in CPS, there is no implicit continuation &mdash; every call is a <a href="http://en.wikipedia.org/wiki/Tail_call" title="Tail call">tail call</a>. There is no "magic" here, as a the continuation is simply explicitly passed. Using CPS without <a href="http://en.wikipedia.org/wiki/Tail_call_optimization" title="Tail call optimization">tail call optimization</a> (TCO) will cause not only the explicit continuation to grow during recursion, but also the <a href="http://en.wikipedia.org/wiki/Function_stack" title="Function stack">function stack</a> itself.</p>
+
+<p>As CPS and TCO eliminate the concept of an implicit function return,
+their combined use can eliminate the need for a runtime stack. Several
+compilers and interpreters for <a href="http://en.wikipedia.org/wiki/Functional_programming_language" title="Functional programming language">functional programming languages</a> use this ability in novel ways.</p>
+
+<div class="editsection" style="float: right; margin-left: 5px;"></div>
+
+
+<h2>Use and implementation</h2>
+
+<p>Continuation passing style can be used to implement continuations in
+a functional language that does not feature first-class continuations
+but does have first-class functions. Without first-class functions,
+techniques such as <a href="http://en.wikipedia.org/wiki/Trampoline_%28computers%29" title="Trampoline (computers)">trampolining</a> of <a href="http://en.wikipedia.org/wiki/Thunk" title="Thunk">thunk</a> <a href="http://en.wikipedia.org/wiki/Closure_%28computer_science%29" title="Closure (computer science)">closures</a> can be used; in this case, it is possible to convert tail calls into gotos in a loop, eliminating even the need for TCO.</p>
+
+<p>Writing code in CPS, while not impossible, is often error-prone.
+There are various translations, usually defined as one- or two-pass
+conversions of pure <a href="http://en.wikipedia.org/wiki/Lambda_calculus" title="Lambda calculus">lambda calculus</a>,
+which convert direct style expressions into CPS expressions. Writing in
+trampolined style, however, is extremely difficult; when used, it is
+usually the target of some sort of transformation, such as <a href="http://en.wikipedia.org/wiki/Compilation" title="Compilation">compilation</a>.</p>
+
+<div class="editsection" style="float: right; margin-left: 5px;"></div>
+
+
+<h2>Use in other fields</h2>
+
+<p>Outside of <a href="http://en.wikipedia.org/wiki/Computer_science" title="Computer science">computer science</a>,
+CPS is of more general interest as an alternative to the conventional
+method of composing simple expressions into complex expressions. For
+example, within linguistic <a href="http://en.wikipedia.org/wiki/Semantics" title="Semantics">semantics</a>,
+Rober Barker has suggested that specifying the truth conditions of
+sentences using CPS might explain certain ambiguities found in <a href="http://en.wikipedia.org/wiki/Natural_language" title="Natural language">natural language</a> <a href="http://www.semanticsarchive.net/Archive/902ad5f7/barker.continuations.pdf" class="external autonumber" title="http://www.semanticsarchive.net/Archive/902ad5f7/barker.continuations.pdf">[1]</a>.</p>
+
+<div class="editsection" style="float: right; margin-left: 5px;"><br />
+]</div>
+
+
+<h2>See also</h2>
+
+<ul>
+  <li><a href="http://en.wikipedia.org/wiki/Andrew_Appel" title="Andrew Appel">Andrew Appel</a> describes the construction of a CPS-based compiler for <a href="http://en.wikipedia.org/wiki/ML_programming_language" title="ML programming language">ML</a> in: <cite style="font-style: normal;">Appel, Andrew W. (1992). <i>Compiling with Continuations</i>, Cambridge University Press. <a href="http://en.wikipedia.org/w/index.php?title=Special:Booksources&amp;isbn=0521416957" class="internal">ISBN 0521416957</a>.</cite></li>
+</ul>
+</div>
+" &nbsp;<a href="http://en.wikipedia.org/wiki/Continuation_passing_style">http://en.wikipedia.org/wiki/Continuation_passing_style</a><br />
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta content="text/html; charset=iso-8859-1"
+ http-equiv="Content-Type">
+  <meta content="Eileen Head" name="Author">
+  <meta content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]"
+ name="GENERATOR">
+  <title>Homework 5 Last Prolog Assignment Spring 2003</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(253, 253, 253);"
+ link="#000099" vlink="#009900" alink="#000099">
+<font size="-2">&nbsp; </font><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back<font
+ color="#cc0000">&nbsp; 2/14 Due 2/21</font></a>
+<h3 align="center">Assignment 5</h3>
+<h4><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a></h4>
+You hardcopy should begin with the following identification:
+<ul>
+  <blockquote><font color="#000000">CS471 - Programming Languages</font><br>
+    <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR
+Section number&gt;</font><br>
+    <font color="#000000">Assignment #</font><font color="#cc0000">&lt;number&gt;</font><font
+ color="#000000">due:</font><font color="#cc0000">&lt;DATE&gt;</font> <br>
+    <font color="#000000">Author:</font><font color="#cc0000">
+&lt;LastName&gt;, &lt;FirstName&gt; </font><font color="#000000">(</font><font
+ color="#cc0000">&lt;EMail&gt;</font><font color="#000000">)</font><br>
+    <font color="#000000">Date:</font><font color="#cc0000">
+&lt;DATE&gt;</font></blockquote>
+</ul>
+<h3><b>Written Assignment:</b></h3>
+<b>Purpose: To understand how order imposed by the implementation of
+Prolog causes problems.To understand the beauty of pattern
+matching.&nbsp;</b>
+<ol>
+Consider the following program:
+</ol>
+<ol type="A">
+  <tt>fill(X,N,L) :- length(L,N), append([X],Lx,L), append(Lx,[X],L).</tt>
+  <br>
+  <ol>
+&nbsp;<li><tt>(Do not turn in).</tt>If the input <i>X</i> is a term
+and input <i>N</i> is a positive integer, then what will the output <i>L</i>?
+Try the following.. also find other possible solutions with ";"</li>
+    <ol type="a">
+      <li><tt>?-</tt>&nbsp; <tt>fill(xyz, 5, L).</tt></li>
+      <li><tt>?- fill(xyz, 5, [H|T].</tt></li>
+    </ol>
+    <li><tt>Try to briefly explain how it works.</tt></li>
+    <li>Does the below code give the same results as <i>fill</i>?</li>
+    <ol type="A">
+      <tt>fillr(X,0,[]):-!.</tt><br>
+      <tt>fillr(X,N,[X|T]) :- Nx is N-1,fillr(X,Nx,T).</tt>
+    </ol>
+    <li>Compare the execution time of the two version for various
+values of <i>N .&nbsp; </i>(Use "trace" or write your own append (use
+myAppend) and length(use myLen) so you can see trace to see the
+execution steps. )</li>
+  </ol>
+  <br>
+Useful examples for studing for prolog exam<br>
+</ol>
+<div style="margin-left: 40px;"><a
+ href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">Adventure
+In Prolog (Try execise 4 and 5 (for tracing and unification) exercise
+11 using recursion and append)</a><span
+ style="text-decoration: underline;"><br>
+</span><a
+ href="http://www.hta-bi.bfh.ch/%7Ehew/informatik3/prolog/p-99/">99
+Problems in Prolog.</a></div>
+<h3><b>Programming Assignment:</b></h3>
+<b>Purpose:</b><li><b>The purpose is this assignment is</b></li>
+<br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) reenforce recursive
+programming and unification</b><b><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) reenforce the use of binary
+tree data structure in Prolog<br>
+</b><br>
+<h3>Do the seven problems in <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/XXXAs5.pl">XXXAs5.pl</a>
+.<br>
+</h3>
+<br>
+<br>
+<font color="#3333ff">Remember Programming is an individual task... :</font>
+<p><font color="#3333ff">Resources use:</font></p>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a><br>
+&nbsp;</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

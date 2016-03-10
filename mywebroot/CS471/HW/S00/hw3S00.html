@@ -1,0 +1,188 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="E Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="Introduction">
+   <title>Assignment 3 -Prolog Programming</title>
+</head>
+<body text="#000000" bgcolor="#FFFDFF" link="#FF0000" vlink="#990000" alink="#CC0000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Due Friday, Feb. 11, 2000<br>
+<a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">General
+Submission Instructions,</a> For this assignment put all the code in one
+file called&nbsp;<br>
+<font color="#000099">&lt;lastName>&lt;firstName>3.pl</font><font color="#000000">.&nbsp;
+You will need to turn in a hard copy of the code as well as email the file
+to&nbsp;</font> <a href="mailto:cs471h@binghamton.edu">cs471h@binghamton.edu</a></h4>
+
+<blockquote>
+<h4>
+Read:<br>
+Chapter 8 (ghezzi)<br>
+Check out one of the online tutorial resources.</h4>
+</blockquote>
+<b>Part 1: Written assignment:</b>
+<ol>
+<li>
+page 401 problem 17.&nbsp; Consider the frament of figure 8.9.&nbsp; suppose
+that the second rule is changed in the following way:&nbsp; max(X,Y,Y).</li>
+
+<br>Is the new fragment equivalent ot the previous one?&nbsp; Consider,
+as an example, the following queries:
+<ol>?- max(2,5,A)
+<br>?- max(5,2,B).
+<br>?- max(2,5,3).
+<br>?- max(2,5,5).
+<br>?- max(2,5,2).</ol>
+
+<li>
+(Do not turn in this question).&nbsp; Check out these built-in procedures
+(Some may be helpful in the assignment):</li>
+
+<br>see, tell, seen, told, atom, integer, bagof, setof, functor, arg, name,
+help, apropos, var, trace, spy,assertz, retract, append, @>, @=&lt;. There
+are two excellent sources of information, one using the help predicate
+built into Prolog and the other is the <a href="http://www.swi.psy.uva.nl/projects/SWI-Prolog/Manual/Title.html">online
+manual</a>
+<p>From the manual I copy an example:
+<p>functor(?Term, ?Functor, ?Arity)
+<br>&nbsp;&nbsp;&nbsp; Succeeds if Term is a term with functor Functor
+and arity Arity. If Term is a variable it is unified with a new term holding
+only variables. functor/3 silently fails on instantiation faults (13) If
+Term is an atom or number, Functor will be unified with Term and arity
+will be unified with the integer 0 (zero).
+<br>&nbsp;
+<ol TYPE=a>
+<li>
+What does <i>name</i> do? Try</li>
+
+<br><font color="#660000">&nbsp;?-name(What, "abc").</font>
+<br>&nbsp;?- <font color="#660000">name(What, "abc 123").</font>
+<br><font color="#660000">&nbsp;?- name(abc, What).</font>
+<br>&nbsp;
+<li>
+What does <i>write </i>do?&nbsp; Try</li>
+
+<br><font color="#660000">?-write("abc123") , write('abc') ,write(abc).</font>
+<ol TYPE=a>&nbsp;</ol>
+
+<li>
+<font color="#000000">What does <i>listing</i> do?&nbsp; Try</font></li>
+
+<br><font color="#993300">?- listing(append).</font></ol>
+</ol>
+<b>Part 2 Programming:</b>
+<blockquote>
+<ol>
+<li>
+Write a procedure, product( List, Product),&nbsp; the computes the product
+of a lists of numbers.</li>
+
+<ol>?- product( [1,2,4], Product).
+<br>Product = 8.
+<ol>&nbsp;</ol>
+</ol>
+
+<li>
+Write a Prolog procedure sumEveryOther(-List,+Sum) that finds the sum of
+every other number in the list.</li>
+
+<ol>?- sumEveryOther([1,2,3,4], S).
+<br>S = 4
+<br>?- sumEveryOther([5,6,7], S).
+<br>S = 12
+<br>?- sumEveryOther([], S).
+<br>S = 0
+<ol>&nbsp;</ol>
+</ol>
+
+<li>
+Write a Prolog procedure mList(L,M,X), that make a list of the elements
+L and M.&nbsp; i.e.</li>
+
+<ol>?- mList( a,b, X).
+<br>X = [a,b]
+<br>?- mList(X, Y, [a, 2])
+<br>X = a
+<br>Y = 2
+<br>?- mList( [1,2], [a,b], C).
+<br>C = [[1,2], [a,b]]
+<br>?- mList( [], [], X ).
+<br>X = [ [], [] ]
+<ol>&nbsp;</ol>
+</ol>
+
+<li>
+The predicate odd(n) succeeds only for odd numbers.&nbsp; Write a Prolog
+program to implement it.</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+Write a Prolog procedure makeEven(-L , +E).&nbsp; That goes through a list
+of numbers and if a number is odd then its value is doubled.</li>
+
+<ol>?- makeEven([1, 2, 4, 1], X).
+<br>X = [ 2, 2, 4, 2].
+<br>?- makeEven([], X).
+<br>X = []
+<ol>&nbsp;</ol>
+</ol>
+
+<li>
+Write a procedure, countOcc( List, Element, Count) which counts the number
+of time Element occurs in List and puts the value in Count.</li>
+
+<ol>?- countOcc([1,3,4,6,3,2,1,3,5], 3, Count).
+<br>Count = 3
+<ol>&nbsp;</ol>
+</ol>
+
+<li>
+Write a procedure isIncreasing(L) that succeeds if the numbers in list
+L are in non-decreasing order.</li>
+
+<br>&nbsp;
+<li>
+Write a procedure isDecreasing(L) that succeeds if the numbers in list
+L are in non-increasing order.</li>
+
+<br>&nbsp;
+<li>
+Write a procedure myreverse that uses a recursive algorithm to reverse
+the elements of a list, thus:</li>
+
+<ol TYPE=a>?- myreverse( [10,9,3,12], R).
+<br>R = [12,3,9,10].
+<br>You can use the built-in relation, append, in your procedure. However,
+there are a number of different ways to program this.&nbsp; Remember to
+credit any code you lift off the internet.
+<li>
+What happens when the following query is executed?</li>
+
+<br>?-myreverse( R,[10,9,3,12]).
+<li>
+Can you briefly explain why you code works the way it does.</li>
+
+<br>&nbsp;</ol>
+
+<li>
+By inserting some writes and nls, get <i>myreverse</i> to display the arguments
+of each call to itself and each call to append or any other clauses you
+may use.&nbsp; <font color="#CC0000">Call your modified version, <i>myReversePrint</i>.
+</font>What
+is the runtime complexity of your code as a function of the length of the
+input list <i>n</i>? Make sure your answer is consistent with the output
+of <i>myReversePrint.</i></li>
+</ol>
+
+<ol START=6>Note: write( term ) displays the term and nl gives a carriage
+return. See the listOf relation in <a href="http://bingweb.binghamton.edu/~head/CS471/CODE/PL/example.pl">example.pl</a>
+for an example.</ol>
+</blockquote>
+<a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+</body>
+</html>

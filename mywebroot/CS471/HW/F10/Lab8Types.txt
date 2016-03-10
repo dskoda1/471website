@@ -1,0 +1,89 @@
+Practice:
+The type of .. is :
+(.) :: (b -> c) -> (a -> b) -> a -> c
+map :: (a -> b) -> [a] -> [b]
+foldl1 :: (a -> a -> a) -> [a] -> a
+last :: [a] -> a
+(Notice all the above are totally polymorphic!)
+
+Now by hand let's work out types ...
+
+What is the type of 
+   map last
+   
+   map :: (x -> y) -> [x] -> [y]
+   last :: [a] -> a
+   map last 
+      implies (x -> y) unifies with [a] -> a
+      implies x == [a] and y == a
+      
+    therefore
+        map last :: [[a]]-> [a]
+-------------------------------------------------------------------------------
+      
+What is the type of
+     (.) last
+     
+     (.) :: (y -> z) -> (x -> y) -> x -> z
+     last :: [a] -> a
+     
+     
+   
+   
+   
+     
+          
+     
+     
+What is the type of 
+   map (.)
+   
+   map :: (x -> y) -> [x] -> [y] 
+   (.) :: (b -> c) -> (a -> b) -> a -> c
+
+
+
+
+
+
+
+
+
+
+ What is the type of 
+   map map
+   
+   map :: (x -> y) -> [x] -> [y]   
+   map :: (a -> b) -> [a] -> [b]
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+
+What is the most general type (if any) of
+
+   A) map map
+   B) foldl1 foldl1
+   C) map foldl1
+   D) map . foldl1
+
+What is the value of :
+   (map . foldl1) (-) [[1,2,3],[3,2,1],[100,200,300]]
+    map (\v ->  v [4000,1000]) (map foldr1 [div,(-)])
+    map (\f -> f [3,4,5])  (map map [(*) 3,(-) 4])
+
+
+What is the value of mapmap ? Try and figure it out then run it.
+
+ 
+> mapmap = map (\x-> x [1,2,3])(map map [odd,even])

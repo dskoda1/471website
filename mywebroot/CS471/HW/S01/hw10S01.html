@@ -1,0 +1,83 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+   <title>Assignment 10 Programming Languages  --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#FFFBF9" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a><font size=-1>)</font>
+<h4>
+Assignment 10:&nbsp; Friday Apr 6</h4>
+Purpose:&nbsp; Continue recursive style of program, curry function.
+<h3>
+Read:</h3>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+
+<ol START=3>
+<ol>
+<h3>
+<b><font color="#3333FF">Turn in hardcopy.</font> NOTICE WE ALSO WANT YOU
+TO Email your code to </b><a href="mailto:cs471h@binghamton.edu">cs471h@binghamton.edu</a>
+.</h3>
+You should use primitive recursion in these problems or just straight forward
+function application.
+<h4>
+YOU must insert your code in the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell2.lhs">file</a>
+provided but you will need to rename the file following <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions.</a></h4>
+
+<blockquote>
+<blockquote><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/SimpleExample.lhs">Simple
+Sample of the Literal Style</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">Literal
+style must be used - more extensive</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Sample
+Code from the Notes</a>
+<br>&nbsp;<a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/errors.html">Understanding
+Haskell Errors</a></blockquote>
+</blockquote>
+</ol>
+
+<p><br>
+<hr SIZE=3 WIDTH="100%">
+<h4>
+Use only primitive recursion and function application for problems.</h4>
+
+<h2>
+<a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell2.lhs">Haskell2</a>
+contains the problems.</h2>
+
+<p><br>DETAILS for problem 4:
+<p>Horner's rule is an algorithm to evaluate a polynomial without requiring
+the computation of arbitrary powers of <i>x</i>.
+<br>We can represent the coefficients of a polynomal a<sub>n</sub>x<sup>n
+</sup>+
+a<sub>n-1</sub>x<sup>n-1 </sup>+...+ a<sub>0 </sub>using a list =<font color="#CC0000">
+[&nbsp; a<sub>0 </sub>,..., a<sub>n-1</sub> , a<sub>n</sub>].</font>
+<br>This algorithm is related to <a href="http://forum.swarthmore.edu/dr.math/problems/slator8.5.97.html">synthetic
+division</a> you learned in high school.
+<ol START=3>&nbsp;</ol>
+Below is an implementation of Horner's algorithm using Java:
+<ol><tt>public class Example {</tt>
+<ol><tt>public static int horner (int[] a, int n, int x) {</tt>
+<ol><tt>int result = a[n];</tt>
+<br><tt>for (int i = n - 1; i>=0; --i) {</tt>
+<ol><tt>result = result * x + a[i]</tt></ol>
+<tt>}</tt>
+<br><tt>return result;</tt></ol>
+<tt>}</tt></ol>
+<tt>}</tt></ol>
+Implement&nbsp; Horner's algorithm recursively in a Haskell script, <tt>horner
+coef x</tt>&nbsp; i.e.
+<br>if f(x) =&nbsp; x<sup>2 </sup>+ 3*x + (-3) when x =2 we get 2<sup>2</sup>
++&nbsp; 3*2&nbsp; -3 = 7
+<br>...> <tt>horner <font color="#CC0000">[(-3),3,1]</font> 2</tt>
+<br>7</ol>
+
+<ul START=2>&nbsp;</ul>
+
+</body>
+</html>

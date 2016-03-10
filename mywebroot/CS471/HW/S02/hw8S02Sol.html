@@ -1,0 +1,1294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>HW 8 Solutions</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+<br>
+Answer to simple stack question: &nbsp;Note that the "gray text" indicates
+that the data is still in memory but is can not be reached (normally) by
+the program except for the value returned by the function.<br>
+<br>
+<font face="Arial" size="2">
+<div>
+<table bgcolor="#fff8f0" border="1">
+  <tbody>
+    <tr align="center" bgcolor="#ffffc4">
+      <td>
+      <center>Description</center>
+      </td>
+     <td>D addr</td>
+     <td>       
+      <center>main **</center>
+      </td>
+     <td>       
+      <center>beta 11</center>
+      </td>
+     <td>alpha5 ++</td>
+     <td>       
+      <center>beta 12</center>
+      </td>
+     <td>       
+      <center>alpha5 +++</center>
+      </td>
+     <td>       
+      <center>beta11</center>
+      </td>
+     <td>       
+      <center>main ***</center>
+      </td>
+     <td>Completed&nbsp;</td>
+    </tr>
+   <tr>
+     <td><br>
+      </td>
+     <td><br>
+      </td>
+     <td bgcolor="#d7ffd7">Just</td>
+     <td bgcolor="#d7ffd7">after</td>
+     <td bgcolor="#d7ffd7">calling</td>
+     <td bgcolor="#d7ffd7">function</td>
+     <td bgcolor="#eef0f9">Just&nbsp;</td>
+     <td bgcolor="#eef0f9">after&nbsp;</td>
+     <td bgcolor="#eef0f9">return to function</td>
+     <td>execution</td>
+    </tr>
+   <tr bgcolor="#ffe4ca">
+     <td>       
+      <center>Current</center>
+      </td>
+     <td>       
+      <center>0</center>
+      </td>
+     <td>       
+      <center>0</center>
+      </td>
+     <td>       
+      <center>7</center>
+      </td>
+     <td>       
+      <div align="center">12</div>
+      </td>
+     <td>       
+      <center>17</center>
+      </td>
+     <td>       
+      <center>12</center>
+      </td>
+     <td>       
+      <center>7</center>
+      </td>
+     <td>       
+      <center>0</center>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+    </tr>
+   <tr bgcolor="#ffe4ca">
+     <td>       
+      <center>Free</center>
+      </td>
+     <td>       
+      <center>1</center>
+      </td>
+     <td>       
+      <center>7</center>
+      </td>
+     <td>       
+      <div align="center">12</div>
+      </td>
+     <td>       
+      <div align="center">17</div>
+      </td>
+     <td>       
+      <center>22</center>
+      </td>
+     <td>       
+      <center>17</center>
+      </td>
+     <td>       
+      <center>12</center>
+      </td>
+     <td>       
+      <center>7</center>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <center>global&nbsp; <b><i>b</i></b></center>
+      </td>
+     <td>       
+      <center>2</center>
+      </td>
+     <td>       
+      <center>2</center>
+      </td>
+     <td>       
+      <center>2</center>
+      </td>
+     <td>       
+      <div align="center">12</div>
+      </td>
+     <td>       
+      <center>2</center>
+      </td>
+     <td>       
+      <center>2</center>
+      </td>
+     <td>       
+      <center>2</center>
+      </td>
+     <td>       
+      <center>2</center>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">2</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <center>global&nbsp; <b><i>c</i></b></center>
+      </td>
+     <td>       
+      <center>3</center>
+      </td>
+     <td>       
+      <center>1</center>
+      </td>
+     <td>       
+      <center>1</center>
+      </td>
+     <td>       
+      <div align="center">1</div>
+      </td>
+     <td>       
+      <center>6</center>
+      </td>
+     <td>       
+      <center>6</center>
+      </td>
+     <td>       
+      <center>6</center>
+      </td>
+     <td>       
+      <center>6</center>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">6</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <center>global <b><i>i</i></b></center>
+      </td>
+     <td>       
+      <center>4</center>
+      </td>
+     <td>       
+      <center>3</center>
+      </td>
+     <td>       
+      <center>3</center>
+      </td>
+     <td>       
+      <div align="center">3</div>
+      </td>
+     <td>       
+      <center>3</center>
+      </td>
+     <td>       
+      <center>3</center>
+      </td>
+     <td>       
+      <center>3</center>
+      </td>
+     <td>       
+      <center>3</center>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">3</font></div>
+      </td>
+    </tr>
+   <tr bgcolor="#eff0ee">
+     <td>       
+      <center>return value</center>
+      </td>
+     <td>       
+      <center>5</center>
+      </td>
+     <td>       
+      <center>?</center>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center"><font size="2">?</font></div>
+      </td>
+     <td>       
+      <div align="center"><font size="2">?</font></div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">22</font></div>
+      </td>
+    </tr>
+   <tr bgcolor="#eff0ee">
+     <td>       
+      <center>main <b><i>i</i></b></center>
+      </td>
+     <td>       
+      <center>6</center>
+      </td>
+     <td>       
+      <center>22</center>
+      </td>
+     <td>       
+      <div align="center">22</div>
+      </td>
+     <td>       
+      <div align="center">22</div>
+      </td>
+     <td>       
+      <div align="center">22</div>
+      </td>
+     <td>       
+      <div align="center">22</div>
+      </td>
+     <td>       
+      <div align="center">22</div>
+      </td>
+     <td>       
+      <div align="center">22</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">22</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Ret. Value</div>
+      </td>
+     <td>       
+      <center>7</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">undefined</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">undefined</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Dyn. Link</div>
+      </td>
+     <td>       
+      <center>8</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;0</div>
+      </td>
+     <td>       
+      <div align="center">0</div>
+      </td>
+     <td>       
+      <div align="center">0</div>
+      </td>
+     <td>       
+      <div align="center">0</div>
+      </td>
+     <td>       
+      <div align="center">0</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">beta var</div>
+      </td>
+     <td>       
+      <center>9</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">11</div>
+      </td>
+     <td>       
+      <div align="center">11</div>
+      </td>
+     <td>       
+      <div align="center">11</div>
+      </td>
+     <td>       
+      <div align="center">11</div>
+      </td>
+     <td>       
+      <div align="center">11</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">11</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">11</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Ret. Addr</div>
+      </td>
+     <td>       
+      <center>10</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">in main</div>
+      </td>
+     <td>       
+      <div align="center">in main</div>
+      </td>
+     <td>       
+      <div align="center">in main</div>
+      </td>
+     <td>       
+      <div align="center">in main</div>
+      </td>
+     <td>       
+      <div align="center">in main</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in main</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in main</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">beta x</div>
+      </td>
+     <td>       
+      <center>11</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">9</div>
+      </td>
+     <td>       
+      <div align="center">9</div>
+      </td>
+     <td>       
+      <div align="center">9</div>
+      </td>
+     <td>       
+      <div align="center">9</div>
+      </td>
+     <td>       
+      <div align="center">9</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">9</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">9</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Ret. Value</div>
+      </td>
+     <td>       
+      <center>12</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">10</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">10</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">10</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Dyn. Link</div>
+      </td>
+     <td>       
+      <center>13</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">7</div>
+      </td>
+     <td>       
+      <div align="center">7</div>
+      </td>
+     <td>       
+      <div align="center">7</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">7</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">7</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">7</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">alpha x</div>
+      </td>
+     <td>       
+      <center>14</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">5</div>
+      </td>
+     <td>       
+      <div align="center">5</div>
+      </td>
+     <td>       
+      <div align="center">5</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">5</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">5</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">5</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Ret. Addr</div>
+      </td>
+     <td>       
+      <center>15</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">in beta</div>
+      </td>
+     <td>       
+      <div align="center">in beta</div>
+      </td>
+     <td>       
+      <div align="center">in beta</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in beta</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in beta</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in beta</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">alpha b</div>
+      </td>
+     <td>       
+      <center>16</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">4</div>
+      </td>
+     <td>       
+      <div align="center">10</div>
+      </td>
+     <td>       
+      <div align="center">10</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">10</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">10</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">10</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Ret. Value</div>
+      </td>
+     <td>       
+      <center>17</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">?</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">undefined</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">undefined</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">undefined</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">undefined</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Dyn. Link</div>
+      </td>
+     <td>       
+      <center>18</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">0</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">0</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">beta var</div>
+      </td>
+     <td>       
+      <center>19</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">12</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">12</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">12</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">12</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">12</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">Ret. Addr</div>
+      </td>
+     <td>       
+      <center>20</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">in alpha</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in alpha</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in alpha</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in alpha</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">in alpha</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">beta x</div>
+      </td>
+     <td>       
+      <center>21</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">9</div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">9</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">9</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">9</font></div>
+      </td>
+     <td>       
+      <div align="center"><font color="#808080">9</font></div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <center>&nbsp;</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <center>&nbsp;</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+    </tr>
+   <tr>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <center>&nbsp;</center>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+     <td>       
+      <div align="center">&nbsp;</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</font> 
+<ol type="A">
+   <br>
+  <li><b><font face="Arial"><font size="-1">Passed by value:</font></font></b>
+    
+    <center>   
+    <table width="91%" border="1">
+     <caption><br>
+      </caption>     <tbody>
+     <tr>
+       <td>         
+          <center>Passed by Value</center>
+          </td>
+       <td>         
+          <center>value=4</center>
+          </td>
+       <td>         
+          <center>list[0] =3</center>
+          </td>
+       <td>         
+          <center>list[1]=2</center>
+          </td>
+       <td>         
+          <center>list[2]=0</center>
+          </td>
+       <td>         
+          <center>list[3]=7</center>
+          </td>
+       <td>         
+          <center>list[4]=1</center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[0]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap(list[1],list[2]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[value]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </center>
+   </li>
+  <li><b><font face="Arial"><font size="-1">Passed by Reference:</font></font></b>
+    
+    <center>   
+    <table width="90%" border="1">
+     <caption><br>
+      </caption>     <tbody>
+     <tr>
+       <td>         
+          <center>Passed by Reference</center>
+          </td>
+       <td>         
+          <center>value=4</center>
+          </td>
+       <td>         
+          <center>list[0] =3</center>
+          </td>
+       <td>         
+          <center>list[1]=2</center>
+          </td>
+       <td>         
+          <center>list[2]=0</center>
+          </td>
+       <td>         
+          <center>list[3]=7</center>
+          </td>
+       <td>         
+          <center>list[4]=1</center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[0]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap(list[1],list[2]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[value]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </center>
+   </li>
+  <li><b><font face="Arial"><font size="-1">Passed by copy in-copy    out:</font></font></b>
+    
+    <center>   
+    <table width="90%" border="1">
+     <caption><br>
+      </caption>     <tbody>
+     <tr>
+       <td>         
+          <center>Passed by CopyIn-Out</center>
+          </td>
+       <td>         
+          <center>value =4</center>
+          </td>
+       <td>         
+          <center>list[0] =3</center>
+          </td>
+       <td>         
+          <center>list[1]=2</center>
+          </td>
+       <td>         
+          <center>list[2]=0</center>
+          </td>
+       <td>         
+          <center>list[3]=7</center>
+          </td>
+       <td>         
+          <center>list[4]=1</center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[0]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap(list[1],list[2]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[value]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </center>
+   </li>
+  <li><b><font face="Arial"><font size="-1">Passed by name:</font></font></b>
+    
+    <center>   
+    <table width="90%" border="1">
+     <caption><br>
+      </caption>     <tbody>
+     <tr>
+       <td>         
+          <center>Passed by Name</center>
+          </td>
+       <td>         
+          <center>value =4</center>
+          </td>
+       <td>         
+          <center>list[0] =3</center>
+          </td>
+       <td>         
+          <center>list[1]=2</center>
+          </td>
+       <td>         
+          <center>list[2]=0</center>
+          </td>
+       <td>         
+          <center>list[3]=7</center>
+          </td>
+       <td>         
+          <center>list[4]=1</center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[0]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <div align="center"><font face="Arial" size="2">2</font></div>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap(list[1],list[2]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">3</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">4</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">0</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">2</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">7</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">1</font></center>
+          </td>
+        </tr>
+     <tr>
+       <td>         
+          <center>swap (value, list[value]);</center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">crash</font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">         
+          <center><font face="Arial" size="2">crash</font></center>
+          </font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">         
+          <center><font face="Arial" size="2">crash</font></center>
+          </font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">         
+          <center><font face="Arial" size="2">crash</font></center>
+          </font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">         
+          <center><font face="Arial" size="2">crash</font></center>
+          </font></center>
+          </td>
+       <td>         
+          <center><font face="Arial" size="2">         
+          <center><font face="Arial" size="2">crash</font></center>
+          </font></center>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </center>
+  </li>
+</ol>
+<strong><font face="Arial" size="2"><br>
+swap(value, list[value]); becomes  
+<ul>
+  <b><tt>int temp;</tt> <br>
+  <tt>temp = value;</tt>&nbsp;<font face="Courier New">3</font><br>
+  <tt>value = list[value];</tt>&nbsp;<font face="Courier New">value=7</font><br>
+  <tt>list[value] = temp;</tt></b> <font face="Courier New">list[7] does
+not  exist.</font>
+</ul>
+</font></strong>
+</body>
+</html>

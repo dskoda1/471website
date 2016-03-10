@@ -1,0 +1,863 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+  
+  
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+
+
+
+
+  
+  
+  
+  
+  <title>Unification, How Variables Get Values</title></head>
+<body>
+
+
+
+
+<center>
+<h2> Unification and Pattern Matching</h2>
+
+
+
+
+</center>
+
+
+
+
+<center>
+<table bgcolor="#fffff0" border="1" cellpadding="3" cellspacing="3">
+
+
+
+
+  <tbody>
+
+
+
+
+    <tr>
+
+
+
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/4Spr00.html">&nbsp;</a><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/LOGIC.ppt">The
+Logical Model</a></td>
+
+
+
+
+      <td>&nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/1pS01.html">Introduction</a></td>
+
+
+
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/2pS01.html">Backtracking</a></td>
+
+
+
+
+      <td>&nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01.html">Unification</a></td>
+
+
+
+
+      <td><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/PROLOG2.ppt">Programming</a></td>
+
+
+
+
+    </tr>
+
+
+
+
+  
+  
+  
+  
+  </tbody>
+</table>
+
+
+
+
+</center>
+
+
+
+
+<center>
+<hr width="100%" /></center>
+
+
+
+
+Unification is the way variables are bound to a value. <br />
+
+
+
+
+<hr width="100%" /> <br />
+
+
+
+
+<b>What will be cover ?</b>
+<ul>
+
+
+
+  <li> <font color="#000000">Simple descriptions of Prolog Syntax</font></li>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <li> <font color="#000000">EBNF</font></li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+  <li> <font color="#000000">A small example program,</font></li>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/family.pl">family.pl</a>
+  
+  
+  
+  </ul>
+
+
+
+  <li> <font color="#990000">Unification and Pattern Matching</font></li>
+
+
+
+  <li> Queries and the Searching Mechanisms</li>
+
+
+
+  <li> The Computational Model</li>
+
+
+
+</ul>
+
+
+
+
+<h4>
+<hr align="left" noshade="noshade" size="1" width="99%" />When are two
+terms equals (equivalent)?&nbsp; How does Prolog bind values to a
+variable?</h4>
+
+
+
+
+<dl>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <li> <b><i>Unification</i> </b>is an attempt by the Prolog
+interpreter to <i>match</i> two <b>term</b>s, by <b>instantiating</b><i> </i>the
+variables contained in two terms.</li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+</dl>
+
+
+
+
+<blockquote> Example: When do two terms <b><tt><font color="#990000">rel(X
+,b) rel(a, Y) </font></tt></b><font color="#000000">match?</font></blockquote>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <ul>
+
+
+
+    <li><font color="#000000">When &nbsp;</font><b><font color="#993300">X&nbsp;</font></b><font color="#000000"> can be instantiated to the value<b> </b></font><b><font color="#993300">&nbsp;a</font></b><font color="#000000"> &nbsp;and</font><font color="#993300"> <b>&nbsp;Y</b></font>&nbsp;can be instantiated to the
+value &nbsp;<b><font color="#993300">b</font></b>, the two terms are
+equal (equivalent). </li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</blockquote>
+
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <ul>
+
+
+
+    <li><font color="#000000">So unification will involve assigning
+these values to the variables.</font></li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+
+</blockquote>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <dl>
+
+
+
+    
+    
+    
+    <dl>
+
+
+
+      
+      
+      
+      <dl>
+
+
+
+        
+        
+        
+        <p><b><font color="#000000">The <i>term</i> ,</font><tt><font color="#990000"> rel(a ,b)</font></tt><font color="#000000"> </font></b><font color="#000000">is called an<b> <i>instance</i> </b>of<b> </b></font><b><tt><font color="#990000">rel(X ,b)</font></tt></b> <br />
+
+
+
+
+        </p>
+
+
+
+      
+      
+      
+      </dl>
+
+
+
+    
+    
+    
+    </dl>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+</blockquote>
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  <ul>
+
+
+
+    <li>&nbsp;Two terms <b><i>t</i></b>1and <b><i>t</i></b>2 <b><i>unify</i></b>
+if they have a common instance <b><i>U.</i></b></li>
+
+
+
+  
+  
+  
+  </ul></blockquote><ul><li><span style="font-weight: bold;">Unification Algorithm</span>:<br /></li><ul><li>If T1 and T2 are constants, then <br />T1 and T2 unify if they are the same atom, or the same number.<br /><br /></li><li>If T1 is a variable and T2 is any type of term, then T1 and T2 unify, and T1 is instantiated to T2. (and vice versa)<br /><br /></li><li>If T1 and T2 are complex terms then they unify if:<br />They have the same functor and arity, and<br />&nbsp; all their corresponding arguments unify, and<br />&nbsp; the variable instantiations are compatible.</li></ul></ul><dl>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    
+    
+    
+    <dl>
+
+
+
+      
+      
+      
+      <dl>
+
+
+
+        
+        
+        
+        <dl>
+
+
+
+
+&nbsp;
+        
+        
+        
+        
+        </dl>
+
+
+
+      
+      
+      
+      </dl>
+
+
+
+    
+    
+    
+    </dl>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <li> Where does unification take place?</li>
+
+
+
+  
+  
+  
+  </ul>
+
+
+
+</dl>
+
+
+
+<dl style="margin-left: 80px;">
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+1. <i><b>Explicitly</b></i>&nbsp;through the use of "=" operator      
+      
+    
+    
+    
+    <dl>
+
+
+
+
+&nbsp;<br />
+
+
+
+      <b><tt><font color="#990000">rel(X ,b) = rel(a, Y)</font></tt></b>
+    
+    
+    
+    </dl>
+
+
+
+    
+    
+    
+    <p><font color="#000000">2. Unification occurs <b><i>implicitly</i></b>
+when a rule is applied</font></p>
+
+
+
+    
+    
+    
+    <dl>
+
+
+
+      <b><tt><font color="#990000">identity(Z,Z).&nbsp; %clause in file</font></tt></b>
+      
+      
+      
+      <p><b><tt><font color="#990000">?- identity(rel(X ,b), rel(a,
+Y))&nbsp; %query</font></tt></b> <br />
+
+
+
+
+        <b><tt><font color="#990000">X = a</font></tt></b> <br />
+
+
+
+
+        <b><tt><font color="#990000">Y = b</font></tt></b></p>
+
+
+
+    
+    
+    
+    </dl>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+</dl>
+
+
+
+<dl>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    
+    
+    
+    <hr align="left" noshade="noshade" size="1" width="75%" />
+    
+    
+    
+    <dl>
+
+
+
+      <li> Which of&nbsp; the following unify?&nbsp; What are the
+instantiated value of the variables for the successful unification?</li>
+
+
+
+      <br />
+
+
+
+      <b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#1">1?</a></tt></b>-<b><tt>
+one = one .</tt></b>
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#2">2?</a></tt></b>-<b><tt>
+one&nbsp; = two .</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#3">3?</a></tt></b>-<b><tt>
+one&nbsp; = X .</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#4">4?</a></tt></b>-<b><tt>r(
+a, X ) =&nbsp; r( Y, b).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#5">5?</a>-
+r( X )&nbsp; = f( X ).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#6">6?</a>-
+[ a | Tail ] = [ Head | [ x , y ] ] .</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#7">7?</a>-
+[ a | T ] = [ a ] .</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#8">8?</a>-
+r( a, f( X ) )&nbsp; =&nbsp; r( Y , b )</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#9">9?</a>-
+r( a, f ( X ) ) = r( Y,&nbsp; f( b ) ).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#10">10?</a>-&nbsp;
+r( X ) = r( X , Y ).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#11">11?</a>–
+f(a) = f( X ,a).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#12">12?</a>–
+X = f( X&nbsp; ).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#13">13?</a>–
+[A, B | X] = [2, 1].</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#14">14</a>?
+– p( X , X ) = p(Y, f(Y )).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#15">15</a>?
+– f( X , g( X&nbsp; )) = f(a, Y ).</tt></b> </p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PROLOG/3pS01Answers.html#16">16</a>?
+– f( X , b, g( X&nbsp; )) = f(A, A, g(a)).</tt></b>&nbsp;</p>
+
+
+
+      
+      
+      
+      <p>
+      <b><tt><a href="3pS01Answers.html#17">17</a>? - (X,R) = (a,b,c,d).</tt></b></p>
+
+      
+      <p><b><tt><a href="3pS01Answers.html#18">18</a>? - [X] = [a,b,c,d].</tt></b></p>
+
+
+
+      
+      
+      
+      <p><b><tt><a href="3pS01Answers.html#19">19</a>? - (X) = (a,b,c,d).</tt></b></p></dl>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+</dl>
+
+
+
+
+<h3>
+<hr width="100%" /></h3>(help(unify_with_occurs_check).<br />unify_with_occurs_check(+Term1,
++Term2)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[ISO]<br />&nbsp;&nbsp;&nbsp; As&nbsp; =/2, but&nbsp; using sound-unification.&nbsp;&nbsp;&nbsp; That is,&nbsp; a variable&nbsp; only<br />&nbsp;&nbsp;&nbsp; unifies&nbsp; to&nbsp; a term&nbsp; if&nbsp; this term&nbsp; does&nbsp; not contain&nbsp; the&nbsp; variable<br />&nbsp;&nbsp;&nbsp; itself.&nbsp; To illustrate this, consider the two goals below:<br /><br />&nbsp;&nbsp;&nbsp; 1 ?- A = f(A).<br /><br />&nbsp;&nbsp;&nbsp; A = f(f(f(f(f(f(f(f(f(f(...))))))))))<br />&nbsp;&nbsp;&nbsp; 2 ?- unify_with_occurs_check(A, f(A)).<br /><br />&nbsp;&nbsp;&nbsp; false.<br /><br />&nbsp;&nbsp;&nbsp;
+I.e.&nbsp;&nbsp; the&nbsp; first&nbsp; creates&nbsp; a&nbsp;
+cyclic-term,&nbsp; which&nbsp; is&nbsp;&nbsp; printed&nbsp; as<br />&nbsp;&nbsp;&nbsp;
+an&nbsp; infinitely&nbsp;&nbsp; nested&nbsp; f/1&nbsp; term&nbsp;
+(see&nbsp; the&nbsp; max_depth&nbsp; option&nbsp; of<br />&nbsp;&nbsp;&nbsp; write_term/2).&nbsp; The second executes&nbsp; logically sound unification and<br />&nbsp;&nbsp;&nbsp; thus&nbsp; fails.&nbsp; Note that the behaviour of unification through&nbsp; =/2 as<br />&nbsp;&nbsp;&nbsp; well&nbsp; as implicit unification in the&nbsp; head can be changed using&nbsp; the<br />&nbsp;&nbsp;&nbsp; Prolog flag occurs_check.<hr style="width: 100%; height: 2px;" /><h3><br /></h3><h3>Arithmetic in Prolog</h3>
+
+
+
+
+<ul>
+
+
+
+  <li> Prolog defines the usual operators for performing arithmetic.</li>
+
+
+
+  
+  
+  
+  <ul>
+
+
+
+    <li> Infix notation can be used to specifying expressions</li>
+
+
+
+    <li> Like list notation , [ ], an expression can be written in <i>standard </i>form</li>
+
+
+
+    <br />
+
+
+
+
+2 + 3 is short hand (syntactic sugar) for + ( 2, 3)<br />
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+  <li> We must explicitly ask an expression to be evaluated.</li>
+
+
+
+  <br />
+
+
+
+  <b><tt>?- X = 2 + 3.</tt></b><br />
+
+
+
+  <b><tt>X = 2 + 3<br />
+
+
+
+  </tt></b>
+  
+  
+  
+  <ul>
+
+
+
+    <i>X &nbsp;<span style="color: rgb(204, 0, 0);">&nbsp;</span><span style="font-weight: bold; color: rgb(204, 0, 0);">unifies with the term</span> </i>2
++ 3<br />
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+  <li> Use <b><i><u>is</u></i> </b>to evaluate an expression:</li>
+
+
+
+  <br />
+
+
+
+  <b><tt>?- X is 2 + 3</tt></b><br />
+
+
+
+  <b><tt>X = 5<br />
+
+
+
+  </tt></b><li> Check the following:</li>
+
+
+
+  <br />
+
+
+
+  <tt>?- X is 2 + 3, X = 2 + 3.</tt><br />
+
+
+
+  <tt>?- X is +(2,3).</tt>
+</ul>
+
+
+
+
+<hr align="left" noshade="noshade" size="1" width="99%" />
+ 
+<h3><b>&nbsp;</b><span style="font-weight: bold;">How can we construct loops in Prolog?</span></h3>
+
+
+
+
+<hr width="100%" />
+
+
+
+<p>Spring, 2006 </p>
+
+
+
+
+<br />
+
+
+
+
+<br />
+
+
+
+
+<br />
+
+
+
+</body></html>

@@ -1,0 +1,140 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="E Head">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="Introduction">
+   <title>Assignment 14 -Prolog 3 Programming</title>
+</head>
+<body text="#000000" bgcolor="#FFFDFF" link="#FF0000" vlink="#990000" alink="#CC0000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+CHANGED FRIDAY Dec 1 2:45</h4>
+
+<h4>
+Homework 14 -----------Due WED, Dec 6 NOON!!!!<br>
+<a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">General
+Submission Instructions,</a> For this assignment put all the code in one
+file called&nbsp;<br>
+<font color="#000099">&lt;lastName>&lt;firstName>3.pl</font><font color="#000000">.&nbsp;
+You will need to turn in a hard copy of the code as well as email the file
+to&nbsp;</font> <a href="mailto:cs471h@binghamton.edu">cs471h@binghamton.edu</a></h4>
+
+<ol>
+<ol>&nbsp;</ol>
+
+<li>
+(Do not turn in this question).&nbsp; Check out these built-in procedures
+(Some may be helpful in the assignment):</li>
+
+<br>see, tell, seen, told, atom, integer, bagof, setof, functor, arg, name,
+help, apropos, var, <font color="#000099">trace, spy</font>,assertz, retract,
+<font color="#3333FF">append,
+=\=, \=</font>,&nbsp; @>, @=&lt;.
+<br>What is the difference between "=" and "==" and "is"?
+<br>From the manual I copy an example:
+<p>functor(?Term, ?Functor, ?Arity)
+<br>&nbsp;&nbsp;&nbsp; Succeeds if Term is a term with functor Functor
+and arity Arity. If Term is a variable it is unified with a new term holding
+only variables. functor/3 silently fails on instantiation faults (13) If
+Term is an atom or number, Functor will be unified with Term and arity
+will be unified with the integer 0 (zero).
+<p>What does <i>name</i> do? Try
+<br><font color="#660000">&nbsp;&nbsp;&nbsp; name(What, "abc").</font>
+<br>&nbsp;&nbsp;&nbsp; <font color="#660000">name(What, "abc 123").</font>
+<br><font color="#660000">&nbsp;&nbsp;&nbsp; name(abc, What).</font>
+<br>What does <i>write </i>do?&nbsp; Try <font color="#660000">write("abc123")</font>.
+<p>There are two excellent sources of information, one using the help predicate
+built into Prolog and the other is the <a href="http://www.swi.psy.uva.nl/projects/SWI-Prolog/Manual/">online
+manual</a></ol>
+<b>&nbsp;Programming:</b>
+<blockquote>
+<ol>
+<li>
+Implement<b><tt> myMerge(+List1, List2, -Result)</tt></b>, that combines
+two sorted list, List1 and List2 into a sorted list, Result.&nbsp; (I used
+cuts to eliminate wrong alternate solutions.)</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+Implement <b><tt>divide (+List, -List1, -List2)</tt></b>, that divides
+List in two parts, List1, List2 of about equal size.</li>
+
+<ol><tt>?- divide([1,2,3], L1, L2).</tt>
+<br><tt>L1 = [1,3] %% or order or elements do not matter for correct solution</tt>
+<br><tt>L2 = [2]</tt>
+<br><tt>yes</tt>
+<br><tt>?- divide([1,2,3,4],L1,L2).</tt>
+<br><tt>L1 = [1,3]</tt>
+<br><tt>L2 = [2,4]</tt>
+<br><tt>yes</tt></ol>
+
+<li>
+Using <b><tt>myMerge</tt></b> and<b><tt> divide </tt></b>implement<b><tt>
+mergesort(+UnsortedList, -SortedList).</tt></b></li>
+
+<br>&nbsp;
+<li>
+Consider the following program:</li>
+
+<ol TYPE=A>&nbsp;
+<br><tt>fill(X,N,L) :- length(L,N), append([X],Lx,L), append(Lx,[X],L).</tt>
+<br>&nbsp;
+<li>
+<tt>(Do not turn in).</tt>If the input <i>X</i> is a term and input <i>N</i>
+is a positive integer, then what will the output <i>L</i>?</li>
+
+<li>
+Write a procedure that does not call any other procedures (than itself)
+and performs the same relation as procedure <i>fill</i> given above.&nbsp;
+Compare the execution time of the two version for various values of <i>N
+.&nbsp; </i>(You may want to write your append and length so you can see
+trace to see the execution steps.)</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Define a predicate <b>countListOccurs( +Elist, +List, -Num)</b> that instantiates
+each element in Num to the number of times each element in Elist occurs
+in the List. You may use <b>countOccurs</b>.&nbsp; (I used cuts to eliminate
+wrong alternate solutions).</li>
+
+<br>?- countListOccurs( [ a, c, p ], [b, v, a, x, a, p, a], Num).
+<br>Num = [3, 0,1]
+<br>&nbsp;
+<li>
+<font color="#993300">Define a predicate append3DL&nbsp; that concatenates
+three difference lists:</font></li>
+
+<br><font color="#993300">&nbsp;&nbsp;&nbsp; <tt>?- append3DL( [z,y|A]
+- A, [x,w | B] -B, [u,v | C] - C, What).</tt></font>
+<br><tt><font color="#993300">&nbsp; What = [z, y, x, w, u, v | _n] - _n</font></tt>
+<br><tt><font color="#993300">&nbsp; yes</font></tt>
+<br>&nbsp;
+<li>
+Define a procedure powerset(+Set,-PowerSet),given a Set, represented by
+a list, it creates the powerset of Set. i.e. <a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell3.lhs">(See
+Haskell hw 3)</a></li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ?- powerset([],X).
+<br>&nbsp;&nbsp;&nbsp;&nbsp; X = [[]]
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ?- powerset([1],X).
+<br>&nbsp;&nbsp;&nbsp;&nbsp; X = [[],[1]]&nbsp; % order of sets not important
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ?- powerset([a,b],P).
+<br>&nbsp;&nbsp;&nbsp;&nbsp; P = [[a,b], [a], [b], []]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+% order of sets not important
+<p>&nbsp;&nbsp;&nbsp;&nbsp; ?- powerset(S,[[a],[b],[a,b],[]]).
+<br>&nbsp;&nbsp;&nbsp;&nbsp; %%%&nbsp; May run out of stack ... YOUr code
+does not need
+<br>&nbsp;&nbsp;&nbsp;&nbsp; %%%&nbsp; to work for this query.
+<br>&nbsp;&nbsp;&nbsp;&nbsp; ?- powerset([a,b],[[a],[b],[a,b],[]]).
+<br>&nbsp;&nbsp;&nbsp;&nbsp; %%%&nbsp; may run out of stack ... YOUr code
+does not need
+<br>&nbsp;&nbsp;&nbsp;&nbsp; %%%&nbsp; to work for this query.
+<br>&nbsp;</ol>
+</blockquote>
+<a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+</body>
+</html>

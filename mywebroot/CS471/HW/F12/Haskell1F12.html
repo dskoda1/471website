@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+  <title>Haskell1F12</title>
+
+  
+</head><body>
+<center>
+<div style="text-align: left;">Due Wed @ end of day::<br>
+<br>
+<h3>Coding problems found in&nbsp; <a href="Haskell1F12.lhs">Haskell1F12.lhs</a></h3>
+
+
+</div>
+</center>
+<h3>Written Question<br>
+</h3>
+1) " A common way to compute the square root is to use
+Newton's
+method of successive approximations. &nbsp; <a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">Newton's
+method says that whenever
+we have a guess <em>y</em> for the value of the square
+root of a
+number <em>x</em>, we can perform a simple manipulation to
+get a
+better guess (one closer to the actual square root) by averaging <em>y</em>
+with <em>x</em>/<em>y</em>. </a>&nbsp;<a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">
+For
+example, we can compute the square root of 2 as follows. Suppose our
+initial guess is 1:</a>
+
+<table cellpadding="3">
+
+  <tbody>
+    <tr>
+      <td align="left">Guess</td>
+      <td align="left">Quotient</td>
+      <td align="left">Average</td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1</td>
+      <td align="left">&nbsp;<img style="border: 0px solid ; width: 44px; height: 49px;" src="Img/img7.gif" alt="${\displaystyle \frac{2}{1} = 2}$" align="middle"></td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(2+1)}{2} = 1.5}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(2+1)}{2} = 1.5}$ --></comment>
+      <img src="Img/img8.gif" alt="${\displaystyle
+\frac{(2+1)}{2} = 1.5}$" align="middle" border="0" height="53" width="96"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.5</td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ --></comment>
+      <img src="Img/img9.gif" alt="${\displaystyle \frac{2}{1.5} = 1.3333}$" align="middle" border="0" height="49" width="93"></td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$ --></comment>
+      <img src="Img/img10.gif" alt="${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$" align="middle" border="0" height="53" width="169"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.4167</td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ --></comment>
+      <img src="Img/img11.gif" alt="${\displaystyle \frac{2}{1.4167} = 1.4118}$" align="middle" border="0" height="49" width="117"></td>
+      <td align="left">&nbsp;<img style="border: 0px solid ; width: 193px; height: 53px;" src="Img/img12.gif" alt="${\displaystyle" align="middle"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.4142</td>
+      <td align="left">...</td>
+      <td align="left">...</td>
+    </tr>
+  </tbody>
+</table>
+
+Continuing this process, we obtain better and better
+approximations to
+the square root. " (From <span style="font-style: italic;">Structure
+and
+Interpretation of Computer Programs</span> by Abelson and
+Sussman).<br>
+
+Using&nbsp; a spreadsheet or calculator apply Newton's method to
+find
+the square root of 144 using an initial guess of
+1.&nbsp;&nbsp;&nbsp; How do
+you know when to stop?&nbsp; How many steps did it take you?<br>
+
+<br>
+</body></html>

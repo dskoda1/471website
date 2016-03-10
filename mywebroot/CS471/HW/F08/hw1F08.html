@@ -1,0 +1,249 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html lang="en-us"><head>
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta content="Eileen Head" name="Author">
+<meta content="Mozilla/4.73 [en] (Win98; U) [Netscape]" name="GENERATOR"><title>CS471 Assignment 1 Basic Notions, History and Language</title></head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 249);" alink="#3333ff" link="#000099" vlink="#000099">
+<center>
+<h3> Programming Languages<br>
+Assignment<i> </i>1</h3>
+<div style="text-align: left;">
+<h3><i>Due: Tuesday,&nbsp;</i> Sept 2 @ midnight.&nbsp;</h3>
+<h4>You will need to turn in a hardcopy (<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">Instructions</a>).
+&nbsp;In addition, all code needs to be zip'd or tar'd and upload
+to blackboard. &nbsp;For
+your convenience hard copy of your homework can be placed in the file
+cabinet before class on Wed. &nbsp;Code uploaded to blackboard
+will be considered late after Sept. 2 @ midnight.<br>
+</h4>
+</div>
+</center>
+<h4><a href="wk1refF08.html" >Links
+for References and Software</a><br>
+</h4>
+<h4>Purpose:&nbsp; </h4>
+To examine the basic notions of programming languages, review the
+history of programming languages, and understand language design
+principles. &nbsp;Start coding simple programs in Python.
+<ol>
+</ol>
+<ol>
+<li>The purpose of this exercise is to compare imperative and
+functional style of coding and code and examine some C style
+issues.&nbsp;&nbsp;</li>
+<ol style="list-style-type: lower-alpha;">
+<li>The following imperative style C function computes the
+number of (decimal)
+digits in an integer.&nbsp;</li>
+<ol>
+<span style="font-family: monospace;">#include
+&lt;stdio.h&gt; <br>
+int&nbsp;
+numdigits(int i</span><span style="font-family: monospace;">)
+{<br>
+&nbsp; int t=i, n = 1; <br>
+&nbsp; while ( t&gt;=10) {<br>
+&nbsp;&nbsp;&nbsp; n++;<br>
+&nbsp; &nbsp; t = t/10;<br>
+&nbsp; }<br>
+&nbsp; return n;<br>
+}<br>
+</span><br>
+</ol>
+What is the purpose of introducing the <span style="font-style: italic;">t </span>variable? What
+does the first comma "," do?<br><br><span style="font-style: italic;"></span>
+<li>Rewrite this function&nbsp;in functional style (i.e.
+eliminate variable declarations and loops and instead use recursive
+function calls and can be just one "if/else" statement). <br>&nbsp;<br></li>
+</ol>
+<li>Examine syntactic design issues by
+writing simple Python scripts and Ruby scripts.</li>
+<ol style="list-style-type: lower-alpha;">
+<li>Rewrite the&nbsp;imperative style C code from problem
+1 using
+Python (see <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/GRAMMAR/PythonS.html">short&nbsp;
+introduction</a> to Python).</li>
+<li>Rewrite the functional style C code using Python.</li>
+<li>Rewrite the imperative&nbsp;C code from problem 1
+using Ruby (see <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/GRAMMAR/RubyS.html">short&nbsp;
+introduction</a> to Ruby).</li>
+<li>Rewrite the functional style C code using Ruby.</li>
+<li>Although Python and Ruby are both scripting language and
+have similar language design&nbsp;goals, they made different design
+choices. Pick a syntactic design which differs between Python and
+Ruby. Discuss&nbsp;which choice :</li><ul><li>you prefer and why</li><li>makes it easier for you to write&nbsp;code and why</li><li>makes it easier for you to read code and why</li></ul>
+</ol>
+</ol>
+<ol start="3">
+
+<li>Given the following properties (attributes) of a variable,
+state which are determined statically&nbsp; and which are determined dynamically&nbsp;<span style="font-weight: bold;">. &nbsp;</span>Also, state which are attributes are static (can not change) and which are dynamic (can be change). Briefly
+explain<span style="font-weight: bold;"> you answer</span>
+</li>
+<ol style="list-style-type: upper-alpha;">
+<ul>
+<li>its value<br></li>
+<li>its data type</li><li>its name</li><li>the memory location of the value associated with the variable</li>
+</ul>
+<li>for C</li>
+<li>for Python</li>
+<li>for Ruby&nbsp;<br>
+</li>
+</ol>
+<li>What does ISO stand for? When was the latest ISO
+specification
+for 'C' approved?&nbsp;
+When was the latest Ansi/ISO specification for 'C++' approved? Does
+Java
+have an ISO specification? Does C# have&nbsp;an ISO specification?
+Does Python have an ISO specification? Does Ruby have an ISO specification?<br>
+&nbsp; <br>
+</li>
+<li>Consider the following <span style="font-weight: bold;">C</span>
+program program with multiple errors which are underlined:<br>
+</li>
+</ol>
+<div style="margin-left: 40px;">
+<dl>
+<dd><span style="font-family: monospace;">#include
+&lt;stdio.h&gt;</span><br style="font-family: monospace;">
+<span style="font-family: monospace;"></span><span style="font-family: monospace;"></span></dd>
+<dd>&nbsp;&nbsp;&nbsp;<span style="font-family: monospace;"> <span style="text-decoration: underline;">int x,y, r#r;</span><br>
+&nbsp; &nbsp;<span style="text-decoration: underline;">int
+arr[10]</span></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;
+<span style="text-decoration: underline;">r#r = 10.99;</span></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;int
+chg(int&nbsp; flag)&nbsp; {</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if <span style="text-decoration: underline;">(flag = 0)</span>
+{</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x
+= 10.99;&nbsp;&nbsp;&nbsp; </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="text-decoration: underline;">arr[10] =
+10.9;</span></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} else {</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="text-decoration: underline;">arr[10] =
+1.9;</span></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;}</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+}</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int main (void){&nbsp; </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="text-decoration: underline;">int default
+= 8;</span></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+printf("Begin:: ");</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="text-decoration: underline;">chg(default);</span></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span style="text-decoration: underline;">chg(next);</span></span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return
+0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+}</span><span style="font-family: monospace;"></span></dd>
+<dd style="font-family: monospace;">}</dd>
+<dt></dt>
+<dt>Label each&nbsp;underline error as either: lexical,
+syntactical, static semantic, dynamic semantic or logical error. <br>
+</dt>
+</dl>
+</div>
+<ol start="6">
+<li>Page 32 exercise 1.1 a-d<br>
+&nbsp; <br>
+</li>
+<li>Page 33 exercise 1.4 (Answer this question for C).
+&nbsp;Write a simple program to
+illustrate
+what happens. How does the answers to this question differ for Python (or Ruby)?<br>
+<br>
+</li>
+<li>Modification of 1.9&nbsp;</li>
+<ol style="list-style-type: lower-alpha;">
+<li>Compile <a href="numdigits.c">numdigits.c</a>
+using gcc with -S command line flag. &nbsp;GCC is available on
+Bingsuns
+and on the machines in the Ubuntu(Linux) classroom.&nbsp;
+&nbsp;Add
+comments to the resulting assembly file (numdigits.s) to explain the
+purpose of each instruction. <br>
+&nbsp;</li>
+</ol>
+<li>[Rosen,<span style="font-style: italic;">Discrete
+Mathematics and Its Applications </span>5th ed., pg 273 #48]
+"Consider the following inductive definition of a
+version of <b>Ackermann's</b> function.&nbsp; This
+function was named
+after <a href="http://www-history.mcs.st-and.ac.uk/history/Mathematicians/Ackermann.html">Wilhelm
+Ackermann</a>, a German mathematician who was a student of the
+great
+mathematician David Hilbert.&nbsp; Ackermann's function plays an
+important role in the theory of recursive functions and in the study
+of
+complexity of certain algorithms involving set unions."&nbsp; In
+the
+early days of&nbsp; imperative languages,&nbsp;Ackermann's
+function was
+used to measure the recursion capability of a compiler. <br>
+<br>
+The Ackermann
+Number N of the compiler as the largest N for which<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ack (3,N) <br>
+gives an answer without a stack overflow. &nbsp;Recently, a
+variation has been used as one of the benchmarks for the <a href="http://shootout.alioth.debian.org/">Computer Language
+Shootout (see recursive)</a>.&nbsp; (There are several different
+variants of this function.&nbsp; All are called Ackermann's
+functions and their values do NOT have to agree!) &nbsp;&nbsp;</li>
+</ol>
+<div style="margin-left: 40px;"><br>
+<table style="width: 600px; height: 89px;">
+<tbody>
+<tr>
+<td style="font-weight: bold;">ack( <i>m,n</i>
+) =</td>
+<td style="font-weight: bold;"><span style="font-style: italic;">n</span> + 1</td>
+<td style="font-weight: bold;">if <i>m</i>
+= 0</td>
+</tr>
+<tr>
+<td style="font-weight: bold;">ack( <i>m,n</i>
+) =&nbsp;</td>
+<td style="font-weight: bold;">ack ( <span style="font-style: italic;">m</span> -1, 1)</td>
+<td style="font-weight: bold;">if <span style="font-style: italic;">n</span> = 0 and&nbsp;<span style="font-style: italic;">m&nbsp;</span>&gt;
+0&nbsp;</td>
+</tr>
+<tr>
+<td style="font-weight: bold;">ack( <i>m,n</i>
+) =</td>
+<td style="font-weight: bold;">ack( <i>m</i>-1,
+ack( <i>m, n</i>-1 ) ) &nbsp; &nbsp; &nbsp;</td>
+<td style="font-weight: bold;">otherwise<span style="font-style: italic;"></span><span style="font-style: italic;"></span></td>
+</tr>
+</tbody>
+</table>
+<br>
+Find the following values of Ackermann's function. &nbsp;Show your
+work.
+<ol style="list-style-type: lower-alpha;">
+<b><b><b> <li> ack(1,0) = ______</li>
+<li> ack(0,3) = ______</li>
+<li> ack(2,1) = ______</li>
+<li>ack(1,2) = ______</li>
+<li>Program this recursive definition of&nbsp;Ackermann's function in Python.
+&nbsp;Find&nbsp;the Ackermann number N for your program.</li>
+<li><b><b><b>Program this recursive definition of Ackermann's function in Ruby. &nbsp;Find&nbsp;the Ackermann number N for your program</b></b></b></li>
+</b></b></b>
+</ol>
+</div>
+<br>
+</body></html>

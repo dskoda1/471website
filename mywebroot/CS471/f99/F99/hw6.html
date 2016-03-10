@@ -1,0 +1,158 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="E Head">
+   <meta name="GENERATOR" content="Mozilla/4.61 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="Types">
+   <title>Programming Languages Assignment#6</title>
+</head>
+<body text="#000000" bgcolor="#F3F3F3" link="#FF0000" vlink="#990000" alink="#CC0000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 6: Due Tue. Oct. 20</h4>
+
+<h4>
+Read Chapters: Chapter 2&amp; 3</h4>
+
+<h4>
+Instructions for posting solutions:</h4>
+
+<ul>
+<li>
+Post Your solutions to the following problems on the web.</li>
+
+<li>
+You may work in groups. BUT the you will not receive for copied solutions.</li>
+
+<li>
+You should post who you work with and credit all sources. YOU will receive
+a zero if you do not do this.</li>
+
+<li>
+Each student is to have their own solutions for each question.</li>
+</ul>
+NOTE: you can update these files as the semester progresses if you find
+errors or better answers.
+<h4>
+Written assignment:</h4>
+
+<ol>
+<li>
+(Sebesta p366) Consider the following program written in C syntax:</li>
+
+<br>&nbsp;&nbsp;&nbsp; void main(){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int value = 1; list[2] =
+{3,5};
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swap(value, list[0] );
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; swap(list[0], list[1]);
+<br>&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp; void swap (int a, int b){
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int temp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; temp = a;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = b;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = temp;
+<br>&nbsp;&nbsp;&nbsp; }
+<p>What are the values of the variables <i>value, list</i>[0]<i>, and list</i>[1]
+after each of the two calls to <i>swap</i>, assuming the parameter are
+<ol TYPE=a>
+<li>
+Passed by value.</li>
+
+<li>
+Passed by reference.</li>
+
+<li>
+Passed by value-result.</li>
+</ol>
+
+<li>
+(Page 170 exercise 5)&nbsp; What is a dangling reference? How can it arise
+during execution? Why is it dangerous?</li>
+
+<br>&nbsp;
+<li>
+(Page 170 exercise 6) Consider the C++ class in Figure 3.4. What happens
+if the size of the array used to store the stack is exceeded by the push
+operation?</li>
+
+<p><br>template&lt;class T> class Stack{
+<br>public:
+<br>&nbsp;&nbsp;&nbsp; Stack(int sz) {top = s= new T[size = sz];}
+<br>&nbsp;&nbsp;&nbsp; ~Stack()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {delete[]
+s;} //destructor
+<br>&nbsp;&nbsp; void push(T el) {*top++ = el;}
+<br>&nbsp;&nbsp; T pop()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{return *--top;}
+<br>&nbsp;&nbsp; int length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{return top -s;} // why not just return size?
+<br>private:
+<br>&nbsp;&nbsp;&nbsp; int size;
+<br>&nbsp;&nbsp;&nbsp; T* pop;
+<br>&nbsp;&nbsp;&nbsp; T* s;
+<br>};
+<br>void foo( ){
+<br>&nbsp;&nbsp;&nbsp; Stack&lt;int> int_st(30);
+<br>&nbsp;&nbsp;&nbsp; Stack&lt;item>i tem_st(100);
+<br>&nbsp;&nbsp;&nbsp; ...
+<br>&nbsp;&nbsp;&nbsp; int_st.push(9);
+<br>&nbsp;&nbsp;&nbsp; ...
+<br>}
+<br>&nbsp;
+<li>
+Page 170 exercise 8 (Substitute Java for Eiffel).Java, unlike C, does not
+provide destructors. What does the language do when an object should be
+destroyed? When does this happen in Java?</li>
+
+<br>&nbsp;
+<li>
+(Page 171 exercist 11) An index check verifies that the index of an array
+is in the bounds declared for the array. Can an index check be performed
+statically? Why? Why not?</li>
+
+<br>&nbsp;
+<li>
+(Page 171 exercist 14) What kind of&nbsp; type compatibility does the typedef
+construct of C introduce?</li>
+
+<br>&nbsp;
+<li>
+(Page 171 exercist 20) In C++, what is the difference between assigning
+a value to a pointer and to a reference?</li>
+
+<br>&nbsp;
+<li>
+In Java, each Object has a method <i>clone</i> that is used for assignment
+to the object.&nbsp; For example a.clone() returns an object&nbsp; the
+values of <i>a.&nbsp;</i> What is the difference between</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+b = a.clone();&nbsp;&nbsp;&nbsp; and&nbsp;&nbsp;&nbsp; b=a;&nbsp;&nbsp;
+?
+<br>&nbsp;</ol>
+
+<br>&nbsp;
+<br>&nbsp;
+<h4>
+Formatting instructions:</h4>
+You may have an "all purpose" homepage for your personal use.&nbsp; This
+is the default homepage which is located in &lt;your acct>/public_html/index.html
+(on bingweb accounts).&nbsp; You should create a file "cs471Index.html"
+which will&nbsp; have links to all your cs471 assignments solutions.&nbsp;
+This page should also include a hyperlink for email!. Your homepage, "index.html",
+should have a link to&nbsp; "cs471Index.html".
+<br>Each assignment document should include
+<ul>
+<li>
+a link back to "cs471Index.html"</li>
+
+<li>
+a hyperlink for email to you</li>
+
+<li>
+the questions as well as you answers</li>
+</ul>
+Oct 9 1999
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+</body>
+</html>

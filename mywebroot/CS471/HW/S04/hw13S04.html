@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Eileen Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <title>last assignment -- not graded</title>
+</head>
+<body style="background-color: rgb(238, 238, 238); color: rgb(0, 0, 0);"
+ link="#0000ee" vlink="#8080c0" alink="#ff0000">
+<span style="font-weight: bold;">This assignment will not be graded.<br>
+<br>
+</span>(From Abelson and Sussman [1985]) It is also possible to express
+the integer
+as lambda abstractions:
+<br>
+<b>zero =<font face="Symbol"> l </font>f&nbsp; .<font face="Symbol">
+l</font> x . x</b>
+<br>
+<b>one =&nbsp;<font face="Symbol"> l</font>f.<font face="Symbol">&nbsp;
+l</font> x ( f x)</b>
+<br>
+<b>two =&nbsp;<font face="Symbol"> l</font> f.<font face="Symbol">
+l</font> x ( f ( f x ))</b>
+<br>
+. . . .
+<p>These are called Church numbers after Alonzo Church.</p>
+<p>Given the following definition of the successor function:
+</p>
+<blockquote><b>successor =<font face="Symbol"> l </font>n.<font
+ face="Symbol">
+l </font>f.<font face="Symbol"> l</font> x ( f (( n f ) x ) ).</b></blockquote>
+&nbsp;&nbsp;&nbsp; show that <br>
+&nbsp;&nbsp;&nbsp; a) (successor zero) = one <br>
+&nbsp; &nbsp; b) (successor
+one)&nbsp; = two
+<br>
+<br>
+2) Finish the module <a href="Set.lhs">Set</a>.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Implement set as an unordered list.&nbsp; You
+should have the following methods:<br>
+<div style="margin-left: 40px;">empty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+, -- Set a&nbsp; -&gt; Bool&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+returns true if empty and false otherwise<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Possible solution given<br>
+memSet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+, -- Ord a =&gt; Set a -&gt; a -&gt; Bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+returns true if e is an element in the set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Possible solution given<br>
+addElement&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; , add an element to the
+Set.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Possible solution given<br>
+makeSet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+, -- Ord a =&gt; [a] -&gt; Set a<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+takes of list and makes a set. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+This method must remove duplicates<br>
+<br>
+&nbsp;subSet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+, -- Ord a =&gt; Set a -&gt; Set a -&gt; Bool <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+subSet a b returns true if a is a subset of b<br>
+<br>
+&nbsp;card&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- Set a -&gt; Int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+returns the number of elements in the set.<br>
+<br>
+Make Set an instance of EQ.<br>
+Make Set an instance of Functor<br>
+<br>
+</div>
+<br>
+3) Add the following function to the <a href="Tree.lhs">Tree.lhs</a>&nbsp;
+module<br>
+<div style="margin-left: 40px;">Define a function inorder :: Ord a
+=&gt; Tree a -&gt; [a] <br>
+Create a list of the items as you traverse the tree inorder.<br>
+<br>
+Define a function preorder :: Ord a =&gt; Tree a -&gt; [a] <br>
+Create a list of the items as you traverse the tree preorder.<br>
+<br>
+Define a function postorder :: Ord a =&gt; Tree a -&gt; [a] <br>
+Create a list of the items as you traverse the tree postorder.<br>
+<br>
+Define a function depth :: Tree a -&gt; Int<br>
+That returns the depth of the tree.&nbsp; (Root has depth 0)<br>
+<br>
+Define an higher-order function foldTree :: (a -&gt; a -&gt; a) -&gt;
+Tree a -&gt; a<br>
+You may use any traversal order.<br>
+<br>
+<div style="margin-left: 40px;"><span style="font-family: monospace;">For
+example:</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; Tree&gt; foldTree (+) t1</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; 26</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; Tree&gt; foldTree (+) t2</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; 23</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; Tree&gt;foldTree max t1</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; 9</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; Tree&gt;foldTree max t2</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; 11</span><br
+ style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; Tree&gt;foldTree max (join
+t1 t2)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp; 11</span><br>
+</div>
+<br>
+<br>
+<br>
+</div>
+</body>
+</html>

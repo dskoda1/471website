@@ -1,0 +1,1340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  <title>Types - Louden Chapter 5</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+  
+  
+  
+  <meta name="author" content="E Head">
+</head>
+
+
+<body>
+
+
+
+
+<div style="text-align: center;">
+<h3>Homework Assignment 6</h3>
+
+
+
+
+</div>
+
+
+<span style="font-weight: bold;">Due in Class Oct 11:</span><br style="font-weight: bold;">
+
+
+<ol>
+
+
+  <li>Given the following Python script draw the memory structure
+after each line in the script is executed.</li>
+
+
+  
+  
+  <dl>
+
+
+    <dd><span style="font-family: monospace;">a = 5<br>
+
+
+
+
+b = [ 1, 2, 3]</span></dd>
+
+
+    <dd><span style="font-family: monospace;">a = [
+b, 1, 2, 3]</span></dd>
+
+
+  
+  
+  </dl>
+
+
+</ol>
+
+
+<br>
+
+
+<br>
+
+
+Due: Monday Oct 17 , 5pm<br>
+
+
+
+
+<h4>Purpose:&nbsp; Explore attributes
+and bindings of variables.&nbsp; Introduction to garbage collecting
+algorithms. Review of operator rules/policies. &nbsp;<br>
+
+
+
+
+</h4>
+
+
+
+
+You can work in teams of 2 people.<br>
+
+
+
+
+<h3>Reading/References:</h3>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Louden: Chapter 5, 8.5.2 and start chapter 6</li>
+
+
+
+
+  <li>Lutz &amp; Ascher: Chapter 5, Chapter 6 (97-103)</li>
+
+
+
+
+</ul>
+
+
+
+
+<h3>Assignment:<br>
+
+
+
+
+</h3>
+
+
+
+
+<ol>
+
+
+
+
+  <li>Write a Python script using the RE module which&nbsp;</li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>reads an ascii file&nbsp;<br>
+
+
+
+
+prints out <br>
+
+
+
+
+&nbsp; &nbsp; the <span style="font-style: italic;">title
+string</span> (the string between &lt;title&gt; tags),
+&nbsp;<br>
+
+
+
+
+&nbsp; &nbsp; the <span style="font-style: italic;">URL</span>
+(the string between the &lt;link&gt; tag) <br>
+
+
+
+
+&nbsp; &nbsp; and the <span style="font-style: italic;">image
+URL</span> in the "empty" image tag ( the resource attribute in
+the &lt;image&gt; tag). <br>
+
+
+
+
+test your script on the <a href="hw6.xml">hw6.xml</a>.&nbsp;</dd>
+
+
+
+
+Do not print out the tags. &nbsp;You should include your Python code and printed output of your program.<br>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+  
+  
+  <dl>
+
+
+    <dd><span style="font-family: monospace;"><br>
+
+
+
+      <br>
+
+
+
+
+      </span></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Rewrite the expressions a&ndash;d below in prefix
+notation. Assume the
+following precedences&nbsp; and associativities for the operators:</li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>
+      
+      
+      
+      <table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
+
+
+
+
+        <tbody>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="vertical-align: top;">Operator<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">Precedence<br>
+
+
+
+
+(3 highest)<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">Associativity<br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">^<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">3<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">right<br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">*<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">2<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">/<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">2<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">+<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">1<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">-<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">1<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+        
+        
+        
+        </tbody>
+      
+      
+      
+      </table>
+
+
+
+
+    </dd>
+
+
+
+
+    <dt>and don't assume that any of the operators are
+commutative.</dt>
+
+
+
+
+    <dt>A simple way to proceed is to perform the rewriting
+process in
+three steps:</dt>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ol>
+
+
+
+
+    <li>Parenthesize the expression fully, using the rules of
+precedence and associativity.</li>
+
+
+
+
+    <li>Within each parenthesized subexpression, move the
+operator to
+left of its left operand.</li>
+
+
+
+
+    <li>Remove the parentheses.</li>
+
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dt>You'll notice that in the resulting expression, the order
+of
+the operands is the same as in original- only the operators change
+positions</dt>
+
+
+
+
+    <dd>
+      
+      
+      
+      <table style="text-align: left;" border="0" cellpadding="5" cellspacing="5">
+
+
+
+
+        <tbody>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="vertical-align: top; font-weight: bold;">a)&nbsp;
+w -&nbsp; x&nbsp; /&nbsp; y&nbsp; *&nbsp; z<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;"><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+b) &nbsp; w&nbsp;
+*&nbsp; (x&nbsp; /&nbsp; y&nbsp; +&nbsp; z) </span><br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="vertical-align: top;"><span style="font-weight: bold;">c)&nbsp; w&nbsp;
+*&nbsp; x&nbsp; ^&nbsp; y&nbsp;
+/&nbsp; z</span><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;"><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+d)&nbsp; w *
+x&nbsp; ^&nbsp; y&nbsp; ^&nbsp; z</span><br>
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+        
+        
+        
+        </tbody>
+      
+      
+      
+      </table>
+
+
+
+
+      <br>
+
+
+
+
+    </dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Using the same assumptions as in exercise 1 rewrite the
+expressions of&nbsp; exercise 1 in&nbsp;</li>
+
+
+
+
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+    <li>postfix
+notation.&nbsp;&nbsp;</li>
+
+
+
+
+    
+
+
+  
+  
+  
+  </ol>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><span style="font-family: monospace;">&nbsp;<br>
+
+
+
+
+      </span></dd>
+
+
+
+
+    <dt></dt>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Modification of exercise 5.1 page 180, <br>
+
+
+
+
+  </li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>
+      
+      
+      
+      <table style="text-align: left; height: 243px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+        <tbody>
+
+
+
+
+          <tr style="font-weight: bold;">
+
+
+
+
+            <td style="vertical-align: top;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; text-align: center;">Attribute<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; text-align: center; width: 157px;">C<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; text-align: center; width: 154px;">C++</td>
+
+
+
+
+            <td style="vertical-align: top; text-align: center; width: 154px;">Java<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; width: 193px;">Python</td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr style="font-weight: bold;">
+
+
+
+
+            <td style="vertical-align: top; text-align: center;">a<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">range of
+values of an
+int&nbsp;&nbsp;&nbsp; <br>
+
+
+
+
+            <br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 157px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <br>
+
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;">&nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;">&nbsp;
+&nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="width: 193px;"></td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr style="font-weight: bold;">
+
+
+
+
+            <td style="vertical-align: top; text-align: center;">b<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">The meaning
+of char<br>
+
+
+
+
+            <br>
+
+
+
+
+            <br>
+
+
+
+
+            <br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 157px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="width: 193px;"></td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr style="font-weight: bold;">
+
+
+
+
+            <td style="vertical-align: top; text-align: center;">c<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">The size of a
+local array
+variable<br>
+
+
+
+
+(C/C++ automatic array)<br>
+
+
+
+
+(Java local array)<br>
+
+
+
+
+            <br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 157px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="width: 193px;"></td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="vertical-align: top; text-align: center;"><span style="font-weight: bold;">d</span><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;"><span style="font-weight: bold;">The location of a local variable<br>
+
+
+
+
+            </span>(C/C++ automatic array)<br>
+
+
+
+
+(Java local array)<span style="font-weight: bold;"><br>
+
+
+
+
+            <br>
+
+
+
+
+            </span> </td>
+
+
+
+
+            <td style="vertical-align: top; width: 157px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="width: 193px;"></td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr style="font-weight: bold;">
+
+
+
+
+            <td style="vertical-align: top; text-align: center;">e<br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">The value of
+a constant<br>
+
+
+
+
+            <br>
+
+
+
+
+            <br>
+
+
+
+
+            <br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 157px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top; width: 154px;"><br>
+
+
+
+
+            </td>
+
+
+
+
+            <td style="width: 193px;"></td>
+
+
+
+
+          </tr>
+
+
+
+
+        
+        
+        
+        </tbody>
+      
+      
+      
+      </table>
+
+
+
+
+    </dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <br>
+
+
+
+
+  <li>page 180 exercise 5.7</li>
+
+
+
+
+  <li>page 181 exercise 5.8</li>
+
+
+
+
+  <li>page 183 exercise 5.16</li>
+
+
+
+
+  <li>page 183 exercise 5.17 (Do both Java and C++ only).</li>
+
+
+
+
+</ol>
+
+
+
+
+<br>
+
+
+
+
+</body>
+</html>

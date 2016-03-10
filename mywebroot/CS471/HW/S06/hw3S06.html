@@ -1,0 +1,871 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+
+
+
+
+
+  
+  
+  
+  
+  
+  <title>CS471 Assignment 3:</title>
+</head>
+
+
+<body>
+
+
+
+
+
+<center>
+<h3> Programming Languages<br />
+
+
+
+
+
+Assignment<i>&nbsp;</i>3</h3>
+
+
+
+
+
+<div style="text-align: left;">
+<h3>Due during class, Mon., Feb. 6:</h3>
+
+
+
+
+
+<span style="color: rgb(0, 102, 0);"></span><span style="font-weight: bold;">Read section 11.3.2 in Louden<br />
+
+
+</span>&nbsp;Make sure you can answer the following:<br />
+
+
+<span style="font-weight: bold;"></span><br />
+
+
+
+
+
+<ol>
+
+
+
+
+
+  <li>Write a procedure <span style="font-style: italic;">insert</span>(<span style="font-style: italic;">+Value</span>,+<span style="font-style: italic;">InSortedList,</span>-<span style="font-style: italic;">OutSortedList</span>),
+which insert Value
+into the correct position of InSortedList and the result is
+OutSortedList. &nbsp;This will be recursive definition.
+&nbsp;You will
+use this predicate in InsertionSort. &nbsp;For example:<br />
+
+
+
+    <span style="font-family: monospace;">?-
+insert(3, [2,4,6],Out).</span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">Out
+= [2, 3, 4, 6] </span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">Yes</span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">?-
+insert(3,[2,3,4,5],Out).</span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">Out
+= [2, 3, 3, 4, 5] </span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">Yes</span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">?-
+insert(3,[1,2],Out).</span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">Out
+= [1, 2, 3] </span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">Yes</span><span style="font-family: monospace;"><br />
+
+
+?-&nbsp; insert(77,[1, 2, 2, 3, 3, 5, 5, 6,6,7,7,7,7,9],X).<br />
+
+
+X = [1, 2, 2, 3, 3, 5, 5, 6, 6|...]&nbsp;<br />
+
+
+    <br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">Note:
+to display the entire
+list, after</span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">&nbsp; &nbsp;</span></span><span style="font-family: monospace;">X = [1, 2, 2, 3, 3, 5, 5, 6, 6|...]</span><span style="font-family: monospace;"><span style="color: rgb(0, 0, 0);"> </span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">type
+w. You will then see </span>}<br />
+
+
+&nbsp; &nbsp; X = [1, 2, 2, 3, 3, 5, 5, 6, 6|...] w<br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">&nbsp; &nbsp; </span></span><span style="font-family: monospace;">X = [1, 2, 2, 3, 3, 5, 5, 6, 6, 7, 7, 7, 7, 9, 77]&nbsp;</span></li>
+
+
+  <li>What is the runtime implementation of lists in Prolog? &nbsp;(i.e. What goes on underneath the hood?)<br style="color: rgb(0, 0, 0);" />
+
+
+    <span style="font-family: monospace;">
+
+
+    <br />
+
+
+
+
+
+    </span></li>
+
+
+
+
+
+  
+</ol>
+
+
+
+
+
+<h3>Due Wed. Feb. 8, in class</h3>
+
+
+
+
+<span style="font-weight: bold;">Read section 11.3.2 in Louden</span>
+<ol>
+
+
+
+
+
+  <li>&nbsp;Define a clause &nbsp; <span style="font-style: italic; font-weight: bold;">append</span>3<span style="font-style: italic; font-weight: bold;">DL</span>&nbsp;
+that
+concatenates three difference lists:<br />
+
+
+
+
+
+&nbsp; &nbsp;<span style="font-family: monospace;"> &nbsp;?-
+append3DL(
+[z,y|A] - A, [x,w | B] -B, [u,v | C] - C, What).</span><br style="font-family: monospace;" />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; What = [z, y,
+x, w, u, v | _n] - _n</span><br style="font-family: monospace;" />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; yes</span></li>
+
+
+
+
+
+  <li>Define a clause <span style="font-style: italic; font-weight: bold;">simp</span>(<span style="font-style: italic;">Var, Value, Vars</span>)
+that given a list
+Vars of variables and their values unifies the Value with the current
+value of Var. &nbsp;Vars has the form [x/5, y/10], where x is an
+atomic
+representing a variable and '/' is the separator for the associated
+numerical value. &nbsp;{Hint try using member and pattern matching}<span style="font-style: italic;"> {Include this rule in
+problem 6 below.}<br />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+?- Vars=[x/5, y/10],
+simp(x,VX,Vars), simp(y,VY,Vars).</span><br style="font-family: monospace;" />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+Vars = [x/5, y/10]</span><br style="font-family: monospace;" />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+VX = 5</span><br style="font-family: monospace;" />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+VY = 10 </span><br style="font-family: monospace;" />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+Yes</span></span></li>
+
+
+
+
+
+</ol>
+
+
+
+
+
+</div>
+
+
+
+
+
+<div style="text-align: left;">
+<h3><i>Due: </i>Midnight Sat. &nbsp;Feb. 11</h3>
+
+
+
+
+
+</div>
+
+
+
+
+
+</center>
+
+
+
+
+
+Create a file &nbsp;named, XYZas3.pl, where XYZ is your last name.
+&nbsp;You should have a comment with each problem number in this
+assignment. &nbsp;You should include comments about any known
+problem
+with your code solution. &nbsp;Your code solution should follow
+each
+problem's (group of) comment (s).<br />
+
+
+
+
+<br />
+
+
+
+
+The purpose of this assignment is to 
+<ul>
+
+
+
+
+  <li>reinforce recursion and programming with lists</li>
+
+
+
+
+  <li>the strength of the built-in pattern matching algorithm, unification, in solving problems</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a><br />
+
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a><br />
+
+
+
+
+
+<a href="http://dingo.sbs.arizona.edu/%7Esandiway/ling388n/lecture6.ppt">Lecture
+on Regular Expressions and Prolog</a><br />
+
+
+
+
+
+<br />
+
+
+
+
+
+<ol>
+
+
+
+
+  <li>Implement&nbsp;the
+insertion sort algorithm in Prolog. Name the
+procedure <span style="font-style: italic;">insertionsort</span>
+(<span style="font-style: italic;">+Unsorted, </span>-<span style="font-style: italic;">Sorted</span>).
+You should replace the
+'while' loop with an <span style="font-style: italic;">insert</span>/3
+predicate. &nbsp;Both <span style="font-style: italic; color: rgb(0, 0, 0);">insertionsort and insert</span><span style="color: rgb(0, 0, 0);"> will require&nbsp; 2
+clauses each</span>!. &nbsp;<a href="http://en.wikipedia.org/wiki/Insertion_sort">Here
+(http://en.wikipedia.org/wiki/Insertion_sort)</a>&nbsp;
+is a description of the algorithm. &nbsp;You will find it helpful
+to
+convert
+the pseudocode from iterative form to a recursive form. &nbsp;The
+first
+argument will be an unsorted list and the second argument will be the
+Sorted output. &nbsp;</li>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+    <dd><span style="font-family: monospace;">?-
+insertsort([1,25,4,3,4,9,0,2],Sorted).</span><br style="font-family: monospace;" />
+
+
+
+
+
+      <span style="font-family: monospace;">Sorted = [0, 1, 2, 3, 4, 4,
+9, 25]</span><br style="font-family: monospace;" />
+
+
+
+
+
+      <span style="font-family: monospace;">Yes<br />
+
+
+
+
+      </span></dd>
+
+
+
+
+
+  
+  
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Construct a recursive Prolog program for the 'product' predicate,
+which takes two lists and outputs the product of two lists. &nbsp;For
+example, the goal</li>
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>...?- product([1,2],[a,b,c]. P).</dd>
+
+
+
+
+    <dt>returns P = [[1,a], [1,b], [1.c], [2,a], [2,b], [2,c]]. &nbsp;Try a few test with variables in different positions.<br />
+
+
+
+      <br />
+
+
+
+
+    </dt>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Write a procedure sumLtoR(+L,?S). which is simular to
+sumRtoL(+L,?S) (hw2p7), except that sumLtoR each element is the sum of
+an addition element of L, starting with the first value.<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; e.g.<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?-&nbsp; sumLtoR([2,3,4,5,6],S).<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S = [2, 5, 9, 14, 20] <br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes<br />
+
+
+
+&nbsp;&nbsp; </li>
+
+
+
+
+  
+  <li>Using <a href="http://www.csupomona.edu/%7Ejrfisher/www/prolog_tutorial/2_14.html">J. R. Fisher's DFA Prolog example</a>
+(http://www.csupomona.edu/~jrfisher/www/prolog_tutorial/2_14.html)as a
+model, define a Prolog parser/acceptor for the regular language
+described by the RE, (a*ba*)(ba*ba*)* &nbsp;(i.e. an odd number of b's). &nbsp;(Hint: The dfa needs only 2 states.)<br />
+
+
+
+
+
+    <br />
+
+
+
+
+
+  </li>
+
+
+
+
+
+  <li>What a predicate called <span style="font-style: italic;">sumAll</span>(<span style="font-style: italic;">LstOfLstsofNo, Sum</span>)
+which succeeds when&nbsp;<span style="font-style: italic;">sum</span> is the total sum of all the values of numbers in arbitrary nested
+list of lists, LstOfLstsofNo. &nbsp;e.g. &nbsp;<br />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp; &nbsp; ?- sumAll([1,[2,3,[4,5],6],1],Sum).<br />
+
+
+&nbsp; &nbsp; Sum = 22 <br />
+
+
+&nbsp; &nbsp; Yes<br />
+
+
+&nbsp; &nbsp; ?-&nbsp;sumAll([1,[2,3],[[4,5],6,1]],Sum).<br />
+
+
+&nbsp; &nbsp; Yes <br />
+
+
+&nbsp; &nbsp; ?- sumAll([[],1,[2,3],[[4,5],[],6,1]],Sum).<br />
+
+
+&nbsp; &nbsp; Sum = 22 <br />
+
+
+&nbsp; &nbsp; yes<br />
+
+
+    <br />
+
+
+
+
+    </span> </li>
+
+
+
+
+
+  <li>Write a predicate called <span style="font-style: italic;">reduce</span>(<span style="font-style: italic;"> Expr, Value</span>)
+which reduces a
+numerical Expr to its value. &nbsp;You should only need <span style="font-style: italic;">is</span>,
+pattern matching and recursion.
+&nbsp;The following rule will be the base case. &nbsp;<span style="color: rgb(0, 0, 0);">Since +,* and - have special meaning
+for the predicate 'is', atoms are used to represent the corresponding operator.
+&nbsp;Operations are in prefix notation.</span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="font-family: monospace; color: rgb(0, 0, 0);">&nbsp;
+&nbsp;
+&nbsp;reduce(N,N):-number(N).</span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">
+Here are two test queries:&nbsp;</span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="font-family: monospace; color: rgb(0, 0, 0);">&nbsp;
+&nbsp; ?- reduce(times(3,plus(5,times(minus(
+4,2),3))), Value).</span><br style="font-family: monospace; color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="font-family: monospace; color: rgb(0, 0, 0);">&nbsp;
+&nbsp; Value = 33 </span><br style="font-family: monospace; color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="font-family: monospace; color: rgb(0, 0, 0);">&nbsp;
+&nbsp; Yes</span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="font-family: monospace; color: rgb(0, 0, 0);">&nbsp;
+&nbsp; ?- reduce( times(3, plus(5 , times( minus( 4.5,2), 3))), Value).</span><br style="font-family: monospace; color: rgb(0, 0, 0);" />
+
+
+
+
+
+    <span style="font-family: monospace; color: rgb(0, 0, 0);">&nbsp;
+&nbsp; Value = 37.5 </span><br />
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; Yes</span>&nbsp;
+&nbsp;<br />
+
+
+
+
+    <br />
+
+
+
+
+&nbsp;<br />
+
+
+
+
+
+  </li>
+
+
+
+
+
+  <li><span style="font-family: monospace;"></span>Design and test 'memberSeq(E,Seq)' that succeeds if E is an element of the sequence, Seq. You should assume Seq is not empty<span style="font-family: monospace;">.&nbsp; e.g.<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- memberSeq(a,(1,2,3,a,4,5)).<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?-&nbsp; memberSeq(a,X).<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; X = a;<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; X = a, _G198 ;<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; X = _G197, a ;<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; X = _G197, a, _G201 <br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?-memberSeq(a,(a)).<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes<br />
+
+
+
+    </span></li>
+
+
+
+  <li>Design and test , 'seqAppend(SeqA, SeqB, Seq)' which is intended
+to produce a sequence Seq. Seq has all the elements of SeqA followed by
+all the elements of SeqB.&nbsp; Remember that the smallest sequence has
+ONE element. e.g.<span style="font-family: monospace;"><br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?- seqAppend((1,4,7,5),(a,z,w),A).<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A = 1, 4, 7, 5, a, z, w <br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Yes<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ?-&nbsp; seqAppend(A,B,(1,4,7,5,a,z,w)).<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A = 1, 4, 7, 5, a, z<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B = w ;<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A = 1, 4, 7, 5, a<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; B = z, w ;<br />
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</span></li>
+
+
+
+  <li>&nbsp;Test and design 'reverseSeq(Seq,RSeq)' such that RSeq is
+a sequence where the elements are in reverse order of the sequence,
+Seq.&nbsp; (Hint: order of clauses matter.) e.g.&nbsp;<br />
+
+
+    <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp;?-&nbsp; reverseSeq((a,b,c,d,e),R).</span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; R = e, d, c, b, a </span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; Yes</span></li>
+
+
+  <li><span style="font-style: italic;"></span><span style="font-style: italic;"></span>A binary tree is either a <span style="font-style: italic;">node</span> structure or an <span style="font-style: italic;">empty</span> atom. &nbsp;<span style="font-style: italic;">node</span> is a triple, node(Value,Ltree,Rtree).
+&nbsp; Below are a list of clauses representing different binary search
+trees. &nbsp;(Assume unique values, BST is a binary tree if the value
+at the node is greater than all the&nbsp;values&nbsp; in the left
+subtree and less than all the values in the right subtree.)</li>
+
+
+</ol>
+
+
+<dl>
+
+
+  <dd><span style="font-family: monospace;">tree1(node(33,empty,empty)).
+    </span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">tree2(node(33,node(22,empty,empty),empty)).
+    </span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">tree3(node(3,node(2,empty,empty),node(10,node(5,empty,empty),empty))).
+    </span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">tree4(node(10, node(5, node(1,empty,empty), node(8,empty,empty)), node(13,empty,empty))).
+    </span><br style="font-family: monospace;" />
+
+
+    <span style="font-family: monospace;">tree5(node(15,L,R)):-tree4(L),tree2(R).<br />
+
+
+    </span></dd>
+
+
+  <dd><br />
+
+
+Write a procedure, <span style="font-style: italic;">memberBST</span>,
+such that memberBST(E,BSTree) succeeds if E is an element in the
+BSTree. &nbsp;You may assume that BSTree is always a binary search
+tree. You can use the following querys to test your procedure:<br />
+
+
+    <span style="font-family: monospace;">?- tree4(T),memberBST(8,T).<br />
+
+
+T = node(10, node(5, node(1, empty, empty), node(8, empty, empty)), node(13, empty, empty)) <br />
+
+
+Yes<br />
+
+
+?-&nbsp; tree4(T),memberBST(1,T).<br />
+
+
+T = node(10, node(5, node(1, empty, empty), node(8, empty, empty)), node(13, empty, empty)) <br />
+
+
+Yes<br />
+
+
+?- tree4(T),memberBST(11,T).<br />
+
+
+No</span></dd>
+
+
+  <dd><span style="font-family: monospace;"></span><br />
+
+
+  </dd>
+
+
+  <dt></dt>
+
+
+  <dt></dt>
+
+
+</dl>
+
+
+<ol>
+
+
+
+
+
+</ol>
+
+
+
+
+
+</body>
+</html>

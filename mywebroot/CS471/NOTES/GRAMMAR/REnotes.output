@@ -1,0 +1,267 @@
+Example by Eileen Head
+['2005-May.txt', 'test1.py', 'ideas.txt', 'rss.xml', 'tst1.py', 'hwRE.py', 'REnotes.py', 'pepper.txt', 'daves.py', 'Python.html', 'hzTree.py', 'hw.py', 'Liz', 'xml_validator.py', 'listtst.py', 'fib.py', 'coroutine.py', 'TreeModule.py', 'createTree.py', 'iterators.py', 'F06', 'UsingTrees.py', 'UsingTreesANSWER.py', 'TreeModuleAnswer.py', 'ackF06.py']
+99: Delivered-To: gnome-devel-list@gnome.org
+198: Received: from localhost (localhost [127.0.0.1])
+297: X-Mailman-Version: 2.1.5
+396: Date: Fri, 06 May 2005 18:33:03 +0200
+495: > forward. I'll try - of course - to be of as much help as possible to the
+594: X-Original-To: gnome-devel-list@gnome.org
+693: which downgrades its security credentials upon search.  Postfix
+792: Content-Transfer-Encoding: 8bit
+891: f
+990: Received: from localhost (unknown [127.0.0.1])
+search
+3
+search
+0
+match
+0
+selection set
+2
+alternatives
+3
+word boundary
+pattern begins with word boundary 2
+pattern ends with word boundary 2
+Extracting substrings
+('0', '1', '2')
+0
+1 2
+A0B1C2
+('A', 'Y', 'C')
+A Y C
+AYCD
+70: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+231: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+304: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+413: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+477: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+545: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+659: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+745: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+804: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+878: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+959: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+1045: List-Help: <mailto:gnome-devel-list-request@gnome.org?subject=help>
+4$ rbutcher@hyenainternet.com
+9$ gnome-devel-list@gnome.org
+12$ gnome-devel-list@gnome.org
+17$ gnome-devel-list@gnome.org
+23$ gnome-devel-list@gnome.org
+24$ 42743075.6080808@hyenainternet.com
+29$ rbutcher@hyenainternet.com
+34$ gnome-devel-list@gnome.org
+37$ gnome-devel-list@gnome.org
+42$ gnome-devel-list@gnome.org
+48$ gnome-devel-list@gnome.org
+49$ 42743762.2080306@hyenainternet.com
+51$ rbutcher@hyenainternet.com
+56$ 42742E87.4020401@hyenainternet.com
+57$ 42742E87.4020401@hyenainternet.com
+69$ mailto:gnome-devel-list@gnome.org
+97$ rbutcher@hyenainternet.com
+102$ gnome-devel-list@gnome.org
+105$ gnome-devel-list@gnome.org
+110$ gnome-devel-list@gnome.org
+116$ gnome-devel-list@gnome.org
+117$ 42747795.5050103@hyenainternet.com
+121$ julien.gilli@gmail.com
+126$ gnome-devel-list@gnome.org
+129$ gnome-devel-list@gnome.org
+133$ gnome-devel-list@gnome.org
+135$ gnome-devel-list@gnome.org
+142$ bbad6ebb0505010208414566d5@mail.gmail.com
+145$ rbutcher@hyenainternet.com
+146$ gnome-devel-list@gnome.org
+190$ gnome-devel-list@gnome.org
+193$ gnome-devel-list@gnome.org
+197$ gnome-devel-list@gnome.org
+209$ 177e83dd05042903127046f12e@mail.gmail.com
+210$ 1114727850.9999.3.camel@tom.tomaw.org
+211$ 177e83dd05042903127046f12e@mail.gmail.com
+230$ mailto:gnome-devel-list@gnome.org
+237$ tom@tomaw.org
+256$ gjc@inescporto.pt> <gustavo@users.sourceforge.net
+260$ rbutcher@hyenainternet.com
+265$ gnome-devel-list@gnome.org
+268$ gnome-devel-list@gnome.org
+273$ gnome-devel-list@gnome.org
+279$ gnome-devel-list@gnome.org
+280$ 4279778A.9000403@hyenainternet.com
+282$ rbutcher@hyenainternet.com
+287$ 426A01EA.6040003@hyenainternet.com
+289$ 42747795.5050103@hyenainternet.com
+303$ mailto:gnome-devel-list@gnome.org
+322$ rbutcher@hyenainternet.com
+323$ gnome-devel-list@gnome.org
+369$ jaka@gnu.org
+393$ jaka@gnu.org
+394$ gnome-list@gnome.org
+412$ mailto:gnome-devel-list@gnome.org
+442$ gekker@novell.com
+456$ gekker@novell.com
+457$ jaka@gnu.org
+467$ gnome-list@gnome.org
+476$ mailto:gnome-devel-list@gnome.org
+512$ gnome-devel-list@gnome.org
+515$ gnome-devel-list@gnome.org
+519$ gnome-devel-list@gnome.org
+544$ mailto:gnome-devel-list@gnome.org
+574$ jean.brefort@normalesup.org
+579$ gnome-devel-list@gnome.org
+582$ gnome-devel-list@gnome.org
+586$ gnome-devel-list@gnome.org
+598$ gnome-devel-list@gnome.org
+601$ gnome-devel-list@gnome.org
+605$ gnome-devel-list@gnome.org
+612$ jean.brefort@normalesup.org
+617$ gnome-devel-list@gnome.org
+620$ gnome-devel-list@gnome.org
+624$ gnome-devel-list@gnome.org
+632$ rudd-o@amautacorp.com
+633$ joeshaw@novell.com
+634$ 1114572766.414.13.camel@cayman.local.joeshaw.org
+636$ 1112814433.3224.84.camel@platitude.boston.ximian.com
+638$ 1114556512.8304.2.camel@platitude.boston.ximian.com
+640$ 1114572766.414.13.camel@cayman.local.joeshaw.org
+658$ mailto:gnome-devel-list@gnome.org
+699$ rudd-o@amautacorp.com
+702$ joeshaw@novell.com
+707$ gnome-devel-list@gnome.org
+710$ gnome-devel-list@gnome.org
+714$ gnome-devel-list@gnome.org
+718$ joeshaw@novell.com
+719$ rudd-o@amautacorp.com
+722$ 1112814433.3224.84.camel@platitude.boston.ximian.com
+724$ 1114556512.8304.2.camel@platitude.boston.ximian.com
+726$ 1114572766.414.13.camel@cayman.local.joeshaw.org
+730$ 1115763275.14245.14.camel@cairn.local.joeshaw.org
+744$ mailto:gnome-devel-list@gnome.org
+773$ gnome-devel-list@gnome.org
+776$ gnome-devel-list@gnome.org
+781$ gnome-devel-list@gnome.org
+783$ 20050511140421.83740.qmail@web26208.mail.ukl.yahoo.com
+788$ lming_44@163.com
+803$ mailto:gnome-devel-list@gnome.org
+811$ lming_44@163.com
+837$ gnome-devel-list@gnome.org
+840$ gnome-devel-list@gnome.org
+844$ gnome-devel-list@gnome.org
+847$ gnome-devel-list@gnome.org
+856$ 1112814433.3224.84.camel@platitude.boston.ximian.com
+858$ 1114556512.8304.2.camel@platitude.boston.ximian.com
+860$ 1114572766.414.13.camel@cayman.local.joeshaw.org
+877$ mailto:gnome-devel-list@gnome.org
+911$ behdad@cs.toronto.edu
+916$ gnome-devel-list@gnome.org
+919$ gnome-devel-list@gnome.org
+923$ gnome-devel-list@gnome.org
+933$ behdad@cs.toronto.edu
+939$ 1112814433.3224.84.camel@platitude.boston.ximian.com
+941$ 1114556512.8304.2.camel@platitude.boston.ximian.com
+943$ 1114572766.414.13.camel@cayman.local.joeshaw.org
+958$ mailto:gnome-devel-list@gnome.org
+992$ gnome-devel-list@gnome.org
+995$ gnome-devel-list@gnome.org
+1000$ gnome-devel-list@gnome.org
+1007$ jean@schurger.org
+1012$ gnome-devel-list@gnome.org
+1015$ gnome-devel-list@gnome.org
+1019$ gnome-devel-list@gnome.org
+1023$ jean@schurger.org
+1024$ lming_44@163.com
+1025$ 4281DAF7.8070606@163.com
+1026$ 4281DAF7.8070606@163.com
+1035$ gnome-devel-list@gnome.org
+1044$ mailto:gnome-devel-list@gnome.org
+185$ gjc@inescporto.pt
+207$ gjc@inescporto.pt
+256$ gjc@inescporto.pt
+507$ asdlinux@yahoo.se
+525$ asdlinux@yahoo.se
+534$ 200505092104.04073.asdlinux@yahoo.se
+593$ asdlinux@yahoo.se
+768$ carlos_garnacho@yahoo.es
+787$ carlos_garnacho@yahoo.es
+832$ prw@ceiriog1.demon.co.uk
+852$ prw@ceiriog1.demon.co.uk
+865$ 1115919992.7864.6.camel@ceiriog1.demon.co.uk
+935$ prw@ceiriog1.demon.co.uk
+936$ 1115919992.7864.6.camel@ceiriog1.demon.co.uk
+937$ Pine.LNX.4.58.0505121504230.18518@epoch.cs
+945$ 1115919992.7864.6.camel@ceiriog1.demon.co.uk
+987$ fld@informatik.uni-bremen.de
+Mail addresses that appear with the mailto: attribute
+67 gnome-devel-list-request@gnome.org
+69 gnome-devel-list@gnome.org
+70 gnome-devel-list-request@gnome.org
+72 gnome-devel-list-request@gnome.org
+228 gnome-devel-list-request@gnome.org
+230 gnome-devel-list@gnome.org
+231 gnome-devel-list-request@gnome.org
+233 gnome-devel-list-request@gnome.org
+301 gnome-devel-list-request@gnome.org
+303 gnome-devel-list@gnome.org
+304 gnome-devel-list-request@gnome.org
+306 gnome-devel-list-request@gnome.org
+410 gnome-devel-list-request@gnome.org
+412 gnome-devel-list@gnome.org
+413 gnome-devel-list-request@gnome.org
+415 gnome-devel-list-request@gnome.org
+474 gnome-devel-list-request@gnome.org
+476 gnome-devel-list@gnome.org
+477 gnome-devel-list-request@gnome.org
+479 gnome-devel-list-request@gnome.org
+542 gnome-devel-list-request@gnome.org
+544 gnome-devel-list@gnome.org
+545 gnome-devel-list-request@gnome.org
+547 gnome-devel-list-request@gnome.org
+656 gnome-devel-list-request@gnome.org
+658 gnome-devel-list@gnome.org
+659 gnome-devel-list-request@gnome.org
+661 gnome-devel-list-request@gnome.org
+742 gnome-devel-list-request@gnome.org
+744 gnome-devel-list@gnome.org
+745 gnome-devel-list-request@gnome.org
+747 gnome-devel-list-request@gnome.org
+801 gnome-devel-list-request@gnome.org
+803 gnome-devel-list@gnome.org
+804 gnome-devel-list-request@gnome.org
+806 gnome-devel-list-request@gnome.org
+875 gnome-devel-list-request@gnome.org
+877 gnome-devel-list@gnome.org
+878 gnome-devel-list-request@gnome.org
+880 gnome-devel-list-request@gnome.org
+956 gnome-devel-list-request@gnome.org
+958 gnome-devel-list@gnome.org
+959 gnome-devel-list-request@gnome.org
+961 gnome-devel-list-request@gnome.org
+1042 gnome-devel-list-request@gnome.org
+1044 gnome-devel-list@gnome.org
+1045 gnome-devel-list-request@gnome.org
+1047 gnome-devel-list-request@gnome.org
+Mail addresses that appear with the mailto: attribute and Subject = Help
+70: gnome-devel-list-request@gnome.org
+231: gnome-devel-list-request@gnome.org
+304: gnome-devel-list-request@gnome.org
+413: gnome-devel-list-request@gnome.org
+477: gnome-devel-list-request@gnome.org
+545: gnome-devel-list-request@gnome.org
+659: gnome-devel-list-request@gnome.org
+745: gnome-devel-list-request@gnome.org
+804: gnome-devel-list-request@gnome.org
+878: gnome-devel-list-request@gnome.org
+959: gnome-devel-list-request@gnome.org
+1045: gnome-devel-list-request@gnome.org
+
+Mail addresses that appear in a line that begins with 'from' and has 'May'
+184: gjc@inescporto.pt 
+506: asdlinux@yahoo.se 
+592: asdlinux@yahoo.se 
+767: carlos_garnacho@yahoo.es 
+831: prw@ceiriog1.demon.co.uk 
+986: fld@informatik.uni-bremen.de 
+34
+in myPrt
+ gjc@inescporto.pt 
+>>> 

@@ -1,0 +1,546 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head and Les Lander">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Haskell - List comprehension</title>
+</head>
+<body>
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/12Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/13Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Haskell 3</h3></center>
+
+<center>
+<h4>
+&copy; Eileen Head, Leslie C. Lander, 2000</h4></center>
+
+<h4>
+Propose:&nbsp; To examine lists and modules in greater details. To illustrate
+a practical application lazy evaluation.</h4>
+<a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Notes1.lhs</a>
+has codes presented in these notes as well as other examples.
+<center>
+<h4>
+
+<hr WIDTH="100%"></h4></center>
+
+<h3>
+List comprehension</h3>
+
+<ul>
+<pre>[&lt;expr> | &lt;generators>, &lt;filters>]</pre>
+denotes a finite or infinite list,
+<pre>...> [(n,n) | n &lt;- [2,4..10]]
+[(2,2),(4,4),(6,6),(8,8),(10,10)]</pre>
+
+<li>
+The symbol "&lt;-" reads as "belongs to" "x &lt;- xs"&nbsp; is called the
+generator.</li>
+
+<pre>...> [n*n | n &lt;- [1,4..]]
+[1,16,49,100,169,256,361...
+&lt;interrupted></pre>
+</ul>
+
+<h3>
+Example</h3>
+
+<ul>
+<pre>...>[(x,y) |x&lt;-[1..3],y&lt;-[3,7]]
+[(1,3),(1,7),(2,3),(2,7),(3,3),(3,7)]</pre>
+
+<pre>...>[(+) x y |x&lt;-[1..3],y&lt;-[3,7]]
+[4,8,5,9,6,10]</pre>
+
+<li>
+The second example would be more complicated without list comprehensions</li>
+
+<pre>>&nbsp;&nbsp; addLists::[Int]->[Int]->[Int]</pre>
+
+<pre>>&nbsp;&nbsp; addLists list1 [] = []
+>&nbsp;&nbsp; addLists list1 (a:x) = addListElem list1 a ++ addLists list1 x</pre>
+
+<pre>>&nbsp;&nbsp; addListElem [] a = []
+>&nbsp;&nbsp; addListElem (b:x) a = (b+a):addListElem x a</pre>
+
+<li>
+A third example illustrating that list comprehension is simply "syntactic
+sugar" for a combination of applications of the functions, concat, map
+and filter. For instance</li>
+
+<br><tt>> [(x,y)| x &lt;- [1 .. 6], y &lt;- [1 .. x], x+y &lt; 10]</tt>
+<br>[(1,1),(2,1),(2,2),(3,1),(3,2),(3,3),(4,1),(4,2),(4,3),(4,4),(5,1),(5,2),(5,3),(5,4),(6,1),(6,2),(6,3)]
+<p>could be written as:
+<p><tt><b>> </b>filter p (concat (map (\ x -> map (\ y -> (x,y))</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[1..x]) [1..6]))</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+where</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+p (x,y) = x+y &lt; 10</tt>
+<h5>
+&nbsp;<a href="http://www.numeric-quest.com/haskell/hcompanion/principles.html#List comprehension">Haskell
+Companion</a></h5>
+</ul>
+
+<blockquote>
+<pre>
+<hr SIZE=1 WIDTH="100%"></pre>
+</blockquote>
+
+<h3>
+Two-line wonders</h3>
+
+<ul>
+<li>
+Making a list of prime numbers</li>
+
+<pre>>&nbsp;&nbsp; primes :: [Int]
+>&nbsp;&nbsp; primes = sieve [2..]
+>&nbsp;&nbsp; sieve (a:x) = a:sieve[y| y&lt;-x, y`mod`a > 0]
+>&nbsp;&nbsp; sieve [] = []</pre>
+</ul>
+
+<h3>
+How does this work?</h3>
+
+<ul>
+<pre>> sieve (a:x) = a : sieve[y | y&lt;-x, y`mod`a > 0]
+
+sieve [2,3,4,5,6,7,8,…]
+=> 2:sieve[3,5,7,9,11,13,15,...]
+=> 2:3:sieve[5,7,11,13,17,19,...]
+=> 2:3:5:sieve[7,11,13,17,19,...]</pre>
+
+<li>
+You should execute "primes" in Haskell. Since it produces an unbounded
+list, you will have to STOP the execution using the "Stop" icon.</li>
+</ul>
+
+<h3>
+Mersenne primes</h3>
+
+<ul>
+<li>
+To get a few primes:</li>
+
+<pre>...> sieve [2..200]</pre>
+
+<li>
+To find Mersenne primes (those of the form 2<i><sup>n</sup></i> - 1):</li>
+
+<pre>...> [p|p &lt;- primes, powerOf2 (p+1)]</pre>
+
+<pre>>&nbsp;&nbsp; powerOf2 1 = False
+>&nbsp;&nbsp; powerOf2 2 = True
+>&nbsp;&nbsp; powerOf2 n = isEven n &amp;&amp; powerOf2 (n `div` 2)</pre>
+</ul>
+
+<h3>
+List examples</h3>
+
+<ul>
+<li>
+Note that</li>
+
+<pre>[6..12] is [6,7,8,9,10,11,12]</pre>
+
+<pre>['d'..'h'] is "defgh"
+
+[6,9..20] is [6,9,12,15,18]</pre>
+
+<pre>['d','g'..'p'] is "dgjmp"
+
+[2..] is [2,3,4,5,6,7,8,9,10...</pre>
+
+<pre>['d','q'..] is "dq~\139\152\165\178\191\204\217\230\243"</pre>
+</ul>
+
+<h3>
+Permutations</h3>
+
+<ul>
+<pre>>&nbsp;&nbsp; perms :: Eq t => [t] -> [[t]]
+>&nbsp;&nbsp; perms [] = [[]]
+>&nbsp;&nbsp; perms x = [a:p | a &lt;- x, p &lt;- perms(x\\[a])]</pre>
+
+<li>
+Try executing the permutation function</li>
+
+<pre>...> perms [1,2,3,4,5]
+[[1,2,3,4,5],[1,2,3,5,4],[1,2,4,3,5],[1,2,4,5,3], ... [5,4,3,2,1]]</pre>
+</ul>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%"></h3>
+
+<h3>
+List module</h3>
+
+<ul>
+<li>
+Notice that we are importing a function from the List module</li>
+
+<li>
+The example file (<a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">ExampleL.lhs</a>)
+can be copied</li>
+
+<li>
+It begins</li>
+
+<pre>>&nbsp;&nbsp; module ExampleL where
+>&nbsp;&nbsp; import List
+>&nbsp;&nbsp; ...</pre>
+</ul>
+
+<h3>
+Using a function in List</h3>
+
+<ul>
+<li>
+Please note that you cannot use “\\” to remove elements from a list unless
+you import the module List</li>
+
+<li>
+Otherwise, define it:</li>
+
+<pre>>&nbsp;&nbsp; (\\) :: Eq a => [a]->[a]->[a]
+>&nbsp;&nbsp; (\\) (a:x) [] = a:x
+>&nbsp;&nbsp; (\\) x (b:y) = (rmvAux b x)\\y
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where&nbsp; rmvAux _ [] = []
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rmvAux b (a:x) =&nbsp;
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if a == b then x&nbsp;
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else a:rmvAux b x</pre>
+</ul>
+
+<h3>
+Member</h3>
+
+<ul>
+<li>
+Member:</li>
+
+<pre>>&nbsp;&nbsp; member a [] = False
+>&nbsp;&nbsp; member a (b:x) = (a==b) || member a x</pre>
+
+<pre>alternatively</pre>
+
+<pre>>&nbsp;&nbsp; member a [] = False
+>&nbsp;&nbsp; member a (b:x)
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | a == b&nbsp;&nbsp;&nbsp; = True
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = member a x</pre>
+
+<pre>...> member 3 [1,2,3,4]
+True</pre>
+</ul>
+
+<hr SIZE=0 WIDTH="100%">
+<h3>
+Fibonacci:</h3>
+
+<ul><tt>>&nbsp; fib 0 = 1</tt>
+<br><tt>>&nbsp; fib 1 = 1</tt>
+<br><tt>>&nbsp; fib n</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp; | n > 1&nbsp;&nbsp;&nbsp; = fib(n-1) + fib(n-2)</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp; |otherwise = error "n>0 pls."</tt>
+<p>> slowFibSeq = [fib n | n &lt;- [1..]]
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Using infinite data structures to define the Fibonacci series.&nbsp; This
+is more efficient computation.</li>
+
+<br><tt>> fibSeq&nbsp;&nbsp; = 1 : 1 : [ a+b | (a,b) &lt;- zip fibSeq (tail
+fibSeq) ]</tt>
+<br><tt>> nFib n = n !! fibSeq</tt>
+<br>&nbsp;
+<h6>
+&nbsp;<a href="http://haskell.org/tutorial/functions.html">See Gentle Tutorial</a>
+for a discussion on circular list.</h6>
+</ul>
+
+<h3>
+
+<hr SIZE=1 WIDTH="100%">Parameter Passing Revisited</h3>
+
+<blockquote>Assume the following definitions using Haskell syntax:
+<blockquote><tt>f x = (x+3)*(x/5)</tt>
+<br><tt>evaluating 2 + f(7 -2)</tt></blockquote>
+</blockquote>
+
+<ul>
+<li>
+Applicative order evaluation (sometimes called innermost)</li>
+
+<ol>
+<li>
+Evaluate each argument</li>
+
+<li>
+Substitute each argument's value for each occurrence of the corresponding
+parameter in the body</li>
+
+<li>
+Evaluate the resulting expression</li>
+</ol>
+
+<ul>&nbsp;
+<br><tt>2 + f (7-2)</tt>
+<br><tt>~> 2 + f(5)</tt>
+<br><tt>~> 2 + (5+3)*(5/5)</tt>
+<br><tt>~> 2 + 8*(5/5)</tt>
+<br><tt>~> 2 + 8*1</tt>
+<br><tt>~> 2 + 8</tt>
+<br><tt>~> 10</tt>
+<li>
+This is "call by value"</li>
+
+<br>&nbsp;</ul>
+
+<li>
+Normal order evaluation (sometimes called outermost)</li>
+
+<ol>
+<li>
+Substitute each argument - <i>unevaluated- </i>for each occurence of the
+corresponding parameter in the body</li>
+
+<li>
+Evaluate the resulting expression, evaluating each subexpression <i>only</i>
+when and <i>if</i>&nbsp; its value is <i>needed.</i></li>
+
+<br><tt>2 + f (7-2)</tt>
+<br><tt>~> 2 + ((7-2)+3) *((7-2)/5)</tt>
+<br><tt>~> 2 + (5+3) *((7-2)/5)</tt>
+<br><tt>~> 2 + 8*((7-2)/5)</tt>
+<br><tt>~> 2 + 8*(5/5)</tt>
+<br><tt>~> 2 + 8*1</tt>
+<br><tt>~> 2 + 8</tt>
+<br><tt>~> 10</tt></ol>
+</ul>
+
+<h4>
+The Church-Rosser Theorem</h4>
+
+<ul>
+<li>
+For any expression for which <i>applicative order evaluation and normal
+order evaluation</i> both succeed, they get the same results.</li>
+
+<li>
+Do functions always return a value?</li>
+
+<li>
+Bottom, strict</li>
+
+<h4>
+Normal Order vs Applicative order</h4>
+
+<li>
+Normal order always succeed when applicative does</li>
+
+<li>
+AND it succeeds for some expressions that applicative order fails</li>
+
+<br><tt>Example:</tt>
+<br><tt>f x y = x</tt>
+<br><tt>f 7 (5/0)</tt>
+<br><tt>Normal order ~> 7</tt>
+<br><tt>but applicative order fails</tt>
+<li>
+The price of Normal order evaluation is additional computation.</li>
+
+<br><tt>Example:</tt>
+<br><tt>cube x = x * x * x</tt>
+<br><tt>Evaluate cube (cube 2)</tt>
+<p><tt>Applicative order evaluation:</tt>
+<br><tt>cube (cube 2)</tt>
+<br><tt>~> cube( 2 * 2 * 2)</tt>
+<br><tt>~> cube( 4 * 2)</tt>
+<br><tt>~> cube(8)</tt>
+<br><tt>~> 8 * 8 * 8</tt>
+<br><tt>~> 64 * 8</tt>
+<br><tt>~> 512</tt>
+<br>Only 4 multiplications
+<p><tt>Normal order evaluation:</tt>
+<br><tt>cube (cube 2)</tt>
+<br><tt>~> (cube 2) * (cube 2) *(cube 2)</tt>
+<br><tt>~> (2 * 2 * 2) * (cube 2) *(cube 2)</tt>
+<br><tt>~> (4 * 2 )* (cube 2) *(cube 2)</tt>
+<br><tt>~> 8 * (cube 2) *(cube 2)</tt>
+<br><tt>~> 8 * (2 * 2 * 2)&nbsp; *(cube 2)</tt>
+<br><tt>~> 8 * (4 * 2) * (cube 2)</tt>
+<br><tt>~> 8 * 8 * (cube 2)</tt>
+<br><tt>~> 64 * (cube 2)</tt>
+<br><tt>~> 64 * (2 * 2 * 2)</tt>
+<br><tt>~> 64 * (4 * 2)</tt>
+<br><tt>~> 64 * 8</tt>
+<br><tt>~> 512</tt>
+<br>8 multiplications
+<br>&nbsp;
+<li>
+<b>Lazy evaluation </b>("call by need") is a variant of Normal order evaluation.</li>
+
+<br><tt>cube (cube 2)</tt>
+<br><tt>~> x * x * x&nbsp; with x = cube 2</tt>
+<br><tt>~> x * x * x&nbsp; with x = 2 * 2 * 2</tt>
+<br><tt>~> x * x * x&nbsp; with x = 4 * 2</tt>
+<br><tt>~> x * x * x&nbsp; with x = 8</tt>
+<br><tt>~> 8 * 8 * 8</tt>
+<br><tt>~> 64 * 8</tt>
+<br><tt>~> 512</tt>
+<br>Only 4 multiplications
+<br>&nbsp;
+<ul>
+<li>
+This way of binding parameters to arguments enable all occurrences of a
+parameter to "share" the value of the corresponding arguments.</li>
+
+<ul>
+<li>
+<b>Each argument evaluated <i>at most once.</i></b></li>
+</ul>
+</ul>
+
+<li>
+<b><i>Lazy&nbsp;</i> strategy combines</b></li>
+
+<ul>
+<li>
+<b>Applicative&nbsp; strategy's efficiency</b></li>
+
+<li>
+<b>Normal strategy's safety</b></li>
+
+<br>&nbsp;</ul>
+
+<hr WIDTH="100%">
+<table WIDTH="62%" >
+<caption>
+<center><b>Summary</b></center>
+</caption>
+
+<tr>
+<td>
+<center>&nbsp;<b><i><u>Strategy</u></i></b></center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>
+<center><b><i><u>Number of evaluations</u></i></b></center>
+</td>
+
+<td>
+<center><b><i><u>Safety</u></i></b></center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>Applicative order evaluation
+<br>(innermost)
+<br>(call by value)</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;exactly 1</td>
+
+<td>&nbsp;least</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Normal order evaluation
+<br>(outermost)
+<br>(call by name)</center>
+</td>
+
+<td>
+<center>&nbsp;</center>
+</td>
+
+<td>&nbsp;0 .. infinity</td>
+
+<td>&nbsp;more</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>
+<center>Lazy
+<br>(call by need)</center>
+</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;0 or 1</td>
+
+<td>&nbsp;more</td>
+</tr>
+</table>
+</ul>
+
+<h3>
+
+<hr WIDTH="100%">One Last Neat example</h3>
+
+<ul>
+<li>
+Quicksort using list comprehension</li>
+
+<br><tt>quicksort&nbsp; []&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp; []</tt>
+<br><tt>quicksort (x:xs)&nbsp; =&nbsp; quicksort [y | y &lt;- xs, y&lt;x
+]</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++ [x]</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++ quicksort [y | y &lt;- xs, y>=x]</tt></ul>
+
+<hr NOSHADE WIDTH="100%">
+<br>&nbsp;
+<ul>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/12Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/13Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+</ul>
+
+</body>
+</html>

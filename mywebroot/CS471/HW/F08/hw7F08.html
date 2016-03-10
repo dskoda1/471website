@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en-us"><head><title>Scott's Chap 3 &amp; 6 &amp; 13</title>
+
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<meta name="author" content="E Head">
+</head>
+<body>
+<div style="text-align: center;">
+<h3>Homework Assignment&nbsp;</h3>
+</div>
+<span style="font-weight: bold;"></span><span style="font-weight: bold;"></span>
+<h3>Due Tuesday, Oct 21 at 7pm.&nbsp;<span style="font-weight: bold;"><br>
+</span><br>
+</h3>
+<ol>
+<li> Page 155 ex. 3.13<br>
+</li>
+<li>Evaluate following program fragment in C:<br>
+<div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;"></span><span style="font-family: monospace; font-weight: bold;">&nbsp;<br>
+int a =
+0; &nbsp; &nbsp; &nbsp; </span><br>
+<span style="font-family: monospace; font-weight: bold;">int
+b = (a++ || ++a) &lt;= (a++ &amp;&amp; ++a);<br>
+printf( "%d %d", a, b );<br>
+&nbsp; </span> </div>
+In the table below show each evaluation step&nbsp; and include the
+value of a and b. &nbsp;Finally, display the output. Remember in
+Java,
+C and C++, <span style="font-weight: bold;">&amp;&amp;</span>
+is a <a href="http://en.wikipedia.org/wiki/Short-circuit_evaluation">short
+circuit</a> operator which is always evaluated left to right. <span style="color: rgb(204, 0, 0);">Assume all side effects occur
+immediately.</span><br>
+<br>
+a. Assume that, wherever there is an option, operands are evaluated
+left to right:<br>
+<br>
+<table style="text-align: left; width: 768px; height: 325px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><span style="font-family: monospace; font-weight: bold;">int
+b = (a++ || ++a) &lt;= (a++ &amp;&amp; ++a);</span></td>
+<td><span style="font-weight: bold;">a=0</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; b=?&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+b. Assume that, wherever there is an option, operands are evaluated
+right to left:<br>
+<br>
+<table style="text-align: left; width: 768px; height: 325px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td><span style="font-family: monospace; font-weight: bold;">int
+b = (a++ || ++a) &lt;= (a++ &amp;&amp; ++a);</span></td>
+<td><span style="font-weight: bold;">a=0</span>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; b=?&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<br>
+<br>
+<br>
+</li>
+<li>page 752 exercise 13.11 (<a href="hw7/chap1311.perl">perl
+program</a>)</li>
+<li>page 298 exercise 6.4<br>
+&nbsp; &nbsp;<br>
+</li>
+<li>page 299 exercise 6.10<br>
+&nbsp;</li>
+<li>Is &amp;(&amp;z) ever legal in C? Explain.<br>
+<br>
+</li>
+<li>Variation of &nbsp;exercises 6.13 and 6.14.
+&nbsp;Add two iterator <span style="text-decoration: underline;">methods</span>
+to the Tree class in&nbsp;<a href="hw7/TreeModule.py">TreeModule.py</a>.
+<span style="font-weight: bold;"><span style="font-style: italic;">preorder</span>()</span>
+is an iterator that traverses the tree object in <span style="font-style: italic;">preorder</span> and <span style="font-weight: bold; font-style: italic;">postorder</span>()
+is an iterator that traverses the tree object in <span style="font-style: italic;">postorder.</span>&nbsp;<br>
+<br>
+</li>
+<li>Repeat problem 7 using Ruby. Add two iterator <span style="text-decoration: underline;">methods</span>
+to the Tree class in <a href="hw7/treeModule.rb">treeModule.rb</a>.
+<span style="font-weight: bold;"><span style="font-style: italic;">preorder</span>()</span>
+is an iterator that traverses the tree object in <span style="font-style: italic;">preorder</span> and <span style="font-weight: bold; font-style: italic;">postorder</span>()
+is an iterator that traverses the tree object in <span style="font-style: italic;">postorder.</span>&nbsp;<br>
+</li>
+<li>page 300 6.18 Program this problem in Python. &nbsp;<a href="hw7/TreeModule.py">TreeModule.py</a> contains a
+class definition of a binary tree. <a href="hw7/UsingTrees.py">UsingTrees.py</a>
+contains code to illustrate how to create and use Tree objects and
+output from Hui's tree enumerations of <span style="font-style: italic;">n</span> nodes.
+&nbsp;The print out includes the level of the nodes
+generated.&nbsp;<br>
+</li>
+<li>C++ and Java loops are often written with empty bodies
+by placing
+all side effects into the tests, such as in the following two examples:</li>
+<dl>
+<dd><span style="font-family: monospace;"><br>
+i = 0;<br>
+while (a[i++] !=0);<br>
+<br>
+for (i = 0; a[i] != 0; i++);<br>
+&nbsp; <br>
+</span></dd>
+<dt>Are these loops equivalent? Explain.<br>
+&nbsp; <br>
+</dt>
+</dl>
+<li>The
+following progrm prints two integer values; the first value typically
+is garbage (or possibly 0) but the second value might be 2.
+&nbsp;Explain why.<br>
+</li>
+<dl>
+<dd><span style="font-family: monospace;">#include
+&lt;stdio.h&gt;<br>
+void p(void){<br>
+&nbsp; &nbsp;int y;<br>
+&nbsp; &nbsp;printf("%d\n", y);<br>
+&nbsp; &nbsp;y =2;<br>
+}<br>
+int main (){<br>
+&nbsp; &nbsp;p();<br>
+&nbsp; &nbsp;p();<br>
+&nbsp; &nbsp;return 0;<br>
+}</span></dd>
+<dd><span style="font-family: monospace;"><br>
+</span></dd>
+</dl>
+<dl>
+<ol style="margin-left: 40px;">
+<ol type="A">
+</ol>
+</ol>
+<br>
+<dd>
+<dl>
+<dt></dt>
+</dl>
+<span style="font-family: monospace;"></span><span style="font-family: monospace;"></span></dd>
+</dl>
+<dd><br>
+&nbsp; </dd>
+</ol>
+<br>
+<dl>
+</dl>
+</body></html>

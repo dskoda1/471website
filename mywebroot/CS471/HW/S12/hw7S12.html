@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>Scott's Chap 3: ,Binding - Scope - Referencing</title>
+
+
+  
+
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="author" content="E Head"></head><body>
+<h3>Homework Assignment 7</h3>
+
+Read: Ch. 3:&nbsp; p123-163<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; Ch 13: p691-696<br>
+
+<span style="font-style: italic;"><span style="font-weight: bold;"></span></span>
+<ol>
+
+  <li>Page 168 exercise 3.14<br>
+  </li>
+  <li>&nbsp;Consider the following pseudo code:<br>
+    <div style="margin-left: 40px;">&nbsp;<span style="font-family: monospace;">&nbsp; x : integer := 4</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;
+&nbsp;y : integer := 50</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure add()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x := x + y</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure second(P : procedure)</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+x : integer := 1</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+P()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+procedure first()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+y : integer := 3</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+second(add)<br>
+    </span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+first()</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp;&nbsp;
+write integer(x)<br>
+    <br>
+    </span></div>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>What does this program print if the language uses static
+scoping?</li>
+    <li>Explain why 7 is printed out if the language uses dynamic
+scoping with deep binding.</li>
+    <li>Explain why 4 is printed out&nbsp;if the language
+uses dynamic scoping with shallow binding.<br>
+      <br>
+    </li>
+  </ol>
+  <li>Page 721 exercise 13.11 (<a href="chap1311.perl">perl
+program</a>)</li>
+  <li>Compile and run in gcc&nbsp; the following C
+code
+on
+two
+different architecture (if possible):<br>
+  </li>
+  <dl>
+    <dd><span style="font-family: monospace;">void loop() {</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int
+x[512]; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int i=0; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+while
+(i++ &lt;512) { </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; x[i] = 0; </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+} </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">} </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">int main
+() { </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+printf("\nCalling loop --&gt;&gt;\n"); </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+loop(); </span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">}</span></dd>
+    <dd><br>
+    </dd>
+Below are the commands to compile and
+run the above code on Intel:<br>
+    <div style="margin-left: 40px;">Below are the
+commands to
+compile and
+run the above code on Linux : <br>
+    </div>
+    <ol style="margin-left: 40px;">
+      <b><tt>gcc -std=iso9899:1999 <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw7.c">hw7.c</a>
+-o hw7.exe</tt></b><br>
+      <b><tt>hw7.exe</tt></b>
+      <p><b><font color="#3333ff">if
+hw7.exe
+does NOT work then type:</font></b> <br>
+      <b><tt><font color="#3333ff">./hw7.exe</font></tt></b>
+&nbsp;</p>
+    </ol>
+    <div style="margin-left: 40px;">Using the -S
+option look
+at the
+assembly code.&nbsp; Do not use a debugger. </div>
+    <ol style="margin-left: 40px;">
+      <ol type="A">
+        <li>What happens when you run this code?</li>
+        <li>Depending on the target machine and the compiler,
+this
+code
+will execute
+differently.&nbsp; Sometimes this code goes into an infinite loop,
+sometimes
+this code terminates, sometimes this code cause a segmentation
+error.&nbsp;
+Can you explain why this code does not behavior consistently?&nbsp;
+Think
+in terms of the AR and the runtime stack.</li>
+      </ol>
+    </ol>
+    <br>
+    <br>
+    <li>The language C distinguishes between the <span style="font-style: italic;">declaration </span>and <span style="font-style: italic;">definition.</span></li>
+    <dd> A) What is the difference between declaration and
+definition?<br>
+B) Assume these statements are all outside of functions.
+Which of the following are declarations only and which are definitions:
+      <ol style="list-style-type: lower-alpha;">
+        <li>float * rate ;</li>
+        <li>struct S ;</li>
+        <li>static double pi;</li>
+        <li>typedef&nbsp; int * string;</li>
+        <li>node * fun(int i);</li>
+        <li>extern double x;<br>
+          <br>
+        </li>
+      </ol>
+    </dd>
+  </dl>
+  <li>Page 169 exercise 3.15<br>
+</li>
+</ol>
+<br>
+<dd>
+  <dl>
+  </dl>
+</dd>
+
+
+</body></html>

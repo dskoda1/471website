@@ -1,0 +1,4 @@
+Names of functions in File:: Fig4_12.c 
+  Pattern:: (?-mix:(int)\s(.*)\(.*\)\s)
+
+ expr term factor number digit main

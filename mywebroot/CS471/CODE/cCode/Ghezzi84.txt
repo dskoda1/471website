@@ -1,0 +1,10 @@
+Initial Values give by GiveValue():
+X=1, Y=2, W=3, Z=10, A=50, B=51, C=52, D=53
+
+
+Nested Block assignments:
+X=20,21 Y=4, W=6 
+
+
+Actual Values:
+X=1 Y=2 W=3 Z=10 A=50 B=51 C=52 D=53

@@ -1,0 +1,681 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Variables</title>
+</head>
+<body>
+
+<center>
+<h2>
+&nbsp;Variables - - Spring, 2000</h2></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/6Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<h3>
+Goal</h3>
+
+<ul>
+<li>
+To understand the semantics issues of variables and their relationship
+to language design decisions.</li>
+</ul>
+
+<h3>
+What will be covered ?</h3>
+
+<ul>
+<li>
+binding</li>
+
+<li>
+data types</li>
+
+<li>
+scope</li>
+
+<li>
+l-value</li>
+
+<li>
+r-value</li>
+
+<li>
+Imperative languages will be the main focus of this discussions.</li>
+</ul>
+
+<h6>
+These notes are based on <i>Programming Language Concepts</i> by Ghezzi
+and Jazayeri and <i>Concepts of Programming Languages</i> by Sebesta.</h6>
+
+<hr WIDTH="100%">
+<h3>
+Computer Memory and Variables</h3>
+
+<ul>
+<li>
+Computer memory is a sequence of 0's and 1's.</li>
+
+<ul>
+<li>
+Organized in units of bytes (or words) called cells.</li>
+</ul>
+
+<li>
+These units are identified by an address.</li>
+
+<li>
+The contents of these units represent values.</li>
+
+<li>
+The values can be read and modified during execution.</li>
+
+<ul>
+<hr WIDTH="100%"></ul>
+
+<li>
+<b><i>Variables</i></b> are an abstraction of a memory cell or collection
+of cells.</li>
+
+<li>
+Attributes of a variable</li>
+
+<ul>
+<li>
+name (identifier)</li>
+
+<li>
+address (location)</li>
+
+<li>
+type</li>
+
+<li>
+value</li>
+
+<li>
+scope</li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<h3>
+Definition</h3>
+
+<ul>
+<li>
+A <b><i>variable</i></b> is a 5-tuple</li>
+
+<ul>&lt;name, scope, type, l-value, r-value></ul>
+where
+<ul>
+<li>
+<b><i>name</i></b> is the character strings to identify it</li>
+
+<li>
+<b><i>scope</i></b> is the range of program instructions over which the
+name is known</li>
+
+<li>
+<b><i>type </i></b>is the set of values and its associated operations</li>
+
+<li>
+<b><i>l-value</i></b> is the location in memory</li>
+
+<li>
+<b><i>r-value</i></b> is the encoded value stored</li>
+</ul>
+
+<li>
+These are called attributes</li>
+</ul>
+
+<hr WIDTH="100%">
+<h3>
+<b>Binding</b></h3>
+
+<ul>
+<li>
+<b>A <i>binding</i> is an association between an attribute and an entity</b></li>
+
+<ul>
+<li>
+A variable is bound to its attribute</li>
+</ul>
+
+<li>
+Possible binding times</li>
+
+<ul>
+<li>
+STATIC BINDING (early binding)</li>
+
+<br>occurs before the program executed i.e.
+<ul>language design time
+<br>language implementation time
+<br>compile time
+<br>load time</ul>
+
+<li>
+DYNAMIC BINDING (late binding)</li>
+
+<br>is established at during run time</ul>
+
+<li>
+The selection of static vs dynamic binding times involves the <b><i>conflict
+between efficiency and flexibility</i></b></li>
+
+<ul>
+<hr WIDTH="100%"></ul>
+<b>Example: <tt>y := y + .9</tt></b>
+<br>&nbsp;
+<li>
+Set of possible <u>type</u> for variable y</li>
+
+<ul>
+<li>
+Usually set at language design time</li>
+</ul>
+
+<li>
+Type of variable y.</li>
+
+<ul>
+<li>
+Usually set at translation time but not in always</li>
+</ul>
+
+<li>
+Set of possible <u>values</u> is determined by either the hardware or at
+load time</li>
+
+<li>
+Value of y -- dynamic binding (during execution)</li>
+
+<ul>
+<li>
+Assignments change bindings</li>
+</ul>
+
+<li>
+Representation of .9</li>
+
+<ul>
+<li>
+language design / implementation time</li>
+</ul>
+
+<li>
+Properties of +</li>
+
+<ul>
+<li>
+language design time / compile time</li>
+</ul>
+
+<hr WIDTH="100%">
+<br><b>Java:</b>
+<br><b><tt>final static int num = 5;</tt></b>
+<br>&nbsp;
+<li>
+<b>num's attributes are the type <i>int</i>, value <i>5</i>, and constant</b></li>
+
+<li>
+<b>All bound before execution</b></li>
+</ul>
+
+<hr WIDTH="100%">
+<h3>
+Data Types</h3>
+
+<ul>
+<li>
+A <b><i>data type</i></b> is a set of values, together with a set of operations
+for creating and manipulating objects of that type.</li>
+
+<li>
+Therefore classes and interfaces in Java can be considered types.</li>
+
+<li>
+Languages have</li>
+
+<ul>
+<li>
+predefined types</li>
+
+<li>
+simple (scalar, primitive) types</li>
+
+<li>
+discrete types</li>
+
+<li>
+enumerated types</li>
+
+<li>
+subrange types</li>
+
+<li>
+and type constructors.</li>
+</ul>
+
+<hr SIZE=0 WIDTH="100%">
+<br><b>Type Binding</b>
+<li>
+Usually static</li>
+
+<ul>
+<li>
+explicit declaration</li>
+
+<ul>Java, C++</ul>
+
+<li>
+implicit declaration</li>
+
+<ul>Fortran
+<br>perl
+<dl>
+<dl>
+<li>
+Has 3 data types</li>
+
+<dl>
+<li>
+scalar denoted by $</li>
+
+<dl>
+<li>
+numbers, strings, references</li>
+
+<br>$a = 17.38;
+<br>...
+<br>$a = "Perl Code";</dl>
+
+<li>
+lists (called <i>arrays) </i>denoted by @</li>
+
+<dl>@a = (2, 4, 5);</dl>
+
+<li>
+hashes (also called associative lists).</li>
+
+<dl>%a =("key1" => 100, "key2" => 50);</dl>
+</dl>
+
+<li>
+Has implicit variables</li>
+
+<dl>$_ , <i>text read from a file is put into $_</i>
+<br>@ARG<i>, </i>(same as @_)<i> array variable used to transmit parameters</i></dl>
+</dl>
+</dl>
+</ul>
+
+<li>
+inferred</li>
+
+<ul>Haskell, ML</ul>
+
+<li>
+sometimes dynamic</li>
+
+<ul>
+<li>
+Prolog, lisp, APL(example)</li>
+
+<br>A &lt;- 36
+<br>A &lt;- 10.5 3.2 6.0
+<br>A &lt;- "abc"</ul>
+
+<li>
+Static binding allows for static type checking</li>
+
+<br>
+<hr WIDTH="100%"></ul>
+<b>Java:</b>
+<ul>
+<ul><b><tt>final static int n = 5;</tt></b></ul>
+
+<li>
+All the attributes are bound statically to “n”</li>
+
+<ul><b><tt>int x;</tt></b>
+<br><b><tt>x = 5;</tt></b>
+<br><b><tt>Object obj = new Object( );</tt></b></ul>
+
+<li>
+Static: The type int to “x” and the type Object to “obj”.</li>
+
+<li>
+Dynamic: The value 5 to “x” and the new Object( ) to “obj”.</li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<h3>
+Scope</h3>
+
+<ul>
+<li>
+<b><i>Scope</i></b> is the region of the program which the variable can
+be referred to by using its simple name (identifier).</li>
+
+<br>
+<hr WIDTH="100%">
+<li>
+Static scoping (lexical scoping)</li>
+
+<ul>
+<li>
+Visibility of variable follows the structure of the blocks they are written
+in</li>
+
+<li>
+Does not depend on function calls</li>
+
+<li>
+<b><i>scope hole:</i> </b>when the name bound to an object is hidden by
+a nested declaration of the same name</li>
+
+<ul>{ int hide = 1;
+<br>&nbsp;&nbsp;&nbsp; { float hide = 1.0
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>}
+<li>
+Ada allows a <i>qualifier</i> to access the outer declared variable.</li>
+
+<ul>
+<li>
+Ada calls this <b>visiblity by selections.</b></li>
+</ul>
+
+<li>
+Java allows a qualifier to access a hidden instance/class variable</li>
+</ul>
+
+<li>
+C only allows declarations at the beginning blocks</li>
+
+<li>
+Algol 68, C++, Java allow declarations anywhere</li>
+</ul>
+
+<hr WIDTH="100%">
+<li>
+Dynamic scoping</li>
+
+<ul>
+<li>
+visibility of variable depends on sequence of function calls</li>
+
+<li>
+can not determine from written code</li>
+
+<li>
+APL, Snobol, early versions of LISP, Perl</li>
+
+<br>
+<hr WIDTH="100%">
+<br>Perl : local variables in a functions
+<dl>
+<li>
+There are two different ways to create nonglobial variables.</li>
+
+<li>
+<b>STATIC Scoping</b></li>
+
+<dl>
+<li>
+<tt>my </tt>function creates a variable</li>
+
+<dl><tt>sub sub1 {</tt></dl>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; my $sum = 0;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; }</tt>
+<br>whose
+<dl>
+<li>
+scope is the block</li>
+
+<li>
+lifetime is from the execution of the <tt>my </tt>function to the end of
+the execution of the block.</li>
+</dl>
+</dl>
+
+<li>
+<b>Dynamic Scoping</b></li>
+
+<dl>
+<li>
+<tt>local </tt>creates a non-globial variable</li>
+
+<dl><tt>sub sub1 {</tt></dl>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; local $dyn = 0;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ...</tt>
+<dl><tt>&nbsp;&nbsp;&nbsp; sub2</tt></dl>
+<tt>&nbsp;&nbsp;&nbsp; }</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; sub sub2 {</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; # locations of $dyn is dynamic</tt>
+<dl><tt>&nbsp;&nbsp; $dyn = "wow"</tt></dl>
+<tt>&nbsp;&nbsp;&nbsp; }</tt>
+<dl>
+<li>
+lifetime is the same as a "<i>my</i>" variable</li>
+
+<li>
+scope is the block in which it is defined as well as any function directly
+or indirectly from that block.</li>
+
+<li>
+<i>local</i> is an unfortunate legacy from earlier versions of Perl and
+should be avoided.</li>
+</dl>
+</dl>
+</dl>
+</ul>
+</ul>
+
+<center>
+<h6>
+Perl examples taken from "<i>A Little Book on Perl"</i>, by Robert Sebesta</h6></center>
+
+<hr WIDTH="100%">
+<h3>
+L-Value/R-Value</h3>
+
+<ul>
+<li>
+L-value is the storage area that is bound to the variable.</li>
+
+<ul>
+<li>
+<i>left hand value</i></li>
+</ul>
+
+<li>
+R-value is the encoded value stored</li>
+
+<ul>
+<li>
+The actual value is determined by the type and the R-value.</li>
+</ul>
+</ul>
+
+<center><img SRC="Lvalue.gif" ALT="L Value and R Value Diagram" BORDER=0 height=114 width=315></center>
+
+<ul>
+<li>
+This is a <i>value model, </i>the name of the variable is associated with
+the container verses a <i>reference model.</i></li>
+
+<li>
+Pascal vs Clu:</li>
+
+<br>Syntactally correct code in both languages:
+<ul>b := 2;
+<br>c := b;
+<br>a := b + c;</ul>
+Semantically different:
+<br>Pascal code could be described as follow:
+<ul><i>Put the value 2 in b.</i>
+<br><i>Copy the value from b into c.</i>
+<br><i>Read the values in b and c</i>
+<br><i>&nbsp;&nbsp;&nbsp; then add them together</i>
+<br><i>&nbsp;&nbsp;&nbsp; place result in a</i></ul>
+Clu code could be described as follows:
+<ul><i>Let b refer to the value 2</i>
+<br><i>Let c refer to the same value b refers to</i>
+<br><i>Pass these references to "+" for evaluation</i>
+<ul><i>a refers to the result</i>
+<h6>
+<b><i>Programming Luaguages Pragmatics </i>by Scott</b></h6>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<br><b>ALGOL 68</b>
+<ul>
+<li>
+Algol 68 declares variables like C:</li>
+
+<ul><tt>int&nbsp; X</tt></ul>
+
+<li>
+A&nbsp; pointer is declared</li>
+
+<ul><tt>ref&nbsp; int&nbsp; Y;</tt></ul>
+Now X is the address of an integer so the mode of X is ref int
+<br>Therefore the mode of Y is ref ref int!
+<li>
+X := 5;&nbsp; and&nbsp; Y := X; are legal in Algol 68,</li>
+
+<li>
+Y := 5 is NOT legal.</li>
+
+<li>
+Things can get out of hand since Algol 68 allows</li>
+
+<ul><tt>ref ref ref int Z;</tt></ul>
+(Did you ever use int ***z in C?)</ul>
+
+<hr WIDTH="100%">
+<br><b>C++</b>
+<ul>
+<li>
+C++ allows functions to return l-values</li>
+
+<ul><tt>int a[10];</tt>
+<br><tt>int&amp; f(int I) { return (a[I]); }</tt>
+<br><tt>f(5) = 17;</tt>
+<br><tt>// This assigns 17 to a[5]</tt></ul>
+
+<li>
+Did you ever see</li>
+
+<br><tt>Error “ must be a l-value”</tt>
+<br><tt>5 = x;</tt></ul>
+
+<hr WIDTH="100%">
+<br><b>L-value(Storage) Binding</b>
+<ul>
+<li>
+Determines the lifetime of a variable</li>
+
+<ul>
+<li>
+Time during which a variable is bound to a specific memory location</li>
+
+<li>
+Is a run-time property</li>
+</ul>
+</ul>
+
+<ul>
+<li>
+Possible categories</li>
+
+<ul>
+<li>
+static</li>
+
+<li>
+static-dynamic</li>
+
+<li>
+heap-dynamic</li>
+
+<li>
+explicit</li>
+
+<li>
+implicit</li>
+</ul>
+
+<p><br><img SRC="Runtime.gif" ALT="Runtime memory model" BORDER=0 height=304 width=200></ul>
+</ul>
+
+<hr WIDTH="100%">
+<h3>
+Summary of Variable Bindings</h3>
+<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/Binding.gif"><img SRC="Binding.gif" ALT="Binding space" HSPACE=1 VSPACE=1 BORDER=0 height=225 width=174></a><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/BindEx.gif"><img SRC="BindEx.gif" ALT="Binding space of int V = 3" HSPACE=1 VSPACE=1 BORDER=0 height=225 width=177></a>
+<p>
+<hr WIDTH="100%">
+<br><b>Lifetime of a Variable</b>
+<ul>
+<li>
+Globial variables</li>
+
+<li>
+Stack variables</li>
+
+<ul>
+<li>
+Local variables</li>
+
+<li>
+Beginning of block until end of block</li>
+</ul>
+
+<li>
+Heap variables</li>
+
+<ul>
+<li>
+C++ : new() until delete()</li>
+
+<li>
+Java : new() until garbage collected</li>
+
+<li>
+C: malloc until free</li>
+</ul>
+</ul>
+
+<hr WIDTH="100%">
+<br><a href="mailto: head@binghamton.edu">&copy; 2000 Head,Lander</a>
+<br>
+<hr WIDTH="100%">
+<br>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/6Spr00.html">&nbsp;previous&nbsp;</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/8Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

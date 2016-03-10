@@ -1,0 +1,258 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>3 - Prolog Programming</title>
+</head>
+<body text="#000000" bgcolor="#fffdff" link="#ff0000" vlink="#990000"
+ alink="#cc0000">
+<font size="-2">Feb 7,2003&nbsp; </font><a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a>
+<h4> Due Fri. Feb 9, 2003 10am<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a></h4>
+You hardcopy should begin with the following identification:
+<ul>
+  <blockquote><font color="#000000">CS471 - Programming Languages</font> <br>
+    <font color="#000000">Section: </font><font color="#cc0000">&lt;YOUR
+Section number&gt;</font> <br>
+    <font color="#000000">Assignment #</font><font color="#cc0000">&lt;number&gt;</font><font
+ color="#000000">due:</font><font color="#cc0000"> &lt;DATE&gt;</font> <br>
+    <font color="#000000">Author:</font><font color="#cc0000">
+&lt;LastName&gt;, &lt;FirstName&gt; </font><font color="#000000">(</font><font
+ color="#cc0000">&lt;EMail&gt;</font><font color="#000000">)</font> <br>
+    <font color="#000000">Date:</font><font color="#cc0000"> &lt;DATE&gt;</font>
+    <p><font color="#3333ff">Rename&nbsp;</font> <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/XXXAs3.pl">XXXAs3.pl</a>
+, rename file to JinAs3.pl, update identification, and add code to this
+file. <b><font color="#009900">YOU NEED ONLY SUBMIT A HARD COPY</font>
+of this file. <font color="#009900">Keep the file</font> in case the ta
+needs its. </b>This file can be used for you to program in.&nbsp; I
+believe this will make it easier for the tas to grade.</p>
+  </blockquote>
+</ul>
+<h4> Manditory reading ---</h4>
+<li> Reading for Prolog</li>
+<ul>
+  <li> Read: 625-641</li>
+  <li> <font color="#990000">Read 401-403, 385</font></li>
+</ul>
+<h3> Written assignment:</h3>
+<b>Purpose:</b> <li> <b>To reenforce your understanding of the list
+data structure.</b></li>
+<ol>
+  <li> Describe how the list structure is implement in prolog?&nbsp;
+(i.e. What is the runtime environment?).&nbsp;&nbsp; You can use
+drawings and data structures to help your explain.&nbsp; You should be
+able to do this in two or three sentences.</li>
+  <li> Show how the following lists are bound after unification in your
+in your implementation.</li>
+  <ol type="a">
+    <li> A = [a, b]</li>
+    <li> [H|T] = [x, y, z]</li>
+    <li> [H1,H2|T]&nbsp; = [x, y, z]</li>
+    <li> [H|T] = [ [1,2,3], a, [c,d]]</li>
+  </ol>
+</ol>
+<h3> <b>Programming Assignment:</b></h3>
+<b>Purpose:</b> <li> <b>The purpose is this assignment is</b></li>
+<br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) reenforce recursive
+programming</b> <br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) reenforce the use of the
+list data structure in Prolog</b> <br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3) use of pattern recognition
+in programming</b>
+<blockquote>This assignment is not intended to be hard, however many
+will need time to absorb how easy it really is. Most of the code need
+only be two lines, some will need only one line code.&nbsp; Some will
+only need a fact and not a rule!. The MAXIMUM number of lines is at MOST
+3 lines.&nbsp; You may use built in predicates as part of your
+solutions.&nbsp; You are encouraged to try experiences at the prolog
+prompt before you write code.&nbsp; For example:<br>
+&nbsp;<br>
+?- X is (3+5)/2.<br>
+&nbsp;?- (F,S)=(3,5), X is F+S.<br>
+&nbsp;?- help(length).<br>
+&nbsp;?- help(arg).<br>
+&nbsp;?- listing.<br>
+&nbsp;?- trace.<br>
+?- name(surprize,X).<br>
+?- name(S, "surprize").<br>
+?- S = "Surprize".<br>
+  <font color="#cc0000">?- X=(2,3), (A,B)=X.<br>
+?- Y=(A,A), A=[(2,3)]</font>.<br>
+  <font color="#cc0000">?- X = is(B,+(4,5)),X.</font><br>
+  <br>
+</blockquote>
+<ol>
+You may find this <a
+ href="http://cbl.leeds.ac.uk/%7Epaul/prologbook/book.html">Online
+Prolog Book,</a><a
+ href="http://cbl.leeds.ac.uk/%7Etamsin/prologtutorial/index.html#menu">
+tutorial</a> or&nbsp; <a
+ href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">another
+tutorial</a> helpful.&nbsp; You will find the following builtin
+predicates helpful trace, help(predicate), and listing. <br>
+&nbsp;&nbsp; <li>[very easy] Write a prolog program,
+product(+Lst,Prod) that succeeds if Prod is the product of the list,
+Lst, of numbers. i.e.<br>
+?- product([2,3,4],24).<br>
+yes<br>
+?-product([1,1,3,3,2],18).<br>
+yes<br>
+?- product([2,3,4],X).<br>
+X = 24<br>
+yes.</li>
+  <li>[easy] Write a predicate, prodV(V,Lst,RLst),&nbsp; such that
+every element in R is V<span style="color: rgb(204, 0, 0);"> times t</span>han
+the corresponding element in Lst. i.e.<br>
+&nbsp;&nbsp; ?-prodV(2,[1,2,4],X). <br>
+&nbsp;&nbsp; X = [2,4,8] <br>
+&nbsp;&nbsp; yes <br>
+&nbsp;&nbsp; ?-<font color="#cc0000"> prodV</font>(3,X,[3,4]). <br>
+&nbsp;&nbsp; You will get an error...Arguments are not sufficiently
+instantiated.<br>
+    <br>
+  </li>
+  <li>[very easy] Define the relation,&nbsp; zipIt(Z,X,Y),where Z is
+unified with zip(X,Y).&nbsp; This is really easy if you use pattern
+matching and unification.<br>
+    <tt><b>&nbsp;?-zipIt(Z,a,b). <br>
+&nbsp;Z = zip(a,b)<br>
+&nbsp;yes<br>
+    </b></tt><tt><b>&nbsp;?- zipIt(zip(1,2),X,Y).<br>
+&nbsp;X = 1<br>
+&nbsp;Y = 2<br>
+&nbsp;yes<br>
+    </b></tt><br>
+  </li>
+  <li>Define the relation, zipLstW4(E,Lst,ZLst), where ZLst is a list
+of zip tuples where the first element is E and the second element comes
+from Lst. i.e.<br>
+?- zipLstW4(e,[1,2,3],Z).<br>
+Z = [zip(e,1), zip(e,2), zip(e,3)].<br>
+    <br>
+  </li>
+  <li>Repeat problem 4 using the name zipLstW5(E,Lst,ZLst), but use
+zipIt as part of your solution.<br>
+    <br>
+    <br>
+  </li>
+  <li>Given a sequence <span style="font-style: italic;">X</span> =
+&lt;x1, x2, x3, ... x<span style="font-style: italic;">m</span> &gt;,
+another sequence <span style="font-style: italic;">Z</span> = &lt;z1,
+z2, ..z<span style="font-style: italic;">n&gt;</span> is a subsequence of <span
+ style="font-style: italic;">X</span> it there exists a strictly
+increasing sequence &lt;i1,i2, ...i<span style="font-style: italic;">k</span>
+&gt; of <span style="font-weight: bold;">indices</span> of <span
+ style="font-style: italic;">X</span> such that for all &nbsp;<span
+ style="font-style: italic; font-weight: bold;">j</span> = 1,2 ..<span
+ style="font-style: italic;">k</span></li>
+,we have x<span style="font-style: italic;">i</span> = z<span
+ style="font-style: italic;">j</span>. &nbsp;Write a &nbsp;Prolog
+program that proves Z is a subsequence of X. &nbsp;i.e.<br>
+?- subSeq([1,3,9], [1,2,3,78,9]).<br>
+Yes<br>
+?- subSeq([a,e], [a,b,c,1,2,3,d,e,f]).<br>
+Yes<br>
+?- subSeq([e,a], [a,b,c,1,2,3,d,e,f]). No ?- subSeq([a,b,c,d],[a,b,c]).<br>
+No<br>
+?- subSeq([a,e], [[a,b,c,1,2,3],d,e,f]).<br>
+No<br>
+&nbsp; <li> <b>&nbsp;</b>Write a predicate,<b><tt> hasDouble(Lst)</tt></b>,
+which succeeds only if Lst has at least one tuple <font color="#cc0000">(i.e.
+pair)</font> where both elements are the same.</li>
+  <ol>
+&nbsp; <br>
+    <b><tt>?- hasDouble([1,33,4]).</tt></b> <br>
+    <b><tt>no</tt> <br>
+?- hasDouble([1,3,3,4]). <br>
+no</b> <br>
+    <b><tt>?-hasDouble([a,b,d,(e,e),f,d]).</tt></b> <br>
+    <b><tt>yes<br>
+? hasDouble([(a,b),(c,d)])<br>
+no<br>
+?- hasDouble([(a,b),(e,e)]).<br>
+yes&nbsp;</tt></b>
+  </ol>
+</ol>
+<ol start="8">
+  <ol>
+    <br>
+    <b><tt> <br>
+    </tt></b>
+  </ol>
+  <li>[easy] Write a predicate, <b><tt>secondtoLast</tt></b>, that
+succeeds only for lists of length greater than 1 and it "picks" the next
+to last element of the list.</li>
+  <ol>
+    <b><tt>?- secondtoLast([a,c,f,g],S).</tt></b> <br>
+    <b><tt>S = f</tt></b><br>
+    <b><tt>yes</tt></b> <br>
+    <b><tt>?- secondtoLast([1],S).</tt></b> <br>
+    <b><tt>no<br>
+    <br>
+    </tt></b>
+  </ol>
+  <ol>
+&nbsp;
+  </ol>
+  <li>Write a predicate countElements, given a list of lists compute
+the total number of&nbsp; elements in all the lists. i.e.<br>
+    <br>
+    <tt><b>?-countElements([[1,2],[a,b,c]], L). <br>
+L = 5 <br>
+yes <br>
+?- countElements([[],[],[abc],[123]],L). <br>
+L = 2 <br>
+yes <br>
+?- countElements([[],[]],L). <br>
+L = 0 <br>
+yes</b></tt></li>
+  <ol>
+    <ol>
+      <tt><b>&nbsp;</b></tt>
+    </ol>
+  </ol>
+  <li>Define a predicate, mapFun(Functor,ListOfArgs,ListOfTerms), where
+each term in the ListOfTerms is a term with one argument from the
+ListOfArgs and the name is the functor. See page 638 in Scott for
+information on the built-in predicates functor, ...,&nbsp; and arg. i.e. <br>
+    <tt><b><br>
+?- mapFun(somePred,[a,b,23,4],Lst). <br>
+Lst = [somePred(a), somePred(b), somePred(23), somePred(4)] <br>
+Yes</b></tt><br>
+  </li>
+  <ol>
+    <tt><br>
+    </tt>
+  </ol>
+  <li>[easy] Given a list of predicates, <b><tt>appPred(L)</tt></b>,
+succeeds only if each of the predicates in the list succeeds. <b>Note:
+the scope of variables names is the entire list.</b> You can apply each
+predicate at the prompt to test how they work.&nbsp; Make up your own
+test cases. i.e.</li>
+  <ol>
+    <b><tt>?- appPred([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]).</tt></b> <br>
+    <b><tt>A = 5</tt></b> <br>
+    <b><tt>B = 9</tt></b> <br>
+    <b><tt>C = 5</tt></b> <br>
+    <b><tt>yes</tt></b> <br>
+    <b><tt>?- appPred([=(A,5),is(B,+(4,5)),C is max(9,2),A=C]).</tt></b> <br>
+    <b><tt>no</tt></b>
+  </ol>
+</ol>
+<p><br>
+<font color="#3333ff">Remember Programming is an individual task... :</font> </p>
+<p><font color="#3333ff">Resources use:</font> </p>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a> </p>
+<br>
+<br>
+</body>
+</html>

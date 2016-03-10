@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Assignment 10 review</title>
+                                                                        
+                                                           
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+<body>
+                     
+<h3>Due Sat. Nov 10.<br>
+</h3>
+<h3>Assignment 10 Download Haskell.</h3>
+There are&nbsp; two&nbsp; simple haskell problems &nbsp;to do this week.<br>
+<big><big><big><a href="HaskellF021.lhs">HaskellF021.lhs</a> <br>
+</big></big></big><br>
+                      
+<h3>Assignment 10 Written part&nbsp;</h3>
+    Purpose. &nbsp;Review runtime environment.<br>
+                   <br>
+<ol>
+  <li>(If we get to watch the Documentary). &nbsp;In this course the only
+required software is free or open source products verse proprietary&nbsp;
+software. &nbsp; Last friday &nbsp;<a
+ href="http://www.washingtonpost.com/wp-dyn/articles/A54547-2002Nov1.html">Judge
+&nbsp;accepted settlement in the Microsoft case.</a> Mean while use of open
+source programs are expanding. &nbsp; This week an article on <a
+ href="http://www.washingtonpost.com/wp-dyn/articles/A59197-2002Nov2.html">use
+of linux</a> in Europe appeared in the Washington Post. &nbsp;Last Saturday
+the Press and Sun Bulletin had an article about Kapur (software pioneer of
+Lotus Notes) who latest effort is to create an open source "interpersonal"
+information manager. &nbsp; What are the pros and cons for a business to use
+open source software?&nbsp;</li>
+        
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li>page 312 exercise 6.3</li>
+  <li>page page 312 exercise 6.5 &nbsp;<br>
+  </li>
+  <li>Run the following C program and explain the resulting output:</li>
+        
+  <dl>
+    <dd>void q(int z) {<br>
+&nbsp;&nbsp;&nbsp; { int x;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;printf("%d\n",x);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; x = 3;<br>
+&nbsp; &nbsp; &nbsp;}<br>
+&nbsp; &nbsp; { int y;<br>
+&nbsp; &nbsp; &nbsp; &nbsp;printf(%d\n",y);<br>
+&nbsp; &nbsp; &nbsp;}<br>
+}<br>
+int main ( ) {<br>
+&nbsp; &nbsp; q(99);<br>
+}<br>
+      <br>
+    </dd>
+  </dl>
+     <li>The language C does not have a Boolean type. &nbsp;</li>
+        
+  <ol type="A">
+    <li>How does C represent True and False?</li>
+    <li>"&amp;&amp;" and "||" are logical operators. &nbsp;What are the possible
+resulting values? &nbsp;What is the order of evaluations of these operators?
+&nbsp;Should an optimizing compiler be allowed to change the order of subexpression
+in a logical expression?<br>
+    </li>
+    <li>"&lt;", "&gt;", "&gt;=", and "&lt;=" are examples of relational operators.
+&nbsp;What is the associativity of these operators? &nbsp;If a = 3, b = 30,
+and c = 10 will the value of a &lt; b &lt; c be equivalent to false? &nbsp;If
+not rewrite the expression using "&amp;&amp;" to get the result consistant
+with the expected mathematical value.</li>
+              
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+        
+  </ol>
+  <li>Consider the following code</li>
+</ol>
+<ol>
+  <b><tt>var &nbsp;&nbsp; a, b, c : integer;<br>
+function f ( x : integer) : integer;<br>
+&nbsp;begin<br>
+&nbsp; &nbsp;return a + x<br>
+&nbsp;end;<br>
+  <br>
+function g ( a , b : integer) : integer;<br>
+&nbsp; begin<br>
+&nbsp; &nbsp;var x : integer = 8;<br>
+&nbsp; &nbsp;return f(a) * f (b);<br>
+&nbsp; end<br>
+begin</tt></b>  <b><tt>&nbsp; &nbsp; <br>
+&nbsp; &nbsp; a := 3;</tt></b><br>
+    <b><tt>&nbsp; &nbsp; b := 4;</tt></b><br>
+    <b><tt>&nbsp; &nbsp; x := 7;</tt></b><br>
+    <b><tt>&nbsp; &nbsp; b := f(12) + g(14, 16);</tt></b><br>
+    <b><tt>end</tt></b><br>
+  <br>
+What is the value assigned to b, assuming:<br>
+                   
+  <ol type="a">
+    <li>lexical scoping?</li>
+    <li>dynamic scoping?&nbsp;</li>
+                   
+  </ol>
+  
+</ol>
+  <br>
+  <br>
+<br>
+<br>
+<br>
+</body>
+</html>

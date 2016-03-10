@@ -1,0 +1,1005 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+
+  
+  
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+
+
+
+  
+  
+  
+  <title>Assignment 5: Syntax and Parsing</title>
+</head>
+
+
+<body>
+
+
+
+
+<h4>Reading&nbsp;</h4>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Louden Chapter 4</li>
+
+
+
+
+</ul>
+
+
+
+
+Due in class Mon. Feb. 20<br />
+
+
+
+
+<ol>
+
+
+
+
+  <li>Exercise 4.38 page 119</li>
+
+
+
+  <li>What is IEEE 754-1985 ?&nbsp;&nbsp;</li>
+
+
+
+
+</ol>
+
+
+
+
+Due in class Wed. Feb. 22<br />
+
+
+
+
+<ol>
+
+
+
+
+  <li>Exercise 4.42 (a) page 120 and draw the parse tree for
+(a,(a),(a,a)).&nbsp; (You may draw the trees by
+hand).</li>
+
+
+
+
+  <li>4.43 page 120</li>
+
+
+  <li>4.40 page 120</li>
+
+
+
+
+</ol>
+
+
+
+
+<hr style="width: 100%; height: 2px;" />
+<h4>Written Assignment: <br />
+
+
+
+
+</h4>
+
+
+
+
+<b>Purpose:</b><br />
+
+
+
+
+<ul>
+
+
+
+
+  <li>To review how grammar (syntax) rules works in theory and
+application.</li>
+
+
+
+
+  <li>To use and modify a recursive descent parser.</li>
+
+
+  <li>Review primitive types and Intel architecture.</li>
+
+
+
+
+</ul>
+
+
+
+
+<ol>
+
+
+
+
+  <li>Add the maximum operator to (a) the arithmetic BNF or
+(b) EBNF of figures 4.9 or 4.10. &nbsp;Use the symbol } for the
+maximum
+operator. &nbsp;} will be right associative and have a precedence
+lower
+than +.</li>
+
+
+
+
+  <li>The following is a grammar for &nbsp;well parenthesized
+expressions for Propositional Logic:</li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd><span style="font-family: monospace;">E
+=&gt; (EBE) | (UE) | C | V</span><br style="font-family: monospace;" />
+
+
+
+
+      <span style="font-family: monospace;">B =&gt;
+&amp; | V | -&gt; | &lt;-&gt;</span><br style="font-family: monospace;" />
+
+
+
+
+      <span style="font-family: monospace;">U =&gt; ~</span><br style="font-family: monospace;" />
+
+
+
+
+      <span style="font-family: monospace;">C =&gt; F
+| T</span><br style="font-family: monospace;" />
+
+
+
+
+      <span style="font-family: monospace;">V =&gt; P
+| Q | R</span></dd>
+
+
+
+
+    <dt>Draw the parse tree for ((( P V Q) &amp; R) V (Q
+&amp; (~P)))</dt>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li><span style="text-decoration: underline;"></span>Add
+the maximum operator, }, as described in problem 1, to the
+modified code given in <a href="hw5/Fig4_12.c">Fig4_12.c</a>. &nbsp;Use the<span style="text-decoration: underline;"> </span><a href="hw5/Makefile">Makefile</a> and <span style="font-style: italic;">make</span> tool to build your executable.
+    <br />
+
+
+
+
+  </li>
+
+
+
+
+  <li>Exercise 4.22 page 117</li>
+
+
+
+
+  <li>(This problem may be extend one week.)<br />
+
+Write a Python script using the RE module which&nbsp;</li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>1) reads an ascii file&nbsp;<br />
+
+&nbsp; &nbsp; prints out <br />
+
+
+
+
+&nbsp; &nbsp; the&nbsp;<span style="font-style: italic;">common name</span> (the string between &lt;COMMON&gt; tags),
+&nbsp;</dd>
+
+    <dd>2) reads an ascii file<br />
+
+&nbsp; &nbsp;prints out&nbsp;</dd>
+
+    <dd>&nbsp; &nbsp;&nbsp; the <span style="font-style: italic;">botanical name&nbsp;</span>
+(the string between the &lt;BOTANICAL&gt; tag) <br />
+
+
+
+
+&nbsp; &nbsp; &nbsp;if the <span style="font-style: italic;">zone</span> is 4 (the value between the &lt;ZONE&gt; tag)<br />
+
+
+
+
+test your script on the <a href="hw5.xml">hw5.xml</a>.&nbsp;</dd>
+
+
+
+
+Do not print out the tags. &nbsp;You should include your Python
+code and printed output of your program. &nbsp;
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+    <dd><span style="font-family: monospace;">
+
+      <br />
+
+
+
+
+      </span></dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Rewrite the expressions a&ndash;d below in prefix
+notation. Assume the
+following precedences&nbsp; and associativities for the operators:</li>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dd>
+      
+      
+      
+      <table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
+
+
+
+
+        <tbody>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="vertical-align: top;">Operator<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">Precedence<br />
+
+
+
+
+(3 highest)<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;">Associativity<br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">^<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">3<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">right<br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">*<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">2<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">/<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">2<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">+<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">1<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">-<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">1<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="text-align: center; vertical-align: top;">left<br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+        
+        
+        
+        </tbody>
+      
+      
+      
+      </table>
+
+
+
+
+    </dd>
+
+
+
+
+    <dt>and don't assume that any of the operators are
+commutative.</dt>
+
+
+
+
+    <dt>A simple way to proceed is to perform the rewriting
+process in
+three steps:</dt>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  
+  
+  
+  <ol>
+
+
+
+
+    <li>Parenthesize the expression fully, using the rules of
+precedence and associativity.</li>
+
+
+
+
+    <li>Within each parenthesized subexpression, move the
+operator to
+left of its left operand.</li>
+
+
+
+
+    <li>Remove the parentheses.</li>
+
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+
+    <dt>You'll notice that in the resulting expression, the order
+of
+the operands is the same as in original- only the operators change
+positions.</dt>
+
+
+
+
+    <dd>
+      
+      
+      
+      <table style="text-align: left;" border="0" cellpadding="5" cellspacing="5">
+
+
+
+
+        <tbody>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="vertical-align: top; font-weight: bold;">a)&nbsp;
+w / &nbsp;x&nbsp; +&nbsp; y&nbsp; *&nbsp; z<br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;"><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+b) &nbsp;w&nbsp; / (x&nbsp; *&nbsp; y&nbsp; +&nbsp; z) </span><br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+          <tr>
+
+
+
+
+            <td style="vertical-align: top;"><span style="font-weight: bold;">c)&nbsp; w&nbsp; /&nbsp; x&nbsp; ^&nbsp; y&nbsp; *&nbsp; z</span><br />
+
+
+
+
+            </td>
+
+
+
+
+            <td style="vertical-align: top;"><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+d)&nbsp; w ^
+x&nbsp; ^&nbsp; y&nbsp; *&nbsp; z</span><br />
+
+
+
+
+            </td>
+
+
+
+
+          </tr>
+
+
+
+
+        
+        
+        
+        </tbody>
+      
+      
+      
+      </table>
+
+
+
+
+      <br />
+
+
+
+
+    </dd>
+
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+
+  <li>Using the same assumptions as in exercise <span style="color: rgb(204, 0, 0);">6</span> rewrite the
+expressions of&nbsp; exercise <span style="color: rgb(204, 0, 0);">6</span> in&nbsp;</li>
+
+
+
+
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+    <li>postfix
+notation.&nbsp;&nbsp;</li>
+
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+
+
+  
+
+
+  <li>The C code provided below illustrates some problems with
+the
+implementation of floating point numbers. You are given&nbsp; a
+simple <i>C</i>&nbsp;program
+(<a href="hw5S06/hw5S06.c"> hw5S06.c</a>) to run.
+&nbsp;There is
+a&nbsp; <a href="hw5S06/Makefile">Makefil</a>e
+and<a href="hw5S06/README"> README</a> if you want
+to use them.&nbsp;
+Compile and run this code using GCC. (You may use cygwin , mingw or Sun
+work stations ).&nbsp;<br />
+
+
+
+
+  </li>
+
+
+
+
+  
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+
+
+    <li>The 4 sums are computed in part1() and printed out in.
+Part
+1A's printout appears to be the same&nbsp; independent of the
+calculation order of &nbsp;the "i's". &nbsp;However, the sum
+printed
+out in Part 1B's printout is different. One would expect&nbsp;
+program
+would compute and print the same value for sum. &nbsp; Explain what
+is
+going on.<br />
+
+
+
+
+      <br />
+
+
+
+
+    </li>
+
+
+
+
+    <li>One would also expect that adding ten times the value 0.1
+would
+result in 1.0.&nbsp; Explain why (how) the computer gets the
+results
+for
+part 2 (part2()) ?<br />
+
+
+
+
+      <br />
+
+
+
+
+    </li>
+
+
+
+
+    <li>(Harbison &amp; Steele) "Prior to ISO C, all
+implementations were required to convert all values of type <b>float</b>
+to type <b>double</b> before operations were performed.
+&nbsp;... In
+ISO
+C, operations can now be performed using type <b>float</b>
+."
+&nbsp;What
+is the consequences of this change? ( Consider speed,&nbsp;
+accuracy,
+and space. ) &nbsp;How does Intel architectures handle floating point arithmetic?<br />
+
+
+
+
+&nbsp; </li>
+
+
+  
+  
+  </ol>
+
+
+  <li>Explain why (a+b)*10 does not equal a*10 + b*10. &nbsp;</li>
+
+
+  
+  
+  <ol>
+
+
+    <li>Compile the&nbsp;code,&nbsp;<a href="hw5S06/hw5S06a.c">hw5S06a.c</a>, on an Intel platform twice as follows:<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gcc hw5S06a.c -o hw5S06a.exe<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gcc hw5S06a.c -o hw5S06b.exe -O</li>
+
+
+    <li>&nbsp;Run both executables:<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ./hw5S06a.exe<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ./hw5S06b.exe</li>
+
+
+    <li>Can you explain why the outputs are not the same.&nbsp; You may use the<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -S option:<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gcc hw5S06a.c&nbsp; -S <br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gcc hw5S06a.c -O -S<br />
+
+
+to see the assembly code generated by the different opinions&nbsp;or a debugger such as ddd or gdb. &nbsp;See: &nbsp;<a href="http://www.ferg.org/papers/ferg--debugger_introduction.html">http://www.ferg.org/papers/ferg--debugger_introduction.html</a><br />
+
+
+      <br />
+
+
+You might take this opportunity to create a Makefile and use <span style="font-style: italic;">make</span> to build the different executables.&nbsp; You can use the Makefile supplied as an example.&nbsp; You will need to put&nbsp;<a href="../../../%7Ehead/CS471/HW/hw5S06/hw5S06a.c">hw5S06a.c</a> and your new Makefile in a different directory. &nbsp;(Helpful links on <span style="font-style: italic;">make:</span> <a href="http://www.eng.hawaii.edu/Tutor/Make/">http://www.eng.hawaii.edu/Tutor/Make/</a> and <a href="http://www.gnu.org/software/make/">http://www.gnu.org/software/make/</a>)<br />
+
+
+      <br />
+
+
+If you have time try this same problem on the Sparc machines.</li>
+
+
+  
+  
+  </ol>
+
+
+
+
+</ol>
+
+
+
+
+_________________________________________________________________________________<br />
+
+
+
+
+<font color="#3333ff"><br />
+
+
+
+
+Remember Programming is an individual task... :</font>
+<p><font color="#3333ff">Resources use:</font>
+</p>
+
+
+
+
+<p><a href="mailto:head@binghamton.edu">Questions?(For
+E. Head)</a> </p>
+
+
+
+
+<br />
+
+
+
+
+</body>
+</html>

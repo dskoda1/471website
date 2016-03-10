@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Assignment 4 - Prolog 2</title></head><body>
+<h3 style="text-align: center;">Programming Languages<br>
+Assignment&nbsp; 4: Prolog</h3>
+
+Turn in one file prolog file.&nbsp; Answers will be given to questions 1 -4. Turn in only questions/parts with
+points.<br>
+
+<br>
+<ol>
+
+  
+  <li>A:What is the mathematical definition of:<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; a) relation<br>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp; b) function<br>
+
+
+&nbsp;B: Is every function a relation?&nbsp; If false give a counter
+example.<br>
+
+
+&nbsp;C: Is every relation a function? If false give a counter example.<br>
+    <br>
+</li>
+  <li>Define <span style="font-style: italic;">homoiconic.</span>
+Is Prolog <span style="font-style: italic;">homoiconic</span>? What
+does it mean to say a language is <span style="font-style: italic;">fully
+reflective</span>? Is Prolog fully
+reflective? (See pages 562-565 in Scott)<br>
+    <br>
+  </li>
+  <li>(From Learn Prolog NOW! exercise 3.3) Binary trees are trees
+where all internal nodes have exactly two children. The smallest binary
+trees consist of only one leaf node. We will represent leaf nodes as
+leaf(Label). For instance, leaf(3) and leaf(7) are leaf nodes, and
+therefore small binary trees. Given two binary trees B1 and B2 we can
+combine them into one binary tree using the predicate tree:
+tree(B1,B2). So, from the leaves leaf(1) and leaf(2) we can build the
+binary tree tree(leaf(1), leaf(2)). And from the binary trees
+tree(leaf(1), leaf(2)) and leaf(4) we can build the binary tree
+tree(tree(leaf(1), leaf(2)), leaf(4)).<br>
+
+Now, define a predicate swap/2, which sumuces a mirror image of
+thebinary tree that is its first argument. For example:<br>
+
+    <br style="font-family: monospace;">
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> ?- swap(tree(tree(leaf(1), leaf(2)),
+leaf(4)),T).</span></span><br style="font-family: monospace; font-weight: bold;">
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+T = tree(leaf(4), tree(leaf(2), leaf(1))).</span><br style="font-family: monospace; font-weight: bold;">
+
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+yes</span><br>
+
+    <br>
+
+&nbsp; 2 clauses<br>
+    <br>
+  </li>
+
+  <li>(10)Ackermann's functions was defined in homework 1 as follows:<br>
+  </li>
+  <dl>
+    <dd><span style="font-style: italic;"></span><span style="font-family: monospace; font-weight: bold;">ack(
+m,n ) =&nbsp;&nbsp;&nbsp; n +
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if m = 0</span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">ack( m,n
+) =&nbsp;&nbsp;&nbsp; ack(m - 1,
+1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if n = 0 and m &gt; 0 </span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">ack( m,n
+) =&nbsp;&nbsp;&nbsp; ack( m-1, ack( m, n-1 )
+)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if n &gt;0 and m
+&gt; 0</span><br style="font-family: monospace;">
+      <br>
+    </dd>
+    <dt>Code an Ackermann's predicate in prolog using this
+definition.&nbsp; What is the Ackermann's number for your
+implementation?<br>
+      <br>
+    </dt>
+  </dl>
+  <li>(0 pts) Type
+manpce at the prompt.&nbsp; You should see a pop-up window (the icon is
+books). In the "Browsers" pull down menu select "Prolog&nbsp;
+manual".&nbsp; Another window will open which will allow us to browse
+the Prolog manual.&nbsp; Click on the "+" next to "Built-in predicates"
+-- this will open sub-menu.&nbsp; Clicking on the words "Built-in
+predicates" opens the manual page. On the
+bottom of this window you will see the label "On:" , type "number" and
+enter in the next box.&nbsp; You should see the specification of <span style="font-style: italic;">number </span>in the manual page frame on
+the right.&nbsp; Repeat this for <span style="font-style: italic;">atom.<br>
+    <br>
+    </span></li>
+  <li>A. Try to predict the results of the following queries (you do not need to
+include answer in the file you submit.&nbsp; You can use help to remind
+you what these predicates do. eg. ?- help(functor).&nbsp; (See page 562 in Scott)<br>
+    <br>
+  </li>
+
+  <dl style="font-family: monospace; font-weight: bold;">
+    <dd>?- functor(foo(a,b,c),F,N).<br>
+?- functor(foo(a,b,c),F,N), write('\n'), write(F),write('\nlast write
+\n.').<br>
+?- functor(T,foo,3).<br>
+?- arg(3, foo(a,b,c),A).<br>
+?- T =.. [foo,x, y, z].<br>
+?- foo(who, what) =.. T.<br>
+?- foo(who, what) =.. [A, B,C].<br>
+?- clause(ack(M,0,B),C).<br>
+?- clause(H,(B is 2*0)).<br>
+?- write('Hello').<br>
+?- write(Hello).<br>
+      <br>
+    </dd>
+  </dl>
+  B. (10)Define a predicate, listOfTerms(ListOfArgs,Name,
+ListOfResults),&nbsp; where each term in the ListOfResults is a term
+with one argument from the ListOfArgs and the functor name is the
+Name. <br>
+
+  
+  <dl style="font-family: monospace; font-weight: bold;">
+    <dd><br>
+
+?- listOfTerms([[1,2],[a,s,v],[100]],foo,T). <br>
+
+T = [foo(1, 2), foo(a, s, v), foo(100)].<br>
+
+?- listOfTerms([[1,2],[100,99],[5,11]],+,T).<br>
+
+T = [1+2, 100+99, 5+11].<br>
+
+?- listOfTerms(Lst,F,[1+2, 100+99, 5+11]).<br>
+
+Lst = [[1, 2], [100, 99], [5, 11]],<br>
+
+F = + .<br>
+
+    </dd>
+  </dl><br>
+
+        <br>
+
+      
+    
+  
+  <li>(10pts) Lets explore <span style="font-style: italic;">select</span>
+built-in predicate.&nbsp; <br>
+    <br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>(0pts) Type the following query:</li>
+    <ol>
+      <span style="font-family: monospace;">?- help(select).<br>
+?- select(c, [a,b,c,d,e], R).<br>
+      </span><span style="font-family: monospace;">?- select(c,
+[a,b,X,d,e], R).</span><br>
+      <span style="font-family: monospace;">?- select(c, R, </span><span style="font-family: monospace;">[a,b,d,e]</span><span style="font-family: monospace;">).</span> % use the ";" instead of
+return<br>
+      <br>
+    </ol>
+    <li>(10pts) Define <span style="font-style: italic;">insert</span>(<span style="font-style: italic;"> ?Elem, ?Lst, ?LstWithElem</span>) such
+that <span style="font-style: italic;">insert </span>succeeds <span style="font-style: italic;"><span style="font-style: italic;"></span></span><span style="font-style: italic;"></span>if the only difference
+between&nbsp; <span style="font-style: italic;">Lst</span> and <span style="font-style: italic;">LstWithElem <span style="font-style: italic;"><span style="font-style: italic;"></span></span></span>is<span style="font-style: italic;"><span style="font-style: italic;"><span style="font-style: italic;"></span></span> LstWithElem </span>includes
+      <span style="font-style: italic;">Elem.&nbsp; i.e.</span></li>
+    
+    <ol style="list-style-type: lower-alpha;">
+      <span style="font-family: monospace;">?- insert(c,[a,b,d,e],[a,
+c, b, d, e]).</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">true .</span><br style="font-family: monospace;">
+      <br style="font-family: monospace;">
+      <span style="font-family: monospace;">?- insert(c,[a,b,d,e],[a,
+b,c, d, e]).</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">true .<br>
+      <br>
+      </span><span style="font-style: italic;"></span>Use 'select' in your definition.<br>
+
+      
+    </ol>
+    <ol>
+    </ol>
+  </ol>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  
+  <li>Given a tree, define a predicate equivT(Tree,ETree), that
+success if&nbsp; Tree and ETree have the same structure and all the
+corresponding leaves<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; have equivalent values.&nbsp; Use the
+tree definition from the above problem.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (2 clauses)<br>
+    <br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+?- equivT(tree(tree(leaf(1), leaf(2)),leaf(3)), tree(leaf(1), leaf(2))).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+false.</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+?- equivT(tree(tree(leaf(1), leaf(2)),leaf(3)), tree(tree(leaf(1),
+leaf(2)),leaf(3))).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+true.</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+?- equivT(tree(tree(leaf(1), leaf(2)),leaf(3)), tree(tree(leaf(1),
+leaf(2)),leaf(10))).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+false.</span><br>
+    <br>
+<br>
+  </li>
+  <li>&nbsp; Given a list of predicates, applylist(L) succeeds only
+if&nbsp; each of the predicates in the list succeeds. Note: the
+scope&nbsp; of variables names is the entire list. You can apply each
+predicate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; at the prompt to see how they
+work.&nbsp; Make up your own. (2 lines)<br>
+&nbsp;&nbsp; i.e.<br>
+&nbsp;&nbsp;&nbsp;<span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp; ?-
+applylist([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+A = 5,</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+B = 9,</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+C = 5.</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+?- applylist([=(A,5),is(B,+(4,5)),C is max(9,2),A=C]).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+false.</span>&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp; 2 clauses <br>
+<br>
+  </li>
+  <li>"Send more money" is a well-known puzzle. Each of the
+letters&nbsp; D,E,M,N,O,R,S and Y represents a different digit.
+Moreover, when each letter is mapped to its corresponding digit the
+equation SEND + MORE = MONEY holds. Below is a very naive
+implementation. Since there are 8 letters&nbsp; to be solved, it simply
+explore the 10*9*...*3 mappings of letters to&nbsp; digits. <br>
+&nbsp;&nbsp;&nbsp; <br>
+A little insight can simplify things. Clearly, SEND &lt; 9999 and&nbsp;
+MORE &lt; 9999. Thus MONEY &lt; 19998 and hence M = 1.&nbsp; Now we
+have SEND + 1ORE = 1ONEY. Again SEND &lt; 9999&nbsp; and now 1ORE &lt;
+1999 so 1ONEY &lt; 11998. Since M is already bound to 1,&nbsp; O must
+be bound to 0. A little more thought shows that S must be bound to 8 or
+9, and that N = E + 1. Using these insights to reduce the number of
+solutions that must be explored, write a Prolog predicate
+soln([D,E,M,N,O,R,S,Y]) that solves this puzzle by binding the correct
+digits to each of the variables in the list. (Modified from
+http://www.cs.wisc.edu/~fischer/) (1 clause with multiple
+subgoals.)&nbsp; <br>
+  </li>
+  <ol>
+    <ol>
+      <span style="font-family: monospace; font-weight: bold;">solvSlow(
+[D,E,M,N,O,R,S,Y]) :- </span><br style="font-family: monospace; font-weight: bold;">
+      <ol style="font-family: monospace; font-weight: bold;">
+Lst = [S,E,N,D,M,O,R,Y],<br>
+Digits = [0,1,2,3,4,5,6,7,8,9],<br>
+assign_digits(Lst, Digits),<br>
+M &gt; 0, <br>
+S &gt; 0,<br>
+1000*S + 100*E + 10*N + D +<br>
+1000*M + 100*O + 10*R + E =:=<br>
+10000*M + 1000*O + 100*N + 10*E + Y,<br>
+write(Lst).<br>
+      </ol>
+      <span style="font-family: monospace; font-weight: bold;">assign_digits([],
+_List). </span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">assign_digits([D|Ds],
+List):-</span><br style="font-family: monospace; font-weight: bold;">
+      <ol>
+        <span style="font-family: monospace; font-weight: bold;">select(D,
+List, NewList),</span><br style="font-family: monospace; font-weight: bold;">
+        <span style="font-family: monospace; font-weight: bold;">assign_digits(Ds,
+NewList).</span><br>
+<br>
+      </ol>
+    </ol>
+  </ol>
+  <li>&nbsp;Syntax-Directed
+Differentiation:&nbsp; A motivating example illustrating the power of
+pattern matching in Prolog.&nbsp; Consider the following rules for
+symbolic differentiation&nbsp; (U, V are mathematical expressions, x is
+a variable):<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dx/dx = 1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d(C)/dx = 0.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d(Cx)/dx =
+C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(C is a constant)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d(-U)/dx = -(dU/dx)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d(U+V)/dx = dU/dx + dV/dx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d(U-V)/dx = dU/dx - dV/dx<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d(U*V)/dx = U*(dV/dx) +
+V*(dU/dx)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d(U^n)/dx = nU^(n-1)*(dU/dx)<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; These rules can easily be
+translated into Prolog, for instance,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the second rule can be
+defined as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+d(C,x,0):-number(C).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; and the fifth
+rule can be defined as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+d(U+ V ,x, DU+ DV):-d(U,x,DU),d(V,x,DV).<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Write the remaining
+rules. Here is a test query:<br>
+    <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;">?- d(3*(x
++2*x*x),x,Result).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">Result =
+3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0 ;</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">Result =
+3* (1+ (2*x*1+x* (2*1+x*0)))+ (x+2*x*x)*0 ;</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">false.</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;"><br>
+?- d(3*(x +2*x*x),x,Result).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">Result =
+3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0 .</span><br style="font-family: monospace;">
+    </div>
+    <br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Keep in mind, though, that
+terms such as U+V are still trees with the functor at the root, and
+that evaluation of such terms requires additional processing .&nbsp;
+See next week's assignment.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 clause for each
+definition.&nbsp;&nbsp; <br>
+  </li>
+  <li>&nbsp;&nbsp; sumR(+N,?P):&nbsp; Given a number, N, S is a list of
+the sum of the numbers from N down to 1 such that first number in S is
+the sum of all the number from N to 1,&nbsp; the second number in P the
+sum of all the numbers from N-1 down to 1<br>
+&nbsp;&nbsp;&nbsp; etc.<br>
+&nbsp;&nbsp; For example: <br>
+&nbsp;&nbsp;<span style="font-family: monospace;">&nbsp;&nbsp; <span style="font-weight: bold;">?- sumR(6,S).</span></span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+S = [21, 15, 10, 6, 3, 1]</span><span style="font-weight: bold;"> .</span><br style="font-weight: bold;">
+    <br>
+&nbsp;&nbsp; 2 clauses<br>
+  </li>
+  <li>sumL(N,S).: Is simular to sumR(+N,?S), except that sum totals
+accumulate left to right. e.g. The first value in S will be
+N,&nbsp;&nbsp;&nbsp; the second value will be N + N-1, etc.<br>
+    <br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+?- sumL(6,S).</span><br style="font-family: monospace; font-weight: bold;">
+    <span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+S = [6, 11, 15, 18, 20, 21] </span><br style="font-family: monospace; font-weight: bold;">
+    <br>
+It would be helpful to overload sumL/2 and include the following clause:<br>
+    <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-family: monospace; font-weight: bold;">sumL(N,Lst):-sumL(N,N,Lst).</span><br>
+    <br>
+&nbsp;&nbsp;&nbsp; 2 additional clauses.<br>
+  </li>
+</ol>
+
+</body></html>

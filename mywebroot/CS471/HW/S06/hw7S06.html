@@ -1,0 +1,1219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+
+
+
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  <title>Data Types - Louden Chapter 6</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+
+  
+  
+  
+  
+  <meta name="author" content="E Head">
+</head>
+
+
+<body>
+
+
+
+
+
+<div style="text-align: center;">
+<h3>Homework Assignment 7</h3>
+
+
+
+
+
+</div>
+
+
+
+
+
+<span style="font-weight: bold;">Due in class Mon, March 6.<br>
+
+
+
+
+
+</span>
+<ol>
+
+
+
+
+
+  <li>Discuss one way <span style="font-weight: bold;"><span style="font-style: italic;">const</span> </span>behavior
+differently
+in C
+vs C++?&nbsp; Which is a better specification of <span style="font-style: italic;">const </span>for the
+programmer?</li>
+
+
+  <li>Is sizeof('a') the same value in C and C++?</li>
+
+
+
+
+
+</ol>
+
+
+
+
+
+<ol>
+
+
+
+
+
+</ol>
+
+
+
+
+
+<span style="font-weight: bold;">Due in class Wed., March 8<br>
+
+
+
+
+
+</span>
+<ol>
+
+
+
+
+
+  <li>page 250 problem 6.4</li>
+
+
+
+
+
+  <li>Let the size of <span style="font-style: italic;">char
+    </span>be
+1 byte and the size of an int be 4 bytes,&nbsp; what is the size of
+the
+following struct, rec,&nbsp; if the the system is allowed to
+rearrange
+the fields to optimize the space but it is required to keep ints on a
+word boundary?&nbsp; Write a <span style="font-weight: bold;">C
+or C++</span>
+program using sizeof() to determine the size of the struct.&nbsp; What is the
+size?&nbsp; Briefly explain how C/C++ lays out the struct in
+memory. &nbsp;</li>
+
+
+
+
+
+  
+  
+  
+  
+  <ol>
+
+
+
+
+
+    <span style="font-family: monospace;"><br>
+
+
+
+
+
+struct
+rec {</span><br style="font-family: monospace;">
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+char a;</span><br style="font-family: monospace;">
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int x;</span><br style="font-family: monospace;">
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+char b;</span><br style="font-family: monospace;">
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+int y;</span><br style="font-family: monospace;">
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+char c;</span><br style="font-family: monospace;">
+
+
+
+
+
+    <span style="font-family: monospace;">}</span>
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+</ol>
+
+
+
+
+
+<span style="font-weight: bold;"><br>
+
+
+
+
+
+Due: Sat. March 11, midnight</span><br>
+
+
+
+
+
+<h4>Purpose:&nbsp; Understand Types using examples from C,C++
+and Ada<br>
+
+
+
+
+
+</h4>
+
+
+
+
+
+You can work in teams of 3 people.<br>
+
+
+
+
+
+<h3>Reading/References:</h3>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li>Louden: Chapter 6</li>
+
+
+
+
+
+  <li><a href="http://mindview.net/Books/TICPP/ThinkingInCPP2e.html">"Thinking in C++"</a> by Eckel is a good reference</li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<h3>Assignment:<br>
+
+
+
+
+
+</h3>
+
+
+
+
+
+<ol>
+
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+    <br>
+
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+</ol>
+
+
+
+
+
+<ol>
+
+
+
+
+
+  <li>page 252 exercise 6.12 (Hint: use Typedef and struct)</li>
+
+
+
+
+
+  <li>page 253 exercise 6.22</li>
+
+
+
+
+
+  <li>page 253 exercise 6.23</li>
+
+
+
+
+
+  <li>page 257 exercise 6.47</li>
+
+
+
+
+
+  <li>Perl uses "dynamic" arrays which can increase in size
+during execution.&nbsp;
+Explain how can the dynamic arrays can be&nbsp; implemented at
+runtime?&nbsp;Perl code that illustrates how dynamic array shrinks
+and grow. <br>
+
+
+
+
+
+  </li>
+
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+    <dd>
+      
+      
+      
+      
+      <p>my @arr = (5,6,7); <br>
+
+
+
+
+
+push @arr, 10 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; # this will result in the array now being (5,6,7,10) <br>
+
+
+
+
+
+push @arr, (11,12) &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# this will
+result in the array now being (5,
+6, 7, 10, 11, 12) <br>
+
+
+
+
+
+my $element = pop @arr&nbsp; &nbsp; &nbsp; &nbsp;# will
+pop the last element in the
+array, which is 12</p>
+
+
+
+
+
+    </dd>
+
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+  <li>What is void * ? Why have it? void * does not behavior
+exactly the same in C
+and C++. Provide an example(i.e. code) that will illustrate this
+difference between <i>C</i> and C++.<br>
+
+
+
+
+
+  </li>
+
+
+
+
+
+  <li>Given
+the following declaration in Ada:&nbsp;</li>
+
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+    <dd><br style="font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">TYPE
+Array_type
+IS ARRAY(3..7) OF Integer;&nbsp;</font><br style="font-family: monospace; font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">TYPE
+CODE
+is record&nbsp;</font><br style="font-family: monospace; font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Level :&nbsp; CHARACTER;&nbsp;</font><br style="font-family: monospace; font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Status: CHARACTER;&nbsp;</font><br style="font-family: monospace; font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Salary : Integer;&nbsp;</font><br style="font-family: monospace; font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">end
+record;&nbsp;</font><br style="font-family: monospace; font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">TYPE
+Code_Array
+IS ARRAY(10..15) OF CODE;&nbsp;</font><br style="font-family: monospace; font-weight: bold;">
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">arr
+: Array_type&nbsp;</font><span style="font-family: monospace; font-weight: bold;">
+      </span><br>
+
+
+
+
+
+      <font style="font-family: monospace; font-weight: bold;">codeArr
+: Code_Array&nbsp;</font></dd>
+
+
+
+
+
+    <br>
+
+
+
+
+
+    <font face="Arial, Helvetica, sans-serif">If INTEGER
+requires 4 bytes of storage and CHARACTER requires 2 byte of storage
+what is the effective address (using bytes as the addressable units) of
+variables
+below (show your calculations) You should assume that the ba (base
+address)
+for arr is 1500 and the base address for codeArr is 3000.&nbsp; You
+may assume
+the memory is byte addressable and you may use decimal arithematic.</font>&nbsp;
+    <b><font face="Arial, Helvetica, sans-serif">Formula
+:&nbsp;&nbsp;&nbsp; base address + offset</font></b><br>
+
+
+
+
+
+    <dt><font face="Arial, Helvetica, sans-serif">A.
+Effective
+address for arr(5)&nbsp; is&nbsp;</font>&nbsp;</dt>
+
+
+
+
+
+    <dt><font face="Arial, Helvetica, sans-serif">B.
+Effective
+address for codeArr(11) is&nbsp;</font><br>
+
+
+
+
+
+      <font face="Arial, Helvetica, sans-serif">C. What
+is the offset of <b><i>Status</i></b> in the
+record <b><i>Code</i></b> ?</font><br>
+
+
+
+
+
+      <font face="Arial, Helvetica, sans-serif">D.
+Effective
+address for codeArr(11).Status is&nbsp;</font></dt>
+
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+  <dd><br>
+
+
+
+
+
+  </dd>
+
+
+
+
+
+  <li><font face="Arial, Helvetica, sans-serif">Given
+the following declaration in
+Ada:&nbsp;</font><br style="font-weight: bold; font-family: monospace;">
+
+
+
+
+
+    <font style="font-weight: bold; font-family: monospace;">TYPE
+Array_type
+IS ARRAY(10..14, 1..4) OF Integer;&nbsp;</font><br style="font-weight: bold; font-family: monospace;">
+
+
+
+
+
+    <font style="font-weight: bold; font-family: monospace;">TYPE
+CODE
+is record&nbsp;</font><br style="font-weight: bold; font-family: monospace;">
+
+
+
+
+
+    <font style="font-weight: bold; font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Status : CHARACTER;&nbsp;</font><br style="font-weight: bold; font-family: monospace;">
+
+
+
+
+
+    <font style="font-weight: bold; font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Salary : Integer;&nbsp;</font><br style="font-weight: bold; font-family: monospace;">
+
+
+
+
+
+    <font style="font-weight: bold; font-family: monospace;">end
+record;&nbsp;</font>
+    
+    
+    
+    
+    <p style="font-weight: bold; font-family: monospace;">TYPE
+Code_Array
+IS ARRAY(1..5, 10..15) OF CODE;&nbsp;<br>
+
+
+
+
+
+arr : Array_type;&nbsp;
+    <br>
+
+
+
+
+
+codeArr
+: Code_Array;</p>
+
+
+
+
+
+    
+    
+    
+    
+    <blockquote><font face="Arial, Helvetica, sans-serif">&nbsp;If INTEGER requires 4 bytes of storage and CHARACTER requires 2 byte of
+storage
+what is the effective address (using bytes as the addressable units) of
+      <font color="#000000">variables below</font>
+(show
+your calculations) You should
+assume that the ba (base address) for arr is 4001 and the base address
+for
+codeArr is 5001. You may assume the memory is byte addressable and you
+may
+use decimal arithematic.</font></blockquote>
+
+
+
+
+
+  </li>
+
+
+
+
+
+  
+  
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+
+
+
+    <li><font face="Arial, Helvetica, sans-serif">Using
+row major the effective address for arr(10,3)&nbsp; is&nbsp;<b>&nbsp;</b></font></li>
+
+
+
+
+
+    <li><font face="Arial, Helvetica, sans-serif">Using
+column major the effective address for arr(10,3)&nbsp; is&nbsp;</font></li>
+
+
+
+
+
+    <li><font face="Arial, Helvetica, sans-serif">Using
+row major the effective address for codeArr(2,11) is&nbsp;</font></li>
+
+
+
+
+
+    <li><font face="Arial, Helvetica, sans-serif">Using
+row major the effective address for codeArr(2.11).Salary
+is&nbsp;&nbsp;<br>
+
+
+
+
+
+      <br>
+
+
+
+
+
+      <br>
+
+
+
+
+
+      </font></li>
+
+
+
+
+
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+  <li> given the following program fragment in C:<br>
+
+
+
+
+
+    
+    
+    
+    
+    <div style="margin-left: 40px;"><span style="font-family: monospace; font-weight: bold;">int a =
+4; &nbsp; &nbsp; &nbsp; </span><br>
+
+
+
+
+
+    <span style="font-family: monospace; font-weight: bold;">int
+b = (a++
+&gt;= ++a) &amp;&amp; (++a &gt; (a=2));</span><br>
+
+
+
+
+
+    </div>
+
+
+
+
+
+Assuming that all side-effects take effect immediately, what are the
+possible final values of a and b? Give the values in pairs, for example
+(a = ..., b = ...). &nbsp;Remember in Java, C and C++, <span style="font-weight: bold;">&amp;&amp;</span>
+is a <a href="http://en.wikipedia.org/wiki/Lazy_evaluation#Minimal_evaluation">short
+circuit</a> operator which is always evaluated left to right.<br>
+
+
+
+
+    <br>
+
+
+
+
+
+a. Assume that, wherever there is an option, operands are evaluated
+left to right:<br>
+
+
+
+
+
+b. Assume that, wherever there is an option, operands are evaluated
+right to left:
+
+  </li>
+
+
+
+
+
+  <li> Suppose this C++ code </li>
+
+
+
+
+
+  
+  
+  
+  
+  <ol>
+
+
+
+
+
+    <dd>const
+int k = ???;<span style="font-family: monospace;"></span></dd>
+
+
+
+
+
+    <dd>int * i
+= 0;<span style="font-family: monospace;"></span></dd>
+
+
+
+
+
+    <dd style="margin-left: 0px; width: 161px;">struct A
+{<br>
+
+
+
+
+
+    </dd>
+
+
+
+
+
+    <dd>&nbsp;&nbsp;&nbsp;
+int x
+[k]; <br>
+
+
+
+
+
+    </dd>
+
+
+
+
+
+    <dd><span style="font-family: monospace;">};</span></dd>
+
+
+
+
+
+    <dd><span style="font-family: monospace;"></span>A*
+a = 0;<span style="font-family: monospace;"></span></dd>
+
+
+
+
+
+    <br>
+
+
+
+
+
+printf(
+"%d&nbsp;
+%d&nbsp;
+%d %d&nbsp; %d&nbsp; %d &nbsp;",<br>
+
+
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; i+2, i+k, k, a+k,
+&amp;(a[10]),<span style="color: rgb(204, 0, 0); font-family: monospace;"> </span>&amp;(a[10])
+- (a+1)&nbsp;
+);
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+  <dd></dd>
+
+
+
+
+
+  <dd>outputs the values for the first two expressions<br>
+
+
+
+
+
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">&nbsp;8
+&nbsp;20</span><br>
+
+
+
+
+
+What are its remaining outputs? &nbsp;Briefly explain how the
+output is obtained. &nbsp;(Hint: pay attention to coersion.)<br>
+
+
+
+
+  </dd>
+
+
+
+
+
+  <br>
+
+
+
+
+
+  <li>
+Consider the following code
+  </li>
+
+
+
+
+
+</ol>
+
+
+
+
+
+<ol>
+
+
+
+
+
+  
+  
+  
+  
+  <ol>
+
+
+
+
+
+    <b><tt>var &nbsp;&nbsp; a, b, c<span style="color: rgb(204, 0, 0);"></span>, <span style="color: rgb(204, 0, 0);">x</span>: integer; &nbsp;</tt></b><br>
+
+
+
+
+
+    <b><tt>function f ( x : integer) : integer;</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp;begin</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; &nbsp;return a + x</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp;end;</tt></b><br>
+
+
+
+
+
+    <b><tt> </tt></b><br>
+
+
+
+
+
+    <b><tt>function g ( a , b : integer) : integer;</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; begin</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; &nbsp;var x : integer = 8;</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; &nbsp;return f(a) * f (b);</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; end</tt></b><br>
+
+
+
+
+
+    <b><tt><br>
+
+
+
+
+
+begin</tt></b><b><tt>&nbsp;
+&nbsp; </tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; &nbsp; a := 3;</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; &nbsp; b := 4;</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; &nbsp; x := 7;</tt></b><br>
+
+
+
+
+
+    <b><tt>&nbsp; &nbsp; b := f(12) + g(14, 16);</tt></b><br>
+
+
+
+
+
+    <b><tt>end</tt></b><br>
+
+
+
+
+
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+  <br>
+
+
+
+
+
+What is the value assigned to b, assuming:<br>
+
+
+
+
+
+  
+  
+  
+  
+  <ol type="a">
+
+
+
+
+
+    <li>lexical scoping?<br>
+
+
+
+
+
+      <span style="font-weight: bold;"></span><span style="font-weight: bold;"></span><br>
+
+
+
+
+
+      <br>
+
+
+
+
+
+    </li>
+
+
+
+
+
+    <li>dynamic scoping?&nbsp;<br>
+
+
+
+
+
+      <span style="font-weight: bold;"></span></li>
+
+
+
+
+
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+</ol>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+<br>
+
+
+
+
+
+</body>
+</html>

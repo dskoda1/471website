@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Practice 3 S02</title>
+      
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+</head>
+  <body>
+ Practice S02P3<br>
+ <br>
+ 
+<ol>
+   <li>What does pS021 = map (uncurry&nbsp; (+)) (zip [100,160,200,300] [2,4,6]) 
+?&nbsp;</li>
+   <li>What do the follow functions compute?<br>
+   </li>
+   
+  <dl>
+    <dd>&gt; mys1 = map (\(x,y) -&gt; x+y)</dd>
+  </dl>
+   
+  <dl>
+    <dd>&gt; mys2 = map (uncurry (+))</dd>
+  </dl>
+   
+  <dl>
+    <dd>&gt; mys3 = (map . uncurry) (+)</dd>
+  </dl>
+   
+  <ol>
+     
+    <dl>
+      <dt><br>
+       </dt>
+    </dl>
+   
+  </ol>
+   <li>&gt; q5 = [1] : [ zipWith (+)(0:q)(q++[0])| q&lt;-q5 ]<br>
+    <br>
+  </li>
+  <li>Write a function elemLst&nbsp; elst lst<br>
+         
+    <blockquote>EFH&gt; elemLst "asfcg" ["Abc","set","AFG","abc"]<br>
+ [False,True,False,True]<br>
+ EFH&gt; elemLst [1,3,5] [[2,3,4],[2,3,4],[1,3,5,6],[1,2]]<br>
+ [False,True,True]</blockquote>
+   </li>
+   
+  <ol>
+     <li>Use Primitive recursion</li>
+     <li>Use HOF</li>
+     <li>Use LC</li>
+   
+  </ol>
+ 
+</ol>
+ 
+</body>
+</html>

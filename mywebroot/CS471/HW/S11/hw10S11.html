@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+  
+  <meta name="Author" content="E Head">
+
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+
+
+  
+  <meta name="Description" content="Introduction"><title>Homework 10 Newton's Method</title>
+
+  
+
+
+  
+  
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></head><body style="background-color: rgb(255, 253, 255); color: rgb(0, 0, 0);" alink="#cc0000" link="#ff0000" vlink="#990000">Written Part -- for Haskell1S11<br>
+
+
+
+    <ol><ol style="list-style-type: lower-alpha;">
+
+
+  
+  </ol>
+
+
+  <li>" A common way to compute the square root is to use
+Newton's
+method of successive approximations. &nbsp; <a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">Newton's
+method says that whenever
+we have a guess <em>y</em> for the value of the square
+root of a
+number <em>x</em>, we can perform a simple manipulation to
+get a
+better guess (one closer to the actual square root) by averaging <em>y</em>
+with <em>x</em>/<em>y</em>. </a>&nbsp;<a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">
+For
+example, we can compute the square root of 2 as follows. Suppose our
+initial guess is 1:</a>
+    
+    <p>
+    
+    <table cellpadding="3">
+
+
+      <tbody>
+
+
+        <tr>
+
+
+          <td align="left">Guess</td>
+
+
+          <td align="left">Quotient</td>
+
+
+          <td align="left">Average</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1</td>
+
+
+          <td align="left"><!-- MATH: ${\displaystyle \frac{2}{1} = 2}$ -->
+          <img src="img7.gif" alt="${\displaystyle \frac{2}{1} = 2}$" align="middle" border="0" height="49" width="44"></td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(2+1)}{2} = 1.5}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(2+1)}{2} = 1.5}$ --></comment>
+          <img src="img8.gif" alt="${\displaystyle
+\frac{(2+1)}{2} = 1.5}$" align="middle" border="0" height="53" width="96"></td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1.5</td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ --></comment>
+          <img src="img9.gif" alt="${\displaystyle \frac{2}{1.5} = 1.3333}$" align="middle" border="0" height="49" width="93"></td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$ --></comment>
+          <img src="img10.gif" alt="${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$" align="middle" border="0" height="53" width="169"></td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1.4167</td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ --></comment>
+          <img src="img11.gif" alt="${\displaystyle \frac{2}{1.4167} = 1.4118}$" align="middle" border="0" height="49" width="117"></td>
+
+
+          <td align="left"><!-- MATH: ${\displaystyle
+\frac{(1.4167+1.4118)}{2} = 1.4142}$ -->
+          <img src="img12.gif" alt="${\displaystyle
+\frac{(1.4167+1.4118)}{2} = 1.4142}$" align="middle" border="0" height="53" width="193"></td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1.4142</td>
+
+
+          <td align="left">...</td>
+
+
+          <td align="left">...</td>
+
+
+        </tr>
+
+
+      
+      </tbody>
+    
+    </table>
+
+
+    </p>
+
+
+    
+    
+    <p>Continuing this process, we obtain better and better
+approximations to
+the square root. " <br>
+(From <span style="font-style: italic;">Structure
+and
+Interpretation of Computer Programs</span> by Abelson and
+Sussman).<br>
+
+
+Using&nbsp; a spreadsheet or calculator apply Newton's method to
+find
+the square root of 144 using an initial guess of
+1.&nbsp;&nbsp;&nbsp; How do
+you know when to stop?&nbsp; How many steps did it take you? (Using
+OpenOffice spreadsheet it took me 7 steps). &nbsp;<br>
+
+
+Apply Newton's method to find the square root of &nbsp;5 using an
+initial guess of 100.&nbsp; My&nbsp; implementation of Newton's
+method,
+calculated the square root of 5 to be 2.23606797749979 in step 10.
+&nbsp;Do you think that 2.23606797749979 is the exact square root?
+Explain. &nbsp;How many steps does it take to generate the square
+root
+of 5e+30 with an initial guess of 100? &nbsp;Why is it
+better&nbsp;to
+stop the process when the next guess
+(generated by the average) is very near "old" guess (i.e. "old guess" -
+"new guess" &lt; "near") where "near" is determined by the user,
+&nbsp;instead stopping the process when "old guess" <span style="font-weight: bold;">equals</span> the "new
+guess"? </p>
+</li>
+
+
+</ol>
+
+
+_____________________________________________________________________________________________<br>
+
+
+<br>
+
+
+
+</body></html>

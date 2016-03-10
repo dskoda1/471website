@@ -1,0 +1,1259 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="Author" content="Eileen Head">
+<meta name="GENERATOR" content="Mozilla/4.77 [en] (Windows NT 5.0; U) [Netscape]"><title>DETAILS Names, Scopes, Binding and Routines</title></head>
+<body>
+<center>
+<h2 style="text-align: center;"> Runtime Environment 1: <br>
+Names, Scopes and Bindings -- Spring 07</h2>
+<h3></h3>
+</center>
+<h3>Goal</h3>
+<ul>
+<li>To appreciate the importance of <span style="font-style: italic;">binding time</span> in the
+design and implementation of languages.</li>
+<li> To understand runtime implementation of routines and
+referencing environments. </li>
+<ul>
+</ul>
+</ul>
+<h3> What will be covered ?</h3>
+<ul>
+<li>What is <span style="font-style: italic;">binding</span></li>
+<li>Object creation and lifetime</li>
+<li>How routines (functions/subroutines) are implemented at
+runtime.<br>
+</li>
+<ul>
+<li> Illustration of Runtime Structure via Implementation of
+Increasing Complex Languages.</li>
+<li>Referencing environments</li>
+</ul>
+<li>Scoping issues</li>
+</ul>
+<a href="CODE/scott13.py">Python scoping example code</a>
+<dl>
+<dl>
+<dl>
+<dl>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/SimpleSem.gif">
+</a>
+</dl>
+</dl>
+</dl>
+<hr width="100%">
+</dl>
+<h4>Binding Time:</h4>
+<span style="font-style: italic;"></span>
+<ul>
+<li><span style="font-style: italic;">binding</span>:
+association between two things</li>
+<ul>
+<li>name and object</li>
+<li>object and attributes</li>
+</ul>
+<li><span style="font-style: italic;"><span style="font-style: italic;">binding time</span></span></li>
+<ul>
+<li>Most important concept.</li>
+<li>What are the different times?</li>
+<li><span style="font-style: italic;">static vs
+dynamic</span></li>
+</ul>
+<li><span style="font-style: italic;">name</span>
+vs <span style="font-style: italic;">objects</span></li>
+<span style="font-style: italic;">objects</span>
+are referred to by <span style="font-style: italic;">names</span><br>
+</ul>
+
+
+<b>
+3-2<br>Several </b>key events<br><ul><li>The creation of objects</li><li>The creation of bindings</li><li>references to variables, subroutines, types etc-- all of which use bindings</li><li>the deactivationa d reactivation bindings that may be temporarily unusable</li><li>the destruction of bindings</li><li>the destruction of objects</li></ul><br>Key definitions<br><ul><li><span style="font-style: italic;">lifetime</span> period of time between the creation and destruction of name-to-object binding</li><li><span style="font-style: italic;">object's lifetime</span> creation to destruction of object</li><ul><li>What is the relationship between these two?</li></ul><li></li></ul><b>
+<br>Storage(memory) Binding</b>
+<ul>
+<li> Determines the lifetime of a variable</li>
+<ul>
+<li> Time during which a variable is bound to a specific
+memory
+location</li>
+<li> Is a run-time property</li>
+</ul>
+</ul>
+<ul>
+<li> Possible categories</li>
+<ul>
+<li> static&nbsp;</li>
+<ul>
+<li>memory created by load time&nbsp;</li>
+<li>lifetime throughout the program's execution</li>
+</ul>
+<li> stack-dynamic&nbsp;</li>
+<ul>
+<li>memory allocated at runtime</li>
+<li>lifetime - fifo</li>
+</ul>
+<li> heap-dynamic</li>
+<ul>
+<li>memory allocated at runtime</li>
+<li>lifetime - arbitrary </li>
+</ul>
+<li> explicit -- user must create storage</li>
+<li> implicit -- declaring the variable creates storage</li>
+</ul>
+</ul>
+<div style="margin-left: 80px;"><a href="Runtime.gif"><img src="Runtime.gif" alt="Runtime memory model" style="border: 0px solid ; width: 100px; height: 154px;"></a></div>
+<dl>
+<b>Run Time Structures And Variables</b>
+<dl>
+<li> Static languages</li>
+<dl>
+<li> l-values statically determined (i.e. by load time)</li>
+<li> no recursion</li>
+<li> Fortran</li>
+</dl>
+<li> Stack-based languages</li>
+<dl>
+<li> Allows recursion</li>
+<li> <b><i>Automatic variable</i></b></li>
+<dl>
+<li> Automatically allocates memory when variable comes
+in scope</li>
+<li> Deallocation memory when the variable exits the scope</li>
+</dl>
+<li> Memory usage is predictable</li>
+<dl>
+<li> LIFO stack</li>
+</dl>
+</dl>
+<li> Dynamic languages</li>
+<dl>
+<li> <b><i>Heap </i></b>(not the
+data structure <i>heap</i>)</li>
+<li> Memory management hard</li>
+</dl>
+</dl>
+</dl>
+<ul>
+<dl>
+<hr width="100%">
+</dl>
+</ul>
+<dl>
+<dl>
+<dl>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/SimpleSem.gif">
+</a>
+</dl>
+</dl>
+</dl>
+<ul>
+<dl>
+<li> In very early organizations of programs the
+data and
+instructions where not separated.</li>
+<li> There was no concept of separating code into
+routines.</li>
+<li>The term <i>routine</i> can refer to either
+a <i>function or
+subroutine</i>.&nbsp; <br>
+</li>
+<li>The first abstraction is to divide the memory
+into data and
+code.</li>
+</dl>
+</ul>
+<ul>
+<dl>
+<li><b> A Simple Machine with</b> </li>
+</dl>
+<ul>
+<li> memory divided into two parts, one for <b>code
+memory</b> (C)
+and one for <b>data memory</b> (D).</li>
+<li> ip, (<b>Instruction Pointer</b>), which has
+the address of the
+current instruction</li>
+<ul>
+<li>This will be updated just before the next instruction
+is
+executed</li>
+<li>This will point only to the <b><i>C </i></b>memory
+.<br>
+</li>
+</ul>
+<li>Memory allocated statically<br>
+</li>
+</ul>
+</ul>
+<dl>
+<dl>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/SimpleSem.gif"><img src="SimpleSem.gif" alt="SIMPLESIM Figure 2.11 From Ghezzi" border="0" height="162" width="145"> </a>
+</dl>
+</dl>
+<ul>
+<dl>
+<li> <b>Static Language: A Very Simple Language C1</b></li>
+</dl>
+</ul>
+<blockquote>
+<table border="1" cellpadding="2" cellspacing="2" width="75%">
+<tbody>
+<tr>
+<td valign="top" width="45">
+<dl>
+<tt><br>
+<br>
+&nbsp; &nbsp; &nbsp;main () {</tt>
+<dl>
+<dl>
+<tt>int i,j;</tt><br>
+<tt>read(i,j);</tt><br>
+<tt>while (i != j)</tt><br>
+<tt>&nbsp;&nbsp;&nbsp; if (i &gt; j)</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+i -= j;</tt><br>
+<tt>&nbsp;&nbsp;&nbsp; else</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+j -= i;</tt><br>
+<tt>print(i)</tt>
+</dl>
+<tt>}</tt>
+</dl>
+</dl>
+<br>
+</td>
+<td align="center" valign="top" width="45"><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2static.gif"><img src="2static.gif" alt="Initial state of SimpleSem for C1 program" border="0" height="257" width="210"> </a><br>
+</td>
+</tr>
+</tbody>
+</table>
+<div align="center"> </div>
+</blockquote>
+<ul>
+<dl>
+<hr width="100%"><b>Adding Simple
+Routines:&nbsp; C2</b>
+<dl>
+<li>The architecture does not need to change. &nbsp;<br>
+</li>
+<li>Routines will allow only one copy of each local
+variable.<br>
+</li>
+<li> The order of the routine's data (variable) memory
+locations
+of could be fix at load time&nbsp;</li>
+<li>Each routine had a <u>activation record</u>
+associated with
+it.<br>
+</li>
+<li>What information is necessary to be encapsulated in the
+AR?</li>
+</dl>
+</dl>
+</ul>
+<ul>
+</ul>
+<ul>
+<dl>
+<dl>
+<dl>
+<li> <b>Activation record: </b>Contains the
+local data for
+the
+routine.</li>
+<dl>
+<li> Abbreviated <b><i>ar</i></b></li>
+<li> Also called a <b><i>frame </i></b><br>
+</li>
+<li> The outline of the <span style="font-weight: bold;">ar </span>is<br>
+</li>
+<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2ar1.gif"><img src="2ar1.gif" alt="Simple Activation Record" align="middle" border="0" height="100" width="125">
+</a>
+</dl>
+<li> <b>return address&nbsp;</b> is the
+address of the next
+instruction in the calling routine's that will be executed when the
+called routine
+is finished<b>.</b></li>
+<li> <b>Fortran 77<i> </i></b>is
+a language which has this
+semantics.</li>
+<li> <a name="Main AR"></a><b><i>main</i>
+has a special AR</b></li>
+<dl>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2ar1main.gif"><img src="2ar1main.gif" alt="Main's special AR" border="0" height="40" width="85"> </a>
+</dl>
+<li> NOTE: The order of fields in the activation records
+(AR)
+presented in these notes are not absolute.&nbsp; In the
+literature/implementations you will find the fields can be organized in
+any (fixed)
+order.<br>
+</li>
+</dl>
+<li>This model does not need additional runtime structure
+for
+local data.</li>
+<li>What can be done if the routine does not return a value?<br>
+</li>
+<li> This model allows for<b> <i>global data</i></b></li>
+<dl>
+<li> Usually located at beginning of the <b>data
+memory block</b>
+(D part of our simple machine).</li>
+</dl>
+<li> <b><i>main</i>( ) </b>will
+be treated as a special
+function.</li>
+<dl>
+<li> Automatically activated at after loading of code</li>
+<li> Can not be called&nbsp;</li>
+</dl>
+</dl>
+</dl>
+</ul>
+<blockquote>
+<div align="center"> </div>
+<table align="center" border="1" cellpadding="2" cellspacing="2" width="75%">
+<tbody>
+<tr>
+<td valign="top"><b><tt>int i = 1, j =
+2, k = 3;</tt></b><br>
+<b><tt>void alpha() {</tt></b>
+<dl>
+<b><tt>&nbsp; &nbsp;int i = 4, x = 5;</tt></b><b><tt><br>
+&nbsp; &nbsp; &nbsp;...</tt></b><br>
+<b><tt>&nbsp; &nbsp;i += k + x;</tt></b><br>
+<b><tt>&nbsp;&nbsp; &nbsp; ...</tt></b><br>
+<b>};</b>
+</dl>
+<b><tt>void beta() {</tt></b>
+<dl>
+<b><tt>&nbsp; &nbsp;int k = 6;</tt></b><br>
+<b><tt>&nbsp;&nbsp; &nbsp;&nbsp;
+...</tt></b><br>
+<b><tt>&nbsp; &nbsp;i = j + k;</tt></b><br>
+<b><tt>&nbsp; &nbsp;alpha();</tt></b><br>
+<b><tt>&nbsp;&nbsp;&nbsp; &nbsp;
+...</tt></b><br>
+<b>};</b>
+</dl>
+<b><tt>void main() {<br>
+</tt></b><b><tt>&nbsp; &nbsp;
+...</tt></b><br>
+<b><tt>&nbsp; beta();</tt></b><br>
+<b><tt>&nbsp; &nbsp; ...</tt></b>
+<b><tt><br>
+}</tt></b><br>
+</td>
+<td align="center" valign="middle" width="55%">
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2c2.gif"><img src="2c2.gif" alt="Snapshot of Simplesim executing C2 program" border="0" height="265" width="220"> </a><br>
+</td>
+</tr>
+</tbody>
+</table>
+<div align="center"> </div>
+</blockquote>
+<ul>
+</ul>
+<ul>
+<dl>
+Notice that <b>all variables </b>have their the memory
+addresses
+bound at load time (statically) and remains fix throughout the
+execution of the program.&nbsp;Therefore the code for the routines
+can have the address "hard code" or put in at load time.
+</dl>
+</ul>
+<blockquote> <span style="font-weight: bold;"><br>
+</span>
+<hr size="2" width="100%">
+<h3><b>Adding recursion and parameter passing: C3</b>
+</h3>
+</blockquote>
+<blockquote> <b>First goal is to add the ability to pass
+parameters.
+&nbsp;</b>
+<dl>
+<li>Modify activation record by adding more fields to allow
+parameters to be passed</li>
+</dl>
+<blockquote>
+<dl>
+<li>The AR (activation record) associated with each routine
+remain a fix size</li>
+<li>For this lecture the value of the variables passed will
+be
+copied into these additional fields.&nbsp;</li>
+<li>Other semantics of parameter passing will be treated
+later.
+&nbsp;</li>
+</dl>
+</blockquote>
+<blockquote> </blockquote>
+Next, the main goal of this section, is to be enable the
+allocation of new memory each time the routine is called.
+&nbsp;This
+will allow multiple calls to a routine even if the routine has not be
+terminated. Therefore our new model will allow recursion. &nbsp;<br>
+Note: 1) The allocation of some data memory must now be done during
+runtime. <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;2) As before the
+instructions are
+bound to memory locations by load time.<br>
+<dl>
+<li>Each call to the routine will create a new activation
+record<br>
+</li>
+<dl>
+<li> Each call of the routine must have it's own local
+variables.</li>
+</dl>
+<li>An efficient way to create new AR and remove AR when the
+routine's work is completed is to use a program stack to dynamically
+allocate/deallocate memory for the AR</li>
+<li>Addition field in AR to increase runtime speed of
+deleting AR
+and restoring previous AR.<br>
+</li>
+</dl>
+<dl>
+<dl>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2ar2.gif"><img src="2ar2.gif" alt="Addition field in AR allow each call to a routine to have it's own local data" align="middle" border="0" height="112" width="125"></a>
+</dl>
+</dl>
+</blockquote>
+<ul>
+<ul>
+<li><span style="font-style: italic;">dynamic
+link </span>(control
+link/frame pointer) contains the value of the environment pointer of
+the calling routine (i.e.a known location in the program stack of the
+activation record of the calling
+routine).&nbsp;</li>
+</ul>
+<li>&nbsp;To efficiently handle the program stack, the
+architecture
+of the <i>simple machine </i>is modified&nbsp;</li>
+<ul>
+<li>by adding two more registers <b><i>environment
+pointer</i>(</b><span style="font-style: italic;">ep</span><b>)
+register&nbsp;</b> and<b><i>
+stack pointer</i> register</b>.</li>
+<ul>
+<li><span style="font-weight: bold;"><span style="font-style: italic;">environment pointer&nbsp;
+register</span></span>
+also known as <span style="font-weight: bold;"><span style="font-style: italic;">frame pointer </span>(<span style="font-style: italic;">fp</span>) <span style="font-style: italic;">register.</span></span><br>
+</li>
+</ul>
+<li>The <b><i>ep regi</i><i>ster</i></b>
+points
+to&nbsp; (a known location in) the activation record of currently
+executing routine's..</li>
+<ul>
+<li>Since the <span style="font-style: italic;">activation
+record (frame)</span> for each routine is a fix
+size the compiler create code that add an offset to the value in the <span style="font-style: italic;">ep</span>
+register so the runtime code can obtain the values stored in the
+activation record.<br>
+</li>
+</ul>
+<li>The <i><b>stack pointer register </b></i>&nbsp;points
+to the
+first free memory location (i.e. top of the stack)<br>
+</li>
+</ul>
+</ul>
+<blockquote>
+<blockquote>
+<blockquote><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/SimpleStack.gif"><img src="SimpleStack.gif" alt="Stack Architecture" align="top" border="0" height="215" width="226"></a></blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<dl>
+<li> In order to support mutual recursion the definition and
+declaration must be able to be separated</li>
+</dl>
+</ul>
+<blockquote><b>Example of Program stack for
+local(automatic) variables</b> &nbsp; </blockquote>
+<ul>
+<dl>
+<dl>
+<dl>
+<dl>
+</dl>
+</dl>
+</dl>
+<b><tt>int n;</tt></b><br>
+<b><tt>int fact(void) {</tt></b>
+<dl>
+<b><tt>int loc;</tt></b><br>
+<b><tt>if (n&gt;1) {</tt></b>
+<dl>
+<b><tt>loc = n--;</tt></b><br>
+<b><tt>return loc * <font color="#cc33cc">fact()</font>;&nbsp;</tt></b>
+</dl>
+<b><tt>}&nbsp; else&nbsp; {</tt></b>
+<dl>
+<b><tt>return 1; &nbsp;</tt></b>
+</dl>
+<b><tt>}</tt></b>
+</dl>
+<b><tt>}</tt></b><br>
+<b><tt>int main(void) {</tt></b>
+<dl>
+<b><tt>read(n);</tt></b><br>
+<b><tt>if (n&gt;0)</tt></b><br>
+<b><tt>&nbsp;&nbsp;&nbsp; <font color="#3333ff">fact()</font>;&nbsp;</tt></b><br>
+<b><tt>else</tt></b><br>
+<b><tt>&nbsp;&nbsp;&nbsp; print("input
+error");</tt></b><br>
+<b><tt>return 0;&nbsp;</tt></b>
+</dl>
+<b><tt>}</tt></b>
+<p><a href="4rAF05.html">Example</a>:
+Program reads the value <i>n</i> = 3.<b> </b></p>
+</dl>
+</ul>
+<ul>
+<dl>
+<p>A&nbsp; <b>dynamic link (control link)&nbsp;</b>
+is a
+reference (points) to the activation record of the calling routine.<br>
+(ex.&nbsp;The red fp (dynamic link) points to the blue activation
+record because the blue function called the red one. <span style="font-weight: bold;"><span style="font-weight: bold;"><span style="font-style: italic;"></span></span></span></p>
+<p><span style="font-weight: bold;"><span style="font-weight: bold;"><span style="font-style: italic;">Environment&nbsp; pointer</span>
+(<span style="font-style: italic;">ep</span>) (also
+called the frame
+pointer)&nbsp; </span></span>is the register
+which points to the current environment (i.e activation record (local
+data)) &nbsp;Implementation dependent where in the AR the current
+the <span style="font-style: italic; font-weight: bold;">ep</span>
+points to.<i><b>,</b></i> we will point to the
+first field.<br>
+</p>
+</dl>
+</ul>
+<blockquote><i><b>Stack ptr</b></i><b>
+</b>is the register which
+points to the next free space on the stack (data memory).<br>
+</blockquote>
+<blockquote> <b><i>Instruction ptr</i>
+&nbsp;</b>is the register which
+the address of the instruction currently be executed (in this snapshot)
+The instruction address is in code memory and not shown. &nbsp;</blockquote>
+<ul>
+<dl>
+<li>In reality there is more information in the AR.
+&nbsp;i.e. temp
+variables&nbsp;</li>
+<li><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/fact.c">fact.c</a>
+real c code</li>
+<li> <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/fact.s">fact.s</a>
+assembly code for Intel machines produces using</li>
+<ul>
+<tt><br>
+<big>gcc -S -ansi fact.c</big></tt><big> </big><br>
+<br>
+Note that the file assembly file produced by gcc is in ATT syntax.<tt><br>
+</tt>
+<ul style="list-style-type: disc;">
+<li><a href="http://personales.mundivia.es/jap/djasm.htm">DJGPP
+QuickAsm Programming Guide</a> is an excellent reference.</li>
+<li><a href="http://www.gnu.org/software/binutils/manual/gas-2.9.1/html_chapter/as_16.html">80386
+Dependent Features</a></li>
+<li><a href="http://developer.intel.com/design/pentium/manuals/24319101.pdf">Intel
+Architecture Software Developer&#8217;s Manual</a></li>
+<li><a href="http://www.gnu.org/software/ddd/manual/">DDD
+-
+Data Display Debugger - Table of Contents</a></li>
+</ul>
+</ul>
+</dl>
+<br>
+<li style="margin-left: 40px;"> <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/factsun.s">factsun.s</a>
+assembly code for bingsuns</li>
+<br>
+<hr width="100%"><b>Supporting Nested Blocks and
+Nested Routines.</b><br>
+&nbsp;<li> C, C++ support nested blocks but not nested
+routines</li>
+<br>
+<div style="margin-left: 40px;"><b><tt>int
+f(void) {</tt></b></div>
+<dl style="margin-left: 40px;">
+<b><tt>&nbsp; int x,y,w;</tt></b><br>
+<b><tt>&nbsp; while( ...) {</tt></b>
+<dl>
+<b><tt>&nbsp; int x,z;</tt></b><br>
+<b><tt>&nbsp; ...</tt></b><br>
+<b><tt>&nbsp; while (...) {</tt></b>
+<dl>
+<b><tt>int y;</tt></b><br>
+<b><tt>...</tt></b>
+</dl>
+<b><tt>&nbsp; }</tt></b><br>
+<b><tt>&nbsp; if (...) {</tt></b><br>
+<b><tt>&nbsp;&nbsp;&nbsp; int x, w;</tt></b><br>
+<b><tt>&nbsp;&nbsp;&nbsp; ...</tt></b><br>
+<b><tt>&nbsp; }</tt></b>
+</dl>
+<b><tt>&nbsp; }</tt></b><br>
+<b><tt>&nbsp; if (...) {</tt></b><br>
+<b><tt>&nbsp;&nbsp;&nbsp; int a,b,c,d;</tt></b><br>
+<b><tt>&nbsp;&nbsp;&nbsp; ...</tt></b><br>
+<b><tt>&nbsp; }</tt></b>
+</dl>
+<div style="margin-left: 40px;"><b><tt>}</tt></b></div>
+<dl>
+<dl>
+&nbsp;
+</dl>
+</dl>
+</ul>
+<ul>
+<dl>
+</dl>
+</ul>
+<dl style="margin-left: 40px;">
+<li> Pascal, Modula 2, Haskell have nested routines
+but not
+nested blocks</li>
+<li> Ada and Python have both</li>
+</dl>
+<div style="margin-left: 80px; font-family: monospace;"><code><font color="#000000"># nested functions in Python<br>
+def&nbsp;f1</font><font color="#000000">()</font><font color="#000000">:</font><br>
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">x&nbsp;= </font>"f1's x"<br>
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">def&nbsp;f2</font><font color="#000000">()</font><font color="#000000">:</font><br>
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">def&nbsp;f3</font><font color="#000000">()</font><font color="#000000">:<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;y = "f3's y"<br>
+</font>
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">print&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><br>
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">f3</font><font color="#000000">()<br>
+&nbsp; &nbsp; &nbsp;### &nbsp;y is not in scope here <br>
+</font>
+<font color="#ffffff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#000000">f2</font><font color="#000000">()<br>
+<br>
+&nbsp;</font></code></div>
+<li style="margin-left: 40px;"> Nested routines need to be
+able to find
+variable
+declared
+in the outer routine.</li>
+<dl>
+</dl>
+<ul>
+<ul style="list-style-type: disc;">
+<li> The non-locally defined variables are found
+in
+the
+lexically surrounding routines (i.e. outer routines).</li>
+<ul style="list-style-type: disc;">
+<li> In the <a href="#nested">code below</a>,
+f3() is
+lexically surrounded by f1() and f2(), because f3() is defined
+inside f2(), which is in turn defined inside f1().</li>
+</ul>
+<ul style="list-style-type: disc;">
+<li> Lexical order is the "printed order" and is known <b>statically.</b></li>
+</ul>
+</ul>
+</ul>
+<dl>
+<dl>
+</dl>
+</dl>
+<ul>
+<ul style="list-style-type: disc;">
+<li> In order to find the outer routine's
+activation record
+we need to add another field to the activation record.<br>
+</li>
+</ul>
+<ul style="list-style-type: disc;">
+<li> Static links, also called access links, in
+the
+activation record provide a reference to the activation record of
+the closest surrounding active routine,&nbsp; which contains
+non-local variables or reference to its non-local variable.<br>
+</li>
+</ul>
+<ul>
+</ul>
+<ul>
+<ul style="list-style-type: disc;">
+<li> i.e. In the <a href="#nested">code
+below</a>,
+a static
+link in f3()'s activation record will point to f2()'s activation
+record, so we will be able to get to variables defined in f2(), or
+would be able to use f2()'s static link to get to variables defined
+in f1().</li>
+</ul>
+</ul>
+</ul>
+<dl>
+<dl>
+</dl>
+</dl>
+<ul>
+<ul>
+<dl>
+<dl>
+<dl>
+<dl>
+<dl>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2ar4.gif"><img src="2ar4.gif" alt="Activation Record for Nested Routines" border="0" height="175" width="104"> </a>
+</dl>
+</dl>
+</dl>
+<a name="nested"></a><b><tt><font color="#000000"><font size="+1">int
+x,y,z,a,b;</font></font></tt></b><br>
+<b><tt><font color="#000099">void
+f1(void) {</font></tt></b>
+<dl>
+<b><tt><font color="#000099">int t,u;</font></tt></b><br>
+<b><tt><font color="#006600">void
+f2(void) {</font></tt></b>
+<dl>
+<b><tt><font color="#006600">int
+x,w;</font></tt></b><br>
+<b><tt><font color="#cc0000">void
+f3
+(void) {</font></tt></b>
+<dl>
+<b><tt><font color="#cc0000">int
+y,w,t;</font></tt></b><br>
+<b><tt><font color="#cc0000">...</font></tt></b><br>
+<b><tt><font color="#cc0000">f2();</font></tt></b><br>
+<b><tt><font color="#cc0000">w =
+</font><font color="#006600">x </font><font color="#cc0000">*
+y - </font><font color="#000099">u</font><font color="#cc0000"> * </font><font color="#000000">z
+</font></tt><font color="#000000">//
+</font></b><font color="#000000">color
+matches location of&nbsp; declaration</font><br>
+<b><tt><font color="#cc0000">...</font></tt></b>
+</dl>
+<b><tt><font color="#cc0000">}</font></tt></b><br>
+<b><tt><font color="#006600">x = </font><font color="#000000">y</font><font color="#006600">
++ </font><font color="#000099">t</font><font color="#006600"> + w + </font><font color="#000000">z</font><font color="#006600">;</font></tt></b><br>
+<b><tt><font color="#006600">...</font></tt></b><br>
+<b><tt><font color="#006600">f3();</font></tt></b>
+</dl>
+<b><tt><font color="#006600">}</font></tt></b><br>
+<b><tt><font color="#000099">...</font></tt></b><br>
+<b><tt><font color="#000099">f2();</font></tt></b><br>
+<b><tt><font color="#000099">..</font>.</tt></b>
+</dl>
+<b><tt>}</tt></b><br>
+<b><tt><font color="#993300">int
+main() {</font></tt></b>
+<dl>
+<b><tt><font color="#993300">int z,
+t;</font></tt></b><br>
+<b><tt><font color="#993300">f1();</font></tt></b><br>
+<b><tt><font color="#993300">...</font></tt></b><br>
+<b><tt><font color="#993300">return
+0;</font></tt></b>
+</dl>
+<b><tt><font color="#993300">}</font></tt></b><br>
+</dl>
+</dl>
+</ul>
+<table width="88%">
+<tbody>
+<tr align="center">
+<td width="27%"><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2nested.gif"><img src="2nested.gif" alt="Program/control statck with static (access) links and dynamic links" border="0" height="410" width="269"> </a></td>
+<td>
+<table border="1" cols="1" width="100%">
+<tbody>
+<tr>
+<td><font color="#990000">5. Main's
+has
+a special <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/4rS01.html#Main%20AR">
+AR</a> and has no frame pointer or static links.</font></td>
+</tr>
+<tr>
+<td width="50%"><font color="#3333ff">10.
+f1()'s static
+link points to 0 because there is no outer routine&nbsp;</font>
+<blockquote><font color="#3333ff">f1()
+and main() are on
+the same level</font></blockquote>
+<font color="#3333ff">9. f1()'s frame
+pointer(fp) points to
+global space this the first f1() is the first AR&nbsp;</font>
+<blockquote><font color="#3333ff">main
+calls f1()</font></blockquote>
+</td>
+</tr>
+<tr>
+<td width="45%"><font color="#006600">15.
+f2()'s static
+link points to </font><font color="#3333ff">f1()'s
+AR</font>
+<blockquote><font color="#006600">f2()
+is nested inside of </font><font color="#3333ff">f1()</font></blockquote>
+<font color="#006600">Note: The frame
+pointer(fp) and
+static link to the same AR</font> <br>
+<font color="#006600">because f2() is both
+defined in and
+called by f1()</font></td>
+</tr>
+<tr>
+<td height="75%" width="45%"><font color="#ff0000">20. f3()
+is to </font><font color="#006600">f2()</font><font color="#ff0000">
+as </font><font color="#006600">f2()</font><font color="#ff0000"> is
+to </font><font color="#3333ff">f1()</font><font color="#ff0000">
+(above)</font></td>
+</tr>
+<tr>
+<td width="45%"><font color="#006600">25.f2()
+is called
+from </font><font color="#ff0000">f3() </font><font color="#006600">so
+f2()'s frame pointer (fp) is to </font><font color="#ff0000">f3()</font><font color="#006600">'s AR</font>
+<p><font color="#006600">26.f2() is
+defined inside of </font><font color="#3333ff">f1()</font><font color="#006600"> so its static links
+refers to</font><font color="#3333ff"> f1()'</font><font color="#006600">s
+AR(static field is </font><font color="#3333ff">cell
+10</font><font color="#006600">)</font></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Passing functions (routines)</h3>
+<ul>
+<li>Issues - What is the referencing environment of the
+function passed?&nbsp;</li>
+<li>Shallow binding&nbsp; vs&nbsp; Deep binding.</li>
+<li>Static scoping is combined with deep binding. &nbsp;</li>
+<ul>
+<li>Shallow binding does not make sense with static scoping.</li>
+</ul>
+</ul>
+<blockquote>
+<table style="width: 595px; height: 377px;" border="0" cellpadding="3" cellspacing="2">
+<tbody>
+<tr>
+<td height="65%" valign="top"><span style="font-family: monospace;">program
+binding_example (input,
+output);</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">procedure
+A (I: integer; procedure P);</span><br style="font-family: monospace;">
+<blockquote style="font-family: monospace;">procedure
+B;<br>
+begin<br>
+&nbsp; &nbsp; writeln (I);<br>
+end; &nbsp;(* end of B *)<br>
+</blockquote>
+<span style="font-family: monospace;">begin
+&nbsp;(*A*)</span><br style="font-family: monospace;">
+<blockquote style="font-family: monospace;">if <b>&nbsp;I
+&gt; 1</b>
+then<br>
+&nbsp; &nbsp;P<br>
+else<br>
+&nbsp; &nbsp;A(2,B);<br>
+</blockquote>
+<span style="font-family: monospace;">end;
+&nbsp;(* end of A*)</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">procedure
+C; begin&nbsp; end;</span><br style="font-family: monospace;">
+<br style="font-family: monospace;">
+<span style="font-family: monospace;">begin
+(*main*)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;
+&nbsp; &nbsp; &nbsp;A ( 1, C );</span><br>
+<span style="font-family: monospace;">end</span><br>
+</td>
+<td valign="middle"><i><b>I</b>
+</i>is
+NOT local to "<i><b>B</b></i>".<br>
+When<b><i> P</i></b> is called it is "<b><i>B</i></b>"
+<br>
+The question is -- <br>
+&nbsp; &nbsp;Where is "<b><i>B</i></b>"
+bound to <br>
+&nbsp; &nbsp; the &nbsp;"<b><i>A</i></b>"
+where "<b><i>B</i></b>" is
+declared<br>
+&nbsp; or &nbsp; &nbsp;<br>
+&nbsp; &nbsp;the "<b><i>A</i></b>"&nbsp;
+where "<b><i>B</i></b>" is
+passed to?<br>
+<br>
+Deep binding :<br>
+&nbsp; &nbsp;output 1<br>
+<br>
+Shallow binding:<br>
+&nbsp; &nbsp;output 2<br>
+<br>
+Example Scott 139<br>
+</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<ul>
+<li>How could this be implemented at run time?</li>
+<li>Why isn't this an issue in C?</li>
+</ul>
+<br>
+<hr width="100%"><b>Activation
+Records
+Whose Size Becomes Known at Unit Activation: C5</b>
+</ul>
+<div style="margin-left: 80px;">
+<ul>
+<li> Ada allows the size of local arrays to be decided
+during execution.</li>
+</ul>
+</div>
+<ul>
+<ul>
+<dl>
+<dl>
+<li> <i><a name="elaboration">Elaboration</a></i>
+is the process by which declarations become active
+when&nbsp;encountered in the flow of control. This entails the
+creation of a binding. It may also entails the allocation of stack
+space for local objects, and possibly the assignment of initial values.</li>
+<li> The activation record is allocated in several steps</li>
+<dl>
+<li> storage for statically know data and descriptors
+of the
+dynamic arrays is allocated</li>
+<li> when the declaration of the array is encounted,
+dimensions are entered in the descriptor and the size of the array
+is evaluated</li>
+<li> AR is extended in Free space to include space
+for
+the
+array</li>
+<li> the pointer in the descriptor is set to this area</li>
+</dl>
+</dl>
+</dl>
+<br>
+</ul>
+</ul>
+Implementing Dynamic Scoping see&nbsp;<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/4rF05A.html">here</a><br>
+<hr style="width: 100%; height: 2px;">
+<h4>HEAP Storage</h4>
+<h5>Heap-Based Allocation</h5>
+<ul>
+<li>allocation algorithm</li>
+<li>trade-off</li>
+<li>garbage collection</li>
+<ul>
+<li>Details covered later</li>
+</ul>
+</ul>
+<ul>
+<dl>
+<b>Dangling Reference Problem -- object deallocated too soon</b>
+</dl>
+<li> Remember dangling (pointer)
+reference points to deallocated storage.</li>
+</ul>
+<div style="margin-left: 80px;"><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/4danglingPt.gif"><img alt="Dangling Pointers" src="4danglingPt.gif" style="border: 0px solid ; width: 145px; height: 109px;"> </a><br>
+</div>
+<br>
+<div style="margin-left: 40px;">
+Creations of two Dangling Pointers </div>
+<dl style="margin-left: 40px;">
+/* ppp is the address of a pointer */ <br>
+<b><tt>int * dangle ( int ** ppp) {</tt></b>
+<dl>
+<b><tt>int p = 5; int m = 21;</tt></b><br>
+<b><tt>*ppp = &amp;p&nbsp;&nbsp;</tt></b>/*<font size="-1">
+dereference ppp to get the pointer whose address was passed. </font>*/
+<br>
+<b><tt>return &amp;m;</tt></b>
+</dl>
+&nbsp;} <br>
+main () {
+<dl>
+<b><tt>int k = 17;</tt></b><br>
+<b><tt>int *pm,&nbsp; *pk = &amp;k;</tt></b><br>
+<b><tt>pm = dangle(&amp;pk);</tt></b>&nbsp;<font size="-1">//both
+pm and pk point to deallocated memory</font>.
+</dl>
+}
+<h6> Fischer&amp;Grodzinsky, The Anatomy of Programming
+Languages,
+page 237</h6>
+</dl>
+<hr style="width: 100%; height: 2px;">
+<h3> Scope</h3>
+<ul>
+<li> <b><i>Scope</i></b> is the region
+of the program which the
+variable can be referred to by using its simple name (identifier).</li>
+<li>What is the difference between <span style="font-style: italic;">lifetime of a binding </span>and<span style="font-style: italic;"> scope of a binding?</span></li>
+<li><span style="font-weight: bold;"> Static
+scoping </span>(lexical
+scoping)</li>
+<ul>
+<li> Visibility of variable follows the structure of the
+blocks
+they
+are written in</li>
+<li> Does not depend on function calls</li>
+<li><span style="font-style: italic;">free</span>
+variables (not declared locally)&nbsp; are bound statically </li>
+<li><b><i>scope hole:</i> </b>when
+the name bound to an object
+is
+hidden by a nested declaration of the same name</li>
+<ul>
+<span style="font-family: monospace; font-weight: bold;">{
+int
+hide = 1; </span><br style="font-family: monospace; font-weight: bold;">
+<span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;
+{ float hide = 1.0 </span><br style="font-family: monospace; font-weight: bold;">
+<span style="font-family: monospace; font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;
+} </span><br style="font-family: monospace; font-weight: bold;">
+} <li> Ada allows a <i>qualifier</i> to access the
+outer declared
+variable.</li>
+<ul>
+<li> Ada calls this <b>visibility by selections.</b></li>
+</ul>
+<li> Java allows a qualifier to access a hidden
+instance/class
+variable</li>
+</ul>
+<li>(pre-99) C only allows declarations at the beginning
+blocks</li>
+<li> Algol 68, C++, Java, C-99 allow declarations anywhere<br>
+</li>
+<li>When does a declaration come in scope?</li>
+<ul>
+<li>Java, C and C++ vs C# and Pascal</li>
+</ul>
+<li>Python: scope of variables in nested blocks:<br>
+<br>
+</li>
+<dl>
+<dd><code><font color="#000000">#nested
+blocks in Python,</font></code><br>
+<span style="font-family: monospace;">def
+nestedBlock():</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+a = "block 0"</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+if&nbsp; a :</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+b = "&nbsp; block 1"</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if b:</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+print "&nbsp;&nbsp;&nbsp; block 2"</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+c = "C in inner Block"</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+print b</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+print a</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+print b</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+# b and c are visible here</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+print c</span><br style="font-family: monospace;">
+&nbsp; <code></code></dd>
+</dl>
+<li>Python: scope rules in nested functions:<br>
+</li>
+<dl>
+</dl>
+</ul>
+</ul>
+<ul>
+<ul>
+<dd><span style="font-family: monospace;"></span><a href="CODE/scott13.py">Nested Function Example</a></dd>
+<dl>
+<dt><br>
+What is the output ?<br>
+<span style="font-family: monospace;">print outer()<br>
+</span></dt>
+</dl>
+<dd><span style="font-family: monospace;">print
+i, j<br>
+</span></dd>
+<ul>
+<ul>
+<dt><small># from Scott's <span style="font-style: italic;">Programming Language Pragmatics</span>
+page 725<br>
+</small></dt>
+</ul>
+</ul>
+</ul>
+<ul>
+<li>Java example <a href="CODE/Scope.java">Scope.java<br>
+</a></li>
+<li>C example <a href="CODE/scope.c">scope.c<br>
+<br>
+</a></li>
+</ul>
+<ul>
+<dl>
+</dl>
+</ul>
+<li style="font-weight: bold;"> Dynamic scoping</li>
+<ul>
+<li><span style="font-style: italic;">free </span>variables
+are bound dynamically</li>
+<li> visibility of variable depends on sequence of function
+calls</li>
+<li> can not determine from written code</li>
+<li> APL, Snobol, early versions of LISP, Perl</li>
+</ul>
+</ul>
+<dl>
+<dd><span style="font-weight: bold;">Perl</span>
+: local variables in
+a functions </dd>
+</dl>
+<ul>
+<ul>
+<dl>
+<li> There are two different ways to create non global
+variables.</li>
+<li> <b>STATIC Scoping</b></li>
+<dl>
+<li> <tt>my </tt>function creates a variable</li>
+<dl style="font-weight: bold;">
+<tt>sub sub1 {</tt>
+</dl>
+<tt style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+my $sum = 0;</tt><br style="font-weight: bold;">
+<tt style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</tt><br style="font-weight: bold;">
+<tt style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+}</tt><br>
+whose
+<dl>
+<li> scope is the block</li>
+<li> lifetime is from the execution of the <tt>my
+</tt>function
+to the end of the execution of the block.</li>
+</dl>
+</dl>
+<li> <b>Dynamic Scoping</b></li>
+<dl>
+<li> <tt>local </tt>creates a non-global
+variable</li>
+&nbsp; <tt style="font-weight: bold;">sub sub1 {</tt><span style="font-weight: bold;"> </span><br style="font-weight: bold;">
+<tt style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+local $dyn = 0;</tt><br style="font-weight: bold;">
+<tt style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</tt>
+<dl style="font-weight: bold;">
+&nbsp;<tt>sub2</tt><br>
+&nbsp; <tt># after the call to sub2 the value of
+$dyn = "wow"</tt>
+</dl>
+<span style="font-weight: bold;">&nbsp; </span><tt style="font-weight: bold;">}</tt><br style="font-weight: bold;">
+<span style="font-weight: bold;">&nbsp; </span><tt style="font-weight: bold;">sub sub2 {</tt><br style="font-weight: bold;">
+<tt style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+# locations
+of $dyn is dynamic</tt><span style="font-weight: bold;">
+&nbsp; </span><br style="font-weight: bold;">
+<tt style="font-weight: bold;">&nbsp;&nbsp;&nbsp;
+$dyn = "wow"</tt><span style="font-weight: bold;">
+&nbsp; </span><tt style="font-weight: bold;"><br>
+&nbsp;}</tt><li> lifetime is the same as a "<i>my</i>"
+variable</li>
+<li> scope is the block in which it is defined as well as
+any
+function directly or indirectly from that block.</li>
+<li> <i>local</i> is an unfortunate legacy
+from earlier
+versions of Perl and should be avoided.</li>
+</dl>
+</dl>
+</ul>
+</ul>
+<center>
+<h6> Perl examples taken from "<i>A Little Book on Perl"</i>,
+by Robert
+Sebesta</h6>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: justify;">
+<h4>Constants</h4>
+</div>
+<div style="text-align: left;">
+<ul>
+<li>A <span style="font-weight: bold;">constant </span>is
+a
+language entity that has a fixed value for the duration of it existence.</li>
+<ul>
+<li>literals -- representation of values</li>
+<li>compile time constant &nbsp;(translation time
+constants)</li>
+<li>static constant &nbsp;(load time constant)</li>
+<li>manifest constant &nbsp;(a name for a literal)</li>
+<li>dynamic constant &nbsp;</li>
+</ul>
+</ul>
+<ul>
+<li> Ada allows constants to be evaluated during elaboration.</li>
+<br>
+<tt>procedure Swap ( x,y: in out INTEGER) is</tt>
+<ul>
+<tt>temp: constant INTEGER := x;</tt>
+</ul>
+<tt>begin</tt>
+<ul>
+<tt>x := y;</tt><br>
+<tt>y := temp;</tt>
+</ul>
+<tt>end Swap;<br>
+</tt><li> Java Constants</li>
+<br>
+<tt>class ConstantEx {</tt>
+<ul>
+<tt>void myMethod( int n ) {</tt>
+<ul>
+<tt>final int j = n;</tt><br>
+<tt>System.out.println(j);</tt><br>
+<tt>// j =15;&nbsp; is not legal</tt>
+</ul>
+<tt>}</tt><br>
+<tt>static public void main(String [] a) {</tt>
+<ul>
+<tt>ConstantEx ex = new ConstantEx ();</tt><br>
+<tt>ex.myMethod( 5 );</tt>
+</ul>
+<tt>}</tt>
+</ul>
+<tt>}<span style="font-weight: bold;"><br>
+<br>
+</span></tt>
+</ul>
+</div>
+<div style="text-align: left;">
+<h4>Concepts related to Scope</h4>
+<ul>
+<li>Aliases</li>
+<ul>
+<li>What is it?</li>
+<li>Trade offs?</li>
+</ul>
+<li>Overloading vs Coercion vs Polymorphism</li>
+</ul>
+</div>
+</center>
+</body></html>

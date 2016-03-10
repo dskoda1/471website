@@ -1,0 +1,153 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head and Les Lander">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Haskell Installation Figures</title>
+</head>
+<body>
+
+<center>
+<h2>
+PROGRAMMING LANGUAGES</h2></center>
+
+<center>
+<h1>
+HASKELL RESOURCES AND INSTALLATION</h1></center>
+
+<center>
+<h2>
+E. Head and L. Lander</h2></center>
+
+<center>
+<h4>
+
+<hr WIDTH="100%"></h4></center>
+<i>The material here includes classroom slides of courses taught at Binghamton.</i>
+<br>&nbsp;
+<h3>
+Graphic: haskellinstall1.jpg:</h3>
+
+<center><img SRC="haskellinstall1.jpg" height=228 width=336></center>
+
+<h3>
+Graphic:&nbsp; haskellinstall2.jpg:</h3>
+
+<center><img SRC="haskellinstall2.jpg" height=357 width=479></center>
+
+<h3>
+Graphic hugsScreen.jpg:</h3>
+
+<center><img SRC="hugsScreen.jpg" height=359 width=572></center>
+
+<h3>
+Graphic winHugsScreen.jpg:</h3>
+
+<center><img SRC="winHugsScreen.jpg" height=444 width=624></center>
+
+<h3>
+Graphic winhugsprops.jpg:</h3>
+
+<center><img SRC="winhugsprops.jpg" height=426 width=367></center>
+
+<h3>
+Graphic defaultoptions.jpg:</h3>
+
+<center><img SRC="defaultoptions.jpg" height=375 width=528></center>
+
+<h3>
+Graphic changedoptions.jpg:</h3>
+
+<center><img SRC="changedoptions.jpg" height=375 width=528></center>
+
+<h3>
+Code ExampleL.lhs</h3>
+
+<pre>This is an Example of the "literal" approach to programming in Haskell.
+Code format:
+&nbsp;&nbsp; 1) CODE needs to be signaled.&nbsp;&nbsp;
+&nbsp;&nbsp; 2) Code begins with a&nbsp;&nbsp; ">"
+&nbsp;&nbsp; 3) There need to be blank lines before and after the code.&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+
+A script(a program) contains a series of definitions.&nbsp;&nbsp;
+In Haskell the LAYOUT is used to state where one definition ends&nbsp;
+and the next one begins.
+
+"Formally, a definition is ended by the first piece of text (code or comments)
+which lies at the same indentation or to the left of the start of the&nbsp;
+definition." (Thompson, p47). You can use tabs or spaces for indentation.&nbsp;&nbsp;
+This file uses "tab".
+
+Module names should begin with a capital letter.&nbsp;
+The file name should match the module name exactly with the ".lhs" extension.
+i.e. ExampleL.lhs
+
+>&nbsp;&nbsp; module ExampleL where
+>&nbsp;&nbsp; import List
+
+Examples from CS571/CS471 lectures on Haskell
+
+To load this program type ("..>" stands for the Haskell prompt):
+&nbsp;&nbsp;&nbsp; ..>:load ExampleL.lhs
+
+When you load this module you will also see the following modules loaded.
+..\lib\Prelude.hs
+..\lib\Maybe.hs
+..\lib\List.hs
+..?\ExampleL.hs
+
+To edit this module type
+&nbsp;&nbsp;&nbsp; ..>:edit
+NOTE: all hugs comments can be a just the first letter instead of the entire
+word.&nbsp; i.e. to edit type
+&nbsp;&nbsp;&nbsp; ..>:e
+
+
+py is a Float constant.
+
+>&nbsp;&nbsp; py :: Double
+>&nbsp;&nbsp; py = 3.14159
+
+The function definition for next5numbers is implicitly typed.
+It creates a list of 5 consecutive numbers that follow the input number.
+Each number differs from the next by 1.
+
+>&nbsp;&nbsp; next5numbers n = [n+1,n+2..n+5]
+
+Below are two different function definitions.&nbsp; Both are implicitly typed.
+
+>&nbsp;&nbsp; sq n = n^2
+>&nbsp;&nbsp; cube x = x * (sq x)
+
+Explicit typing
+
+>&nbsp;&nbsp; sq1 :: Int -> Int
+>&nbsp;&nbsp; sq1 n = n^2
+
+
+Using guards.&nbsp; Notice the indentation.
+
+>&nbsp;&nbsp; factorial :: Int -> Int&nbsp;
+>&nbsp;&nbsp; factorial x
+>&nbsp;&nbsp;&nbsp;&nbsp; | x &lt; 0&nbsp;&nbsp;&nbsp;&nbsp; = error "neg x"
+>&nbsp;&nbsp;&nbsp;&nbsp; | x == 0&nbsp;&nbsp;&nbsp; = 1
+>&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = x * factorial(x - 1)
+
+Using Patterns to define perms.&nbsp; "\\" is defined in List.hs.
+
+>&nbsp;&nbsp; perms :: Eq t => [t] -> [[t]]
+>&nbsp;&nbsp; perms [] = [[]]
+>&nbsp;&nbsp; perms x=[a:p|a&lt;-x,p&lt;-perms(x\\[a])]
+
+Define a function to calculate the area of a circle of radius r
+
+>&nbsp;&nbsp; area r = py * r * r
+
+Haskell will determine for itself that the type of area is Double -> Double
+because of the type given to 'py'. The type of pi * r * r is
+Floating a => a -> a, which we will explain in the Haskell notes</pre>
+
+</body>
+</html>

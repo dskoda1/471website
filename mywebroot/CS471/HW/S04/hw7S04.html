@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>types, scopes</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <meta name="author" content="E Head">
+</head>
+<body>
+<div style="text-align: center;">Homework Assignment 7 <br>
+</div>
+Read: Finish chapter 5 and chapter 6<br>
+Purpose: Review computer architecture and how it relates to the design
+of HOL (higher order languages) and semantics of HOL. Review problems
+with operators that also have side effect.&nbsp; Understand the
+difference between static scoping and dynamic scoping.&nbsp; Understand
+type equivalence.&nbsp; Identify some non-compatible features of C/C++.<br>
+<br>
+<ol>
+  <li>What is specification of&nbsp; IEEE 754? &nbsp;</li>
+  <br>
+  <ol type="A">
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+  </ol>
+  <li>This problem pertains to floating arithmetic and its
+implementation using code in the "C" language. I have written a simple <i>C</i>
+program
+(<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw6S02.c"> </a>hw6F03.c
+). There is a&nbsp; makefile if you want to use it. &nbsp;( <a
+ href="hw7Q2.zip">hw7Q2.zip</a>
+)</li>
+  <ol type="A">
+    <br>
+    <li>Compile and run this code using GCC.(either using cygwin or Sun
+work stations) <br>
+      <br>
+    </li>
+    <li>One would expect that the Part 1A and Part 1B (part1()) of
+program would&nbsp; compute and print the same value for sum.&nbsp;
+(Remember <i> C</i> does not have a boolean it uses 0 to mean false
+and all other values to mean true.) Does it execute as expected?<br>
+      <br>
+    </li>
+    <li>One would also expect that adding ten times the value 0.1 would
+result in 1.0.&nbsp; Explain why (how) the computer gets the results
+for part
+2 (part2()) ?<br>
+      <br>
+    </li>
+    <li>(Page 133 Harbison &amp; Steele) "Prior to standard C, all
+implementations were required to convert all values of type <b>float</b>
+to type <b>double</b> before operations were performed. &nbsp;... In
+standard C, operations can now be performed using type <b>float</b> ."
+&nbsp;What is the consequences of this change? ( Consider speed,&nbsp;
+accuracy, and the effect of decisions made in selection of types used
+by programmer) &nbsp;<br>
+    </li>
+    <br>
+  </ol>
+  <li>Convert this code(in question 3) to Java. &nbsp;(This code can
+just be implemented as static methods.) &nbsp;<br>
+    <br>
+  </li>
+  <ol type="A">
+    <li>Execute this code and compare results you obtained in problem
+3?&nbsp; If the results are the same--Do you always expect the results
+always to be the same -- explain. If the results are different explain
+why. &nbsp;<br>
+      <br>
+    </li>
+    <li>What does the keyword <b><i>strictfp</i></b> in mean?<br>
+      <br>
+    </li>
+    <li>Compile and run the code with the keyword <b><i>strictfp</i> .
+      </b> Compare these results with the results in part 3a (Java
+only). &nbsp;Explain your results.<br>
+      <br>
+    </li>
+  </ol>
+  <li>What is the difference between macros (in C)&nbsp; and functions
+(in C).&nbsp;
+Explain in terms of the concept of binding.</li>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li> In Ansi C the keyword <b><i>static</i></b> has two different
+semantics depending on where it is used, either inside a function
+definition or outside of a function definition.&nbsp; What does <b><i>static</i></b>
+mean in both settings?</li>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li>Page 181 exercise 5.8.&nbsp; <br>
+  </li>
+  <ol start="10">
+    <ol style="list-style-type: upper-alpha;">
+      <li>This is the simple symbol table using lexical scoping at
+point 1.&nbsp; You need to do it for points 2 and 3 as well as what is
+printed using lexical scoping.</li>
+      <dl>
+        <dd><a href="hw758a.jpg"><img
+ style="border: 0px solid ; width: 350px; height: 140px;"
+ alt="Point 1 Lexical Scoping symbol tablehw758a.jpg" src="hw758a.jpg"></a>&nbsp;
+          <br>
+        </dd>
+      </dl>
+      <li>This is the simple symbol table using dynamic scoping at
+point 1.&nbsp; You need to do it for points 2 and 3 as well as what is
+printed using dynamic scoping. <br>
+      </li>
+      <dl>
+        <dd><a href="hw758b.jpg"><img
+ style="border: 0px solid ; width: 450px; height: 284px;"
+ alt="Point 1 Dynamic Scoping" src="hw758b.jpg"></a><br>
+        </dd>
+      </dl>
+    </ol>
+  </ol>
+  <li>page 251 exercise 6.6.&nbsp; <br>
+  </li>
+  <li>page 251 exercise 6.7</li>
+  <li>page 253 exercise 6.15 ( Hint: What is the typical allocated size
+of bool vs int? What if instead of assigning x.i=20000 before you
+assigned x.b=true, you assigned x.i=0 before x.b=true? )<br>
+  </li>
+  <li>page 251 exercise 6.18</li>
+  <li>page 251 exercise 6.19</li>
+  <li>page 254 exercise 6.22</li>
+  <li>Give an examples that shows the semantics of "const" in C is
+different than its semantics in C++.</li>
+</ol>
+</body>
+</html>

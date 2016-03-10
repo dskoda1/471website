@@ -1,0 +1,280 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+  
+  <meta name="Author" content="Eileen Head">
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]"><title>Lab 7</title></head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 249);" alink="#3333ff" link="#000099" vlink="#000099">
+<center>
+<h3> Lab 7<br>
+<span style="font-style: italic;">Apr. </span>29</h3>
+<div style="text-align: left;"><a href="Lab7F10.lhs">Lab7F10.lhs</a><br>
+</div>
+<br>
+</center>
+
+<ul>
+
+</ul>
+
+<ol>
+
+</ol>
+
+1) " A common way to compute the square root is to use
+Newton's
+method of successive approximations. &nbsp; <a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">Newton's
+method says that whenever
+we have a guess <em>y</em> for the value of the square
+root of a
+number <em>x</em>, we can perform a simple manipulation to
+get a
+better guess (one closer to the actual square root) by averaging <em>y</em>
+with <em>x</em>/<em>y</em>. </a>&nbsp;<a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">
+For
+example, we can compute the square root of 2 as follows. Suppose our
+initial guess is 1:</a>
+<p>
+<table cellpadding="3">
+  <tbody>
+    <tr>
+      <td align="left">Guess</td>
+      <td align="left">Quotient</td>
+      <td align="left">Average</td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1</td>
+      <td align="left">&nbsp;<img style="border: 0px solid ; width: 44px; height: 49px;" src="Img/img7.gif" alt="${\displaystyle \frac{2}{1} = 2}$" align="middle"></td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(2+1)}{2} = 1.5}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(2+1)}{2} = 1.5}$ --></comment>
+      <img src="Img/img8.gif" alt="${\displaystyle
+\frac{(2+1)}{2} = 1.5}$" align="middle" border="0" height="53" width="96"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.5</td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ --></comment>
+      <img src="Img/img9.gif" alt="${\displaystyle \frac{2}{1.5} = 1.3333}$" align="middle" border="0" height="49" width="93"></td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$ --></comment>
+      <img src="Img/img10.gif" alt="${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$" align="middle" border="0" height="53" width="169"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.4167</td>
+      <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ --></comment>
+      <img src="Img/img11.gif" alt="${\displaystyle \frac{2}{1.4167} = 1.4118}$" align="middle" border="0" height="49" width="117"></td>
+      <td align="left">&nbsp;<img style="border: 0px solid ; width: 193px; height: 53px;" src="Img/img12.gif" alt="${\displaystyle" align="middle"></td>
+    </tr>
+    <tr>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+      <td align="left">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="left">1.4142</td>
+      <td align="left">...</td>
+      <td align="left">...</td>
+    </tr>
+  </tbody>
+</table>
+</p>
+
+Continuing this process, we obtain better and better
+approximations to
+the square root. " (From <span style="font-style: italic;">Structure
+and
+Interpretation of Computer Programs</span> by Abelson and
+Sussman).<br>
+
+Using&nbsp; a spreadsheet or calculator apply Newton's method to
+find
+the square root of 144 using an initial guess of
+1.&nbsp;&nbsp;&nbsp; How do
+you know when to stop?&nbsp; How many steps did it take you?<br>
+
+<br>
+
+2) Our example is the exponentiation function, which raises a
+number
+to a positive integer power. Here is a very simple implementation: <br>
+
+<dl>
+
+</dl>
+
+<ol>
+
+  <span style="font-family: monospace;">&gt; power
+:: Integer
+-&gt; Integer -&gt; Integer&nbsp;&nbsp;</span>&nbsp;&nbsp; <br>
+  <span style="font-family: monospace;">&gt; power a
+0 = 1&nbsp;</span>&nbsp;<span style="font-family: monospace;">&nbsp;&nbsp;
+  <br>
+  </span><span style="font-family: monospace;">&gt;
+power a b = a *
+power a (b-1)<br>
+  <br>
+  </span>
+</ol>
+
+<ol style="list-style-type: lower-alpha; margin-left: 40px;">
+
+  <li>Show the steps in the evaluation of the expression<span style="font-family: monospace; font-weight: bold;"> power 2 5</span>.&nbsp;&nbsp;
+How do the time and maximum space
+required by the
+evaluation of <span style="font-family: monospace;">power
+n k</span>
+depend on <span style="font-style: italic;">n </span>and <span style="font-style: italic;">k</span>?
+&nbsp;What is the time complexity of <span style="font-style: italic;">power?<br>
+    </span><br>
+  </li>
+  <li>Experiment with Hugs (or ghci) to determine for approximately
+(±100) how large a value of <span style="font-style: italic;">k</span>
+the expression <span style="font-family: monospace; font-weight: bold;">power
+17 k</span> can be
+evaluated. The symptoms of failure vary somewhat depending on the
+platform on which you&#8217;re running Hugs/GHCI&#8212; Hugs may
+report a
+stack overflow, or it may crash.<br>
+    <br>
+  </li>
+  <li>The cause of the limitation is the accumulation of
+pending
+multiplications, which is inherent in the way power is
+defined&#8212;
+each multiplication has to wait until its right argument has been
+evaluated.<br>
+  </li>
+One way to eliminate the multiplication delay is to convert
+the function&#8217;s definition to a tail-recursive implementation:<br>
+  <br>
+  <span style="font-family: monospace;">&gt; powerT
+:: Integer -&gt;
+Integer -&gt; Integer</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">&gt; powerT
+a b = trp b 1</span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+where</span><span style="font-family: monospace;"></span><br style="font-family: monospace;">
+  <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+trp n p = if (n==0) then p else trp (n-1) (a*p)<br>
+  </span><br style="font-family: monospace;">
+Show the steps in the evaluation of the expression <span style="font-family: monospace; font-weight: bold;">powerT 2 5</span>,
+making sure not to
+reduce any subexpression prematurely.&nbsp;&nbsp; <br>
+Does the space
+problem appear to be solved?<br>
+  <br>
+  <li>Repeat the experiment for part (b)&nbsp; for <span style="font-family: monospace;">powerT.<br>
+    <br>
+    </span></li>
+  <li>Define <span style="font-family: monospace;">powerS </span>by
+modifing <span style="font-family: monospace;">powerT</span>
+to force
+the accumulator argument to be evaluated prematurely, using the
+operator ($!) as illustrated in <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#factS">factS</a><span style="font-family: monospace;">.</span>Repeat the
+experiment of part
+(b) using your version of powerS, demonstrating that Hugs no longer
+crashes.<br>
+    <br>
+  </li>
+  <li><span style="font-family: monospace;"></span>Convert the
+powerT to an iterative form (while loop) using the <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#iterativeform">conversion</a>
+technique discussed in class.<br>
+    <br>
+  </li>
+</ol>
+
+3) In Exercise 1 we improved power&#8217;s space
+performance, but
+all three versions take time linear in the exponent argument.<br>
+
+<br>
+
+<ol style="list-style-type: lower-alpha;">
+
+  <li>Confirm this by running power, powerT, and powerS on the
+largest exponent for which you&#8217;ve discovered that all three
+succeed. Have Hugs count the number of reduction steps by turning on
+the statistics flag: <br>
+    <br>
+  </li>
+  <dl>
+    <dd><span style="font-family: monospace;">Lab7F10&gt;
+:s +s <br>
+      </span><br>
+    </dd>
+  </dl>
+  <li>[5pt]Here is an algorithm which improves both time and
+space
+performance:</li>
+  <dd style="margin-left: 80px;"><span style="font-family: monospace;"><br>
+&nbsp; &nbsp; &gt;
+turboPower a 0 = 1 <br>
+&nbsp; &nbsp; &gt; turboPower a b <br>
+&nbsp; &nbsp; &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| even b = turboPower
+(a*a) (b `div` 2) <br>
+&nbsp; &nbsp; &gt;&nbsp;&nbsp;&nbsp;&nbsp;
+| otherwise = a *
+turboPower a (b-1)</span></dd>
+  <dd><span style="font-family: monospace;"></span><br>
+  </dd>
+Instead of merely decrementing its first argument, this
+algorithm
+halves it whenever it is even, thereby reaching termination much more
+quickly. What is the complexity of this algorithm? Demonstrate it on
+the same arguments you used in part (a).<span style="font-family: monospace;"> </span><br>
+  <span style="font-family: monospace;"></span><span style="font-family: monospace;"> <br>
+  </span>
+  <li>Repeat the calculation of Exercise 2b using
+turboPower. <br>
+  </li>
+  <br>
+</ol>
+
+4)Hand written part:<br>
+
+<div style="margin-left: 40px;">Given:<br>
+f(x) = 5*x + 3<br>
+g(x) = 1 / (x+1)<br>
+<br>
+</div>
+
+<div style="margin-left: 40px;">a) Let h be defined to be (f o g) ( i.e
+<span style="font-style: italic;">h </span>is <span style="font-style: italic;">f</span> composed with <span style="font-style: italic;">g</span>) .&nbsp; What is the result of
+h(x) ?&nbsp; Use the definition of f and g above.&nbsp; <br>
+&nbsp;&nbsp; Remember&nbsp; (f o g) x is defined to be f ( g(x) ).<br>
+<br>
+b) Let h2 be defined to be ( g o f )? What is the result of h2(x) ?<br>
+<br>
+c) What is the value of&nbsp; h(2 )?<br>
+<br>
+d) What is the value of&nbsp; h2 (2 ) ?&nbsp;</div>
+
+5) Code part:<br>
+<div style="margin-left: 40px;">Write a haskell definition of f, g, h
+and h2.&nbsp; Use the function composition&nbsp; operator (.) in your
+definition of h and h2.&nbsp; Notice that composition function<br>
+&nbsp;returns a function and you do not need to include the argument x in your definition&nbsp; of h and h2.<br>
+&nbsp;i.e. The left hand side of the definition for h (and h2) need only h = .&nbsp;</div>
+
+</body></html>

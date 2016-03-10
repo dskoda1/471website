@@ -1,0 +1,778 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+  
+  <meta name="Author" content="E Head">
+
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+
+
+  
+  <meta name="Description" content="Introduction">
+
+  
+  <title>HW 10 -- Haskell --</title>
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(250, 250, 250);" alink="#cc0000" link="#ff0000" vlink="#990000">
+
+
+<h4>Due Nov 21&nbsp;</h4>
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+
+
+<div align="left">
+<div style="text-align: left;">
+(Done 11/18)</div>
+<h4 style="text-align: left;"><br>
+</h4>
+<h4 style="text-align: center;">Assignment 10</h4>
+
+
+<ul>
+
+
+  <li><a href="http://haskell.org/aboutHaskell.html">About
+Haskell</a></li>
+
+
+  <li><a href="http://haskell.org/tutorial/indextutorial.html">On
+line
+tutorial</a></li>
+
+
+  <li>Recommended reading: Thompson, Chapter 1 -7, Appendix A<br>
+
+
+  </li>
+
+
+</ul>
+
+
+<h4>Programming assignment found in <a href="Haskell2F05.lhs">Haskell2F05.lhs&nbsp;</a></h4>
+
+
+<h4>Written assignment:</h4>
+
+
+<ol>
+
+
+  <li>Exercise 1 and 2 illustrates how changing a given
+function&rsquo;s
+implementation can affect its time and space performance.</li>
+
+
+</ol>
+
+
+<dl>
+
+
+  <dd>Our example is the exponentiation function, which raises a
+number
+to a positive integer power. Here is a very simple implementation: <br>
+
+
+  </dd>
+
+
+</dl>
+
+
+<ol start="2">
+
+
+  
+  <ol>
+
+
+    <span style="font-family: monospace;">&gt; power
+:: Integer
+-&gt; Integer -&gt; Integer&nbsp;&nbsp;</span>&nbsp;&nbsp;
+    <br>
+
+
+    <span style="font-family: monospace;">&gt; power a
+0 = 1&nbsp;</span>&nbsp;<span style="font-family: monospace;">&nbsp;&nbsp; <br>
+
+
+    </span> <span style="font-family: monospace;">&gt;
+power a b = a *
+power a (b-1)<br>
+
+
+    <br>
+
+
+    </span>
+  
+  </ol>
+
+
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>[10pt]Show the steps in the evaluation of the expression<span style="font-family: monospace; font-weight: bold;"> power 2
+7</span>.&nbsp;&nbsp; How do the time and maximum space
+required by the
+evaluation of <span style="font-family: monospace;">power
+n k</span>
+depend on <span style="font-style: italic;">n </span>and
+      <span style="font-style: italic;">k</span>?<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>[5pt]Experiment with Hugs to determine for approximately
+(&plusmn;100) how large a value of <span style="font-style: italic;">k</span>
+the expression <span style="font-family: monospace; font-weight: bold;">power
+2 k</span> can be
+evaluated. The symptoms of failure vary somewhat depending on the
+platform on which you&rsquo;re running Hugs&mdash; Hugs may
+report a
+stack overflow, or it may crash.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>[10pt]The cause of the limitation is the accumulation of
+pending
+multiplications, which is inherent in the way power is
+defined&mdash;
+each multiplication has to wait until its right argument has been
+evaluated.<br>
+
+
+    </li>
+
+
+One way to eliminate the multiplication delay is to convert
+the function&rsquo;s definition to a tail-recursive implementation:<br>
+
+
+    <br>
+
+
+    <span style="font-family: monospace;">&gt; powerT
+:: Integer -&gt;
+Integer -&gt; Integer</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&gt; powerT
+a b = trp b 1</span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+where</span><span style="font-family: monospace;"></span><br style="font-family: monospace;">
+
+
+    <span style="font-family: monospace;">&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+trp n p = if (n==0) then p else trp (n-1) (a*p)<br>
+
+
+    </span><br style="font-family: monospace;">
+
+
+Show the steps in the evaluation of the expression <span style="font-family: monospace; font-weight: bold;">powerT 2 7</span>,
+making sure not to
+reduce any subexpression prematurely.&nbsp;&nbsp; <br>
+
+
+Does the space
+problem appear to be solved?<br>
+
+
+    <br>
+
+
+    <li>[5pt]Repeat the experiment for part (b)&nbsp; for <span style="font-family: monospace;">powerT.<br>
+
+
+      <br>
+
+
+      </span></li>
+
+
+    <li>[10pt]Define <span style="font-family: monospace;">powerS
+      </span>by
+modifing <span style="font-family: monospace;">powerT</span>
+to force
+the accumulator argument to be evaluated prematurely, using the
+operator ($!) as illustrated in <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#factS">factS</a><span style="font-family: monospace;">.</span>Repeat the
+experiment of part
+(b) using your version of powerS, demonstrating that Hugs no longer
+crashes.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li><span style="font-family: monospace;"></span>[10pt]
+Convert the
+powerT to an iterative form (while loop) using the <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html#iterativeform">conversion</a>
+technique discussed in class.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  </ol>
+
+
+  <li>In Exercise 1 we improved power&rsquo;s space
+performance, but
+all three versions take time linear in the exponent argument.] <br>
+
+
+  </li>
+
+
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>Confirm this by running power, powerT, and powerS on the
+largest exponent for which you&rsquo;ve discovered that all three
+succeed. Have Hugs count the number of reduction steps by turning on
+the statistics flag: <br>
+
+
+      <br>
+
+
+    </li>
+
+
+    
+    <dl>
+
+
+      <dd><span style="font-family: monospace;">Haskell1S05&gt;
+:s +s <br>
+
+
+        </span><br>
+
+
+      </dd>
+
+
+    
+    </dl>
+
+
+    <li>[.5pt]Here is an algorithm which improves both time and
+space
+performance:<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    
+    <dl>
+
+
+      <dd><span style="font-family: monospace;">&gt;
+turboPower a 0 = 1 <br>
+
+
+&gt; turboPower a b <br>
+
+
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; | even b = turboPower
+(a*a) (b `div` 2) <br>
+
+
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; | otherwise = a *
+turboPower a (b-1)<br>
+
+
+        <br>
+
+
+        </span></dd>
+
+
+    
+    </dl>
+
+
+    <dd><span style="font-family: monospace;"></span><br>
+
+
+    </dd>
+
+
+  
+  </ol>
+
+
+  
+  <ol>
+
+
+    <dd><br>
+
+
+    </dd>
+
+
+    <dd><br>
+
+
+    </dd>
+
+
+    <dd><br>
+
+
+    </dd>
+
+
+    <dd>Instead of merely decrementing its first argument, this
+algorithm
+halves it whenever it is even, thereby reaching termination much more
+quickly. Demonstrate it on the same arguments you used in part (a).<span style="font-family: monospace;"> <br>
+
+
+      <br>
+
+
+      </span></dd>
+
+
+  
+  </ol>
+
+
+  
+  <ol start="3" style="list-style-type: lower-alpha;">
+
+
+    <li>[10pt] Repeat the calculation of Exercise 1c using
+turboPower.
+You do not need to show the evaluation of the guard expression even b.
+The recursive applications of turboPower give rise to multiple
+instances of the parameter a; handle this by adding digits or prime
+characters (') to distinguish between them.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>In the <a href="Haskell2F05.lhs">programming
+assignment</a>
+you will convert turboPower version to a tail recursive version.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  </ol>
+
+
+  <li>Show the steps in the evaluation of the expression<br>
+
+
+    <span style="font-family: monospace;"><br>
+
+
+let f x y = if x &gt; 0 then x else x * y in f (3 + 7) (f 8 4)</span><br>
+
+
+    <br>
+
+
+For each evaluation policy, count the number of addition operations and
+the number of comparisons. In each step, underline the subexpression
+evaluated in the next step (as in <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/2EhS05.html">notes</a>).<br>
+
+
+    <br>
+
+
+  </li>
+
+
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>[10]Use the leftmost-innermost policy.</li>
+
+
+    <li>[10]Use the outermost policy.</li>
+
+
+    <li>[10]Use the lazy policy.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  </ol>
+
+
+  <li><span style="font-weight: bold;">Generic
+programming</span>:
+    <br>
+
+
+Purpose: &nbsp;To use generic supplied algorithms in different
+(paradigms) languages. &nbsp;The goal of generics is to make
+software
+reuse convenient.<br>
+
+
+  </li>
+
+
+</ol>
+
+
+<br>
+
+
+THIS PROBLEM MAY BE DONE IN TEAMS OF AT MOST 2 PEOPLE.&nbsp; EACH
+TEAM
+NEED ONLY TURN IN ONE COPY OF THE ASSIGNMENT.&nbsp; INCLUDE THE
+NAME OF
+EACH MEMBER AND SECTION, AND THEIR CONTRIBUTION TO EACH PART.<br>
+
+
+<br>
+
+
+Download <a href="BookCompanyF05.tar.gz">BookCompany.tar.gz</a>
+(or <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/BOOK/CODE/">directory with all the code.</a>)<br>
+
+
+<hr size="2" width="100%"> The BookCompany program
+manages a
+collection (inventory) of&nbsp; book records. <br>
+
+
+The program can<br>
+
+
+<ol>
+
+
+  <li>add "Book"s to the inventory,</li>
+
+
+  <li>sort the inventory</li>
+
+
+  <li>print out&nbsp; all the book records in the inventory. </li>
+
+
+</ol>
+
+
+There are three implementations, Haskell, C++
+&nbsp;and&nbsp; C. All three implementations use the generic
+sort
+method supplied in their respective library. The collection
+of&nbsp; books are sorted in the order specified by the user
+supplied "ordering" function. The supplied function sorts the
+"Book" records by ascending year, followed by the ascending
+lexical order of the book title.
+<ol>
+
+
+  
+  <ol type="a">
+
+
+    <li> (1 file) The Haskell version, BookCompany.lhs&nbsp;
+is
+implemented using the literal style. &nbsp; The <i>inventory</i>(collection)
+is just a list. Our code uses the <i>sort</i> function
+found
+in <a href="http://haskell.org/onlinelibrary/list.html">
+List.hs </a>.
+The <i>sort</i> function requires elements in the list to
+be
+sorted to be a type in the class <b>Ord.</b> Therefore the
+program
+must declares Book to be in class Ord as
+well as implement the expected functions. &nbsp;Note that all the
+code
+is bound&nbsp; by run time. &nbsp; Therefore all the
+required functions that Book implements inorder to be in the class
+Ord are <b>overloaded</b>.<br>
+
+
+      <br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>(4 files) The "C" implementation,&nbsp; <b><a href="BOOK/CODE/C/bookCompany.c">
+bookCompany.c </a></b> use the
+stdlib's <i>qsort</i>()<i> </i>to sort the
+inventory.&nbsp;&nbsp; The
+user must supply a function to compare <i>book</i> records
+that the <i>qsort</i>
+will use to sort
+the array of <i>book</i> records.&nbsp; The function <i><b>bookcmp</b></i><b>()</b>
+implemented in&nbsp; &nbsp;<b><a href="BOOK/CODE/C/book.c">book.c</a>
+      </b>compares <i>book</i> ( <a href="BOOK/CODE/C/book.h">book.h
+      </a>)
+records. &nbsp;In bookCompany.c a pointer to this
+code is passed as one of the parameter to <i>qsort</i> ().
+&nbsp; By
+passing the pointer the user is explicitly binding the comparing method
+used by <i>qsort</i> at runtime. The <b><a href="BOOK/CODE/C/Makefile">
+Makefile</a> </b> is supplied to make compiling easier. <br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li> The "C++" implementation uses&nbsp; STL(Standard
+Template
+Library) supplied sorting algorithm. &nbsp; A good online reference
+for STL is found at&nbsp; <a href="http://www.sgi.com/tech/stl/index.html">
+http://www.sgi.com/tech/stl/index.html </a>. <i>&nbsp;</i>The&nbsp;
+user-defined template method <i>sortInventory</i> is in <b><a href="BOOK/CODE/CPP/BookCompany.h">BookCompany.h
+      </a></b>&nbsp;and
+uses the version of the STL <i>sort </i> algorithm
+(function
+template) that requires a functor (function object) which contains the
+ordering algorithm of the records. &nbsp; <b><i>functor</i></b>s
+are similar to functions in functional languages except functors
+can have state and therefore are not necessarily "mathematical"
+functions. &nbsp;sortBooks&nbsp;in <b><a href="BOOK/CODE/CPP/BookCompany.h">BookCompany.h
+      </a></b> uses
+the <i>STL sort</i> algorithm with two parameters. This
+version of <i>sort</i>
+requires that "&lt;" be overloaded (defined)for the data records
+and
+works a lot like the Haskell version. &nbsp; All the code in this
+example is bound by load time. &nbsp;There is NO dynamic
+dispatching.
+&nbsp;My code has three different ordering algorithms. The <b><a href="BOOK/CODE/CPP/Makefile">Makefile
+      </a> </b> is supplied
+to make compiling easier. &nbsp;The C++ also illustrates how the
+user
+can supplied &nbsp;more than one "compares" functions.
+&nbsp;The
+literature calls this parametric polymorphism. <br>
+
+      <br>
+
+
+    </li>
+
+
+    
+    <dl>
+
+
+      <dd><br>
+
+
+      </dd>
+
+
+    
+    </dl>
+
+
+  
+  </ol>
+
+
+  <li>The C++ sorting algorithm can use a user supplied functor
+(as a
+template parameter) or overload the "&lt;" binary operator. In
+either
+case
+the sorting algorithm expects these predicates to&nbsp; satisfy the
+mathematical definition, a&nbsp; <b><i> strict weak
+ordering.&nbsp;</i></b></li>
+
+
+  
+  <ol type="A">
+
+
+    <li>What are the invariants your "ordering" code must
+satisfy?&nbsp;</li>
+
+
+    
+    <ol>
+
+
+      <li>Give two examples of operators over real numbers that
+satisfy the properties of <i>strict weak ordering</i>.
+&nbsp; </li>
+
+
+      <li>Give an example of an operator over real numbers that
+&nbsp;DOES NOT satisfy this property.</li>
+
+
+    
+    </ol>
+
+
+    <li>C++ templates can cause the "code bloat" problem.
+&nbsp;What
+exactly is "code bloat"?&nbsp;</li>
+
+
+    <li>Give pluses and minus for using C++ templates over
+inheritance (like Java does) for&nbsp; generic programming.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  </ol>
+
+
+  <li>Is there a limit on the number of different ways to compare
+books
+records in C ?</li>
+
+
+  <li>Is there a limit on the number of different ways to compare
+books
+records in Haskell?<br>
+
+
+  </li>
+
+
+  <li>Using the implements in<font color="#000000"> </font><font color="#000000">1a, </font><font color="#000000">1b
+,</font><font color="#000000"> and 1c a</font>s
+models write a<b> Haskell</b>
+program, a&nbsp; <b>C</b> program and a <b>C++</b>
+program to keep a book inventory.&nbsp; Expand the book type (in
+above) to include fields the isbn number and customer rating.&nbsp;
+The
+customer rating will be a value from 0 to 5.&nbsp; The sorting
+order
+should now be based on the descending order of the customer rating
+and&nbsp; ascending order of the isbn number .&nbsp; You
+will need to update the testing data to reflect the additional
+information included.&nbsp; You should make sure that there is a
+way to print out all the information about the book.<br>
+
+
+  </li>
+
+
+</ol>
+
+
+<br>
+
+
+References:<br>
+
+
+<ol>
+
+
+  <li>Musser,David R., Derge, Giller J., Saini, Atul, <i>STL
+Tutorial and Refernce Guide, Second Edition</i>, Addison-Wesley
+&nbsp;2001.</li>
+
+
+  <li>Josuttis, Nicolai M., <i>The C++ Standard Library: A
+Tutorial
+and Reference</i>&nbsp;Addison-Wesley &nbsp;1999.</li>
+
+
+  <li>Stroustrup, Bjarne, <i>&nbsp;The C++ Programming
+Language, </i>2nd<i>
+Edition</i>, Addison-Wesley &nbsp;2000.</li>
+
+
+  <li>Louden, chap 6.8-6.9, 9.7, 10.2-10.3 <br>
+
+
+  </li>
+
+
+</ol>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+<br>
+
+
+</div>
+
+
+</body>
+</html>

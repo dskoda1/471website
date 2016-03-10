@@ -1,0 +1,37 @@
+
+CC=		gcc
+CFLAGS=		-g -Wall
+
+
+# -I$$HOME/cs452/projects/prj5/lib
+
+
+LIBS=
+
+#example for libs	-L$$HOME/cs452/projects/prj5/lib -lcs452
+
+C_SRC_FILES= \
+   ptrS.c
+
+
+H_SRC_FILES=
+
+SRC_FILES= \
+  $(C_SRC_FILES) \
+  $(H_SRC_FILES) \
+  Makefile README
+
+O_FILES= \
+   ptrS.o
+
+prtUnit:		$(O_FILES)
+		$(CC) $(O_FILES) $(LIBS) -o $@
+
+
+prtUnit.o:		prtUnit.c
+		$(CC) $(CFLAGS)  -c prtUnit.c -o $@
+
+clear:  	rm *.exe
+		rm *.o
+
+

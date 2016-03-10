@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>lab 4: Prolog 2</title></head><body>
+<h3 style="text-align: center;">Programming Languages<br>
+Lab activity 4: Prolog</h3>
+
+Turn in one file prolog file (lab4.pl).&nbsp; USE swipl for this part.<br>
+
+<ol>
+
+  <li>(10)Ackermann's functions was defined in homework 1 as follows:</li>
+  <dl>
+    <dd>ack( <i>m,n</i>
+) = 2 * <span style="font-style: italic;">n</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if <i>m</i>
+= 0 <br>
+    </dd>
+    <dd>ack( <i>m,n</i>
+) = <span style="font-weight: bold;">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if <span style="font-style: italic;">n</span> = 0 and&nbsp;<span style="font-style: italic;">m&nbsp;</span>&gt;
+0&nbsp;<br>
+ack( <i>m,n</i>
+) =&nbsp; <span style="font-weight: bold;">2</span><span style="font-style: italic;"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if <span style="font-style: italic;">n</span> = 1 and&nbsp;<span style="font-style: italic;">m&nbsp;</span>&gt;
+0 <br>
+    </dd>
+    <dd>ack( <i>m,n</i>
+) = ack( <i>m</i>-1,
+ack( <i>m, n</i>-1 ) ) &nbsp; &nbsp; &nbsp; otherwise</dd>
+    <dt>Code an Ackermann's predicate in prolog using this definition.<br>
+    </dt>
+  </dl>
+  <li>(10)Define <span style="font-style: italic;">homoiconic.</span>
+Is Prolog <span style="font-style: italic;">homoiconic</span>? What
+does it mean to say a language is <span style="font-style: italic;">fully
+reflective</span>? Is Prolog <span style="font-style: italic;">fully
+reflective? </span>Reference the pages from Scott where terms are used in relationship to Prolog.<span style="font-style: italic;"><span style="font-style: italic;"></span><br>
+    </span></li>
+  <li>(0) Try to predict the results of the following queries (you do
+not need to include answer in the file you submit.&nbsp; You can use
+help to remind you what these predicates do. eg. ?- help(functor).<br>
+  </li>
+  <dl style="font-family: monospace; font-weight: bold;">
+    <dd>?- functor(foo(a,b,c),F,N).<br>
+?- functor(foo(a,b,c),F,N), write('\n'), write(F),write('\nlast write
+\n.').<br>
+?- functor(T,foo,3).<br>
+?- arg(3, foo(a,b,c),A).<br>
+?- T =.. [foo,x, y, z].<br>
+?- foo(who, what) =.. T.<br>
+?- foo(who, what) =.. [A, B,C].<br>
+?- clause(ack(M,0,B),C).<br>
+?- clause(H,(B is 2*0)).<br>
+?- write('Hello').<br>
+?- write(Hello).<br>
+      <br>
+    </dd>
+  </dl>
+  <li>(10)Define a predicate, listOfTerms(ListOfArgs,Name,
+ListOfResults),&nbsp; where each term in the ListOfResults is a term
+with one argument from the ListOfArgs and the functor name is the
+Name. <br>
+  </li>
+  <dl style="font-family: monospace; font-weight: bold;">
+    <dd>?- listOfTerms([[1,2],[a,s,v],[100]],foo,T). <br>
+T = [foo(1, 2), foo(a, s, v), foo(100)].<br>
+?- listOfTerms([[1,2],[100,99],[5,11]],+,T).<br>
+T = [1+2, 100+99, 5+11].<br>
+?- listOfTerms(Lst,F,[1+2, 100+99, 5+11]).<br>
+Lst = [[1, 2], [100, 99], [5, 11]],<br>
+F = + .</dd>
+  </dl>
+  <li>(0) Copy the contents of <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/ghezzi">ghezzi</a>
+to a file name test.pl.&nbsp; Open this file in swipl and in
+emacs.&nbsp; <br>
+  </li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Try to predict the step need to execute the following query</li>
+    <dl>
+      <dd>?- clos(a,g).At the prompt (in the swipl window) type trace,
+clos(a,g). eg.</dd>
+    </dl>
+    <li>At the prompt type</li>
+    <dl>
+      <dt>?- trace, clos(a,g).</dt>
+      <dt>If after each response you type "enter" you will see the
+exact execution of clos(a,g). <br>
+      </dt>
+    </dl>
+    <li>Redo using the following query: trace, clos(a,C).<br>
+      <br>
+    </li>
+  </ol>
+  <li>Using the XPCE browers. Open SWIpl terminal and type "<span style="font-family: monospace;">manpce</span>".&nbsp;
+You should see something like this in your terminal window plus you
+will see another window opened called "XPCE Manual".<br>
+</li>
+  <dl>
+    <dt><span style="font-family: monospace;">% library(swi_hooks) compiled into pce_swi_hooks 0.00 sec, 2,060 bytes</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">Welcome to SWI-Prolog (Multi-threaded, 32 bits, Version 5.8.0)</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">Copyright (c) 1990-2009 University of Amsterdam.</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software,</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">and you are welcome to redistribute it under certain conditions.</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">Please visit http://www.swi-prolog.org for details.</span><br style="font-family: monospace;">
+      <br style="font-family: monospace;">
+      <span style="font-family: monospace;">For help, use ?- help(Topic). or ?- apropos(Word).</span><br style="font-family: monospace;">
+      <br style="font-family: monospace;">
+      <span style="font-family: monospace;">?- manpce.</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">true.</span><br style="font-family: monospace;">
+    </dt>
+  </dl>
+  <ol style="list-style-type: lower-alpha;">
+    <li>In the "XPCE Manual Browser" pull down menu select "Prolog&nbsp;
+manual". Another window will open which will allow us to browse
+the Prolog manual.&nbsp; Click on the "+" next to "Built-in predicates"
+-- this will open sub-menu.&nbsp; Click on the words "Built-in
+predicates" opens the manual page. <br>
+    </li>
+    <li>On there bottom of this window you will see the label "On:" ,
+type "number" and enter in the next box.&nbsp; You should see the
+specification of <span style="font-style: italic;">number </span>in
+the manual page frame on the right.&nbsp; Repeat for <span style="font-style: italic;">atom.</span></li>
+  </ol>
+  <dl>
+    <dt><br>
+    </dt>
+  </dl>
+  <li>(0) Using the gui tracer.&nbsp; Open the SWIpl terminal and type "<span style="font-family: monospace;">guitracer</span>" at the prompt.&nbsp;
+You should see something like this.<br>
+    <span style="font-family: monospace;">% library(swi_hooks) compiled
+into pce_swi_hooks 0.00 sec, 2,060 bytes</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">Welcome to SWI-Prolog
+(Multi-threaded, 32 bits, Version 5.8.0)</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">Copyright (c) 1990-2009
+University of Amsterdam.</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">SWI-Prolog comes with
+ABSOLUTELY NO WARRANTY. This is free software,</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">and you are welcome to
+redistribute it under certain conditions.</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">Please visit
+http://www.swi-prolog.org for details.</span><br style="font-family: monospace;">
+    "<br style="font-family: monospace;">
+    <span style="font-family: monospace;">For help, use ?- help(Topic).
+or ?- apropos(Word).</span><br style="font-family: monospace;">
+    <br style="font-family: monospace;">
+    <span style="font-family: monospace;">?- guitracer.</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">% The graphical front-end
+will be used for subsequent tracing</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">true.</span><br>
+    <span style="font-family: monospace;">?- [ghezzi]</span><br>
+  </li>
+
+  <dl>
+  </dl>
+</ol>
+
+<ol>
+
+  <ol style="list-style-type: lower-alpha;">
+    <li>Redo 5a. -- At the prompt type:<br>
+      <span style="font-family: monospace;">?- clos(a,g).<br>
+      </span>You should notice the behavior as the as 5a.</li>
+    <li> At the prompt type: ?- trace, clos(a,g).</li>
+  
+  <dd>You should see another window, which is the graphical
+debugger.&nbsp; If you
+have questions about the different frames in the debugger window please
+feel free to ask me during lab.</dd>
+  
+    <li>At the prompt type: <br>
+
+  </li>
+
+  <dd>?- trace, clos(A,f).</dd>
+  <dt><br>
+</dt></ol>
+</ol>
+<br>
+<ol>
+<dl><dd><br>
+    </dd>
+  </dl>
+</ol>
+
+<br>
+
+<br>
+</body></html>

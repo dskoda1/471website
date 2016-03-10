@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Types - Louden Chapter 5</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <meta name="author" content="E Head">
+</head>
+<body>
+<div style="text-align: center;">
+<h3>Homework Assignment 6</h3>
+</div>
+Due: Sat March 5, 5pm<br>
+<h4>
+Purpose:&nbsp; Explore attributes
+and bindings of variables.&nbsp; Introduction to garbage collecting
+algorithms. Review of operator rules/policies.<br>
+</h4>
+You can work in teams of 2 people.<br>
+<br>
+<h3>Reading/References:</h3>
+<ul>
+  <li>Chapter 5, 8.5.2 and start chapter 6<br>
+  </li>
+</ul>
+<h3>Assignment:<br>
+</h3>
+<ol>
+  <li>Rewrite the expressions a&#8211;d below in prefix notation. Assume the
+following precedences&nbsp; and associativities for the operators:</li>
+  <dl>
+    <dd>
+      <table style="text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top;">Operator<br>
+            </td>
+            <td style="vertical-align: top;">Precedence<br>
+(3 highest)<br>
+            </td>
+            <td style="vertical-align: top;">Associativity<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; vertical-align: top;">^<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">3<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">right<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; vertical-align: top;">*<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">2<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">left<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; vertical-align: top;">/<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">2<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">left<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; vertical-align: top;">+<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">1<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">left<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center; vertical-align: top;">-<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">1<br>
+            </td>
+            <td style="text-align: center; vertical-align: top;">left<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+    <dt>and don't assume that any of the operators are commutative.</dt>
+    <dt>A simple way to proceed is to perform the rewriting process in
+three steps:</dt>
+  </dl>
+  <ol>
+    <li>Parenthesize the expression fully, using the rules of
+precedence and associativity.</li>
+    <li>Within each parenthesized subexpression, move the operator to
+left of its left operand.</li>
+    <li>Remove the parentheses.</li>
+  </ol>
+  <dl>
+    <dt>You'll notice that in the resulting expression, the order of
+the operands is the same as in original- only the operators change
+positions</dt>
+    <dd>
+      <table style="text-align: left;" border="0" cellpadding="5"
+ cellspacing="5">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;">a)&nbsp;
+w *&nbsp; x&nbsp; /&nbsp; y&nbsp; -&nbsp; z<br>
+            </td>
+            <td style="vertical-align: top;"><span
+ style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; b) &nbsp; w&nbsp;
+*&nbsp; (x&nbsp; +&nbsp; y&nbsp; /&nbsp; z) </span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top;"><span
+ style="font-weight: bold;">c)&nbsp; w&nbsp; *&nbsp; x&nbsp; + y&nbsp;
+/&nbsp; z</span><br>
+            </td>
+            <td style="vertical-align: top;"><span
+ style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; d)&nbsp; w *
+x&nbsp; ^&nbsp; y&nbsp; ^&nbsp; z</span><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </dd>
+  </dl>
+  <li>Rewrite the expressions of&nbsp; exercise 1 in postfix
+notation.&nbsp; Use the same assumptions as in exercise 1.<br>
+  </li>
+  <li>Give an examples that shows the semantics of "const" in C is
+different than its semantics in C++.</li>
+  <li> The keyword <b><i>static</i></b> has two different
+semantics in Ansi C depending on where it is used, either inside a
+function
+definition or outside of a function definition.&nbsp; What does <b><i>static</i></b>
+mean in both settings?</li>
+  <li>Modification of page 180 exercise 5.1, <br>
+  </li>
+  <dl>
+    <dd>
+      <table style="text-align: left; height: 243px;" border="1"
+ cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr style="font-weight: bold;">
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">Attribute<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">C<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">C++</td>
+            <td style="vertical-align: top; text-align: center;">Java<br>
+            </td>
+          </tr>
+          <tr style="font-weight: bold;">
+            <td style="vertical-align: top; text-align: center;">a<br>
+            </td>
+            <td style="vertical-align: top;">range of values of an
+int&nbsp;&nbsp;&nbsp; <br>
+            <br>
+            </td>
+            <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+            </td>
+            <td style="vertical-align: top;">&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+            </td>
+            <td style="vertical-align: top;">&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+            </td>
+          </tr>
+          <tr style="font-weight: bold;">
+            <td style="vertical-align: top; text-align: center;">b<br>
+            </td>
+            <td style="vertical-align: top;">The meaning of char<br>
+            <br>
+            <br>
+            <br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr style="font-weight: bold;">
+            <td style="vertical-align: top; text-align: center;">c<br>
+            </td>
+            <td style="vertical-align: top;">The size of a local array
+variable<br>
+(C/C++ automatic array)<br>
+(Java local array)<br>
+            <br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr style="font-weight: bold;">
+            <td style="vertical-align: top; text-align: center;">&nbsp;d<br>
+            </td>
+            <td style="vertical-align: top;">The size of an array
+parameter<br>
+            <br>
+            <br>
+            <br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;"><span
+ style="font-weight: bold;">e</span><br>
+            </td>
+            <td style="vertical-align: top;"><span
+ style="font-weight: bold;">The location of a local variable<br>
+            </span>(C/C++ automatic array)<br>
+(Java local array)<span style="font-weight: bold;"><br>
+            <br>
+            </span> </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr style="font-weight: bold;">
+            <td style="vertical-align: top; text-align: center;">f<br>
+            </td>
+            <td style="vertical-align: top;">The value of a constant<br>
+            <br>
+            <br>
+            <br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td
+ style="vertical-align: top; font-weight: bold; text-align: center;">g<br>
+            </td>
+            <td style="vertical-align: top;"><span
+ style="font-weight: bold;">The location of a function to be executed<br>
+            <br>
+            <br>
+            <br>
+            </span> </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  </dl>
+  <li>page 180 exercise 5.7</li>
+  <li>page 183 exercise 5.16</li>
+  <li>page 183 exercise 5.17 (Do both Java and C++ only).</li>
+  <li>page 185 exercise 5.24 (Think about the type of '&amp;' and '*'
+operators.)<br>
+  </li>
+  <li>page 185 exercise 5.28</li>
+  <li>Page 181 exercise 5.8. You do not need to show organization of
+the symbol table.&nbsp; However, you show show how you determined what
+the program printed out using each kind of scope rule.</li>
+  <li>page 354 exercise 8.34<br>
+  </li>
+</ol>
+<br>
+</body>
+</html>

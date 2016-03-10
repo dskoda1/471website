@@ -1,0 +1,153 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Head/ Lander">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+   <meta name="Description" content="CS471 spr 00">
+   <title>Review</title>
+</head>
+<body text="#000000" bgcolor="#FFFFF4" link="#00FF00" vlink="#666666" alink="#FF0000">
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/6hSpr01.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/8hFall10.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Haskell 5</h3></center>
+
+<center>
+<h3>
+&copy; Eileen Head, Leslie C. Lander, 2000</h3></center>
+Purpose:&nbsp; Review HOF.
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Hof.lhs">Hof.lhs</a>
+illustrates some addition examples.
+<h3>
+
+<hr WIDTH="100%"></h3>
+
+<h3>
+Review</h3>
+
+<ul>
+<li>
+What is the type of&nbsp; "<tt> g . f </tt>"</li>
+
+<ul>
+<li>
+<tt>f :: [Int] -> [Bool]</tt></li>
+
+<br><tt>g :: [Bool] -> Int</tt>
+<li>
+<tt>f::(a, Char) -> (a,[Char])</tt></li>
+
+<br><tt>f (x,y) = (x, ['a' ..y])</tt>
+<br>&nbsp;
+<li>
+<tt>g:: (Int, [b]) -> Int</tt></li>
+
+<br><tt>g (m,zs) = m +length zs</tt>
+<br>&nbsp;</ul>
+
+<li>
+What does</li>
+
+<ul><tt>> mys xs = foldl op [] xs</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+op acc x = x:acc</tt></ul>
+do ?
+<br>&nbsp;
+<li>
+reverse revisited:</li>
+
+<br><tt>reverse [] = []</tt>
+<br><tt>reverse (x:xs) = reverse xs ++[x]</tt>
+<ul>
+<li>
+Define reverse using HOF and flip</li>
+
+<dl>
+<ul><tt>flip :: (a->b->c) -> (b->a->c)</tt>
+<br><tt>flip f x y = f y x</tt>
+<ul>&nbsp;</ul>
+</ul>
+</dl>
+</ul>
+
+<li>
+Arguments can be explicitly typed i.e.</li>
+
+<br><tt>> fn (x::Int)&nbsp; = (+) x</tt>
+<br><tt>&nbsp; ...> :t fn</tt>
+<br><tt>&nbsp; fn :: Int -> Int -> Int</tt>
+<p><tt>> f x = (+) x</tt>
+<br><tt>&nbsp; ...> :t f</tt>
+<br><tt>&nbsp; f :: Num a => a -> a -> a</tt>
+<p>(play with elem, dropWhile, takeWhile, take, drop)</ul>
+
+<ul>
+<li>
+Problem remove all occurences of a character in a string of lower case
+characters AND change to upper case.</li>
+
+<br><tt>Main> removeCapP 'c' "abccc cdef gcfc"</tt>
+<br><tt>"AB DEF GF"</tt>
+<br>&nbsp;
+<li>
+"Primitive" recursion</li>
+
+<br><tt>> removeCapP r str =</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp; if str==[] then []</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else if head str == r</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+then removeCapP r (tail str)</tt>
+<br><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else toUpper (head str):removeCapP r (tail str)</tt>
+<br>&nbsp;
+<li>
+Recursion with pattern matching and guards</li>
+
+<br><tt>> removeCap r (c:cs)</tt>
+<br><tt>>&nbsp; | r == c = removeCap r cs</tt>
+<br><tt>>&nbsp; | otherwise = (toUpper c):removeCap r cs</tt>
+<br><tt>> removeCap r [] = []</tt>
+<br>&nbsp;
+<li>
+List comprehension</li>
+
+<br><tt>> removeCapLC r cs = [toUpper c | c &lt;- cs, c /=r ]</tt>
+<br>&nbsp;
+<li>
+Higher order functions</li>
+
+<br><tt>> removeCapHOF r&nbsp; = (filter ((toUpper r) /=) . map toUpper)</tt>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Higher order functions -- using function composition</li>
+
+<br><tt>> removeCapHOFX r&nbsp; = (map toUpper . filter (r /= ))</tt></ul>
+
+<hr NOSHADE WIDTH="100%">
+<center>
+<hr WIDTH="100%"></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/6hSpr01.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/8hSpr01.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

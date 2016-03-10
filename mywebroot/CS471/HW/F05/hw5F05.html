@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+  
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+
+  
+  
+  <meta name="Author" content="E Head">
+
+
+  
+  
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+
+
+  
+  
+  <meta name="Description" content="Introduction">
+
+
+  
+  
+  <title>Homework 5- Syntax and RE</title>
+</head>
+
+
+<body style="background-color: rgb(255, 253, 255); color: rgb(0, 0, 0);" alink="#cc0000" link="#ff0000" vlink="#990000">
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a>
+<br>
+
+
+<div style="text-align: center;">
+<h3>Assignment 5</h3>
+
+
+</div>
+
+
+<span style="font-weight: bold;"></span>Due: &nbsp;Monday, Oct 11.<br>
+
+
+<br>
+
+
+<h4>Reading and references---</h4>
+
+
+<ul>
+
+
+  <li>Louden: Chapter 4 and section 5.3</li>
+
+
+  <li>See Unix/Linux man pages or the following:<br>
+
+
+  </li>
+
+
+  
+  
+  <ul>
+
+
+    <li><a href="http://dictionary.reference.com/search?q=grep" title="Look up &quot;Unix&quot;">Grep is the Unix</a><a href="http://dictionary.reference.com/search?q=grep"> command for
+searching files for lines matching a given </a><a href="http://dictionary.reference.com/search?q=grep" title="Look up &quot;regular&lt;br&gt; expression&quot;">regular expression</a> (RE). <br>
+
+
+    </li>
+
+
+    <li><a href="http://en.wikipedia.org/wiki/Regular_expression#Regular_expression_syntaxes">Regular
+Expressions</a></li>
+
+
+    <li>Python..stuff</li>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<ol style="font-weight: bold;">
+
+
+</ol>
+
+
+<ol>
+
+
+  
+  
+  <ol>
+
+
+    
+    
+    <ol>
+
+
+    
+    
+    </ol>
+
+
+  
+  
+  </ol>
+
+
+</ol>
+
+
+<ol>
+
+
+</ol>
+
+
+<hr style="width: 100%; height: 2px;">
+<h4>Written Assignment:<br>
+
+
+</h4>
+
+
+<b>Purpose:</b><br>
+
+
+<br>
+
+
+<ul>
+
+
+  <li>To use and modify a recursive descent parser.</li>
+
+
+  <li>To review primitive types.</li>
+
+
+  
+</ul>
+
+
+<ol>
+
+
+  
+  <li><span style="text-decoration: underline;"></span>Do exercise 4.20 <span style="color: rgb(255, 0, 0);"></span>page
+116 using the
+modified code given given in <a href="hw4/Fig4_12.c">Fig4_12.c</a>
+and a<span style="text-decoration: underline;"> </span><a href="hw4/Makefile">Makefile</a>. </li>
+
+
+  <li>What is IEEE 754-1985 ?&nbsp;&nbsp;</li>
+
+
+  <li>"There are only a few basic data types in C: <i>char ... int ...
+float ... double</i>" (Kernighan &amp; Ritchie p36)&nbsp;<br>
+
+
+    <br>
+
+
+  </li>
+
+
+  
+  
+  <ol type="A">
+
+
+    <li>For each type: What phase (language design, implementation,
+compile time, run time)&nbsp; is the decision made on how the type is
+encoded<big> , i.e.<small> how much space is allocated and its format
+in
+memory</small></big><small> ?</small> &nbsp;<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>At compile time your code finds the maximum and minimum values
+for char, int, float and double in the<i> /usr/include/limits.h </i>and
+      <i>/usr/include/float.h</i>
+files supplied by the implementor of the compiler (on bingsuns, gnu).
+Look in these files to find these definitions (you may have to look in
+files included by limits.h). Compare the values found on bingsuns to
+the
+values provided <a href="http://www.acm.uiuc.edu/webmonkeys/book/c_guide/2.5.html"> here</a>.
+(or K&amp;R page 257 or Harrison&amp;Steele page 127) &nbsp;
+Give a reason why the values may be different. In addition there are
+the
+following qualifiers: short, long, signed and unsigned. Briefly explain
+effect of the qualifiers on the basic types. You should mention which
+standard you are using(i.e ANSI/ISO amendment I or K&amp;R&nbsp; etc.).
+&nbsp; <br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>What is the difference between struct data type and a union
+data type in C?&nbsp; Explain the purpose of using union in the <a href="hw5F05/hw5F05b.c"> hw5F05b.c</a> part 3?<br>
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  
+  </ol>
+
+
+  <li><a href="hw5F05/trouble.cpp">trouble.cpp</a> is a C++
+program,
+that illustrates some problems you can run into. &nbsp; Try running
+this program on BOTH a Sparc architure and Intel architure (32 bit
+word).</li>
+
+
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+    <li>Compile with g++ and no options.&nbsp; Execute program and note
+output results.</li>
+
+
+    <li>Compile with g++ and the -O2 (optimization) option.&nbsp;
+Execute program and note results. i.e.</li>
+
+
+    
+    
+    <dl>
+
+
+      <dt>g++ -O2 trouble.cpp</dt>
+
+
+    
+    
+    </dl>
+
+
+    <li>Remove comment surrounding <br>
+
+
+&nbsp;&nbsp;&nbsp; cout &lt;&lt; cnt &lt;&lt; " " &lt;&lt; bestFrac
+&lt;&lt; endl;&nbsp;<br>
+
+
+in visit's body. Compile with g++ and the -O2 option.&nbsp; Execute
+program and note results.</li>
+
+
+  
+  
+  </ol>
+
+
+  <dd>Explain why value returned from <span style="font-style: italic;">visit</span>
+is NOT the same for all 3 compilations and executions.<br>
+
+
+  </dd>
+
+
+  <li>The C code provided below illustrates some problems with the
+implementation of floating point numbers. You are given&nbsp; a simple <i>C</i>&nbsp;program
+(<a href="hw5F05/hw5F05.c"> hw5F05.c</a>) to run. &nbsp;There is
+a&nbsp; <a href="hw5F05/Makefile">Makefil</a>e and<a href="hw5F05/README"> README</a> if you want to use them.&nbsp;
+Compile and run this code using GCC.(You may use cygwin , mingw or Sun
+work stations ).&nbsp; Do not use the optimization option.<br>
+
+
+  </li>
+
+
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+    <li>The 4 sums are computed in part1() and printed out in. Part
+1A's printout appears to be the sam &nbsp;e independent of the
+calculation order of &nbsp;the "i's". &nbsp;However, the sum printed
+out in Part 1B's printout is different. One would expect&nbsp; program
+would compute and print the same value for sum. &nbsp; Explain what is
+going on.<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>One would also expect that adding ten times the value 0.1 would
+result in 1.0.&nbsp; Explain why (how) the computer gets the results
+for
+part 2 (part2()) ?<br>
+
+
+      <br>
+
+
+    </li>
+
+
+    <li>(Harbison &amp; Steele) "Prior to ISO C, all
+implementations were required to convert all values of type <b>float</b>
+to type <b>double</b> before operations were performed. &nbsp;... In
+ISO
+C, operations can now be performed using type <b>float</b> ."
+&nbsp;What
+is the consequences of this change? ( Consider speed,&nbsp; accuracy,
+and space. )<br>
+
+
+&nbsp; <br>
+
+
+    </li>
+
+
+    <li>Explain why (a+b)*10 does not equal a*10 + b*10. Notice that <span style="font-style: italic;">a&nbsp; </span>an <span style="font-style: italic;">b</span> are are of the same magnitude.
+What is
+the percentage of difference between the value displayed on Part 3
+Line1: and Part 3 Line2:? <br>
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  
+  </ol>
+
+
+  <br>
+
+
+</ol>
+
+
+_________________________________________________________________________________<br>
+
+
+<font color="#3333ff"><br>
+
+
+Remember Programming is an individual task... :</font>
+<p><font color="#3333ff">Resources use:</font> </p>
+
+
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a> </p>
+
+
+<br>
+
+
+<br>
+
+
+</body>
+</html>

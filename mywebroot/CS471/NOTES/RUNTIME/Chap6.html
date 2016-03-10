@@ -1,0 +1,419 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Chapter 6 - control flow</title></head><body>
+<center>
+<h2>Control Flow: Fall 15<br>
+</h2>
+</center>
+
+<h3> Goal</h3>
+
+<ul>
+
+  <li><span style="font-style: italic;">To
+understand the difference between reference model languages and value
+model.</span></li>
+  <li><span style="font-style: italic;">To
+appreciate the ramification of operators with side-effects.</span></li>
+  <li><span style="font-style: italic;">To
+understand iterators.<br>
+    </span></li>
+</ul>
+
+<h3>What will be covered ?</h3>
+
+<ul>
+
+  <li>L-Values, R-Values,&nbsp;</li>
+  <li>Reference vs Value model of variables</li>
+  <li>Immutiable objects</li>
+  <li>Assignment operators</li>
+  <li>Side-effects</li>
+  <li>The principle of orthogonality</li>
+</ul>
+<h4>Code:</h4>
+<ul>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/array.perl">Arrays
+in Perl</a></li>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/lists.py">Arrays in Python</a></li>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/iterators.py">Python code--Generators</a></li>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/iterators.rb">Ruby code--Blocks &amp; Iterators</a></li>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/TreeModule.py">Python Class</a></li>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/EXself.py">self is a convention in python</a>
+  </li>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/treeModule.rb">Ruby Class</a></li>
+  <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/iteratorsEX6_72.rb">Iterating with First Class functions</a></li>
+  <li><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/CODE/continuation6_43.rb" target="_blank">Continuations using Ruby</a><br>
+  </li>
+
+</ul>
+
+
+<hr style="width: 100%; height: 2px;">
+<ul>
+
+  <li>
+    <h3>Values and References</h3>
+  </li>
+  <ul>
+    <li>Examples</li>
+  </ul>
+  <li>
+    <h3>L-Value/R-Value&nbsp;</h3>
+  </li>
+  <ul>
+    <li> L-value is an <span style="font-weight: bold; font-style: italic;">expression</span>
+that refers to storage
+area&nbsp;</li>
+    <ul>
+      <li><i><span style="font-style: italic;"><span style="font-style: italic;"></span></span></i>Original
+definition: The object that appears on the left hand side.</li>
+      <li><a href="http://www.techrepublic.com/article/distinguish-the-differences-between-r-values-and-l-values-in-c-plus-plus/">Distinguish
+the differences between R-values and L-values in C++</a></li>
+      <li>the L-value of a variable refers to the "container"</li>
+    </ul>
+    <li> R-value is an expression that denotes value</li>
+    <ul>
+      <li>Immutable objects only have R-values</li>
+    </ul>
+    <li>Under the value model, the context of an expression
+determines whether is it an L or R Value.<br>
+    </li>
+    <li>Examples</li>
+  </ul>
+  <li><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/CODE/array.perl">Arrays
+in Perl</a></li>
+  <li><a href="CODE/lists.py">Arrays in Python</a></li>
+  <li>Immutiable objects --&nbsp;</li>
+  <li>
+    <h3>Expressions -- and -- assignment&nbsp;</h3>
+  </li>
+  <ul>
+    <li>What is the pure form of an expression?</li>
+    <li>"="&nbsp; in C,C++,C# and Java</li>
+    <ul>
+      <li>is both an expression and has a side effect</li>
+      <li>is right associative</li>
+    </ul>
+    <li>Alternate assignments and unary operator -- appear to
+have the same semantics.<br>
+      <tt>int x = 0;</tt><br>
+      <tt>x = x + 1;</tt><br>
+      <tt>x += 1;</tt><br>
+      <tt>x++;</tt></li>
+    <li> Java code</li>
+    <ul>
+      <b><tt>static int n = 0;</tt> <br>
+      <tt>static int [] A = new int[2];</tt> <br>
+      <tt>static int f() {</tt> <br>
+      <tt>&nbsp;&nbsp;&nbsp; if (n == 0) {</tt>
+      <br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+n=1;</tt> <br>
+      <tt>&nbsp;&nbsp;&nbsp; } else {</tt> <br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+n = 0;</tt> <br>
+      <tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+      <tt>&nbsp;&nbsp;&nbsp; return n;</tt> <br>
+      <tt>}</tt> <br>
+      <tt>static public void main (String [] arg) {</tt></b>
+      <ul>
+        <b><tt>A[f()] = A[f()] +1;&nbsp; // 0 1</tt>
+        <br>
+        <tt>A[f()] += 1;&nbsp;&nbsp;&nbsp; // 0 2</tt>
+        <br>
+        <tt>A[0] = A[1] = n = 0;</tt> <br>
+        <tt>A[f()] += 1;&nbsp; // 0 1</tt> <br>
+        <tt>A[f()] = A[f()] + 1;&nbsp; // 2 1 }</tt></b>
+      </ul>
+      <b><tt>}</tt></b>
+    </ul>
+  </ul>
+</ul>
+
+<ul>
+
+  <ul style="font-weight: bold;">
+    <li>Multiway assignments</li>
+  </ul>
+  <ul>
+    <ul>
+      <li>In Python, the comma on the rhs defines a tuple of
+multiple r-values and the comma on the lhs produces &nbsp;a tuple
+of l-values</li>
+    </ul>
+  </ul>
+  <dl style="font-weight: bold;">
+    <dd><tt>a , b = 15 , 3*25</tt></dd>
+  </dl>
+</ul>
+
+<ul>
+
+  <li>
+    <h3>Order of Evaluation of
+Operators and Parameters</h3>
+  </li>
+  <ul>
+    <li>C,Pascal, ADA::&nbsp; the order of evaluations
+of
+the operands of most operators are not specified in the language.</li>
+    <li>C:: The same for evaluations of&nbsp;
+parameters&nbsp;</li>
+    <li>Why is this a problem?&nbsp;<br>
+      <br>
+    </li>
+  </ul>
+  <dl>
+    <dt><span style="font-weight: bold;">Examples::</span><br>
+What is the value of x and a after ::</dt>
+    <dd><b> <br>
+      <tt>int x;</tt> <br>
+      </b><tt><b>x = ++a + a; /* expression 1 */<br>
+a = 2;<br>
+x = a + ++a; /* expression 2 */</b></tt></dd>
+    <dt><br>
+    </dt>
+  </dl>
+  <dt>What is printed out after ::</dt>
+  <dd><b><tt>int fun (int a, int b) {</tt> <br>
+    <tt>&nbsp; return a + b;</tt> <br>
+    <tt>}</tt> <br>
+    <tt>int main(void){</tt> <br>
+    <tt>&nbsp; int a =2;</tt> <br>
+    <tt>&nbsp; int x;</tt> <br>
+    <tt>&nbsp; x = fun (a,a++);</tt> <br>
+    <tt>&nbsp; printf("fun(a,a++): x %d, a %d\n\n",x,a);</tt>
+    <br>
+    <tt>&nbsp; a = 2;</tt> <br>
+    <tt>&nbsp; x = fun (a++,a);</tt> <br>
+    <tt>&nbsp; printf("fun(a++,a): x %d, a %d\n\n",x,a);</tt>
+    <br>
+    <tt>&nbsp;}</tt> </b>&nbsp;<br>
+    <br>
+  </dd>
+  <dt>GCC output::</dt>
+</ul>
+
+<ul>
+
+  <ul>
+    <b><tt>fun(a,a++): x 5, a 3</tt></b><br>
+    <b><tt>fun(a++,a): x 4, a 3</tt></b>
+  </ul>
+</ul>
+
+<ul>
+
+  <li>
+    <h3>More on Operators with Side Effects</h3>
+    <ul>
+      <li> These expressions change memory as well as returning a
+value.</li>
+    </ul>
+    <blockquote><tt>x = (y = z)</tt> <br>
+      <tt>x++</tt> <br>
+      <tt>--y<br>
+      </tt></blockquote>
+  </li>
+  <ul>
+    <li>In C it is implementation dependent when side effects are
+applied<br>
+    </li>
+  </ul>
+</ul>
+
+<ul style="margin-left: 40px;">
+
+  <li>What is the evaluation of the following expression
+containing
+side-effect
+operators:<br>
+(Assume all side effect happens as soon as possible.)<br>
+  </li>
+</ul>
+
+<ul>
+
+  <dl>
+    <dd><big><b><tt>int n = 3; <br>
+int x = ++n * n++ - --n<br>
+      </tt></b></big></dd>
+  </dl>
+  <ul>
+    <li><big><small>Assume left to right evaluation:
+&nbsp;(~&gt; 12)</small></big></li>
+  </ul>
+</ul>
+
+<div style="margin-left: 80px;"><span style="font-family: monospace;">++
+n * n++ - --n</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">~&gt; (++n *
+n++) - --n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp; where n = 3 </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">~&gt; (4 * n++)
+- --n &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp;&nbsp; where n =4
+(why?)</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">--&gt;(4*4) -
+--n &nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; where n =5</span><br style="font-family: monospace;">
+<span style="font-family: monospace;">--&gt;(4*4) - 4
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; where n =4</span>&nbsp;</div>
+
+<div style="margin-left: 40px;">
+<ul>
+  <li>Assume right to left evaluation: (~&gt; 6)&nbsp;</li>
+</ul>
+<dl>
+  <dd><span style="font-family: monospace;">++ n *
+n++ - --n</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">~&gt; (++n *
+n++) - --n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;
+where n = 3 </span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">~&gt; (++n *
+n++) - 2 &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; where n = 2 </span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">--&gt;(++n*2)
+- 2 &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; where n =3 (why?)</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">--&gt;(4*2)
+- 2 &nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; where n =4</span><br>
+  </dd>
+</dl>
+</div>
+
+<ul>
+
+  <ul>
+    <li>Unlike C,&nbsp; Java specifies exactly when the side
+effects
+happen.</li>
+  </ul>
+</ul>
+
+<blockquote>
+  <blockquote><span style="font-family: monospace;">int i = 0;</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">i = i++;</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">System.out.println(i);</span><br>
+  </blockquote>
+</blockquote>
+
+<ul>
+
+  <ul>
+    <li>Prints 0 ---&nbsp;</li>
+  </ul>
+  <ul>
+    <li>Java <span style="font-style: italic;">notes</span> the value
+of i, increments i then makes the
+"=" of
+the <span style="font-style: italic;">noted</span> value.</li>
+  </ul>
+  <li>
+    <h3>Conditional
+Statements
+vs Conditional Expressions</h3>
+  </li>
+  <li> What is the primary difference between the conditional
+operator
+and the conditional statement?</li>
+  <li> What is the primary difference between
+&#8220;=&#8220; operator in
+C/Java/C++ and the &#8220;=:&#8221; in Pascal ?</li>
+  <li>
+    <h3> Relational and Boolean Expressions</h3>
+  </li>
+  <li>Relation operator compares two operands and returns a
+Boolean.&nbsp; </li>
+  <ul>
+    <li>Most languages have the type Boolean.&nbsp;</li>
+  </ul>
+  <li>C does not have the type boolean.&nbsp;</li>
+  <ul>
+    <li>0 is considered false anything else is true.</li>
+    <li> What is the value computed below?</li>
+    <br>
+    <b><tt>a &gt; b &gt; c&nbsp; /* a = 10 , b
+= 9, c = 5&nbsp; */<br>
+    <br>
+    </tt></b>
+  </ul>
+  <li>
+    <h4> Boolean Expressions</h4>
+  </li>
+  
+  <ul>
+    <li> Design issue: How many parentheses are necessary.</li>
+    <li>Short circuit evaluation -- lazy evaluation</li>
+  </ul>
+
+  
+  <ul>
+    
+    <ul>
+      <li>Order of Evaluation</li>
+      <li>C specifies that short circuit operators are evaluated from
+left
+to right. </li>
+      <li>Ada and Pascal do not guarantee the order of evaluation.<br>
+        <br>
+      </li>
+    </ul>
+
+    
+    
+  </ul>
+  <li>
+    <h4>Iterators<br>
+    </h4>
+  </li>
+  <li>Iterators are a separate thread of control<br>
+  </li>
+  <li>&nbsp;Used to iterator over collections/containers<br>
+  </li>
+
+  
+  <ul>
+    <li>True Iterators are found in Python, Ruby, c#<br>
+
+  </li>
+    <ul>
+      <li><a href="CODE/iterators.py">Python code--Generators</a></li>
+      <li><a href="CODE/iterators.rb">Ruby code--Blocks &amp; Iterators</a></li>
+      <li><a href="CODE/TreeModule.py">Python Class</a></li>
+      <li><a href="CODE/EXself.py">self is a convention in python</a>
+  </li>
+    </ul>
+    <li>C++, Java, Euclid do this using iterator objects.</li>
+    <li>Rudy iterators use functional semantics.</li>
+    <ul>
+      <li><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/CODE/iteratorsEX6_72.rb">Iterating with First Class functions</a></li>
+      <li><a href="../../../../%7Ehead/CS471/NOTES/RUNTIME/CODE/treeModule.rb">Implementing 'each" for a collection in a Ruby Class </a></li>
+    </ul>
+  </ul>
+
+  
+  
+  
+  
+  
+</ul>
+
+</body></html>

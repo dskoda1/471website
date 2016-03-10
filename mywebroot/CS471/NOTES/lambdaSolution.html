@@ -1,0 +1,67 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Eileen Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <title>Solution for one/two using Seccessor Function</title>
+</head>
+<body text="#ffffff" bgcolor="#000000" link="#0000ee" vlink="#8080c0"
+ alink="#ff0000">
+<h3> Solution</h3>
+(From Abelson and Sussman [1985]) It is also possible to express the
+integer as lambda abstractions: <br>
+<b>zero =<font face="Symbol"> <span style="color: rgb(255, 255, 204);">\</span></font>f&nbsp;
+.<font face="Symbol"> \</font> x . x</b> <br>
+<b>one =&nbsp;<font face="Symbol"> <span
+ style="color: rgb(255, 255, 204);">\ </span></font>f.<font
+ face="Symbol">&nbsp; \</font> x ( f x)</b> <br>
+<b>two =&nbsp;<font face="Symbol"> <span
+ style="color: rgb(255, 255, 204);">\</span></font> f.<font face="Symbol"> <span
+ style="color: rgb(255, 255, 204);">\</span></font> x ( f ( f x ))</b> <br>
+. . . .
+<p>These are called Church numbers after Alonzo Church. </p>
+<p>a) Given the following definition of the sucessor function: </p>
+<blockquote><b>successor =<font face="Symbol"> \ </font>n.<font
+ face="Symbol"> \ </font>f.<font face="Symbol"> \</font> x ( f (( n f ) x
+) ).</b></blockquote>
+&nbsp;&nbsp;&nbsp; show that (successor zero) = one&nbsp; and
+(successor one) = two <br>
+&nbsp;
+<p>one = "successor zero" <br>
+one = \ <font color="#ff6666"><span style="color: rgb(255, 204, 204);">n</span></font>.
+\ f. \ x ( f (( <font color="#ff6666"><u
+ style="color: rgb(255, 102, 102);">n</u>&nbsp;</font> f ) x ) ) &nbsp; <span
+ style="text-decoration: underline;">(<span
+ style="color: rgb(255, 204, 204);">\ f&nbsp; . \ x . x</span>)</span> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~&gt; \ f. \ x ( f ( <u
+ style="color: rgb(255, 204, 204);">( <font color="#ff6666">\ f</font>&nbsp;
+. \ x . x) <font color="#ff6666">f </font></u><span
+ style="color: rgb(255, 204, 204);">)</span> x) ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~&gt;&nbsp; \ f. \ x ( f <u
+ style="color: rgb(255, 204, 204);">( \ x . x) x</u> )&nbsp; )<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~&gt; \ f. \ x ( f <font color="#ffcccc">x</font>)</p>
+<p>two = "successor one" <br>
+one = <font face="Symbol" style="color: rgb(255, 204, 204);">\</font><span
+ style="color: rgb(255, 204, 204);"> </span><u
+ style="color: rgb(255, 204, 204);">n</u>. \ f. \ x ( f (( <u
+ style="color: rgb(255, 204, 204);">n</u> f ) x ) ) <u
+ style="color: rgb(255, 204, 204);">( \ f&nbsp; .&nbsp; \ x .(f x) )</u><span
+ style="color: rgb(255, 204, 204);"> </span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~&gt; \ f. \ x ( f ( (&nbsp;<span
+ style="color: rgb(221, 204, 204);"> </span><u
+ style="color: rgb(255, 204, 204);"><span
+ style="color: rgb(221, 204, 204);">(\<span
+ style="color: rgb(255, 204, 204);"> f</span>&nbsp; . \ x . (f x) )</span>
+f )</u> x) ) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~&gt; <font face="Symbol">\</font> f. <font
+ face="Symbol">\</font> x ( f ( <u style="color: rgb(255, 204, 204);">(
+\ x . (f x) ) x</u><span style="color: rgb(255, 204, 204);">)</span>&nbsp;
+) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ~&gt; \ f. \ x&nbsp; ( f&nbsp; ( f x) ) <br>
+&nbsp; <br>
+&nbsp; </p>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+	 	
+  <meta name="Author" content="Eileen Head">
+	   	
+  <meta name="GENERATOR"
+ content="Mozilla/4.76 [en] (Windows NT 5.0; U) [Netscape]">
+  <title>ReUse techniques in several languages.</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(239, 239, 239);"
+ link="#660000" vlink="#660000" alink="#990000">
+<h3>Generic programming:</h3>
+Purpose: &nbsp;To use generic supplied algorithms in different
+(paradigms) languages. &nbsp;The goal of generics is to make software
+reuse convenient.<br>
+<br>
+THIS PROBLEM MAY BE DONE IN TEAMS OF AT MOST 3 PEOPLE.&nbsp; EACH TEAM
+NEED ONLY TURN IN ONE COPY OF THE ASSIGNMENT.&nbsp; INCLUDE THE NAME OF
+EACH MEMBER AND SECTION, AND THEIR CONTRIBUTION TO EACH PART.<br>
+<br>
+	  Download <a href="BookCompany.zip">BookCompany.zip</a> 	 <br>
+	
+<hr width="100%" size="2"> 	      The BookCompany program manages a
+collection (inventory)  	      of&nbsp; book records.  	 <br>
+		The program can<br>
+		
+<ol>
+		 <li>add "Book"s to the inventory,</li>
+		 <li>sort the inventory</li>
+		 <li>printout&nbsp; all the book records in the inventory. 		 </li>
+		
+</ol>
+There are four implementations using&nbsp; 		  Haskell, Java, C++
+&nbsp;and&nbsp; C. All four implementations  		  use the generic sort
+method supplied in their respective  		  library. The collection
+of&nbsp; books are sorted in the order specified  		    by the user
+supplied "ordering" function.  		   The supplied function sorts the
+"Book" records by ascending year, followed  		    by the ascending
+lexical order of the book title.    		
+<ol>
+		
+  <ol type="a">
+			<li> (1 file) The Haskell version, BookCompany.lhs&nbsp; is
+implemented 			  using the literal style. &nbsp; 			  The <i>inventory</i>(collection)
+is just 			  a list. Our code uses the <i>sort</i> 			  function found
+in 			 <a href="http://haskell.org/onlinelibrary/list.html"> List.hs 			 </a>.
+			  The <i>sort</i> 			  function requires elements in the list to be
+sorted 			  to be a type in the class        			 <b>Ord.</b> 			
+Therefore the program must declares Book to be in  			  class  Ord as
+well as implement the expected  			  functions. &nbsp;Note that all 			
+the code is bound&nbsp; by run time. &nbsp; 			  Therefore all the
+required functions that Book 			  implements inorder to be in the class
+Ord 			 are <b>overloaded</b>.<br>
+			 <br>
+			</li>
+			<li>&nbsp;The Java implementation,  			 <a
+ href="BOOK/CODE/BookCompany.java"> 			    BookCompany.java, 			 </a>
+			 uses  the static method&nbsp;  			 <a
+ href="http://java.sun.com/products/jdk/1.4/docs/api/java/util/Collections.html#sort%28java.util.List,%20java.util.Comparator%29">
+			 sort 			 </a> 			  found in the <a
+ href="http://java.sun.com/products/jdk/1.4/docs/api/java/util/Collections.html">
+			 java.util.Collections 			 </a> 			  class .&nbsp; Sort uses a
+modified mergesort 			  to sort a list of mutually comparable
+elements.&nbsp; 			  The user specifies an ordering of "Book" by
+supplying 			  an implementation  of the interface  			 <a
+ href="http://java.sun.com/products/jdk/1.4/docs/api/java/util/Comparator.html">
+			 Comparator 			 </a>. &nbsp;  			  The <i>sort</i> 			  method will
+input the collection(list) 			  of book records and an instance of the
+appropriate 			 <i>Comparator.</i>&nbsp; 			  The code for comparing
+records is dynamically   			  dispatched. &nbsp;An instance of  			 <i>Comparator</i>
+			 is created  at runtime, then the  			 <i>sort</i> routine calls 			
+the method belonging  to this instance. &nbsp; 			  Therefore the
+method, <i>compare</i>(),  			 called by the  			 <i>sort </i>is 			 <b>overriden.</b>
+The literature  calls this technique inheritance polymorphism which is a
+kind of subtype polymorphism . <br>
+			 <br>
+			</li>
+			<li>(4 files) The "C" implementation,&nbsp;  			 <b><a
+ href="BOOK/CODE/C/bookCompany.c"> 			      bookCompany.c 			 </a></b>
+			 use the stdlib's <i>qsort</i>()<i> </i>to sort the 			
+inventory.&nbsp;&nbsp; The user must supply a  			  function to compare
+			 <i>book</i> 			 records  that the  			 <i>qsort</i> will use to sort
+the array of  			 <i>book</i> 			 records.&nbsp;  The function 			 <i><b>bookcmp</b></i><b>()</b>
+			 implemented in&nbsp; 			 &nbsp;<b><a href="BOOK/CODE/C/book.c">book.c</a>
+			 </b>compares <i>book</i> ( 			 <a href="BOOK/CODE/C/book.h">book.h
+			</a>) 			  records. 			 &nbsp;In bookCompany.c a pointer to this
+code  			 is passed as one of the parameter to  			 <i>qsort</i> 			 
+(). &nbsp; 			  By passing the pointer the user is explicitly  			 
+binding the comparing method used by 			 <i>qsort</i> 			  at runtime. 
+The  			 <b><a href="BOOK/CODE/C/Makefile"> 			      Makefile</a> </b>
+			 is supplied to make compiling easier. <br>
+			 <br>
+			</li>
+			<li> 			  The "C++" implementation uses&nbsp; STL(Standard Template
+Library) supplied sorting algorithm. &nbsp; 			  A good online reference
+for STL is found at&nbsp; 			 <a
+ href="http://www.sgi.com/tech/stl/index.html"> 			
+http://www.sgi.com/tech/stl/index.html 			 </a>. 			 <i>&nbsp;</i>The&nbsp;
+user-defined template method <i>sortInventory</i> is in  			 <b><a
+ href="BOOK/CODE/CPP/BookCompany.h">BookCompany.h </a></b>&nbsp;and
+uses the version of the STL <i>sort </i> 			  algorithm (function
+template) that requires a functor (function object) which contains 			 
+the ordering  algorithm of the records. &nbsp; 			 <b><i>functor</i></b>s
+are simular to functions in functional 			  languages except functors
+can have state and  			  therefore are not necessarily 			
+"mathematical" functions. &nbsp;sortBooks&nbsp;in   			 <b><a
+ href="BOOK/CODE/CPP/BookCompany.h">BookCompany.h 			 </a></b> 			uses
+the 			<i>STL sort</i> algorithm with two parameters. This version of <i>sort</i>
+requires that "&lt;" be overloaded (defined)for the data records and
+works a lot like the Haskell version. &nbsp; All the code in this
+example is bound by load time. &nbsp;There is NO dynamic  dispatching.
+&nbsp;My code has three different ordering algorithms. The  			 <b><a
+ href="BOOK/CODE/CPP/Makefile">Makefile 			 </a> </b> 			  is supplied
+to make compiling easier. &nbsp;The C++ also illustrates how the user
+can supplied &nbsp;more than one "compares" functions. &nbsp;The
+literature calls this parametric polymorhism. <br>
+    </li>
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+  </ol>
+  <li>&nbsp; Java's sorting algorithm expects that your implemented <a
+ href="http://java.sun.com/j2se/1.4/docs/api/java/util/Comparator.html#compare%28java.lang.Object,%20java.lang.Object%29">
+compare</a> is a function that imposes a <b><i>total ordering </i></b>
+on some collection of objects.&nbsp;&nbsp; </li>
+		
+  <ol type="A">
+    <li>What is a total ordering (also called a linear
+ordering)?&nbsp;&nbsp;</li>
+    <li>Can you give an example of something that is not a total
+ordering?</li>
+    <li>Is there a limit on the number of "compare functions" for an
+individual data type?<br>
+			 <br>
+			</li>
+  </ol>
+		 <li>The C++ sorting algorithm can use a supplied  			functor (as  a
+template parameter) or&nbsp; the "&lt;" binary operator. In either case
+the sorting algorithm expects these predicates to&nbsp; satisfy  			the
+mathematical definition, a&nbsp; 			<b><i> strict weak ordering.&nbsp;</i></b></li>
+		
+  <ol type="A">
+			<li>What are the invariants your "ordering" code must  			
+satisfy?&nbsp;</li>
+			
+    <ol>
+			 <li>Give two examples of operators over real numbers  			    that
+satisfy the properties of  			 <i>strict weak ordering</i>. &nbsp; 			 </li>
+			 <li>Give an example of an operator over  			    real numbers that
+&nbsp;DOES 			    NOT satisfy this property.</li>
+			
+    </ol>
+			<li>C++ templates can cause the "code bloat" problem. 			 &nbsp;What
+exactly 			  is "code bloat"?&nbsp;</li>
+			<li>Give pluses and minus for using C++  			  templates over
+inheritance (like Java does) for&nbsp; generic programming.<br>
+      <br>
+    </li>
+		
+  </ol>
+  <li>Is there a limit on the number of different ways to compare books
+records in C ?</li>
+  <li>Is there a limit on the number of different ways to compare books
+records in Haskell?<br>
+  </li>
+		 <li>Using the implements in<font color="#000000"> </font><font
+ color="#000000">1a, </font><font color="#000000">1b ,</font><font
+ color="#000000"> 1c and 1d a</font>s models write a<b> Haskell</b>
+program, a <b>Java</b> 			program,&nbsp; a&nbsp; <b>C</b> program and a <b>C++</b>
+program to keep a book inventory.&nbsp;   			Expand the  book type (in
+above) to include fields for an authors last  name and first name and
+number of languages the text is available in.&nbsp;   The sorting order
+should now be based on the ascending  			lexical order  of author's last
+name and then the descending order  			of publication date.&nbsp; You
+will  need to update the testing data to reflect  			the additional
+information included.&nbsp;  You should make sure that there is  			a
+way to printout  all the information about  the book.<br>
+  </li>
+		
+</ol>
+<br>
+References:<br>
+			
+<ol>
+			 <li>Musser,David R., Derge, Giller J., Saini, Atul, <i>STL
+Tutorial and 				Refernce Guide, Second Edition</i>, Addison-Wesley
+&nbsp;2001.</li>
+  <li>Josuttis, Nicolai M., <i>The C++ Standard Library: A Tutorial
+and Reference</i>&nbsp;Addison-Wesley &nbsp;1999.</li>
+  <li>Stroustrup, Bjarne, <i>&nbsp;The C++ Programming Language, </i>2nd<i>
+Edition</i>, Addison-Wesley &nbsp;2000.</li>
+  <li>Block, Joshua <a
+ href="http://java.sun.com/docs/books/tutorial/collections/index.html">Collection
+Trail (Online Java<sup>tm</sup> Tutorial)</a><br>
+  </li>
+			
+</ol>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,1239 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta content="Eileen Head" name="Author">
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta content="Mozilla/4.73 [en] (Win98; U) [Netscape]" name="GENERATOR">
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <title>CS471 Assignment 1 Basic Notions, History and Language design Principles</title>
+</head>
+
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 249);" alink="#3333ff" link="#000099" vlink="#000099">
+
+
+
+
+
+
+
+
+
+<center>
+<h3> Programming Languages<br>
+
+
+
+
+
+
+
+
+
+Assignment<i> </i>1</h3>
+
+
+
+
+
+
+
+
+
+<div style="text-align: left;">
+<h3>Due during class -- :</h3>
+<span style="text-decoration: underline;">
+
+Wed: </span><br>
+
+
+Read carefully: <br>
+
+
+
+
+<div style="margin-left: 40px;">Scott: &nbsp;Pages 1-22</div>
+
+
+
+
+
+
+
+
+
+Make sure you can answer the following:<br>
+
+
+
+
+<div style="margin-left: 40px;"> Do "Check Your Understanding" 1-19<br>
+
+
+</div>
+
+
+Install <a href="http://python.org/download/">Python</a><br>
+<br>
+<span style="text-decoration: underline;">Fri:</span><br>
+
+
+Read carefully: <br>
+
+
+
+
+<div style="margin-left: 40px;">Scott: &nbsp;Pages&nbsp;22-35</div>
+
+
+
+
+
+
+
+
+
+Make sure you can answer the following:<br>
+
+
+
+
+<div style="margin-left: 40px;"> Do "Check Your Understanding" 20-29<br>
+<br>
+</div>
+Start Prolog:
+
+<ol>
+  <li>Download and install <a href="http://www.swi-prolog.org/download.html">http://www.swi-prolog.org/download.html</a>
+(swipl)</li>
+  <li>Double click on
+&lt;path&gt;\pl\demo\likes.pl (&lt;path&gt; is usually
+c:\Program Files\ ), &nbsp;SWI-Prolog window should open.
+&nbsp;One of the comments printed at the top of the file should
+read " % &lt;path&gt;/pl/demo/likes.pl compiles ..." .</li>
+  <li>(You should do this after we start Prolog in class).After typing each if the
+following queries (after the ?- ) at the prompt in your swipl window,
+what is the response? &nbsp;After you get a response hit return.</li>
+  <dl>
+    <dt><br>
+
+
+
+
+
+
+
+?- italian(F).<br>
+
+
+
+
+
+
+
+?- italian(dahl).<br>
+
+
+
+
+
+
+
+?- likes(Name,Food).</dt>
+    <dt>?- edit(likes).</dt>
+    <dd>In the edit window
+add&nbsp; the following clause at the top of the file:<br>
+
+
+
+
+
+
+
+&nbsp; &nbsp;likes(martha, Food):-italian(Food). &nbsp;<br>
+
+
+
+
+
+
+
+(NO space between likes and "(")<br>
+
+
+
+
+
+
+
+save the current buffer</dd>
+    <dd>In the shell window reload
+the modified file. &nbsp;You can find this command on the Pull down
+File menu.</dd>
+    <dt> ?- likes(Name,Food). </dt>
+  </dl>
+</ol>
+<br>
+
+
+
+
+
+
+
+
+
+<ol>
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div style="text-align: left;">
+<h3><i>Due: </i>Monday, Jan. 29 before class:&nbsp;</h3>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+</center>
+
+
+
+
+
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a> <br>
+
+
+
+
+
+
+
+
+
+There is a locked file cabinet near the cs department for you to leave
+your assignment.&nbsp; Assignment is due before the TA picks it up on Monday. <br>
+
+
+
+
+
+
+
+
+
+Please submit your solutions typed up and stapled together. &nbsp;EACH
+page should have your name, email, section number and page number
+printed on
+every page.&nbsp; Include the questions with your answers.&nbsp; (You
+can edit this file)&nbsp; <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a> <br>
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+I encourage you to work in teams of 3.&nbsp; Teams should submit
+<span style="font-weight: bold;">one</span> copy of homework with all
+names on it. Answers should be complete, concise and well
+written.&nbsp; Poorly written assignments will be returned to be
+reworked before grading. &nbsp;Copying solutions without rewording and citing IS a violation
+of&nbsp;<a href="http://watson.binghamton.edu/acadhonorcode.html"><b>Thomas
+J. Watson School of Engineering and Applied Science Student
+Academic </b><span style="font-weight: bold;">Honesty Code</span></a><span style="font-weight: bold;"> </span>and can result in a zero for the
+assignment.&nbsp; Repeated offenses will be handle as detailed in the Student Academic Honesty Code. &nbsp; &nbsp;<br>
+
+
+
+
+
+
+
+
+
+<h4>Purpose:&nbsp; </h4>
+
+
+
+
+
+
+
+
+
+To examine the basic notions of programming languages, review the
+history of programming languages, and understand language design
+principles. &nbsp;Start coding simple programs in Python.
+<h4>Reading:</h4>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">Read carefully: <br>
+
+
+
+
+Scott -<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Chapter 1<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; pages 671- 677<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; (Practice "Check Your Understanding" 1-6)<br>
+
+
+
+
+<br>
+
+
+
+
+Lutz
+&amp; Ascher -<br>
+
+
+
+
+&nbsp;&nbsp;&nbsp; Chapter 1<br>
+
+
+
+
+<div style="margin-left: 40px;">
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+References: (These will be useful in many assignments)<br>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><a href="http://java.sun.com/docs/books/jls/second_edition/html/jIX.fm.html">The
+Java Language Specification</a><br>
+
+
+
+
+
+
+
+
+
+<a href="http://www.adahome.com/LRM/95/rm95html/rm9x-toc.html">Ada 95
+Reference Manual</a><br>
+
+
+
+
+
+
+
+
+
+<a href="http://anubis.dkuug.dk/JTC1/SC22/WG14/">ISO standard for C</a>
+<br>
+
+
+
+
+
+
+
+&nbsp; &nbsp;or Harbison, Samuel P. and Steele, Guy L.&nbsp; <i><a href="http://vig.prenhall.com/acadbook/0,2581,0133262243,00.html"> C <u>A
+Reference Manual</u> 5th Edition</a></i>,<br>
+
+
+<a href="http://www.network-theory.co.uk/articles/gccintro.html">Introduction to GCC (Intro Chapter)</a><br>
+
+
+<a href="http://www-128.ibm.com/developerworks/aix/library/au-unixtools.html">UNIX tools for exploring object files</a><br>
+
+
+
+
+
+
+
+
+
+<a href="http://foldoc.doc.ic.ac.uk/foldoc/index.html">Free Online
+Dictionary of Computing</a><br>
+
+
+
+
+
+
+
+
+
+<a href="http://www.python.org/doc/2.4/ref/ref.html">Python 2.4 online
+reference manual</a><br>
+
+
+
+
+
+
+
+
+
+<a href="http://www.oreilly.com/catalog/lpython2/">Learning Python 2ed
+by Lutz &amp; Ascher</a><br>
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<h4> Written:</h4>
+
+
+
+
+
+
+
+
+
+<ol>
+
+
+
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+
+
+<ol>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  <li>The purpose of this exercise is to compare imperative and
+functional style of coding and code some simple Python.&nbsp;</li>
+
+
+
+
+
+  
+  
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+
+    <li>Convert the below recursive C&nbsp;code to Python. (See <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/PYTHON/PythonS.html">short&nbsp; introduction</a> to Python)</li>
+
+
+
+
+    
+    
+    
+    
+    <dl>
+
+
+
+
+      <dd><span style="font-family: monospace;">int power (int n, int val) {</span><br style="font-family: monospace;">
+
+
+
+
+        <span style="font-family: monospace;">&nbsp; if (0==n) {</span><br style="font-family: monospace;">
+
+
+
+
+        <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; return 1;</span><br style="font-family: monospace;">
+
+
+
+
+        <span style="font-family: monospace;">&nbsp; } else {</span><br style="font-family: monospace;">
+
+
+
+
+        <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; return val * power(n-1, val);</span><br style="font-family: monospace;">
+
+
+
+
+        <span style="font-family: monospace;">&nbsp; } </span><br>
+
+
+
+
+      </dd>
+
+
+
+
+    
+    
+    
+    
+    </dl>
+
+
+
+
+
+    <li>Rewrite this function using an imperative style (loops and assignments) in Python.</li>
+
+
+
+
+
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+
+
+
+  <li>Given the following properties (attributes) of a variable, state which are bound statically and which are bound dynamically,
+and briefly
+explain<span style="font-weight: bold;"> you answer:</span><br>
+
+
+
+
+
+
+
+
+
+  </li>
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <ol style="list-style-type: upper-alpha;">
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <ul>
+
+
+
+
+
+
+
+
+
+      <li>its value</li>
+
+
+
+
+
+
+
+
+
+      <li>its data type</li>
+
+
+
+
+
+
+
+
+      <li>its scope</li>
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+    <li>for C</li>
+
+
+
+
+
+
+
+
+
+    <li>for Python&nbsp;</li>
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  </ol>
+
+
+
+
+
+
+
+
+  <li>What does ISO stand for? When was the latest ISO specification
+for 'C' approved?&nbsp;
+When was the latest Ansi/ISO specification for 'C++' approved? Does
+Java
+have an ISO specification? Does C# have&nbsp;an ISO specification?&nbsp;</li>
+
+
+
+
+  <li>Page 32 execise 1.1 a-d</li>
+
+
+
+
+  <li>Page 33 exercise 1.4 (You may skip Pascal and scheme.)</li>
+
+
+
+
+  <li>Modification of 1.9&nbsp;</li>
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>Compile&nbsp;<a href="power.c">power.c</a>
+using gcc with -S command line flag. &nbsp;GCC is available on Bingsuns
+and on the machines in the Debian(Linux) classroom.&nbsp; &nbsp;Add
+comments to the resulting assembly file (power.s) to explain the
+purpose of each instruction. &nbsp;</li>
+
+
+    <li>Now compile using gcc with -c command line flag. &nbsp;This will create an object file, power.o. &nbsp;Examine the file using <span style="font-style: italic;">objdump -d power.o. &nbsp; </span>Add comments to resulting output to explain the purpose of each line. &nbsp;<br>
+
+
+    </li>
+
+
+  
+  
+  </ol>
+
+
+
+  <li>[Rosen,<span style="font-style: italic;">Discrete Mathematics and Its Applications </span>5th ed., pg 273 #48] "Consider the following inductive definition of a
+version of <b>Ackermann's</b> function.&nbsp; This function was named
+after <a href="http://www-history.mcs.st-and.ac.uk/history/Mathematicians/Ackermann.html">Wilhelm
+Ackermann</a>, a German mathematician who was a student of the great
+mathematician David Hilbert.&nbsp; Ackermann's function plays an
+important role in the theory of recursive functions and in the study
+of
+complexity of certain algorithms involving set unions."&nbsp; In the
+early days of&nbsp; imperative languages,&nbsp;Ackermann's function was
+used to measure the recursion capability of a compiler. <br>
+
+
+
+
+    <br>
+
+
+
+
+The Ackermann
+Number N of the compiler as the largest N for which<br>
+
+
+
+
+
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ack (3,N) <br>
+
+
+
+
+
+
+
+
+gives an answer without a stack overflow. &nbsp;Recently, a variation has been used as one of the benchmarks for the <a href="http://shootout.alioth.debian.org/">Computer Language Shootout</a>.&nbsp; (There are several different
+variants of this function.&nbsp; All are called Ackermann's
+functions and their values do NOT have to agree!) &nbsp;&nbsp;</li>
+
+
+</ol>
+
+
+<div style="margin-left: 40px;"><br>
+
+
+
+
+
+
+
+<table style="width: 600px; height: 89px;">
+
+
+
+
+
+
+
+
+      <tbody>
+
+
+
+
+
+
+
+
+        <tr>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">ack( <i>m,n</i> ) =</td>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;"><span style="font-style: italic;">n+</span>1</td>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">if <i>m</i> = 0</td>
+
+
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+
+
+
+        <tr>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">ack( <i>m,n</i> ) =&nbsp;</td>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">ack(<span style="font-style: italic;">m</span> -1, 1)</td>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">if <span style="font-style: italic;">n</span> = 0 and&nbsp;<span style="font-style: italic;">m&nbsp;</span>&gt; 0&nbsp;</td>
+
+
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+
+
+
+        
+        
+
+    <tr>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">ack( <i>m,n</i> ) =</td>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">ack( <i>m</i>-1, ack( <i>m, n</i>-1 ) ) &nbsp; &nbsp; &nbsp;</td>
+
+
+
+
+
+
+
+
+          <td style="font-weight: bold;">if<span style="font-style: italic;"> n</span> &gt;0 and <span style="font-style: italic;">m</span> &gt; 0</td>
+
+
+
+
+
+
+
+
+        </tr>
+
+
+
+
+
+
+
+
+      
+  
+  
+  
+  
+  
+  
+  
+  </tbody>
+    
+</table>
+
+
+
+
+
+
+
+
+&nbsp; <br>
+
+
+
+
+
+
+
+
+Find the following values of Ackermann's function. &nbsp;Show your work.
+  
+<ol style="list-style-type: lower-alpha;">
+
+
+
+
+
+
+
+  <b><b><b>    <li> ack(1,0) = ______</li>
+
+
+
+
+
+
+
+
+    <li> ack(0,3) = ______</li>
+
+
+
+
+
+
+
+
+    <li> ack(1,2) = ______</li>
+
+
+
+
+
+
+
+  <li>ack(2,1) = ______</li>
+
+
+
+
+  <li>Program Ackermann's function in Python. &nbsp;Find&nbsp;the Ackermann number N for your program. &nbsp;</li>
+
+
+
+
+
+
+
+
+    
+  </b></b></b>
+</ol>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

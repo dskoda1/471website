@@ -1,0 +1,221 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="E Head">
+   <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Description" content="Introduction">
+   <title>3 - Prolog Programming</title>
+</head>
+<body text="#000000" bgcolor="#FFFDFF" link="#FF0000" vlink="#990000" alink="#CC0000">
+<font size=-2>underconstruction&nbsp; </font><a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Due Friday,&nbsp;<br>
+<a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">General
+Submission Instructions</a></h4>
+You hardcopy should begin with the following identification:
+<ul>
+<blockquote><font color="#000000">CS471 - Programming Languages</font>
+<br><font color="#000000">Section: </font><font color="#CC0000">&lt;YOUR
+Section number></font>
+<br><font color="#000000">Assignment #</font><font color="#CC0000">&lt;number>
+</font><font color="#000000">due:</font><font color="#CC0000">
+&lt;DATE></font>
+<br><font color="#000000">Author:</font><font color="#CC0000"> &lt;LastName>,
+&lt;FirstName> </font><font color="#000000">(</font><font color="#CC0000">&lt;EMail></font><font color="#000000">)</font>
+<br><font color="#000000">Date:</font><font color="#CC0000"> &lt;DATE></font>
+<p><font color="#3333FF">Rename&nbsp;</font> <a href="http://bingweb.binghamton.edu/~head/CS471/HW/XXXAs3.pl">XXXAs3.pl</a>
+, rename file to JinAs3.pl, update identification, and add code to this
+file and just turn in a hard copy of this file. Keep the file in case the
+ta needs its. This file can be used for you to program in.&nbsp; I believe
+this will make it easier for the tas to grade.</blockquote>
+</ul>
+
+<h4>
+Manditory reading ---</h4>
+
+<li>
+Reading for Prolog</li>
+
+<ul>
+<li>
+Read: 625-641</li>
+
+<li>
+<font color="#990000">Read 401-403, 385</font></li>
+</ul>
+
+<h3>
+Written assignment:</h3>
+<b>Purpose:</b>
+<li>
+<b>To reenforce your understanding of the list data structure.</b></li>
+
+<ol>
+<li>
+Describe how the list structure is implement in prolog?&nbsp; (i.e. What
+is the runtime environment?).&nbsp;&nbsp; You can use drawings and data
+structures to help your explain.&nbsp; You should be able to do this in
+two or three sentences.</li>
+
+<li>
+Show how the following lists are bound after unification in your in your
+implementation.</li>
+
+<ol TYPE=a>
+<li>
+A = [1,2]</li>
+
+<li>
+[H|T] = [1,2,3]</li>
+
+<li>
+[H1,H2|T]&nbsp; = [1,2,3]</li>
+
+<li>
+[H|T] = [ [1,2,3], a, [c,d]]</li>
+</ol>
+</ol>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+<b>Purpose:</b>
+<li>
+<b>The purpose is this assignment is</b></li>
+
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) reenforce recursive programming</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) reenforce the use of the
+list data structure in Prolog</b>
+<br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3) use of pattern recognition
+in programming</b>
+<blockquote>This assignment is not intended to be hard, however many will
+need time to absorb how easy it really is.&nbsp; Most of the code need
+only be two lines and maximum number of lines is at MOST 4 lines.</blockquote>
+
+<ol>You may find this <a href="http://cbl.leeds.ac.uk/~tamsin/prologtutorial/index.html#menu">tutorial</a>
+or&nbsp; <a href="http://www.amzi.com/AdventureInProlog/advfrtop.htm">another
+tutorial</a> helpful.&nbsp; You will find the following builtin predicates
+helpful trace, help(predicate), and listing.
+<br>&nbsp;
+<li>
+&nbsp;[easy] Write a predicate, <b><tt>doubleIT(L,R)</tt></b>,&nbsp; such
+that every element in R is A more than the corresponding element in L.
+i.e.</li>
+
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><tt>?-doubleIT([1,2,4],X).</tt></b>
+<br><b><tt>&nbsp;&nbsp; X = [2,4,8]</tt></b>
+<br><b><tt>&nbsp;&nbsp; yes</tt></b>
+<br><b><tt>&nbsp;&nbsp; ?- doubleIT(X,[10,4])</tt></b>.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; You will get an error...Arguments are
+not sufficiently instantiated.
+<br>&nbsp;
+<li>
+<b>&nbsp;</b>Write a predicate,<b><tt> hasDuplicate(T)</tt></b>, which
+succeeds only if at least one element in the list appears more than once.&nbsp;
+You may use the built-in predicate <b><tt>member/2 </tt></b>i.e.</li>
+
+<ol><b><tt>?- hasDuplicate([3,3,4].</tt></b>
+<br><b><tt>yes</tt></b>
+<br><b><tt>?- hasDuplicate([1,33,4]).</tt></b>
+<br><b><tt>no</tt></b>
+<br><b><tt>?- hasDuplicate([a,b,d,e,f,d]).</tt></b>
+<br><b><tt>yes</tt></b></ol>
+
+<li>
+Write a predicate, <b><tt>secondLast</tt></b>, that succeeds only for lists
+of length greater than 1 and it "picks" the second from end of the list.</li>
+
+<ol><b><tt>?- secondLast([a,b,c,d],S).</tt></b>
+<br><b><tt>S = c</tt></b>
+<br><b><tt>yes</tt></b>
+<br><b><tt>?- secondLast([1],S).</tt></b>
+<br><b><tt>no</tt></b></ol>
+
+<li>
+Write a predicate<tt> <b>minList(-Min,+List)</b>, </tt>where Min is the
+minimum value found in List. Assume list has at least one number.</li>
+
+<ol>You might want to use the built-in predicate, min<tt>(+expr,+expr).</tt>
+<br><tt>Some experiments:</tt>
+<ol><tt>?- X is min(4,6).</tt>
+<br><tt>?- X is min(4*3,10*30).</tt></ol>
+<b><tt>Your results should be:</tt></b>
+<br><b><tt>?-&nbsp; minList(Min,[13,5,33,2,6]).</tt></b>
+<br><b><tt>Min = 2</tt></b>
+<br><b><tt>yes</tt></b>.</ol>
+
+<ol>&nbsp;</ol>
+
+<li>
+Write a predicate <b><tt>lengthOfLists,</tt> </b>given a list of lists
+compute the total number of&nbsp; elements in all the lists. i.e.</li>
+
+<ol>?-<b><tt>lengthOfLists([[1,2],[a,b,c]], L).</tt></b>
+<br><b><tt>L = 5</tt></b>
+<br><b><tt>yes</tt></b>
+<br><b><tt>?- lengthOfLists([[],[],[abc],[123]],L).</tt></b>
+<br><b><tt>L = 2</tt></b>
+<br><b><tt>yes</tt></b>
+<br><b><tt>?-lengthOfLists([[],[]],L).</tt></b>
+<br><b><tt>L = 0</tt></b>
+<br><b><tt>yes</tt></b></ol>
+
+<li>
+Define the relation,&nbsp;<b><tt> zip(Z,X,Y),</tt></b>where Z is unified
+with zip(X,Y).&nbsp; This is easy if you use pattern matching and <font color="#CC0000">unification.</font></li>
+
+<ol><b><tt><font color="#000000">?- zip(Z,a,b).</font></tt></b>
+<br><b><tt><font color="#000000">Z = zip(a,b)</font></tt></b>
+<br><b><tt><font color="#000000">yes</font></tt></b>
+<ol>&nbsp;</ol>
+</ol>
+
+<li>
+Define a predicate <b><tt>zipLists(L,M,P)</tt></b>, where it succeeds if&nbsp;
+P is a list of tuples, the first element is from the L and the second is
+from the corresponding element in list M.</li>
+
+<ol><tt>?- <b>zipLists</b>([1,5,9],[a,5,z],P).</tt>
+<br><tt>P = [zip(1,a),zip(5,5),zip(9,z)]</tt>
+<br><tt>yes</tt>
+<br><tt>?- <b>zipLists</b>([1,5],[a,b,c],P).</tt>
+<br><tt>P = [zip(1,a),zip(5,b)].</tt>
+<br><tt>yes</tt>
+<br><tt>?- <b>zipLists</b>([1,5,99],[a,c],P).</tt>
+<br><tt>P = [zip(1,a),zip(5,c)]</tt></ol>
+
+<li>
+Define a predicate, <b><tt>listOfPred(ListOfList,ListOfPred)</tt></b>,
+where each term in the ListOfLists is converted to a list of functors and
+their arguments.See page 638 in Scott for information on the built-in predicates
+functor and arg. i.e.</li>
+
+<ol><tt>?- listOfPred([ [=,3,5], [is,B,+(4,5)], [length,[1,2,3],3] ], LP).</tt>
+<br><tt>B=_G521</tt>
+<br><tt>LP=[3=5,_G521 is 4+5,length([1,2,3],3)];</tt>
+<br><tt>No</tt>
+<br><tt>?- listOfPred([],L).</tt>
+<br><tt>L= []</tt>
+<br><tt>yes</tt></ol>
+
+<li>
+Given a list of predicates, <b><tt>applylist(L)</tt></b>, succeeds only
+if each of the predicates in the list succeeds. <b>Note: the scope of variables
+names is the entire list.</b> You can apply each predicate at the prompt
+to test how they work.&nbsp; Make up your own test cases. i.e.</li>
+
+<ol><b><tt>?- applylist([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]).</tt></b>
+<br><b><tt>A = 5</tt></b>
+<br><b><tt>B = 9</tt></b>
+<br><b><tt>C = 5</tt></b>
+<br><b><tt>yes</tt></b>
+<br><b><tt>?- applylist([=(A,5),is(B,+(4,5)),C is max(9,2),A=C]).</tt></b>
+<br><b><tt>no</tt></b></ol>
+</ol>
+
+<p><br><font color="#3333FF">Remember Programming is an individual task...
+:</font>
+<p><font color="#3333FF">Resources use:</font>
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+</body>
+</html>

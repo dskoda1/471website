@@ -1,0 +1,363 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Les Lander">
+   <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+   <title>IO in Haskell</title>
+</head>
+<body>
+&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/7hSpr01.html">previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/9hSpr01.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<center>
+<h3>
+Haskell 7</h3></center>
+
+<center>
+<h3>
+&copy; Eileen Head, Leslie C. Lander, 2000</h3></center>
+Purpose: Examine the problems with implementing IO in a functional language.
+An introduction to Haskell's solution to IO will be examined.
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/IOExamples.lhs">Related
+Code</a>
+<br>Thompson: Chapter 18
+<h4>
+
+<hr WIDTH="100%">The IO Issue in A Pure Functional Language</h4>
+
+<ul>
+<li>
+Functional programming consists of definitions.</li>
+
+<li>
+These definitions associate a <b>fixed</b> value with each name.&nbsp;
+<hr ALIGN=LEFT SIZE=1 NOSHADE WIDTH="100%"></li>
+
+<br><b><tt>> val :: Int</tt></b>
+<br><b><tt>> val = 42</tt></b>
+<br><b><tt>> function :: Int -> Int</tt></b>
+<br><b><tt>> function n = val + n</tt></b></ul>
+
+<h4>
+How can an input or output action to fit in this model?</h4>
+
+<ul>
+<li>
+Standard ML's approach is to include operators as follows :</li>
+
+<ul><tt>inputInt :: Int</tt></ul>
+The effect is to read an integer from input and this value becomes the
+value of inputInt.
+<br>EACH time <tt>inputInt</tt> is evaluated it is given a new value.
+<li>
+Consider</li>
+
+<br><b><tt>diff = inputInt - inputInt</tt></b>
+<ul>
+<li>
+Problem 1: Depending on the order of evaluation of inputInt we might get
+different results.</li>
+
+<li>
+Problem 2: Based on model of reasoning we would expect any value subtracted
+from itself we should get 0!</li>
+</ul>
+</ul>
+
+<h4>
+Input as List Traversal</h4>
+
+<ul>
+<li>
+The first solution was to provide for the input stream to be represented
+within a program as a String.</li>
+
+<ul>
+<li>
+SASL (Saint Andrews Static Language. Turner, 1976.)</li>
+</ul>
+
+<li>
+Prelude.hs includes a function</li>
+
+<br><tt>interact :: (String -> String) -> IO()</tt>
+<br>which is defined so that
+<ul><tt>interact f</tt></ul>
+applies f to the input stream&nbsp; (as a String) and sends <i>f</i> 's
+output to the standard out stream.
+<br>&nbsp;
+<li>
+The program to manipulate the input is just a function <i>f&nbsp; </i>with
+type</li>
+
+<ul>
+<ul><tt>String -> String</tt></ul>
+</ul>
+
+<li>
+Example:</li>
+
+<ul><b><tt>> streamEx :: String -> String</tt></b>
+<br><b><tt>> streamEx = unlines . (map reverse) . lines . takeWhile (/=
+'$')</tt></b></ul>
+
+<li>
+When we run</li>
+
+<br><tt>...> interact streamEx</tt>
+<ul>
+<li>
+<tt>takeWhile </tt>is applied to the String of characters corresponding
+to the keystrokes</li>
+
+<dl>
+<dl>
+<li>
+<i>lazily </i>returns all of the characters up to the first '$'</li>
+</dl>
+
+<li>
+<tt>lines </tt>divides the String <i>lazily</i> returned by&nbsp; <tt>takeWhile
+</tt>into
+a list of Strings, breaking each line at '\n'</li>
+
+<li>
+<tt>map reverse </tt>reverses each String <i>lazily </i>returned by <tt>lines</tt></li>
+
+<li>
+<tt>unlines </tt>concatenates the String into a single String, inserting
+'\n' between each String <i>lazily </i>returned by <tt>map reverse</tt></li>
+</dl>
+
+<li>
+The resulting String appears on the screen.</li>
+</ul>
+
+<li>
+Although this approach to I/O works it does not scale up well.</li>
+</ul>
+
+<h4>
+A Newer Approach: Monadic I/O</h4>
+
+<ul>
+<li>
+This approach treats I/O in terms of <b><i>actions occurring in sequence</i></b></li>
+
+<br>&nbsp;
+<ul>
+<li>
+<b><tt><font size=+1>I0 a i</font></tt></b>s polymorphic type is an abstract
+type of I/O <b><i>action</i></b> of type <i>a</i></li>
+</ul>
+
+<li>
+An instance of&nbsp; <tt><font size=+1><b>I0 a</b> </font></tt>is a <b><i>command
+</i></b>that
+when executed</li>
+
+<ul>
+<li>
+performs some I/O</li>
+
+<li>
+AND returns a value of type <i>a</i></li>
+</ul>
+
+<ul>
+<dl>
+<dl>
+<li>
+Prelude provides primitive I/O commands i.e.</li>
+
+<br><tt>getChar :: IO Char</tt>
+<br><tt>getLine :: IO String</tt>
+<br><tt>print :: Show a => a -> IO( )</tt></dl>
+
+<dl><tt>putStr :: String -> IO ( )</tt></dl>
+
+<p><br><b><tt>> hello :: IO ()</tt></b>
+<br><b><tt>> hello = putStr "Hello Students\n"</tt></b>
+<br>&nbsp;
+<dl>
+<li>
+When no useful values is returned then the return type is <b><tt><font size=+1>IO()</font></tt></b></li>
+
+<li>
+( ) is call <i>unit</i> type and has exactly one value, usually written
+( )</li>
+
+<br>
+<hr ALIGN=LEFT SIZE=1 NOSHADE WIDTH="100%"></dl>
+</dl>
+</ul>
+
+<li>
+<i>do</i> notation provides a means of</li>
+
+<ul>
+<li>
+combining I/O commands to make a compound command</li>
+
+<li>
+AND passing values returned by I/O commands to subsequent commands</li>
+
+<ul>&nbsp;</ul>
+<b><tt>> copyToFile :: IO()</tt></b>
+<dl><b><tt>> copyToFile = do s &lt;- getLine</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+writeFile "fileEX.txt" s</tt></b>
+<br>&nbsp;
+<br>&nbsp;
+<li>
+The use of "&lt;-" is similar to its use in the list comprehension.</li>
+
+<li>
+<i>variable &lt;- command</i> introduces a new variable</li>
+
+<dl>
+<li>
+whose scope is the <i>rest</i> of the <b>do-</b>construct</li>
+
+<li>
+whose is returned by the command</li>
+</dl>
+
+<li>
+<b>let<i> </i></b>be used to introduce new variables whose value is an
+expression</li>
+
+<dl><tt>let upper = map toUpper line</tt>
+<li>
+Inside a <b>do-</b>constuct</li>
+
+<dl>
+<li>
+The scope is the rest of the do-construct</li>
+</dl>
+</dl>
+<b><tt>> toCaps :: IO()</tt></b>
+<br><b><tt>> toCaps = do line &lt;- getLine</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+let caps = map toUpper line</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+putStr caps</tt></b>
+<br>&nbsp;
+<li>
+'<tt>s</tt><i> </i>&lt;-' names the result of getLine</li>
+
+<li>
+'&lt;-'&nbsp; is like <i>assignment</i> in an imperative program but Haskell
+permits only a single assignment.</li>
+
+<dl>
+<hr ALIGN=LEFT SIZE=1 NOSHADE WIDTH="100%"></dl>
+</dl>
+</ul>
+
+<li>
+Despite the special <i>do</i> syntax, IO commands are not any different
+in status from any other function or value.</li>
+
+<ul>
+<dl>&nbsp;
+<br><b><tt>> actionList = [putStr "Hello Students\n",</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; writeFile
+"fileEX.txt" "Hello File!\n",</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; putStr "Bye
+bye!" ]</tt></b>
+<p><b>> <tt>ioLoop :: [IO()] -> IO()</tt></b>
+<br><b><tt>> ioLoop [] = return ()</tt></b>
+<br><b><tt>> ioLoop (a:as) =</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp; do a</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (null as) then
+return()</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+else ioLoop as</tt></b>
+<p><tt>...> ioLoop actionList</tt>
+<br><tt>Hello Students</tt>
+<br><tt>Bye bye!</tt>
+<br>&nbsp;
+<li>
+<tt>ioLoop</tt> is not the elegant way to iterate through IO() list see
+<i><tt>sequence_</tt></i>&nbsp;
+in Prelude</li>
+
+<br><tt>...> sequence_ actionList</tt>
+<br><tt>Hello Students</tt>
+<br><tt>Bye bye!</tt>
+<dl>&nbsp;</dl>
+</dl>
+<i>sequence_</i> evaluates a list of <i>command</i>s and is found in Prelude.
+<ul>
+<hr ALIGN=LEFT SIZE=1 NOSHADE WIDTH="100%"></ul>
+</ul>
+
+<li>
+Calculating the sum of numbers keyed in.</li>
+
+<li>
+Reading an Int</li>
+
+<br>&nbsp;
+<p>&nbsp;
+<p><b><tt>> getInt :: IO Int</tt></b>
+<br><b><tt>> getInt = do line &lt;- getLine</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (read line :: Int)</tt></b>
+<br>&nbsp;
+<li>
+Interactively reading and summing entered Ints until "0"</li>
+
+<br>&nbsp;
+<p>&nbsp;
+<p><b><tt>> sumInts :: IO Int</tt></b>
+<br><b><tt>> sumInts</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp; = do n &lt;- getInt</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if n==0</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; then
+return 0</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else
+(do m &lt;- sumInts</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return (n+m) )</tt></b>
+<br>&nbsp;
+<li>
+Wrapping sumInts to display instructions and final total</li>
+
+<br>&nbsp;
+<p>&nbsp;
+<p><b><tt>> getTotal :: IO()</tt></b>
+<br><b><tt>> getTotal</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp; = do putStr "\nEnter one integer per
+line -- ending with n&lt;1:\n"</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sum
+&lt;- sumInts</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp; putStr "The Total is "</tt></b>
+<br><b><tt>>&nbsp;&nbsp;&nbsp; print sum</tt></b></ul>
+
+<center>
+<h6>
+
+<hr WIDTH="100%">Hudak, Paul, <i>The Haskell School of Expression</i>,
+Cambridge University Press, 2000<br>
+Thompson, Simon, <i>The Craft of Functional Programmin, </i>2nd, Addison
+Wesley, 1999</h6></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/7hFall00.html">previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/9hFall00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<hr ALIGN=LEFT SIZE=3 NOSHADE WIDTH="100%">
+</body>
+</html>

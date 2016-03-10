@@ -1,0 +1,139 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="E Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <meta name="Description" content="Typing...">
+   <title>#8 Programming Languages Assignment</title>
+</head>
+<body text="#000000" bgcolor="#FAFAFA" link="#FF0000" vlink="#990000" alink="#CC0000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<br>Final except for typos and clarification of problems.
+<h4>
+Assignment 8: Due Friday, Mar 17</h4>
+
+<h4>
+Read Chapters: Chapter 3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://www.codeguru.com/cpp/tic/tic_c.shtml">Thinking In C++</a>
+,chapters 3 and 11<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+K&amp;R (especially A11)</h4>
+
+<ol>
+<li>
+Define <i>monomorphic </i>and <i>polymorphic</i> type systems.</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+What is the difference between <i>coercion</i> and <i>overloading</i>.</li>
+
+<ol TYPE=A>
+<li>
+Name a language that does not allow <i>overloading</i> of functions?</li>
+
+<li>
+Name a language that does allow <i>overloading </i>of functions?</li>
+
+<br>&nbsp;</ol>
+
+<li>
+Language C6 extends language C4 (hw 7).&nbsp; C6 allows parameter passing
+with a fixed length argument list.&nbsp; Redesign the activation record
+to include the arguments. (creative)</li>
+
+<br>&nbsp;
+<li>
+C, C++ and Common Lisp are unusual in that they allow the user to define
+functions that take a variable-length argument list.</li>
+
+<ol TYPE=A>
+<li>
+How do you&nbsp; declare a function to accept variable number of arguments
+in the C language?</li>
+
+<li>
+Name a function in the C library allow variable number of arguments.</li>
+
+<ol TYPE=A>&nbsp;</ol>
+</ol>
+
+<li>
+In C you can pass a <a href="http://ciips.ee.uwa.edu.au/~morris/clp110/function_par.html">function
+as a parameter</a>. Briefly explain how and why this is possible in C?&nbsp;
+How are non-local variables in the passed routine handled when the parameter
+function is called?&nbsp; Do you need to do anything special at runtime
+to call the "passed" function?</li>
+
+<br>&nbsp;
+<li>
+(Page 171 exercise 11) An index check verifies that the index of an array
+is in the bounds&nbsp;&nbsp;&nbsp; declared for the array. Can an index
+check be performed statically? Why? Why not?</li>
+
+<ol>&nbsp;</ol>
+
+<li>
+Given the following declaration in Ada :</li>
+
+<br><b><tt>TYPE&nbsp; Array_type&nbsp; IS ARRAY(10..14) OF Integer;</tt></b>
+<p><b><tt>TYPE CODE is</tt></b>
+<br><b><tt>&nbsp; record</tt></b>
+<ol><b><tt>Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : CHARACTER;</tt></b>
+<br><b><tt>Salary&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Integer;</tt></b></ol>
+<b><tt>&nbsp; end record;</tt></b>
+<br><b><tt>TYPE Code_Array&nbsp; IS ARRAY(0..5) OF CODE;</tt></b>
+<p><b><tt>arr&nbsp;&nbsp;&nbsp;&nbsp; : Array_type;</tt></b>
+<br><b><tt>codeArr : Code_Array;</tt></b>
+<p>If INTEGER requires 4 bytes of storage and CHARACTER requires 1 byte
+of storage what is the <a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/10Spr00.html#effectiveAddress">effective
+address</a> (using bytes as the addressable units) of (show your calculations)&nbsp;
+You should assume that the ba (base address) for arr is 200 and the base
+address for codeArr is 1000.
+<ol TYPE=A>
+<li>
+<b><tt>arr(11)</tt></b></li>
+
+<li>
+<b><tt>codeArr(1)</tt></b></li>
+
+<li>
+<b><tt>codeArr(1).Salary</tt></b></li>
+
+<ol TYPE=A>&nbsp;</ol>
+</ol>
+
+<li>
+The last assignment generated a number of questions can you help?</li>
+
+<ol TYPE=A>
+<li>
+The C code contained the line:</li>
+
+<br><b><tt>main(int argc, char ** argv){</tt></b>
+<br>What is the purpose of the arguments? What is <tt>char ** argv</tt>
+?&nbsp; Give another way to represent <tt>char ** argv</tt>.
+<li>
+What is void * ?&nbsp; Why have it?</li>
+
+<ol TYPE=a>
+<li>
+void * is not exactly the same in C and C++.&nbsp; Provide an example that
+will illustrate the difference between C and C++.</li>
+</ol>
+</ol>
+
+<br>&nbsp;
+<p><font color="#3333FF">I collaborated with : ___________________________________</font></ol>
+
+<ol>&nbsp;
+<br><font color="#3333FF">Resources use: _______________________________________</font></ol>
+
+<br>&nbsp;
+<br>&nbsp;
+<p><a href="mailto:head@binghamton.edu">Questions?(For E. Head)</a>
+</body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>types and architecture, history, C99</title>
+  <meta http-equiv="content-type"
+ content="text/html; charset=ISO-8859-1">
+  <meta name="author" content="E Head">
+</head>
+<body>
+<div style="text-align: center;">Homework Assignment 5<br>
+</div>
+Due Monday&nbsp; Oct 11, Before class (by 3:20) <br>
+Read: Chapter 5, 7.1<br>
+<a href="http://www.doves.demon.co.uk/cstd.html">Comments on the new C
+Standard</a><br>
+<br>
+Purpose: Review computer architecture and how it relates to the design
+of HOL (higher order languages) and semantics of HOL. <br>
+You can work in teams of 2 people.<br>
+<br>
+<ol>
+  <li>"There are only a few basic data types in C: <i>char ... int ...
+float ... double</i>" (Kernighan &amp; Ritchie p36)&nbsp;<br>
+    <br>
+  </li>
+  <ol type="A">
+    <li>For each type: Which phase (language design, implementation,
+compile time, run time)&nbsp; is the decision made on how the type is
+encoded<big> , i.e.<small> how much space is allocated and the format
+in memory</small></big><small> ?</small> &nbsp;<br>
+      <br>
+    </li>
+    <li>At compile time your code finds the maximum and minimum values
+for char, int, float and double in the<i> /usr/include/limits.h </i>and
+      <i>/usr/include/float.h</i> files supplied by the implementor of
+the compiler (on bingsuns, gnu). Look in these files to find these
+definitions (you may have to look in files included by limits.h).
+Compare the values found on bingsuns to the values provided <a
+ href="http://www.acm.uiuc.edu/webmonkeys/book/c_guide/2.5.html"> here</a>.
+(or K&amp;R page 257 or Harrison&amp;Steele 5th ed. page 127 and 134)
+&nbsp; Give a reason why the values may be different. In addition there
+are
+the following qualifiers: short, long, signed and unsigned. Briefly
+explain
+effect of the qualifiers on the basic types. You should mention which
+standard
+you are using(i.e ANSI/ISO amendment I or K&amp;R&nbsp; etc.).
+&nbsp;&nbsp;<br>
+      <br>
+    </li>
+    <li>Why was new type <span style="font-style: italic;">long long</span>
+introduced in C99?&nbsp; <br>
+    </li>
+    <ol>
+      <li>What is <span style="font-style: italic;">long
+long</span> in terms of size
+and maximum values?&nbsp; <br>
+      </li>
+      <li>Do you think it is necessary to add this
+type to the language? <br>
+      </li>
+      <li>Discuss the pros and cons of adding the type <span
+ style="font-style: italic;">long long</span> to the language to handle
+the new range of values allowed by the new machine type. (Do the
+reading assigned) &nbsp; Please include
+any pertinent links. <br>
+      </li>
+    </ol>
+  </ol>
+  <ol type="A">
+    <dl>
+      <dd><br>
+      </dd>
+    </dl>
+  </ol>
+  <li>This problem pertains implementation of&nbsp; float and int
+arithmetic in the "C" language. Provided is a simple <i>C</i>
+program
+(<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/hw6S02.c"> </a>hw5Q2.c
+) for you to compile and execute. There is an optional Makefile for
+your use. &nbsp;( <a href="hw5Q2.zip">hw5Q2.zip</a>
+)&nbsp; (worth 2 questions)<br>
+  </li>
+  <ol type="A">
+    <br>
+    <li>What is specification of&nbsp; IEEE 754?<br>
+      <br>
+    </li>
+    <li>You are to compile
+and run this code on a Intel based machine, Sun machine (bingsuns) and
+a Mac using the <span style="font-weight: bold;">gcc</span>
+compiler.&nbsp; (All Binghamton's public machines&nbsp; have gcc
+available.)
+The campus Macs, Suns and window machines use the POD password.&nbsp;
+You can telnet/ssh into your Sun (bingsuns.cc.binghamton.edu)
+account.&nbsp; You may use an Intel box running Linux or windows with
+Cygwin.&nbsp; TURN in copies of the output produced on each different
+computer architecture.&nbsp; Explain any differences (if any) in the
+outputs created by the different machines.&nbsp; <br>
+      <br>
+    </li>
+    <li>One would expect that the Part 1A and Part 1B (part1()) of
+this program would compute and print the same value for <span
+ style="font-style: italic;">sum</span>.&nbsp; Does it execute as
+expected?&nbsp; Explain how the output values are computed. (Remember <i>
+C</i> does not have a boolean it uses 0 to mean false
+and all other values to mean true.)<br>
+      <br>
+    </li>
+    <li>One would expect that adding the value 0.1F ten times would
+result in 1.0F.&nbsp; Explain why (how) the computer gets the results
+for part
+2 (part2()) ?<br>
+      <br>
+    </li>
+    <li>Some of the output produced in part 3 is incorrect.&nbsp; Which
+results are wrong?&nbsp; Why did it happen?&nbsp; <br>
+      <br>
+    </li>
+    <li>(Page 133 Harbison &amp; Steele) "Prior to standard C, all
+implementations were required to convert all values of type <b>float</b>
+to type <b>double</b> before operations were performed. &nbsp;... In
+standard C, operations can now be performed using type <b>float</b> ."
+&nbsp;What is the consequences of this change? ( Consider speed,&nbsp;
+accuracy, and the effect of decisions made in selection of types used
+by programmer) &nbsp;<br>
+    </li>
+    <br>
+  </ol>
+  <li>Convert the code above (problem 2) to Java. &nbsp;(This code can
+just be implemented as static methods.) &nbsp;<br>
+    <br>
+  </li>
+  <ol type="A">
+    <li>Execute this code and compare results you obtained in problem
+2. &nbsp; Is this what you expected? why? (This can be code using
+static methods.)<br>
+    </li>
+    <br>
+    <li>What does the keyword <b><i>strictfp</i></b> in mean?<br>
+    </li>
+    <br>
+  </ol>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li>All compilers will generate executable that will output the same
+results for&nbsp; <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/HW/S03/shortCircuit.c"><b>
+shortCircuit.c</b>. </a>&nbsp;</li>
+  <ol type="A">
+    <li>First look at the code and try to predict the output. &nbsp;<big><br>
+      </big>
+      <pre><big>#include &lt;stdio.h&gt;<br><br>int main() {<br><br>	int a = 0, b = 0, c = 0, d = 0;<br>	printf("++a&amp;&amp;b++=%d\n",++a&amp;&amp;b++);<br>        printf("c++&amp;&amp;++d=%d\n",c++&amp;&amp;++d); <br>	printf("++a&amp;&amp;b++ a=%d b=%d\n",a,b);	<br>	printf("c++&amp;&amp;++d c=%d d=%d\n",c,d);<br>	return 0;<br>}</big><br></pre>
+      <br>
+    </li>
+    <li>Explain the actual results in terms of the grammar rules of C.
+&nbsp;i.e. order of operator evaluation, operator precedence and side
+effects of operators.<br>
+      <br>
+    </li>
+  </ol>
+  <li> In Ansi C the keyword <b><i>static</i></b> has two different
+semantics depending on where it is used, either inside a function
+definition or outside of a function definition.&nbsp; What does <b><i>static</i></b>
+mean in both settings?</li>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+  <li>Write at most 4 sentences on each of the below people.&nbsp; One
+sentence should describe a major contribution to Programming
+Languages/Computer Sciences by the person. One sentence should contain
+an interesting or
+surprising fact you found out about the person.</li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>Dennis Ritchie<br>
+    </li>
+    <li>Grace Murray Hopper</li>
+    <li>Erich Gamma<br>
+    </li>
+    <li><span class="m"><b> </b>Edsger Dijkstra (in relation to
+programming languages/program design)<br>
+      </span></li>
+    <li><span class="m">Guy Steele</span></li>
+    <li>Bjorne Stroustrup<span class="m"></span></li>
+    <li><span class="m"></span><span class="m">Tim Burners-Lee</span></li>
+    <li><span class="m"></span>Adele Goldberg ( computer scientist NOT
+the linguist)</li>
+    <li>John McCarthy<span class="m"></span></li>
+    <li><span class="m">Donald Knuth<br>
+      <br>
+      </span></li>
+  </ol>
+  <li>(Modification of) Page 180 exercise 5.1&nbsp; Do all three
+languages
+Give as precise binding times as you can for the following attributes,
+and give reasions for your answers.&nbsp; State which standard you are
+using.<br>
+  </li>
+</ol>
+<dl>
+  <dd>
+    <table style="text-align: left; height: 243px;" border="1"
+ cellpadding="2" cellspacing="2">
+      <tbody>
+        <tr style="font-weight: bold;">
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top; text-align: center;">Attribute<br>
+          </td>
+          <td style="vertical-align: top; text-align: center;">C<br>
+          </td>
+          <td style="vertical-align: top; text-align: center;">C++</td>
+          <td style="vertical-align: top; text-align: center;">Java<br>
+          </td>
+        </tr>
+        <tr style="font-weight: bold;">
+          <td style="vertical-align: top; text-align: center;">a<br>
+          </td>
+          <td style="vertical-align: top;">range of values of an
+int&nbsp;&nbsp;&nbsp; <br>
+          <br>
+          </td>
+          <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; <br>
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          </td>
+          <td style="vertical-align: top;">&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; <br>
+          </td>
+          <td style="vertical-align: top;">&nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
+&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+          </td>
+        </tr>
+        <tr style="font-weight: bold;">
+          <td style="vertical-align: top; text-align: center;">b<br>
+          </td>
+          <td style="vertical-align: top;">The meaning of char<br>
+          <br>
+          <br>
+          <br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr style="font-weight: bold;">
+          <td style="vertical-align: top; text-align: center;">c<br>
+          </td>
+          <td style="vertical-align: top;">The size of an array
+variable<br>
+          <br>
+          <br>
+          <br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr style="font-weight: bold;">
+          <td style="vertical-align: top; text-align: center;">&nbsp;d<br>
+          </td>
+          <td style="vertical-align: top;">The size of an array
+parameter<br>
+          <br>
+          <br>
+          <br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top; text-align: center;"><span
+ style="font-weight: bold;">e</span><br>
+          </td>
+          <td style="vertical-align: top;"><span
+ style="font-weight: bold;">The location of a local variable<br>
+          <br>
+          <br>
+          <br>
+          </span> </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr style="font-weight: bold;">
+          <td style="vertical-align: top; text-align: center;">f<br>
+          </td>
+          <td style="vertical-align: top;">The value of a constant<br>
+          <br>
+          <br>
+          <br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+        <tr>
+          <td
+ style="vertical-align: top; font-weight: bold; text-align: center;">g<br>
+          </td>
+          <td style="vertical-align: top;"><span
+ style="font-weight: bold;">The location of a function to be executed<br>
+          <br>
+          <br>
+          <br>
+          </span> </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+          <td style="vertical-align: top;"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+</dl>
+<ol>
+  <ol start="10">
+    <ol style="list-style-type: upper-alpha;">
+      <dl>
+      </dl>
+    </ol>
+  </ol>
+</ol>
+<br>
+<br>
+</body>
+</html>

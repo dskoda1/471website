@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Reasoning About Programs</title></head><body>
+<center>
+<h3> Haskell 8</h3>
+</center>
+
+<center>
+<h3>Spring 2015<br>
+</h3>
+</center>
+
+Purpose: To examine the how to prove different code computes the same
+results .&nbsp; This is for finite lists.<br>
+
+<h3> <i><u>Why Study Functional Languages?</u></i></h3>
+
+Research began in the 1960s to prove things about programs. Areas that
+were studied were:
+<ul>
+
+  <li> How to prove a program is correct.</li>
+  <li> <u>Given the same input prove different code computes the same
+results.</u></li>
+  <li> Prove one program is faster than another.</li>
+  <li> A given program will always terminate.</li>
+</ul>
+
+Continued....
+<h3>
+<hr width="100%">Proof -- reasoning by a chain of equalities<br>
+</h3>The definition for compose is<br>
+&nbsp; <span style="font-weight: bold; color: rgb(0, 51, 0);">&nbsp;<big> </big></span><big><tt style="font-weight: bold; color: rgb(0, 51, 0);">(f . g) x = f (g x)</tt></big><br>
+<br>
+Prove the Associative Law for compose<br>
+That is prove:<br>
+&nbsp;f . (g . h) = (f . g) . h <br>
+<br>
+<span style="font-family: monospace;">Prove for all x, <span style="font-weight: bold; text-decoration: underline;">f </span></span><big style="font-family: monospace; font-weight: bold; text-decoration: underline;">. </big><span style="font-family: monospace; font-weight: bold; text-decoration: underline;">(g </span><big style="font-family: monospace; font-weight: bold; text-decoration: underline;">. </big><span style="font-family: monospace; font-weight: bold; text-decoration: underline;">h) = (f </span><big style="font-family: monospace; font-weight: bold; text-decoration: underline;">.</big><span style="font-family: monospace; font-weight: bold; text-decoration: underline;"> g)</span><big style="font-family: monospace; font-weight: bold; text-decoration: underline;"> . </big><span style="font-family: monospace; font-weight: bold; text-decoration: underline;">h </span><br style="font-family: monospace;">
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;"> (f </span></span><big style="font-family: monospace; font-weight: bold;">. </big><span style="font-family: monospace; font-weight: bold;">(g </span><big style="font-family: monospace; font-weight: bold;">. </big><span style="font-weight: bold; font-family: monospace;">h)) x&nbsp;&nbsp;&nbsp;&nbsp; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = f ( (g . h) x)&nbsp; &nbsp;&nbsp;  by definition<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = f ( (g (h x) ) &nbsp; &nbsp;  by definition<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; = (f . g) (h x)&nbsp;&nbsp; &nbsp;&nbsp;  by definition</span><br style="font-family: monospace; font-weight: bold;">
+<span style="font-weight: bold; font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; = ((f . g) . h) x &nbsp;&nbsp; by definition</span><br style="font-weight: bold;">
+<br>
+<br>
+<br>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h3>Proofs -- Induction proof over finite lists</h3>
+
+
+<table style="font-weight: bold; background-color: rgb(233, 233, 186);">
+
+  <caption style="font-weight: bold;">Definitions</caption> <tbody>
+    <tr>
+      <td>(len.1)&nbsp;</td>
+      <td style="background-color: rgb(233, 233, 186);"><tt>len [] = 0</tt></td>
+    </tr>
+    <tr>
+      <td>(len.2)&nbsp;</td>
+      <td><tt>len (x:xs) = 1 + len xs</tt></td>
+    </tr>
+    <tr>
+      <td>(++.1)&nbsp;</td>
+      <td><tt>[] ++ ys = ys</tt></td>
+    </tr>
+    <tr>
+      <td>(++.2)&nbsp;</td>
+      <td><tt>(x:xs) ++ ys = x :(xs ++ ys)</tt></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<h4>We need to prove:</h4>
+
+<h4 style="margin-left: 40px;">length (xs ++ ys) = length xs + length ys</h4>
+
+<table style="width: 352px; background-color: rgb(232, 232, 232);" border="0">
+
+  <caption><span style="font-weight: bold;">Base Case-- Prove: </span><br style="font-weight: bold;">
+  <span style="font-weight: bold;">length (xs ++ ys) = length xs +
+length ys</span><br>
+  </caption> <tbody>
+    <tr>
+      <td><b><tt>len ([] ++ ys)&nbsp;</tt></b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&nbsp; <b><tt>-&gt; len
+ys&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; by (++.1)<br>
+&nbsp;-&gt; 0 + len ys&nbsp; &nbsp; &nbsp;&nbsp; by + identity <br>
+&nbsp;-&gt; len [] + len ys&nbsp; by len.1<br>
+      </tt></b></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<table style="width: 353px; background-color: rgb(232, 232, 232); height: 79px;" border="0">
+
+  <tbody>
+    <tr>
+      <td><b><tt>len [] + len ys&nbsp;</tt></b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">&nbsp; <b><tt>-&gt; 0 + len
+ys&nbsp;&nbsp;&nbsp;&nbsp; by (len.1)<br>
+      </tt></b></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span style="font-weight: bold;">&nbsp; </span><tt><span style="font-weight: bold;">-&gt;
+len ys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; by + identity</span><br>
+&nbsp; <span style="font-weight: bold;">-&gt; len ([] ++ ys) by (++.1)</span><br>
+</tt></td></tr></tbody></table><br>
+
+<br>
+
+<table style="width: 525px;" bgcolor="#e8e8e8" border="0">
+
+  <caption style="font-weight: bold;">INDUCTION STEP:&nbsp; <br>
+Assume: len (xs ++ ys) = len xs + len ys <br>
+Prove: <u>len ((x:xs) ++ ys) -&gt; len (x:xs) + len ys</u></caption> <tbody>
+    <tr>
+      <td><b><tt>len((x:xs) ++ ys)</tt></b></td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;">&nbsp; <span style="font-weight: bold;">-&gt; len( x:(xs ++ ys))
+&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; by ++.2&nbsp; </span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; -&gt; 1 + len (xs ++
+ys)&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; by len.2</span><br style="font-weight: bold;">
+      <span style="font-weight: bold;">&nbsp; -&gt; 1 + (len xs + len ys)
+&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; by Induction Hypotheses<br>
+&nbsp; -&gt; </span><tt style="font-family: monospace; font-weight: bold;">(1 + len
+xs) + len ys &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; by + assoc.<br>
+&nbsp; -&gt; len (x:xs) + len ys&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by len.2<br>
+      </tt></td>
+    </tr>
+    
+  </tbody>
+</table>
+<br>
+Exercise Prove:&nbsp;<u> len (x:xs) + len ys</u> -&gt; <u>len ((x:xs) ++ ys) </u><br>
+<br>
+
+---------------------------------------------------------------------------------------------------------<br>
+
+<span style="font-weight: bold;">HOF function:<br>
+<br>
+</span>
+<table style="font-weight: bold; background-color: rgb(233, 233, 186);">
+
+  <caption><u>Definitions</u></caption> <tbody>
+    <tr>
+      <td>(map.1)</td>
+      <td><tt>map f [] = []</tt></td>
+    </tr>
+    <tr>
+      <td>(map.2)</td>
+      <td><tt>map f (x:xs) = f x:map f xs</tt></td>
+    </tr>
+    <tr>
+      <td>(comp.1)</td>
+      <td><tt>(f . g) x = f (g x)</tt></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <h4> map (f . g) xs = (map f . map g) xs</h4>
+</blockquote><br>
+<table style="width: 283px; background-color: rgb(232, 232, 232);" border="0">
+
+  <caption><span style="font-weight: bold;">Base case -- prove:<br>
+(map f . map g) [] = map (f.g) []</span><br>
+  </caption> <tbody>
+    <tr>
+      <td><b><tt>(map f . map g) []</tt></b></td>
+    </tr>
+    <tr style="font-weight: bold;">
+      <td><tt>&nbsp; -&gt; map f (map g []) by comp.1<br>
+      </tt> <tt>&nbsp; -&gt; map f [] &nbsp; &nbsp; &nbsp; &nbsp; by
+map.1&nbsp;</tt> <tt><br>
+&nbsp; -&gt; [] &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; by
+map.1 <br>
+&nbsp; -&gt; map (f.g) [] &nbsp;&nbsp;  </tt><tt>by
+map.1 </tt> </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<br>
+
+<table style="text-align: left; background-color: rgb(232, 232, 232); width: 475px; height: 119px;" cellpadding="2" cellspacing="2">
+
+<caption style="font-weight: bold;">Induction Step:<br>
+Assume: map (f . g) xs = (map f . map g) xs <br>
+Prove: <u> (map f . map g) (x:xs)-&gt; map (f . g) (x:xs)</u></caption>
+  <tbody>
+    <tr style="font-family: monospace; font-weight: bold;">
+      <td style="vertical-align: top; background-color: rgb(232, 232, 232);">(map
+f . map g) (x:xs) <br>
+      </td>
+    </tr>
+    <tr style="font-family: monospace; font-weight: bold;">
+      <td style="vertical-align: top;">&nbsp;&nbsp; -&gt; (map f (map
+g(x:xs))&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; by comp.1&nbsp; <br>
+      </td>
+    </tr>
+    <tr style="font-family: monospace; font-weight: bold;">
+      <td style="vertical-align: top;">&nbsp;&nbsp; -&gt; map f( g x : map
+g
+xs) &nbsp;&nbsp; &nbsp; &nbsp; by map.2<br>
+      </td>
+    </tr>
+    <tr style="font-family: monospace; font-weight: bold;">
+      <td style="vertical-align: top;">&nbsp;&nbsp; -&gt; f( g x) : map f
+(map g xs)&nbsp;&nbsp;&nbsp; by map.2</td>
+    </tr>
+    <tr style="font-family: monospace; font-weight: bold;">
+      <td style="vertical-align: top;">&nbsp;&nbsp; -&gt; f(g x) : (map f .
+map g)xs&nbsp;&nbsp;&nbsp; by comp.1<br>
+      </td>
+    </tr>
+    <tr style="font-family: monospace; font-weight: bold;">
+      <td style="vertical-align: top;">&nbsp;&nbsp; -&gt; f(g x) : map (f .
+g) xs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by Induction
+Hypotheses</td>
+    </tr><tr style="font-family: monospace;">
+      <td style="vertical-align: top;">&nbsp;<span style="font-weight: bold;">&nbsp; -&gt; (f.g) x : map (f .
+g) xs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by comp.1<br>
+      </span></td>
+    </tr><tr>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp; <span style="font-family: monospace; font-weight: bold;">-&gt; map (f .
+g) x:xs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; by map.2<br>
+      </span></td>
+    </tr>
+
+
+  </tbody>
+</table>
+<br>
+Exercise prove:&nbsp; <u>map (f . g) (x:xs)</u> -&gt;   <u> (map f . map g) (x:xs)</u><br>
+
+-------------------------------------------------------------------------------------------------<br>
+
+<h4> Properties of general functions that can be proved:</h4>
+
+<ul style="font-weight: bold;">
+
+  <li> <tt>map ( f. g ) xs = (map f . map g) xs<br>
+    <br>
+    </tt></li>
+  <li> <tt>(filter p . map f) xs = (map f . filter (p . f)) xs<br>
+    <br>
+    </tt></li>
+  <ul>
+    <li> Applying the filter first is more efficient<br>
+      <br>
+    </li>
+  </ul>
+  <li> <tt>&nbsp;map f ( reverse xs) = reverse (map f xs )</tt></li>
+  <li> <tt>&nbsp;map f ( ys ++ zs )&nbsp; = map f ys ++ map f zs</tt></li>
+</ul>
+
+<hr align="left" noshade="noshade" width="100%">
+<small style="font-weight: bold;"><small style="font-family: monospace;">
+Thompson, Simon, <i>The Craft of Functional Programming, 2nd
+edition,</i>1999 sections 8.5, 10.9
+</small></small><br>
+
+<br>
+
+</body></html>

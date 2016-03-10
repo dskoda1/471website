@@ -1,0 +1,155 @@
+/*
+        CS471 - Programming Languages
+        Assignment #<number> due: <DATE>
+        Author: <LastName>, <FirstName> (<EMail>)
+        Date: <DATE>
+ */
+
+/* 1:  Syntax-Directed Differentiation:  A motivating example illustrating the 
+         power of pattern matching in Prolog.
+         Consider the following rules for symbolic differentiation
+         (U, V are mathematical expressions, x is a variable):
+
+        dx/dx = 1
+        d(C)/dx = 0.
+        d(Cx)/dx = C               (C is a constant)
+        d(-U)/dx = -(dU/dx)
+        d(U+V)/dx = dU/dx + dV/dx
+        d(U-V)/dx = dU/dx - dV/dx
+        d(U*V)/dx = U*(dV/dx) + V*(dU/dx)
+        d(U^n)/dx = nU^(n-1)*(dU/dx)
+
+        These rules can easily be translated into Prolog, for instance,
+        the second rule can be defined as
+                   d(C,x,0):-integer(C).
+          and the fifth rule can be defined as
+                   d(U+ V ,x, DU+ DV):-d(U,x,DU),d(V,x,DV).
+
+         Write the remaining rules. Here is a test query:
+
+            ?- d(3*(x +2*x*x),x,Result).
+            Result = 3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0 ;
+            Result = 3* (1+ (2*x*1+x* (2*1+x*0)))+ (x+2*x*x)*0 ;
+            false.
+
+            ?- d(3*(x +2*x*x),x,Result).
+            Result = 3* (1+ (2*x*1+x*2))+ (x+2*x*x)*0 .
+
+
+        Keep in mind, though, that terms such as U+V are still complex terms 
+        with the functor at the root, and that evaluation of such terms requires 
+        additional processing .  See next week's assignment.
+        1 clause for each definition.
+*/ 
+
+/** 2:  "Send more money" is a well-known puzzle. Each of the letters
+    D,E,M,N,O,R,S and Y represents a different digit. Moreover, when each
+    letter is mapped to its corresponding digit the equation SEND + MORE =
+    MONEY holds. Below is a very naive implementation. Since there are 
+    8 letters to be solved, it simply explore the 10*9*...*3 mappings of 
+    letters to digits. 
+    A little insight can simplify things. Clearly, SEND < 9999 and 
+    MORE < 9999. Thus MONEY < 19998 and hence M = 1. 
+    Now we have SEND + 1ORE = 1ONEY. Again SEND < 9999 
+     and now 1ORE < 1999 so 1ONEY < 11998. Since M is already bound to 1, 
+     O must be bound to 0. A little more thought shows that S must be
+     bound to 8 or 9, and that N = E + 1. Using these insights to reduce
+     the number of solutions that must be explored, write a Prolog
+     predicate soln([D,E,M,N,O,R,S,Y]) that solves this puzzle by binding
+     the correct digits to each of the variables in the list. (Modified 
+     from http://www.cs.wisc.edu/~fischer/)
+    (1 clause with multiple subgoals.)
+*/
+
+solvSlow( [D,E,M,N,O,R,S,Y]) :-
+	Lst = [S,E,N,D,M,O,R,Y],
+	Digits = [0,1,2,3,4,5,6,7,8,9],
+	assign_digits(Lst, Digits),
+	M > 0, 
+	S > 0,
+	1000*S + 100*E + 10*N + D +
+	1000*M + 100*O + 10*R + E =:=
+	10000*M + 1000*O + 100*N + 10*E + Y,
+	write(Lst).
+
+
+assign_digits([], _List).
+assign_digits([D|Ds], List):-
+        select(D, List, NewList),
+        assign_digits(Ds, NewList).
+        
+
+/* 4: Given a list of predicates, applylist(L) succeeds only if
+      each of the predicates in the list succeeds. Note: the scope
+      of variables names is the entire list. You can apply each predicate
+      at the prompt to see how they work.  Make up your own. (2 lines)
+
+   i.e.
+      ?- applylist([=(A,5),is(B,+(4,5)),C is max(5,2),A=C]).
+      A = 5,
+      B = 9,
+      C = 5.
+      
+      ?- applylist([=(A,5),is(B,+(4,5)),C is max(9,2),A=C]).
+      false.
+      
+   2 clauses 
+  */
+
+      
+
+
+/* 4:(10pts) Define a predicate "simplity/3" that succeeds if the last argument 
+      is a list with items with the form Var:Value,  
+      the first argument is a "var" atom in the list and 
+      the second argument is the var's Value.  Requires only one clause.
+      (hint::member, atom).
+      
+      ?- simplify(b,Value,[a:100,b:(-5)]).
+      Value = -5
+      ?- simplify(b,Value,[a : 1,b : 5]).
+      Value = 5 .
+      */
+ 
+  
+      
+/* 5: (10pts)Now extend predicate "simplity/3" to  evaluate an algebraic expression.
+   The algebraic expression consists of variable with operators 'plus', 
+   'minus' and 'times'. Here are two test queries:
+          ?- simplify(plus(times(x,y),times(3 ,minus(x,y))),V,[x:4,y:2]).
+          V = 14
+          ?- simplify(times(2,plus(a,b)),Val,[a:1,b:5]).
+          Val = 12
+          ?- simplify(times(2,plus(a,b)),Val,[a:1,b:(-5)]).
+          Val = -8 .
+    Requires only a total 5 clauses.  You may use "number" in one of your clauses.      
+*/
+
+
+/* 6:(0 pts) (Do not turn in.)
+   Given the 4 logically equivalent predicates try to predict the outcome of 
+   ?- subList1(X,[a]),fail.
+   ?- subList2(X,[a]),fail.
+   ?- subList3(X,[a]),fail.
+   ?- subList4(X,[a]),fail.
+   Try to understand why some produce "ERROR: Out of global stack"
+
+*/ 
+
+subList1(S,L):-append(_,S,P),append(P,_,L).
+subList2(S,L):-append(P,_,L),append(_,S,P).
+subList3(S,L):-append(S,_,T),append(_,T,L).
+subList4(S,L):-append(_,T,L),append(S,_,T).
+
+/* Using writes to see the backtracking */
+
+subList1w(S,L):-write('1-1'),append(_,S,P),write(' 1-2'),write(P),append(P,_,L).
+subList2w(S,L):-write('2-1'),append(P,_,L),write(' 2-2'),write(P),append(_,S,P).
+subList3w(S,L):-write('3-1'),append(S,_,T),write(' 3-2'),write(T),append(_,T,L).
+subList4w(S,L):-write('4-1'),append(_,T,L),write(' 4-2'),write(T),append(S,_,T).
+
+
+
+
+
+

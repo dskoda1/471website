@@ -1,0 +1,88 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="Les Lander">
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (Windows NT 5.0; U) [Netscape]"><title>471 Haskell -- Prelude</title></head><body>
+&nbsp;
+
+<center>
+<h3 style="margin-top: 0px; height: 7px;"> Haskell 5</h3>
+</center><h4> Purpose:&nbsp; To examine some supplied functions</h4>
+<hr size="2" width="100%">
+<h3>Look in Prelude.hs, List.hs etc.</h3>
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/HASKELL/browsnam.jpg"> </a>
+<ul>
+  <li><a href="http://haskell.org/onlinereport/prelude-index.html">Index of
+Prelude with Hyperlinks</a></li>
+</ul>
+<h3> Simple functions you can find in Prelude</h3>
+<ul>
+  <li> Testing for an empty list:</li>
+  <pre>&gt; null :: [a] -&gt; Bool<br>&gt; null []&nbsp;&nbsp;&nbsp; = True<br>&gt; null (_:_) = False</pre>
+  <li> Testing for even and odd numbers:</li>
+  <pre>&gt; even, odd :: a -&gt; Bool<br>&gt; even n = n `rem` 2 == 0<br>&gt; odd = not . even</pre>
+</ul>
+<h3> not, ord and chr</h3>
+<blockquote>
+  <pre>&gt; not :: Bool -&gt; Bool<br>&gt; not True&nbsp; = False<br>&gt; not False = True<br><br>&gt; ord&nbsp; :: Char -&gt; Int<br>&gt; ord&nbsp;&nbsp; = fromEnum<br><br>&gt; chr&nbsp; :: Int -&gt; Char<br>&gt; chr&nbsp;&nbsp; = toEnum</pre>
+</blockquote>
+<h3> zip example from Prelude</h3>
+<blockquote>(Alternate definition to the one in Prelude)</blockquote>
+<blockquote><tt>&gt; zip :: [t] -&gt; [u] -&gt; [(t,u)]</tt> <br>
+  <tt>&gt; zip [] x = []</tt> <br>
+  <tt>&gt; zip x [] = []</tt> <br>
+  <tt>&gt; zip (a:x) (b:y)=(a,b):zip x y</tt> <li> EXAMPLE</li>
+  <pre>...&gt; zip [1,2,3,4] ['a','b','c']<br>[(1,'a'),(2,'b'),(3,'c')]</pre>
+</blockquote>
+<h3> zip3 example</h3>
+<ul>
+  <pre>&gt; zip3 :: [t]-&gt;[u]-&gt;[v] -&gt; [(t,u,v)]</pre>
+  <li> definition is similar but longer</li>
+  <pre>...&gt; zip3 [1,2,3,4] ['a','b','c'] ["here","there&#8221;]</pre>
+  <li> returns</li>
+  <pre>[(1,'a',"here"),(2,'b',"there")]</pre>
+</ul>
+<h3> k-th element of a list, starting from 0</h3>
+<ul>
+  <pre>&gt;&nbsp; (!!):: [b] -&gt; Int -&gt; b<br>&gt;&nbsp; (x:_)&nbsp; !! 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = x<br>&gt;&nbsp; (_:xs) !! n | n &gt; 0 = xs !! (n-1)<br>&gt;&nbsp; (_:_)&nbsp; !! _&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = error "Prelude.!!: negative index"<br>&gt;&nbsp; []&nbsp;&nbsp;&nbsp;&nbsp; !! _&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = error "Prelude.!!: index too large"</pre>
+  <li> EXAMPLE</li>
+  <pre>...&gt; [1,2,3,4,5,6]!!3</pre>
+  <pre>returns <tt>4</tt></pre>
+</ul>
+<h3>
+<hr noshade="noshade" width="100%">zipWith</h3>
+<ul>
+  <pre>zipWith :: (t -&gt; u -&gt; v) -&gt; [t] -&gt; [u] -&gt; [v]</pre>
+  <li> applies function argument to corresponding elements of the two
+input lists to get a list of results</li>
+  <li> EXAMPLES</li>
+  <pre>...&gt; zipWith (+) [1,2,3,4] [5,3,1]</pre>
+  <li> returns</li>
+  <pre>[6,5,4]</pre>
+</ul>
+<h3> zipWith example</h3>
+<ul>
+  <pre>...&gt; zipWith (++) [[],[1],[1,2]] [[1,2,3],[2,3]]</pre>
+  <li> returns</li>
+  <pre>[[1,2,3],[1,2,3]]</pre>
+</ul>
+<h3> Preludes definition of zip</h3>
+<blockquote><tt>&gt; zip :: [t] -&gt; [u] -&gt; [(t,u)]</tt> <br>
+  <tt>&gt; zip =&nbsp; zipWith (,)<br>
+  </tt></blockquote>
+<h3>Constructors can be considered special functions.</h3>
+<div style="margin-left: 40px;"><span style="font-family: monospace;">&gt; data People3 = Person3 String Int deriving Show<br>
+<br>
+&gt; build :: [String] -&gt; [Int] -&gt; [People3]<br>
+&gt; build strs nums&nbsp; = zipWith Person3 strs nums<br>
+<br>
+..&gt; zipWith Person3 ["ab", "joe", "jack"] [30, 43, 21]<br>
+[Person3 "ab" 30,Person3 "joe" 43,Person3 "jack" 21]<br>
+<br>
+<br>
+</span></div>
+
+<br>
+</body></html>

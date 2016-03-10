@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Week 14 Wed</title></head>
+<body>
+Wed Week 14<br>
+<br>Read :: Scott (on CD) Section 10.6<br><br><br><ol><li>(From Abelson and Sussman [1985]) It is also possible to express the
+integer as lambda abstractions: </li></ol>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><b style="font-family: monospace;">zero = <span style="color: rgb(255, 255, 204);">\</span>f&nbsp;
+. \ x . x</b><span style="font-family: monospace;"> </span><br style="font-family: monospace;">
+
+
+
+
+
+
+<b style="font-family: monospace;">one =&nbsp; <span style="color: rgb(255, 255, 204);">\ </span>f.&nbsp;
+\ x ( f x)</b><span style="font-family: monospace;">
+</span><br style="font-family: monospace;">
+
+
+
+
+
+
+<b style="font-family: monospace;">two =&nbsp; <span style="color: rgb(255, 255, 204);">\</span> f. <span style="color: rgb(255, 255, 204);">\</span> x ( f ( f
+x ))</b><span style="font-family: monospace;"> </span><br>
+
+
+
+
+
+
+</div>
+
+
+
+
+&nbsp; &nbsp; &nbsp;. . . .
+<p style="margin-left: 40px;">These are called Church numbers after Alonzo Church. </p>
+
+
+
+
+
+
+<p style="margin-left: 40px;">a) Given the following definition of the sucessor function: </p>
+
+
+
+
+
+
+<blockquote style="font-family: monospace;"><b>successor
+= \ n. \ f. \ x ( f (( n f ) x
+) ).</b></blockquote>
+
+
+
+
+<div style="margin-left: 40px;">
+
+&nbsp;&nbsp;&nbsp; show that <br>
+
+
+
+
+</div>
+
+
+
+
+
+
+<div style="margin-left: 80px; font-family: monospace; font-weight: bold;">(successor
+zero) == one&nbsp; <br>
+
+
+
+
+
+<div style="margin-left: 40px;">and<br>
+
+
+
+
+
+</div>
+
+
+
+
+
+(successor one) == two<br>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+
+
+<div style="margin-left: 40px;">
+answer:<br>
+
+
+
+
+</div>
+
+
+
+
+
+<div style="margin-left: 40px;"><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/lambdaSolution.html">../lambdaSolution.html</a></div><span style="text-decoration: underline;">
+</span>
+<ol>
+</ol>
+</body></html>

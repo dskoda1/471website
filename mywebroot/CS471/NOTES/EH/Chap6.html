@@ -1,0 +1,2918 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html style="direction: ltr;">
+<head>
+
+
+
+
+
+  
+  
+  
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+
+  
+  
+  
+  
+  <meta name="Author" content="Eileen Head">
+
+
+
+
+  
+  
+  
+  
+  <title>Control Flow</title>
+</head>
+
+
+<body style="direction: ltr;">
+
+
+
+
+
+<span style="font-weight: bold;"></span>
+
+<center>
+<h2>Control Flow: Fall 06</h2>
+
+
+
+
+
+</center>
+
+
+
+
+
+<h3> Goal</h3>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li><span style="font-style: italic;">To
+understand the difference between reference model languages and value
+model.</span></li>
+
+
+  <li><span style="font-style: italic;">To appreciate the ramification of operators with side-effects.</span></li>
+
+
+  <li><span style="font-style: italic;">To understand iterators.<br>
+
+
+    </span></li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<h3>What will be covered ?</h3>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li>L-Values, R-Values,&nbsp;</li>
+
+
+
+
+
+  <li>Reference vs Value model of variables</li>
+
+
+
+
+  <li>immutiable objects</li>
+
+
+
+
+  <li>Assignment operators</li>
+
+
+
+
+
+  <li>Side-effects</li>
+
+
+
+
+
+  <li>The principle of orthogonality</li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<hr style="width: 100%; height: 2px;">
+<h4>Value and Reference model of variables:</h4>
+
+
+
+
+
+<div style="margin-left: 40px;"><span style="font-family: monospace;"><br>
+
+
+
+
+
+</span></div>
+
+
+
+
+
+<span style="font-weight: bold;">Assignment in Value Model
+vs Reference Model</span>: &nbsp;<a href="Lvalue.gif"><br>
+
+
+
+
+
+</a>
+<ul>
+
+
+
+
+
+  <li>Value model -</li>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li>Container model</li>
+
+
+
+
+
+    <li>copy values&nbsp; --&nbsp; storage semantics</li>
+
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+  <li>Reference model <br>
+
+
+
+
+
+  </li>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li>assignment by sharing<br>
+
+
+
+
+
+    </li>
+
+
+
+
+
+    <li>assignment by cloning</li>
+
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<div style="margin-left: 40px;"><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/Lvalue.gif"><img style="border: 0px solid ; width: 205px; height: 165px;" alt="Assignment Semantics" src="Lvalue.gif"></a><br>
+
+
+
+
+
+<span style="font-weight: bold;">Python:</span><br>
+
+
+
+
+
+<span style="font-family: monospace;">a = 3<br>
+
+
+
+
+
+b = a<br>
+
+
+
+
+
+a = 'spam'<br>
+
+
+
+
+
+X&nbsp;= [1,2,3]<br>
+
+
+
+
+
+L = ['a', X , 'b']<br>
+
+
+
+
+
+X[1] = 'hum'</span></div>
+
+
+
+
+
+<h4>Storage Semantics</h4>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li> The principle way a mutable variable changes it value is
+through
+assignments.</li>
+
+
+
+
+
+  <li>In
+a value model a variable has both a
+location and a value associated with it, we must distinguish between
+the two.</li>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li>structs in C/C++ and classes in C++ use value model</li>
+
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+  <li>In a reference model the distinction between l-value and
+r-value
+are more explicit<br>
+
+
+
+
+
+  </li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li> Pascal vs Clu:</li>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <br>
+
+
+
+
+
+Syntactically correct code in both languages:
+    
+    
+    
+    
+    <ul>
+
+
+
+
+
+y := 2; <br>
+
+
+
+
+
+z := y; <br>
+
+
+
+
+
+x := y + z;
+    
+    
+    
+    
+    </ul>
+
+
+
+
+
+Semantically different: <br>
+
+
+
+
+
+Pascal code could be described as follow:
+    
+    
+    
+    
+    <ul>
+
+
+
+
+
+      <i>Put the value 2 in <span style="font-weight: bold;">y</span>.</i><br>
+
+
+
+
+
+      <i>Copy the value from <span style="font-weight: bold;">y</span>
+into <span style="font-weight: bold;">z.</span></i><span style="font-weight: bold;"> </span><br>
+
+
+
+
+
+      <i>Read the values in <span style="font-weight: bold;">y</span>
+and <span style="font-weight: bold;">z</span></i><span style="font-weight: bold;"> </span><br>
+
+
+
+
+
+      <i>&nbsp;&nbsp;&nbsp; then add them together</i><br>
+
+
+
+
+
+      <i>&nbsp;&nbsp;&nbsp; place result in <span style="font-weight: bold;">x</span></i>
+    
+    
+    
+    
+    </ul>
+
+
+
+
+
+Clu code could be described as follows:
+    
+    
+    
+    
+    <ul>
+
+
+
+
+
+      <i>Let <span style="font-weight: bold;">y</span>
+refer to the
+value 2</i><br>
+
+
+
+
+
+      <i>Let <span style="font-weight: bold;">z</span>
+refer to the
+same value <span style="font-weight: bold;">y</span>
+refers to</i><br>
+
+
+
+
+
+      <i>Pass these references to "+" for evaluation</i>
+      
+      
+      
+
+
+
+&nbsp; <span style="font-weight: bold;">x</span>
+refers to the
+result<br>
+
+      <i>
+
+
+
+        </i>
+      
+      
+      
+
+
+
+    
+    
+    
+    
+    </ul>
+
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  
+</ul>
+
+<ul style="margin-left: 40px;">
+
+  <li> Other semantics for assignments: Pointer Semantics X:=Y</li>
+
+  <br>
+
+  <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5alterAss1.gif"><img alt="Memory before assignment" src="5alterAss1.gif" height="130" width="247">          </a><br>
+
+
+   &nbsp; <br>
+
+  <li>Binding location to variables (assignment by sharing)       </li>
+
+  <a href="5alterAss2.gif"><img src="5alterAss2.gif" alt="Binding location to Variables" height="167" width="275">     </a><br>
+
+
+   &nbsp; <br>
+
+  <li>Create new location and copy value       </li>
+
+  <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5alterAss3.gif"><img src="5alterAss3.gif" alt="Copy and create new cell" height="130" width="340"></a><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/5alterAss3.gif">          </a>
+</ul>
+
+<ul>
+
+  <li>Which of the three assignment models does Java follow for
+Reference types?</li>
+
+
+
+
+
+  <li> Which of the three assignment models does Java follow for
+Primitive types?</li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<h3>L-Value/R-Value&nbsp;</h3>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li> L-value is an <span style="font-weight: bold; font-style: italic;">expression</span> that refers to storage
+area&nbsp;</li>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li><i><span style="font-style: italic;"><span style="font-style: italic;"></span></span></i>Original
+definition: The object that appears on the left hand side.</li>
+
+
+
+
+
+    
+
+
+    <li><a href="http://builder.com.com/5100-6370_14-5383417.html">Distinguish
+the differences between R-values and L-values in C++</a></li>
+
+
+
+
+
+    <li>the L-value of a variable refers to the "container"</li>
+
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+  <li> R-value is an expression that denotes value</li>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li>Immutable objects only have R-values</li>
+
+
+
+
+
+    
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+  <li>Under the value model, the context of an expression
+determines whether is it an L or R Value.<br>
+
+
+
+
+
+  </li>
+
+
+
+
+
+  <li>To further clarify l-value and r-values-- &amp;
+(reference)address operator<br>
+
+
+
+
+
+  </li>
+
+
+
+
+
+  <br>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li>Example :<br>
+
+
+
+
+    </li>
+
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+  
+  
+  
+  
+  <dl>
+
+
+
+
+
+    <dd><span style="font-family: monospace;">int
+arr[5];<br>
+
+
+
+
+
+int *pt;<br>
+
+
+
+
+
+      <br>
+
+
+
+
+
+pt = &amp;arr[0]; /* points to the first element of the array */ <br>
+
+
+
+
+      <br>
+
+
+
+
+
+      </span></dd>
+
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+    <li>But<br>
+
+
+
+
+ </li>
+
+
+
+
+
+    <span style="font-weight: bold; font-family: monospace;"></span><span style="font-weight: bold; font-family: monospace;"><br>
+
+
+&amp;i
+= 5;</span><br>
+
+
+  
+  
+  </ul>
+
+
+</ul>
+
+
+<div style="margin-left: 80px;">is illegal since &amp;i is an expression and is an
+r-value. It's value is the address (or l-value) of i. &nbsp;Since it is NOT an l-value expression you can not assign a
+value.<br>
+
+
+</div>
+
+
+<div style="margin-left: 40px;">
+<ul>
+
+
+  <li>Did you ever see</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+<div style="margin-left: 40px;">
+<dl>
+
+
+  
+  
+  <dl>
+
+
+    <tt>Error &ldquo; must be a l-value&rdquo;</tt><br>
+
+
+    <tt>5 = x;<br>
+
+
+
+
+    <br>
+
+
+
+
+error: invalid lvalue in unary '&amp;'<br>
+
+
+
+
+&amp; (&amp; z);<br>
+
+
+    </tt>
+  
+  
+  </dl>
+
+
+</dl>
+
+
+</div>
+
+
+<ul>
+
+
+  <li>In reference model languages,every varaible is an l-value. When
+it appears in a context that expect an r-value, a dereference is made
+to obtain the value the variable refers to.</li>
+
+
+</ul>
+
+
+<div style="margin-left: 40px;">
+<dl>
+
+
+
+
+
+</dl>
+
+
+
+
+
+</div>
+
+
+
+
+
+<ul>
+
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+</ul>
+
+
+
+
+
+<hr style="width: 100%; height: 2px;">
+<ul>
+
+
+
+
+</ul>
+
+
+
+
+
+<h3>Expressions</h3>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li> In its pure form, expressions return value and do not
+change
+state.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> i.e. have no side effects</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Statements are executed for the side effects and return no
+value.</li>
+
+
+
+
+  <li> In Haskell all functions/operators have no side effects.</li>
+
+
+
+
+  <li> Procedural language usually allow function to have side
+effects.</li>
+
+
+
+
+  <li> C, C++, and Java have <u>operators</u> that
+not only return a
+value but also have side effects.</li>
+
+
+
+
+</ul>
+
+
+
+
+<h4>Alternate Assignment Operators in C, C++, Java C#</h4>
+
+
+
+
+<ul>
+
+
+
+
+  <li>"=", is both an expression and has a side effect</li>
+
+
+
+
+  <li>"=" is right associative<br>
+
+
+
+
+    <br>
+
+
+
+
+    <span style="font-family: monospace;">x = 5;<br>
+
+
+
+
+a = b = 10*5 +x;</span><br>
+
+
+
+
+    <br>
+
+
+
+
+  </li>
+
+
+
+
+  <li><span style="font-family: monospace;"></span>Alternate assignments and unary operator -- appear to have the same semantics.<br>
+
+
+
+
+  </li>
+
+
+
+
+  <tt>int x = 0;</tt><br>
+
+
+
+
+  <tt>x = x + 1;</tt><br>
+
+
+
+
+  <tt>x += 1;</tt><br>
+
+
+
+
+  <tt>x++;<br>
+
+
+
+
+  </tt><li> If the memory location has to be calculated twice then the
+results may differ. &nbsp;Alternate assigns can have unexpected
+side effects.<br>
+
+
+
+
+  </li>
+
+
+
+
+  <li> Java code</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <b><tt>static int n = 0;</tt> <br>
+
+
+
+
+
+    <tt>static int [] A = new int[2];</tt> <br>
+
+
+
+
+
+    <tt>static int f() {</tt> <br>
+
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp; if (n == 0) {</tt> <br>
+
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+n=1;</tt> <br>
+
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp; } else {</tt> <br>
+
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+n = 0;</tt> <br>
+
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp; }</tt> <br>
+
+
+
+
+
+    <tt>&nbsp;&nbsp;&nbsp; return n;</tt> <br>
+
+
+
+
+
+    <tt>}</tt> <br>
+
+
+
+
+
+    <tt>static public void main (String [] arg) {</tt></b>
+    
+    
+    
+    
+    <ul>
+
+
+
+
+      <b><tt>A[f()] = A[f()] +1;&nbsp; // 0 1</tt>
+      <br>
+
+
+
+
+
+      <tt>A[f()] += 1;&nbsp;&nbsp;&nbsp; // 0 2</tt>
+      <br>
+
+
+
+
+
+      <tt>A[0] = A[1] = n = 0;</tt> <br>
+
+
+
+
+
+      <tt>A[f()] += 1;&nbsp; // 0 1</tt> <br>
+
+
+
+
+
+      <tt>A[f()] = A[f()] + 1;&nbsp; // 2 1 }</tt></b>
+    
+    
+    
+    
+    </ul>
+
+
+
+
+    <b><tt>}</tt></b>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<ul>
+
+
+
+
+  <li>Multiway assignments</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>In Python, the comma on the rhs defines a tuple of
+multiple r-values and the comma on the lhs produces &nbsp;a tuple
+of l-values</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  
+  <dl style="font-weight: bold;">
+
+
+
+
+    <dd><tt>a , b = 15 , 3*25</tt></dd>
+
+
+
+
+  
+  
+  
+  
+  </dl>
+
+
+
+
+</ul>
+
+
+
+
+<h3>Order of Evaluation of Operators and Parameters</h3>
+
+
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>Order of Evaluation of Operators and Parameter</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>Order of evaluations: "Which branch" of the parse tree node
+is
+evaluated first.&nbsp;</li>
+
+
+
+
+  <li>C specification does not specify the order of evaluations
+of
+the operands of most operators&nbsp;</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> The order of evaluation for binary operators to be
+determined
+by the compiler writer. (i.e. implementation time)</li>
+
+
+
+
+    <li> Why did C designers make this decision?</li>
+
+
+
+
+    <li> True also for Ada and Pascal.<br>
+
+
+
+
+
+
+      <br>
+
+
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> The same is true for evaluating parameters of function
+calls.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <br>
+
+
+
+
+    <b><tt>int a =2;</tt> <br>
+
+
+
+
+
+
+    <tt>int x;</tt> <br>
+
+
+
+
+
+
+    </b><tt><b>x = ++a + a; /* expression 1 */<br>
+
+
+
+
+
+
+a = 2;<br>
+
+
+
+
+
+
+x = a + ++a; /* expression 2 */</b><br>
+
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+    </tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>The order in which expression 1 (and 2) are evaluated are
+determined at implementation time.<br>
+
+
+
+
+
+
+      <br>
+
+
+
+
+
+
+    </li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>Order of evaluation of parameters:<br>
+
+
+
+
+
+
+  </li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+&nbsp;
+    
+    
+    
+    
+    
+    <ul>
+
+
+
+
+      <b><tt>int fun (int a, int b) {</tt> <br>
+
+
+
+
+
+
+      <tt>&nbsp; return a + b;</tt> <br>
+
+
+
+
+
+
+      <tt>}</tt> <br>
+
+
+
+
+
+
+      <tt>int main(void){</tt> <br>
+
+
+
+
+
+
+      <tt>&nbsp; int a =2;</tt> <br>
+
+
+
+
+
+
+      <tt>&nbsp; int x;</tt> <br>
+
+
+
+
+
+
+      <tt>&nbsp; x = fun (a,a++);</tt> <br>
+
+
+
+
+
+
+      <tt>&nbsp; printf("fun(a,a++): x %d, a %d\n\n",x,a);</tt>
+      <br>
+
+
+
+
+
+
+      <tt>&nbsp; a = 2;</tt> <br>
+
+
+
+
+
+
+      <tt>&nbsp; x = fun (a++,a);</tt> <br>
+
+
+
+
+
+
+      <tt>&nbsp; printf("fun(a++,a): x %d, a %d\n\n",x,a);</tt>
+      <br>
+
+
+
+
+
+
+      <tt>&nbsp;}</tt> </b><br>
+
+
+
+
+
+
+&nbsp; 
+    
+    
+    
+    
+    </ul>
+
+
+
+
+    <li> gcc- output:</li>
+
+
+
+
+    
+    
+    
+    
+    <ul>
+
+
+
+
+      <b><tt>fun(a,a++): x 5, a 3</tt></b><br>
+
+
+
+
+      <b><tt>fun(a++,a): x 4, a 3</tt></b>
+    
+    
+    
+    
+    </ul>
+
+
+
+
+    <li>
+Another target
+machine, or another compiler could have a different result.</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<br>
+
+
+
+
+<h4>Operators with Side Effects : C, Java, C++</h4>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li> These expressions change memory as well as returning a
+value.</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<blockquote><tt>x = (y = z)</tt> <br>
+
+
+
+
+
+
+  <tt>x++</tt> <br>
+
+
+
+
+
+
+  <tt>--y<br>
+
+
+
+
+
+
+  </tt></blockquote>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>In C it is implementation dependent when side effects are
+applied<br>
+
+
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>What is the evaluation of the following expression
+containing
+side-effect
+operators:<br>
+
+
+
+
+
+
+(Assume all side effect happens as soon as possible.)<br>
+
+
+
+
+
+
+  </li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li><big><b><tt>int n = 3; <br>
+
+
+
+
+
+
+int x = ++n * n++ - --n</tt></b></big></li>
+
+
+
+
+  <li><big><small>Assume left to right evaluation:
+&nbsp;(~&gt; 12)</small></big></li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<blockquote><span style="font-family: monospace;">++ n * n++ - --n</span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+~&gt; (++n * n++) - --n &nbsp; &nbsp; &nbsp;where n = 3
+  </span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+~&gt; (4 * n++) - --n &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; where n =4
+(why?)</span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+--&gt;(4*4) - --n &nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; where n =5</span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+--&gt;(4*4) - 4 &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; where n =4</span><br>
+
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>&nbsp;Assume right to left evaluation: (~&gt; 6)</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<blockquote><span style="font-family: monospace;">++ n * n++ - --n</span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+~&gt; (++n * n++) - --n &nbsp; &nbsp; &nbsp;&nbsp;
+where n = 3 </span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+~&gt; (++n * n++) - 2 &nbsp; &nbsp; &nbsp;
+&nbsp;&nbsp; where n = 2 </span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+--&gt;(++n*2) - 2 &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; where n =3 (why?)</span><br style="font-family: monospace;">
+
+
+
+
+  <span style="font-family: monospace;">
+
+--&gt;(4*2) - 2 &nbsp; &nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp; &nbsp; where n =4</span><br>
+
+
+
+
+
+
+  <br>
+
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>Unlike C,&nbsp; Java specifies exactly when the side
+effects
+happen.</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<blockquote>
+  
+  
+  
+  
+  
+  <blockquote><span style="font-family: monospace;">int i = 0;</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">
+
+i = i++;</span><br style="font-family: monospace;">
+
+
+
+
+    <span style="font-family: monospace;">
+
+System.out.println(i);</span><br>
+
+
+
+
+
+
+  </blockquote>
+
+
+
+
+
+
+</blockquote>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>Prints 0 ---&nbsp;</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Java <span style="font-style: italic;">notes</span> the value of i, increments i then makes the
+"=" of
+the
+      <span style="font-style: italic;">noted</span> value.</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<hr style="width: 100%; height: 2px;">
+<h3>Conditional
+Statements
+vs Conditional Expressions</h3>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li> Pascal and Ada use only conditional statements.</li>
+
+
+
+
+  <li> Algol, C and Java have both Conditional Expressions and
+conditional statements.</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><tt>Pascal: if count = 0 then aver := 0 else aver := sum/count</tt>
+<br>
+
+
+<tt>C/Java: aver = (count == 0) ? 0: sum/count;</tt> <br>
+
+
+<tt>Algol 60 : aver := if count = 0 then 0 else sum/count</tt>
+<br>
+
+
+<tt>Algol 68 :&nbsp; aver := if count = 0 then 0 else
+sum/count fi</tt>
+<br>
+
+
+<tt>Lisp:&nbsp; (setf aver (if (= count) 0 (/ sum count)))</tt>
+<br>
+
+
+<tt>Haskell : aver count sum = if count==0 then 0 else sum/count</tt></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li> What is the primary difference between the conditional
+operator
+and the conditional statement?</li>
+
+
+
+
+  <li> What is the primary difference between
+&ldquo;=&ldquo; operator in
+C/Java/C++ and the &ldquo;=:&rdquo; in Pascal ?</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h4> Relational and Boolean Expressions&nbsp;</h4>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>Relation operator compares two operands and returns a
+Boolean.&nbsp; </li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>Most languages have the type Boolean.&nbsp;</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>C does not have the type boolean.&nbsp;</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li>0 is considered false anything else is true.</li>
+
+
+
+
+    <li> What is the value computed below?</li>
+
+
+
+
+    <br>
+
+
+
+
+    <b><tt>a &gt; b &gt; c&nbsp; /* a = 10 , b
+= 9, c = 5&nbsp; */</tt></b>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+
+
+
+
+<h4> Boolean Expressions</h4>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li> Design issue: How many parentheses are necessary.</li>
+
+
+
+
+  <li> Ada: The boolean operators have the same precedence and
+are
+nonassociative.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>A &gt; B and A &lt; C or K = 0</tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+is illegal. The parentheses must be supplied.
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>(A &gt; B and A &lt; C) or K = 0</tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Pascal: The boolean operators have higher precedence than
+relational operators.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>a &gt; 5 or a &lt; 0</tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+is illegal.&nbsp; The correct version is
+  
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>(a &gt; 5) or (a &lt; 0 )</tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<li> Short circuit evaluation</li>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li> The default in C and Modula-2 is for logical
+&ldquo;and&rdquo;/&rdquo;or&rdquo; to be
+short circuit.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <tt>int A[10];&nbsp; /* A has indices 0..9 */</tt><br>
+
+
+
+
+    <tt>...</tt><br>
+
+
+
+
+    <tt>if ( j &lt; 10 &amp;&amp; A[j] != 0)</tt><br>
+
+
+
+
+    <tt>&hellip;</tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+
+
+This is doing index range checking! If the condition j&lt;10 is
+false
+then second expression will not be evaluated. <li> Ada and
+Pascal do
+not guarantee the order of evaluation.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> Further more, both may be evaluated, even if the first
+one to
+be evaluated turns out to be false.</li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> In some implementation of Pascal you could get a run-time
+index-out-of-range error if j = 4 for the following code:</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+&nbsp; <br>
+
+
+
+
+    <tt>if ( j &lt; 4) and (A[ ExtSqr( j ) ] &lt;
+&gt; 0 ) then .
+. .<br>
+
+
+    </tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> You might get a divide-by-zero error for the following:</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+&nbsp; <br>
+
+
+
+
+    <tt>if (x = 0) or (y mod x = 0) then<br>
+
+
+    </tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Ada allows the programmer to specify short-circuit
+evaluation
+and thus avoid problems like the above.</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+
+
+&nbsp; <br>
+
+
+
+
+    <tt>if j &lt; 10 and then A( j ) /= 0 then &hellip;</tt><br>
+
+
+
+
+    <tt>if ( x = 0) or else ( y mod x = 0) then _</tt>
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <br>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li> Java Boolean Logical Operators</li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li> &lsquo;&amp;&amp;&rsquo; , short circuit
+&lsquo;and&rsquo;</li>
+
+
+
+
+    
+    
+    
+    
+    <dl>
+
+
+
+
+      
+      
+      
+      
+      <dl>
+
+
+
+
+        <li> &lsquo;&amp;&rsquo; ,&nbsp;
+non-short circuit &lsquo;and&rsquo;</li>
+
+
+
+
+      
+      
+      
+      
+      </dl>
+
+
+
+
+    
+    
+    
+    
+    </dl>
+
+
+
+
+    <li> &lsquo;<tt>||</tt>&rsquo;
+,&nbsp; short circuit &lsquo;or&rsquo;</li>
+
+
+
+
+    
+    
+    
+    
+    <dl>
+
+
+
+
+      
+      
+      
+      
+      <dl>
+
+
+
+
+        <li> &lsquo;<tt>|</tt>&rsquo;
+,&nbsp; non-short circuit &lsquo;or&rsquo;</li>
+
+
+
+
+      
+      
+      
+      
+      </dl>
+
+
+
+
+      <li> Both '&amp;' and '|' are over loaded operators.</li>
+
+
+
+
+      
+      
+      
+      
+      <dl>
+
+
+
+
+        <li> If the operands are not boolean then &amp; is a
+bitwise <i>and&nbsp;</i>
+and '|' is a bitwise <i>or</i>.</li>
+
+
+
+
+      
+      
+      
+      
+      </dl>
+
+
+
+
+    
+    
+    
+    
+    </dl>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+</ul>
+
+
+
+
+<h4>Short Circuit operators and the Order of Evaluation</h4>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>Boolean operators that only evaluate an operands as needed
+are
+said to be short circuit operators.</li>
+
+
+
+
+  <li>&nbsp;i.e. <tt><b>x &amp;&amp; y, </b></tt>if
+x is false then
+the expression is false and therefore y does not need to be evaluated.</li>
+
+
+
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+
+
+
+  <li>C specifies that short circuit operators are evaluated from
+left
+to right. </li>
+
+
+
+
+  <li>Ada and Pascal do not guarantee the order of evaluation.</li>
+
+
+
+
+</ul>
+
+
+<br>
+
+
+<font style="font-family: monospace;" class="contentText"><span class="code"></span></font>
+<h4>Iterators and Classes in Pythons</h4>
+
+
+
+
+
+<hr width="100%">
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us"><head>
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>Assignment 2: Syntax and Parsing</title>
+
+  
+</head><body>
+....
+<ol>
+
+  
+  
+  <li>Explain why does (a+b)*10 does not equal a*10 + b*10 in the
+non-optimized compilation? <br />
+  </li>
+  <ol>
+<br /><ol><li>Compile the&nbsp;code,&nbsp;<a href="numbers/p8.c">p8.c</a>,
+on a&nbsp; <span style="font-weight: bold;">Intel</span>
+platform twice as follows:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+gcc p8.c -o labXa.exe -std=iso9899:1999 -m32</li><li>&nbsp;Run
+executable:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+./labXa.exe<br />
+<br />
+      </li></ol>
+  </ol>
+  <li>The C code provided below illustrates some problems
+with
+the
+implementation of floating point numbers. You are given&nbsp; a
+simple <i>C</i>&nbsp;program
+(<a href="numbers/p9.c">p9.c</a>) to run.
+&nbsp;Compile and run this code using GCC. (gcc p9.c -o labXb.exe -std=iso9899:1999 -m32)
+  </li>
+
+  
+  <ol>
+
+    <li>The 4 sums are computed in part1() and printed out in.
+Part
+1A's printout appears to be the same independent of the
+calculation order of &nbsp;the "i's". &nbsp;However, the sum
+printed
+out in Part 1B's printout is different. One would expect&nbsp;
+program
+would compute and print the same value for sum. &nbsp; Explain what
+is
+going on.<br />
+    </li>
+    <li>One would also expect that adding ten times the value 0.1
+would
+result in 1.0.&nbsp; Explain why (how) the computer gets the
+results
+for
+part 2 (part2()) ?<br />
+    </li>
+    <li>(Harbison &amp; Steele) "Prior to ISO C, all
+implementations were required to convert all values of type <b>float</b>
+to type <b>double</b> before operations were performed.
+&nbsp;... In ISO C, operations can now be performed using type <b>float</b>
+."
+&nbsp;What is the consequences of this change? ( Consider
+speed,&nbsp;
+accuracy, and space. )<br />
+&nbsp;
+        <br />
+      </li>
+    
+  </ol>
+<ol>
+  </ol>
+</ol>
+
+</body></html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                                
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+                                
+  <meta name="Author" content="Eileen Head">
+                                
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <title>CS471 Assignment 1 - REVIEW</title>
+</head>
+  <body text="#000000" bgcolor="#fffff9" link="#000099" vlink="#000099" alink="#3333ff">
+                
+<center>        
+<h3> Programming Languages<br>
+        Assignment<i> </i>1 -Spring 2002<br>
+        <i>Due: </i>Friday, &nbsp;Feb 1, 2002</h3>
+       </center>
+        <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">
+       Homework policy</a> <br>
+       There is a locked file cabinet near the cs department for you to leave 
+  your  assignment.&nbsp; Assignment is due before the TA picks it up on Saturday.
+   <br>
+       Please submit your solutions typed up and stapled together with your 
+ name   and section printed on every page.&nbsp; Include the questions with 
+ your  answers.&nbsp; (You can edit this file)&nbsp; <a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">
+       General Submission Instructions</a> <br>
+       &nbsp;        
+<h4> Reading:</h4>
+                
+<blockquote>Chapter 1 (pages 1-28) Chapter 2.1 (31-39) <br>
+       Be able to answer all the review questions (page 25-26).</blockquote>
+                              
+  <h4> Written:</h4>
+        The purpose of the written assignment is to review mathematics concepts
+   and techniques that will be required to successfully complete this course.&nbsp;
+    These problems are expected to be a review of topics covered in other
+courses.                        
+  <ol>
+        <li> [Consider the following recursive definition of a version of 
+      <b>   Ackermann's</b>    function.&nbsp; This function was named after 
+      <a href="http://www-history.mcs.st-and.ac.uk/history/Mathematicians/Ackermann.html">
+       Wilhelm Ackermann</a>, a German mathematician who was a student of 
+the   great  mathematician David Hilbert.&nbsp; Ackermann's function plays 
+an important   role in the theory of recursive functions and in the study 
+of complexity   of certain algorithms involving set unions. (Ackermann's function
+is an example of a general recursive that is not a primitive recursive function.
+ For more information see   <a href="http://www.earlham.edu/%7Epeters/courses/logsys/recursiv.htm#recursion">
+      Recursive Function Theory</a>)&nbsp; In the early days of&nbsp;  imperative 
+  languages, the Ackermann function was used to measure the recursion  capability 
+  of a compiler. The Ackermann Number N of the compiler is the largest<i>
+   N</i> for  which</li>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ack (3,<i>N</i>
+ ) <br>
+       gives an answer without a stack overflow. (There are several different 
+  variants  of this function.&nbsp; All are called Ackermann's functions. 
+&nbsp;)<br>
+                                           
+    <ol type="A">
+       &nbsp;                                                  
+      <table>
+        <tbody>
+                 <tr>
+        <td>ack( <i>0,n</i> ) =</td>
+         <td>&nbsp;<i>n</i> + 1<br>
+                   </td>
+         <td>&nbsp;&nbsp;&nbsp; if <i>m</i> = 0</td>
+        </tr>
+         <tr>
+        <td>ack( <i>m,0</i> ) =&nbsp;</td>
+         <td>&nbsp;ack( <i>m</i>-1, 1)<br>
+                   </td>
+         <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt; 0 and <i>n</i> = 0&nbsp;</td>
+        </tr>
+           <tr>
+        <td>ack( <i>m, n</i>&nbsp; ) =</td>
+         <td>ack( <i>m</i>-1, ack( <i>m, n</i> - 1) )</td>
+         <td>&nbsp;&nbsp;&nbsp; if <i>m</i> &gt; 0&nbsp; and <i>n</i> &gt;
+ 0&nbsp;</td>
+        </tr>
+                                                                       
+        </tbody>                                                 
+      </table>
+         <br>
+       &nbsp; <li> [5pts]Find the following values of Ackermann's function.</li>
+                                                          
+      <ol type="a">
+        <li> [1pt] ack(0,1) = ______</li>
+         <li> [1pt] ack(1,0) = ______</li>
+         <li> [2pt] ack(1,1) = ______</li>
+         <li> [2pt] ack(2,1) = ______</li>
+      &nbsp;                                   
+      </ol>
+         <li> [4pts]&nbsp;Prove that ack(1 , <i>n</i>) =&nbsp; <i>n </i>&nbsp;+ 
+   2.&nbsp; (Prove by induction on <i>n</i>)</li>
+             <li>[4pts] Prove that ack(2 , <i>n</i>) =&nbsp; 2<i>n </i>&nbsp;+
+   3 .&nbsp; (Prove by induction on <i>n</i>)</li>
+          <li>[Extra credit 10pts] What is the value of ack(3,<i>n </i>)
+?</li>
+                                           
+    </ol>
+         &nbsp;<li> [6 pt] Write down the power set for each of the following:</li>
+                 
+    <ol type="A">
+         <li> { A,B,C }</li>
+         <li><font face="Symbol">&nbsp;</font>&Oslash;<font face="Symbol">
+ ,</font>     the empty set</li>
+         <li> { {1,2},&nbsp;<font face="Symbol">&nbsp;</font>&Oslash;}<br>
+           <br>
+         </li>
+                 
+    </ol>
+       <li>[10 pt] Prove by induction if a set, S, has <i>n</i>&nbsp; elements 
+ then the power set of S has 2<i><sup>n </sup></i>elements.<br>
+         <br>
+       </li>
+       <li>[28pts] Algebraic laws:</li>
+                                            
+    <ol type="A">
+        <li> [1pt]What is the associative law of addition over the set of 
+integers?&nbsp;    (Definition not example.)</li>
+         <li> [1pt]What is the commutative law of addition over the set of
+ integers?    (Definition not example.)</li>
+         <li> [2pt]Give an example of a set with an operator defined on that
+  set  which does not have the associative property.</li>
+         <li> [2pt]Give an example of a set with an operator defined on that
+  set  which does not have the commutative property.</li>
+         <br>
+       &nbsp; <li> Compute the following and show all work.&nbsp; Do not
+use   a  calculator.</li>
+                                                          
+      <ol type="a">
+        <li> [1pt] 10 - (2 * 3 - (-7) ) = _____________</li>
+         <li> [1pt] 10 - 2 * 3 - (-7) = _____________</li>
+         <li> <i>f</i> (x,y) =&nbsp; y - x *2 compute:</li>
+                                                                        
+        <ol type="a">
+        <li> [2pts] <i>f </i>( -2, 1 ) = __________</li>
+         <li> [2pts] <i>f</i> ( -2, -1 ) = _________</li>
+         <li> [2pts]<i> f</i> ( 2, 1) = _________</li>
+         <li> [2pts]<i> f</i> (<font color="#990000"> 2,</font> -1) = _________</li>
+                                                                       
+        </ol>
+         <li> Given<br>
+          </li>
+               <b><tt><font size="+1"><i>f</i>(<i>x</i>) = 3 * <i>x * x</i>
+   -  4</font></tt></b>   <br>
+               <b><tt><font size="+1"><i>g</i>(<i>x</i>) = squareRoot(<i>
+x</i>      - 1)</font></tt></b> <br>
+       assume <i>x </i>&gt;= 0 and squareRoot is a function that returns
+the   positive  root.                                                   
+            
+        <ol type="a">
+        <li> [3pt] What is the function composition,&nbsp; <i>f </i><font size="-2">
+       o </font><i>g </i>(x ) = ?</li>
+         [ Remember the effect of <i>f </i><font size="-2">o </font><i>g
+          </i>  (x  )  is given by <i>f</i> ( <i>g</i>(<i>x</i>) ) ] <br>
+       <li> [3pt] What is&nbsp; <i>g </i><font size="-2">o </font><i> f 
+            </i>  ( <i>x</i> ) = ?</li>
+         <li> [3pt] What is the value of&nbsp; <i>f </i><font size="-2">
+ o              </font><i> g </i>(2 ) = ?&nbsp;</li>
+            <li> [3pt] What is the value of <i>g </i><font size="-2">o </font><i>
+       f </i>(2 ) = ?</li>
+                                                                        
+             
+          <ol type="a">
+                                                                        
+                          
+            <ol type="a">
+       &nbsp;                                                           
+                               
+            </ol>
+                                                                        
+           
+          </ol>
+                                                                       
+        </ol>
+                                                         
+      </ol>
+                                           
+    </ol>
+         <li> [3pt] All <font color="#990000">proper</font> subsets of the
+ set   of integers are finite sets. Prove or give a counter example.</li>
+                             
+    <ol type="a">
+         &nbsp;                                   
+    </ol>
+         <li> [3 pt] Let A = { 100, 1000 } and B = { a, b, c }.</li>
+                                            
+    <ol type="a">
+        <li> Write the Cartesian product of A X B.</li>
+         <li> Write the Cartesian product of B X A.</li>
+         <li> Write the Cartesian product of A X A.</li>
+         &nbsp;                                   
+    </ol>
+         <li> [10 pt] Review from discrete mathematics.</li>
+                                            
+    <ol type="a">
+        <li> [1pt] Give the mathematical definition of <i>relation.</i></li>
+         <li> [1pt] Give the mathematical definition of (total) <i>function.</i></li>
+         <li> <i>TRUC</i> maps positive Real numbers to the Natural numbers,
+  i.e.  {0,1,2,3, ...}, by setting the fractional part of the real number
+to  zero.&nbsp;   For example: <i>TRUC </i>42.0082 --&gt; 42</li>
+                                                          
+      <ol type="a">
+        <li> Is <i>TRUC</i> a relation?</li>
+         <li> Is <i>TRUC</i> a function?</li>
+                                                         
+      </ol>
+         <li> <i>Sqrt</i> maps Natural numbers to real numbers such that
+a  Natural   number <i>n</i> maps to <i>r&nbsp;</i> if&nbsp; <i>r * r</i>
+ =         <i>n.</i></li>
+                                                          
+      <ol type="a">
+        <li> Is <i>Sqrt </i>a relation?</li>
+         <li> Is <i>Sqrt</i> a function?&nbsp;                          
+    </li>
+               
+      </ol>
+           
+    </ol>
+         <li> [10 pt] Predicate Logic:</li>
+                                            
+    <ol type="a">
+        <li> What is a Predicate?</li>
+         <li> What is the difference between Propositional logic and Predicate
+   Logic?</li>
+         <li> Let the&nbsp; predicate <i>P</i>(<i>x</i>) denote the statement&nbsp; 
+           <i>x</i> &gt;15.&nbsp; What is the truth value of <i>P</i>(14)?
+ of          <i>P</i>(16)?</li>
+         <li> Give an example illustrating the different between the <b><i>
+  universal    quantifier</i> (</b>for all) and the <b><i>existential quantifer</i>
+   (</b>     there exists).</li>
+         <li> Let <b>U</b> be the set of integers and <b>A </b>be a subset
+ of          <b>  U.</b>&nbsp; What are the elements in <b>A</b> to make
+the  following  statement  true:<br>
+        </li>
+       forall <i>x</i> in A thereexists y in <b>U </b>such that <i>x</i>
+=        <i>   y</i><sup>  2</sup>                                   
+    </ol>
+                                            
+    <ol type="a">
+                                                         
+      <ol type="a">
+                                                                       
+        <ol type="a">
+                                                                        
+           
+          <ol type="a">
+       &nbsp;                                                           
+                 
+          </ol>
+                                                                       
+        </ol>
+                                                         
+      </ol>
+                                           
+    </ol>
+         <li> [2pts]<img src="DPS.jpg" alt="DFS Discovery" border="2" height="300" width="400" align="texttop">
+           </li>
+         <br>
+       Number the nodes as they are discovered during a <b>depth first search.</b>
+        <br>
+       (For this problem you may handwritten the numbers in the nodes.) <br>
+       &nbsp; <li> [3pt] Briefly describe <i>backtracking</i> (see your algorithms 
+   book).</li>
+                                            
+    <ol>
+                                                         
+      <ol>
+       &nbsp;                                                 
+      </ol>
+                                           
+    </ol>
+         <li> [10pts]The 0/1 Knapsack problem.</li>
+                                            
+    <ol type="a">
+        <li> Describe the 0/1 Knapsack problem.</li>
+         <li> What class does the 0/1 Knapsack problem belong to?</li>
+         <li> What are two standard meta-techiques used to find the solution?</li>
+         <li> What is the runtime of each algorithm?</li>
+         <li> Convert the 0/1 Knapsack problem to a decision problem.</li>
+         <br>
+       &nbsp;                                   
+    </ol>
+         <li> [6pts] The Sum of Subsets Problem.</li>
+                                            
+    <ol type="a">
+        <li> Describe the Sum of Subsets Problem?</li>
+         <li> What class does the Sum of Subset problem belong to?</li>
+         <li> Convert the Sum of Subsets Problem to a decision problem.<br>
+            <br>
+          </li>
+                             
+    </ol>
+         <li>[6pt] What is the map coloring problem (also known as the four 
+ color theorem)? &nbsp;(Briefly) What strategy would you use to write a computer
+  program?<br>
+                                        
+      <ol type="a">
+                                                              
+        <ol type="a">
+  &nbsp;                  
+        </ol>
+                                               
+      </ol>
+                         </li>
+                   
+  </ol>
+                                         
+  </body>
+  </html>

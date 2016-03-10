@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+  
+  
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+
+
+
+  
+  
+  
+  <title>Python Definitions</title>
+</head>
+
+
+<body style="direction: ltr;">
+
+
+
+<span style="font-weight: bold;">References:&nbsp;</span> <br />
+
+
+
+<ul>
+
+
+
+  <li>"Learning Python"</li>
+
+
+
+</ul>
+
+
+
+<div style="margin-left: 80px;">chapter 3<br />
+
+
+
+pages 447-452<br />
+
+
+
+pages 458-462<br />
+</div>
+<ul>
+  <li>Scott (Helpful on principles)</li>
+</ul>
+<div style="margin-left: 80px;">pages 675, 694-696, 723-725, 728-735 (Perl RE are available in Python).</div>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><br />
+
+
+
+</div>
+
+
+
+<ul>
+
+
+
+  <li>Quick reference on using IDLE:&nbsp; <a href="http://www.coolnamehere.com/geekery/python/pythontut.html">Baby
+steps
+Tutorial</a></li>
+
+
+
+  <li><a href="http://docs.python.org/lib/module-re.html">Regular
+Expression
+operation</a></li>
+
+
+
+  <li><span style="text-decoration: underline;"><a href="http://gnosis.cx/publish/programming/regular_expressions.html">Learning to Use Regular Expressions</a></span></li>
+
+
+
+  <li><a href="http://www.amk.ca/python/howto/">Howto</a> (also
+available
+through the help menu in editor and shell window in IDLE. In the help
+menu select "Python Doc F1".)</li>
+
+
+
+  <li><a href="http://diveintopython.org/regular_expressions/index.html">Dive
+Into Python (Regular Expressions)</a></li>
+
+
+  <li><a href="http://www.answers.com/topic/python-programming-language">answer.com: Python programming language</a></li>
+
+
+
+</ul>
+
+
+
+<hr style="width: 100%; height: 2px;" /><span style="font-weight: bold;">Getting
+started:<br />
+
+
+
+New scripts:<br />
+
+
+
+</span>
+<div style="margin-left: 40px;">
+<ol>
+
+
+
+  <li>Open IDLE (Python Gui) program (On windows: from the "Start
+Menu") .&nbsp; This opens a "Python Shell" window.</li>
+
+
+
+  <li>Pull down the File menu and click on "New Window".&nbsp; This
+opens the editor.</li>
+
+
+
+  <li>In the "Edit Window", save the empty text in a file with an
+extension .py.&nbsp;&nbsp; This will format your script as you type.</li>
+
+
+
+  <li>To run the script from the "Edit Window", pull down the "Run"
+menu&nbsp; and click on "Run Module.&nbsp; The script will execute t in
+the "Python Shell" window.</li>
+
+
+
+</ol>
+
+
+
+</div>
+
+
+
+<span style="font-weight: bold;">Existing scripts:<br />
+
+
+
+</span>
+<ol>
+
+
+
+  
+  
+  
+  <ol>
+
+
+
+    <li>Right click on file and select "Edit with Idle".</li>
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+</ol>
+
+
+
+There a many other ways to edit and run Python, including not using
+IDLE.<br />
+
+
+
+<hr style="width: 100%; height: 2px;" /><br />
+
+
+
+<span style="font-weight: bold;">Some important language features</span>:<br />
+
+
+
+<ol>
+
+
+
+  <li>Multi-paradigm language</li>
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li><a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Object-oriented+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">Object orientation</a>, <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Structured+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">structured programming</a>,
+      <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Functional+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">functional programming</a>, <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Aspect-oriented+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">aspect-oriented programming</a>, and more recently, <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Design+by+contract&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">design
+by contract</a> are all supported. </li>
+
+
+  
+  
+  </ol>
+
+
+  <li>dynamically typed&nbsp;</li>
+
+
+
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+    <li>-- no declaration of variables</li>
+
+
+
+    <li>-- type lives with objects, not names</li>
+
+
+
+  
+  
+  
+  </ol>
+
+
+
+  <li>OO and functional</li>
+
+
+
+  <li>reference model like Java</li>
+
+
+
+  <li>tuples are immutable lists</li>
+
+
+
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+    <li>Don't confuse variable name with objects</li>
+
+
+
+  
+  
+  
+  </ol>
+
+
+  <li>Layout rule: White spaces delimit blocks of code instead of symbols like "{}" in C or keywords like begin and end in Pascal.</li>
+
+
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>IDLE will automatically format according to the layout rule.</li>
+
+
+  
+  
+  </ol>
+
+
+
+</ol>
+
+
+
+<br />
+
+
+
+Useful Python definitions/builtin methods:<br />
+
+
+
+<br />
+
+
+
+<ol>
+
+
+
+  <li>Changing directories and listing files:</li>
+
+
+
+  
+  
+  
+  <dl>
+
+
+
+    <dd style="font-family: monospace; font-weight: bold;"></dd>
+
+
+
+    <dd style="font-family: monospace; font-weight: bold;">import os</dd>
+
+
+
+    <dd style="font-family: monospace; font-weight: bold;">os.chdir('./Courses/471/HW/1Experments')
+&nbsp;# change current directory</dd>
+
+
+
+    <dd><span style="font-family: monospace; font-weight: bold;">print
+os.listdir(os.getcwd()) &nbsp;#prints out current directory</span></dd>
+
+
+
+    <dt></dt>
+
+
+
+  
+  
+  
+  </dl>
+
+
+
+  <li>compile(pattern[, flags])<br />
+
+
+
+    <br />
+
+
+
+Compile a regular expression pattern into a regular expression object,
+which can be used for matching using its match() and search() methods,
+described below.<br />
+
+
+
+    <br />
+
+
+
+The expression's behaviour can be modified by specifying a flags value.
+Values can be any of the following variables, combined using bitwise OR
+(the | operator).<br />
+
+
+
+    <br />
+
+
+
+The sequence<br />
+
+
+
+    <br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">&nbsp; prog = re.compile(pat)</span><br style="font-family: monospace;" />
+
+
+
+    <span style="font-family: monospace;">&nbsp; result =
+prog.match(str)</span><br />
+
+
+
+    <br />
+
+
+
+is equivalent to<br />
+
+
+
+    <br />
+
+
+
+&nbsp; <span style="font-family: monospace;">&nbsp;result =
+re.match(pat, str)</span><br />
+
+
+
+    <br />
+
+
+
+but the version using compile() is more efficient when the expression
+will be used several times in a single program. <br />
+
+
+
+  </li>
+
+
+
+  <li>there is a difference in behavior between <span style="font-family: monospace;">search() </span>and <span style="font-family: monospace;">match()</span></li>
+
+
+
+  <li>repr(object)&nbsp;</li>
+
+
+
+</ol>
+
+
+
+<dl>
+
+
+
+  <dd>Return a string containing a printable representation of an
+object. This is the same value yielded by conversions (reverse quotes).
+It is sometimes useful to be able to access this operation as an
+ordinary function. For many types, this function makes an attempt to
+return a string that would yield an object with the same value when
+passed to <tt class="function">eval()</tt>.</dd>
+
+
+
+</dl>
+
+
+
+<br />
+
+
+
+</body>
+</html>

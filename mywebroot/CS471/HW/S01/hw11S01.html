@@ -1,0 +1,87 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Assignment 10 Programming Languages  --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#FFFBF9" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 11:&nbsp; Tuesday Apr 17, Noon</h4>
+Purpose:&nbsp; 1) Use list comprehension notation for fast prototyping
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+2)&nbsp; Increase your ability to generalize functions
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+3)&nbsp; Using infinite data structures to enable loops to be defined separate
+from the termination condition.
+<h3>
+Read:</h3>
+
+<h3>
+<b>Programming Assignment:</b></h3>
+
+<ol START=3>
+<ol>
+<h3>
+<b><font color="#3333FF">Turn in hardcopy.</font> NOTICE WE ALSO WANT YOU
+TO Email your code to </b><a href="mailto:cs471h@binghamton.edu">cs471h@binghamton.edu</a>
+.</h3>
+
+<h4>
+You should use list comprehension notation as much as possible in your
+solutions.</h4>
+
+<h4>
+YOU must insert your code in the <a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell3.lhs">file</a>
+provided but you will need to rename the file following <a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions.</a></h4>
+
+<blockquote>
+<blockquote><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/SimpleExample.lhs">Simple
+Sample of the Literal Style</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">Literal
+style must be used - more extensive</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Sample
+Code from the Notes</a>
+<br><a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/errors.html">Understanding
+Haskell Errors</a></blockquote>
+</blockquote>
+</ol>
+</ol>
+
+<h3>
+
+<hr SIZE=3 WIDTH="100%">Use as much as possible list comprehension notation
+in solving the problems.</h3>
+
+<ol START=3>
+<h2>
+<a href="http://bingweb.binghamton.edu/~head/CS471/HW/Haskell3.lhs">Haskell3</a>
+contains the problems.</h2>
+
+<p><br>Problem 10:
+<br>The value of e<sup>x</sup> can be computed using the series expansion
+<br>&nbsp;
+<ol START=3>&nbsp;&nbsp; e<sup>x</sup>&nbsp; = 1 + x + (x<sup>2</sup> /
+2!) + ( x<sup>3</sup> / 3!) + ... + ( x<sup>n </sup>/ n!) + ...</ol>
+In calculating e<sup>x</sup> we will sum all terms until ( x<sup>n </sup>/
+n!) &lt; eps, where eps is specified in our problem to be 0.000001.
+<br>&nbsp;
+<p>We can use infinite lists to generate each term of the series and use
+<tt>takeWhile
+test </tt>to terminate the generation of the terms used in the series expansion.
+See&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/4hSpr01.html#Fib">Fibonacci</a>
+and&nbsp;<a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/HASKELL/5hASpr01.html">
+Newton method for calculating the square root</a> for help in generating
+and working with infinite data structures.
+<br>&nbsp;For details about the number e see&nbsp; <a href="http://mathforum.com/dr.math/faq/faq.e.html">math
+forum</a> .
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;</ol>
+
+<ul START=2>&nbsp;</ul>
+
+</body>
+</html>

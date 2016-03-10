@@ -1,0 +1,1031 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  <meta name="Author" content="E Head">
+  <meta name="GENERATOR"
+ content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+  <meta name="Description" content="Introduction">
+  <title>HW 9 - Memory Management -- Flow of control</title>
+</head>
+<body style="color: rgb(0, 0, 0); background-color: rgb(250, 250, 250);"
+ link="#ff0000" vlink="#990000" alink="#cc0000">
+Problem 11 -- typo corrected 3/19<br>
+Due Sun March 21, 12 noon<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+<div align="left">
+<h4>Assignment 9<br>
+</h4>
+</div>
+<p>Read:&nbsp; Chapters 8<br>
+&nbsp;&nbsp; <br>
+Purpose:&nbsp; Re-enforce the relationship between memory allocation
+and arrays&nbsp; and records, parameter passing,&nbsp; controlling the
+flow of execution in C
+and Java, and garbage collecting.<br>
+</p>
+<ol>
+  <li>Given the following declaration in Ada : <br>
+  </li>
+  <ol>
+TYPE Array_type IS ARRAY(3..6) OF Integer;<br>
+TYPE CODE is record <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Level: CHARACTER; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Salary : Integer; <br>
+&nbsp;&nbsp;&nbsp;&nbsp; Status : CHARACTER; <br>
+end record; <br>
+TYPE Code_Array IS ARRAY(11..14) OF CODE; <br>
+arr : Array_type; <br>
+codeArr : Code_Array;<br>
+    <br>
+Assume an INTEGER requires 4 bytes of storage and CHARACTER
+requires 1 byte of storage what is the effective address (using bytes
+as
+the addressable units) of variables below
+(show your calculations) You should assume that the ba (base address)
+for
+arr is 30 and the base address for codeArr is 2500.<br>
+A. Effective address for arr(4)&nbsp; is&nbsp;
+__________________ <br>
+B. Effective address for codeArr(12) is&nbsp;
+__________________ <br>
+C. Effective address for codeArr(12).Status is&nbsp;
+__________________<br>
+    <br>
+    <br>
+  </ol>
+  <li>Given the following declaration in Ada :</li>
+  <ol>
+TYPE Array_type IS ARRAY(1..4,10..14) OF Integer;<br>
+TYPE CODE is record<br>
+    <ol>
+Status : CHARACTER;<br>
+Salary : Integer;<br>
+    </ol>
+end record;<br>
+TYPE Code_Array IS ARRAY(1..4,100..105) OF CODE;<br>
+    <ol>
+arr : Array_type;<br>
+    </ol>
+codeArr : Code_Array;<br>
+    <br>
+If&nbsp;&nbsp; INTEGER requires 4 bytes of storage and CHARACTER
+requires 1 byte of storage what is the effective address (using bytes
+as
+the addressable units) of variables below
+(show your calculations) You should assume that the ba (base address)
+for
+arr is 6000 and the base address for codeArr is 100.<br>
+    <br>
+    <ol style="list-style-type: upper-alpha;">
+      <li>Using row major the effective address for arr(2,10)&nbsp;
+is&nbsp; __________________</li>
+      <li>Using column major the effective address for arr(2,10)&nbsp;
+is&nbsp; __________________</li>
+      <li>Using row major the effective address for codeArr(2,101)
+is&nbsp; __________________</li>
+      <li>Using row major the effective address for
+codeArr(2.101).Salary
+is&nbsp;
+__________________</li>
+      <dl>
+        <dd><br>
+        </dd>
+      </dl>
+    </ol>
+  </ol>
+  <li>What is the purpose of using the keyword "inline" in C++?&nbsp; </li>
+  <li>page 347 problem 8.5</li>
+  <li>page 347 exercise 8.8</li>
+  <li>The calling routine and called routine have different
+responsibilities in allocating, reading and writing the different
+fields of the activation record. The times are described below:<br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>at the beginning in the calling routine (just before the call)<br>
+    </li>
+    <li>during the execution of called routine<br>
+    </li>
+    <li>at the end in&nbsp; the calling routine (just after the return
+from the called routine)<br>
+    </li>
+  </ol>
+  <dl>
+    <dd>Use the activation record for <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2ar2.gif">non-nested
+functions</a> and the 3 "times" above to complete the following
+table.&nbsp;&nbsp;<span style="font-weight: bold;"> </span><br
+ style="font-weight: bold;">
+    </dd>
+    <dd>
+      <table style="text-align: left; width: 80%;" border="1"
+ cellspacing="2" cellpadding="2">
+        <tbody>
+          <tr>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">AR
+-
+field<br>
+            </td>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">Memory
+allocated<br>
+            </td>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">value
+written<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;"><span
+ style="font-weight: bold;">value
+read</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">return
+value<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">A<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">B<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">C<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">arguments<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">return
+address<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">control
+link<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">local
+variables<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+    </dd>
+    <li>Run the following C program and explain the resulting output:<br>
+      <span style="font-family: monospace;">void q(int z) {</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; { int x;</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp;
+&nbsp;printf("%d\n",x);</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; x = 3;</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp; &nbsp; }</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp; &nbsp; { int y;</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp; &nbsp; &nbsp;
+&nbsp;printf(%d\n",y);</span><br style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp; &nbsp; }</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">}</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">int main ( ) {</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp; &nbsp; q(99);</span><br
+ style="font-family: monospace;">
+}<br>
+      <br>
+      <br>
+    </li>
+    <li> Suppose this C++ code</li>
+    <dd><span style="font-family: monospace;">const int k = ???</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">int * i = 0;</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">struct A { int x [k]; };</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">A* a = 0;</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">printf( "%d&nbsp; %d&nbsp;
+%d %d&nbsp; %d&nbsp; %d &nbsp;", <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i+ 1, i +k, k, a+k,
+&amp;(a[10]),<span style="color: rgb(204, 0, 0);"> (&amp;(a[10]) -(a+1))</span>&nbsp;
+);</span><br style="font-family: monospace;">
+      <br>
+first outputs<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">&nbsp;4 &nbsp;12</span><br>
+What are its remaining outputs?</dd>
+    <li>Assume that arrays are indexed from 0 in the following
+program:</li>
+    <dl>
+      <dd><span style="font-family: monospace;">int j = 3;</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">char [] A = "abcdef";</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">void p ( int x, char y) {</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp; &nbsp;x = x+2;</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp; &nbsp;y = "*";</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp; &nbsp;j = 7;</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">}</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">void main() {</span><br
+ style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp; &nbsp;p ( j, A[j]
+);</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">&nbsp; &nbsp;print j;
+print A;</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">}</span><br>
+      </dd>
+    </dl>
+    <dd>What is the program's output if the parameter-argument binding
+mechanism being used in function <span style="font-weight: bold;"><span
+ style="font-style: italic;">p</span></span> is</dd>
+    <dd><br>
+    </dd>
+    <ol style="list-style-type: upper-alpha;">
+      <li>by reference? &nbsp;<br>
+      </li>
+      <li>by name?<br>
+      </li>
+      <li>by value result?<br>
+      </li>
+      <li>by value?<br>
+      </li>
+    </ol>
+    <br>
+    <br>
+    <li>What is the purpose of the "Tombstone"
+mechanism?&nbsp;&nbsp;
+What are the pluses and minuses of using it?</li>
+    <li> Nested function runtime problem</li>
+    <dl>
+      <dd><br>
+      </dd>
+For the following C3 program fragment, show the snapshot of
+the run-time stack at&nbsp;each critical stage until the code returns
+to main...&nbsp;In particular, show the static and dynamic links
+before each call.&nbsp;( Follow the presentation of run-times
+environment stack in class notes.)
+    </dl>
+    <ol>
+      <br>
+      <font color="#cc0000"><b><tt>int&nbsp; g = 4;a = 185, j = 2, k =
+1, i
+= 3;<br>
+int beta(int x ){<br>
+&nbsp; int f = 5;</tt></b></font><br>
+      <b><tt><font color="#990000">&nbsp;<font color="#009900"> int
+alpha(int
+v )</font></font>{</tt></b>
+    </ol>
+  </dl>
+</ol>
+<blockquote>
+  <blockquote>
+    <blockquote><tt>int j = 4;</tt><br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>//++ </b></tt><b>
+&lt;&lt;&lt;&lt;&lt;&lt; Show stack here</b><br>
+      <b>. . . .</b><br>
+      <tt>j = k + v;</tt><br>
+      <tt>x = 100;</tt><br>
+      <tt>beta(33);</tt><br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+// +++ </b></tt><b>&lt;&lt;&lt;&lt;&lt;&lt; Show stack here</b><br>
+      <tt>....</tt><br>
+      <tt>return j;</tt></blockquote>
+    <tt>&nbsp; }; <font color="#009900">/<b>/ END of alpha code</b></font></tt><br>
+    <br>
+    <font color="#990000"><b><tt>// Beginning of beta code</tt></b></font></blockquote>
+</blockquote>
+<ol>
+  <ol>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b><tt> //</tt>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&nbsp;
+show the stack here after call to beta</b><br>
+&nbsp;&nbsp; <tt>....</tt><br>
+    <tt><font color="#000000">&nbsp; if (j&gt;3) return 22</font><font
+ color="#000000"> ;&nbsp; //Termination</font></tt><br>
+    <tt>&nbsp; j = i + x;</tt><br>
+    <tt>&nbsp; alpha(f);</tt><br>
+    <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt>
+//&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; after returned from alpha</b><br>
+    <tt>&nbsp; ....</tt><br>
+    <tt>&nbsp; return 88;</tt>
+  </ol>
+</ol>
+<div style="margin-left: 40px;"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+};&nbsp;&nbsp;<font color="#cc0000"><b>
+// END of beta code</b></font></tt> <tt>&nbsp;&nbsp;&nbsp; </tt><br>
+</div>
+<tt>&nbsp;&nbsp;&nbsp; <br>
+</tt>
+<div style="margin-left: 120px;"><tt>int main(<b
+ style="font-family: monospace;">void</b><span
+ style="font-family: monospace;">
+){</span></tt></div>
+<ol>
+  <ol>
+    <ol>
+      <tt style="font-family: monospace;">int&nbsp; v = 9;</tt><span
+ style="font-family: monospace;">.... </span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">&nbsp;// ** stack
+before beta is called</span><br>
+      <span style="font-family: monospace;">beta(9)</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">;// *** stack after beta is
+returned&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</span><br>
+      <span style="font-family: monospace;">return v;</span><br>
+    </ol>
+}<br>
+  </ol>
+</ol>
+<ol>
+  <ol>
+  </ol>
+</ol>
+<tt><br>
+change after assigning... <br>
+</tt><br>
+<ol>
+  <table bgcolor="#fff8f0" border="1">
+    <tbody>
+      <tr bgcolor="#ffffc4" align="center">
+        <td>
+        <center>Description</center>
+        </td>
+        <td>D addr</td>
+        <td>
+        <center>main **</center>
+        </td>
+        <td>
+        <center>beta 1</center>
+        </td>
+        <td>alpha1 ++</td>
+        <td>
+        <center>beta 2</center>
+        </td>
+        <td>
+        <center>alpha1 +++</center>
+        </td>
+        <td>
+        <center>beta1</center>
+        </td>
+        <td>
+        <center>main ***</center>
+        </td>
+      </tr>
+      <tr>
+        <td><br>
+        </td>
+        <td><br>
+        </td>
+        <td bgcolor="#d7ffd7">Just</td>
+        <td bgcolor="#d7ffd7">after</td>
+        <td bgcolor="#d7ffd7">calling</td>
+        <td bgcolor="#d7ffd7">function</td>
+        <td bgcolor="#eef0f9">Just&nbsp;</td>
+        <td bgcolor="#eef0f9">after&nbsp;</td>
+        <td bgcolor="#eef0f9">return to function</td>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;">&nbsp; global <span
+ style="font-style: italic;">g</span><br>
+        </td>
+        <td style="vertical-align: top; text-align: center;">0<br>
+        </td>
+        <td style="vertical-align: top; text-align: center;">4<br>
+        </td>
+        <td style="vertical-align: top;"><br>
+        </td>
+        <td style="vertical-align: top;"><br>
+        </td>
+        <td style="vertical-align: top;"><br>
+        </td>
+        <td style="vertical-align: top;"><br>
+        </td>
+        <td style="vertical-align: top;"><br>
+        </td>
+        <td style="vertical-align: top;"><br>
+        </td>
+      </tr>
+      <tr bgcolor="#ffe4ca">
+        <td>
+        <center>global <i>a</i></center>
+        </td>
+        <td>
+        <center>1</center>
+        </td>
+        <td>
+        <center>185<br>
+        </center>
+        <br>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <center>global&nbsp; <b><i>j</i></b></center>
+        </td>
+        <td>
+        <center>2</center>
+        </td>
+        <td>
+        <center>2</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <center>global&nbsp; <b><i>k</i></b></center>
+        </td>
+        <td>
+        <center>3</center>
+        </td>
+        <td>
+        <center>1</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        <center>global <b><i>i</i></b></center>
+        </td>
+        <td>
+        <center>4</center>
+        </td>
+        <td>
+        <center>3</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+        <td>
+        <center>&nbsp;</center>
+        </td>
+      </tr>
+      <tr bgcolor="#eff0ee">
+        <td>
+        <center>return value</center>
+        </td>
+        <td>
+        <center>5</center>
+        </td>
+        <td>
+        <center>&nbsp;?</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr bgcolor="#eff0ee">
+        <td>
+        <center>&nbsp;main <b><i>v</i></b></center>
+        </td>
+        <td>
+        <center>6</center>
+        </td>
+        <td>
+        <center>&nbsp;9</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>7</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>8</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>9</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>10</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>11</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>12</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>13</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>14</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>15</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>16</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>17</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>18</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>19</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>20</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>21</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>22</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>23</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+        <center>24</center>
+        </td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td valign="top"><br>
+        </td>
+        <td align="center" valign="top">25<br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top"><br>
+        </td>
+        <td align="center" valign="top">26<br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td align="center" valign="top">27<br>
+        </td>
+        <td valign="top">&nbsp; <br>
+        </td>
+        <td valign="top">&nbsp; <br>
+        </td>
+        <td valign="top">&nbsp; <br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp; <br>
+        </td>
+        <td align="center" valign="top">28<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top"><br>
+        </td>
+        <td align="center" valign="top">29<br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+        <td valign="top"><br>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td align="center" valign="top">30<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp; <br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+        <td valign="top">&nbsp;<br>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#000000" valign="top"><font color="#ffffcc"><b>Registers</b></font><br>
+        </td>
+        <td bgcolor="#000000" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeee" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeee" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeee" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeee" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeee" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeee" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeee" valign="top"><br>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#edeeef" valign="top"><b>Frame Pt</b><br>
+        </td>
+        <td bgcolor="#666666" valign="top"><br>
+        </td>
+        <td align="center" bgcolor="#edeeef" valign="top">5<br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#edeeef" valign="top"><b>Stack Pt</b><br>
+        </td>
+        <td bgcolor="#666666" valign="top"><br>
+        </td>
+        <td align="center" bgcolor="#edeeef" valign="top">7<br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#edeeef" valign="top"><b>Instuction<br>
+Pt</b><br>
+        </td>
+        <td bgcolor="#666666" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"><br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"> <br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"> <br>
+        </td>
+        <td bgcolor="#edeeef" valign="top"> <br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ol>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>

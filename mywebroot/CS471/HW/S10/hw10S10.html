@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+
+
+
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+  
+  <meta name="Author" content="E Head">
+
+
+  
+  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+
+
+  
+  <meta name="Description" content="Introduction"><title>Homework 10 - Haskell 1</title>
+
+  
+
+
+  
+  
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8"></head><body style="background-color: rgb(255, 253, 255); color: rgb(0, 0, 0);" alink="#cc0000" link="#ff0000" vlink="#990000">
+<h4 style="text-align: center;">Assignment 10</h4>
+
+
+
+<h4>Due: Tuesday Apr 20 @ midnight<br>
+</h4><b> </b>
+
+
+<ul>
+
+
+</ul>
+
+
+<ol>
+
+
+</ol>
+
+
+<h4>Programming Assignment:</h4>
+
+
+
+<ul>
+
+
+  <li>
+    
+    
+    <h4>&nbsp;<a href="Haskell1S10.lhs">Haskell1S10.lhs
+    </a>&nbsp;This is an individual effort. &nbsp;<br>
+ </h4>
+
+
+
+  </li>
+
+
+</ul>
+
+
+<h2> Written assignment:&nbsp;&nbsp;</h2>
+
+
+
+<ol>
+
+
+</ol>
+
+
+<ol>
+
+
+</ol>
+
+
+<ol>
+
+
+  <li>Given the following functions:<br style="font-family: monospace;">
+
+
+    <big style="font-weight: bold;"><big><span style="font-family: monospace;">&nbsp; f(x)
+= </span><span style="font-family: monospace;">5*x
++ 3</span><br style="font-family: monospace;">
+    <span style="font-family: monospace;">&nbsp; g(x)
+=&nbsp;</span><span style="font-family: monospace;">1
+/ (x+1)</span></big></big>
+
+
+    </li>
+
+
+  
+  <dl>
+
+
+    <dd><br>
+</dd>
+
+
+  
+  </dl>
+
+
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+    <li>Let <span style="font-style: italic;">h</span>
+be defined to be (<i>f </i><font size="-2">o </font><i>g</i>)
+( i.e. <span style="font-style: italic;">h</span>
+=&nbsp; <i>f </i><font size="-2">o </font><i>g
+      </i>)<i> .&nbsp;</i> What is the result of <span style="font-style: italic;">h</span>(x)<span style="font-style: italic;"></span><span style="font-style: italic;"></span> ?&nbsp; Use
+the definition of <span style="font-style: italic;">f and
+g </span>above. &nbsp;Remember&nbsp; (<i>f </i><font size="-2">o </font><i>g</i>)<i>&nbsp;</i><i>x</i>
+is defined to be <i>f</i> ( <i>g</i>(<i>x</i>)
+) ( i.e. (<i>f </i><font size="-2">o </font><i>g</i>)<i>&nbsp;</i><i>x
+= f&nbsp;</i> ( <i>g</i>(<i>x</i>))&nbsp;
+). </li>
+
+
+    
+    <ol type="a">
+
+
+&nbsp;
+    
+    </ol>
+
+
+    <li>Let <span style="font-style: italic;">h</span>2
+be defined to be ( <i>g </i><font size="-2">o
+      </font><i>f</i> )?&nbsp;What is the result
+of <span style="font-style: italic;">h</span>2(x)<span style="font-style: italic;"></span><span style="font-style: italic;"></span> ?</li>
+
+
+    
+    <ol type="a">
+
+
+      <br>
+
+
+&nbsp;
+    
+    </ol>
+
+
+    <li> What is the value of&nbsp; <span style="font-style: italic;">h</span>(2
+)?</li>
+
+
+    
+    <ol type="a">
+
+
+      <br>
+
+
+&nbsp;
+    
+    </ol>
+
+
+    <li>What is the value of &nbsp;<span style="font-style: italic;">h</span>2<i> </i>(2
+) ?<br>
+
+
+      <br>
+
+
+    </li>
+
+
+  
+  </ol>
+
+
+  <li>" A common way to compute the square root is to use
+Newton's
+method of successive approximations. &nbsp; <a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">Newton's
+method says that whenever
+we have a guess <em>y</em> for the value of the square
+root of a
+number <em>x</em>, we can perform a simple manipulation to
+get a
+better guess (one closer to the actual square root) by averaging <em>y</em>
+with <em>x</em>/<em>y</em>. </a>&nbsp;<a href="http://mitpress.mit.edu/sicp/full-text/sicp/book/node12.html">
+For
+example, we can compute the square root of 2 as follows. Suppose our
+initial guess is 1:</a>
+    
+    <p>
+    
+    <table cellpadding="3">
+
+
+      <tbody>
+
+
+        <tr>
+
+
+          <td align="left">Guess</td>
+
+
+          <td align="left">Quotient</td>
+
+
+          <td align="left">Average</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1</td>
+
+
+          <td align="left">&nbsp;<img style="border: 0px solid ; width: 44px; height: 49px;" src="Img/img7.gif" alt="${\displaystyle \frac{2}{1} = 2}$" align="middle"></td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(2+1)}{2} = 1.5}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(2+1)}{2} = 1.5}$ --></comment> <img src="Img/img8.gif" alt="${\displaystyle
+\frac{(2+1)}{2} = 1.5}$" align="middle" border="0" height="53" width="96"></td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1.5</td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.5} = 1.3333}$ --></comment> <img src="Img/img9.gif" alt="${\displaystyle \frac{2}{1.5} = 1.3333}$" align="middle" border="0" height="49" width="93"></td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{(1.3333+1.5)}{2} = 1.4167}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$ --></comment> <img src="Img/img10.gif" alt="${\displaystyle
+\frac{(1.3333+1.5)}{2} = 1.4167}$" align="middle" border="0" height="53" width="169"></td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1.4167</td>
+
+
+          <td align="left"> <comment title=" MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ " xmlns="http://disruptive-innovations.com/zoo/nvu"><!-- MATH: ${\displaystyle \frac{2}{1.4167} = 1.4118}$ --></comment> <img src="Img/img11.gif" alt="${\displaystyle \frac{2}{1.4167} = 1.4118}$" align="middle" border="0" height="49" width="117"></td>
+
+
+          <td align="left">&nbsp;<img style="border: 0px solid ; width: 193px; height: 53px;" src="Img/img12.gif" alt="${\displaystyle" align="middle"></td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+          <td align="left">&nbsp;</td>
+
+
+        </tr>
+
+
+        <tr>
+
+
+          <td align="left">1.4142</td>
+
+
+          <td align="left">...</td>
+
+
+          <td align="left">...</td>
+
+
+        </tr>
+
+
+      
+      </tbody>
+    
+    </table>
+
+
+    </p>
+
+
+    
+    <p>Continuing this process, we obtain better and better
+approximations to
+the square root. " (From <span style="font-style: italic;">Structure
+and
+Interpretation of Computer Programs</span> by Abelson and
+Sussman).<br>
+
+
+Using&nbsp; a spreadsheet or calculator apply Newton's method to
+find
+the square root of 144 using an initial guess of
+1.&nbsp;&nbsp;&nbsp; How do
+you know when to stop?&nbsp; How many steps did it take you?<br>
+ </p>
+
+
+  </li>
+
+
+</ol>
+
+
+_____________________________________________________________________________________________<br>
+
+
+<br>
+
+
+
+</body></html>

@@ -1,0 +1,228 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Assignment 11 Programming Languages  --Haskell</title>
+</head>
+<body text="#000000" bgcolor="#FFFBF9" link="#660000" vlink="#660000" alink="#990000">
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+(Apr 16, 4pm)&nbsp; Done
+<h4>
+Assignment 11:&nbsp; Monday Apr 17&nbsp; (Test after break)</h4>
+Purpose:&nbsp; Continue recursive style of program and list comprehension
+introduce higher order functions.&nbsp; Reenforce ADT implemention in Haskell
+and polymorphic data types..
+<h3>
+Read:</h3>
+
+<blockquote>Ghezzi:Chapter 7 until 7.4.1
+<br>Thompson, <i>Haskell,<a href="http://www.cs.ukc.ac.uk/people/staff/sjt/craft2e/">The
+Craft of Functional Programming</a></i> Chapters 14, 15.1,15.2,16.7
+<br><a href="http://haskell.org/tutorial/">A Gentle Introduction to Haskell</a></blockquote>
+
+<h3>
+
+<hr SIZE=7 NOSHADE WIDTH="100%"><b>Programming Assignment:</b></h3>
+
+<ol START=3>
+<ol><b>Email your code to&nbsp;</b> <a href="mailto:cs471h@binghamton.edu">cs471h</a>
+. Turn in hardcopy.
+<br>You should use primitive recursion in these problems or just straight
+forward function application.
+<h4>
+There are TWO files for this assignment.&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/HW/TreeXXX.lhs">TreeXXX.lhs</a>
+for the programs about binary search tree.&nbsp; Rename your filename and
+module name to include your name.&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/HW/As11.lhs">file</a>&nbsp;
+is provided for your other code but you will need to rename the file following
+<a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">instructions.</a></h4>
+
+<blockquote>
+<blockquote><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/SimpleExample.lhs">Simple
+Sample of the Literal Style</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/ExampleL.lhs">Literal
+style must be used - more extensive</a>
+<br><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Sample
+Code from the Notes</a></blockquote>
+</blockquote>
+</ol>
+
+<hr SIZE=3 WIDTH="100%">
+<h4>
+<font color="#990000">DO NOT turn in this is for your own self. Some experiments
+for you to try in the interactive mode of Hugs:</font></h4>
+
+<ol TYPE=A>
+<li>
+<font color="#990000">What is the type of&nbsp;&nbsp;&nbsp; (+) 1 ?</font></li>
+
+<li>
+<font color="#990000">What will this reduce to or will it give an error</font></li>
+
+<br><font color="#990000">map (+) [1,3,4,5]</font>
+<br><font color="#990000">?&nbsp; (Check the type)&nbsp; (Turn off "use
+Show to display results)</font>
+<li>
+<font color="#990000">I have added reverseUntil to the </font><a href="http://bingweb.binghamton.edu/~head/CS471/CODE/Scripts/Notes1.lhs">Notes1.lhs.</a>
+What is the type of reverseUntil?</li>
+
+<li>
+What does</li>
+
+<br>&nbsp;map (flip (-) 3 ) [3, 6, 9]
+<br>do and what is its type.</ol>
+
+<hr SIZE=0 NOSHADE WIDTH="100%">
+<h4>
+Use only primitive recursion and function application for the problems
+below.</h4>
+
+<ol>
+<li>
+The quicksort presented in the notes uses list comprehension to partition
+the list.&nbsp; This way of partitioning the list requires traversing <font color="#CC0000">(i.e.
+passing over)</font> the list twice.</li>
+
+<ol START=3><b><tt>quicksort&nbsp; []&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp; []</tt></b>
+<br><b><tt>quicksort (x:xs)&nbsp; =&nbsp; quicksort [y | y &lt;- xs, y&lt;x
+]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++ [x]</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+++ quicksort [y | y &lt;- xs, y>=x]</tt></b></ol>
+Write another version of quicksort2 that uses a local function of partitions
+which only traverse the list once.
+<br><b><tt>partition :: (Ord a) =><font color="#CC0000"> </font>[a] ->
+( [a], [a] )</tt></b>
+<ol>
+<ol><font color="#FF0000">OR depending how you program it</font></ol>
+</ol>
+<b><tt><font color="#CC0000">partition :: (Ord a) => [a] -> ( [a], [a]
+)</font></tt></b>
+<p>Rewrite quicksort to use your function.
+<br>&nbsp;
+<li>
+Using only primitive recursion, write a script average1 that takes the
+average of list of Double.</li>
+
+<br><b><tt>average1 :: [Double] -> Double</tt></b>
+<br><b><tt>...>average1 [2.0,4,3]</tt></b>
+<br><b><tt>3.0</tt></b></ol>
+
+<p><br>
+<hr SIZE=7 NOSHADE WIDTH="100%">
+<h4>
+Use list comprehension for the following problems.</h4>
+
+<ol START=3>
+<li>
+Write a script called, average2, employing list comprehension.&nbsp; It
+should create running average list of Double. Do NOT use average1.</li>
+
+<ol START=3><tt>...>average2 [2.0,4.0,3.0,15.0]</tt>
+<br><tt>[2.0,3.0,3.0,6.0]</tt>
+<br><tt>...> average [1,2,3,4,5]</tt>
+<br><tt>[1.0,1.5,2.0,2.5,3.0]</tt>
+<br><tt>(162 reductions, 286 cells)</tt></ol>
+Hint: Look at the fibSeq and you may have your list comprehension in a
+local function.&nbsp; You may want to look at the different versions of
+zip that are in the Prelude.hs.</ol>
+</ol>
+
+<ul START=2>
+<hr SIZE=8 NOSHADE WIDTH="100%">
+<h4>
+Use HOF for the following problems.</h4>
+
+<ol START=4>
+<li>
+Use the HOF, map, to square the values of a list.</li>
+
+<br><tt>sqLst [1,2,3]</tt>
+<br><tt>[1,4,9]</tt>
+<br>&nbsp;
+<li>
+Define <tt>lengthBefore :: (a -> Bool)->[a] -> Int</tt> which counts the
+number of elements in its argument that precedes before the "filter" becomes
+true.&nbsp; Use HOF (including function composition).&nbsp; (This can be
+done with one HOF and function composition and 2 other functions) <font color="#CC0000">(Hint:
+think about the type of takeWhile )</font></li>
+
+<ol START=4><tt><font color="#CC0000">...> :t lengthBefore</font></tt>
+<br><tt><font color="#CC0000">lengthBefore :: (a -> Bool) -> [a] -> Int</font></tt>
+<br><tt>...> lengthBefore (<font color="#CC0000">'a'</font>==) "123abc"</tt>
+<br><tt>3</tt>
+<br><tt>...> lenghtBefore (<font color="#990000">'a'</font>==) "123"</tt>
+<br><tt>3</tt>
+<br><tt>...> lengthBefore (==2) [1,5,6,7,4,2,3]</tt>
+<br><tt>5</tt>
+<br><tt>...> lengthBefore (/=5) [5,5,5,7,4,2,3]</tt>
+<br><tt>3</tt></ol>
+
+<li>
+Using HOF, write a script, average3, that returns the average of a list.&nbsp;
+Becareful of your types.&nbsp; Do not use average1 or average2.</li>
+
+<br>&nbsp;
+<li>
+After you complete programming the binary search tree module write a script
+treeAverage that computes the average of the values in a tree.&nbsp; You
+should use the HOF foldTree that you wrote.</li>
+</ol>
+
+<h4>
+
+<hr SIZE=8 NOSHADE WIDTH="100%">Binary Search Tree Problem</h4>
+Use&nbsp; <a href="http://bingweb.binghamton.edu/~head/CS471/HW/TreeXXX.lhs">TreeXXX.lhs</a>
+to write the following scripts.&nbsp; TreeXXX.lhs builds a polymorphic
+tree data type.&nbsp; TreeXXX.lhs also illustrates how to build an abstract
+data type in Haskell.&nbsp; (See top of file about renaming)&nbsp; <font color="#FF0000">Add
+the follow scripts to this file.</font>
+<br>&nbsp;
+<ol START=8>
+<li>
+Define a function, inorder :: Ord a => Tree a -> [a], that ereates a list
+of the items as you traverse the tree inorder.</li>
+
+<br>&nbsp;
+<li>
+Define a function, preorder :: Ord a => Tree a -> [a], that creates a list
+of the items as you traverse the tree preorder.</li>
+
+<br>&nbsp;
+<li>
+Define a function postorder :: Ord a => Tree a -> [a] that creates a list
+of the items as you traverse the tree postorder.</li>
+
+<br>&nbsp;
+<li>
+Define a function isBST :: Ord a => Bool that returns True if the tree
+is a BST and False if it is not.&nbsp;<font color="#CC0000"> (You may use
+any algorithm you choose and any programming style.)</font></li>
+
+<br>&nbsp;
+<li>
+Define a function count :: Tree a -> float, it counts the number of nodes
+in the tree.</li>
+
+<br>&nbsp;
+<li>
+Define an higher-order function foldTree :: (a -> a -> a) -> Tree a ->
+a</li>
+
+<br>For example:
+<br>&nbsp;&nbsp;&nbsp; <b><tt>Tree> foldTree (-) t1</tt></b>
+<br><b><tt>&nbsp; 4.0</tt></b>
+<br><b><tt>&nbsp; Tree> foldTree (*) t2</tt></b>
+<br><b><tt>&nbsp; 330.0</tt></b>
+<br><b><tt>&nbsp; Tree>foldTree max t1</tt></b>
+<br><b><tt>&nbsp; 9.0</tt></b>
+<br><b><tt>&nbsp; Tree>foldTree max t2</tt></b>
+<br><b><tt>&nbsp; 11.0</tt></b>
+<br><b><tt>&nbsp; Tree>foldTree max (join t1 t2)</tt></b>
+<br><b><tt>&nbsp; 11.0</tt></b></ol>
+</ul>
+
+</body>
+</html>

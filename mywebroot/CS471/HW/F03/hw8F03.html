@@ -1,0 +1,872 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+  <meta content="text/html; charset=iso-8859-1"
+ http-equiv="Content-Type">
+  <meta content="E Head" name="Author">
+  <meta content="Mozilla/4.73 [en] (Win98; U) [Netscape]"
+ name="GENERATOR">
+  <meta content="Introduction" name="Description">
+  <title>HW 8 - Runtime</title>
+</head>
+<body alink="#cc0000" vlink="#990000" link="#ff0000"
+ style="color: rgb(0, 0, 0); background-color: rgb(250, 250, 250);">
+Due Friday. Oct 30, 2003 -- Midnight<br>
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/471hwIndex.html">Back</a><br>
+<div align="left">
+<h4>Assignment 8<br>
+</h4>
+</div>
+<p>Read: chapter 5,6-6.7, 7.1 -7.5,8,<br>
+<br>
+The purpose of this assignment is to reenforce the
+function(subroutine) call stack, scoping, heap, namespaces, type
+compatibility, nested functions and inner classes.<br>
+</p>
+<p> Written assignment:</p>
+<ol>
+  <ol>
+    <ol type="A">
+    </ol>
+  </ol>
+</ol>
+<ol>
+  <li>Section 8.4.2 discusses stack-based runtime environments.&nbsp;
+The author uses the terms/notation control link, ep and access
+link.&nbsp; What do these terms/notations correspond to in to the
+terms/notation in my <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/4rS01.html">notes</a>.</li>
+  <li>In Java instance methods have access to private static variables
+of the Class that is used to instantiate the object.&nbsp;&nbsp; How do
+you think this is implemented at runtime?&nbsp; Remember all memory for
+objects are allocated on the heap.<br>
+  </li>
+  <li>The Java language allows <a
+ href="http://java.sun.com/docs/books/jls/second_edition/html/classes.doc.html#247506">inner
+classes</a> to be defined.&nbsp; If you are unfamiliar with inner
+classes see the <a
+ href="http://java.sun.com/docs/books/tutorial/java/javaOO/innerclasses.html">Java
+Tutorial</a>.
+In a lot of ways inner classes are like nested functions, both can not
+be created or used before the outer object/function is created.&nbsp;
+Extending/modifying the idea used during the run time of nested
+functions,&nbsp; how can inner objects be implemented?&nbsp; Remember
+that the memory for objects are allocated on the heap in Java.<br>
+  </li>
+  <li>page 253 exercise 6.18</li>
+  <li>page 250 exercise 6.4</li>
+  <li>page 253 exercise 6.13 <br>
+  </li>
+  <li>8.27 page 353<br>
+  </li>
+  <li>8.20 (i.e. give an example) page 352&nbsp;</li>
+  <li>8.22 (Fortran 77 or earlier). page 352<br>
+  </li>
+  <li>8.16 (C NOT C++) page 350. <br>
+  </li>
+  <li>The calling routine and called routine have different
+responsibilities in allocating, reading and writing the different
+fields of the activation record. The times are described below:<br>
+  </li>
+  <ol style="list-style-type: upper-alpha;">
+    <li>at the beginning in the calling routine (just before the call)<br>
+    </li>
+    <li>during the execution of called routine<br>
+    </li>
+    <li>at the end in&nbsp; the calling routine (just after the return
+from the called routine)<br>
+    </li>
+  </ol>
+  <dl>
+    <dd>Use the activation record for <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2ar2.gif">non-nested
+functions</a> and the 3 "times" above to complete the following
+table.&nbsp;&nbsp;<span style="font-weight: bold;"> </span><br
+ style="font-weight: bold;">
+    </dd>
+    <dd>
+      <table style="text-align: left; width: 80%;" border="1"
+ cellspacing="2" cellpadding="2">
+        <tbody>
+          <tr>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">AR
+-
+field<br>
+            </td>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">Memory
+allocated<br>
+            </td>
+            <td
+ style="vertical-align: top; text-align: center; font-weight: bold;">value
+written<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;"><span
+ style="font-weight: bold;">value
+read</span><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">return
+value<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">A<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">B<br>
+            </td>
+            <td style="vertical-align: top; text-align: center;">C<br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">arguments<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">return
+address<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">control
+link<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; text-align: center;">local
+variables<br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+            <td style="vertical-align: top;"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+    </dd>
+  </dl>
+  <dd><br>
+  </dd>
+  <li>Nested function runtime problem</li>
+  <dl>
+    <dd><br>
+    </dd>
+For the following C3 program fragment, show the snapshot of
+the run-time stack at&nbsp;each critical stage until the code returns
+to main...&nbsp;In particular, show the static and dynamic links
+before each call.&nbsp;( Follow the presentation of run-times
+environment stack in class notes.)
+  </dl>
+  <ol>
+    <br>
+    <font color="#cc0000"><b><tt>int&nbsp; a = 99, j = 2, k = 1, i
+= 3;<br>
+int beta(int x ){<br>
+&nbsp; int f = 5;</tt></b></font><br>
+    <b><tt><font color="#990000">&nbsp;<font color="#009900"> int
+alpha(int
+v )</font></font>{</tt></b>
+  </ol>
+</ol>
+<blockquote>
+  <blockquote>
+    <blockquote><tt>int j = 4;</tt><br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+//++ </b></tt><b> &lt;&lt;&lt;&lt;&lt;&lt; Show stack here</b><br>
+      <b>. . . .</b><br>
+      <tt>j = k + v;</tt><br>
+      <tt>x = 100;</tt><br>
+      <tt>beta(9 );</tt><br>
+      <tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+// +++ </b></tt><b>&lt;&lt;&lt;&lt;&lt;&lt; Show stack here</b><br>
+      <tt>....</tt><br>
+      <tt>return j;</tt></blockquote>
+    <tt>&nbsp; }; <font color="#009900">/<b>/ END of alpha code</b></font></tt><br>
+    <br>
+    <font color="#990000"><b><tt>// Beginning of beta code</tt></b></font></blockquote>
+</blockquote>
+<ol>
+  <ol>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <b><tt> //</tt>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&nbsp;
+show the stack here after call to beta</b><br>
+    <tt>....</tt><br>
+    <tt><font color="#000000">if (j&gt;3) return 55</font><font
+ color="#000000"> ;&nbsp; //Termination</font></tt><br>
+    <tt>j = i + x;</tt><br>
+    <tt>alpha(f);</tt><br>
+    <b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </tt>
+//&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; after returned from alpha</b><br>
+    <tt>....</tt><br>
+    <tt>return 88;</tt>
+  </ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; };&nbsp;&nbsp;<font color="#cc0000"><b>
+// END of beta code</b></font></tt> <tt>&nbsp;&nbsp;&nbsp; int main(<b>void</b>
+){</tt>
+<ol>
+  <ol>
+    <tt>int&nbsp; v = 13;</tt>
+  </ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....&nbsp; <b> // ** </b></tt><b>stack
+before beta is called</b><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; beta(9);</tt><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>
+// *** </b></tt><b>stack after beta is returned</b><br>
+<tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ....</tt>
+<ol>
+  <ol>
+    <tt>return v;</tt>
+  </ol>
+</ol>
+<tt>&nbsp;&nbsp;&nbsp; }<br>
+</tt><br>
+<table bgcolor="#fff8f0" border="1">
+  <tbody>
+    <tr bgcolor="#ffffc4" align="center">
+      <td>
+      <center>Description</center>
+      </td>
+      <td>D addr</td>
+      <td>
+      <center>main **</center>
+      </td>
+      <td>
+      <center>beta 1</center>
+      </td>
+      <td>alpha1 ++</td>
+      <td>
+      <center>beta 2</center>
+      </td>
+      <td>
+      <center>alpha1 +++</center>
+      </td>
+      <td>
+      <center>beta1</center>
+      </td>
+      <td>
+      <center>main ***</center>
+      </td>
+    </tr>
+    <tr>
+      <td><br>
+      </td>
+      <td><br>
+      </td>
+      <td bgcolor="#d7ffd7">Just</td>
+      <td bgcolor="#d7ffd7">after</td>
+      <td bgcolor="#d7ffd7">calling</td>
+      <td bgcolor="#d7ffd7">function</td>
+      <td bgcolor="#eef0f9">Just&nbsp;</td>
+      <td bgcolor="#eef0f9">after&nbsp;</td>
+      <td bgcolor="#eef0f9">return to function</td>
+    </tr>
+    <tr bgcolor="#ffe4ca">
+      <td>
+      <center>global <i>a</i></center>
+      </td>
+      <td>
+      <center>1</center>
+      </td>
+      <td>
+      <center>99<br>
+      </center>
+      <br>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>global&nbsp; <b><i>j</i></b></center>
+      </td>
+      <td>
+      <center>2</center>
+      </td>
+      <td>
+      <center>2</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>global&nbsp; <b><i>k</i></b></center>
+      </td>
+      <td>
+      <center>3</center>
+      </td>
+      <td>
+      <center>1</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <center>global <b><i>i</i></b></center>
+      </td>
+      <td>
+      <center>4</center>
+      </td>
+      <td>
+      <center>3</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+      <td>
+      <center>&nbsp;</center>
+      </td>
+    </tr>
+    <tr bgcolor="#eff0ee">
+      <td>
+      <center>return value</center>
+      </td>
+      <td>
+      <center>5</center>
+      </td>
+      <td>
+      <center>&nbsp;?</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr bgcolor="#eff0ee">
+      <td>
+      <center>&nbsp;main <b><i>v</i></b></center>
+      </td>
+      <td>
+      <center>6</center>
+      </td>
+      <td>
+      <center>&nbsp;13</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>7</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>8</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>9</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>10</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>11</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>12</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>13</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>14</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>15</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>16</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>17</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>18</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>19</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>20</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>21</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>22</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>23</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+      <center>24</center>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td align="center" valign="top">25<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td align="center" valign="top">26<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td align="center" valign="top">27<br>
+      </td>
+      <td valign="top">&nbsp; <br>
+      </td>
+      <td valign="top">&nbsp; <br>
+      </td>
+      <td valign="top">&nbsp; <br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">&nbsp; <br>
+      </td>
+      <td align="center" valign="top">28<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><br>
+      </td>
+      <td align="center" valign="top">29<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+      <td valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td align="center" valign="top">30<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp; <br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+      <td valign="top">&nbsp;<br>
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#000000" valign="top"><font color="#ffffcc"><b>Registers</b></font><br>
+      </td>
+      <td bgcolor="#000000" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeee" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeee" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeee" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeee" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeee" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeee" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeee" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#edeeef" valign="top"><b>Frame Pt</b><br>
+      </td>
+      <td bgcolor="#666666" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#edeeef" valign="top">0<br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#edeeef" valign="top"><b>Stack Pt</b><br>
+      </td>
+      <td bgcolor="#666666" valign="top"><br>
+      </td>
+      <td align="center" bgcolor="#edeeef" valign="top">7<br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+    </tr>
+    <tr>
+      <td bgcolor="#edeeef" valign="top"><b>Instuction<br>
+Pt</b><br>
+      </td>
+      <td bgcolor="#666666" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+      <td bgcolor="#edeeef" valign="top"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ol>
+  <dl>
+    <dd><br>
+    </dd>
+  </dl>
+</ol>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+
+
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+  <meta name="Author" content="Eileen Head" /><title>Object Oriented Languages -Chapter 9</title></head><body>
+
+
+<div style="text-align: center;"><h3>Object Oriented Languages: Fall 2009</h3></div><ul><li>3 key factors</li><ul><li>Encapsulation&nbsp;</li><li>Inheritance</li><li>Dynamic method binding</li></ul><li>Encapsulation and Inheritance</li><ul><li>visibility rules</li><li>public and private parts of an object are part of the declaration/definition</li><li>Why do private fields need to be in the declaration?</li></ul></ul>C++ Example: <br /><ul><li>public, protected and private</li><li><span style="font-style: italic;" />All members (fields and methods) of a class are <i>private</i> by default 
+(no code outside the class can reference them), whereas
+fields of a struct are <i>public</i>, meaning that anyone
+can use them.</li>
+  <ul>
+    <li>C++:: derived class can restrict the visiability of of the base class</li>
+    <li>Java, C# can NOT.&nbsp; Use composition to get the simular effect.<br />
+    </li>
+  </ul>
+<li><span style="font-family: monospace;">class circle : public shape { ...</span><br />anybody can convert (assign) a circle* into a shape*</li><li><span style="font-family: monospace;">class circle : protected shape { ...</span><br />only members and friends of circle or its derived classes can convert (assign) a circle* into a shape*</li><li><span style="font-family: monospace;">class circle : private shape { ...</span><br />only members and friends of circle can convert (assign) a circle* into a shape*</li></ul>A few C++ features:<br /><ul><li>Constructors: &nbsp;every object has to be initialized before it is used.</li><ul><li>&nbsp;C++ uses the derived class header to specify the base class constructor arguments:<br /><br /><span style="font-family: monospace;">foo::foo (args0) : member1 (args1), member2 (args2) { ...<br />
+&nbsp;&nbsp;&nbsp;&nbsp; </span><br />args1 and args2 need to be specified in terms of args0<br />
+      <br />
+</li><li>Java: construct code may have an initial line with a call to <span style="font-style: italic;">super<br />
+      <br />
+ </span></li></ul><li>initialization v. assignment<br /><span style="font-family: monospace; font-weight: bold;">foo::operator=(&amp;foo) vs. foo::foo(foo&amp;) (</span><span style="font-style: italic; font-family: monospace; font-weight: bold;">copy constructor</span><span style="font-family: monospace; font-weight: bold;">)</span><br style="font-family: monospace;" /><span style="font-family: monospace;"><br />
+    </span>
+    <div style="margin-left: 40px;"><span style="font-family: monospace;">foo x; &nbsp; &nbsp; &nbsp; // calls foo::foo () </span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">foo f = x;&nbsp;&nbsp; // calls foo::foo(foo&amp;)</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">foo x, f;&nbsp;&nbsp;&nbsp; // calls no-argument constructor</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">f = x;&nbsp; &nbsp; &nbsp;&nbsp; // calls operator= </span><br />
+    <span style="font-family: monospace;" /></div>
+    <br style="font-family: monospace;" />
+    
+    <div style="margin-left: 40px;"><span style="font-family: monospace;">foo a, c, d; &nbsp; &nbsp; // calls foo::foo () 3 times</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">bar b;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // calls bar::bar() <br />
+foo y = a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //</span><span style="font-family: monospace;">calls foo::foo(foo&amp;</span><span style="font-family: monospace;">)</span><br />
+    <span style="font-family: monospace;">foo z = b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // calls foo::foo(bar&amp;)</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">...</span><br />
+    <span style="font-family: monospace;">c = a;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; // calls foo::operator=(foo&amp;)</span><br style="font-family: monospace;" />
+    <span style="font-family: monospace;">d = b;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="font-family: monospace;">// calls foo::operator=(bar&amp;)</span></div>
+</li></ul>summary of issues:<ul><li>choosing a constructor</li><ul><li>no constructors</li>
+    <li>multiple constructors<br />
+    </li>
+    <li>execution order</li>
+</ul>
+  <dl>
+    <dd><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/CODE/PeculiarLateBindingInConstructors.java">PeculiarLateBindingInConstructors.java</a></dd>
+    <dd><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/CODE/PeculiarLateBindingConstructors2.java">PeculiarLateBindingConstructors2.java</a></dd>
+    <dd><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/CODE/Construct1.cpp">Construct1.cpp</a></dd>
+    <dd><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/CODE/Construct.cpp">Construct.cpp</a><br />
+    </dd>
+  </dl>
+<li>references and values</li></ul><span style="font-weight: bold;">Dynamic Method Binding<br /></span><ul><li>Overriding vs Overloading</li><li>Java all instance methods (member functions) are dynamic method binding</li><ul><li>final keyword</li></ul><li>C++ : virtual functions</li><li>Generics still important feature in OO languages</li><li>Runtime use of vtables for virtual functions.</li></ul>Virtual Tables example from text book<br /><br /><a href="IMAGES/chap93.gif"><img style="border: 2px solid ; width: 450px; height: 241px;" alt="Figure 9.3" src="IMAGES/chap93.gif" /></a><br /><br /><a href="IMAGES/chap94.gif"><img style="border: 2px solid ; width: 450px; height: 249px;" alt="Figure 9.4" src="IMAGES/chap94.gif" /></a><br />
+<br />Parameter passing issues<br />
+<ul>
+  <li>reference model objects <br />
+  </li>
+  <li>value model objects<br />
+  </li>
+</ul>
+<br />
+Closure<br />
+<ul>
+  <li>What is closure?</li>
+  <ul>
+    <li>object closure</li>
+    <li>function closure<br />
+    </li>
+  </ul>
+</ul>
+
+
+
+</body></html>

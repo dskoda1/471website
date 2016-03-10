@@ -1,0 +1,97 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (WinNT; U) [Netscape]">
+   <title>Brief Review</title>
+</head>
+<body>
+
+<center>
+<h3>
+&nbsp; Review of Prolog Spring, 2000</h3></center>
+
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/6Spr00.html">&nbsp;previous</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/7Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<h3>
+What will be cover ?</h3>
+
+<ul>
+<li>
+Binary Search Tree Code</li>
+
+<li>
+have-common-elts</li>
+</ul>
+
+<hr WIDTH="100%">
+<br>A tree,T, is a BST if
+<blockquote>T is a binary tree,
+<br>The left subtree is a BST
+<br>The right subtree is a BST
+<br>The max of the left subtree is less than the root
+<br>The min of the right sub tree is greater than the root</blockquote>
+Base case?&nbsp; Special Cases?
+<br>&nbsp;
+<p><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/isBST.pl">?</a>
+<br>
+<hr WIDTH="100%">
+<br><b><tt>have-common-elts1(X,Y):– member( E, X ),</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+member( E, Y ).</tt></b>
+<br><b><tt>have-common-elts2(X,Y):– member( E, X ),</tt></b>
+<br><b><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+member( E,Y ),!.</tt></b>
+<br>&nbsp;
+<blockquote>? – have-common-elts1( X , [1, 2, 3] ).
+<br>X&nbsp; =&nbsp; [1| _14];
+<br>X&nbsp; =&nbsp; [2| _14];
+<br>X&nbsp; =&nbsp; [3| _14];
+<br>X&nbsp; =&nbsp; [ _16, 1| _18];
+<br>X&nbsp; =&nbsp; [ _16, 2| _18];
+<br>X&nbsp; =&nbsp; [ _16, 3| _18];
+<br>…
+<br>? – have-common-elts1( [1, 2, 3], Y ).
+<br>Y&nbsp; = [1| _33];
+<br>Y&nbsp; =&nbsp; [_35, 1 | _36];
+<br>Y&nbsp; =&nbsp; [_35, _39, 1 | _40];
+<br>...
+<p>But what happens with
+<br>? – have-common-elts2( X , [1, 2, 3] ).
+<br>X&nbsp; = [&nbsp; 1, | _340] ;
+<br>no
+<br>? – have-common-elts2(&nbsp; [1, 2, 3], Y ).
+<br>Y&nbsp; = [&nbsp; 1, | _340] ;
+<br>no
+<br>&nbsp;</blockquote>
+
+<p><br>
+<hr WIDTH="100%">
+<ul>
+<li>
+When is "-" a <i>normal</i> minus and when is it just an atom?</li>
+</ul>
+
+<p><br>
+<hr WIDTH="100%">
+<br>&nbsp;
+<center><table BORDER CELLSPACING=0 CELLPADDING=0 BGCOLOR="#FFFFF0" >
+<tr>
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/6Spr00.html">&nbsp;previous&nbsp;</a></td>
+
+<td><a href="http://bingweb.binghamton.edu/~head/CS471/NOTES/7Spr00.html">&nbsp;next&nbsp;</a></td>
+</tr>
+</table></center>
+
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

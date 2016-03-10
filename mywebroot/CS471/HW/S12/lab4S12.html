@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+
+
+
+
+
+
+
+
+
+
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>lab 4: Prolog 2</title></head><body>
+<h3 style="text-align: center;">Programming Languages<br>
+Lab activity 4: Prolog</h3>
+Turn in one file prolog file (lab4.pl). Turn in only questions/parts with points.<br>
+<ol>
+
+  <li>(10)Ackermann's functions was defined in homework 1 as follows:<br>
+</li>
+  <dl>
+    <dd><span style="font-style: italic;"></span><span style="font-family: monospace; font-weight: bold;">ack(
+m,n ) =&nbsp;&nbsp;&nbsp; n +
+1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if m = 0</span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">ack( m,n
+) =&nbsp;&nbsp;&nbsp; ack(m - 1,
+1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if n = 0 and m &gt; 0 </span><br style="font-family: monospace; font-weight: bold;">
+      <span style="font-family: monospace; font-weight: bold;">ack( m,n
+) =&nbsp;&nbsp;&nbsp; ack( m-1, ack( m, n-1 )
+)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if n &gt;0 and m
+&gt; 0</span><br style="font-family: monospace;">
+      <br>
+</dd><dt>Code an Ackermann's predicate in prolog using this definition.&nbsp; What is the Ackermann's number for your implementation?<br>
+<br>
+    </dt>
+  </dl>
+  <li>(10)Define <span style="font-style: italic;">homoiconic.</span> Is Prolog <span style="font-style: italic;">homoiconic</span>? What does it mean to say a language is <span style="font-style: italic;">fully reflective</span>? Is Prolog <span style="font-style: italic;">fully reflective?&nbsp; <br>
+<br>
+    </span></li>
+  <li>(0)
+Try to predict the results of the following queries (you do not need to
+include answer in the file you submit.&nbsp; You can use help to remind
+you what these predicates do. eg. ?- help(functor).<br>
+<br>
+  </li>
+  <dl style="font-family: monospace; font-weight: bold;">
+    <dd>?- functor(foo(a,b,c),F,N).<br>
+?- functor(foo(a,b,c),F,N), write('\n'), write(F),write('\nlast write \n.').<br>
+?- functor(T,foo,3).<br>
+?- arg(3, foo(a,b,c),A).<br>
+?- T =.. [foo,x, y, z].<br>
+?- foo(who, what) =.. T.<br>
+?- foo(who, what) =.. [A, B,C].<br>
+?- clause(ack(M,0,B),C).<br>
+?- clause(H,(B is 2*0)).<br>
+?- write('Hello').<br>
+?- write(Hello).<br>
+      <br>
+    </dd>
+  </dl>
+  
+  <li>Type
+manpce at the prompt.&nbsp; You should see a pop-up window (the icon is
+books). In the "Browsers" pull down menu select "Prolog&nbsp;
+manual".&nbsp; Another window will open which will allow us to browse
+the Prolog manual.&nbsp; Click on the "+" next to "Built-in predicates"
+-- this will open sub-menu.&nbsp; Clicking on the words "Built-in
+predicates" opens the manual page.&nbsp;On the
+bottom of this window you will see the label "On:" , type "number" and
+enter in the next box.&nbsp; You should see the specification of <span style="font-style: italic;">number </span>in the manual page frame on the right.&nbsp; Repeat this for <span style="font-style: italic;">atom.<br>
+    <br>
+    </span></li>
+  <li>(10)Define a predicate, listOfTerms(ListOfArgs,Name,
+ListOfResults),&nbsp; where each term in the ListOfResults is a term
+with one argument from the ListOfArgs and the functor name is the
+Name. <br>
+  </li>
+
+  <dl style="font-family: monospace; font-weight: bold;">
+    <dd><br>
+?- listOfTerms([[1,2],[a,s,v],[100]],foo,T). <br>
+T = [foo(1, 2), foo(a, s, v), foo(100)].<br>
+?- listOfTerms([[1,2],[100,99],[5,11]],+,T).<br>
+T = [1+2, 100+99, 5+11].<br>
+?- listOfTerms(Lst,F,[1+2, 100+99, 5+11]).<br>
+Lst = [[1, 2], [100, 99], [5, 11]],<br>
+F = + .<br>
+      <br>
+</dd>
+  </dl>
+  <li>(0pts) Copy the contents of<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/CODE/PL/ghezzi"> ghezzi</a>
+to a file name test.pl.&nbsp; Open this file in swipl and in
+emacs.&nbsp; Try to predict the steps need to execute the following query.</li>
+  <dl>
+    <dd style="font-family: monospace;">?- clos(a,g).</dd>
+    <dt>At the prompt (in the swipl window) type trace, clos(a,g). eg.</dt>
+    <dd><span style="font-family: monospace;">?- trace, clos(a,g), notrace, nodebug.</span><br>
+</dd>
+    <dt>If after each response you type "enter" you will see the exact execution of clos(a,g). <br>
+    </dt>
+    <dt>Redo using the following query: <span style="font-family: monospace;">trace, clos(a,C), notrace, nodebug</span>.</dt><dt><br>
+    </dt>
+
+  </dl>
+  <li>(0pts) We will now use graphical debugger for our prolog environment.&nbsp;
+There are many ways to get to it -- here is one way.&nbsp;&nbsp; </li><dl><dd><span style="font-family: monospace; font-weight: bold;"><br>
+</span><span style="font-family: monospace; font-weight: bold;"></span></dd>
+  </dl>
+  <ol style="list-style-type: lower-alpha;">
+    <li>Redo question 5 -- except instead use gtrace instead of trace.<br>
+<br>
+</li>
+    <dl style="font-family: monospace;">
+      <dd>?- gtrace, clos(a,g), notrace, nodebug.<br>
+</dd>
+    </dl>
+<dl>
+      <dd><span style="font-family: monospace;">?- gtrace, clos(A,f), notrace, nodebug.</span><br>
+<br>
+</dd>
+      <dt>You should see
+another window, which is the graphical debugger.&nbsp; If you have
+questions about the different frames in the debugger window please feel
+free to ask me during lab.<br>
+        <br>
+</dt>
+    </dl>
+  </ol>
+  <li>(10pts) Lets explore <span style="font-style: italic;">select</span> built-in predicate.&nbsp; <br>
+<br>
+</li>
+  <ol style="list-style-type: lower-alpha;">
+    <li>(0pts) Type the following query:</li>
+    <dl>
+      <dd><span style="font-family: monospace;">?- help(select).<br>
+?- select(c, [a,b,c,d,e], R).<br>
+        </span><span style="font-family: monospace;">?- select(c, [a,b,X,d,e], R).</span><br>
+        <span style="font-family: monospace;">?- select(c, R, </span><span style="font-family: monospace;">[a,b,d,e]</span><span style="font-family: monospace;">).</span> % use the ";" instead of return<br>
+        <br>
+      </dd>
+    </dl>
+    <li>(10pts) Define <span style="font-style: italic;">insert</span>(<span style="font-style: italic;"> ?Elem, ?Lst, ?LstWithElem</span>) using only the builtin predicate <span style="font-style: italic;">select.&nbsp; insert </span>succeeds <span style="font-style: italic;"><span style="font-style: italic;"></span></span><span style="font-style: italic;"></span>if the only difference between&nbsp; <span style="font-style: italic;">Lst</span> and <span style="font-style: italic;">LstWithElem <span style="font-style: italic;"><span style="font-style: italic;"></span></span></span>is<span style="font-style: italic;"><span style="font-style: italic;"><span style="font-style: italic;"></span></span> LstWithElem </span>includes <span style="font-style: italic;">Elem.&nbsp; i.e.</span></li>
+    <dl>
+      <dd><span style="font-family: monospace;">?- insert(c,[a,b,d,e],[a, c, b, d, e]).</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">true .</span><br style="font-family: monospace;">
+        <br style="font-family: monospace;">
+        <span style="font-family: monospace;">?- insert(c,[a, b, d, e],[a, b, c, d, e]).</span><br style="font-family: monospace;">
+        <span style="font-family: monospace;">true .</span><span style="font-style: italic;"><br>
+</span></dd>
+    </dl>
+  </ol><dl><dd><br>
+    </dd>
+  </dl>
+
+  <li>[10pts]&nbsp; A student submitted the following solution for HW 3 exercise 1:<br>
+    <br>
+</li>
+  <dl>
+    <dd>
+      <div style="font-family: monospace;">convertToDecimal(A,0).&nbsp;</div>
+      <div style="font-family: monospace;">convertToDecimal(succ(S), Y) :-
+	numeral(S),
+	Y1 is Y-1,
+	convertToDecimal(S, Y1).&nbsp;</div>
+      <br>
+    </dd>
+  </dl>
+  <ol style="list-style-type: lower-alpha;">
+    <li>[8pts] Explain why the following query gives the result it does:<br>
+      <span style="font-family: monospace; font-weight: bold;">?- convertToDecimal(succ(succ(0)),N). </span><br>
+    </li>
+    <li>[2pts] How would you fix it?<br>
+      <br>
+    </li>
+  </ol>
+</ol>
+<ol><dl>
+    <dd><br>
+      <br>
+    </dd>
+  </dl>
+</ol>
+
+<br>
+</body></html>

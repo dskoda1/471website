@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+
+
+
+
+  
+  
+  
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" /><title>Simple Introduction to Python</title></head><body>
+
+
+
+
+Short introduction to Python 3.2 (Spring 2012):<br />(2.X may be slightly different)<br />
+
+
+
+
+References:<br />
+<ul>
+
+
+
+
+  
+
+
+
+
+  <li><a href="http://docs.python.org/py3k/tutorial/index.html">Python Tutorial</a></li>
+
+
+
+
+  
+  
+  
+  
+  <ul>
+
+
+
+
+    <li><a href="http://docs.python.org/py3k/tutorial/controlflow.html#defining-functions">Defining functions</a></li>
+
+
+
+
+    <li><a href="http://docs.python.org/py3k/tutorial/datastructures.html#looping-techniques">Looping techniques</a></li>
+
+
+
+
+  
+  
+  
+  
+  </ul>
+
+
+
+
+  <li>(Lutz) (functions) 299-304</li>
+
+
+
+
+  <li>(Lutz)&nbsp;&nbsp;Chapter 10 (Intro &amp;&nbsp;loops) &nbsp;201-215 (focus on 206-211)</li>
+
+
+
+
+</ul>
+
+
+
+
+<br />
+
+
+
+
+<hr style="width: 100%; height: 2px;" /><span style="font-weight: bold;">Getting
+started:<br />
+
+
+
+
+
+
+
+New scripts:<br />
+
+
+
+
+
+
+
+</span>
+<div style="margin-left: 40px;">
+<ol>
+
+
+
+
+  <li>Open IDLE (Python Developement tool)&nbsp;&nbsp;(On windows: from the "Start
+Menu") .&nbsp; This opens a "Python Shell" window.</li>
+
+
+
+
+  <li>Pull down the File menu and click on "New Window".&nbsp; This
+opens the editor.</li>
+
+
+
+
+  <li>In the "Edit Window", save the empty text in a file with an
+extension .py.&nbsp;&nbsp; This will format your script as you type.</li>
+
+
+
+
+  <li>To run the script from the "Edit Window", pull down the "Run"
+menu&nbsp; and click on "Run Module.&nbsp; The script will execute t in
+the "Python Shell" window.</li>
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<span style="font-weight: bold;">Existing scripts:<br />
+
+
+
+
+
+
+
+</span>
+<ol>
+
+
+
+
+  
+  
+  
+  
+  <ol>
+
+
+
+
+    <li>Right click on file and select "Edit with Idle".</li>
+
+
+
+
+  
+  
+  
+  
+  </ol>
+
+
+
+
+</ol>
+
+
+
+
+
+
+
+There a many other ways to edit and run Python, including not using
+IDLE.<br />
+
+
+
+
+<br />
+
+
+
+
+<hr style="width: 100%; height: 2px;" /><span style="font-weight: bold;">Some important language features</span>:<br />
+
+
+
+
+
+
+
+<ol>
+
+
+
+
+  <li>Multi-paradigm language</li>
+
+
+
+
+  
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+    <li><a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Object-oriented+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">Object orientation</a>, <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Structured+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">structured programming</a>,
+      <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Functional+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">functional programming</a>, <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Aspect-oriented+programming&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">aspect-oriented programming</a>, and more recently, <a href="http://www.answers.com/main/ntquery?method=4&amp;dsid=2222&amp;dekey=Design+by+contract&amp;gwp=8&amp;curtab=2222_1" class="ilnk" target="_top" onclick="addLinkTextToHref(this);">design
+by contract</a> are all supported. </li>
+
+
+
+
+  
+  
+  
+  
+  </ol>
+
+
+
+
+  <li>dynamically typed&nbsp;</li>
+
+
+
+
+  
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+    <li>-- no declaration of variables</li>
+
+
+
+
+    <li>-- type "lives" with objects, not names</li>
+
+
+
+
+  
+  
+  
+  
+  </ol>
+
+
+
+
+  <li>OO and functional</li>
+
+
+
+
+  <li>reference model like Java</li>
+
+
+
+
+  <li>Layout rule: White spaces delimit blocks of code instead of symbols like "{}" in C or keywords like begin and end in Pascal.</li>
+
+
+
+
+  
+  
+  
+  
+  <ol style="list-style-type: lower-alpha;">
+
+
+
+
+    <li>IDLE will automatically format according to the layout rule.</li>
+
+
+
+
+  
+  
+  
+  
+  </ol><li>Notice the use of ":" in <span style="font-style: italic;">for, while, def </span>and <span style="font-style: italic;">if</span> statements.</li><li><span style="font-family: monospace;">and --</span> logical and operator<br /> <span style="font-family: monospace;">not&nbsp;</span>-- logical negation operator</li><li><span style="font-family: monospace;">elif</span> can be used for "optional parts"</li><dl><dd><span style="font-family: monospace;"><span style="font-family: monospace;">if n &lt; 5:</span><br style="font-family: monospace;" /><span style="font-family: monospace;">&nbsp; &nbsp; return 10</span><br style="font-family: monospace;" /><span style="font-family: monospace;">elif n &lt; 20:</span><br style="font-family: monospace;" /><span style="font-family: monospace;">&nbsp; &nbsp; return 100</span><br style="font-family: monospace;" /><span style="font-family: monospace;">else</span>:<br style="font-family: monospace;" /><span style="font-family: monospace;">&nbsp; &nbsp; return 1000</span></span></dd></dl>
+
+
+
+
+</ol>
+
+
+
+
+
+
+<hr style="width: 100%; height: 2px;" />Example code:<br />
+
+
+
+
+<a href="CODE/fib.py">fib.py</a><br />
+
+
+
+
+<br />
+
+
+
+
+# Recursive definition of &nbsp;the nth fibonacci number <br />
+
+
+
+
+<br />
+
+
+
+
+<span style="font-family: monospace;">def fib (n):</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; if n &lt; 2:</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; else :</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return fib(n-1) + fib (n-2)</span><br />
+
+
+
+
+<br />
+
+
+
+
+# Iterative definition<br />
+
+
+
+
+<br />
+
+
+
+
+<span style="font-family: monospace;">def fibi (n):</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; a = 1</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; b = 1</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; s = 1</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; while s &lt; n:</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; s += 1</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = a + b</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = b</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = t</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp; return b</span><br style="font-family: monospace;" />
+
+
+
+
+<br />
+
+
+
+
+# using for loop<br />
+
+
+
+
+<br />
+
+
+
+
+<span style="font-family: monospace;">def fibf (n):</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; a = 1</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; b = 1</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; for i in range (2,n+1):&nbsp;&nbsp;&nbsp; # i assumes the values 2 to n</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t = a + b</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a = b</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; b = t</span><br style="font-family: monospace;" />
+
+
+
+
+<span style="font-family: monospace;">&nbsp;&nbsp;&nbsp; return b </span><br style="font-family: monospace;" />
+
+
+
+
+</body></html>

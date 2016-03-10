@@ -1,0 +1,2019 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:w="urn:schemas-microsoft-com:office:word"
+ xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+  
+  <meta name="ProgId" content="Word.Document">
+  
+  <meta name="Generator" content="Microsoft Word 9">
+  
+  <meta name="Originator" content="Microsoft Word 9">
+  
+  <link rel="File-List" href="./hw8F02sol_files/filelist.xml">
+  
+  <link rel="Edit-Time-Data" href="./hw8F02sol_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+  <title>Runtime Stack Parameter Passing operators -</title>
+  <!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>bg20393</o:Author>
+  <o:Template>Normal</o:Template>
+  <o:LastAuthor>bg20393</o:LastAuthor>
+  <o:Revision>27</o:Revision>
+  <o:TotalTime>46</o:TotalTime>
+  <o:Created>2002-10-30T16:34:00Z</o:Created>
+  <o:LastSaved>2002-10-30T17:21:00Z</o:LastSaved>
+  <o:Pages>5</o:Pages>
+  <o:Words>1387</o:Words>
+  <o:Characters>7906</o:Characters>
+  <o:Company>SUNY at Binghamton</o:Company>
+  <o:Lines>65</o:Lines>
+  <o:Paragraphs>15</o:Paragraphs>
+  <o:CharactersWithSpaces>9709</o:CharactersWithSpaces>
+  <o:Version>9.4402</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+  
+  <style>
+
+<!--
+
+ /* Font Definitions */
+
+@font-face
+
+	{font-family:"Arial Unicode MS";
+
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+
+	mso-font-charset:128;
+
+	mso-generic-font-family:swiss;
+
+	mso-font-pitch:variable;
+
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+
+@font-face
+
+	{font-family:"\@Arial Unicode MS";
+
+	mso-font-charset:128;
+
+	mso-generic-font-family:swiss;
+
+	mso-font-pitch:variable;
+
+	mso-font-signature:-1 -369098753 63 0 4129023 0;}
+
+ /* Style Definitions */
+
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+
+	{mso-style-parent:"";
+
+	margin:0in;
+
+	margin-bottom:.0001pt;
+
+	mso-pagination:widow-orphan;
+
+	font-size:12.0pt;
+
+	font-family:"Times New Roman";
+
+	mso-fareast-font-family:"Times New Roman";
+
+	color:black;}
+
+h1
+
+	{mso-style-next:Normal;
+
+	margin-top:0in;
+
+	margin-right:0in;
+
+	margin-bottom:0in;
+
+	margin-left:.5in;
+
+	margin-bottom:.0001pt;
+
+	mso-pagination:widow-orphan;
+
+	page-break-after:avoid;
+
+	mso-outline-level:1;
+
+	font-size:12.0pt;
+
+	font-family:"Times New Roman";
+
+	color:black;
+
+	mso-font-kerning:0pt;
+
+	font-weight:bold;}
+
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+
+	{margin:0in;
+
+	margin-bottom:.0001pt;
+
+	text-align:center;
+
+	mso-pagination:widow-orphan;
+
+	font-size:18.0pt;
+
+	mso-bidi-font-size:12.0pt;
+
+	font-family:"Times New Roman";
+
+	mso-fareast-font-family:"Times New Roman";
+
+	color:black;
+
+	font-weight:bold;}
+
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+
+	{margin-top:0in;
+
+	margin-right:0in;
+
+	margin-bottom:0in;
+
+	margin-left:.5in;
+
+	margin-bottom:.0001pt;
+
+	mso-pagination:widow-orphan;
+
+	font-size:12.0pt;
+
+	font-family:"Times New Roman";
+
+	mso-fareast-font-family:"Times New Roman";
+
+	color:blue;
+
+	font-weight:bold;
+
+	font-style:italic;}
+
+a:link, span.MsoHyperlink
+
+	{color:red;
+
+	text-decoration:underline;
+
+	text-underline:single;}
+
+a:visited, span.MsoHyperlinkFollowed
+
+	{color:#990000;
+
+	text-decoration:underline;
+
+	text-underline:single;}
+
+p
+
+	{margin-right:0in;
+
+	mso-margin-top-alt:auto;
+
+	mso-margin-bottom-alt:auto;
+
+	margin-left:0in;
+
+	mso-pagination:widow-orphan;
+
+	font-size:12.0pt;
+
+	font-family:"Times New Roman";
+
+	mso-fareast-font-family:"Times New Roman";
+
+	color:black;}
+
+tt
+
+	{mso-ascii-font-family:"Courier New";
+
+	mso-fareast-font-family:"Courier New";
+
+	mso-hansi-font-family:"Courier New";
+
+	mso-bidi-font-family:"Courier New";}
+
+@page Section1
+
+	{size:8.5in 11.0in;
+
+	margin:1.0in 1.25in 1.0in 1.25in;
+
+	mso-header-margin:.5in;
+
+	mso-footer-margin:.5in;
+
+	mso-paper-source:0;}
+
+div.Section1
+
+	{page:Section1;}
+
+ /* List Definitions */
+
+@list l0
+
+	{mso-list-id:1485589450;
+
+	mso-list-type:hybrid;
+
+	mso-list-template-ids:-2072487454 -1504795446 1644708766 -1971264722 517212440 1295661224 -661598560 -1926231268 -2052135130 1573781608;}
+
+@list l0:level2
+
+	{mso-level-number-format:alpha-upper;
+
+	mso-level-tab-stop:1.0in;
+
+	mso-level-number-position:left;
+
+	text-indent:-.25in;}
+
+@list l1
+
+	{mso-list-id:2107337893;
+
+	mso-list-type:hybrid;
+
+	mso-list-template-ids:-1374917078 -1313074246 1030246144 727118634 1545734320 -859264850 -1234284452 1604613176 530089606 724335438;}
+
+@list l1:level1
+
+	{mso-level-start-at:9;
+
+	mso-level-tab-stop:.5in;
+
+	mso-level-number-position:left;
+
+	text-indent:-.25in;}
+
+ol
+
+	{margin-bottom:0in;}
+
+ul
+
+	{margin-bottom:0in;}
+
+-->
+
+  </style><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1040">
+  <o:colormenu v:ext="edit" fillcolor="#cfc"/>
+ </o:shapedefaults></xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+  
+  <meta name="Author" content="E Head">
+  
+  <meta name="Description" content="Introduction">
+</head>
+<body bgcolor="#fafafa" lang="EN-US" link="red" vlink="#990000" style=""
+ alink="#cc0000">
+<div class="Section1">
+<p class="MsoBodyText">Fall 2002<br>
+CS471 Programming Language<br>
+Homework #8 Solution<br style="">
+<!--[if !supportLineBreakNewLine]--><br style="">
+<!--[endif]--></p>
+<p class="MsoNormal">The purpose of this assignment is to understand the
+function(subroutine) call stack, void types, pointer and reference types.
+</p>
+<p>Written assignment: </p>
+<ol start="1" type="1">
+ <li class="MsoNormal" style="">"Reference counts" is      one algorithm that
+can be used in a runtime environment to collect      garbage.&nbsp; Given
+an example of data configuration that this technique      may fail to collect.</li>
+</ol>
+<p style="margin-left: 0.5in;"><b>Answer: Reference counting keeps in each
+block a count of the number of pointers to the block. When the count drops
+to zero, the block may be freed. This approach is only practical in situations
+where there is some ``higher level'' software to keep track of the counts
+(it's much too hard to do by hand), and even then, it will not detect cyclic
+structures of garbage: Consider a cycle of blocks, each of which is only pointed
+to by its predecessor in the cycle. Each block has a reference count of 1,
+but the entire cycle is garbage. <br>
+</b><b><i><span style="color: blue;">Source: http://www.cs.wisc.edu/~solomon/cs537-old/f96/memory.html</span></i></b><br>
+Scott page 397<br>
+</p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><!--[if !supportEmptyParas]--><!--[endif]--><o:p></o:p></p>
+<ol start="2" type="1">
+ <li class="MsoNormal" style="">page 486 exercise 8.3<br>
+     Can you write a macro in C that &#8220;returns&#8221; the greatest common divisor
+of a      pair of arguments without calling a subroutine? Why or why not?<br>
+     <b>Answer: Depends on which version of GCD is to be written. If GCD is
+     written in iterative format, then macro can implement GCD without calling
+     a subroutine. However, if GCD is written in recursive format, then macro
+     cannot implement this version of GCD, since macro cannot recursively
+calls      itself. <br>
+     <br style="">
+     <!--[if !supportLineBreakNewLine]--><br style="">
+     <!--[endif]--></b></li>
+ <li class="MsoNormal" style="">page 486 exercise 8.4<br>
+     Consider the following erroneous program in C:<br>
+     void foo()<br>
+     {<br>
+     <span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span>int i;<br>
+     <span style="">&nbsp;&nbsp;&nbsp;&nbsp;      </span>printf(&#8220;%d&#8221;, i++);<br>
+     }<br>
+     <br>
+     main()<br>
+     {<br>
+     <span style="">&nbsp;&nbsp;&nbsp; </span>int j;<br>
+     <span style="">&nbsp;&nbsp;&nbsp; </span>for (j=1;      j&lt;=10; j++)
+foo();<br>
+     }<br>
+     Local variable I in subroutine foo is never initialized. On many systems,
+     however, the program will display repeatable behavior, printing 0 1 2
+3 4      5 6 7 8 9. Suggest an explanation. Also explain why the behavior
+on other      systems might be different, or non-deterministic.<br>
+     <br>
+     <b>Answer: (by Heather Sheiman)<br>
+     One possible explanation has to do with whether or not a system cleans
+out      its memory before allocating it to a program. Some systems might
+clear out      all of the bits that might have been used beforehand, and will
+therefore      leave nothing but clear, 0 bits. So when the un-initialized
+integer value      gets referenced, the value that is stored in the memory
+location is zero.<br>
+     <br>
+     Other systems might behave differently if they do not clear out their
+     memory before it gets allocated. In this case, the program will read
+the      combination of bits that were in that location before the program
+     execution, and interpret it as an integer. Thus, it is not consistent
+     between runs. <br>
+     <br style="">
+     <!--[if !supportLineBreakNewLine]--><br style="">
+     <!--[endif]--></b></li>
+ <li class="MsoNormal" style="color: windowtext;"><span
+ style="color: black;">What is void * ? Why have it? void * does not behavior
+     exactly the same in C and C++. Provide an example(i.e. code) that will
+     illustrate this difference between <i>C</i> and C++.</span><span
+ style="font-family: &quot;Arial Unicode MS&quot;;"><br>
+     </span><b><span style="color: black;">Answer:&nbsp;&nbsp; void* is a
+pointer      to void, which represents the "universal" data pointer.&nbsp;
+     void* is good when you are not sure of the data type that is passed into
+a      variable, function, or struct at compile time.</span></b><span
+ style="color: black;"> </span><span
+ style="font-family: &quot;Arial Unicode MS&quot;;"><o:p></o:p></span></li>
+</ol>
+<p style="margin-left: 0.5in;"><b>Casting void pointer to another data type
+is required in C++, but not in C</b> <br>
+<b>"The C compiler doesn&#8217;t always require a cast (it&#8217;s possible to assign
+dissimilar types through a void pointer without being forced to use a cast),
+and the casts all look different, so you can&#8217;t know if you&#8217;ve searched for
+every one." (Thinking in C++)</b></p>
+<p class="MsoNormal" style="margin-right: 0.5in; margin-left: 0.5in;"><b>The
+following implicit cast produces a warning or error depends on the C++ compiler.
+However, the same code uses C compiler does not give warning or error message.</b>
+</p>
+<p style="margin-right: 0.5in; margin-left: 0.5in;"><b>void *vp1;</b> <br>
+<b>int *obj1, *obj2;</b> <br>
+<b>vp1 = &amp;obj1;</b> <br>
+<b>obj2 = vp1; // Warning: implicitly casts void pointer</b> <br>
+<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// Microsoft Studio gave error message: Conversion from 'void*' to pointer
+to non-'void' requires an explicit cast</b> <br>
+<b>obj2 = (int *)vp1;&nbsp; // explicit cast will work</b> </p>
+<p
+ style="margin-right: 0.5in; margin-left: 0.5in; text-indent: -0.25in;"><!--[if !supportLists]--><span
+ style="font-family: &quot;Arial Unicode MS&quot;; color: windowtext;">5.<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-stretch: normal; font-size-adjust: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><!--[endif]-->In C++, what is the difference between taking
+the address (via operation &amp;) of a pointer and of a reference? (You can
+just write a little test program in C++)<br>
+<b>Answer: Taking the address of a pointer is getting the address of the
+l-value (l-value = memory location that stores the r-value).</b> <br>
+<b>Taking an address of a reference is getting the memory location of the
+r-value, which is the l-value or the pointer itself.</b><span
+ style="font-family: &quot;Arial Unicode MS&quot;; color: windowtext;"><o:p></o:p></span></p>
+<p class="MsoNormal" style="margin-right: 0.5in; margin-left: 0.5in;">-- Sample
+C++ code </p>
+<p style="margin-right: 0.5in; margin-left: 0.5in;">int main() { <br>
+&nbsp;int p = 7; <br>
+&nbsp;int *q; <br>
+&nbsp;q = &amp;p; </p>
+<p style="margin-right: 0.5in; margin-left: 0.5in;">&nbsp;cout &lt;&lt; "address
+of r-value " &lt;&lt; &amp;p &lt;&lt; endl; <br>
+&nbsp;cout &lt;&lt; "address of a reference " &lt;&lt; &amp;(*p) &lt;&lt;
+endl; <br>
+&nbsp;cout &lt;&lt;&nbsp; "address of a pointer " &lt;&lt; &amp;q &lt;&lt;
+endl; <br>
+&nbsp;return 0; <br>
+}<br>
+<!--[if gte vml 1]><v:shapetype id="_x0000_t75" coordsize="21600,21600" o:spt="75"
+ o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:6in;
+ height:324pt'>
+ <v:imagedata src="./hw8F02sol_files/image001.gif" o:title="Slide1"/>
+</v:shape><![endif]--><!--[if !vml]--><img
+ width="520" height="275" src="Slide1.GIF" v:shapes="_x0000_i1025"
+ alt="Memory layout slide"><!--[endif]--></p>
+<p style="margin-right: 0.5in; margin-left: 0.5in;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+<ol start="6" type="1">
+ <li class="MsoNormal" style="">What is the difference      between macros
+and subroutines?&nbsp; Explain in terms of the concept of      binding.<br>
+     <b>Answer: </b><b><span style="">Macros are bound at preprocessing time,
+which      the preprocessor performs advanced search and replace on the text
+and      generate code that is put into the program. A routine represents
+a      function call with a stack frame.<span style="">&nbsp;      </span>Its
+type is bound at compile time, but its call is bound at runtime      and can
+be invoked via function pointer. The exception to this rule is an      inline
+function.&nbsp;<br style="">
+     <!--[if !supportLineBreakNewLine]--><br style="">
+     <!--[endif]--></span></b></li>
+</ol>
+<p style="margin-left: 0.5in; text-indent: -0.25in;"><!--[if !supportLists]--><b><span
+ style="">7.<span
+ style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-stretch: normal; font-size-adjust: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><!--[endif]-->In C++ what is the difference between the
+implementation of code denoted as <b><i>inline</i></b> as oppose to functions
+that are not inline?<br>
+<b>Answer: When the compiler inline-expands a function call, the function's
+code gets inserted into the caller's code stream (conceptually similar to
+what happens with a #define macro). This can, depends on other factors, improve
+performance, because the optimizer can procedurally integrate (compiler in-line
+expands the called code) the called code &#8212; optimize the called code into the
+caller. </b>&nbsp; Note:   No matter how you designate a function as<tt>inline</tt>,
+it is a request that the compiler is allowed to ignore: it might inline-expand
+some, all, or none of the calls to an <tt>inline</tt>function.<b><span
+ style=""><o:p></o:p></span></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b style=""><i style=""><span
+ style="color: blue;">Source: <a
+ href="http://www.parashift.com/c++-faq-lite/inline-functions.html#faq-9.1"><span
+ style="color: blue;">http://www.parashift.com/c++-faq-lite/inline-functions.html#faq-9.1</span></a><br>
+<a
+ href="http://gundam.edatamirror.com/openloop/education/classes/umn_98/umn_cpp/week8/week8.htm"><span
+ style="color: blue;">http://gundam.edatamirror.com/openloop/education/classes/umn_98/umn_cpp/week8/week8.htm</span></a><o:p></o:p></span></i></b></p>
+<p class="MsoNormal" style="margin-left: 0.25in;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]-->&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; Scott &nbsp;page 441-442 (8.2.3) and page 302 <o:p></o:p></p>
+<ol start="8" type="1">
+ <li class="MsoNormal" style="">For the following C3 program      fragment:</li>
+    
+  <ol start="1" type="A">
+            
+    <ol>
+      <li class="MsoNormal" style="">What is the activation       record (frame)
+template for <i>alpha</i> () and <i>beta</i>()? (Use the       outline presented
+in the notes.) &nbsp;( Beta can have the field return value -- but it would
+have a void value).<br>
+      Beta activation Record<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Alpha&#8217;s
+      Activation Record</li>
+         
+    </ol>
+    
+  </ol>
+</ol>
+<table border="1" cellspacing="0" cellpadding="0"
+ style="border: medium none ; margin-left: 1in; border-collapse: collapse;">
+ <tbody>
+    <tr>
+  <td width="155" valign="top"
+ style="padding: 0in 5.4pt; width: 116.6pt;">         
+      <p class="MsoNormal" style="">Argument - <i>var</i></p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: none solid none none; border-color: -moz-use-text-color rgb(0,0,57) -moz-use-text-color -moz-use-text-color; border-width: medium 0.5pt medium medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style=""><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: solid solid solid none; border-width: 0.5pt 0.5pt 0.5pt medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Return   value</p>
+  </td>
+ </tr>
+ <tr>
+  <td width="155" valign="top"
+ style="border-style: none solid solid; border-width: medium 0.5pt 0.5pt; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Return   addr</p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: none solid none none; border-color: -moz-use-text-color rgb(0,0,57) -moz-use-text-color -moz-use-text-color; border-width: medium 0.5pt medium medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style=""><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: none solid solid none; border-width: medium 0.5pt 0.5pt medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Argument - <i>x&nbsp;</i></p>
+  </td>
+ </tr>
+ <tr>
+  <td width="155" valign="top"
+ style="border-style: none solid solid; border-width: medium 0.5pt 0.5pt; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Dynamic   Link &#8211; fp</p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: none solid none none; border-color: -moz-use-text-color rgb(0,0,57) -moz-use-text-color -moz-use-text-color; border-width: medium 0.5pt medium medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style=""><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: none solid solid none; border-width: medium 0.5pt 0.5pt medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Return   addr</p>
+  </td>
+ </tr>
+ <tr>
+  <td width="155" valign="top"
+ style="border-style: none solid solid; border-width: medium 0.5pt 0.5pt; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Local   Variable <i>x = </i>9</p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: none solid none none; border-color: -moz-use-text-color rgb(0,0,57) -moz-use-text-color -moz-use-text-color; border-width: medium 0.5pt medium medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style=""><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td width="155" valign="top"
+ style="border-style: none solid solid none; border-width: medium 0.5pt 0.5pt medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Dynamic   Link &#8211; fp</p>
+  </td>
+ </tr>
+ <tr>
+  <td width="155" valign="top"
+ style="border: medium none ; padding: 0in 5.4pt; width: 116.6pt;"><br>
+      </td>
+  <td width="155" valign="top"
+ style="border-style: none solid none none; border-color: -moz-use-text-color rgb(0,0,57) -moz-use-text-color -moz-use-text-color; border-width: medium 0.5pt medium medium; padding: 0in 5.4pt; width: 116.6pt;"><br>
+      </td>
+  <td width="155" valign="top"
+ style="border-style: none solid solid none; border-width: medium 0.5pt 0.5pt medium; padding: 0in 5.4pt; width: 116.6pt;">
+         
+      <p class="MsoNormal" style="">Local   Variable -<i>b</i> = 99&nbsp;&nbsp;&nbsp;</p>
+  </td>
+ </tr>
+  
+  </tbody>
+</table>
+<br>
+<blockquote>
+  <blockquote>
+    <blockquote>Note Beta's activation record can have a return value field
+or not. &nbsp;If it does than it is just nil.<br>
+    </blockquote>
+  </blockquote>
+</blockquote>
+<ol start="8" type="1">
+    
+  <ol start="2" type="A">
+  <li class="MsoNormal" style="">Show the snapshot of       the run-time stack
+at&nbsp; each critical stage until the code returns to       main...&nbsp;
+In particular, show the static and dynamic links before       each call.&nbsp;
+( Follow the <a
+ href="http://bingweb.binghamton.edu/%7Ehead/CS471/NOTES/RUNTIME/2stack.gif">presentation
+      of (run-times) call stack given in my class notes</a> .)&nbsp; YOU may
+      assume all parameters are passed by value.</li>
+    
+  </ol>
+</ol>
+<p class="MsoNormal" style="margin-left: 1in;"><br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">int&nbsp; b
+= 2, c = 2, i = 3;</span></tt> <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;
+void beta(int var );&nbsp; // declaration</span></tt> </p>
+<p style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;</span></tt><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;; color: rgb(153,0,0);">
+</span></tt><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">int alpha(int x ) {</span></tt>
+<br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int b = 99;</span></tt> <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //++ </span></tt>&lt;&lt;&lt;&lt;&lt;&lt;
+Show stack here <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+b += c = c + x;</span></tt> </p>
+<p style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+beta(12);</span></tt><br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // </span></tt>&lt;&lt;&lt;&lt;&lt;&lt;
+Show stack here </p>
+<p class="MsoNormal" style="margin-left: 1.5in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp; return b;</span></tt></p>
+<p class="MsoNormal" style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp; };
+// end of alpha code</span></tt></p>
+<p style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;
+void beta(int var ){</span></tt> <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+int x = 9;</span></tt> <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp; //</span></tt>&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&nbsp;
+show the stack here after call from callee <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+if (b&gt;3) return;&nbsp; //Termination</span></tt> <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+b = i + x;</span></tt> </p>
+<p style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+alpha(5);</span></tt><br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></tt> //&lt;&lt;&lt;&lt;&lt;
+after returned from alpha <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return;</span></tt> <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;
+};&nbsp; // end of beta code</span></tt> </p>
+<p style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp; int
+main( ){</span></tt> </p>
+<p class="MsoNormal" style="margin-left: 1.5in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp; int i = 32;</span></tt></p>
+<p class="MsoNormal" style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....&nbsp; // ** </span></tt>stack before beta is called <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+beta(3);</span></tt> <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// *** </span></tt>stack after beta is returned <br>
+<tt><span style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+....</span></tt> </p>
+<p class="MsoNormal" style="margin-left: 2in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">return i;</span></tt></p>
+<p class="MsoNormal" style="margin-left: 1in;"><tt><span
+ style="font-size: 10pt; font-family: &quot;Courier New&quot;;">&nbsp;&nbsp;&nbsp; }</span></tt></p>
+<table border="1" cellpadding="0" style="">
+ <tbody>
+    <tr>
+  <td colspan="9" style="border: medium none ; padding: 0.75pt;">       
+ 
+      <p class="MsoNormal" align="center" style="text-align: center;">&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Description</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">D addr</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">main
+**</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">beta
+3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">alpha5
+++</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">beta
+12</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">alpha5
++++</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">beta3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,196) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">main
+***</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(215,255,215) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Just</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(215,255,215) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">after</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(215,255,215) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">calling</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(215,255,215) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">function</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(238,240,249) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Just</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(238,240,249) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">after</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(238,240,249) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to function</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">global&nbsp;
+      <b><i>b</i></b></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">0</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">2</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">2</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">b =
+3+9 = 12</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">12</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">12</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">12</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">12</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">global&nbsp;
+11<b><i>c</i></b></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">1</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">2</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">2</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">2</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">7</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">7</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">7</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">7</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">global
+      <b><i>I</i></b></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">2</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+value</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">main
+      <b><i>I</i></b></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">4</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><span
+ style="color: rgb(204,0,0);">32</span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">32</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">32</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">32</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">32</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">32</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(239,240,238) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">32</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Argument,
+var</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Return
+Address</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">6</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to main()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to main()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to main()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to main()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to main()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Fp</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">7</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">0</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">0</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">0</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">0</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">0</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Local
+Var, x</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">8</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Return
+value</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">?</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">106</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Argument,
+x</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">10</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Return
+Address</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">11</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to beta3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to beta3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to beta3</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">fp</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">12</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Local
+Var, b</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">13</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">99</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">106</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">106</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(204,255,255) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Argument,
+var</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">14</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">12</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Return
+Address</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">15</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">return
+to alpha5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">fp</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">16</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">Local
+Var, x</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">17</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,255,204) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">18</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">19</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(255,248,240) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+ </tr>
+       <tr style="height: 2.25pt;">
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(0,51,0) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><b><span
+ style="color: rgb(255,255,153);">Register</span></b><span
+ style="color: rgb(255,255,153);">s</span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(0,51,0) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(102,102,102) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(102,102,102) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(102,102,102) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(102,102,102) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(102,102,102) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(102,102,102) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(102,102,102) none repeat scroll 0% 50%; height: 2.25pt;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><span
+ style="font-size: 2pt;"><o:p></o:p></span></p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,226) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><b>Frame
+Pt</b></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(153,153,153) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><span
+ style="color: rgb(204,0,0);">0</span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">14</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">0</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,226) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><b>Stack
+Pt</b></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(153,153,153) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><span
+ style="color: rgb(204,0,0);">5</span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">14<br>
+      </p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">18</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">14</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">9</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">5</p>
+  </td>
+ </tr>
+ <tr>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,226) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><b>Instuction</b>
+      <br>
+  <b>Pt</b></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(153,153,153) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;"><span
+ style="color: rgb(204,0,0);">main()</span> <br>
+  <span style="color: rgb(204,0,0);">&nbsp; or&nbsp;</span> <br>
+  <span style="color: rgb(204,0,0);">333 ***</span></p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">beta3()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">alpha5()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">beta12()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">alpha5()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">beta3()</p>
+  </td>
+  <td valign="top"
+ style="padding: 0.75pt; background: rgb(221,237,225) none repeat scroll 0% 50%;">
+         
+      <p class="MsoNormal" align="center" style="text-align: center;">main()</p>
+  </td>
+ </tr>
+  
+  </tbody>
+</table>
+<p><span style="color: rgb(204,0,0);">333*** is the address&nbsp; o</span>f
+the instruction currently being executed. OR you can just write the name of
+the routine the instruction being executed is in. </p>
+<ol start="9" type="1">
+ <li class="MsoNormal" style="">The maintenance of the <i>function      call
+stack</i> is the responsibility of the <b><i>calling sequence</i></b><i>
+   </i>: the code executed by the <b>caller</b> immediately before and after
+     the call plus the <b><i>prologue</i></b> and <b><i>epilogue</i></b>&nbsp;
+     of the called routine itself.&nbsp; The <b><i>prologue</i></b> is the
+code      executed at start of the callee&nbsp; and the <b><i>epilogue </i></b>is
+the      code executed at the end of the callee.&nbsp;&nbsp; Some of the tasks
+must      be performed by the caller, because they differ from call to call.&nbsp;
+     Most are done by the callee.&nbsp; Who is responsible for determining
+the      memory allocation for <i>arguments, local variables</i>and <i>return
+     value </i>? (Caller or Callee) When are the values bound to the fields
+in      the activation record associated with the call? (Caller before, prologue,
+     epilogue and Caller after).</li>
+</ol>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b><u>When Memory Allocation
+for:<o:p></o:p></u></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b>Arguments: caller<o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b>Local variables: callee
+(prologue)<o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b>Return value:&nbsp;caller
+<o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b><u>When Values bound to
+the fields:<o:p></o:p></u></b></p>
+<h1>Arguments: Caller before</h1>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b>Return Address: Caller
+Before<o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b>Frame Pointer: Caller
+Before<o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b>Local Variables: Prologue<o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><b>Return Value: Epilogue<o:p></o:p></b></p>
+<p class="MsoNormal" style="margin-left: 0.5in;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+<p class="MsoBodyTextIndent">Source: http://www.cs.princeton.edu/courses/archive/spring02/cs217/lectures/call.pdf<br>
+</p>
+</div>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<small><b><big><big>
+Page</big></big></b></small> 431 Scott (8.2)<br>
+<br>
+</body>
+</html>

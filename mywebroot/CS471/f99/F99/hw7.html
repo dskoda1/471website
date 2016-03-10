@@ -1,0 +1,199 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.61 [en] (WinNT; U) [Netscape]">
+   <title>Assignment 7 Programming Languages</title>
+</head>
+<body>
+<a href="http://bingweb.binghamton.edu/~head/CS471/471hwIndex.html">Back</a>
+<h4>
+Assignment 7: Hard copy and web due Oct. 28 (Thur).</h4>
+
+<h4>
+Read Chapters: Chapter 3&amp; 4(pages 173-192,207-211)</h4>
+
+<h4>
+Instructions for posting solutions:</h4>
+
+<ul>
+<li>
+Post Your solutions to the following problems on the web.</li>
+
+<li>
+You may work in groups. BUT the you will not receive for copied solutions.</li>
+
+<li>
+You should post who you work with and credit all sources. YOU will receive
+a zero if you do not do this.</li>
+
+<li>
+Each student is to have their own solutions for each question.</li>
+</ul>
+NOTE: you can update these files as the semester progresses if you find
+errors or better answers.
+<h3>
+<a href="http://bingweb.binghamton.edu/~head/CS471/requirements.html">Instructions
+for presentation of&nbsp; hard copy</a></h3>
+&nbsp;
+<h3>
+Written assignment:</h3>
+
+<ol>
+<li>
+&nbsp;Redo: Look at the following C++ code and try to predict the output.
+Compile and run it. DRAW snapshot of the program stack at the following
+stages: before and after f1(1) is called, before and after f2(), before
+and after f1(0) is called and before and after f3() is called.&nbsp; Then
+write up a brief analysis and what happens during execution.</li>
+</ol>
+
+<ol START=2>
+<ol START=2>
+<ol START=2>
+<ol START=2>&nbsp;&nbsp;&nbsp;&nbsp; #include "iostream.h"
+<br>&nbsp;&nbsp;&nbsp;&nbsp; class C1 {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+// line 1
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int t;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 3
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C1() {t = 1;}&nbsp;&nbsp; //&nbsp;&nbsp;
+line 4
+<br>&nbsp;&nbsp;&nbsp;&nbsp; };&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 5
+<p>&nbsp;&nbsp;&nbsp;&nbsp; C1 c;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 7
+<p>&nbsp;&nbsp;&nbsp;&nbsp; void f2(C1&amp; cparam) {&nbsp; //&nbsp;&nbsp;
+line 9
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C1 c2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 10
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cparam = c2;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 11
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp; void f3(C1&amp; cparam) {&nbsp; //&nbsp;&nbsp;
+line 13
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C1 c3;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 14
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c3.t = 20;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 15
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp; void f1(int i) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 17
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (i==1) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 18
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f2(c);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 19
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c.t =
+7;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 20
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f3(c);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 22
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }
+<p>&nbsp;&nbsp;&nbsp;&nbsp; void main(){&nbsp;&nbsp;&nbsp;&nbsp; //&nbsp;&nbsp;
+line 26
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f1(1);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 27
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Value of
+c.t " &lt;&lt; (c.t) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f1(0);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//&nbsp;&nbsp; line 29
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cout &lt;&lt; "Value of
+c.t " &lt;&lt; (c.t) &lt;&lt; "\n";
+<br>&nbsp;&nbsp;&nbsp;&nbsp; }</ol>
+</ol>
+</ol>
+
+<br>&nbsp;
+<br>&nbsp;
+<li>
+Repeat problem 1 for the following code:</li>
+
+<ol START=3>
+<ol START=3>&nbsp;
+<ol START=3>
+<ol START=3>#include "iostream.h"
+<br>class C1 {
+<br>&nbsp; public:
+<br>&nbsp; int t;
+<br>&nbsp; C1() {t = 1;}
+<br>};
+<p>C1* c;
+<p>void f2(C1*&amp; cparam) {
+<br>&nbsp;&nbsp; C1 c2;
+<br>&nbsp;&nbsp; cparam = &amp;c2;
+<br>}
+<p>void f3(C1*&amp; cparam) {
+<br>&nbsp;&nbsp; C1 c3;
+<br>&nbsp;&nbsp; c3.t = 20;
+<br>}
+<p>void f1(int i) {
+<br>&nbsp;&nbsp; if (i==1) {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f2(c);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; c->t = 7;
+<br>&nbsp;&nbsp; } else {
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; f3(c);
+<br>&nbsp;&nbsp; }
+<br>}
+<p>void main(){
+<br>&nbsp;&nbsp; f1(1);
+<br>&nbsp;&nbsp; cout &lt;&lt; "Value of c->t " &lt;&lt; (c->t) &lt;&lt;
+"\n";
+<br>&nbsp;&nbsp; f1(0);
+<br>&nbsp;&nbsp; cout &lt;&lt; "Value of c->t " &lt;&lt; (c->t) &lt;&lt;
+"\n";
+<br>}</ol>
+</ol>
+</ol>
+</ol>
+
+<li>
+In C you can pass a <a href="http://ciips.ee.uwa.edu.au/~morris/clp110/function_par.html">function
+as a parameter</a>. How can this be implemented?&nbsp; Describe the activation
+record.</li>
+
+<br>&nbsp;
+<li>
+(page 171 problem 27) Discuss how storage&nbsp; is allocated for class
+instances in C++, Java,&nbsp; and Eiffel.</li>
+
+<br>&nbsp;
+<li>
+(page 171 problem 29) Following the schemes presented in Section 3.6, how
+can the following union variable x be represented? You only need to draw
+a picture of the representation (see pages163,fig 3.20, P164, fig3.21,
+P165 fig 3.22).</li>
+
+<br>type X_type is union Y_type, W_type;
+<br>type Y_type is float array[0..10];
+<br>type W_type is struct{
+<br>&nbsp;&nbsp;&nbsp; float A;
+<br>&nbsp;&nbsp;&nbsp; int B;
+<br>};
+<br>X_type X;
+<br>&nbsp;
+<br>&nbsp;
+<li>
+page 172 problem 31.&nbsp; Write in pseudo code a recursive algorithm to
+do the marking of all reachable heap objects, under the assumptions listed
+in section 3.6.2.7.</li>
+
+<br>&nbsp;
+<li>
+page 237 problem 8.&nbsp; What are the strings matched by the following
+SNOBOL4 pattern?</li>
+
+<br>&nbsp;
+<p>&nbsp;
+<p>IDENTIFIER = 'a' | 'b' | 'c'
+<br>OPERATOR = '+' | '-'
+<br>EXPRESSION = *EXPRESSION OPERATOR *EXPRESSION | IDENTIFIER
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;</ol>
+
+</body>
+</html>

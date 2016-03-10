@@ -1,0 +1,427 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  <title>CS471 Assignment 3:</title>
+</head>
+
+
+<body>
+
+
+
+
+
+
+<center>
+<h3> Programming Languages<br />
+
+
+
+
+
+
+Assignment<i>&nbsp;</i>3</h3>
+
+
+
+
+
+
+<div style="text-align: left;">
+<h3>Read: Scott, Chapter 11</h3>
+
+<br />
+
+
+
+<div style="margin-left: 40px;">Finish reading&nbsp;Chapter 11 ("Check your understanding" &nbsp;q:6-14<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Pages 371-373</div>
+
+<br />
+
+
+
+<br />
+
+
+
+
+
+Useful links<br />
+
+
+
+
+
+<ul>
+
+
+
+
+
+  <li><a href="http://www.cse.unsw.edu.au/%7Ebillw/prologdict.html">Prolog dictionary</a> (Definition of prolog terms)</li>
+
+
+
+
+
+  <li><a href="http://www.coli.uni-saarland.de/%7Ekris/learn-prolog-now/">Learn Prolog NOW!</a></li>
+
+
+
+
+
+  <li><a href="http://www.scre.ac.uk/personal/pb/prologbook/index.html">Prolog Programming A First Course by Paul Brna&nbsp;</a>(very detailed)</li>
+
+
+
+
+
+  <li>Check my references for other resources.</li>
+
+
+
+
+
+</ul>
+
+
+
+
+
+
+<h3>Due during class, Tue. :&nbsp;&nbsp;</h3>
+
+<ol>
+
+  <li>Define predicates and/2 and or/2 which succeed or fail according
+to the result of their respective operations; e.g.&nbsp; and(A,B) will
+succeed, if and only if both A and B succeed.&nbsp; Note that A and B
+can be Prolog goals (not only the constants true and fail).&nbsp; A
+logical expression in two variables can then be written in&nbsp; prefix
+notation, as in the following example: and(or(A,B),and(A,B)).<br />
+
+  </li>
+
+  <li>Write a procedure <span style="font-style: italic;">insert</span>(<span style="font-style: italic;">+Value</span>,+<span style="font-style: italic;">InSortedList,</span>-<span style="font-style: italic;">OutSortedList</span>),
+which insert Value
+into the correct position of InSortedList and the result is
+OutSortedList. &nbsp;This will be recursive definition.
+&nbsp;You will
+use this predicate in InsertionSort. &nbsp;For example:<br />
+
+
+
+
+    <span style="font-family: monospace;">?-
+insert(3, [2,4,6],Out).</span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">Out
+= [2, 3, 4, 6] </span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">Yes</span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">?-
+insert(3,[2,3,4,5],Out).</span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">Out
+= [2, 3, 3, 4, 5] </span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">Yes</span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">?-
+insert(3,[1,2],Out).</span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">Out
+= [1, 2, 3] </span><br style="font-family: monospace;" />
+
+
+
+
+    <span style="font-family: monospace;">Yes</span><span style="font-family: monospace;"><br />
+
+
+
+?-&nbsp; insert(77,[1, 2, 2, 3, 3, 5, 5, 6,6,7,7,7,7,9],X).<br />
+
+
+
+X = [1, 2, 2, 3, 3, 5, 5, 6, 6|...]&nbsp;<br />
+
+
+
+    <br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">Note:
+to display the entire
+list, after</span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">&nbsp; &nbsp;</span></span><span style="font-family: monospace;">X = [1, 2, 2, 3, 3, 5, 5, 6, 6|...]</span><span style="font-family: monospace;"><span style="color: rgb(0, 0, 0);"> </span><br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">type
+w. You will then see </span>}<br />
+
+
+
+&nbsp; &nbsp; X = [1, 2, 2, 3, 3, 5, 5, 6, 6|...] w<br style="color: rgb(0, 0, 0);" />
+
+
+
+
+
+
+    <span style="color: rgb(0, 0, 0);">&nbsp; &nbsp; </span></span><span style="font-family: monospace;">X = [1, 2, 2, 3, 3, 5, 5, 6, 6, 7, 7, 7, 7, 9, 77]&nbsp;<br />
+
+(see: &nbsp;<a href="http://gollem.science.uva.nl/twiki/pl/bin/view/FAQ/AllOutput">http://gollem.science.uva.nl/twiki/pl/bin/view/FAQ/AllOutput</a>)</span></li>
+
+  <li>What is the runtime implementation of lists in Prolog? &nbsp;(i.e. What goes on underneath the hood?)<br style="color: rgb(0, 0, 0);" />
+
+    <span style="font-family: monospace;"></span><br />
+
+  </li>
+
+</ol>
+
+<h3><br />
+
+</h3>
+
+<h3>Due during class, Thur.,&nbsp;</h3>
+
+
+
+
+
+
+<ol>
+
+  <li>Define a predicate bind(X) that instantiate X to be true and false successively. e.g.</li>
+
+  <li>&nbsp;Define a clause &nbsp; <span style="font-style: italic; font-weight: bold;">append</span>3<span style="font-style: italic; font-weight: bold;">DL</span>&nbsp;
+that
+concatenates three difference lists:<br />
+
+
+
+
+
+
+&nbsp; &nbsp;<span style="font-family: monospace;"> &nbsp;?-
+append3DL(
+[z,y|A] - A, [x,w | B] -B, [u,v | C] - C, What).</span><br style="font-family: monospace;" />
+
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; What = [z, y,
+x, w, u, v | _n] - _n</span><br style="font-family: monospace;" />
+
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+&nbsp; yes</span></li>
+
+  <li>Define a clause <span style="font-style: italic; font-weight: bold;">simp</span>(<span style="font-style: italic;">Var, Value, Vars</span>)
+that given a list
+Vars of variables and their values unifies the Value with the current
+value of Var. &nbsp;Vars has the form [x/5, y/10], where x is an
+atomic
+representing a variable and '/' is the separator for the associated
+numerical value. &nbsp;{Hint try using member and pattern matching}<span style="font-style: italic;"> {Include this rule in
+problem 6 below.}<br />
+
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+?- Vars=[x/5, y/10],
+simp(x,VX,Vars), simp(y,VY,Vars).</span><br style="font-family: monospace;" />
+
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+Vars = [x/5, y/10]</span><br style="font-family: monospace;" />
+
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+VX = 5</span><br style="font-family: monospace;" />
+
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+VY = 10 </span><br style="font-family: monospace;" />
+
+
+
+
+
+
+    <span style="font-family: monospace;">&nbsp;
+Yes</span></span></li>
+
+
+
+
+
+
+</ol>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<div style="text-align: left;">
+<h3><b><b><b><i>Due: </i>6pm Monday, Sept 18&nbsp;</b></b></b></h3>
+
+
+
+
+
+
+<h3><b><b><b>Finish the programming problems in <a href="XXXas3.pl">XXXas3.pl</a>
+(rename file)</b></b></b></h3>
+
+
+
+
+
+<br />
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</center>
+
+
+
+
+
+
+<b><b><b><a href="http://bingweb.binghamton.edu/%7Ehead/CS471/expectation.html#hw">Homework
+policy</a><br />
+
+
+
+
+
+
+<a href="http://bingweb.binghamton.edu/%7Ehead/CS471/requirements.html">General
+Submission Instructions</a><br />
+
+
+
+
+
+
+<br />
+
+
+
+
+
+
+<br />
+
+
+
+
+
+
+</b></b></b>
+</body>
+</html>
