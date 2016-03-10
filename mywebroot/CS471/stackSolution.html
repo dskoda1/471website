@@ -1,0 +1,1123 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Generator" content="Microsoft Word 97">
+   <meta name="GENERATOR" content="Mozilla/4.61 [en] (WinNT; U) [Netscape]">
+   <meta name="Author" content="@mar Mehta">
+   <title>Run Time Stack</title>
+</head>
+<body>
+<font size=-1>The following is an exercise&nbsp; from <u>Programming
+Language Concepts</u> by C. Ghezzi and M. Jazayeri.&nbsp; See page 108.</font>
+<p><font size=-1>For the following C like program fragment, describe each
+stage in the life of the run-time stack until routine <i>beta</i> is called
+(recursively), by <i>alpha</i>.&nbsp; In particular, show the dynamic and
+static links before each routine call.</font>
+<br>&nbsp;
+<br>&nbsp;
+<ul><font size=-1>int i = 1, j = 2, k = 3;</font>
+<br><font size=-1>beta( );</font>
+<p><font size=-1>alpha( ){</font>
+<ul><font size=-1>int i = 4, l = 5;</font>
+<br><font size=-1>....</font>
+<br><font size=-1>i += k + l;&nbsp;&nbsp;&nbsp; //&nbsp;</font> <a href="#Alpha called from beta">stack
+after alpha called from beta but before beta called</a>
+<br><font size=-1>beta( );</font>
+<br><font size=-1>....</font></ul>
+<font size=-1>};</font>
+<p><font size=-1>beta( ){</font>
+<ul><font size=-1>int k = 6;</font>
+<br><font size=-1>....</font>
+<br><font size=-1>i = j + k;&nbsp; //&nbsp;</font> <a href="#beta called from main">stack
+after beta called from main</a> ...&nbsp; <a href="#beta called from alpha">stack
+after beta called from alpha</a>
+<br><font size=-1>alpha( );</font>
+<br><font size=-1>....</font></ul>
+<font size=-1>};</font>
+<p><font size=-1>main( ){</font>
+<ul><font size=-1>....&nbsp; //&nbsp;</font> <a href="#before beta is called">stack
+before beta is called</a>
+<br><font size=-1>beta( );</font>
+<br><font size=-1>....</font></ul>
+<font size=-1>}</font></ul>
+
+<hr WIDTH="100%">
+<br>&nbsp;
+<center><table BORDER CELLPADDING=7 WIDTH="394" >
+<caption><a NAME="main"></a><font size=-1>Global Activation Record</font></caption>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%">
+<center><b><font size=-1>Address</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%">
+<center><b><font size=-1>Stack Contents</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><b><font size=-1>Description</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%">
+<center><font size=-1>0</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><font size=-1>CURRENT</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%">
+<center><font size=-1>1</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%">
+<center><font size=-1>Address 5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><font size=-1>FREE</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FF00FF">
+<center><font size=-1>1</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>i (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>j (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FF00FF">
+<center><font size=-1>4</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>k (Global)</font></center>
+</td>
+</tr>
+</table></center>
+
+<center>
+<p>
+<hr WIDTH="100%"></center>
+
+<center><table BORDER CELLPADDING=7 WIDTH="394" >
+<caption><a NAME="before beta is called"></a><font size=-1>After Main is
+called</font></caption>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%"><b><font size=-1>Address</font></b></td>
+
+<td VALIGN=TOP WIDTH="52%">
+<center><b><font size=-1>Stack Contents</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><b><font size=-1>Description</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%">
+<center><font size=-1>0</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%">
+<center><font size=-1>Address 5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><font size=-1>CURRENT</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%">
+<center><font size=-1>1</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%">
+<center><font size=-1>Address 8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><font size=-1>FREE</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FF00FF">
+<center><font size=-1>1</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>i (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>j (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FF00FF">
+<center><font size=-1>4</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>k (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FFFF00">
+<center><font size=-1>5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FFFF00">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FFFF00">
+<center><font size=-1>return pointer&nbsp;</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FFFF00">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FFFF00">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="17%" BGCOLOR="#FFFF00">
+<center><font size=-1>7</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="52%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FFFF00">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+</table></center>
+
+<center>
+<p>
+<hr WIDTH="100%"></center>
+
+<p><br>
+<center><table BORDER CELLPADDING=7 WIDTH="396" >
+<caption><font size=-1>Stack after beta is called from main</font><a NAME="beta called from main"></a></caption>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%">
+<center><b><font size=-1>Address</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><b><font size=-1>Stack Contents</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><b><font size=-1>Description</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%">
+<center><font size=-1>0</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><font size=-1>Address 8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><font size=-1>CURRENT</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%">
+<center><font size=-1>1</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><font size=-1>Address 12</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%">
+<center><font size=-1>FREE</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>8 = 2 + 6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>i modified from beta</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>j (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#FF00FF">
+<center><font size=-1>4</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FF00FF">
+<center><font size=-1>k (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#FFFF00">
+<center><font size=-1>5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FFFF00">
+<center><font size=-1>return pointer&nbsp;</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#FFFF00">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FFFF00">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#FFFF00">
+<center><font size=-1>7</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#FFFF00">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#00FFFF">
+<center><font size=-1>8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#00FFFF">
+<center><font size=-1>return pointer</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#00FFFF">
+<center><font size=-1>9</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#00FFFF">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#00FFFF">
+<center><font size=-1>10</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#00FFFF">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="15%" BGCOLOR="#00FFFF">
+<center><font size=-1>11</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="32%" BGCOLOR="#00FFFF">
+<center><font size=-1>k (local to beta)</font></center>
+</td>
+</tr>
+</table></center>
+
+<center>
+<p>
+<hr WIDTH="100%"></center>
+
+<p><br>
+<center><table BORDER CELLPADDING=7 WIDTH="393" >
+<caption><font size=-1>Stack after alpha is called from beta but before
+beta is called recursively</font><a NAME="Alpha called from beta"></a></caption>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%">
+<center><b><font size=-1>Address</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><b><font size=-1>Stack Contents</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%">
+<center><b><font size=-1>Description</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%">
+<center><font size=-1>0</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><font size=-1>Address 12</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%">
+<center><font size=-1>CURRENT</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%">
+<center><font size=-1>1</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><font size=-1>Address 17</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%">
+<center><font size=-1>FREE</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF00FF">
+<center><font size=-1>i (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF00FF">
+<center><font size=-1>j (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF00FF">
+<center><font size=-1>4</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF00FF">
+<center><font size=-1>k (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FFFF00">
+<center><font size=-1>5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FFFF00">
+<center><font size=-1>return pointer&nbsp;</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FFFF00">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FFFF00">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FFFF00">
+<center><font size=-1>7</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FFFF00">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>return pointer</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>9</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>10</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>11</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>k (local to beta)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>12</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>return pointer</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>13</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>Address 8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>14</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>15</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>i = 4 then later i = 12 = 4 + 5 + 3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>i (local to alpha)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>16</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>l (local to alpha)</font></center>
+</td>
+</tr>
+</table></center>
+
+<center>
+<p>
+<hr WIDTH="100%"></center>
+
+<p><br>
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<center><table BORDER CELLPADDING=7 WIDTH="393" >
+<caption><font size=-1>Stack after beta is called recursively by alpha</font><a NAME="beta called from alpha"></a></caption>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%">
+<center><b><font size=-1>Address</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><b><font size=-1>Stack Contents</font></b></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%">
+<center><b><font size=-1>Description</font></b></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%">
+<center><font size=-1>0</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><font size=-1>Address 17</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%">
+<center><font size=-1>CURRENT</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%">
+<center><font size=-1>1</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%">
+<center><font size=-1>Address 21</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%">
+<center><font size=-1>FREE</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>8 = 2 + 6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF00FF">
+<center><font size=-1>i modified from beta</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF00FF">
+<center><font size=-1>j (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF00FF">
+<center><font size=-1>4</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF00FF">
+<center><font size=-1>3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF00FF">
+<center><font size=-1>k (Global)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FFFF00">
+<center><font size=-1>5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FFFF00">
+<center><font size=-1>return pointer&nbsp;</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FFFF00">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FFFF00">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FFFF00">
+<center><font size=-1>7</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FFFF00">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FFFF00">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>return pointer</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>9</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>10</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>11</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>k (local to beta)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>12</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>return pointer</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>13</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>Address 8</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>14</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>15</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>i = 4 then later i = 12 = 4 + 5 + 3</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>i (local to alpha)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#FF0000">
+<center><font size=-1>16</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#FF0000">
+<center><font size=-1>5</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#FF0000">
+<center><font size=-1>l (local to alpha)</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>17</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>return to caller code</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>return pointer</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>18</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 12</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>dynamic link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>19</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>Address 2</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>static link</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="16%" BGCOLOR="#00FFFF">
+<center><font size=-1>20</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="53%" BGCOLOR="#00FFFF">
+<center><font size=-1>6</font></center>
+</td>
+
+<td VALIGN=TOP WIDTH="31%" BGCOLOR="#00FFFF">
+<center><font size=-1>k (local to beta)</font></center>
+</td>
+</tr>
+</table></center>
+
+<ul>
+<ul>
+<ul>
+<ul><font size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Note:</u>The
+global variable <i>i</i> is modified once again from beta. However,</font>
+<br><font size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; variable <i>i</i>’s
+r-value remains unchanged, because the new value assigned</font>
+<br><font size=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; to it is the
+same as the old value.</font></ul>
+</ul>
+</ul>
+</ul>
+
+<center>
+<hr WIDTH="100%"></center>
+
+<p><br>
+<table BORDER CELLPADDING=7 WIDTH="150" >
+<caption><font size=-1>Color Key</font></caption>
+
+<tr>
+<td VALIGN=TOP WIDTH="20%" BGCOLOR="#FF00FF">&nbsp;</td>
+
+<td VALIGN=TOP WIDTH="80%">
+<center><font size=-1>Global Data</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="20%" BGCOLOR="#FCF236"></td>
+
+<td VALIGN=TOP WIDTH="80%">
+<center><font size=-1>Main's Activation Record</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="20%" BGCOLOR="#00FFFF">&nbsp;</td>
+
+<td VALIGN=TOP WIDTH="80%">
+<center><font size=-1>Beta's Activation Record</font></center>
+</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP WIDTH="20%" BGCOLOR="#FF0000">&nbsp;</td>
+
+<td VALIGN=TOP WIDTH="80%">
+<center><font size=-1>Alpha's Activation Record</font></center>
+</td>
+</tr>
+</table>
+
+<center>
+<p>
+<hr WIDTH="100%"></center>
+
+<p><b><u><font size=-1>General Notes:</font></u></b>
+<p><font size=-1>A dynamic link is a pointer to the beginning of the caller
+function's activation record.&nbsp; Dynamic links are used to determine
+how many "items" to pop off the stack when a function exits, because an
+activation record is variable in length.</font>
+<p><font size=-1>Static links are pointers to the beginning of the activation
+record of the unit that statically encloses a given block/function in the
+program text.&nbsp; These links are used to access non-local variable.&nbsp;
+In this case as in C and C++ there are no nested functions.&nbsp; In this
+example, all functions are global in scope and are statically enclosed
+in the file; therefore, every function's static link points to the global
+activation record.</font>
+<p>Solution provide by <a href="mailto:bg26083@binghamton.edu">Amar. Mehta</a>
+<br>&nbsp;
+</body>
+</html>

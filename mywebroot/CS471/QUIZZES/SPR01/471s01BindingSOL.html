@@ -1,0 +1,375 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Eileen Head">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (Windows NT 5.0; U) [Netscape]">
+   <title>Spr01Binding Name ____________________________________________________________________________________</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#660000" vlink="#660000" alink="#990000">
+<font color="#000000">1)
+The C code following is in a single file:</font>
+<br><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; Fill in the next table
+for the following variables <b>a,y,hum,CNTS, a</b>&nbsp; and <b>p</b></font>
+<ol TYPE=a>
+<li>
+<font color="#000000">During what phase is the type bound ? (i.e. link,
+compile, runtime, load, language implementation, language definition --etc)</font></li>
+
+<li>
+<font color="#000000">During what phase is the r-value bound ? During what
+phase is the l-value bound?</font></li>
+
+<li>
+<font color="#000000">What is the scope? (use line numbers) What is the
+lifetime? (Entire execution, gun( ), fn( ),hum())</font></li>
+</ol>
+
+<table BORDER COLS=7 WIDTH="95%" >
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td>&nbsp;</td>
+
+<td>a(line 4)</td>
+
+<td>y(line 4)</td>
+
+<td><font color="#000000">hum(line 7)</font></td>
+
+<td><font color="#000000">a(line 12)</font></td>
+
+<td><font color="#000000">CT (line 14)</font></td>
+
+<td><font color="#000000">p (line&nbsp; 14)</font></td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">type bound</font></td>
+
+<td>&nbsp;Compile</td>
+
+<td>Compile&nbsp;</td>
+
+<td>Compile</td>
+
+<td>Compile&nbsp;</td>
+
+<td><font color="#000000">Compile&nbsp;</font></td>
+
+<td>Compile&nbsp;</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">r-value bound</font></td>
+
+<td>runtime&nbsp;</td>
+
+<td>&nbsp;runtime</td>
+
+<td>link time&nbsp;</td>
+
+<td>runtime&nbsp;</td>
+
+<td><font color="#000000">Load&nbsp;</font></td>
+
+<td>&nbsp;runtime</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">l-value bound</font></td>
+
+<td>Load&nbsp;</td>
+
+<td>runtime&nbsp;</td>
+
+<td><font color="#000000">Load&nbsp;</font></td>
+
+<td>runtime&nbsp;</td>
+
+<td>Load&nbsp;</td>
+
+<td>Load&nbsp;</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">scope</font></td>
+
+<td>3-5;&nbsp;</td>
+
+<td>2-5&nbsp;</td>
+
+<td>7-14&nbsp;</td>
+
+<td><font color="#000000">11-14&nbsp;</font></td>
+
+<td>1-14&nbsp;</td>
+
+<td>6-14&nbsp;</td>
+</tr>
+
+<tr ALIGN=CENTER VALIGN=CENTER>
+<td><font color="#000000">lifetime</font></td>
+
+<td>entire&nbsp;</td>
+
+<td>fn()</td>
+
+<td>entire</td>
+
+<td><font color="#000000">gun()&nbsp;</font></td>
+
+<td>entire&nbsp;</td>
+
+<td>entire&nbsp;</td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=4 WIDTH="58%" >
+<tr>
+<td><b><tt><font color="#000000">const int CT = 100</font></tt></b></td>
+
+<td><b><tt><font color="#000000">/* line 1 */</font></tt></b></td>
+</tr>
+
+<tr>
+<td><b><tt><font color="#000000">int fn(int y ){</font></tt></b></td>
+
+<td><b><tt><font color="#000000">/* line 2 */</font></tt></b></td>
+</tr>
+
+<tr>
+<td>
+<blockquote><b><tt><font color="#000000">static int a=0;</font></tt></b>
+<br><b><tt><font color="#000000">y = ++a + y;</font></tt></b>
+<br><b><tt><font color="#000000">return y;</font></tt></b></blockquote>
+<b><tt><font color="#000000">}</font></tt></b></td>
+
+<td ALIGN=LEFT VALIGN=TOP><b><tt><font color="#000000">/* line 3 */</font></tt></b>
+<br><b><tt><font color="#000000">/* line 4 */</font></tt></b>
+<br><b><tt><font color="#000000">/* line 5 */</font></tt></b></td>
+</tr>
+
+<tr>
+<td><b><tt><font color="#000000">static int p = CT;&nbsp;</font></tt></b></td>
+
+<td><b><tt><font color="#000000">/* line 6 */</font></tt></b></td>
+</tr>
+
+<tr>
+<td><b><tt><font color="#000000">int hum(int h, int k ) {</font></tt></b></td>
+
+<td><b><tt><font color="#000000">/* line 7 */</font></tt></b></td>
+</tr>
+
+<tr>
+<td>
+<blockquote><b><tt><font color="#000000">return k = ++h - k ;</font></tt></b></blockquote>
+<b><tt><font color="#000000">}</font></tt></b></td>
+
+<td VALIGN=TOP><b><tt><font color="#000000">/* line 8 */</font></tt></b></td>
+</tr>
+
+<tr>
+<td><b><tt><font color="#000000">int gun() {&nbsp;</font></tt></b></td>
+
+<td><b><tt><font color="#000000">/* line 9 */</font></tt></b></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td VALIGN=TOP>
+<blockquote><b><tt><font color="#000000">int x = 5, y=7, z=9;</font></tt></b>
+<br><b><tt><font color="#000000">int a,b;</font></tt></b></blockquote>
+</td>
+
+<td ALIGN=LEFT VALIGN=TOP><b><tt><font color="#000000">/* line 10 */</font></tt></b>
+<br><b><tt><font color="#000000">/* line 11 */</font></tt></b></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td VALIGN=TOP>
+<blockquote><b><tt><font color="#000000">a = hum (x,y);</font></tt></b>
+<br><b><tt><font color="#000000">b = hum (z,z);</font></tt></b>
+<br><b><tt><font color="#000000">return CT + p ;&nbsp;</font></tt></b></blockquote>
+<b><tt><font color="#000000">}</font></tt></b></td>
+
+<td ALIGN=LEFT VALIGN=TOP><b><tt><font color="#000000">/* line 12 */</font></tt></b>
+<br><b><tt><font color="#000000">/* line 13 */</font></tt></b>
+<br><b><tt><font color="#000000">/* line 14 */</font></tt></b></td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=3 COLS=2 WIDTH="100%" >
+<caption>2 ) Using the code in question 1, what is the value of a,x,y,b,z
+<b>after
+line12 and line 13 are executed.&nbsp;</b></caption>
+
+<tr>
+<td>
+<table BORDER COLS=6 WIDTH="90%" >
+<caption><b>Passed by Ref</b></caption>
+
+<tr>
+<td></td>
+
+<td>
+<center>x=5</center>
+</td>
+
+<td>
+<center>y=7</center>
+</td>
+
+<td>
+<center>z=9</center>
+</td>
+
+<td>
+<center>a=?</center>
+</td>
+
+<td>
+<center>b=?</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>line 12</center>
+</td>
+
+<td>
+<center>6&nbsp;</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>9&nbsp;</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>?&nbsp;</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>line 13</center>
+</td>
+
+<td>
+<center>6&nbsp;</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>0&nbsp;</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>0&nbsp;</center>
+</td>
+</tr>
+</table>
+</td>
+
+<td>
+<table BORDER COLS=6 WIDTH="90%" >
+<caption>
+<center><b>Passed by Copy in Copy out</b></center>
+</caption>
+
+<tr>
+<td>&nbsp;</td>
+
+<td>
+<center>x=5</center>
+</td>
+
+<td>
+<center>y=7</center>
+</td>
+
+<td>
+<center>z=9</center>
+</td>
+
+<td>
+<center>a=?</center>
+</td>
+
+<td>
+<center>b=?</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>line 12</center>
+</td>
+
+<td>
+<center>&nbsp;6</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>9&nbsp;</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>?&nbsp;</center>
+</td>
+</tr>
+
+<tr>
+<td>
+<center>line 13</center>
+</td>
+
+<td>
+<center>6&nbsp;</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>10 **1&nbsp;</center>
+</td>
+
+<td>
+<center>-1&nbsp;</center>
+</td>
+
+<td>
+<center>1</center>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+</body>
+</html>

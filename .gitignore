@@ -1,2 +1,8 @@
-mywebroot/CS471/**/*
+mywebroot/CS471/CODE/**
+mywebroot/CS471/f99/**
+mywebroot/CS471/HW/**
+mywebroot/CS471/NOTES/**
+mywebroot/CS471/QUIZES/**
+mywebroot/CS471/S00/**
+mywebroot/CS471/WeirdCode/**
 webroot/**/*
