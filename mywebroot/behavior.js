@@ -36,6 +36,10 @@ app.MainRouter = Backbone.Router.extend({
   routes: {
       ':one': 'one',
       ':one/:two': 'two',
+      ':one/:two/:three': 'three',
+      ':one/:two/:three/:four': 'four',
+      ':one/:two/:three/:four/:five': 'five',
+      
       '': 'default',
       
       
@@ -46,6 +50,15 @@ app.MainRouter = Backbone.Router.extend({
   }, 
   two: function(first, second){
     app.View.loadPage(first + '/' + second);   
+  },
+  three: function(first, second, third){
+    app.View.loadPage(first + '/' + second + '/' + third);   
+  },
+  four: function(first, second, third, fourth){
+    app.View.loadPage(first + '/' + second + '/' + third + '/' + fourth);   
+  },
+  five: function(first, second, third, fourth, fifth){
+    app.View.loadPage(first + '/' + second + '/' + third + '/' + fourth + '/' + fifth);   
   },
   default: function(pathName){
       app.View.loadPage('home.html');
