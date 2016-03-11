@@ -62,7 +62,7 @@ app.MainRouter = Backbone.Router.extend({
   },
   default: function(pathName){
       app.View.loadPage('home.html');
-  }
+  },
     
     
 })

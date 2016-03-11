@@ -1,5 +1,7 @@
 <!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en">
-<html lang="en-us"><head>
+<html lang="en-us">
+
+<head>
 
 
 
@@ -7,172 +9,198 @@
 
 
 
-  
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-  
-  <meta name="Author" content="E Head/Lander">
+      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
-  
-  <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]"><title>Runtime Environment Notes</title></head><body style="color: rgb(0, 0, 0); background-color: rgb(255, 245, 226);" alink="#916030" link="#c08040" vlink="#664321">
-<center>
-<h3> Core Issues in Language Design<br>
+
+      <meta name="Author" content="E Head/Lander">
+
+
+      <meta name="GENERATOR" content="Mozilla/4.73 [en] (Win98; U) [Netscape]">
+      <title>Runtime Environment Notes</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 245, 226);" alink="#916030" link="#c08040" vlink="#664321">
+      <center>
+            <h3> Core Issues in Language Design<br>
 Notes:&nbsp; Fall 15<br>
 </h3>
-</center>
-
-
-
-<center>
-<table style="background-color: rgb(255, 253, 253); width: 900px; height: 450px;" border="2" cellpadding="2" cellspacing="2">
-  <tbody>
-    <tr>
-      <td style="width: 321px;">
-      <center>
-      <h3 style="width: 298px;"> Topic</h3>
       </center>
-      </td>
-      <td style="width: 350px;">
+
+
+
       <center>
-      <h3 style="margin-left: 0px; width: 187px;"> Read:<br>
+            <div class="table-responsive">
+                  <table class="table table-hover table-striped table-bordered">
+                        <tbody>
+                              <tr>
+                                    <td style="width: 321px;">
+                                          <center>
+                                                <h3 style="width: 298px;"> Topic</h3>
+                                          </center>
+                                    </td>
+                                    <td style="width: 350px;">
+                                          <center>
+                                                <h3 style="margin-left: 0px; width: 187px;"> Read:<br>
 (S) Scott<br>
       </h3>
-      </center>
-      </td>
-      <td style="width: 176px;">Comments</td>
-    </tr>
-    <tr>
-      <td style="width: 321px;">
-      <li><a href="NOTES/RUNTIME/Chap3.html">Names, Scopes and Bindings</a></li>
-&nbsp;</td>
-      <td style="width: 286px;">S: &nbsp;chap 3, <br>
-&nbsp; &nbsp; &nbsp;section 8.1, 7.7.3<br>
-&nbsp; &nbsp; &nbsp;pages:672-676,691-696 (chap 13)<br>
-&nbsp;&nbsp;&nbsp;&nbsp; <br>
-cyu: <br>
-&nbsp;&nbsp; chap 3: 1-20,21-24,26-29,30-43<br>
-&nbsp;&nbsp; chap 7: 44,45,46,47,48,49,50<br>
-&nbsp;&nbsp; chap 8: 1- 5<br>
-&nbsp;&nbsp; chap 13: 1-5,15,19,22,23,24,35-37,43<br>
-      <br>
-      <a href="NOTES/RUNTIME/CODE/CODE.html">Example
+                                          </center>
+                                    </td>
+                                    <td style="width: 176px;">Comments</td>
+                              </tr>
+                              <tr>
+                                    <td style="width: 321px;">
+                                          <li><a href="NOTES/RUNTIME/Chap3.html">Names, Scopes and Bindings</a></li>
+                                          &nbsp;</td>
+                                    <td style="width: 286px;">S: &nbsp;chap 3,
+                                          <br> &nbsp; &nbsp; &nbsp;section 8.1, 7.7.3
+                                          <br> &nbsp; &nbsp; &nbsp;pages:672-676,691-696 (chap 13)
+                                          <br> &nbsp;&nbsp;&nbsp;&nbsp;
+                                          <br> cyu:
+                                          <br> &nbsp;&nbsp; chap 3: 1-20,21-24,26-29,30-43
+                                          <br> &nbsp;&nbsp; chap 7: 44,45,46,47,48,49,50
+                                          <br> &nbsp;&nbsp; chap 8: 1- 5
+                                          <br> &nbsp;&nbsp; chap 13: 1-5,15,19,22,23,24,35-37,43
+                                          <br>
+                                          <br>
+                                          <a href="NOTES/RUNTIME/CODE/CODE.html">Example
 code</a> </td>
-      <td style="width: 176px;"><a href="http://docs.python.org/3/">python.org
-Language documentation</a> <br>
-      <br>
-      <a href="NOTES/RUNTIME/CODE/dogtest.c">namespaces in
+                                    <td style="width: 176px;"><a href="http://docs.python.org/3/">python.org
+Language documentation</a>
+                                          <br>
+                                          <br>
+                                          <a href="NOTES/RUNTIME/CODE/dogtest.c">namespaces in
 C <br>
-      </a><br>
-      <a href="http://www.youtube.com/watch?v=NvWTnIoQZj4">Bjarne Stroustrup: The 5 Programming Languages You Need to Know</a><br>
-      <a href="http://www.youtube.com/watch?v=ptY52nYNXQ4"></a><br>
-      <a href="http://www.youtube.com/watch?v=KlPC3O1DVcg">Bjarne Stroustrup: Why the Programming Language C Is Obsolete</a><br>
-      <br>
-      <a href="/#/CS471/NOTES/RUNTIME/nestedPythonA.pdf" target="_blank">Diagram for Stack</a><br>
-      </td>
-    </tr>
-    <tr>
-      <td style="vertical-align: top; width: 321px;">
-      <li><a href="NOTES/RUNTIME/Chap6.html">Flow Control </a></li>
-      </td>
-      <td style="vertical-align: top; width: 286px;">S:
-chap 6 (except 6.6.1)<br>
-cyu:<br>
-&nbsp;&nbsp; chap 6: 1-11,12-18,19-26,27-37<br>
-      <br>
-      <a href="http://www.dabeaz.com/generators/">Generator Tricks for
-Systems Programmers</a><br>
-      </td>
-      <td style="vertical-align: top; width: 176px;"><span style="text-decoration: underline;"><a href="http://www4.cnn.com/TECH/space/9911/10/orbiter.03/">CNN
+      </a>
+                                          <br>
+                                          <a href="http://www.youtube.com/watch?v=NvWTnIoQZj4">Bjarne Stroustrup: The 5 Programming Languages You Need to Know</a>
+                                          <br>
+                                          <a href="http://www.youtube.com/watch?v=ptY52nYNXQ4"></a>
+                                          <br>
+                                          <a href="http://www.youtube.com/watch?v=KlPC3O1DVcg">Bjarne Stroustrup: Why the Programming Language C Is Obsolete</a>
+                                          <br>
+                                          <br>
+                                          <a href="/#/CS471/NOTES/RUNTIME/nestedPythonA.pdf" target="_blank">Diagram for Stack</a>
+                                          <br>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td style="vertical-align: top; width: 321px;">
+                                          <li><a href="NOTES/RUNTIME/Chap6.html">Flow Control </a></li>
+                                    </td>
+                                    <td style="vertical-align: top; width: 286px;">S: chap 6 (except 6.6.1)
+                                          <br> cyu:
+                                          <br> &nbsp;&nbsp; chap 6: 1-11,12-18,19-26,27-37
+                                          <br>
+                                          <br>
+                                          <a href="http://www.dabeaz.com/generators/">Generator Tricks for
+Systems Programmers</a>
+                                          <br>
+                                    </td>
+                                    <td style="vertical-align: top; width: 176px;"><span style="text-decoration: underline;"><a href="http://www4.cnn.com/TECH/space/9911/10/orbiter.03/">CNN
 Report</a><br>
       <a href="ftp://ftp.hq.nasa.gov/pub/pao/reports/1999/MCO_report.pdf">Mishap
 Investigation Report 11/10/99</a><br>
       <br>
       </span><a href="/#/CS471/NOTES/RUNTIME/CODE/array.perl">Arrays
-in Perl</a> <br>
-      <a href="NOTES/RUNTIME/CODE/lists.py">Arrays in Python</a><br>
-      <span style="text-decoration: underline;"><br>
+in Perl</a>
+                                          <br>
+                                          <a href="NOTES/RUNTIME/CODE/lists.py">Arrays in Python</a>
+                                          <br>
+                                          <span style="text-decoration: underline;"><br>
       <a href="NOTES/RUNTIME/CODE/iterators.py">iterators.py</a><br>
-      </span><span style="text-decoration: underline;"></span><a href="NOTES/RUNTIME/CODE/iterators.rb">iterators.rb</a><br>
-      <a href="/#/CS471/NOTES/RUNTIME/CODE/iteratorsEX6_72.rb">iteratorsEX6_72.rb</a><br>
-      <span style="text-decoration: underline;"> <br>
+      </span><span style="text-decoration: underline;"></span><a href="NOTES/RUNTIME/CODE/iterators.rb">iterators.rb</a>
+                                          <br>
+                                          <a href="/#/CS471/NOTES/RUNTIME/CODE/iteratorsEX6_72.rb">iteratorsEX6_72.rb</a>
+                                          <br>
+                                          <span style="text-decoration: underline;"> <br>
       <a href="http://www.zeuscmd.com/tutorials/cplusplus/53-OperatorOverloading.php">Operator
 Overloading in C++</a><br><span style="text-decoration: underline;">C# iterators<br>
       </span></span>
-      <ul>
-        <li><a href="http://csharpindepth.com/Articles/Chapter11/StreamingAndIterators.aspx" target="_blank">Iterators, iterator blocks and data pipelines</a></li>
-        <li><a href="http://csharpindepth.com/Articles/Chapter6/IteratorBlockImplementation.aspx">Iterator block implementation details: auto-generated state machines</a></li>
-        <li><a href="https://msdn.microsoft.com/en-us/library/ee5kxzk0%28v=vs.90%29.aspx" target="_blank">How to: Create an Iterator Block for a Generic List</a></li>
-        <li><a href="http://stackoverflow.com/questions/716238/distinction-between-iterator-and-enumerator" target="_blank">Distinction between iterator and enumerator</a><br>
-        </li>
-      </ul>
- </td>
-    </tr>
-    <tr>
-      <td style="width: 321px;">
-      <li>T<a href="NOTES/RUNTIME/Chap7.html">ype System</a></li>
-      <li><a href="NOTES/RUNTIME/Poly.html">Polymorphism</a></li>
-      <br>
-      <br>
-      </td>
-      <td style="width: 286px;">&nbsp;S: Chapter 7 (all is pretty
-important)<br>
-&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-10,11-19,22-25,27-29,33-35,36-43<br>
-      </td>
-      <td style="width: 176px;"><a href="http://www1.cs.columbia.edu/%7Eevs/intro/handouts/songPointers.html">Pointer
-Song</a><br>
-      <a href="http://subtextual.org/">Uncovering the
-simplicity of programming</a><br>
-      <br>
-      <span style="text-decoration: underline;"><a href="NOTES/RUNTIME/CODE/TreeModule.py">TreeModule.py</a><br>
-      </span><span style="text-decoration: underline;"></span><a href="NOTES/RUNTIME/CODE/treeModule.rb">treeModule.rb</a><br>
-      <br>
-      <br>
- </td>
-    </tr>
-    <tr>
-      <td style="width: 321px;">
-      <li> <a href="NOTES/RUNTIME/chap8.html">Parameter Passing
+                                          <ul>
+                                                <li><a href="http://csharpindepth.com/Articles/Chapter11/StreamingAndIterators.aspx" target="_blank">Iterators, iterator blocks and data pipelines</a></li>
+                                                <li><a href="http://csharpindepth.com/Articles/Chapter6/IteratorBlockImplementation.aspx">Iterator block implementation details: auto-generated state machines</a></li>
+                                                <li><a href="https://msdn.microsoft.com/en-us/library/ee5kxzk0%28v=vs.90%29.aspx" target="_blank">How to: Create an Iterator Block for a Generic List</a></li>
+                                                <li><a href="http://stackoverflow.com/questions/716238/distinction-between-iterator-and-enumerator" target="_blank">Distinction between iterator and enumerator</a>
+                                                      <br>
+                                                </li>
+                                          </ul>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td style="width: 321px;">
+                                          <li>T<a href="NOTES/RUNTIME/Chap7.html">ype System</a></li>
+                                          <li><a href="NOTES/RUNTIME/Poly.html">Polymorphism</a></li>
+                                          <br>
+                                          <br>
+                                    </td>
+                                    <td style="width: 286px;">&nbsp;S: Chapter 7 (all is pretty important)
+                                          <br> &nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-10,11-19,22-25,27-29,33-35,36-43
+                                          <br>
+                                    </td>
+                                    <td style="width: 176px;"><a href="http://www1.cs.columbia.edu/%7Eevs/intro/handouts/songPointers.html">Pointer
+Song</a>
+                                          <br>
+                                          <a href="http://subtextual.org/">Uncovering the
+simplicity of programming</a>
+                                          <br>
+                                          <br>
+                                          <span style="text-decoration: underline;"><a href="NOTES/RUNTIME/CODE/TreeModule.py">TreeModule.py</a><br>
+      </span><span style="text-decoration: underline;"></span><a href="NOTES/RUNTIME/CODE/treeModule.rb">treeModule.rb</a>
+                                          <br>
+                                          <br>
+                                          <br>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td style="width: 321px;">
+                                          <li> <a href="NOTES/RUNTIME/chap8.html">Parameter Passing
 Semantics</a> </li>
-      </td>
-      <td style="width: 286px;">&nbsp;S:&nbsp; Chap 8: 383-410, 418-427<br>
-&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-12,13-25, 34,35<br>
-      </td>
-      <td style="width: 176px;">&nbsp;<br>
-      </td>
-    </tr>
-    <tr>
-      <td style="width: 321px;">
-      <li> <a href="NOTES/RUNTIME/chap9.html">OO Languages</a> </li>
-      </td>
-      <td style="width: 286px;">&nbsp;S: Chap 9 -<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-11,14-17,19-20,23-26,29,30, <b>31-33,</b>
-34-37, <b>38,</b> 39-40<br>
-      </td>
-      <td style="width: 176px;"><a href="http://subtextual.org/subtext2.html">Subtext Video</a><br>
-      <a href="https://www.youtube.com/playlist?list=PLHxtyCq_WDLXFAEA-lYoRNQIezL_vaSX-">Programming Conversations  by A9</a><br>
+                                    </td>
+                                    <td style="width: 286px;">&nbsp;S:&nbsp; Chap 8: 383-410, 418-427
+                                          <br> &nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-12,13-25, 34,35
+                                          <br>
+                                    </td>
+                                    <td style="width: 176px;">&nbsp;
+                                          <br>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td style="width: 321px;">
+                                          <li> <a href="NOTES/RUNTIME/chap9.html">OO Languages</a> </li>
+                                    </td>
+                                    <td style="width: 286px;">&nbsp;S: Chap 9 -
+                                          <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CYU: 1-11,14-17,19-20,23-26,29,30, <b>31-33,</b> 34-37, <b>38,</b> 39-40
+                                          <br>
+                                    </td>
+                                    <td style="width: 176px;"><a href="http://subtextual.org/subtext2.html">Subtext Video</a>
+                                          <br>
+                                          <a href="https://www.youtube.com/playlist?list=PLHxtyCq_WDLXFAEA-lYoRNQIezL_vaSX-">Programming Conversations  by A9</a>
+                                          <br>
 
-      </td>
-    </tr>
-  </tbody>
-</table>
-</center>
+                                    </td>
+                              </tr>
+                        </tbody>
+                  </table>
+            </div>
+      </center>
 
-<br>
-
-&nbsp; <br>
-
-&nbsp;
-<p>I wish to thank Prof. Lander for the use of his notes. <br>
-&nbsp;<br>
-<a href="mailto:%20head@binghamton.edu">Report any
+      <br> &nbsp;
+      <br> &nbsp;
+      <p>I wish to thank Prof. Lander for the use of his notes.
+            <br> &nbsp;
+            <br>
+            <a href="mailto:%20head@binghamton.edu">Report any
 problems or comments.</a>
-</p>
+      </p>
 
-<p><a href="mailto:%20head@binghamton.edu">©
+      <p><a href="mailto:%20head@binghamton.edu">ï¿½
 2005 Eileen Head</a> </p>
 
-<br>
+      <br>
 
-<br>
+      <br>
 
-</body></html>
+</body>
+
+</html>

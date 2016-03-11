@@ -37,3 +37,11 @@ grep -r href=\"http://bingweb.binghamton.edu/%7Ehead/ .
 find . -name "*.html" -print0 | xargs -0 sed -i'' -e 's/href="http:\/\/bingweb.binghamton.edu\/%7Ehead/href="\/#/g'
 
 
+More cases:
+href="http://bingweb.binghamton.edu/~head/CS471/
+href=\"http:\/\/bingweb.binghamton.edu\/~head\/CS471\/
+find . -name "*.html" -print0 | xargs -0 sed -i'' -e 's/href="http:\/\/bingweb.binghamton.edu\/~head/href="\/#/g'
+
+
+
+
