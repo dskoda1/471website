@@ -43,5 +43,8 @@ href=\"http:\/\/bingweb.binghamton.edu\/~head\/CS471\/
 find . -name "*.html" -print0 | xargs -0 sed -i'' -e 's/href="http:\/\/bingweb.binghamton.edu\/~head/href="\/#/g'
 
 
+grep -r href=\"NOTES\/ .
+find . -name "*.html" -print0 | xargs -0 sed -i'' -e 's/href=\"NOTES/href="\/#\/CS471\/NOTES/g'
+
 
 
